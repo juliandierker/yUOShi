@@ -1,0 +1,21 @@
+.pixel_box{
+  display: flex;
+  height:400px;
+  width:400px;
+  background: #d3d3d3;
+
+}
+
+.default_pixels{
+  height:10%;
+  width:10%;
+  background: #c3c3c3;
+  border:2.5px outset;
+}
+
+.pressed_pixels {
+  height:10%;
+  width:10%;
+  background: #565555;
+  border:2.5px inset;
+}

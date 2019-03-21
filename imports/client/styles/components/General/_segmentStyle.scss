@@ -1,0 +1,17 @@
+.segmentCompany {
+  position: relative;
+  top: 0;
+  transition: top ease 0.25s;
+}
+.segmentCompany:hover {
+  top: -10px;
+}
+
+.segmentHoch {
+  position: relative;
+  top: 0;
+  transition: top ease 0.25s;
+}
+.segmentHoch:active {
+  top: -10px;
+}

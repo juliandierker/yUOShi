@@ -1,0 +1,97 @@
+.flexSpaceAround {
+  display: flex;
+  justify-content: space-around;
+  padding: 1em;
+}
+
+.flexCenter {
+  display: flex;
+  justify-content: center;
+  padding: 1em;
+}
+
+.flexMiddle {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.flexColumn {
+  display: flex;
+  flex-direction: column;
+  margin: 1em;
+}
+.flex__row {
+  display: flex;
+  flex-direction: row;
+}
+.flexCenter--alignCenter {
+  align-self: center;
+}
+
+.flex_noTask {
+  margin: 2rem;
+
+  &__image {
+    filter: grayscale(25%) blur(1px);
+  }
+
+  &__text {
+    padding: 1rem;
+    font-size: 1.2rem;
+    font-weight: 700;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    box-shadow: 0 1rem 1rem rgba(#030404, 0.7);
+    background-color: rgba(#ffffff, 0.9);
+  }
+}
+
+.noJobCard {
+  min-width: 75vh;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.alginCenter {
+  align: center;
+}
+
+.flexWithBackgroundBeige {
+  display: inline-block;
+  text-align: left;
+  // justify-content: center;
+  // align-items: center;
+  // border: 2px dashed #c4c4c3;
+  // height: -webkit-fill-available;
+  padding: 5%;
+}
+
+.alignBottomGrid {
+  align-self: end;
+}
+
+.flexColumnMid {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.flex__mitte__column__komplette__seite {
+  height: 93vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+.flex__mitte__row__komplette__seite {
+  height: 93vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}

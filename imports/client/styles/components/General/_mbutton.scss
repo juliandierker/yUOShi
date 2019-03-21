@@ -1,0 +1,115 @@
+.mbutton {
+  background-color: #1c7293;
+  border: none;
+  color: white;
+  cursor: pointer;
+  font-size: 24px;
+  line-height: 1.2;
+  padding: 1px;
+  text-transform: uppercase !important;
+}
+
+#arrow {
+  opacity: 0;
+  transition: 0.2s;
+  -moz-transition: opacity 0.2s;
+  -webkit-transition: opacity 0.2s;
+  -o-transition: opacity 0.2s;
+}
+
+#loginButton:hover #arrow {
+  opacity: 1;
+  transition: opacity 1s ease-out;
+  -moz-transition: opacity 1s ease-out;
+  -webkit-transition: opacity 1s ease-out;
+  -o-transition: opacity 1s ease-out;
+}
+
+.mybuttonPupilCompanyNotReady {
+  background-color: transparent !important;
+  box-shadow: 0px 0px 0px 2px #d47564 inset !important;
+  color: #d47564 !important;
+  cursor: pointer !important;
+  padding: 1px;
+  position: absolute;
+  right: 5px;
+  bottom: 10px;
+}
+
+.mybuttonPupilCompanyNotReady:hover {
+  background: #d47564 !important;
+  color: white !important;
+  cursor: pointer !important;
+}
+
+.mybuttonPupilCompanyLeave {
+  background-color: transparent !important;
+  box-shadow: 0px 0px 0px 2px #d47564 inset !important;
+  color: #d47564 !important;
+  cursor: pointer !important;
+}
+
+.mybuttonPupilCompanyLeave:hover {
+  background: #d47564 !important;
+  color: white !important;
+  cursor: pointer !important;
+}
+
+.mybuttonPupilCompanyReady {
+  background-color: transparent !important;
+  box-shadow: 0px 0px 0px 2px #66ab8c inset !important;
+  color: #66ab8c !important;
+  cursor: pointer !important;
+  padding: 1px;
+  position: absolute;
+  right: 5px;
+  bottom: 10px;
+}
+
+.mybuttonPupilCompanyReady:hover {
+  background: #66ab8c !important;
+  color: white !important;
+  cursor: pointer !important;
+}
+
+.mybuttonPupilCompanyJoin {
+  background-color: #708090 !important;
+  color: white !important;
+  cursor: pointer !important;
+}
+
+.mybuttonPupilCompanyJoin:hover {
+  cursor: pointer !important;
+  background-color: #66ab8c !important;
+  transition: 1s !important;
+}
+
+.mybuttonPupilCompanyFirmaGründen {
+  background-color: transparent !important;
+  box-shadow: 0px 0px 0px 2px #66ab8c inset !important;
+  color: #66ab8c !important;
+  cursor: pointer !important;
+  padding: 1px;
+}
+
+.mybuttonPupilCompanyFirmaGründen:hover {
+  background: #66ab8c !important;
+  color: white !important;
+  cursor: pointer !important;
+}
+
+.mybuttonPupilCompanyFirmaGründenGrau {
+  background-color: transparent !important;
+  box-shadow: 0px 0px 0px 2px #ffffff inset !important;
+  color: #66ab8c !important;
+  cursor: pointer !important;
+  border: 2px solid #66ab8c !important;
+  // padding: 1px;
+}
+
+.mybuttonPupilCompanyFirmaGründenGrau:hover {
+  background: #66ab8c !important;
+  color: white !important;
+  cursor: pointer !important;
+  box-shadow: 0px 0px 0px 2px #66ab8c inset !important;
+}

@@ -1,0 +1,27 @@
+.divHeight {
+  height: 100vh;
+}
+
+.divHeight-normal {
+  height: 100% !important;
+}
+
+.divHeight-minusHeader {
+  height: 93vh !important;
+}
+
+.divHeight-minusHeaderFooter {
+  height: 83vh !important;
+}
+
+.divHeight-minusFooter {
+  height: 90vh !important;
+}
+
+.viewHeight {
+  height: 95vh;
+}
+.getRidOfborder {
+  border: none !important;
+  box-shadow: none !important;
+}

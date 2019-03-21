@@ -1,0 +1,53 @@
+// Colors
+$blue: #708090; //taubenblau
+$beige: #f2eee2; //beige
+$green: #66ab8c; //leaf
+$red: #f53240; //red
+$charcoal: #36454f; //charcoal black
+$white: #ffffff; //weiß
+
+//Background
+$loginBackground: linear-gradient(rgba(255, 255, 255, 0), rgba(255, 255, 255, 0)),
+  rgb(255, 255, 255) url("/LandingPage/CodeupWebpage.jpeg") no-repeat center;
+
+$pupilCompaniesBackground: linear-gradient(rgba(255, 255, 255, 0), rgba(255, 255, 255, 0)),
+  rgba(0, 0, 0, 0.85) url("agreement-business-businessman-872957.jpg") no-repeat center;
+
+//Margin
+$topMargin: 2em;
+
+//Background Classroom
+$classroomBackground: linear-gradient(rgba(0, 0, 0, 0.55), rgba(0, 0, 0, 0.55)),
+  rgba(0, 0, 0, 0.55) url("/CreateClass/companyBack.jpg") no-repeat center;
+
+// COLORS
+$color-primary: #55c57a;
+$color-primary-light: #7ed56f;
+$color-primary-dark: #28b485;
+
+$color-secondary-light: #ffb900;
+$color-secondary-dark: #ff7730;
+
+$color-tertiary-light: #2998ff;
+$color-tertiary-dark: #5643fa;
+
+$color-grey-light-1: #f7f7f7;
+$color-grey-light-2: #eee;
+
+$color-grey-dark: #777;
+$color-grey-dark-2: #999;
+$color-grey-dark-3: #333;
+
+$color-white: #fff;
+$color-black: #000;
+$color-teal: #3cc47c;
+$color-taube: #60838b;
+
+// FONT
+$default-font-size: 1.6rem;
+
+// GRID
+$grid-width: 114rem;
+$gutter-vertical: 8rem;
+$gutter-vertical-small: 6rem;
+$gutter-horizontal: 6rem;
