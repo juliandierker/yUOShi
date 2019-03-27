@@ -17,6 +17,7 @@
     "import/resolver": "meteor"
   },
   "rules": {
+    "max-len": [2, 100, 2, { "ignoreUrls": true }],
     "no-var": false,
     "no-useless-concat": false,
     "react/jsx-filename-extension": [

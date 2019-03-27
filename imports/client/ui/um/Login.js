@@ -6,6 +6,11 @@ import { Button, Form, Header, Image, Icon } from "semantic-ui-react";
 import { Roles } from "meteor/alanning:roles";
 import { HTTP } from "meteor/http";
 import Swal from "sweetalert2";
+
+import { Teachers } from "../../../api/teachers";
+import { Students } from "../../../api/students";
+import { Tokens } from "../../../api/tokens";
+
 // import SignUp from "./SignUp";
 
 // import { UserAdministration, getInputSwal } from "./UserAdministration";
@@ -15,7 +20,7 @@ class Login extends React.Component {
     super(props);
     this.state = {
       isOpen: false,
-      error: "",
+      error: null,
       email: "",
       password: ""
     };
@@ -34,48 +39,63 @@ class Login extends React.Component {
     this.setState(change);
   };
 
+  checkToken(token) {
+    Meteor.subscribe("tokenByUser");
+    console.log(Tokens.find({}).fetch());
+    if (Tokens.find({}).fetch().length == 0) {
+      Meteor.call("tokens.insert", Meteor.userId(), token);
+    }
+    return Tokens.find({});
+  }
+
+  login(email, password, token) {
+    Meteor.loginWithPassword({ username: email }, password, err => {
+      if (err) {
+        this.setState({ error: "unableToLoginError" });
+      } else {
+        this.checkToken(token);
+      }
+    });
+  }
   onSubmit(e) {
     e.preventDefault();
     // perform basicauth request
     const email = this.state.email.trim();
     const password = this.state.password.trim();
 
-    const rawtoken = `${email}:${password}`;
+    const rawtoken = email + ":" + password;
     const token = btoa(rawtoken);
-    console.log("submit triggered");
-    Meteor.call(
-      "yuoshi.auth",
-      "Basic " + token,
-      email,
-      password,
-      (err, res) => {
-        if (err) {
-          this.setState({ error: "unableToLoginError" });
-          console.log(err);
-        } else {
-          if (res) {
-            console.log(token);
-            console.log(res);
-          } else {
-            this.setState({ error: "unableToLoginError" });
-          }
-        }
-      }
-    );
-    // perform basic auth
-    const userCredentials = { username: email, password };
-
-    return true;
-
-    console.log(result);
-
-    Meteor.loginWithPassword({ username: email }, password, err => {
+    Meteor.call("users.auth", "Basic " + token, email, password, (err, res) => {
       if (err) {
-        Meteor.loginWithPassword({ email }, password, err => {
-          if (err) {
-            this.setState({ error: "unableToLoginError" });
+        this.setState({ error: "unableToLoginError" });
+        console.log(err);
+      } else {
+        if (res.length > 0) {
+          var output = JSON.parse(res[0].content);
+          var userRole = output.data.attributes["global-permission"];
+          if (userRole == "dozent" || userRole == "tutor") {
+            Meteor.subscribe("teacher", output.data.id);
+
+            if (Teachers.findOne({ studipUserId: output.data.id })) {
+              this.login(email, password, token);
+            } else {
+              Meteor.call(
+                "users.teachersInsert",
+                email,
+                output.data.id,
+                (err, res) => {
+                  if (!err) {
+                    this.login(email, password, token);
+                  } else {
+                    console.log(err);
+                  }
+                }
+              );
+            }
           }
-        });
+        } else {
+          this.setState({ error: "unableToLoginError" });
+        }
       }
     });
   }

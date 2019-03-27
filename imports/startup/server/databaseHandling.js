@@ -24,7 +24,7 @@ function setupTestCourse(skipSetup) {
   Roles.addUsersToRoles(teacherId, "teacher");
   Teachers.insert({
     userId: teacherId,
-    classrooms: []
+    courses: []
   });
   const courseId = shortid.generate();
 
@@ -48,7 +48,7 @@ function setupAdmin() {
 function setupStudents() {
   const courses = Courses.find({}).fetch();
   for (let i = 0; i < 9; i++) {
-    const username = `user${i}`;
+    const username = "user" + i;
     const userId = Accounts.createUser({ username, password: username });
     Roles.addUsersToRoles(userId, "student");
 
@@ -59,15 +59,15 @@ function setupStudents() {
     });
     // Dummy-Entry for Studip-Validated User:
   }
-  const dummyId = Accounts.createUser({
-    username: "test_autor",
-    password: "testing"
-  });
-  Students.insert({
-    courseId: courses[0]._id,
-    dummyId,
-    username: `test_dozent`
-  });
+  // const dummyId = Accounts.createUser({
+  //   username: "test_autor",
+  //   password: "testing"
+  // });
+  // Students.insert({
+  //   courseId: courses[0]._id,
+  //   dummyId,
+  //   username: `test_autor`
+  // });
 }
 
 function clearDatabase() {

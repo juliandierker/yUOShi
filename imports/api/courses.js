@@ -46,28 +46,12 @@ if (Meteor.isServer) {
 
 Meteor.methods({
   // teacher
-  "course.insert": function(courseName, studipCourseId) {
+  "courses.insert": function(courseName, studipCourseId) {
     if (Meteor.isServer) {
       if (Meteor.userId() && Roles.userIsInRole(Meteor.user(), ["teacher"])) {
         if (Courses.findOne({ teacherId: Meteor.userId(), courseName }))
           throw new Meteor.Error("Class already exists!");
         const courseId = shortid.generate();
-        // let packages = [
-        //   "Autonomes Fahren",
-        //   "Code Analyse",
-        //   "Flussdiagramm",
-        //   "Raetsel",
-        //   "ItConsulting"
-        // ];
-        // let classroomTasks = Tasks.find({
-        //   taskPackage: { $in: packages }
-        // }).fetch();
-        // let maxCredits = classroomTasks.reduce(
-        //   (acc, elem) => (acc += elem.credits),
-        //   0
-        // );
-        // let taskIds = classroomTasks.map(elem => elem.taskId);
-
         const students = [];
         Courses.insert({
           _id: classId,
@@ -86,56 +70,42 @@ Meteor.methods({
       }
     }
   },
-  // admin, teacher
-  "classrooms.delete": function(classId, teacherId) {
-    let classroom = null;
-    let teacher = null;
-    if (Meteor.userId() && Roles.userIsInRole(Meteor.user(), ["ppadmin"])) {
-      classroom = Classrooms.findOne({ _id: classId });
-      teacher = Teachers.findOne({ userId: teacherId });
-      if (!teacher) throw new Meteor.Error("Teacher doesn't exist!");
-    } else if (
-      Meteor.userId() &&
-      Roles.userIsInRole(Meteor.user(), ["teacher"])
-    ) {
-      teacher = Teachers.findOne({ userId: Meteor.userId() });
-      classroom = Classrooms.findOne({ _id: classId });
-    } else {
-      throw new Meteor.Error("Access denied!");
+  // after basic-auth get the user-courses where the teacher initialized yuoshi
+  //TODO global-userstatus route under construction
+  "courses.filterTeacherCourses": function(token, studipUserId) {
+    try {
+      var courseRawData = HTTP.call(
+        "GET",
+        "http://localhost/studip/plugins.php/argonautsplugin/users/" +
+          studipUserId +
+          "/courses",
+        {
+          headers: { Authorization: token }
+        }
+      );
+      var courseData = JSON.parse(courseRawData.content);
+      var allCourses = [];
+      for (var i = 0; i < courseData.data.length; i++) {
+        allCourses.push(courseData.data[i]);
+        // if (!Courses.findOne({ studipCourseId: courseData[i] })) {
+        // }
+      }
+      var memberships = [];
+      var membershipRawData = HTTP.call(
+        "GET",
+        "http://localhost/studip/plugins.php/argonautsplugin/users/" +
+          studipUserId +
+          "/courses",
+        {
+          headers: { Authorization: token }
+        }
+      );
+    } catch (e) {
+      return false;
     }
-    if (!classroom) throw new Meteor.Error("Classroom doesn't exist!");
-    if (!teacher.classrooms.includes(classId))
-      throw new Meteor.Error("Classroom doesn't belong to teacher!");
-    Teachers.update({ userId: teacherId }, { $pull: { classrooms: classId } });
-    Companies.remove({ _id: { $in: classroom.companies } });
-    Pupils.remove({ userId: { $in: classroom.pupils } });
-    Meteor.users.remove({ _id: { $in: classroom.pupils } });
-    Classrooms.remove({ _id: classId });
   },
-
-  // teacher in classroom
-  "classrooms.returnHelp": function(classId, taskId, companyId) {
-    if (Meteor.userId() && Roles.userIsInRole(Meteor.user(), ["teacher"])) {
-      const teacher = Teachers.findOne({ userId: Meteor.userId() });
-      if (!teacher.classrooms.includes(classId))
-        throw new Meteor.Error("Classroom doesn't belong to teacher!");
-      if (
-        !Classrooms.update(
-          { _id: classId },
-          { $pull: { helpTasks: { taskId, companyId } } }
-        ) ||
-        !Companies.update(
-          { _id: companyId, "currentTasks.taskId": taskId },
-          {
-            $set: {
-              "currentTasks.$.taskState.status": "active"
-            }
-          }
-        )
-      )
-        throw new Meteor.Error("No such help request!");
-    } else {
-      throw new Meteor.Error("Access denied!");
-    }
+  "courses.pupilInit": function(userId) {},
+  "courses.delete": function(courseId, teacherId) {
+    //TODO delte routine
   }
 });

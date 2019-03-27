@@ -9,15 +9,12 @@ export const Teachers = new Mongo.Collection("teachers");
 
 if (Meteor.isServer) {
   // teacher
-  Meteor.publish("teacher", function() {
-    if (Meteor.userId() && Roles.userIsInRole(Meteor.user(), ["teacher"])) {
-      return Teachers.find({ userId: Meteor.userId() });
-    }
-    throw new Meteor.Error("Access denied!");
+  Meteor.publish("teacher", function(teacherId) {
+    return Teachers.find({ studipUserId: teacherId });
   });
   // admin
   Meteor.publish("allTeacher", function() {
-    if (Meteor.userId() && Roles.userIsInRole(Meteor.user(), ["ppadmin"])) {
+    if (Meteor.userId() && Roles.userIsInRole(Meteor.user(), ["yadmin"])) {
       return Teachers.find({});
     }
     throw new Meteor.Error("Access denied!");
@@ -25,21 +22,12 @@ if (Meteor.isServer) {
 }
 
 Meteor.methods({
-  "teachers.insert": function() {
-    if (
-      this.userId &&
-      !Roles.userIsInRole(Meteor.user(), ["pupil", "teacher"])
-    ) {
-      Roles.addUsersToRoles(this.userId, "teacher");
-      Teachers.insert({
-        userId: this.userId,
-        studipUserId: "",
-        courses: []
-      });
-      if (Meteor.isServer && verifyEmail) {
-        Accounts.sendVerificationEmail(this.userId);
-      }
-    }
+  "teachers.insert": function(userId, studipUserId) {
+    Teachers.insert({
+      userId: userId,
+      studipUserId: studipUserId,
+      courses: []
+    });
   },
 
   "teachers.delete": function(userId) {
