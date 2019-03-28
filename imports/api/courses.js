@@ -14,9 +14,10 @@ if (Meteor.isServer) {
     { unique: true }
   );
   // teacher
-  Meteor.publish("classroomsByTeacher", () => {
+  Meteor.publish("coursesByTeacher", () => {
     if (Meteor.userId() && Roles.userIsInRole(Meteor.user(), ["teacher"])) {
-      return Courses.find({ teacherId: Meteor.userId() });
+      var teacherId = Teachers.findOne({ userId: Meteor.userId() });
+      return Courses.find({ teacherId });
     }
     throw new Meteor.Error("Access denied!");
   });
@@ -71,37 +72,43 @@ Meteor.methods({
     }
   },
   // after basic-auth get the user-courses where the teacher initialized yuoshi
-  //TODO global-userstatus route under construction
-  "courses.filterTeacherCourses": function(token, studipUserId) {
-    try {
-      var courseRawData = HTTP.call(
-        "GET",
-        "http://localhost/studip/plugins.php/argonautsplugin/users/" +
-          studipUserId +
-          "/courses",
-        {
-          headers: { Authorization: token }
+  "courses.getTeacherCourses": function(token, studipUserId) {
+    console.log("entered");
+    //HTTP requests goes server-side only
+    if (Meteor.isServer) {
+      try {
+        var courseRawData = HTTP.call(
+          "GET",
+          "http://localhost/studip/plugins.php/argonautsplugin/users/" +
+            studipUserId +
+            "/courses",
+          {
+            headers: { Authorization: "Basic " + token }
+          }
+        );
+        var courseData = JSON.parse(courseRawData.content);
+        var allCourses = [];
+        console.log(courseData);
+        for (var i = 0; i < courseData.data.length; i++) {
+          console.log("found");
+          // if (!Courses.findOne({ studipCourseId: courseData[i] })) {
+          // }
         }
-      );
-      var courseData = JSON.parse(courseRawData.content);
-      var allCourses = [];
-      for (var i = 0; i < courseData.data.length; i++) {
-        allCourses.push(courseData.data[i]);
-        // if (!Courses.findOne({ studipCourseId: courseData[i] })) {
-        // }
+        var memberships = [];
+        // var membershipRawData = HTTP.call(
+        //   "GET",
+        //   "http://localhost/studip/plugins.php/argonautsplugin/users/" +
+        //     studipUserId +
+        //     "/courses",
+        //   {
+        //     headers: { Authorization: "Basic " + token }
+        //   }
+        // );
+        return true;
+      } catch (e) {
+        console.log(e);
+        return false;
       }
-      var memberships = [];
-      var membershipRawData = HTTP.call(
-        "GET",
-        "http://localhost/studip/plugins.php/argonautsplugin/users/" +
-          studipUserId +
-          "/courses",
-        {
-          headers: { Authorization: token }
-        }
-      );
-    } catch (e) {
-      return false;
     }
   },
   "courses.pupilInit": function(userId) {},

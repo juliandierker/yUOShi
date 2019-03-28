@@ -12,6 +12,12 @@ if (Meteor.isServer) {
   Meteor.publish("teacher", function(teacherId) {
     return Teachers.find({ studipUserId: teacherId });
   });
+  Meteor.publish("teacherByUserId", function(userId) {
+    if (Meteor.userId() && Roles.userIsInRole(Meteor.user(), ["teacher"])) {
+      return Teachers.find({ userId: Meteor.userId() });
+    }
+    throw new Meteor.Error("Acces denied!");
+  });
   // admin
   Meteor.publish("allTeacher", function() {
     if (Meteor.userId() && Roles.userIsInRole(Meteor.user(), ["yadmin"])) {
