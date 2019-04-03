@@ -8,7 +8,7 @@ import { Teachers } from "./teachers";
 export const Courses = new Mongo.Collection("courses");
 
 if (Meteor.isServer) {
-  // classNames of one teacher are unique
+  // courseNames of one teacher are unique
   Courses.rawCollection().ensureIndex(
     { teacherId: 1, courseName: 1 },
     { unique: true }
@@ -16,7 +16,8 @@ if (Meteor.isServer) {
   // teacher
   Meteor.publish("coursesByTeacher", () => {
     if (Meteor.userId() && Roles.userIsInRole(Meteor.user(), ["teacher"])) {
-      var teacherId = Teachers.findOne({ userId: Meteor.userId() });
+      var teacherId = Teachers.findOne({ userId: Meteor.userId() })._id;
+      Courses.find({ teacherId });
       return Courses.find({ teacherId });
     }
     throw new Meteor.Error("Access denied!");
@@ -47,25 +48,23 @@ if (Meteor.isServer) {
 
 Meteor.methods({
   // teacher
-  "courses.insert": function(courseName, studipCourseId) {
+  "courses.insert": function(courseName, studipId, teacherId) {
     if (Meteor.isServer) {
+      console.log("fired");
       if (Meteor.userId() && Roles.userIsInRole(Meteor.user(), ["teacher"])) {
         if (Courses.findOne({ teacherId: Meteor.userId(), courseName }))
           throw new Meteor.Error("Class already exists!");
         const courseId = shortid.generate();
         const students = [];
         Courses.insert({
-          _id: classId,
+          teacherId: teacherId,
           courseName,
-          studipCourseId,
-          pupils,
-          tasks: [],
-          teacherId: Meteor.userId()
+          studipId,
+          students,
+          started: false,
+          tasks: []
         });
-        Teachers.update(
-          { userId: Meteor.userId() },
-          { $addToSet: { courses: courseId } }
-        );
+        Teachers.update({ $addToSet: { courses: courseId } });
       } else {
         throw new Meteor.Error("Access denied!");
       }
@@ -73,7 +72,6 @@ Meteor.methods({
   },
   // after basic-auth get the user-courses where the teacher initialized yuoshi
   "courses.getTeacherCourses": function(token, studipUserId) {
-    console.log("entered");
     //HTTP requests goes server-side only
     if (Meteor.isServer) {
       try {
@@ -87,14 +85,36 @@ Meteor.methods({
           }
         );
         var courseData = JSON.parse(courseRawData.content);
-        var allCourses = [];
-        console.log(courseData);
-        for (var i = 0; i < courseData.data.length; i++) {
-          console.log("found");
-          // if (!Courses.findOne({ studipCourseId: courseData[i] })) {
-          // }
-        }
         var memberships = [];
+        for (var i in courseData.data) {
+          var tmpCourse = courseData.data[i];
+
+          try {
+            var membershipsRaw = HTTP.call(
+              "GET",
+              "http://localhost/studip/plugins.php/argonautsplugin/courses/" +
+                tmpCourse.id +
+                "/memberships",
+              {
+                headers: { Authorization: "Basic " + token }
+              }
+            );
+            var membershipData = JSON.parse(membershipsRaw.content);
+            //Search for courses where current user is "dozent"
+            for (var k in membershipData.data) {
+              var memberStatus = membershipData.data[k].attributes.status;
+              var targetcourseId = membershipData.data[k].id.split("_")[1];
+
+              var validDozent = targetcourseId === studipUserId;
+              if (memberStatus == "dozent" && validDozent) {
+                memberships.push(tmpCourse);
+              }
+            }
+          } catch (e) {
+            console.log(e);
+            return false;
+          }
+        }
         // var membershipRawData = HTTP.call(
         //   "GET",
         //   "http://localhost/studip/plugins.php/argonautsplugin/users/" +
@@ -104,7 +124,7 @@ Meteor.methods({
         //     headers: { Authorization: "Basic " + token }
         //   }
         // );
-        return true;
+        return memberships;
       } catch (e) {
         console.log(e);
         return false;

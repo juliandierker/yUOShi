@@ -20,7 +20,6 @@ if (Meteor.isServer) {
 Meteor.methods({
   // perform a basic auth user-request to verify a studip-user
   "users.auth": function(token, email, password) {
-    console.log(token);
     try {
       const result = HTTP.call(
         "GET",
@@ -38,7 +37,6 @@ Meteor.methods({
           username: email,
           password: password
         });
-        console.log("create");
       }
       var results = [result, studipUserId];
       return results;
@@ -50,9 +48,7 @@ Meteor.methods({
   },
   "users.teachersInsert": function(username, studipUserId) {
     var teacherId = Meteor.users.findOne({ username: username })._id;
-    console.log("teacher ist: " + teacherId);
     Roles.addUsersToRoles(teacherId, "teacher");
-    console.log("reacheeee");
     Meteor.call("teachers.insert", teacherId, studipUserId);
     return teacherId;
   }

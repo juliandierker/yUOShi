@@ -41,7 +41,6 @@ class Login extends React.Component {
 
   checkToken(token) {
     Meteor.subscribe("tokenByUser");
-    console.log(Tokens.find({}).fetch());
     if (Tokens.find({}).fetch().length == 0) {
       Meteor.call("tokens.insert", Meteor.userId(), token);
     }
@@ -114,7 +113,7 @@ class Login extends React.Component {
             }}
             textAlign="center"
           >
-            <Image size="medium" src="/LandingPage/yuoshi.png" />
+            <Image size="medium" src="/landingpage/yuoshi.png" />
           </Header>
           {this.state.error ? (
             <p className="error">{this.state.error}</p>
