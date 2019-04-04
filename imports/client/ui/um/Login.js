@@ -56,6 +56,7 @@ class Login extends React.Component {
       }
     });
   }
+  //Login-routine for teachers and students
   onSubmit(e) {
     e.preventDefault();
     // perform basicauth request
@@ -80,6 +81,24 @@ class Login extends React.Component {
             } else {
               Meteor.call(
                 "users.teachersInsert",
+                email,
+                output.data.id,
+                (err, res) => {
+                  if (!err) {
+                    this.login(email, password, token);
+                  } else {
+                    console.log(err);
+                  }
+                }
+              );
+            }
+          } else if (userRole == "autor") {
+            Meteor.subscribe("student", output.data.id);
+            if (Students.findOne({ studipUserId: output.data.id })) {
+              this.login(email, password, token);
+            } else {
+              Meteor.call(
+                "users.studentInsert",
                 email,
                 output.data.id,
                 (err, res) => {

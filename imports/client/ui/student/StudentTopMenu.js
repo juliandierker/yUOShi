@@ -4,7 +4,7 @@ import { Tracker } from "meteor/tracker";
 import Loading from "../Loading";
 import { Dropdown, Icon, Menu, Segment } from "semantic-ui-react";
 
-export default class TeacherTopMenu extends React.Component {
+export default class StudentTopMenu extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -67,7 +67,7 @@ export default class TeacherTopMenu extends React.Component {
   }
 }
 
-TeacherTopMenu.propTypes = {
+StudentTopMenu.propTypes = {
   courses: PropTypes.array,
   teacher: PropTypes.object
 };

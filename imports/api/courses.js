@@ -100,6 +100,7 @@ Meteor.methods({
               }
             );
             var membershipData = JSON.parse(membershipsRaw.content);
+
             //Search for courses where current user is "dozent"
             for (var k in membershipData.data) {
               var memberStatus = membershipData.data[k].attributes.status;
@@ -115,15 +116,6 @@ Meteor.methods({
             return false;
           }
         }
-        // var membershipRawData = HTTP.call(
-        //   "GET",
-        //   "http://localhost/studip/plugins.php/argonautsplugin/users/" +
-        //     studipUserId +
-        //     "/courses",
-        //   {
-        //     headers: { Authorization: "Basic " + token }
-        //   }
-        // );
         return memberships;
       } catch (e) {
         console.log(e);
@@ -131,7 +123,28 @@ Meteor.methods({
       }
     }
   },
-  "courses.pupilInit": function(userId) {},
+
+  "courses.getStudentCourses": function(token, studipUserId) {
+    if (Meteor.isServer) {
+      try {
+        var courseRawData = HTTP.call(
+          "GET",
+          "http://localhost/studip/plugins.php/argonautsplugin/users/" +
+            studipUserId +
+            "/courses",
+          {
+            headers: { Authorization: "Basic " + token }
+          }
+        );
+        var courseData = JSON.parse(courseRawData.content);
+        console.log(courseData);
+      } catch (e) {
+        console.log(e);
+        return false;
+      }
+      return courseData;
+    }
+  },
   "courses.delete": function(courseId, teacherId) {
     //TODO delte routine
   }

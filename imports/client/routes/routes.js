@@ -30,16 +30,11 @@ function isAuthPage(pathname) {
 }
 
 export const onAuthChange = currentUser => {
-  console.log("entered?????");
   const { pathname } = location;
   if (Meteor.loggingIn()) {
-    console.log("reach");
-
     return;
   }
   if (currentUser) {
-    console.log("reach2");
-
     if (unAuthPages.includes(pathname)) {
       const route = Session.get("requestedRoute");
       if (route && isAuthPage(route)) {

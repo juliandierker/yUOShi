@@ -51,5 +51,11 @@ Meteor.methods({
     Roles.addUsersToRoles(teacherId, "teacher");
     Meteor.call("teachers.insert", teacherId, studipUserId);
     return teacherId;
+  },
+  "users.studentInsert": function(username, studipUserId) {
+    var studentId = Meteor.users.findOne({ username: username })._id;
+    Roles.addUsersToRoles(studentId, "student");
+    Meteor.call("students.insert", studentId, studipUserId);
+    return studentId;
   }
 });

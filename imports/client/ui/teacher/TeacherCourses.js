@@ -32,7 +32,7 @@ export default class TeacherCourses extends React.Component {
   }
   renderCard(course) {
     return (
-      <Card>
+      <Card className="course_card">
         <Card.Content>
           <Image floated="right" size="mini" src="/courses/studip_logo.png" />
           <Card.Header>{course.courseName}</Card.Header>
