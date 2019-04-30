@@ -5,12 +5,11 @@ import { Roles } from "meteor/alanning:roles";
 import Loading from "../ui/Loading";
 
 const DefaultRoutes = {
-  student: "/student/StudentOverview",
-  teacher: "/teacher/TeacherOverview",
+  student: "/student/studentoverview",
+  teacher: "/teacher/teacheroverview",
   yadmin: "/yadmin"
 };
 const PrivateRoute = ({ component: Component, path, ...rest }) => {
-  console.log(path);
   return (
     <Route
       path={path}
@@ -21,19 +20,30 @@ const PrivateRoute = ({ component: Component, path, ...rest }) => {
           const role = Roles.getRolesForUser(Meteor.userId())[0];
           const wrongPupil =
             role === "student" &&
-            !matchPath(location.pathname, { path: "/student/StudentOverview" });
+            !(
+              matchPath(location.pathname, {
+                path: "/student/studentoverview/"
+              }) ||
+              matchPath(location.pathname, {
+                path: "/student/game"
+              })
+            );
+
           const wrongTeacher =
             role === "teacher" &&
             !(
               matchPath(location.pathname, {
                 path: "/teacher/TeacherOverview/"
               }) ||
-              matchPath(location.pathname, { path: "/teacher/TeacherOverview" })
+              matchPath(location.pathname, {
+                path: "/teacher/:class/trackoverview"
+              })
             );
           const wrongPPAdmin =
             role === "yadmin" &&
             !matchPath(location.pathname, { path: "/teacher/TeacherOverview" });
           if (wrongPupil || wrongTeacher || wrongPPAdmin) {
+            console.log("faiiiiil");
             redirect = DefaultRoutes[role];
           }
         } else if (!Meteor.userId()) {

@@ -6,6 +6,9 @@ import { Teachers } from "../../api/teachers";
 import { Courses } from "../../api/courses";
 import { Students } from "../../api/students";
 
+import { addTasks } from "./addTasks";
+import { addGameData, addSurveyData } from "./addGameData";
+
 export function resetDatabase() {
   clearDatabase();
   // remove when loading custom database state
@@ -13,6 +16,7 @@ export function resetDatabase() {
   if (Meteor.isDevelopment) {
     setupTestCourse(true);
   }
+  addTasks();
   setupStudents();
   // remove when loading custom database state
 }
@@ -30,7 +34,7 @@ function setupTestCourse(skipSetup) {
 
   Courses.insert({
     _id: courseId,
-    courseName: "TestKurs",
+    courseName: "Demo-Kurs",
     pupils: [],
     tasks: [],
     teacherId: Teachers.findOne()._id

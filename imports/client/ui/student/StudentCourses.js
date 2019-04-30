@@ -7,7 +7,6 @@ import { Button, Card, Image } from "semantic-ui-react";
 import { Dropdown, Icon, Menu, Segment } from "semantic-ui-react";
 
 import StudentTopMenu from "./StudentTopMenu";
-
 export default class StudentCourses extends React.Component {
   constructor(props) {
     super(props);

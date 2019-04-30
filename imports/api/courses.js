@@ -13,6 +13,15 @@ if (Meteor.isServer) {
     { teacherId: 1, courseName: 1 },
     { unique: true }
   );
+  //Students
+  Meteor.publish("coursesByStudent", () => {
+    if (Meteor.userId() && Roles.userIsInRole(Meteor.user(), ["student"])) {
+      var studentId = Students.findOne({ userId: Meteor.userId() })._id;
+      Courses.find({ teacherId });
+      return Courses.find({ teacherId });
+    }
+    throw new Meteor.Error("Access denied!");
+  });
   // teacher
   Meteor.publish("coursesByTeacher", () => {
     if (Meteor.userId() && Roles.userIsInRole(Meteor.user(), ["teacher"])) {
@@ -62,7 +71,8 @@ Meteor.methods({
           studipId,
           students,
           started: false,
-          tasks: []
+          tasks: [],
+          paths: []
         });
         Teachers.update({ $addToSet: { courses: courseId } });
       } else {
@@ -144,6 +154,9 @@ Meteor.methods({
       }
       return courseData;
     }
+  },
+  "courses.start": function(courseId) {
+    Courses.update({ _id: courseId }, { $set: { started: true } });
   },
   "courses.delete": function(courseId, teacherId) {
     //TODO delte routine

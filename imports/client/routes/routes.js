@@ -7,25 +7,25 @@ import createBrowserHistory from "history/createBrowserHistory";
 import PublicRoute from "./PublicRoute";
 import PrivateRoute from "./PrivateRoute";
 import Login from "../ui/um/Login";
-
+import NotFound from "../ui/NotFound";
 // Students
 import StudentOverview from "../ui/student/StudentOverview";
 // Teachers
-import TeacherOverview from "../ui/teacher/TeacherOverview";
+import TeacherOverview from "../ui/teacher/pregame/TeacherOverview";
 
 export const browserHistory = createBrowserHistory();
 const unAuthPages = ["/"];
 
 const DefaultRoutes = {
-  student: "/student/StudentOverview",
-  teacher: "/teacher/TeacherOverview",
+  student: "/student/studentoverview",
+  teacher: "/teacher/teacheroverview",
   yadmin: "/yadmin"
 };
 
 function isAuthPage(pathname) {
   return (
-    matchPath(pathname, { path: "/student" }) ||
-    matchPath(pathname, { path: "/teacher" })
+    matchPath(pathname, { path: "/student/studentoverview" }) ||
+    matchPath(pathname, { path: "/teacher/teacheroverview" })
   );
 }
 
@@ -57,16 +57,10 @@ export const routes = (
   <Router history={browserHistory}>
     <Switch>
       <PublicRoute exact path="/" component={Login} />
-      <PrivateRoute
-        exact
-        path="/student/StudentOverview"
-        component={StudentOverview}
-      />
-      <PrivateRoute
-        exact
-        path="/teacher/TeacherOverview"
-        component={TeacherOverview}
-      />
+      <PrivateRoute path="/student" component={StudentOverview} />
+      <PrivateRoute path="/teacher" component={TeacherOverview} />
+
+      <Route path="/(.*)" component={NotFound} />
     </Switch>
   </Router>
 );

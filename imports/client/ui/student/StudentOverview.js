@@ -1,14 +1,14 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { Tracker } from "meteor/tracker";
-
+import { Route, Switch } from "react-router-dom";
 import { Tokens } from "../../../api/tokens";
 import { Courses } from "../../../api/courses";
 import { Students } from "../../../api/students";
-import { Dropdown, Icon, Menu, Segment } from "semantic-ui-react";
+import { Dropdown, Icon, Menu, Segment, Button } from "semantic-ui-react";
 import StudentCourses from "./StudentCourses";
 import StudentTopMenu from "./StudentTopMenu";
-
+import GameOverview from "./game/Gameoverview";
 export default class StudentOverview extends React.Component {
   constructor(props) {
     super(props);
@@ -21,13 +21,13 @@ export default class StudentOverview extends React.Component {
   componentDidMount() {
     let studentHandle = Meteor.subscribe("student");
     let tokenHandle = Meteor.subscribe("tokenByUser");
-    // let coursesHandle = Meteor.subscribe("coursesByTeacher");
+    let coursesHandle = Meteor.subscribe("coursesByStudent");
 
     this.teacherTracker = Tracker.autorun(() => {
       if (
         studentHandle.ready() &&
-        tokenHandle.ready()
-        // coursesHandle.ready()
+        tokenHandle.ready() &&
+        coursesHandle.ready()
       ) {
         const student = Students.findOne();
         const token = Tokens.findOne();
@@ -95,18 +95,52 @@ export default class StudentOverview extends React.Component {
       }
     }
   }
+  startFreeGame() {
+    console.log("testy");
+    this.props.history.push("/student/game");
+  }
+  renderRoutes() {
+    return (
+      <Switch>
+        <Route
+          path="/student/game"
+          render={props => (
+            <GameOverview
+              classrooms={this.state.classrooms}
+              student={this.state.student}
+              tasks={this.state.tasks}
+              {...props}
+            />
+          )}
+        />
+        <Route
+          path="/student/studentoverview"
+          render={props => (
+            <StudentCourses
+              courses={this.state.courses}
+              tasks={this.state.tasks}
+            />
+          )}
+        />
+      </Switch>
+    );
+  }
 
   render() {
     return (
       <div>
         <StudentTopMenu
+          history={this.props.history}
           courses={this.state.courses}
           student={this.state.student}
         />
+        {this.renderRoutes()}
+
         <StudentCourses
           courses={this.state.courses}
           student={this.state.student}
         />
+        <div />
       </div>
     );
   }

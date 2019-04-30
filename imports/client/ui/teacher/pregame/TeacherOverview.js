@@ -2,13 +2,16 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { Tracker } from "meteor/tracker";
 
-import { Teachers } from "../../../api/teachers";
-import { Tokens } from "../../../api/tokens";
-import { Courses } from "../../../api/courses";
+import { Teachers } from "../../../../api/teachers";
+import { Tokens } from "../../../../api/tokens";
+import { Courses } from "../../../../api/courses";
+import { Route, Switch } from "react-router-dom";
 
 import { Dropdown, Icon, Menu, Segment } from "semantic-ui-react";
 import TeacherCourses from "./TeacherCourses";
 import TeacherTopMenu from "./TeacherTopMenu";
+import Loading from "../../Loading";
+import TrackOverview from "../mentorsession/TrackOverview";
 
 export default class TeacherOverview extends React.Component {
   constructor(props) {
@@ -96,6 +99,34 @@ export default class TeacherOverview extends React.Component {
       }
     }
   }
+  renderRoutes() {
+    console.log("enter1");
+    return (
+      <Switch>
+        <Route
+          path="/teacher/:class/trackoverview"
+          render={props => (
+            <TrackOverview
+              classrooms={this.state.classrooms}
+              teacher={this.state.teacher}
+              companies={this.state.companies}
+              pupils={this.state.pupils}
+              {...props}
+            />
+          )}
+        />
+        <Route
+          path="/teacher/teacheroverview"
+          render={props => (
+            <TeacherCourses
+              courses={this.state.courses}
+              history={this.props.history}
+            />
+          )}
+        />
+      </Switch>
+    );
+  }
 
   render() {
     return (
@@ -104,7 +135,7 @@ export default class TeacherOverview extends React.Component {
           courses={this.state.courses}
           teacher={this.state.teacher}
         />
-        <TeacherCourses courses={this.state.courses} />
+        {this.renderRoutes()}
       </div>
     );
   }

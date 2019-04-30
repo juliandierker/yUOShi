@@ -13,10 +13,11 @@ export default class StudentTopMenu extends React.Component {
       activeItem: false
     };
   }
+  updateMenuButton() {}
   handleMenuItemClick = (e, { name }) => {
     this.updateMenuButton();
     this.setState({ visible: !this.state.visible });
-    this.props.history.push("/game/" + name);
+    this.props.history.push("/student/game");
   };
 
   render() {
@@ -40,7 +41,7 @@ export default class StudentTopMenu extends React.Component {
             </Dropdown.Menu>
           </Dropdown>
           <Menu.Item
-            name="yUOShi"
+            name="Freies Spiel"
             active={activeItem === "home"}
             onClick={this.handleMenuItemClick}
           />
