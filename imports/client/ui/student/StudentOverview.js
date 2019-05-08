@@ -2,9 +2,12 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { Tracker } from "meteor/tracker";
 import { Route, Switch } from "react-router-dom";
+
 import { Tokens } from "../../../api/tokens";
 import { Courses } from "../../../api/courses";
 import { Students } from "../../../api/students";
+import { Tasks } from "../../../api/tasks";
+
 import { Dropdown, Icon, Menu, Segment, Button } from "semantic-ui-react";
 import StudentCourses from "./StudentCourses";
 import StudentTopMenu from "./StudentTopMenu";
@@ -19,39 +22,51 @@ export default class StudentOverview extends React.Component {
     };
   }
   componentDidMount() {
+    console.log("mouuunt");
     let studentHandle = Meteor.subscribe("student");
     let tokenHandle = Meteor.subscribe("tokenByUser");
     let coursesHandle = Meteor.subscribe("coursesByStudent");
+    let taskHandle = Meteor.subscribe("tasks");
 
     this.teacherTracker = Tracker.autorun(() => {
       if (
         studentHandle.ready() &&
         tokenHandle.ready() &&
-        coursesHandle.ready()
+        coursesHandle.ready() &&
+        taskHandle.ready()
       ) {
         const student = Students.findOne();
         const token = Tokens.findOne();
         const givenCourses = Courses.find({}).fetch();
-        Meteor.call(
-          "courses.getStudentCourses",
-          token.token,
-          student.studipUserId,
-          (err, res) => {
-            if (err) {
-              console.log(err);
-            } else {
-              var studipCourses = res;
-              const courses = this.loadCourses(res, student._id);
-
-              this.setState({
-                student,
-                token,
-                courses: givenCourses,
-                loading: false
-              });
+        const tasks = Tasks.find({}).fetch();
+        console.log(givenCourses);
+        if (givenCourses.length == 0) {
+          console.log("entered");
+          Meteor.call(
+            "courses.getStudentCourses",
+            token.token,
+            student.studipUserId,
+            (err, res) => {
+              if (err) {
+                console.log(err);
+              } else {
+                console.log(res);
+                const courses = this.initCourses(
+                  res,
+                  student._id,
+                  student.studipUserId
+                );
+              }
             }
-          }
-        );
+          );
+        }
+        this.setState({
+          student,
+          token,
+          courses: givenCourses,
+          tasks,
+          loading: false
+        });
       } else {
         if (!this.state.loading) {
           this.setState({ loading: true });
@@ -59,41 +74,31 @@ export default class StudentOverview extends React.Component {
       }
     });
   }
-
+  componentDidUpdate(prev) {
+    console.log(prev);
+  }
   componentWillUnmount() {
     this.teacherTracker.stop();
   }
-  loadCourses(courses, studentId) {
-    console.log(courses);
-    if (courses.lengt > 0) {
-      for (var i in courses) {
-        var targetCourse = courses[i].attributes;
-        var exists = false;
-        if (this.state.courses) {
-          for (var j in this.state.courses) {
-            console.log(courses[i].id);
-            if (this.state.courses[j].studipId == courses[i].id) {
-              exists = true;
-            }
-            if (!exists) {
-              Meteor.call(
-                "courses.insert",
-                targetCourse.title,
-                courses[i].id,
-                teacherId
-              );
-            }
-          }
-        } else {
-          Meteor.call(
-            "courses.insert",
-            targetCourse.title,
-            courses[i].id,
-            teacherId
-          );
-        }
+  initCourses(courses, studentId) {
+    console.log(this.state);
+    var currentCourses = this.state.student.courses;
+    for (var i = 0; i < courses.data.length; i++) {
+      if (currentCourses.find(checkId => checkId === courses.data[i].id)) {
+      } else {
+        var change = true;
+        Meteor.call("students.addCourse", courses.data[i].id, studentId);
       }
     }
+    Meteor.call(
+      "students.getStartedCourses",
+      this.state.student.courses,
+      (err, res) => {
+        if (res) {
+          this.setState({ courses: res });
+        }
+      }
+    );
   }
   startFreeGame() {
     console.log("testy");
@@ -127,6 +132,7 @@ export default class StudentOverview extends React.Component {
   }
 
   render() {
+    console.log("entered render");
     return (
       <div>
         <StudentTopMenu
@@ -136,10 +142,11 @@ export default class StudentOverview extends React.Component {
         />
         {this.renderRoutes()}
 
-        <StudentCourses
+        {/* <StudentCourses
           courses={this.state.courses}
           student={this.state.student}
-        />
+        /> */}
+
         <div />
       </div>
     );

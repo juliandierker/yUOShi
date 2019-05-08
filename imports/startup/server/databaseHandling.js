@@ -5,7 +5,7 @@ import shortid from "shortid";
 import { Teachers } from "../../api/teachers";
 import { Courses } from "../../api/courses";
 import { Students } from "../../api/students";
-
+import { Tasks } from "../../api/tasks";
 import { addTasks } from "./addTasks";
 import { addGameData, addSurveyData } from "./addGameData";
 
@@ -79,4 +79,5 @@ function clearDatabase() {
   Students.remove({});
   Meteor.users.remove({});
   Courses.remove({});
+  Tasks.remove({});
 }

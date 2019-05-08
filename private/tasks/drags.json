@@ -1,0 +1,11 @@
+{
+  "tasks": [
+    {
+      "description": "Versucht die Bedürfnis-Pyramide nach Maslow in die richtige Reihenfolge zu bringen.",
+      "taskId": "Maslow",
+      "content": {
+        "blockTypes": [["test1", "test2"], ["test3", "test4"]]
+      }
+    }
+  ]
+}

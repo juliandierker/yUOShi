@@ -30,7 +30,41 @@ export default class StudentCourses extends React.Component {
     }
   }
   renderCard(course) {
-    return <p> test </p>;
+    if (course)
+      return (
+        <Card className="course_card">
+          <Card.Content>
+            <Image floated="right" size="mini" src="/courses/studip_logo.png" />
+            <Card.Header>{course.courseName}</Card.Header>
+            <Card.Meta>{"Teilnehmer: " + course.students.length}</Card.Meta>
+            <Card.Description />
+          </Card.Content>
+          <Card.Content extra>
+            <div>
+              {course.started ? (
+                <Button onClick={() => this.handleCourseClick(course)} animated>
+                  <Button.Content visible>{"Weiterspielen"}</Button.Content>
+
+                  <Button.Content hidden>
+                    <Icon name="arrow right" />
+                  </Button.Content>
+                </Button>
+              ) : (
+                <Button
+                  disabled
+                  onClick={() => this.handleCourseClick(course)}
+                  animated
+                >
+                  <Button.Content visible>{"Weiterspielen"}</Button.Content>
+                  <Button.Content hidden>
+                    <Icon name="arrow right" />
+                  </Button.Content>
+                </Button>
+              )}
+            </div>
+          </Card.Content>
+        </Card>
+      );
   }
 
   render() {

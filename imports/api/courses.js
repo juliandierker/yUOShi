@@ -17,16 +17,22 @@ if (Meteor.isServer) {
   Meteor.publish("coursesByStudent", () => {
     if (Meteor.userId() && Roles.userIsInRole(Meteor.user(), ["student"])) {
       var studentId = Students.findOne({ userId: Meteor.userId() })._id;
-      Courses.find({ teacherId });
-      return Courses.find({ teacherId });
+      Courses.find({ studentId });
+      return Courses.find({ studentId });
+    }
+    throw new Meteor.Error("Access denied!");
+  });
+  Meteor.publish("coursesById", function() {
+    if (Meteor.userId()) {
+      return Courses.find({});
     }
     throw new Meteor.Error("Access denied!");
   });
   // teacher
-  Meteor.publish("coursesByTeacher", () => {
+  Meteor.publish("coursesByTeacher", courseId => {
     if (Meteor.userId() && Roles.userIsInRole(Meteor.user(), ["teacher"])) {
       var teacherId = Teachers.findOne({ userId: Meteor.userId() })._id;
-      Courses.find({ teacherId });
+      Courses.findOne();
       return Courses.find({ teacherId });
     }
     throw new Meteor.Error("Access denied!");
@@ -59,7 +65,6 @@ Meteor.methods({
   // teacher
   "courses.insert": function(courseName, studipId, teacherId) {
     if (Meteor.isServer) {
-      console.log("fired");
       if (Meteor.userId() && Roles.userIsInRole(Meteor.user(), ["teacher"])) {
         if (Courses.findOne({ teacherId: Meteor.userId(), courseName }))
           throw new Meteor.Error("Class already exists!");
@@ -135,6 +140,9 @@ Meteor.methods({
   },
 
   "courses.getStudentCourses": function(token, studipUserId) {
+    var user = Students.findOne({ studipUserId: studipUserId });
+
+    console.log(user);
     if (Meteor.isServer) {
       try {
         var courseRawData = HTTP.call(
@@ -155,6 +163,7 @@ Meteor.methods({
       return courseData;
     }
   },
+
   "courses.start": function(courseId) {
     Courses.update({ _id: courseId }, { $set: { started: true } });
   },

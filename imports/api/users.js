@@ -4,7 +4,7 @@ import { Accounts } from "meteor/accounts-base";
 
 import { Pupils } from "./students";
 import { Teachers } from "./teachers";
-
+import { Courses } from "./courses";
 Accounts.validateNewUser(user => {
   return true;
 });

@@ -12,7 +12,7 @@ import NotFound from "../ui/NotFound";
 import StudentOverview from "../ui/student/StudentOverview";
 // Teachers
 import TeacherOverview from "../ui/teacher/pregame/TeacherOverview";
-
+import Gameoverview from "../ui/student/game/Gameoverview";
 export const browserHistory = createBrowserHistory();
 const unAuthPages = ["/"];
 
@@ -27,6 +27,7 @@ function isAuthPage(pathname) {
     matchPath(pathname, { path: "/student/studentoverview" }) ||
     matchPath(pathname, { path: "/teacher/teacheroverview" })
   );
+  gameoverview;
 }
 
 export const onAuthChange = currentUser => {
@@ -59,7 +60,6 @@ export const routes = (
       <PublicRoute exact path="/" component={Login} />
       <PrivateRoute path="/student" component={StudentOverview} />
       <PrivateRoute path="/teacher" component={TeacherOverview} />
-
       <Route path="/(.*)" component={NotFound} />
     </Switch>
   </Router>

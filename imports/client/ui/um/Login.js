@@ -56,6 +56,7 @@ class Login extends React.Component {
       }
     });
   }
+
   //Login-routine for teachers and students
   onSubmit(e) {
     e.preventDefault();

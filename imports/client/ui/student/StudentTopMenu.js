@@ -17,7 +17,13 @@ export default class StudentTopMenu extends React.Component {
   handleMenuItemClick = (e, { name }) => {
     this.updateMenuButton();
     this.setState({ visible: !this.state.visible });
-    this.props.history.push("/student/game");
+    console.log(name);
+    if (name === "Freies Spiel") {
+      this.props.history.push("/student/game");
+    }
+    if (name === "Kursübersicht") {
+      this.props.history.push("/student/overview");
+    }
   };
 
   render() {
@@ -32,7 +38,7 @@ export default class StudentTopMenu extends React.Component {
                 <span className="text">New</span>
 
                 <Dropdown.Menu>
-                  <Dropdown.Item>yUOShi</Dropdown.Item>
+                  <Dropdown.Item>Freies Spiel</Dropdown.Item>
                   <Dropdown.Item>yUOShi</Dropdown.Item>
                 </Dropdown.Menu>
               </Dropdown.Item>
@@ -40,21 +46,29 @@ export default class StudentTopMenu extends React.Component {
               <Dropdown.Item>yUOShi...</Dropdown.Item>
             </Dropdown.Menu>
           </Dropdown>
+          <Menu.Item name="Name">
+            <h3> Testname </h3>
+          </Menu.Item>
+          <Menu.Item name="Points">
+            <h3> 1200 </h3>
+          </Menu.Item>
+          <Menu.Item name="Experience">
+            <h3> 53 </h3>
+          </Menu.Item>
+
           <Menu.Item
+            position="right"
             name="Freies Spiel"
-            active={activeItem === "home"}
+            active={activeItem === "freegame"}
             onClick={this.handleMenuItemClick}
           />
           <Menu.Item
-            name="yUOShi"
-            active={activeItem === "messages"}
+            position="right"
+            name="Kursübersicht"
+            active={activeItem === "overview"}
             onClick={this.handleMenuItemClick}
           />
-          <Menu.Item
-            name="yUOShi"
-            active={activeItem === "friends"}
-            onClick={this.handleMenuItemClick}
-          />
+
           <Menu.Menu position="right">
             <Menu.Item
               icon="power off"

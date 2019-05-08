@@ -4,7 +4,7 @@ import SimpleSchema from "simpl-schema";
 import { Accounts } from "meteor/accounts-base";
 import { Classrooms } from "./courses";
 import { Teachers } from "./teachers";
-
+import { Courses } from "./courses";
 export const Students = new Mongo.Collection("students");
 
 Meteor.methods({
@@ -15,6 +15,16 @@ Meteor.methods({
       courses: [],
       tasks: []
     });
+  },
+  "students.addCourse": function(courseId, _id) {
+    Students.update(_id, { $addToSet: { courses: courseId } });
+  },
+  "students.getStartedCourses": function(studentCourses) {
+    var tmp = [];
+    for (var i = 0; i < studentCourses.length; i++) {
+      tmp.push(Courses.findOne({ studipId: studentCourses[i] }));
+    }
+    return tmp;
   }
 });
 
