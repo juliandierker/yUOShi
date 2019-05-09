@@ -14,39 +14,58 @@ export default class Gameoverview extends React.Component {
       tasks: null
     };
   }
+  componentDidMount() {
+    var tasks = this.props.tasks;
+    if (!this.state.tasks) {
+      this.setState({ tasks });
+    }
+  }
+  componentDidUpdate(prevProps, prevState) {
+    if (this.props.tasks && !prevProps.tasks) {
+      var tasks = this.props.tasks;
+      this.setState({ tasks });
+    }
+  }
+
+  handleGetTask(task) {
+    Meteor.call("students.getTasks", task, this.props.student._id);
+    this.props.history.push("/student/workspace");
+  }
   renderTracks() {
-    console.log(this.props);
-    return this.props.tasks.map(task => {
-      return (
-        <Card.Group>
-          <Card>
-            <Image
-              src="https://react.semantic-ui.com/images/avatar/large/matthew.png"
-              wrapped
-              ui={false}
-            />
-            <Card.Content>
-              <Card.Header>Matthew</Card.Header>
-              <Card.Meta>
-                <span className="date">Joined in 2015</span>
-              </Card.Meta>
-              <Card.Description>
-                Matthew is a musician living in Nashville.
-              </Card.Description>
-            </Card.Content>
-            <Card.Content extra>
-              <a>
-                <Icon name="user" />
-                22 Friends
-              </a>
-            </Card.Content>
-          </Card>
-        </Card.Group>
-      );
-    });
+    if (this.state.tasks) {
+      return this.state.tasks.map(task => {
+        return (
+          <Card.Group>
+            <Card>
+              <Image src="/tasks/maslow/pyramid_task.jpg" wrapped ui={false} />
+              <Card.Content>
+                <Card.Header>{task.taskId}</Card.Header>
+                <Card.Meta>
+                  <span className="date">Zuweisung</span>
+                </Card.Meta>
+                <Card.Description>{task.description}</Card.Description>
+              </Card.Content>
+              <Button
+                onClick={() => this.handleGetTask(task)}
+                basic
+                color="green"
+              >
+                Bearbeiten
+              </Button>
+              <Card.Content extra>
+                <Icon name="expand arrows alternate" />
+                Erfahrung: 10
+              </Card.Content>
+            </Card>
+          </Card.Group>
+        );
+      });
+    } else {
+      return <Loading />;
+    }
   }
   render() {
-    return <div>{this.renderTracks(this.props.tracks)}</div>;
+    return <div>{this.renderTracks()}</div>;
   }
 }
 

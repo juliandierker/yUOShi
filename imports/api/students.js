@@ -12,6 +12,7 @@ Meteor.methods({
     Students.insert({
       userId: userId,
       studipUserId: studipUserId,
+      lastActiveTaskId: null,
       courses: [],
       tasks: []
     });
@@ -25,6 +26,12 @@ Meteor.methods({
       tmp.push(Courses.findOne({ studipId: studentCourses[i] }));
     }
     return tmp;
+  },
+  "students.getTasks": function(tasks, _id) {
+    Students.update(_id, { $addToSet: { tasks } });
+  },
+  "students.setLastActiveTaskId": function(taskId, _id) {
+    Students.update(_id, { $addToSet: { lastActiveTaskId: taskId } });
   }
 });
 

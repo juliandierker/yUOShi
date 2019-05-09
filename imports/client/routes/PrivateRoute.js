@@ -26,9 +26,12 @@ const PrivateRoute = ({ component: Component, path, ...rest }) => {
               }) ||
               matchPath(location.pathname, {
                 path: "/student/game"
+              }) ||
+              matchPath(location.pathname, {
+                path: "/student/workspace"
               })
             );
-
+          console.log(wrongPupil);
           const wrongTeacher =
             role === "teacher" &&
             !(

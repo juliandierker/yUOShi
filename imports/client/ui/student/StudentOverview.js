@@ -12,6 +12,9 @@ import { Dropdown, Icon, Menu, Segment, Button } from "semantic-ui-react";
 import StudentCourses from "./StudentCourses";
 import StudentTopMenu from "./StudentTopMenu";
 import GameOverview from "./game/Gameoverview";
+import Workspace from "./game/Workspace";
+import Loading from "../Loading";
+
 export default class StudentOverview extends React.Component {
   constructor(props) {
     super(props);
@@ -105,30 +108,44 @@ export default class StudentOverview extends React.Component {
     this.props.history.push("/student/game");
   }
   renderRoutes() {
-    return (
-      <Switch>
-        <Route
-          path="/student/game"
-          render={props => (
-            <GameOverview
-              classrooms={this.state.classrooms}
-              student={this.state.student}
-              tasks={this.state.tasks}
-              {...props}
-            />
-          )}
-        />
-        <Route
-          path="/student/studentoverview"
-          render={props => (
-            <StudentCourses
-              courses={this.state.courses}
-              tasks={this.state.tasks}
-            />
-          )}
-        />
-      </Switch>
-    );
+    if (this.state.courses && this.state.student && this.state.tasks) {
+      return (
+        <Switch>
+          <Route
+            path="/student/game"
+            render={props => (
+              <GameOverview
+                courses={this.state.courses}
+                student={this.state.student}
+                tasks={this.state.tasks}
+                {...props}
+              />
+            )}
+          />
+          <Route
+            path="/student/studentoverview"
+            render={props => (
+              <StudentCourses
+                courses={this.state.courses}
+                tasks={this.state.tasks}
+              />
+            )}
+          />
+          <Route
+            path="/student/workspace"
+            render={props => (
+              <Workspace
+                student={this.state.student}
+                courses={this.state.courses}
+                tasks={this.state.tasks}
+              />
+            )}
+          />
+        </Switch>
+      );
+    } else {
+      return <Loading />;
+    }
   }
 
   render() {
