@@ -38,7 +38,7 @@ export default class Workspace extends React.Component {
       this.setState({ activeTask: false });
     } else if (!prevTask && curTaskNum > 0) {
       var activeTask = this.currentTasks[this.currentTasks.length - 1];
-      var currentTaskState = this.getTaskState(activeTask);
+      var currentTaskState = this.getActiveTask();
       this.setState({ activeTask, currentTaskState });
     } else {
       // no tasks change or received task without submitting last one
