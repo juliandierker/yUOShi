@@ -2,7 +2,7 @@ import { Meteor } from "meteor/meteor";
 import { Tasks } from "../../api/tasks";
 
 function createDragTask(taskSpecs) {
-  taskSpecs["taskId"] = "Maslow" + taskSpecs["taskId"];
+  taskSpecs["taskId"] = taskSpecs["taskId"];
   taskSpecs["type"] = "drag";
   taskSpecs["taskPackage"] = "Motivation";
   taskSpecs["autoGrading"] = true;

@@ -9,12 +9,12 @@ mobile-experience@1.0.5       # Packages for a great mobile UX
 mongo@1.6.0                   # The database Meteor supports right now
 reactive-var@1.0.11            # Reactive variable for tracker
 accounts-password
-alanning:roles 
+alanning:roles
 msavin:jetsetter
 semantic:ui
 less@2.8.0
 momentjs:moment
-msavin:mongol@=7.0.1 
+msavin:mongol@=7.0.1
 standard-minifier-js@2.4.0    # JS minifier run for production mode
 es5-shim@4.8.0                # ECMAScript 5 compatibility for older browsers
 ecmascript@0.12.4              # Enable ECMAScript2015+ syntax in app code
@@ -26,3 +26,4 @@ react-meteor-data       # React higher-order component for reactively tracking M
 session
 universe:i18n
 http
+draggable

@@ -3,6 +3,8 @@ import ReactDom from "react-dom";
 import PropTypes from "prop-types";
 import { Meteor } from "meteor/meteor";
 
+import TaskAnimationTemplate from "../../tasks/TaskAnimationTemplate";
+import MaslowView from "../../tasks/MaslowView";
 import equals from "fast-deep-equal";
 
 import { Tasks } from "../../../../api/tasks";
@@ -39,7 +41,14 @@ export default class Workspace extends React.Component {
     } else if (!prevTask && curTaskNum > 0) {
       var activeTask = this.currentTasks[this.currentTasks.length - 1];
       var currentTaskState = this.getActiveTask();
-      this.setState({ activeTask, currentTaskState });
+
+      //TODO setState correctly
+
+      this.setState({
+        activeTask,
+        courses: this.props.courses,
+        tasks: this.props.tasks
+      });
     } else {
       // no tasks change or received task without submitting last one
       if (this.state.activeTask) {
@@ -80,12 +89,29 @@ export default class Workspace extends React.Component {
       return student.tasks[student.tasks.length - 1];
     }
   }
+  taskSwitch() {
+    if (this.state.activeTask) {
+      let taskProps = {
+        student: this.props.student,
+        tasks: this.props.tasks,
+        activeTask: this.state.activeTask,
+        courses: this.props.courses
+      };
+
+      if (this.state.activeTask.type == "drag") {
+        return <TaskAnimationTemplate {...taskProps} />;
+      }
+    }
+  }
   render() {
-    return <div className="workspace__container"> testy </div>;
+    const { activeTask } = this.state;
+    return <div className="workspace__container">{this.taskSwitch()}</div>;
   }
 }
 
 Workspace.propTypes = {
   student: PropTypes.object,
-  course: PropTypes.object
+  course: PropTypes.object,
+  tasks: PropTypes.array,
+  activeTask: PropTypes.object
 };

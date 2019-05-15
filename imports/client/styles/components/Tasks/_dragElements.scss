@@ -1,0 +1,23 @@
+.options {
+  border: 1px solid gray;
+}
+
+.dragItem {
+  margin-bottom: 10px;
+  z-index: 1000;
+  display: inline-block;
+  color: #444;
+  border: 1px solid #ccc;
+  background: #ddd;
+  box-shadow: 0 0 5px -1px rgba(0, 0, 0, 0.2);
+  cursor: pointer;
+  vertical-align: middle;
+  max-width: 100px;
+  padding: 5px;
+  text-align: center;
+}
+
+.selected {
+  background: gray;
+  z-index: -1;
+}
