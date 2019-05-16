@@ -3,7 +3,7 @@ import { Meteor } from "meteor/meteor";
 export const DragDropModel = {
   getNewModel: function() {
     var model = {
-      init: function() {
+      init: function(student, task) {
         //TODO
       }
     };

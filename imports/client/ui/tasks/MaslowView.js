@@ -11,6 +11,8 @@ export default class MaslowView extends React.Component {
     super(props);
     this.view = null;
     this.handleLoad = this.handleLoad.bind(this);
+    this.model = DragDropModel.getNewModel();
+    this.model.init(props.student, props.activeTask);
   }
   handleLoad() {
     this.initDragDrop();

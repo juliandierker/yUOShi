@@ -43,12 +43,13 @@ export default class Workspace extends React.Component {
       var currentTaskState = this.getActiveTask();
 
       //TODO setState correctly
-
-      this.setState({
-        activeTask,
-        courses: this.props.courses,
-        tasks: this.props.tasks
-      });
+      if (this.state.activeTask == null) {
+        this.setState({
+          activeTask,
+          courses: this.props.courses,
+          tasks: this.props.tasks
+        });
+      }
     } else {
       // no tasks change or received task without submitting last one
       if (this.state.activeTask) {
