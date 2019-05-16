@@ -4,18 +4,29 @@ import PropTypes from "prop-types";
 import { Button } from "semantic-ui-react";
 import { TweenMax } from "gsap";
 
-import { DragDropModel } from "../../../models/DragdropModel";
+import { DragdropModel } from "../../../models/DragdropModel";
 
 export default class MaslowView extends React.Component {
   constructor(props) {
     super(props);
     this.view = null;
     this.handleLoad = this.handleLoad.bind(this);
-    this.model = DragDropModel.getNewModel();
+    console.log(DragdropModel);
+
+    this.model = DragdropModel.getNewModel();
     this.model.init(props.student, props.activeTask);
   }
   handleLoad() {
     this.initDragDrop();
+  }
+  shouldComponentUpdate(nextProps) {
+    if (this.props.activeTask.taskId !== nextProps.activeTask.taskId) {
+      this.model = DragDropModel.getNewModel();
+      this.model.init(nextProps.student._id, nextProps.activeTask);
+      return true;
+    } else {
+      return false;
+    }
   }
   updateDirections() {
     var directionStart = document.getElementById("directionStart"),
