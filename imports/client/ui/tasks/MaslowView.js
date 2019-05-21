@@ -4,30 +4,16 @@ import PropTypes from "prop-types";
 import { Button } from "semantic-ui-react";
 import { TweenMax } from "gsap";
 
-import { DragdropModel } from "../../../models/DragdropModel";
-
 export default class MaslowView extends React.Component {
   constructor(props) {
     super(props);
     this.view = null;
     this.handleLoad = this.handleLoad.bind(this);
-    console.log(DragdropModel);
-
-    this.model = DragdropModel.getNewModel();
-    this.model.init(props.student, props.activeTask);
   }
   handleLoad() {
     this.initDragDrop();
   }
-  shouldComponentUpdate(nextProps) {
-    if (this.props.activeTask.taskId !== nextProps.activeTask.taskId) {
-      this.model = DragDropModel.getNewModel();
-      this.model.init(nextProps.student._id, nextProps.activeTask);
-      return true;
-    } else {
-      return false;
-    }
-  }
+
   updateDirections() {
     var directionStart = document.getElementById("directionStart"),
       directionVelocity = document.getElementById("directionVelocity"),
@@ -47,7 +33,6 @@ export default class MaslowView extends React.Component {
     });
   }
   componentDidMount() {
-    console.log("mount");
     window.addEventListener("load", this.handleLoad());
   }
   componentWillUnmount() {
@@ -55,9 +40,7 @@ export default class MaslowView extends React.Component {
   }
   dropItem() {
     var boundsBefore, boundsAfter;
-    console.log(this.target.id);
     if (this.hitTest("#" + this.target.id + "_target")) {
-      console.log("hit");
       boundsBefore = this.target.getBoundingClientRect();
       $(this.target).appendTo("#" + this.target.id + "_target");
       boundsAfter = this.target.getBoundingClientRect();
@@ -140,11 +123,6 @@ export default class MaslowView extends React.Component {
     );
   }
   render() {
-    return (
-      <div>
-        {this.renderPyramid()}
-        <Button size="small">Aufgabe lösen</Button>
-      </div>
-    );
+    return <div>{this.renderPyramid()}</div>;
   }
 }

@@ -11,10 +11,15 @@ Meteor.methods({
   "students.insert": function(userId, studipUserId) {
     Students.insert({
       userId: userId,
+      credits: 0,
+      exp: 0,
+      level: 1,
+      earning: [1],
       studipUserId: studipUserId,
       lastActiveTaskId: null,
       courses: [],
-      tasks: []
+      tasks: [],
+      solvedTasks: []
     });
   },
   "students.addCourse": function(courseId, _id) {

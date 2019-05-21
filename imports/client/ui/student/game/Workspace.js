@@ -3,7 +3,7 @@ import ReactDom from "react-dom";
 import PropTypes from "prop-types";
 import { Meteor } from "meteor/meteor";
 
-import TaskAnimationTemplate from "../../tasks/TaskAnimationTemplate";
+import DragAnimationTemplate from "../../tasks/DragAnimationTemplate";
 import MaslowView from "../../tasks/MaslowView";
 import equals from "fast-deep-equal";
 
@@ -14,7 +14,7 @@ export default class Workspace extends React.Component {
     this.getCurrentTasksList();
 
     var activeTask = this.getActiveTask();
-
+    console.log(activeTask);
     this.state = {
       activeTask,
       showSolution: false,
@@ -32,6 +32,7 @@ export default class Workspace extends React.Component {
     };
     window.addEventListener("beforeunload", this.handler);
   }
+  componentDidMount() {}
   componentDidUpdate(prevProps, prevState) {
     var prevTask = prevState.activeTask;
     var curTaskNum = this.props.student.tasks.length;
@@ -39,15 +40,14 @@ export default class Workspace extends React.Component {
     if (prevTask && curTaskNum === 0 && !this.state.showSolution) {
       this.setState({ activeTask: false });
     } else if (!prevTask && curTaskNum > 0) {
-      var activeTask = this.currentTasks[this.currentTasks.length - 1];
-      var currentTaskState = this.getActiveTask();
+      var activeTask = this.getActiveTask();
 
       //TODO setState correctly
+      console.log(activeTask);
       if (this.state.activeTask == null) {
+        console.log("DSDSADSADsa");
         this.setState({
-          activeTask,
-          courses: this.props.courses,
-          tasks: this.props.tasks
+          activeTask
         });
       }
     } else {
@@ -100,7 +100,7 @@ export default class Workspace extends React.Component {
       };
 
       if (this.state.activeTask.type == "drag") {
-        return <TaskAnimationTemplate {...taskProps} />;
+        return <DragAnimationTemplate {...taskProps} />;
       }
     }
   }

@@ -142,7 +142,6 @@ Meteor.methods({
   "courses.getStudentCourses": function(token, studipUserId) {
     var user = Students.findOne({ studipUserId: studipUserId });
 
-    console.log(user);
     if (Meteor.isServer) {
       try {
         var courseRawData = HTTP.call(
@@ -155,7 +154,6 @@ Meteor.methods({
           }
         );
         var courseData = JSON.parse(courseRawData.content);
-        console.log(courseData);
       } catch (e) {
         console.log(e);
         return false;

@@ -59,7 +59,10 @@ function setupStudents() {
     Students.insert({
       courseId: courses[0]._id,
       userId,
-      username: `user${i}`
+      username: `user${i}`,
+      earning: [1],
+      credits: 0,
+      level: 0
     });
     // Dummy-Entry for Studip-Validated User:
   }

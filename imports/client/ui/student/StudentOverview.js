@@ -25,7 +25,6 @@ export default class StudentOverview extends React.Component {
     };
   }
   componentDidMount() {
-    console.log("mouuunt");
     let studentHandle = Meteor.subscribe("student");
     let tokenHandle = Meteor.subscribe("tokenByUser");
     let coursesHandle = Meteor.subscribe("coursesByStudent");
@@ -42,9 +41,7 @@ export default class StudentOverview extends React.Component {
         const token = Tokens.findOne();
         const givenCourses = Courses.find({}).fetch();
         const tasks = Tasks.find({}).fetch();
-        console.log(givenCourses);
         if (givenCourses.length == 0) {
-          console.log("entered");
           Meteor.call(
             "courses.getStudentCourses",
             token.token,
@@ -84,7 +81,6 @@ export default class StudentOverview extends React.Component {
     this.teacherTracker.stop();
   }
   initCourses(courses, studentId) {
-    console.log(this.state);
     var currentCourses = this.state.student.courses;
     for (var i = 0; i < courses.data.length; i++) {
       if (currentCourses.find(checkId => checkId === courses.data[i].id)) {
@@ -104,7 +100,6 @@ export default class StudentOverview extends React.Component {
     );
   }
   startFreeGame() {
-    console.log("testy");
     this.props.history.push("/student/game");
   }
   renderRoutes() {
@@ -149,7 +144,6 @@ export default class StudentOverview extends React.Component {
   }
 
   render() {
-    console.log("entered render");
     return (
       <div>
         <StudentTopMenu
