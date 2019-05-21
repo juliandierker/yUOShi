@@ -33,11 +33,15 @@ export default class Gameoverview extends React.Component {
   }
   renderTracks() {
     if (this.state.tasks) {
-      return this.state.tasks.map(task => {
+      return this.state.tasks.map((task, index) => {
         return (
           <Card.Group>
             <Card>
-              <Image src="/tasks/maslow/pyramid_task.jpg" wrapped ui={false} />
+              <Image
+                src={"/tasks/" + task.filePrefix + "/" + task.taskId + ".jpg"}
+                wrapped
+                ui={false}
+              />
               <Card.Content>
                 <Card.Header>{task.taskId}</Card.Header>
                 <Card.Meta>
