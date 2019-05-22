@@ -18,6 +18,7 @@ export function resetDatabase() {
   }
   addTasks();
   setupStudents();
+  setupTeacher();
   // remove when loading custom database state
 }
 
@@ -44,25 +45,40 @@ function setupTestCourse(skipSetup) {
 function setupAdmin() {
   const ppEmail = "admin@yuoshi.de";
   const password = "123";
-  res = Accounts.createUser({ email: ppEmail, password });
+  res = Accounts.createUser({ username: "ppAdmin", email: ppEmail, password });
   const ppId = Accounts.findUserByEmail(ppEmail)._id;
   Roles.addUsersToRoles(ppId, "yadmin");
 }
-
+function setupTeacher() {
+  let username = "teacher";
+  let email = username;
+  let userId = Accounts.createUser({ username, email, password: username });
+  Roles.addUsersToRoles(userId, "teacher");
+  Teachers.insert({
+    userId: userId,
+    studipUserId: "",
+    courses: []
+  });
+}
 function setupStudents() {
   const courses = Courses.find({}).fetch();
   for (let i = 0; i < 9; i++) {
-    const username = "user" + i;
-    const userId = Accounts.createUser({ username, password: username });
+    let username = "user" + i;
+    let email = username;
+    let userId = Accounts.createUser({ username, email, password: username });
     Roles.addUsersToRoles(userId, "student");
 
     Students.insert({
-      courseId: courses[0]._id,
-      userId,
-      username: `user${i}`,
-      earning: [1],
+      userId: userId,
       credits: 0,
-      level: 0
+      exp: 0,
+      level: 1,
+      earning: [1],
+      studipUserId: "",
+      lastActiveTaskId: null,
+      courses: [],
+      tasks: [],
+      solvedTasks: []
     });
     // Dummy-Entry for Studip-Validated User:
   }
