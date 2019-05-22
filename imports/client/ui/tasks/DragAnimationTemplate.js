@@ -2,9 +2,12 @@ import React from "react";
 import { Meteor } from "meteor/meteor";
 import PropTypes from "prop-types";
 import { Button } from "semantic-ui-react";
-import MaslowView from "./MaslowView";
 import { DragdropModel } from "../../../models/DragdropModel";
+
 import Swal from "sweetalert2";
+
+import MaslowView from "./MaslowView";
+import MotiveView from "./MotiveView";
 
 export default class DragAnimationTemplate extends React.Component {
   constructor(props) {
@@ -24,6 +27,8 @@ export default class DragAnimationTemplate extends React.Component {
       };
       if (this.props.activeTask.taskId == "Maslow") {
         return <MaslowView {...taskProps} />;
+      } else if (this.props.activeTask.taskId == "Motive") {
+        return <MotiveView {...taskProps} />;
       }
     }
   }
