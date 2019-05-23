@@ -80,19 +80,19 @@ export default class MaslowView extends React.Component {
             Körperliche Bedürfnisse
           </div>
           <div className="pyramid">
-            <div id="selfActualization_target" className="selected zone">
+            <div id="selfActualization_target" className="selected Maslow">
               +
             </div>
-            <div id="esteem_target" className="selected zone">
+            <div id="esteem_target" className="selected Maslow">
               +
             </div>
-            <div id="socialneeds_target" className="selected zone">
+            <div id="socialneeds_target" className="selected Maslow">
               +
             </div>
-            <div id="safety_target" className="selected zone">
+            <div id="safety_target" className="selected Maslow">
               +
             </div>
-            <div id="physological_target" className="selected zone">
+            <div id="physological_target" className="selected Maslow">
               +
             </div>
           </div>

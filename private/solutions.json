@@ -5,5 +5,7 @@
     "socialneeds",
     "safety",
     "physological"
-  ]
+  ],
+
+  "Motive": ["intr", "extr"]
 }

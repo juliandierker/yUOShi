@@ -3,6 +3,7 @@ import { Meteor } from "meteor/meteor";
 import PropTypes from "prop-types";
 import { Button } from "semantic-ui-react";
 import { TweenMax } from "gsap";
+import { Header, Table } from "semantic-ui-react";
 
 export default class MotiveView extends React.Component {
   constructor(props) {
@@ -60,10 +61,34 @@ export default class MotiveView extends React.Component {
       TweenMax.to(this.target, 0.5, { x: 0, y: 0 });
     }
   }
+  renderTable() {
+    return (
+      <Table.Header>
+        <Table.Row>
+          <Table.HeaderCell />
+          <Table.HeaderCell />
+
+          <Table.HeaderCell>
+            Intrinsische Motivation
+            <div id="intr_target" className="selected Motive">
+              +
+            </div>
+          </Table.HeaderCell>
+
+          <Table.HeaderCell>
+            Extrinsische Motivation
+            <div id="extr_target" className="selected Motive">
+              +
+            </div>
+          </Table.HeaderCell>
+        </Table.Row>
+      </Table.Header>
+    );
+  }
   renderMotivation() {
     return (
       <div id="svgDiv">
-        <div className="pyramidWrapper">
+        <div className="motiveWrapper">
           <div id="intr" className="dragItem">
             Lena interessiert sich für Sport, weshalb sie gerne neue Sportarten
             ausprobiert.
@@ -78,25 +103,17 @@ export default class MotiveView extends React.Component {
           <div id="extr" className="dragItem">
             Die Lehrkraft vergibt Sternchen für gute Mitarbeit
           </div>
-
-          <div className="motivRectangle">
-            <div id="intr" className="selected zone">
-              +
-            </div>
-            <div id="extr" className="selected zone">
-              +
-            </div>
-          </div>
+          {this.renderTable()}
 
           <h1>Motivation</h1>
 
           <svg width="0" height="0">
             <defs>
-              <clipPath id="part1" clipPathUnits="objectBoundingBox">
-                <rect width="100" height="100" />
+              <clipPath id="part1_m" clipPathUnits="objectBoundingBox">
+                <rect width="300" height="100" />
               </clipPath>
-              <clipPath id="part2" clipPathUnits="objectBoundingBox">
-                <rect width="100" height="100" />
+              <clipPath id="part2_m" clipPathUnits="objectBoundingBox">
+                <rect width="300" height="100" />
               </clipPath>
             </defs>
           </svg>

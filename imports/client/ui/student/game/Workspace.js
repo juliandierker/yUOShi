@@ -21,7 +21,6 @@ export default class Workspace extends React.Component {
       showCurrentTasks: true
     };
     this.handler = ev => {
-      // TODO saveTask on close
       if (this.state.activeTask) {
         Meteor.call(
           "student.setLastActiveTaskId",
@@ -45,7 +44,6 @@ export default class Workspace extends React.Component {
       //TODO setState correctly
       console.log(activeTask);
       if (this.state.activeTask == null) {
-        console.log("DSDSADSADsa");
         this.setState({
           activeTask
         });
@@ -92,6 +90,7 @@ export default class Workspace extends React.Component {
   }
   taskSwitch() {
     if (this.state.activeTask) {
+      console.log(this.state.activeTask);
       let taskProps = {
         student: this.props.student,
         tasks: this.props.tasks,

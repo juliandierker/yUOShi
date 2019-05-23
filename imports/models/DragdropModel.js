@@ -13,7 +13,7 @@ export const DragdropModel = {
 
       run: function(solution) {
         this.reset();
-
+        console.log(solution);
         for (var i = 0; i < solution.length; i++) {
           var checkElem = solution[i].id.split("_")[0];
 

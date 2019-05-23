@@ -33,7 +33,6 @@ export default class DragAnimationTemplate extends React.Component {
     }
   }
   shouldComponentUpdate(nextProps) {
-    console.log("entered UUUU");
     if (this.props.activeTask.taskId !== nextProps.activeTask.taskId) {
       this.model = DragDropModel.getNewModel();
       console.log(nextProps);
@@ -44,8 +43,9 @@ export default class DragAnimationTemplate extends React.Component {
     }
   }
   solutionPrepare() {
-    console.log("entered prepare");
-    this.model.run(document.getElementsByClassName("zone"));
+    this.model.run(
+      document.getElementsByClassName(this.props.activeTask.taskId)
+    );
     var visQueue = this.model.visQueue;
     for (var i = 0; i < visQueue.length; i++) {
       if (visQueue[i][0] == "fail") {
@@ -61,7 +61,6 @@ export default class DragAnimationTemplate extends React.Component {
     this.submit();
   }
   submit() {
-    console.log("entered submit");
     if (this.props.activeTask.type === "drag") {
       var meteorMethod =
         "solutionHandler.submit" + this.props.activeTask.filePrefix;
