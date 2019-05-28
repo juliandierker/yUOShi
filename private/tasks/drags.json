@@ -10,7 +10,24 @@
       "description": "Ordnet Statements zu intrinsischer oder extrinsischer Motivation zu.",
       "taskId": "Motive",
       "content": {},
-      "credits": 2800
+      "credits": 2800,
+      "statements": [
+        [
+          [
+            "intr",
+            "Lena interessiert sich für Sport, weshalb sie gerne neue Sportarten ausprobiert."
+          ],
+          [
+            "extr",
+            "Lukas Vater ist Physiker, weshalb er sich mit physikalischen Themen beschäftigen soll."
+          ],
+          [
+            "intr",
+            "Die Klasse arbeitet gerne mit, weil sie dadurch etwas lernen."
+          ],
+          ["extr", "Die Lehrkraft vergibt Sternchen für gute Mitarbeit"]
+        ]
+      ]
     }
   ]
 }

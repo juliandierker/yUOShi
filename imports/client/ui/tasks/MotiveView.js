@@ -10,11 +10,18 @@ export default class MotiveView extends React.Component {
     super(props);
     this.view = null;
     this.handleLoad = this.handleLoad.bind(this);
+    this.state = {
+      statements: [],
+      index: 0
+    };
   }
   handleLoad() {
     this.initDragDrop();
   }
-
+  componentDidMount() {
+    console.log("mountet " + this.props.activeTask);
+    this.setState({ statements: this.props.activeTask.statements });
+  }
   updateDirections() {
     var directionStart = document.getElementById("directionStart"),
       directionVelocity = document.getElementById("directionVelocity"),
@@ -85,10 +92,12 @@ export default class MotiveView extends React.Component {
       </Table.Header>
     );
   }
+  renderStatements() {}
   renderMotivation() {
     return (
       <div id="svgDiv">
         <div className="motiveWrapper">
+          {this.renderStatements()}
           <div id="intr" className="dragItem">
             Lena interessiert sich für Sport, weshalb sie gerne neue Sportarten
             ausprobiert.

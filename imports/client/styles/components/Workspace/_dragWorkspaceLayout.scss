@@ -1,0 +1,13 @@
+.dragAnimation__wrapper {
+  display: flex;
+  flex: 1;
+  min-width: 0;
+  min-height: 0;
+}
+.blocklyAnimation__container {
+  display: flex;
+  flex-direction: column;
+  height: 93vh;
+  overflow: hidden;
+  position: relative;
+}

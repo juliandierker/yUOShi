@@ -93,7 +93,7 @@ export default class DragAnimationTemplate extends React.Component {
   render() {
     return (
       <div>
-        {this.renderView()}
+        <div className="dragAnimation__wrapper">{this.renderView()}</div>
         <Button onClick={() => this.solutionPrepare()}>Aufgabe lösen</Button>
       </div>
     );
