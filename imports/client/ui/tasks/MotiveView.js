@@ -4,6 +4,7 @@ import PropTypes from "prop-types";
 import { Button } from "semantic-ui-react";
 import { TweenMax } from "gsap";
 import { Header, Table } from "semantic-ui-react";
+import Swal from "sweetalert2";
 
 export default class MotiveView extends React.Component {
   constructor(props) {
@@ -12,15 +13,12 @@ export default class MotiveView extends React.Component {
     this.handleLoad = this.handleLoad.bind(this);
     this.state = {
       statements: [],
-      index: 0
+      index: 0,
+      lastElem: null
     };
   }
   handleLoad() {
     this.initDragDrop();
-  }
-  componentDidMount() {
-    console.log("mountet " + this.props.activeTask);
-    this.setState({ statements: this.props.activeTask.statements });
   }
   updateDirections() {
     var directionStart = document.getElementById("directionStart"),
@@ -37,33 +35,62 @@ export default class MotiveView extends React.Component {
   initDragDrop() {
     Draggable.create(".dragItem", {
       type: "x,y",
-      onRelease: this.dropItem
+      onRelease: this.dropItem,
+      that: this
     });
+
+    // onRelease: this.dropItem
   }
   componentDidMount() {
+    if (this.state.activeTask == null) {
+      this.setState({ statements: this.props.activeTask.statements });
+    }
     window.addEventListener("load", this.handleLoad());
+  }
+  componentDidUpdate() {
+    this.initDragDrop();
+
+    console.log("update");
   }
   componentWillUnmount() {
     window.removeEventListener("load", this.handleLoad());
   }
-  dropItem() {
+  rerenderItems(that) {
     var boundsBefore, boundsAfter;
+    boundsBefore = that.target.getBoundingClientRect();
+    $(that.target).appendTo("#" + that.target.id + "_target");
+    boundsAfter = that.target.getBoundingClientRect();
+    TweenMax.fromTo(
+      that.target,
+      0.3,
+      {
+        x: "+=" + (boundsBefore.left - boundsAfter.left),
+        y: "+=" + (boundsBefore.top - boundsAfter.top)
+      },
+      {
+        x: 0,
+        y: 0
+      }
+    );
+  }
+  dropItem() {
+    let that = this.vars.that;
+
     if (this.hitTest("#" + this.target.id + "_target")) {
-      boundsBefore = this.target.getBoundingClientRect();
-      $(this.target).appendTo("#" + this.target.id + "_target");
-      boundsAfter = this.target.getBoundingClientRect();
-      TweenMax.fromTo(
-        this.target,
-        0.3,
-        {
-          x: "+=" + (boundsBefore.left - boundsAfter.left),
-          y: "+=" + (boundsBefore.top - boundsAfter.top)
-        },
-        {
-          x: 0,
-          y: 0
+      var index = that.state.index;
+      if (that.state.lastElem != this.target.id) {
+        if (
+          that.state.index ==
+          that.props.activeTask.statements[0].length - 1
+        ) {
+          that.rerenderItems(this);
+
+          Swal.fire("das sieht gut aus");
+        } else {
+          that.setState({ index: ++index, lastElem: this.target.id });
+          that.rerenderItems(this);
         }
-      );
+      }
     } else {
       TweenMax.to(this.target, 0.5, { x: 0, y: 0 });
     }
@@ -92,26 +119,44 @@ export default class MotiveView extends React.Component {
       </Table.Header>
     );
   }
-  renderStatements() {}
+  renderStatements() {
+    var statements = this.props.activeTask.statements[0];
+    for (var i in statements) {
+      if (i == this.state.index) {
+        var tmp;
+        return statements.slice(0, this.state.index + 1).map(statement => {
+          return (
+            <div id={statement[0]} className="dragItem">
+              {statement[1]}
+            </div>
+          );
+        });
+      } else {
+        var found = false;
+      }
+    }
+    if (found == false) {
+      return <div>Du hast alle Statements benutzt.</div>;
+    }
+  }
+  renderElemCounter() {
+    return (
+      <div>
+        {this.state.index +
+          1 +
+          " / " +
+          this.props.activeTask.statements[0].length}
+      </div>
+    );
+  }
   renderMotivation() {
+    console.log("FIIIIRED");
     return (
       <div id="svgDiv">
         <div className="motiveWrapper">
+          {this.renderElemCounter()}
           {this.renderStatements()}
-          <div id="intr" className="dragItem">
-            Lena interessiert sich für Sport, weshalb sie gerne neue Sportarten
-            ausprobiert.
-          </div>
-          <div id="extr" className="dragItem">
-            Lukas Vater ist Physiker, weshalb er sich mit physikalischen Themen
-            beschäftigen soll.
-          </div>
-          <div id="intr" className="dragItem">
-            Die Klasse arbeitet gerne mit, weil sie dadurch etwas lernen.
-          </div>
-          <div id="extr" className="dragItem">
-            Die Lehrkraft vergibt Sternchen für gute Mitarbeit
-          </div>
+
           {this.renderTable()}
 
           <h1>Motivation</h1>

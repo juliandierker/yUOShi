@@ -38,6 +38,7 @@ export const DragdropModel = {
           return true;
         }
       },
+
       reset: function() {
         this.visQueue = [];
       }
