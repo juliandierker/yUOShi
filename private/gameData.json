@@ -1,11 +1,11 @@
 {
   "training": [
     {
-      "name": "motivation",
-      "credits": 400,
-      "imagefile": "/",
-      "format": "Slides",
-      "source": "/Conferences/source/demo.mp4"
+      "name": "Motivation",
+      "imageVideo": "/Conferences/Conference1.jpeg",
+      "forWholeCompany": true,
+      "source": "/Conferences/source/demo.mp4",
+      "package": "Motivation"
     }
   ]
 }

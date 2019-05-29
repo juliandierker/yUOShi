@@ -22,6 +22,10 @@ const taskSchema = new SimpleSchema({
   type: {
     type: String
   },
+  trainingId: {
+    type: String,
+    optional: true
+  },
   taskPackage: {
     type: String
   },
