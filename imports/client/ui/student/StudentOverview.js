@@ -29,6 +29,7 @@ export default class StudentOverview extends React.Component {
     let tokenHandle = Meteor.subscribe("tokenByUser");
     let coursesHandle = Meteor.subscribe("coursesByStudent");
     let taskHandle = Meteor.subscribe("tasks");
+    let trainingHandle = Meteor.subscribe("trainings");
 
     this.teacherTracker = Tracker.autorun(() => {
       if (

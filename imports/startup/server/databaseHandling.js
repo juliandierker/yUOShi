@@ -3,10 +3,13 @@ import { Accounts } from "meteor/accounts-base";
 import { Roles } from "meteor/alanning:roles";
 import shortid from "shortid";
 import { Teachers } from "../../api/teachers";
+import { Training } from "../../api/training";
+
 import { Courses } from "../../api/courses";
 import { Students } from "../../api/students";
 import { Tasks } from "../../api/tasks";
 import { addTasks } from "./addTasks";
+import { addTraining } from "./addTraining";
 import { addGameData, addSurveyData } from "./addGameData";
 
 export function resetDatabase() {
@@ -17,6 +20,7 @@ export function resetDatabase() {
     setupTestCourse(true);
   }
   addTasks();
+  addTraining();
   setupStudents();
   setupTeacher();
   // remove when loading custom database state

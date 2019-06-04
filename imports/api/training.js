@@ -8,9 +8,6 @@ const trainingSchema = new SimpleSchema({
   name: {
     type: String
   },
-  credits: {
-    type: Number
-  },
 
   package: {
     type: String

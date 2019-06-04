@@ -85,6 +85,7 @@ export default class DragAnimationTemplate extends React.Component {
             title: "Geschafft",
             timer: 1500
           });
+          console.log(this.props.history);
         }
       }
     );
