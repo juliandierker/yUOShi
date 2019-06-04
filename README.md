@@ -9,9 +9,9 @@ Gamification-Plugin for e-learning-seminars in context of psychological aspects 
 
 ### Run locally
 
-`git clone https://github.com/ohmeingott/CodeUp`
+`git clone https://github.com/juliandierker/yUOShi`
 
-`cd CodeUp`
+`cd yUOShi`
 
 `meteor npm install`
 
