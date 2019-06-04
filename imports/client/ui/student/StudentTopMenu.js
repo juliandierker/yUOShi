@@ -10,8 +10,19 @@ export default class StudentTopMenu extends React.Component {
     this.state = {
       courses: null,
       teacher: null,
-      activeItem: false
+      activeItem: false,
+      student: null
     };
+  }
+  componentDidUpdate(prevProps, prevState) {
+    if (prevState.student == null && this.props.student != null) {
+      this.setState({ student: this.props.student });
+    }
+    if (prevProps.student != null) {
+      if (prevProps.student.credits != this.props.student.credits) {
+        this.setState({ student: this.props.student });
+      }
+    }
   }
   updateMenuButton() {}
   handleMenuItemClick = (e, { name }) => {
@@ -25,6 +36,16 @@ export default class StudentTopMenu extends React.Component {
       this.props.history.push("/student/overview");
     }
   };
+  renderCredits() {
+    return this.state.student ? (
+      <h3> {"Punkte " + this.state.student.credits} </h3>
+    ) : null;
+  }
+  renderLevel() {
+    return this.state.student ? (
+      <h3> {"Level " + this.state.student.level} </h3>
+    ) : null;
+  }
 
   render() {
     const { activeItem } = this.state;
@@ -47,13 +68,11 @@ export default class StudentTopMenu extends React.Component {
             </Dropdown.Menu>
           </Dropdown>
           <Menu.Item name="Name">
-            <h3> Testname </h3>
+            <h3> {Meteor.user().username} </h3>
           </Menu.Item>
-          <Menu.Item name="Points">
-            <h3> 1200 </h3>
-          </Menu.Item>
+          <Menu.Item name="Points">{this.renderCredits()}</Menu.Item>
           <Menu.Item name="Experience">
-            <h3> 53 </h3>
+            <h3> {this.renderLevel()} </h3>
           </Menu.Item>
 
           <Menu.Item

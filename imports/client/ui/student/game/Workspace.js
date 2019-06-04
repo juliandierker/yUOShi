@@ -14,7 +14,6 @@ export default class Workspace extends React.Component {
     this.getCurrentTasksList();
 
     var activeTask = this.getActiveTask();
-    console.log(activeTask);
     this.state = {
       activeTask,
       showSolution: false,
@@ -31,7 +30,13 @@ export default class Workspace extends React.Component {
     };
     window.addEventListener("beforeunload", this.handler);
   }
-  componentDidMount() {}
+  componentDidMount() {
+    if (!this.state.activeTask) {
+      this.setState({
+        activeTask: this.props.student.tasks[0]
+      });
+    }
+  }
   componentDidUpdate(prevProps, prevState) {
     var prevTask = prevState.activeTask;
     var curTaskNum = this.props.student.tasks.length;
@@ -42,11 +47,13 @@ export default class Workspace extends React.Component {
       var activeTask = this.getActiveTask();
 
       //TODO setState correctly
-      console.log(activeTask);
-      if (this.state.activeTask == null) {
-        this.setState({
-          activeTask
-        });
+      if (!this.state.activeTask) {
+        var tasks = this.props.student.tasks;
+        if (this.props.student.tasks.length > prevProps.student.tasks.length) {
+          this.setState({
+            activeTask: tasks[tasks.length - 1]
+          });
+        }
       }
     } else {
       // no tasks change or received task without submitting last one
@@ -82,7 +89,7 @@ export default class Workspace extends React.Component {
     if (this.props.student.lastActiveTaskId) {
       for (var i in student.tasks) {
         if (student.tasks[i]._id == student.lastActiveTaskId)
-          return student.task[i];
+          return student.tasks[i];
       }
     } else {
       return student.tasks[student.tasks.length - 1];
@@ -90,7 +97,6 @@ export default class Workspace extends React.Component {
   }
   taskSwitch() {
     if (this.state.activeTask) {
-      console.log(this.state.activeTask);
       let taskProps = {
         student: this.props.student,
         tasks: this.props.tasks,

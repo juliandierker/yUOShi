@@ -41,6 +41,7 @@ export default class StudentOverview extends React.Component {
         const token = Tokens.findOne();
         const givenCourses = Courses.find({}).fetch();
         const tasks = Tasks.find({}).fetch();
+
         if (givenCourses.length == 0) {
           Meteor.call(
             "courses.getStudentCourses",

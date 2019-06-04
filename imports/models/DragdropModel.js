@@ -21,8 +21,6 @@ export const DragdropModel = {
             console.log(solution[i].children[0].id);
             console.log(checkElem);
             if (!(solution[i].children[0].id == checkElem)) {
-              console.log("fofofo");
-
               this.visQueue.push(["fail", checkElem]);
               return false;
             } else {
@@ -41,6 +39,7 @@ export const DragdropModel = {
 
       reset: function() {
         this.visQueue = [];
+        this.solution = [];
       }
     };
     return model;
