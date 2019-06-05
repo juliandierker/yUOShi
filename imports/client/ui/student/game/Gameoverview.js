@@ -28,8 +28,10 @@ export default class Gameoverview extends React.Component {
   }
 
   handleGetTask(task) {
-    Meteor.call("students.getTasks", task, this.props.student._id);
-    this.props.history.push("/student/workspace");
+    if (this.props.student.tasks.length == 0) {
+      Meteor.call("students.getTasks", task, this.props.student._id);
+      this.props.history.push("/student/workspace");
+    }
   }
   renderTracks() {
     if (this.state.tasks) {
@@ -58,7 +60,7 @@ export default class Gameoverview extends React.Component {
               </Button>
               <Card.Content extra>
                 <Icon name="expand arrows alternate" />
-                Erfahrung: 10
+                {task.credits}
               </Card.Content>
             </Card>
           </Card.Group>

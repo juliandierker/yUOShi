@@ -35,6 +35,9 @@ export default class StudentTopMenu extends React.Component {
     if (name === "Kursübersicht") {
       this.props.history.push("/student/overview");
     }
+    if (name === "Arbeitsfläche") {
+      this.props.history.push("/student/workspace");
+    }
   };
   renderCredits() {
     return this.state.student ? (
@@ -79,6 +82,12 @@ export default class StudentTopMenu extends React.Component {
             position="right"
             name="Freies Spiel"
             active={activeItem === "freegame"}
+            onClick={this.handleMenuItemClick}
+          />
+          <Menu.Item
+            position="right"
+            name="Arbeitsfläche"
+            active={activeItem === "overview"}
             onClick={this.handleMenuItemClick}
           />
           <Menu.Item

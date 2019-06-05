@@ -103,4 +103,5 @@ function clearDatabase() {
   Meteor.users.remove({});
   Courses.remove({});
   Tasks.remove({});
+  Training.remove({});
 }
