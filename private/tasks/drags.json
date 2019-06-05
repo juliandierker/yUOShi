@@ -4,12 +4,14 @@
       "description": "Versucht die Bedürfnis-Pyramide nach Maslow in die richtige Reihenfolge zu bringen.",
       "taskId": "Maslow",
       "content": {},
+      "package": "Motivation",
       "credits": 2500
     },
     {
       "description": "Ordnet Statements zu intrinsischer oder extrinsischer Motivation zu.",
       "taskId": "Motive",
       "content": {},
+      "package": "Motivation",
       "credits": 2800,
       "statements": [
         [

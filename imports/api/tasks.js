@@ -26,18 +26,13 @@ const taskSchema = new SimpleSchema({
     type: String,
     optional: true
   },
-  taskPackage: {
+  package: {
     type: String
   },
   filePrefix: {
     type: String,
     optional: true
   },
-  blocks: {
-    type: Array,
-    optional: true
-  },
-
   solution1: {
     type: Array,
     optional: true
@@ -76,10 +71,6 @@ const taskSchema = new SimpleSchema({
     optional: true
   },
   "solution4.$": {
-    type: String,
-    optional: true
-  },
-  "blocks.$": {
     type: String,
     optional: true
   },

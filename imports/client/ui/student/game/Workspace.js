@@ -101,7 +101,8 @@ export default class Workspace extends React.Component {
         student: this.props.student,
         tasks: this.props.tasks,
         activeTask: this.state.activeTask,
-        courses: this.props.courses
+        courses: this.props.courses,
+        trainings: this.props.trainings
       };
 
       if (this.state.activeTask.type == "drag") {

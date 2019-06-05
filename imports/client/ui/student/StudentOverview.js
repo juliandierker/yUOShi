@@ -7,6 +7,7 @@ import { Tokens } from "../../../api/tokens";
 import { Courses } from "../../../api/courses";
 import { Students } from "../../../api/students";
 import { Tasks } from "../../../api/tasks";
+import { Training } from "../../../api/training";
 
 import { Dropdown, Icon, Menu, Segment, Button } from "semantic-ui-react";
 import StudentCourses from "./StudentCourses";
@@ -29,19 +30,21 @@ export default class StudentOverview extends React.Component {
     let tokenHandle = Meteor.subscribe("tokenByUser");
     let coursesHandle = Meteor.subscribe("coursesByStudent");
     let taskHandle = Meteor.subscribe("tasks");
-    let trainingHandle = Meteor.subscribe("trainings");
+    let trainingHandle = Meteor.subscribe("training");
 
     this.teacherTracker = Tracker.autorun(() => {
       if (
         studentHandle.ready() &&
         tokenHandle.ready() &&
         coursesHandle.ready() &&
-        taskHandle.ready()
+        taskHandle.ready() &&
+        trainingHandle.ready()
       ) {
         const student = Students.findOne();
         const token = Tokens.findOne();
         const givenCourses = Courses.find({}).fetch();
         const tasks = Tasks.find({}).fetch();
+        const trainings = Training.find({}).fetch();
 
         if (givenCourses.length == 0) {
           Meteor.call(
@@ -67,7 +70,8 @@ export default class StudentOverview extends React.Component {
           token,
           courses: givenCourses,
           tasks,
-          loading: false
+          loading: false,
+          trainings
         });
       } else {
         if (!this.state.loading) {
@@ -115,6 +119,7 @@ export default class StudentOverview extends React.Component {
                 courses={this.state.courses}
                 student={this.state.student}
                 tasks={this.state.tasks}
+                trainings={this.state.trainings}
                 {...props}
               />
             )}
@@ -135,6 +140,7 @@ export default class StudentOverview extends React.Component {
                 student={this.state.student}
                 courses={this.state.courses}
                 tasks={this.state.tasks}
+                trainings={this.state.trainings}
               />
             )}
           />

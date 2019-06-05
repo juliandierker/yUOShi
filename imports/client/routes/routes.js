@@ -27,7 +27,6 @@ function isAuthPage(pathname) {
     matchPath(pathname, { path: "/student/studentoverview" }) ||
     matchPath(pathname, { path: "/teacher/teacheroverview" })
   );
-  gameoverview;
 }
 
 export const onAuthChange = currentUser => {
