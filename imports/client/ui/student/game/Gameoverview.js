@@ -17,7 +17,7 @@ export default class Gameoverview extends React.Component {
   componentDidMount() {
     var tasks = this.props.tasks;
     if (!this.state.tasks) {
-      this.setState({ tasks, training: this.props.trainings });
+      this.setState({ tasks, trainings: this.props.trainings });
     }
   }
   componentDidUpdate(prevProps, prevState) {

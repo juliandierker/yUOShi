@@ -8,7 +8,9 @@ import { Training } from "../../api/training";
 import { Courses } from "../../api/courses";
 import { Students } from "../../api/students";
 import { Tasks } from "../../api/tasks";
+import { Package } from "../../api/package";
 import { addTasks } from "./addTasks";
+import { addPackages } from "./addPackages";
 import { addTraining } from "./addTraining";
 import { addGameData, addSurveyData } from "./addGameData";
 
@@ -21,11 +23,25 @@ export function resetDatabase() {
   }
   addTasks();
   addTraining();
+  addPackages();
+  initPackages();
   setupStudents();
   setupTeacher();
   // remove when loading custom database state
 }
-
+function initPackages() {
+  var tmp1 = [];
+  var tmp2 = [];
+  var packages = Package.find({}).fetch();
+  console.log(packages);
+  for (var i in packages) {
+    var pname = packages[i].name;
+    var tasks = Tasks.find({ package: pname }).fetch();
+    var trainings = Training.find({ package: pname }).fetch();
+    // TODO var packageUpdates =
+    Package.update({ _id: packages[i]._id }, packageUpdates);
+  }
+}
 function setupTestCourse(skipSetup) {
   const email = "dozent@yuoshi.de";
   const password = "123";
@@ -104,4 +120,5 @@ function clearDatabase() {
   Courses.remove({});
   Tasks.remove({});
   Training.remove({});
+  Package.remove({});
 }

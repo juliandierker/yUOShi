@@ -6,8 +6,8 @@ import { Meteor } from "meteor/meteor";
 import DragAnimationTemplate from "../../tasks/DragAnimationTemplate";
 import MaslowView from "../../tasks/MaslowView";
 import equals from "fast-deep-equal";
-
 import { Tasks } from "../../../../api/tasks";
+
 export default class Workspace extends React.Component {
   constructor(props) {
     super(props);
