@@ -29,17 +29,35 @@ export function resetDatabase() {
   setupTeacher();
   // remove when loading custom database state
 }
+//TODO SOURCE THIS OUT
 function initPackages() {
-  var tmp1 = [];
-  var tmp2 = [];
   var packages = Package.find({}).fetch();
-  console.log(packages);
   for (var i in packages) {
+    var tmp1 = [];
+    var tmp2 = [];
     var pname = packages[i].name;
     var tasks = Tasks.find({ package: pname }).fetch();
     var trainings = Training.find({ package: pname }).fetch();
-    // TODO var packageUpdates =
+
+    for (var j in tasks) {
+      console.log(tasks[j]._id);
+      tmp1.push(tasks[j]._id);
+    }
+    for (var k in trainings) {
+      tmp2.push(trainings[k]._id);
+    }
+    var packageUpdates = {
+      $set: { tasks: tmp1 }
+    };
+
+    //TODO PUT THIS IN 1 QUERY
     Package.update({ _id: packages[i]._id }, packageUpdates);
+
+    packageUpdates = {
+      $set: { trainings: tmp2 }
+    };
+    Package.update({ _id: packages[i]._id }, packageUpdates);
+    //TODO END
   }
 }
 function setupTestCourse(skipSetup) {

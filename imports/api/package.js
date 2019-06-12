@@ -24,7 +24,7 @@ const trainingSchema = new SimpleSchema({
 
 if (Meteor.isServer) {
   Meteor.publish("package", () => {
-    return Training.find({});
+    return Package.find({});
   });
 }
 

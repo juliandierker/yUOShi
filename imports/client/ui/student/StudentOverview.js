@@ -8,7 +8,7 @@ import { Courses } from "../../../api/courses";
 import { Students } from "../../../api/students";
 import { Tasks } from "../../../api/tasks";
 import { Training } from "../../../api/training";
-
+import { Package } from "../../../api/package";
 import { Dropdown, Icon, Menu, Segment, Button } from "semantic-ui-react";
 import StudentCourses from "./StudentCourses";
 import StudentTopMenu from "./StudentTopMenu";
@@ -31,20 +31,23 @@ export default class StudentOverview extends React.Component {
     let coursesHandle = Meteor.subscribe("coursesByStudent");
     let taskHandle = Meteor.subscribe("tasks");
     let trainingHandle = Meteor.subscribe("training");
-
+    let packageHandle = Meteor.subscribe("package");
     this.teacherTracker = Tracker.autorun(() => {
       if (
         studentHandle.ready() &&
         tokenHandle.ready() &&
         coursesHandle.ready() &&
         taskHandle.ready() &&
-        trainingHandle.ready()
+        trainingHandle.ready() &&
+        packageHandle.ready()
       ) {
         const student = Students.findOne();
         const token = Tokens.findOne();
         const givenCourses = Courses.find({}).fetch();
         const tasks = Tasks.find({}).fetch();
         const trainings = Training.find({}).fetch();
+        const packages = Package.find({}).fetch();
+        console.log(packages);
 
         if (givenCourses.length == 0) {
           Meteor.call(
@@ -71,7 +74,8 @@ export default class StudentOverview extends React.Component {
           courses: givenCourses,
           tasks,
           loading: false,
-          trainings
+          trainings,
+          packages
         });
       } else {
         if (!this.state.loading) {
@@ -120,6 +124,7 @@ export default class StudentOverview extends React.Component {
                 student={this.state.student}
                 tasks={this.state.tasks}
                 trainings={this.state.trainings}
+                packages={this.state.packages}
                 {...props}
               />
             )}

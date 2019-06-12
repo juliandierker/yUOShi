@@ -21,7 +21,8 @@ Meteor.methods({
       tasks: [],
       currentTraining: [],
       solvedTraining: [],
-      solvedTasks: []
+      solvedTasks: [],
+      currentPackage: []
     });
   },
   "students.addCourse": function(courseId, _id) {
@@ -35,6 +36,9 @@ Meteor.methods({
     return tmp;
   },
   "students.getTasks": function(tasks, _id) {
+    Students.update(_id, { $addToSet: { tasks } });
+  },
+  "students.getPackage": function(package, _id) {
     Students.update(_id, { $addToSet: { tasks } });
   },
   "students.setLastActiveTaskId": function(taskId, _id) {
