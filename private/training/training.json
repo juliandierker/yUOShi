@@ -2,6 +2,7 @@
   "training": [
     {
       "name": "Motivation",
+      "trainingId": "Motivation_intro",
       "imageVideo": "/Conferences/Conference1.jpeg",
       "forWholeCompany": true,
       "source": "/Conferences/source/demo.mp4",

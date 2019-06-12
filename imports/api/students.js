@@ -39,7 +39,8 @@ Meteor.methods({
     Students.update(_id, { $addToSet: { tasks } });
   },
   "students.getPackage": function(package, _id) {
-    Students.update(_id, { $addToSet: { tasks } });
+    console.log(package);
+    Students.update(_id, { $addToSet: { currentPackage: package } });
   },
   "students.setLastActiveTaskId": function(taskId, _id) {
     Students.update(_id, { $addToSet: { lastActiveTaskId: taskId } });
