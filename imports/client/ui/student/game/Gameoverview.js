@@ -29,7 +29,6 @@ export default class Gameoverview extends React.Component {
       this.setState({ tasks });
     }
   }
-  checkTraining() {}
   handleGetTask(task) {
     if (this.props.student.tasks.length == 0) {
       this.checkTraining();
@@ -40,8 +39,8 @@ export default class Gameoverview extends React.Component {
   handleGetPackage(pack) {
     console.log("fired");
     if (this.props.student.currentPackage.length == 0) {
-      this.checkTraining();
       Meteor.call("students.getPackage", pack, this.props.student._id);
+      Meteor.call("students.initTraining", pack, this.props.student._id);
       this.props.history.push("/student/workspace");
     }
   }

@@ -38,6 +38,7 @@ Meteor.methods({
   "students.getTasks": function(tasks, _id) {
     Students.update(_id, { $addToSet: { tasks } });
   },
+  //Gets a package and it's first training
   "students.getPackage": function(package, _id) {
     console.log(package);
     Students.update(_id, { $addToSet: { currentPackage: package } });

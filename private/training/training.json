@@ -2,11 +2,17 @@
   "training": [
     {
       "name": "Motivation",
-      "trainingId": "Motivation_intro",
-      "imageVideo": "/Conferences/Conference1.jpeg",
-      "forWholeCompany": true,
-      "source": "/Conferences/source/demo.mp4",
-      "inputs": ["input1", "input2"],
+      "trainingId": "Motivation Problem",
+      "sequenceId": 1,
+      "content": "Hier kommt das erste Fallbeispiel zum Thema Motivation",
+      "tasks": ["Motive", "Maslow"],
+      "package": "Motivation"
+    },
+    {
+      "name": "Motivation",
+      "trainingId": "Motivation Problem",
+      "sequenceId": 2,
+      "content": "Um zu helfen ist es ander Zeit sich zunächst mit dem Begriff Motvation auseinander zu setzen",
       "tasks": ["Motive", "Maslow"],
       "package": "Motivation"
     }
