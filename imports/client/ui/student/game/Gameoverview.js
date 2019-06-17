@@ -3,10 +3,15 @@ import PropTypes from "prop-types";
 import { Tracker } from "meteor/tracker";
 import Loading from "../../Loading";
 import { Button, Card, Image } from "semantic-ui-react";
-
 import { Dropdown, Icon, Menu, Segment } from "semantic-ui-react";
 
 import StudentTopMenu from "../StudentTopMenu";
+
+import Swal from "sweetalert2";
+import withReactContent from "sweetalert2-react-content";
+
+const MySwal = withReactContent(Swal);
+
 export default class Gameoverview extends React.Component {
   constructor(props) {
     super(props);
@@ -31,6 +36,26 @@ export default class Gameoverview extends React.Component {
     if (this.props.student.tasks.length == 0) {
       Meteor.call("students.getTasks", task, this.props.student._id);
       this.props.history.push("/student/workspace");
+    } else {
+      // open popup
+      MySwal.fire({
+        title: (
+          <p style={{ color: "#000000" }}>
+            Du hast bereits eine aktive Aufgabe
+          </p>
+        ),
+        text:
+          "Deine zur Zeit aktive aufgabe findest du unter dem Reiter Arbeitsfläche",
+        type: "info",
+        showCancelButton: true,
+        cancelButtonColor: "#3085D6",
+        cancelButtonText: "Okay",
+        confirmButtonText: "Gehe zu Arbeitsfläche"
+      }).then(result => {
+        if (result.value) {
+          this.props.history.push("/student/workspace");
+        }
+      });
     }
   }
   renderTracks() {

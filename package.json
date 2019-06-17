@@ -23,8 +23,9 @@
     "semantic-ui-react": "^0.86.0",
     "shortid": "^2.2.14",
     "simpl-schema": "^1.5.5",
-    "sweetalert2": "^8.11.1",
-    "sweetalert2-react": "^0.7.2"
+    "sweetalert2": "^8.12.1",
+    "sweetalert2-react": "^0.7.2",
+    "sweetalert2-react-content": "^1.1.0"
   },
   "meteor": {
     "mainModule": {
