@@ -4,7 +4,7 @@ import { Tasks } from "../../api/tasks";
 function createDragTask(taskSpecs) {
   taskSpecs["taskId"] = taskSpecs["taskId"];
   taskSpecs["type"] = "drag";
-  taskSpecs["taskPackage"] = "Motivation";
+  taskSpecs["package"] = taskSpecs["package"];
   taskSpecs["autoGrading"] = true;
   taskSpecs["filePrefix"] = "Drag";
   // taskSpecs["taskurl"] =

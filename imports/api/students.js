@@ -21,7 +21,8 @@ Meteor.methods({
       tasks: [],
       currentTraining: [],
       solvedTraining: [],
-      solvedTasks: []
+      solvedTasks: [],
+      currentPackage: []
     });
   },
   "students.addCourse": function(courseId, _id) {
@@ -37,8 +38,29 @@ Meteor.methods({
   "students.getTasks": function(tasks, _id) {
     Students.update(_id, { $addToSet: { tasks } });
   },
+  //Gets a package and it's first training
+  "students.getPackage": function(package, _id) {
+    console.log(package);
+    Students.update(_id, { $addToSet: { currentPackage: package } });
+  },
+  "students.initTraining": function(training, _id) {
+    console.log("tetetet            " + training);
+    Students.update(_id, { $set: { currentTraining: training } });
+  },
   "students.setLastActiveTaskId": function(taskId, _id) {
     Students.update(_id, { $addToSet: { lastActiveTaskId: taskId } });
+  },
+  "students.solveTraining": function(student, training) {
+    var studentUpdates = {
+      $addToSet: { solvedTraining: training },
+      $pull: {
+        currentTraining: {
+          name: training.name,
+          sequenceId: training.sequenceId
+        }
+      }
+    };
+    Students.update({ _id: student._id }, studentUpdates);
   }
 });
 

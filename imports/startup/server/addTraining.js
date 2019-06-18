@@ -2,11 +2,8 @@ import { Meteor } from "meteor/meteor";
 import { Tasks } from "../../api/training";
 
 function createDragTask(trainingSpecs) {
-  trainingSpecs["name"] = trainingSpecs["name"];
-  trainingSpecs["package"] = trainingSpecs["package"];
-  trainingSpecs["imageVideo"] = "link";
-  trainingSpecs["discount"] = false;
-  trainingSpecs["format"] = "pdf";
+  trainingSpecs["Motivation"] = trainingSpecs["Motivation"];
+  trainingSpecs["Identität"] = trainingSpecs["Identität"];
 
   // taskSpecs["taskurl"] =
   //   "/Tasks/Maze/TaskPictures/" + taskSpecs["taskId"] + ".jpeg";
