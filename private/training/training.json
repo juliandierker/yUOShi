@@ -1,20 +1,42 @@
 {
   "training": [
     {
-      "name": "Motivation",
-      "trainingId": "Motivation Problem",
-      "sequenceId": 1,
-      "content": "Hier kommt das erste Fallbeispiel zum Thema Motivation",
-      "tasks": ["Motive", "Maslow"],
-      "package": "Motivation"
-    },
-    {
-      "name": "Motivation",
-      "trainingId": "Motivation Problem",
-      "sequenceId": 2,
-      "content": "Um zu helfen ist es ander Zeit sich zunächst mit dem Begriff Motvation auseinander zu setzen",
-      "tasks": ["Motive", "Maslow"],
-      "package": "Motivation"
+      "Motivation": [
+        {
+          "name": "Motivation",
+          "trainingId": "Motivation Problem",
+          "sequenceId": 1,
+          "content": "Sie sind gut in das Schuljahr gestartet und persönlich äußerst motiviert. Insgesamt haben Sie auch ein gutes Gefühl und eine nette Klasse. Jetzt kann es richtig losgehen! Doch nach und nach fällt Ihnen auf, dass einige Schüler*innen immer öfter zu spät kommen. Die Intensität der Diskussionen wird weniger, fast scheint es so, als ob andere Dinge interessanter geworden sind. Schüler*innen, die vorher sehr aktiv waren, scheinen nur noch das nötigste zu machen. Sie sind verwundert… Warum ist die Klasse so unmotiviert? Ihre Arbeit fällt Ihnen dadurch auch schwerer und am liebsten würden Sie die Schüler wach schütteln. Sie merken, dass Sie selbst immer weniger Lust haben, zu unterrichten. Was können Sie also tun? Wie lässt sich die Klasse motivieren? Finden Sie es heraus und lernen Sie alles über Motivation!",
+          "tasks": ["Motive", "Maslow"],
+          "package": "Motivation"
+        },
+        {
+          "name": "Motivation",
+          "trainingId": "Motivation Problem",
+          "sequenceId": 2,
+          "content": "Um zu helfen ist es ander Zeit sich zunächst mit dem Begriff Motvation auseinander zu setzen",
+          "tasks": ["Motive", "Maslow"],
+          "package": "Motivation"
+        }
+      ],
+      "Identität": [
+        {
+          "name": "Motivation",
+          "trainingId": "Motivation Problem",
+          "sequenceId": 1,
+          "content": "Sie sind gut in das Schuljahr gestartet und persönlich äußerst motiviert. Insgesamt haben Sie auch ein gutes Gefühl und eine nette Klasse. Jetzt kann es richtig losgehen! Doch nach und nach fällt Ihnen auf, dass einige Schüler*innen immer öfter zu spät kommen. Die Intensität der Diskussionen wird weniger, fast scheint es so, als ob andere Dinge interessanter geworden sind. Schüler*innen, die vorher sehr aktiv waren, scheinen nur noch das nötigste zu machen. Sie sind verwundert… Warum ist die Klasse so unmotiviert? Ihre Arbeit fällt Ihnen dadurch auch schwerer und am liebsten würden Sie die Schüler wach schütteln. Sie merken, dass Sie selbst immer weniger Lust haben, zu unterrichten. Was können Sie also tun? Wie lässt sich die Klasse motivieren? Finden Sie es heraus und lernen Sie alles über Motivation!",
+          "tasks": ["Motive", "Maslow"],
+          "package": "Motivation"
+        },
+        {
+          "name": "Motivation",
+          "trainingId": "Motivation Problem",
+          "sequenceId": 2,
+          "content": "Um zu helfen ist es ander Zeit sich zunächst mit dem Begriff Motvation auseinander zu setzen",
+          "tasks": ["Motive", "Maslow"],
+          "package": "Motivation"
+        }
+      ]
     }
   ]
 }

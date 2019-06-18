@@ -43,8 +43,24 @@ Meteor.methods({
     console.log(package);
     Students.update(_id, { $addToSet: { currentPackage: package } });
   },
+  "students.initTraining": function(training, _id) {
+    console.log("tetetet            " + training);
+    Students.update(_id, { $set: { currentTraining: training } });
+  },
   "students.setLastActiveTaskId": function(taskId, _id) {
     Students.update(_id, { $addToSet: { lastActiveTaskId: taskId } });
+  },
+  "students.solveTraining": function(student, training) {
+    var studentUpdates = {
+      $addToSet: { solvedTraining: training },
+      $pull: {
+        currentTraining: {
+          name: training.name,
+          sequenceId: training.sequenceId
+        }
+      }
+    };
+    Students.update({ _id: student._id }, studentUpdates);
   }
 });
 
