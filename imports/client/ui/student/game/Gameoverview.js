@@ -130,9 +130,7 @@ export default class Gameoverview extends React.Component {
                     {"Inhalte " + pack.trainings.length}
                   </span>
                 </Card.Meta>
-                <Card.Description>
-                  Hier lernt ihr etwas über Motivation
-                </Card.Description>
+                <Card.Description>{pack.description}</Card.Description>
               </Card.Content>
               <Button
                 onClick={() => this.handleGetPackage(pack)}
