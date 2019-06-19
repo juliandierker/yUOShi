@@ -116,7 +116,10 @@ function setupStudents() {
       lastActiveTaskId: null,
       courses: [],
       tasks: [],
-      solvedTasks: []
+      solvedTasks: [],
+      currentPackage: [],
+      currentTraining: [],
+      solvedTraining: []
     });
     // Dummy-Entry for Studip-Validated User:
   }
