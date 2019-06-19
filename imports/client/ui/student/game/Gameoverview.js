@@ -62,7 +62,6 @@ export default class Gameoverview extends React.Component {
   }
   handleGetPackage(pack) {
     const student = this.props.student;
-    console.log(student);
     if (student.currentPackage.length > 0) {
       this.props.history.push("/student/workspace");
     } else {
@@ -142,6 +141,7 @@ export default class Gameoverview extends React.Component {
                 Bearbeiten
               </Button>
               <Card.Content extra>
+                handleGetPackage
                 <Icon name="expand arrows alternate" />
                 {"Erfahrung " + 5000}
               </Card.Content>

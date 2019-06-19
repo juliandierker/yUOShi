@@ -5,6 +5,7 @@ import { Accounts } from "meteor/accounts-base";
 import { Classrooms } from "./courses";
 import { Teachers } from "./teachers";
 import { Courses } from "./courses";
+import { Tasks } from "./tasks";
 export const Students = new Mongo.Collection("students");
 
 Meteor.methods({
@@ -36,6 +37,17 @@ Meteor.methods({
     return tmp;
   },
   "students.getTasks": function(tasks, _id) {
+    Students.update(_id, { $addToSet: { tasks } });
+  },
+  "students.getNextTask": function(packageName, sequenceId, _id) {
+    console.log("TEEST");
+    console.log(packageName);
+    console.log(sequenceId);
+    var tasks = Tasks.find({
+      package: packageName,
+      sequenceId: sequenceId
+    }).fetch()[0];
+    console.log(tasks);
     Students.update(_id, { $addToSet: { tasks } });
   },
   //Gets a package and it's first training

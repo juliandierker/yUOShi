@@ -151,8 +151,8 @@ export default class Workspace extends React.Component {
       }
       //first training was initialized
     } else if (
-      currentTraining.length > 1 &&
-      student.tasks.length == 0 &&
+      currentTraining.length > 0 &&
+      currentTasks.length == 0 &&
       student.solvedTasks.length == 0
     ) {
       let taskProps = {
@@ -163,6 +163,12 @@ export default class Workspace extends React.Component {
         trainings: this.props.trainings
       };
       return <TrainingAnimationTemplate {...taskProps} />;
+    } else if (
+      currentTraining.length == 0 &&
+      student.tasks.length == 0 &&
+      student.solvedTraining.length > 0
+    ) {
+      this.props.handleNextTask();
     }
     //tasks are activated after intro trainings
     if (this.state.activeTask) {

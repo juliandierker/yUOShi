@@ -90,6 +90,29 @@ export default class StudentOverview extends React.Component {
   componentWillUnmount() {
     this.teacherTracker.stop();
   }
+
+  handleNextTask() {
+    var student = this.state.student;
+    if (student.currentPackage.length > 0) {
+      if (student.solvedTasks.length > 0) {
+        var sequenceId =
+          student.solvedTasks[student.solvedTasks.length - 1].sequenceId;
+      } else {
+        console.log("entered");
+        var sequenceId = 0;
+      }
+    }
+    if (student.tasks.length == 0) {
+      Meteor.call(
+        "students.getNextTask",
+        student.currentPackage[0].name,
+        sequenceId,
+        student._id
+      );
+      this.props.history.push("/student/workspace");
+    }
+  }
+
   initCourses(courses, studentId) {
     var currentCourses = this.state.student.courses;
     for (var i = 0; i < courses.data.length; i++) {
@@ -121,6 +144,7 @@ export default class StudentOverview extends React.Component {
             render={props => (
               <GameOverview
                 courses={this.state.courses}
+                handleNextTask={this.handleNextTask.bind(this)}
                 student={this.state.student}
                 tasks={this.state.tasks}
                 trainings={this.state.trainings}
@@ -143,6 +167,7 @@ export default class StudentOverview extends React.Component {
             render={props => (
               <Workspace
                 student={this.state.student}
+                handleNextTask={this.handleNextTask.bind(this)}
                 courses={this.state.courses}
                 tasks={this.state.tasks}
                 trainings={this.state.trainings}
