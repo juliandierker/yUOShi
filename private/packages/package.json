@@ -3,7 +3,14 @@
     {
       "name": "Motivation",
       "tasks": [],
-      "trainings": []
+      "trainings": [],
+      "description": "Hier lernt ihr etwas über Motivation"
+    },
+    {
+      "name": "Identität",
+      "tasks": [],
+      "trainings": [],
+      "description": "Hier lernt ihr etwas über Identität"
     }
   ]
 }

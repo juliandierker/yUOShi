@@ -37,14 +37,16 @@ function initPackages() {
     var tmp2 = [];
     var pname = packages[i].name;
     var tasks = Tasks.find({ package: pname }).fetch();
-    var trainings = Training.find({ package: pname }).fetch();
+    var trainings = Training.find({}).fetch();
 
     for (var j in tasks) {
-      console.log(tasks[j]._id);
       tmp1.push(tasks[j]._id);
     }
-    for (var k in trainings) {
-      tmp2.push(trainings[k]._id);
+
+    for (var k in trainings[0][pname]) {
+      tmp2.push(
+        trainings[0][pname][k].trainingId + trainings[0][pname][k].sequenceId
+      );
     }
     var packageUpdates = {
       $set: { tasks: tmp1 }
