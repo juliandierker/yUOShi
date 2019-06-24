@@ -12,6 +12,8 @@ import { Button, Icon, Header, Image } from "semantic-ui-react";
 import { Tasks } from "../../../../api/tasks";
 import { Students } from "../../../../api/students";
 
+import TaskProgress from "../taskProgress/TaskProgress";
+
 /**
  * This component should control the progress of a student in a task-package
  * Workspace -> renders Package-values -> renders tasks or trainings
@@ -197,7 +199,30 @@ export default class Workspace extends React.Component {
   }
   render() {
     const { activeTask, packageStarted } = this.state;
-    return <div className="workspace__container">{this.taskSwitch()}</div>;
+    console.log(activeTask);
+    const unsolvedTasks = this.props.tasks.filter(
+      task =>
+        !this.props.student.solvedTasks.includes(task) &&
+        activeTask != undefined &&
+        task._id != activeTask._id
+    );
+
+    return (
+      <div
+        style={{
+          display: "flex"
+        }}
+      >
+        <TaskProgress
+          activeTask={this.state.activeTask}
+          completedTasks={this.props.student.solvedTasks}
+          incompleteTasks={unsolvedTasks}
+        />
+        <div className="workspace__container" style={{ marginLeft: "16px" }}>
+          {this.taskSwitch()}
+        </div>
+      </div>
+    );
   }
 }
 
