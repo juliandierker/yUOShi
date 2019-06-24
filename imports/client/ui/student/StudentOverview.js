@@ -99,7 +99,7 @@ export default class StudentOverview extends React.Component {
           student.solvedTasks[student.solvedTasks.length - 1].sequenceId;
       } else {
         console.log("entered");
-        var sequenceId = 0;
+        var sequenceId = 1;
       }
     }
     if (student.tasks.length == 0) {

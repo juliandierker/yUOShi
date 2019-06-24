@@ -71,12 +71,7 @@ export default class TrainingAnimationTemplate extends React.Component {
     }
   }
   render() {
-    return (
-      <div>
-        TrainingSession
-        {this.renderTraining()}
-      </div>
-    );
+    return <div>{this.renderTraining()}</div>;
   }
 }
 

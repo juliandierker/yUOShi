@@ -40,7 +40,6 @@ Meteor.methods({
     Students.update(_id, { $addToSet: { tasks } });
   },
   "students.getNextTask": function(packageName, sequenceId, _id) {
-    console.log("TEEST");
     console.log(packageName);
     console.log(sequenceId);
     var tasks = Tasks.find({
@@ -56,7 +55,6 @@ Meteor.methods({
     Students.update(_id, { $addToSet: { currentPackage: package } });
   },
   "students.initTraining": function(training, _id) {
-    console.log("tetetet            " + training);
     Students.update(_id, { $set: { currentTraining: training } });
   },
   "students.setLastActiveTaskId": function(taskId, _id) {

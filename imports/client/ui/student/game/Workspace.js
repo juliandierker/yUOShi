@@ -171,19 +171,22 @@ export default class Workspace extends React.Component {
       this.props.handleNextTask();
     }
     //tasks are activated after intro trainings
-    if (this.state.activeTask) {
-      let taskProps = {
-        student: this.props.student,
-        tasks: this.props.tasks,
-        activeTask: this.state.activeTask,
-        courses: this.props.courses,
-        trainings: this.props.trainings
-      };
+    else {
+      if (this.state.activeTask) {
+        let taskProps = {
+          student: this.props.student,
+          tasks: this.props.tasks,
+          activeTask: this.state.activeTask,
+          courses: this.props.courses,
+          trainings: this.props.trainings
+        };
 
-      if (this.state.activeTask.type == "drag") {
-        return <DragAnimationTemplate {...taskProps} />;
+        if (this.state.activeTask.type == "drag") {
+          return <DragAnimationTemplate {...taskProps} />;
+        }
       }
     }
+
     //package is completed
   }
   renderTraining() {
