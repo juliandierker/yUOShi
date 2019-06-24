@@ -131,7 +131,8 @@ export default class Workspace extends React.Component {
     if (
       taskPackage.length > 0 &&
       solvedTraining.length == 0 &&
-      currentTraining.length == 0
+      currentTraining.length == 0 &&
+      currentTasks.length == 0
     ) {
       console.log("A");
       const trainings = this.props.trainings;

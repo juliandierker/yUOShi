@@ -108,21 +108,45 @@ function setupStudents() {
     let userId = Accounts.createUser({ username, email, password: username });
     Roles.addUsersToRoles(userId, "student");
 
-    Students.insert({
-      userId: userId,
-      credits: 0,
-      exp: 0,
-      level: 1,
-      earning: [1],
-      studipUserId: "",
-      lastActiveTaskId: null,
-      courses: [],
-      tasks: [],
-      solvedTasks: [],
-      currentPackage: [],
-      currentTraining: [],
-      solvedTraining: []
-    });
+    //TESTCASE WORKSPACE Tasks
+
+    if (i == 2) {
+      var task = Tasks.findOne({ package: "Motivation", sequenceId: 1 });
+      Students.insert({
+        userId: userId,
+        credits: 0,
+        exp: 0,
+        level: 1,
+        earning: [1],
+        studipUserId: "",
+        lastActiveTaskId: null,
+        courses: [],
+        tasks: [task],
+        solvedTasks: [],
+        currentPackage: [],
+        currentTraining: [],
+        solvedTraining: []
+      });
+    } else {
+      Students.insert({
+        userId: userId,
+        credits: 0,
+        exp: 0,
+        level: 1,
+        earning: [1],
+        studipUserId: "",
+        lastActiveTaskId: null,
+        courses: [],
+        tasks: [],
+        solvedTasks: [],
+        currentPackage: [],
+        currentTraining: [],
+        solvedTraining: []
+      });
+    }
+
+    //TESTCASE END
+
     // Dummy-Entry for Studip-Validated User:
   }
   // const dummyId = Accounts.createUser({
