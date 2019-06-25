@@ -45,7 +45,7 @@ export default class Workspace extends React.Component {
 
   //TODO Check the clicked package and the progress in the package
   componentDidMount() {
-    this.checkProgress();
+    // this.checkProgress();
   }
   checkProgress() {
     if (!this.state.currentPackage) {
@@ -58,33 +58,43 @@ export default class Workspace extends React.Component {
     }
   }
   componentDidUpdate(prevProps, prevState) {
-    var prevTask = prevState.activeTask;
-    var curTaskNum = this.props.student.tasks.length;
-    // solved last task
-    if (prevTask && curTaskNum === 0 && !this.state.showSolution) {
-      this.setState({ activeTask: false });
-    } else if (!prevTask && curTaskNum > 0) {
-      var activeTask = this.getActiveTask();
-
-      //TODO setState correctly
-      if (!this.state.activeTask) {
-        var tasks = this.props.student.tasks;
-        if (this.props.student.tasks.length > prevProps.student.tasks.length) {
-          this.setState({
-            activeTask: tasks[tasks.length - 1]
-          });
-        }
-      }
-    } else {
-      // no tasks change or received task without submitting last one
-      if (this.state.activeTask) {
-        var currentTaskState = this.getActiveTask();
-        var taskStateChange = !equals(
-          prevState.currentTaskState,
-          currentTaskState
-        );
-      }
-    }
+    // var prevTask = prevState.activeTask;
+    // var curTaskNum = this.props.student.tasks.length;
+    // // solved last task
+    // if (prevTask && curTaskNum === 0 && !this.state.showSolution) {
+    //   console.log("ever reached???");
+    //   // this.setState({ activeTask: false });
+    // } else if (!prevTask && curTaskNum > 0) {
+    //   console.log("entered here");
+    //   var activeTask = this.getActiveTask();
+    //
+    //   //TODO setState correctly
+    //   console.log(this.state.activeTask);
+    //   //TODO CLEAN HERE
+    //   if (this.state.activeTask && this.state.activeTask.length == 0) {
+    //     console.log("workspace update");
+    //   }
+    // } else {
+    //   // no tasks change or received task without submitting last one
+    //   console.log(this.state.activeTask);
+    //   if (this.state.activeTask || this.state.activeTask == "undefined") {
+    //     var currentTaskState = this.getActiveTask();
+    //     var taskStateChange = !equals(
+    //       prevState.currentTaskState,
+    //       currentTaskState
+    //     );
+    //   } else {
+    //     if (this.props.student.tasks.length >= prevProps.student.tasks.length) {
+    //       var tasks = this.props.student.tasks;
+    //
+    //       console.log("A");
+    //       console.log(tasks);
+    //       // this.setState({
+    //       //   activeTask: tasks[tasks.length - 1]
+    //       // });
+    //     }
+    //   }
+    // }
   }
   componentWillUnmount() {
     if (this.state.activeTask) {
@@ -120,12 +130,11 @@ export default class Workspace extends React.Component {
     }
   }
   taskSwitch() {
-    const student = this.props.student;
-    console.log(student);
-    const taskPackage = student.currentPackage;
-    const currentTasks = student.tasks;
-    const currentTraining = student.currentTraining;
-    const solvedTraining = student.solvedTraining;
+    var student = this.props.student;
+    var taskPackage = student.currentPackage;
+    var currentTasks = student.tasks;
+    var currentTraining = student.currentTraining;
+    var solvedTraining = student.solvedTraining;
     //TODO check if we finished all tasks of a package
     //first training not initialized
     if (
@@ -134,7 +143,6 @@ export default class Workspace extends React.Component {
       currentTraining.length == 0 &&
       currentTasks.length == 0
     ) {
-      console.log("A");
       const trainings = this.props.trainings;
       var currentPackage = taskPackage[0];
       for (var i in trainings) {
@@ -169,11 +177,22 @@ export default class Workspace extends React.Component {
       student.tasks.length == 0 &&
       student.solvedTraining.length > 0
     ) {
-      this.props.handleNextTask();
+      if (
+        student.solvedTasks.length == student.currentPackage[0].tasks.length
+      ) {
+      } else {
+        if (student.tasks.length == 0) {
+          this.props.handleNextTask();
+        }
+      }
     }
     //tasks are activated after intro trainings
     else {
-      if (this.state.activeTask) {
+      var propTask = student.tasks[student.tasks.length - 1];
+      if (
+        this.state.activeTask &&
+        this.state.activeTask.taskId == propTask.taskId
+      ) {
         let taskProps = {
           student: this.props.student,
           tasks: this.props.tasks,
@@ -182,7 +201,21 @@ export default class Workspace extends React.Component {
           trainings: this.props.trainings
         };
 
-        if (this.state.activeTask.type == "drag") {
+        if (this.state.activeTask && this.state.activeTask.type == "drag") {
+          return <DragAnimationTemplate {...taskProps} />;
+        }
+      } else {
+        this.setState({
+          activeTask: student.tasks[student.tasks.length - 1]
+        });
+        if (student.tasks[student.tasks.length - 1].type == "drag") {
+          let taskProps = {
+            student: this.props.student,
+            tasks: this.props.tasks,
+            activeTask: student.tasks[student.tasks.length - 1],
+            courses: this.props.courses,
+            trainings: this.props.trainings
+          };
           return <DragAnimationTemplate {...taskProps} />;
         }
       }

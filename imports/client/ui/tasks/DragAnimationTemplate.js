@@ -32,6 +32,7 @@ export default class DragAnimationTemplate extends React.Component {
       }
     }
   }
+
   shouldComponentUpdate(nextProps) {
     if (this.props.activeTask.taskId !== nextProps.activeTask.taskId) {
       this.model = DragDropModel.getNewModel();

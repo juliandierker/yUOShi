@@ -41,32 +41,37 @@ export default class TrainingAnimationTemplate extends React.Component {
     const { open, dimmer, currentTraining } = this.state;
     if (currentTraining) {
       return (
-        <Modal dimmer={dimmer} open={open} onClose={this.close}>
-          <Modal.Header>{currentTraining.name}</Modal.Header>
-          <Modal.Content image>
-            <Image
-              wrapped
-              size="medium"
-              src={
-                "/package/" +
-                currentTraining.name +
-                "/" +
-                currentTraining.name +
-                ".jpg"
-              }
-            />
-            <Modal.Description>{currentTraining.content}</Modal.Description>
-          </Modal.Content>
-          <Modal.Actions>
-            <Button
-              positive
-              icon="checkmark"
-              labelPosition="right"
-              content="Los gehts"
-              onClick={this.close}
-            />
-          </Modal.Actions>
-        </Modal>
+        <div className="modalTraining_div">
+          <Modal dimmer={dimmer} open={open} onClose={this.close}>
+            <Modal.Header />
+            <Modal.Content image>
+              <Image
+                wrapped
+                size="medium"
+                src={
+                  "/package/" +
+                  currentTraining.name +
+                  "/" +
+                  currentTraining.name +
+                  ".jpg"
+                }
+              />
+              <Modal.Description>
+                <Header>{currentTraining.name}</Header>
+                Einstiegstext
+              </Modal.Description>
+            </Modal.Content>
+            <Modal.Actions>
+              <Button
+                positive
+                icon="checkmark"
+                labelPosition="right"
+                content="Los gehts"
+                onClick={this.close}
+              />
+            </Modal.Actions>
+          </Modal>
+        </div>
       );
     }
   }

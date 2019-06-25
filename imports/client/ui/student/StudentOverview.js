@@ -47,7 +47,6 @@ export default class StudentOverview extends React.Component {
         const tasks = Tasks.find({}).fetch();
         const trainings = Training.find({}).fetch();
         const packages = Package.find({}).fetch();
-        console.log(packages);
 
         if (givenCourses.length == 0) {
           Meteor.call(
@@ -83,10 +82,10 @@ export default class StudentOverview extends React.Component {
         }
       }
     });
+
+    this.props.history.push("/student/game");
   }
-  componentDidUpdate(prev) {
-    console.log(prev);
-  }
+  componentDidUpdate(prevProps, prevState) {}
   componentWillUnmount() {
     this.teacherTracker.stop();
   }
@@ -96,9 +95,8 @@ export default class StudentOverview extends React.Component {
     if (student.currentPackage.length > 0) {
       if (student.solvedTasks.length > 0) {
         var sequenceId =
-          student.solvedTasks[student.solvedTasks.length - 1].sequenceId;
+          student.solvedTasks[student.solvedTasks.length - 1].sequenceId + 1;
       } else {
-        console.log("entered");
         var sequenceId = 1;
       }
     }
@@ -107,9 +105,13 @@ export default class StudentOverview extends React.Component {
         "students.getNextTask",
         student.currentPackage[0].name,
         sequenceId,
-        student._id
+        student._id,
+        (err, res) => {
+          if (res) {
+            this.props.history.push("/student/workspace");
+          }
+        }
       );
-      this.props.history.push("/student/workspace");
     }
   }
 
@@ -127,7 +129,9 @@ export default class StudentOverview extends React.Component {
       this.state.student.courses,
       (err, res) => {
         if (res) {
-          this.setState({ courses: res });
+          if (!this.state.courses) {
+            this.setState({ courses: res });
+          }
         }
       }
     );
@@ -144,7 +148,7 @@ export default class StudentOverview extends React.Component {
             render={props => (
               <GameOverview
                 courses={this.state.courses}
-                handleNextTask={this.handleNextTask.bind(this)}
+                // handleNextTask={this.handleNextTask.bind(this)}
                 student={this.state.student}
                 tasks={this.state.tasks}
                 trainings={this.state.trainings}
@@ -190,7 +194,6 @@ export default class StudentOverview extends React.Component {
           student={this.state.student}
         />
         {this.renderRoutes()}
-
         {/* <StudentCourses
           courses={this.state.courses}
           student={this.state.student}

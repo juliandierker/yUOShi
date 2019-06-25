@@ -51,11 +51,20 @@ Meteor.methods({
   },
   //Gets a package and it's first training
   "students.getPackage": function(package, _id) {
-    console.log(package);
-    Students.update(_id, { $addToSet: { currentPackage: package } });
+    try {
+      Students.update(_id, { $addToSet: { currentPackage: package } });
+      return true;
+    } catch (e) {
+      console.log(e);
+    }
   },
   "students.initTraining": function(training, _id) {
-    Students.update(_id, { $set: { currentTraining: training } });
+    try {
+      Students.update(_id, { $set: { currentTraining: training } });
+      return true;
+    } catch (e) {
+      console.log(e);
+    }
   },
   "students.setLastActiveTaskId": function(taskId, _id) {
     Students.update(_id, { $addToSet: { lastActiveTaskId: taskId } });

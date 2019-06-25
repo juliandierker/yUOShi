@@ -29,8 +29,9 @@ export default class Gameoverview extends React.Component {
     }
   }
   componentDidUpdate(prevProps, prevState) {
-    if (this.props.tasks && !prevProps.tasks) {
+    if (this.props.tasks && !prevProps.tasks && !this.state.tasks) {
       var tasks = this.props.tasks;
+      console.log("tetetet");
       this.setState({ tasks });
     }
   }
@@ -65,9 +66,13 @@ export default class Gameoverview extends React.Component {
     if (student.currentPackage.length > 0) {
       this.props.history.push("/student/workspace");
     } else {
-      Meteor.call("students.getPackage", pack, student._id);
-
-      this.props.history.push("/student/workspace");
+      console.log("else");
+      Meteor.call("students.getPackage", pack, student._id, (err, res) => {
+        if (res) {
+          console.log("HÄÄÄ");
+          this.props.history.push("/student/workspace");
+        }
+      });
     }
   }
 
@@ -139,7 +144,6 @@ export default class Gameoverview extends React.Component {
                 Bearbeiten
               </Button>
               <Card.Content extra>
-                handleGetPackage
                 <Icon name="expand arrows alternate" />
                 {"Erfahrung " + 5000}
               </Card.Content>

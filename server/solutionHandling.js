@@ -34,7 +34,9 @@ function solveTask(studentId, taskId) {
       $set: { lastActiveTaskId: taskId },
       $pull: { tasks: { taskId: taskId } }
     };
-
+    console.log("tasksolver++++++++++++++++++");
+    console.log(taskId);
+    console.log(studentUpdates);
     if (student.exp > student.level * student.level * 1000) {
       studentUpdates["$inc"]["level"] = 1;
       studentUpdates["$set"]["exp"] =
@@ -91,7 +93,6 @@ Meteor.methods({
     var correct = equals(studentSolution, Solutions[task.taskId]);
     console.log(correct);
     if (correct) {
-      console.log("HEEEEEY");
       solveTask(studentId, task.taskId);
     } else {
       console.log(studentSolution + "   :   " + Solutions[task.taskId]);

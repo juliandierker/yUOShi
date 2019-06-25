@@ -4,7 +4,6 @@ export const DragdropModel = {
   getNewModel: function() {
     var model = {
       init: function(student, task) {
-        console.log(task);
         this._id = task._id;
         this.taskId = task.taskId;
         this.visQueue = [];
@@ -13,13 +12,9 @@ export const DragdropModel = {
 
       run: function(solution) {
         this.reset();
-        console.log(solution);
         for (var i = 0; i < solution.length; i++) {
           var checkElem = solution[i].id.split("_")[0];
-
           if (solution[i].children.length > 0) {
-            console.log(solution[i].children[0].id);
-            console.log(checkElem);
             if (!(solution[i].children[0].id == checkElem)) {
               this.visQueue.push(["fail", checkElem]);
               return false;
