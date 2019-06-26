@@ -48,7 +48,7 @@ class TaskProgress extends Component {
 
   render() {
     return (
-      <div style={{ height: "100%", width: "200px" }}>
+      <div style={{ height: "100%", width: "250px" }}>
         <Step.Group fluid vertical>
           {this.renderCompleteTasks()}
           {this.renderActiveTask()}
