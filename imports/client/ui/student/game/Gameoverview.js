@@ -115,42 +115,45 @@ export default class Gameoverview extends React.Component {
   // }
   renderTracks() {
     if (this.state.packages) {
-      return this.state.packages.map((pack, index) => {
-        return (
-          <Card.Group>
-            <Card>
-              <Image
-                src={"/package/" + pack.name + "/" + pack.name + ".jpg"}
-                wrapped
-                ui={false}
-              />
-              <Card.Content>
-                <Card.Header>{pack.name}</Card.Header>
-                <Card.Meta>
-                  <span className="date">
-                    {"Aufgaben " + pack.tasks.length}
-                  </span>
-                  <span className="date">
-                    {"Inhalte " + pack.trainings.length}
-                  </span>
-                </Card.Meta>
-                <Card.Description>{pack.description}</Card.Description>
-              </Card.Content>
-              <Button
-                onClick={() => this.handleGetPackage(pack)}
-                basic
-                color="green"
-              >
-                Bearbeiten
-              </Button>
-              <Card.Content extra>
-                <Icon name="expand arrows alternate" />
-                {"Erfahrung " + 5000}
-              </Card.Content>
-            </Card>
-          </Card.Group>
-        );
-      });
+      return (
+        <Card.Group>
+          {this.state.packages.map((pack, index) => {
+            return (
+              <Card key={pack._id}>
+                <Image
+                  style={{ margin: "10px" }}
+                  src={"/package/" + pack.name + "/" + pack.name + ".jpg"}
+                  wrapped
+                  ui={false}
+                />
+                <Card.Content>
+                  <Card.Header>{pack.name}</Card.Header>
+                  <Card.Meta>
+                    <span className="date">
+                      {"Aufgaben " + pack.tasks.length}
+                    </span>
+                    <span className="date">
+                      {"Inhalte " + pack.trainings.length}
+                    </span>
+                  </Card.Meta>
+                  <Card.Description>{pack.description}</Card.Description>
+                </Card.Content>
+                <Button
+                  onClick={() => this.handleGetPackage(pack)}
+                  basic
+                  color="green"
+                >
+                  Bearbeiten
+                </Button>
+                <Card.Content extra>
+                  <Icon name="expand arrows alternate" />
+                  {"Erfahrung " + 5000}
+                </Card.Content>
+              </Card>
+            );
+          })}
+        </Card.Group>
+      );
     } else {
       return <Loading />;
     }
