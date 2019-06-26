@@ -49,11 +49,11 @@ export default class TrainingAnimationTemplate extends React.Component {
                 wrapped
                 size="medium"
                 src={
-                  "/package/" +
+                  "/training/" +
+                  // currentTraining.name +
+                  // "/" +
                   currentTraining.name +
-                  "/" +
-                  currentTraining.name +
-                  ".jpg"
+                  ".gif"
                 }
               />
               <Modal.Description>

@@ -5,7 +5,7 @@ import { Meteor } from "meteor/meteor";
 
 import DragAnimationTemplate from "../../tasks/DragAnimationTemplate";
 import TrainingAnimationTemplate from "../../tasks/TrainingAnimationTemplate";
-import MaslowView from "../../tasks/MaslowView";
+import TagAnimationTemplate from "../../tasks/TagAnimationTemplate";
 
 import equals from "fast-deep-equal";
 import { Button, Icon, Header, Image } from "semantic-ui-react";
@@ -205,19 +205,24 @@ export default class Workspace extends React.Component {
 
         if (this.state.activeTask && this.state.activeTask.type == "drag") {
           return <DragAnimationTemplate {...taskProps} />;
+        } else if (
+          this.state.activeTask &&
+          this.state.activeTask.type == "tag"
+        ) {
+          return <TagAnimationTemplate {...taskProps} />;
         }
       } else {
+        let taskProps = {
+          student: this.props.student,
+          tasks: this.props.tasks,
+          activeTask: student.tasks[student.tasks.length - 1],
+          courses: this.props.courses,
+          trainings: this.props.trainings
+        };
         this.setState({
           activeTask: student.tasks[student.tasks.length - 1]
         });
         if (student.tasks[student.tasks.length - 1].type == "drag") {
-          let taskProps = {
-            student: this.props.student,
-            tasks: this.props.tasks,
-            activeTask: student.tasks[student.tasks.length - 1],
-            courses: this.props.courses,
-            trainings: this.props.trainings
-          };
           return <DragAnimationTemplate {...taskProps} />;
         }
       }
