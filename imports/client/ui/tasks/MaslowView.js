@@ -64,60 +64,55 @@ export default class MaslowView extends React.Component {
     return (
       <div id="svgDiv">
         <div className="pyramidWrapper">
-          <div id="selfActualization" className="dragItem">
-            Selbstverwirklichung
-          </div>
-          <div id="esteem" className="dragItem">
-            Individualbedürfnisse
-          </div>
-          <div id="socialneeds" className="dragItem">
-            Soziale Bedürfnisse
-          </div>
-          <div id="safety" className="dragItem">
-            Sicherheits Bedürfnisse
-          </div>
-          <div id="physological" className="dragItem">
-            Körperliche Bedürfnisse
-          </div>
           <div className="pyramid">
-            <div id="selfActualization_target" className="selected Maslow">
-              +
-            </div>
-            <div id="esteem_target" className="selected Maslow">
-              +
-            </div>
-            <div id="socialneeds_target" className="selected Maslow">
-              +
-            </div>
-            <div id="safety_target" className="selected Maslow">
-              +
-            </div>
-            <div id="physological_target" className="selected Maslow">
-              +
+            <div id="selfActualization_target" className="selected Maslow" />
+            <div id="esteem_target" className="selected Maslow" />
+            <div id="socialneeds_target" className="selected Maslow" />
+            <div id="safety_target" className="selected Maslow" />
+            <div id="physological_target" className="selected Maslow" />
+
+            <div className="dragItemGroup">
+              <div id="selfActualization" className="dragItem">
+                Selbstverwirklichung
+              </div>
+              <div id="esteem" className="dragItem">
+                Individualbedürfnisse
+              </div>
+              <div id="socialneeds" className="dragItem">
+                Soziale Bedürfnisse
+              </div>
+              <div id="safety" className="dragItem">
+                Sicherheits Bedürfnisse
+              </div>
+              <div id="physological" className="dragItem">
+                Körperliche Bedürfnisse
+              </div>
             </div>
           </div>
 
           <h1>Maslow Pyramide</h1>
-
-          <svg width="0" height="0">
-            <defs>
-              <clipPath id="part1" clipPathUnits="objectBoundingBox">
-                <polygon points="0.5 0, 1 1, 0 1" />
-              </clipPath>
-              <clipPath id="part2" clipPathUnits="objectBoundingBox">
-                <polygon points="0.25 0, 0.75 0, 1 1, 0 1" />
-              </clipPath>
-              <clipPath id="part3" clipPathUnits="objectBoundingBox">
-                <polygon points="0.165 0, 0.83 0, 1 1, 0 1" />
-              </clipPath>
-              <clipPath id="part4" clipPathUnits="objectBoundingBox">
-                <polygon points="0.125 0, 0.875 0, 1 1, 0 1" />
-              </clipPath>
-              <clipPath id="part5" clipPathUnits="objectBoundingBox">
-                <polygon points="0 0, 1 0, 1 1, 0 1" />
-              </clipPath>
-            </defs>
-          </svg>
+          <div>
+            <svg width="0" height="0">
+              <defs>
+                <clipPath id="part1" clipPathUnits="objectBoundingBox">
+                  <polygon points="0.5 0, 0.6 1, 0.4 1" />
+                </clipPath>
+                <clipPath id="part2" clipPathUnits="objectBoundingBox">
+                  <polygon points="0.4 0, 0.6 0, 0.7 1, 0.3 1" />
+                </clipPath>
+                <clipPath id="part3" clipPathUnits="objectBoundingBox">
+                  <polygon points="0.3 0, 0.7 0, 0.8 1, 0.2 1" />
+                </clipPath>
+                <clipPath id="part4" clipPathUnits="objectBoundingBox">
+                  <polygon points="0.2 0, 0.8 0, 0.9 1, 0.1 1" />
+                </clipPath>
+                <clipPath id="part5" clipPathUnits="objectBoundingBox">
+                  <polygon points="0.1 0, 0.9 0, 1 1, 0 1" />
+                </clipPath>
+              </defs>
+            </svg>
+            <div />
+          </div>
         </div>
       </div>
     );
