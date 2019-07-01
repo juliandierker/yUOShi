@@ -234,12 +234,23 @@ export default class Workspace extends React.Component {
 
     return <div />;
   }
+
+  isTaskSolved(t) {
+    const solvedTasks = this.props.student.solvedTasks.filter(
+      task =>
+        t._id == task._id
+    );
+
+    if (!solvedTasks || solvedTasks.length == 0) 
+      return false;
+    return true;
+  }
+
   render() {
     const { activeTask, packageStarted } = this.state;
-    console.log(activeTask);
     const unsolvedTasks = this.props.tasks.filter(
       task =>
-        !this.props.student.solvedTasks.includes(task) &&
+        !this.isTaskSolved(task) &&
         activeTask != undefined &&
         task._id != activeTask._id
     );
