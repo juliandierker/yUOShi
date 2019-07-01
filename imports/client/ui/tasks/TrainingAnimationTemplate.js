@@ -2,7 +2,7 @@ import React from "react";
 import { Meteor } from "meteor/meteor";
 import PropTypes from "prop-types";
 import { DragdropModel } from "../../../models/DragdropModel";
-import { Button, Header, Modal, Image } from "semantic-ui-react";
+import { Button, Header, Modal, Image, Icon, List } from "semantic-ui-react";
 
 import Swal from "sweetalert2";
 

@@ -74,9 +74,7 @@ export default class StudentTopMenu extends React.Component {
             <h3> {Meteor.user().username} </h3>
           </Menu.Item>
           <Menu.Item name="Points">{this.renderCredits()}</Menu.Item>
-          <Menu.Item name="Experience">
-            <h3> {this.renderLevel()} </h3>
-          </Menu.Item>
+          <Menu.Item name="Experience">{this.renderLevel()}</Menu.Item>
 
           <Menu.Item
             position="right"
