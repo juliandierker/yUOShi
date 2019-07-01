@@ -16,6 +16,9 @@ import { Tokens } from "../../../api/tokens";
 // import { UserAdministration, getInputSwal } from "./UserAdministration";
 
 class Login extends React.Component {
+
+  _Mounted = false;
+
   constructor(props) {
     super(props);
     this.state = {
@@ -28,6 +31,11 @@ class Login extends React.Component {
 
   componentDidMount() {
     document.getElementById("email").focus();
+    this._Mounted = true;
+  }
+
+  componentWillUnmount() {
+    this._Mounted = false;
   }
 
   handleChange = e => {
@@ -116,6 +124,7 @@ class Login extends React.Component {
             }
           }
         } else {
+          if(this._Mounted)
           this.setState({ error: "unableToLoginError" });
         }
       }
