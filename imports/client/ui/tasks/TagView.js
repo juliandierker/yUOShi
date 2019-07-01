@@ -39,7 +39,10 @@ export default class TagView extends React.Component {
     });
   }
   renderText() {
-    console.log(this.props.activeTask.content[0].text);
+    var textArr = this.props.activeTask.content[0].text.split(" ");
+    console.log(textArr);
+    for (var i in textArr) {
+    }
     return <Segment>{this.props.activeTask.content[0].text}</Segment>;
   }
   renderTaglist() {

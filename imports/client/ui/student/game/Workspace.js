@@ -227,7 +227,6 @@ export default class Workspace extends React.Component {
         }
       }
     }
-
     //package is completed
   }
   renderTraining() {
