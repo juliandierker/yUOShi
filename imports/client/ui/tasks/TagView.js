@@ -1,6 +1,9 @@
 import React from "react";
+import ReactDOM from "react-dom";
 import { Meteor } from "meteor/meteor";
 import PropTypes from "prop-types";
+import reactStringReplace from "react-string-replace";
+
 import { DragdropModel } from "../../../models/DragdropModel";
 import {
   Button,
@@ -9,28 +12,45 @@ import {
   Image,
   Grid,
   Icon,
-  Segment
+  Segment,
+  Label
 } from "semantic-ui-react";
-
 import Swal from "sweetalert2";
 
 export default class TagView extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      active: null
+      active: null,
+      tags: [],
+      finished: false
     };
     this.view = null;
   }
 
-  componentDidMount() {}
+  componentDidUpdate(prevProps, prevState) {
+    console.log("update");
+    var sol = this.props.activeTask.content[0].keywords;
+    console.log(sol);
+    if (sol.length == this.state.tags.length) {
+      Swal.fire({
+        position: "top-end",
+        type: "success",
+        title: "Geschafft",
+        timer: 1500
+      });
+    }
+  }
   renderListElem() {
     return this.props.activeTask.content[0].keywords.map((keyword, index) => {
-      console.log("render elems");
-
       return (
         <List.Item as="a">
-          <Icon name="help" />
+          {this.state.tags.includes(keyword) ? (
+            <Icon color="green" name="check" />
+          ) : (
+            <Icon name="help" />
+          )}
+
           <List.Content>
             <List.Header>{keyword}</List.Header>
           </List.Content>
@@ -38,16 +58,45 @@ export default class TagView extends React.Component {
       );
     });
   }
-  renderText() {
-    var textArr = this.props.activeTask.content[0].text.split(" ");
-    console.log(textArr);
-    for (var i in textArr) {
+  handleClickTag(match) {
+    var elA = document.getElementsByClassName(match);
+    if (!this.state.tags.includes(match)) {
+      var tags = this.state.tags;
+      tags.push(match);
+      this.setState({ tags });
+      for (var i in elA) {
+        ReactDOM.render(<Label>{match}</Label>, elA[i]);
+      }
     }
-    return <Segment>{this.props.activeTask.content[0].text}</Segment>;
+  }
+  renderText() {
+    var plainText = this.props.activeTask.content[0].text;
+    var textArr = this.props.activeTask.content[0].text.split(" ");
+    var keyArr = this.props.activeTask.content[0].keywords;
+    console.log(keyArr);
+    for (var i in textArr) {
+      if (keyArr.includes(textArr[i])) {
+        var replacerStr = keyArr[keyArr.indexOf(textArr[i])];
+        // plainText = plainText.replace("positiv", {<p>testy</p>});
+        plainText = reactStringReplace(plainText, replacerStr, (match, i) => (
+          <span
+            className={match}
+            style={{ color: "black" }}
+            onClick={() => this.handleClickTag(match)}
+            key={match + i}
+            href={match}
+          >
+            {match}
+          </span>
+        ));
+      }
+    }
+    return <Segment>{plainText}</Segment>;
   }
   renderTaglist() {
     return <List>{this.renderListElem()}</List>;
   }
+  renderRdyBtn() {}
   renderView() {
     return (
       <Grid columns={2}>
@@ -59,6 +108,11 @@ export default class TagView extends React.Component {
     );
   }
   render() {
-    return <div>{this.renderView()}</div>;
+    return (
+      <div>
+        {this.renderView()}
+        {this.renderRdyBtn()}
+      </div>
+    );
   }
 }
