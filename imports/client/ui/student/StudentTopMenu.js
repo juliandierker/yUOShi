@@ -49,7 +49,9 @@ export default class StudentTopMenu extends React.Component {
       <h3> {"Level " + this.state.student.level} </h3>
     ) : null;
   }
-
+  returnUser() {
+    return (Meteor.user())?( Meteor.user().username) : (false);
+  }
   render() {
     const { activeItem } = this.state;
     return (
@@ -71,7 +73,7 @@ export default class StudentTopMenu extends React.Component {
             </Dropdown.Menu>
           </Dropdown>
           <Menu.Item name="Name">
-            <h3> {Meteor.user().username} </h3>
+            <h3> {this.returnUser()} </h3>
           </Menu.Item>
           <Menu.Item name="Points">{this.renderCredits()}</Menu.Item>
           <Menu.Item name="Experience">{this.renderLevel()}</Menu.Item>

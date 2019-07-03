@@ -2,15 +2,33 @@
   "packages": [
     {
       "name": "Motivation",
-      "tasks": [],
-      "trainings": [],
-      "description": "Hier lernt ihr etwas über Motivation"
+      "description": "Hier lernt ihr etwas über Motivation",
+      "content": 
+      [
+        {
+          "title": "Einleitung",
+          "sequenceId": 0,
+          "description": "Einleitung in das Thema Motivation",
+          "tasks": 
+          [
+          ]
+        },
+        {
+          "title": "Was ist Motivation?",
+          "sequenceId": 1,
+          "description": "Tasks zum Thema Motivation",
+          "tasks": 
+          [
+          ]
+        }
+      ]
     },
     {
       "name": "Identität",
-      "tasks": [],
-      "trainings": [],
-      "description": "Hier lernt ihr etwas über Identität"
+      "description": "Hier lernt ihr etwas über Identität",
+      "content": [
+        {}
+      ]
     }
   ]
 }
