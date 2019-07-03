@@ -22,8 +22,14 @@ export default class TagAnimationTemplate extends React.Component {
       return <TagView activeTask={this.props.activeTask} />;
     }
   }
+  solutionPrepare() {}
   render() {
-    return <div>{this.renderView()}</div>;
+    return (
+      <div>
+        <Button onClick={() => this.solutionPrepare()}>Aufgabe lösen</Button>
+        {this.renderView()}
+      </div>
+    );
   }
 }
 

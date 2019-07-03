@@ -96,7 +96,7 @@ export default class TagView extends React.Component {
   renderTaglist() {
     return <List>{this.renderListElem()}</List>;
   }
-  renderRdyBtn() {}
+
   renderView() {
     return (
       <Grid columns={2}>
@@ -108,11 +108,6 @@ export default class TagView extends React.Component {
     );
   }
   render() {
-    return (
-      <div>
-        {this.renderView()}
-        {this.renderRdyBtn()}
-      </div>
-    );
+    return <div>{this.renderView()}</div>;
   }
 }
