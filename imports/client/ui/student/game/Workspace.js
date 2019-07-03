@@ -8,7 +8,7 @@ import TrainingAnimationTemplate from "../../tasks/TrainingAnimationTemplate";
 import TagAnimationTemplate from "../../tasks/TagAnimationTemplate";
 
 import equals from "fast-deep-equal";
-import { Button, Icon, Header, Image } from "semantic-ui-react";
+import { Button, Icon, Header, Image, Grid } from "semantic-ui-react";
 import { Tasks } from "../../../../api/tasks";
 import { Students } from "../../../../api/students";
 
@@ -17,7 +17,6 @@ import TaskProgress from "../taskProgress/TaskProgress";
 /**
  * This component should control the progress of a student in a task-package
  * Workspace -> renders Package-values -> renders tasks or trainings
- *
  */
 export default class Workspace extends React.Component {
   constructor(props) {
@@ -237,15 +236,15 @@ export default class Workspace extends React.Component {
 
   isTaskSolved(t) {
     const solvedTasks = this.props.student.solvedTasks.filter(
-      task =>
-        t._id == task._id
+      task => t._id == task._id
     );
 
-    if (!solvedTasks || solvedTasks.length == 0) 
-      return false;
+    if (!solvedTasks || solvedTasks.length == 0) return false;
     return true;
   }
-
+  renderSolBtn() {
+    return <Button> Aufgabe lösen </Button>;
+  }
   render() {
     const { activeTask, packageStarted } = this.state;
     const unsolvedTasks = this.props.tasks.filter(
