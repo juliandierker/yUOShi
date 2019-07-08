@@ -33,24 +33,31 @@ export function resetDatabase() {
 function initPackages() {
   var packages = Package.find({}).fetch();
   for (var i in packages) {
+    var content = packages[i].content;
     var tmp1 = [];
     var tmp2 = [];
     var pname = packages[i].name;
-    var tasks = Tasks.find({ package: pname }).fetch();
+    //var tasks = Tasks.find({ package: pname }).fetch();
     var trainings = Training.find({}).fetch();
 
-    for (var j in tasks) {
-      tmp1.push(tasks[j]._id);
+    for (var j in content) {
+      var tasks = Tasks.find({parentId: packages[i].name+content[j].sequenceId}).fetch();
+      content[j].tasks = tasks;
     }
+
+    var packageUpdates = {
+      $set: { "content": content}
+    }
+
+    Package.update({ _id: packages[i]._id}, packageUpdates);
+
+
 
     for (var k in trainings[0][pname]) {
       tmp2.push(
         trainings[0][pname][k].trainingId + trainings[0][pname][k].sequenceId
       );
     }
-    var packageUpdates = {
-      $set: { tasks: tmp1 }
-    };
 
     //TODO PUT THIS IN 1 QUERY
     Package.update({ _id: packages[i]._id }, packageUpdates);
@@ -118,7 +125,7 @@ function setupStudents() {
         exp: 0,
         level: 1,
         earning: [1],
-        studipUserId: "",
+        studipUserId: "e7a0a84b161f3e8c09b4a0a2e8a58147",
         lastActiveTaskId: null,
         courses: [],
         tasks: [task],

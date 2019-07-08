@@ -28,7 +28,8 @@ export default class Workspace extends React.Component {
       activeTask,
       showSolution: false,
       showCurrentTasks: true,
-      packageStarted: null
+      packageStarted: null,
+      currentSubPackageIndex: 0
     };
     this.handler = ev => {
       if (this.state.activeTask) {
@@ -46,6 +47,12 @@ export default class Workspace extends React.Component {
 
   //TODO Check the clicked package and the progress in the package
   componentDidMount() {
+    let currentTask = this.props.student.tasks;
+    let regex = "\\d+";
+    if(currentTask && currentTask.parentId) {
+    let currentSubPackageIndex = currentTask.parentId.match(regex);
+    this.setState( {currentSubPackageIndex: currentSubPackageIndex});
+    }
     // this.checkProgress();
   }
   checkProgress() {
@@ -178,14 +185,20 @@ export default class Workspace extends React.Component {
       student.tasks.length == 0 &&
       student.solvedTraining.length > 0
     ) {
-      if (
-        student.solvedTasks.length == student.currentPackage[0].tasks.length
-      ) {
-      } else {
-        if (student.tasks.length == 0) {
-          this.props.handleNextTask();
-        }
-      }
+      this.props.handleNextTask();
+
+      // if (
+      //   student.solvedTasks.length == student.currentPackage[0].content[this.state.currentSubPackageIndex].tasks.length
+      // ) {
+      //   this.props.handleNextTask();
+      // } else {
+      //   console.log("Y");
+      //   if (student.tasks.length == 0) {
+      //     console.log("X");
+      //     console.log("reach");
+      //     this.props.handleNextTask();
+      //   }
+      // }
     }
     //tasks are activated after intro trainings
     else {
@@ -242,18 +255,20 @@ export default class Workspace extends React.Component {
     if (!solvedTasks || solvedTasks.length == 0) return false;
     return true;
   }
+  
   renderSolBtn() {
     return <Button> Aufgabe lösen </Button>;
   }
-  render() {
-    const { activeTask, packageStarted } = this.state;
-    const unsolvedTasks = this.props.tasks.filter(
-      task =>
-        !this.isTaskSolved(task) &&
-        activeTask != undefined &&
-        task._id != activeTask._id
-    );
 
+  getActiveSubpackage() {
+    if(!this.props.student.tasks[0]){
+      return;
+    }
+    return this.props.student.currentPackage[0].content.filter(subpackage => (this.props.student.currentPackage[0].name + subpackage.sequenceId === this.props.student.tasks[0].parentId))[0]
+  }
+
+  render() {
+    let activesubpackage = this.getActiveSubpackage();
     return (
       <div
         style={{
@@ -261,9 +276,10 @@ export default class Workspace extends React.Component {
         }}
       >
         <TaskProgress
-          activeTask={this.state.activeTask}
-          completedTasks={this.props.student.solvedTasks}
-          incompleteTasks={unsolvedTasks}
+          student={this.props.student}
+          currentPackage={this.props.student.currentPackage[0]}
+          activeSubpackage={activesubpackage}
+          icon={"student"}
         />
         <div className="workspace__container" style={{ marginLeft: "16px" }}>
           {this.taskSwitch()}

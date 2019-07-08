@@ -18,12 +18,21 @@ export default class Gameoverview extends React.Component {
     this.state = {
       tasks: null,
       trainings: null,
-      packages: null
+      packages: null,
+      currentSubPackageIndex: 0
     };
   }
   componentDidMount() {
     var tasks = this.props.tasks;
     var packages = this.props.packages;
+
+    let currentTask = this.props.student.tasks;
+    let regex = "\\d+";
+    if(currentTask && currentTask.parentId) {
+    let currentSubPackageIndex = currentTask.parentId.match(regex);
+    this.setState( {currentSubPackageIndex: currentSubPackageIndex});
+    }
+
     if (!this.state.tasks) {
       this.setState({ tasks, trainings: this.props.trainings, packages });
     }
@@ -130,7 +139,7 @@ export default class Gameoverview extends React.Component {
                   <Card.Header>{pack.name}</Card.Header>
                   <Card.Meta>
                     <span className="date">
-                      {"Aufgaben " + pack.tasks.length}
+                      {"Aufgaben " + pack.content[this.state.currentSubPackageIndex].tasks.length}
                     </span>
                     <span className="date">
                       {"Inhalte " + pack.trainings.length}

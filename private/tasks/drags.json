@@ -1,6 +1,7 @@
 {
   "tasks": [
     {
+      "parentId": "Motivation1",
       "description": "Versucht die Bedürfnis-Pyramide nach Maslow in die richtige Reihenfolge zu bringen.",
       "taskId": "Maslow",
       "filePrefix": "Drag",
@@ -10,6 +11,7 @@
       "credits": 2500
     },
     {
+      "parentId": "Motivation1",
       "description": "Ordnet Statements zu intrinsischer oder extrinsischer Motivation zu.",
       "taskId": "Motive",
       "filePrefix": "Drag",
