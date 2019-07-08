@@ -6,36 +6,21 @@ export const TagModel = {
       init: function(student, task) {
         this._id = task._id;
         this.taskId = task.taskId;
-        this.visQueue = [];
         this.solution = [];
+        this.visQueue = [];
+        this.sampleSolution = task.content[0].keywords;
       },
 
       run: function(solution) {
-        this.reset();
-        for (var i = 0; i < solution.length; i++) {
-          var checkElem = solution[i].id.split("_")[0];
-          if (solution[i].children.length > 0) {
-            if (!(solution[i].children[0].id == checkElem)) {
-              this.visQueue.push(["fail", checkElem]);
-              return false;
-            } else {
-              this.solution.push(checkElem);
-            }
-          } else {
-            this.visQueue.push(["fail", checkElem]);
-            return false;
+        if (this.sampleSolution.length == solution.length) {
+          if (!this.visQueue.includes("fail")) {
+            this.visQueue.push(["won", null]);
           }
         }
-        if (!this.visQueue.includes("fail")) {
-          this.visQueue.push(["won", null]);
-          return true;
-        }
+        return this.visQueue;
       },
 
-      reset: function() {
-        this.visQueue = [];
-        this.solution = [];
-      }
+      reset: function() {}
     };
     return model;
   }

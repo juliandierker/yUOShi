@@ -34,9 +34,7 @@ function solveTask(studentId, taskId) {
       $set: { lastActiveTaskId: taskId },
       $pull: { tasks: { taskId: taskId } }
     };
-    console.log("tasksolver++++++++++++++++++");
-    console.log(taskId);
-    console.log(studentUpdates);
+
     if (student.exp > student.level * student.level * 1000) {
       studentUpdates["$inc"]["level"] = 1;
       studentUpdates["$set"]["exp"] =
@@ -91,11 +89,16 @@ function solveTask(studentId, taskId) {
 Meteor.methods({
   "solutionHandler.submitDrag"(studentSolution, studentId, task) {
     var correct = equals(studentSolution, Solutions[task.taskId]);
-    console.log(correct);
     if (correct) {
       solveTask(studentId, task.taskId);
-    } else {
-      console.log(studentSolution + "   :   " + Solutions[task.taskId]);
+    }
+    return correct;
+  },
+  "solutionHandler.submitTag"(studentSolution, studentId, task) {
+    var correct = studentSolution.length == Solutions[task.taskId].length;
+    // var correct = equals(studentSolution, Solutions[task.taskId]);
+    if (correct) {
+      solveTask(studentId, task.taskId);
     }
     return correct;
   }

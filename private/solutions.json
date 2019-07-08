@@ -7,5 +7,15 @@
     "physological"
   ],
 
-  "Motive": ["intr", "extr"]
+  "Motive": ["intr", "extr"],
+  "Motivation_Intro": [
+    "Motivation",
+    "Richtung",
+    "Motiv",
+    "Bedürfnis",
+    "Ziel",
+    "IST-Zustand",
+    "SOLL-Zustand",
+    "Interesse"
+  ]
 }

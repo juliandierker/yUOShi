@@ -1,7 +1,7 @@
 import React from "react";
 import { Meteor } from "meteor/meteor";
 import PropTypes from "prop-types";
-import { DragdropModel } from "../../../models/DragdropModel";
+import { TagModel } from "../../../models/TagModel";
 import { Button, Header, Modal, Image, Grid } from "semantic-ui-react";
 
 import Swal from "sweetalert2";
@@ -14,22 +14,25 @@ export default class TagAnimationTemplate extends React.Component {
       activeTask: null
     };
     this.view = null;
+    this.model = TagModel.getNewModel();
+    this.model.init(props.student, props.activeTask);
   }
 
   componentDidMount() {}
   renderView() {
     if (this.props.activeTask.taskId == "Motivation_Intro") {
-      return <TagView activeTask={this.props.activeTask} />;
+      return (
+        <TagView
+          student={this.props.student}
+          model={this.model}
+          activeTask={this.props.activeTask}
+        />
+      );
     }
   }
-  solutionPrepare() {}
+
   render() {
-    return (
-      <div>
-        <Button onClick={() => this.solutionPrepare()}>Aufgabe lösen</Button>
-        {this.renderView()}
-      </div>
-    );
+    return <div>{this.renderView()}</div>;
   }
 }
 

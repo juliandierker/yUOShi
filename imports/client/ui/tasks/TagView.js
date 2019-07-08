@@ -16,7 +16,6 @@ import {
   Label
 } from "semantic-ui-react";
 import Swal from "sweetalert2";
-
 export default class TagView extends React.Component {
   constructor(props) {
     super(props);
@@ -29,9 +28,8 @@ export default class TagView extends React.Component {
   }
 
   componentDidUpdate(prevProps, prevState) {
-    console.log("update");
     var sol = this.props.activeTask.content[0].keywords;
-    console.log(sol);
+
     if (sol.length == this.state.tags.length) {
       Swal.fire({
         position: "top-end",
@@ -73,7 +71,6 @@ export default class TagView extends React.Component {
     var plainText = this.props.activeTask.content[0].text;
     var textArr = this.props.activeTask.content[0].text.split(" ");
     var keyArr = this.props.activeTask.content[0].keywords;
-    console.log(keyArr);
     for (var i in textArr) {
       if (keyArr.includes(textArr[i])) {
         var replacerStr = keyArr[keyArr.indexOf(textArr[i])];
@@ -81,7 +78,7 @@ export default class TagView extends React.Component {
         plainText = reactStringReplace(plainText, replacerStr, (match, i) => (
           <span
             className={match}
-            style={{ color: "black" }}
+            style={{ color: "black", lineHeight: "2" }}
             onClick={() => this.handleClickTag(match)}
             key={match + i}
             href={match}
@@ -91,7 +88,7 @@ export default class TagView extends React.Component {
         ));
       }
     }
-    return <Segment>{plainText}</Segment>;
+    return <Segment id="defTextReader">{plainText}</Segment>;
   }
   renderTaglist() {
     return <List>{this.renderListElem()}</List>;
@@ -107,7 +104,42 @@ export default class TagView extends React.Component {
       </Grid>
     );
   }
+  solutionPrepare() {
+    var sol = this.props.model.run(this.state.tags);
+    if (sol[0].includes("won")) {
+      var meteorMethod =
+        "solutionHandler.submit" + this.props.activeTask.filePrefix;
+      Meteor.call(
+        meteorMethod,
+        this.state.tags,
+        this.props.student._id,
+        this.props.activeTask,
+        (err, res) => {
+          if (res) {
+            Swal.fire({
+              position: "top-end",
+              type: "success",
+              title: "Geschafft",
+              timer: 1500
+            });
+          }
+        }
+      );
+    } else {
+      Swal.fire({
+        position: "top-end",
+        type: "warning",
+        title: "Die Lösung ist noch nicht korrekt.",
+        timer: 1500
+      });
+    }
+  }
   render() {
-    return <div>{this.renderView()}</div>;
+    return (
+      <div>
+        <Button onClick={() => this.solutionPrepare()}>Aufgabe lösen</Button>
+        {this.renderView()}
+      </div>
+    );
   }
 }
