@@ -255,18 +255,20 @@ export default class Workspace extends React.Component {
     if (!solvedTasks || solvedTasks.length == 0) return false;
     return true;
   }
+  
   renderSolBtn() {
     return <Button> Aufgabe lösen </Button>;
   }
-  render() {
-    const { activeTask, packageStarted } = this.state;
-    const unsolvedTasks = this.props.tasks.filter(
-      task =>
-        !this.isTaskSolved(task) &&
-        activeTask != undefined &&
-        task._id != activeTask._id
-    );
 
+  getActiveSubpackage() {
+    if(!this.props.student.tasks[0]){
+      return;
+    }
+    return this.props.student.currentPackage[0].content.filter(subpackage => (this.props.student.currentPackage[0].name + subpackage.sequenceId === this.props.student.tasks[0].parentId))[0]
+  }
+
+  render() {
+    let activesubpackage = this.getActiveSubpackage();
     return (
       <div
         style={{
@@ -274,9 +276,10 @@ export default class Workspace extends React.Component {
         }}
       >
         <TaskProgress
-          activeTask={this.state.activeTask}
-          completedTasks={this.props.student.solvedTasks}
-          incompleteTasks={unsolvedTasks}
+          student={this.props.student}
+          currentPackage={this.props.student.currentPackage[0]}
+          activeSubpackage={activesubpackage}
+          icon={"student"}
         />
         <div className="workspace__container" style={{ marginLeft: "16px" }}>
           {this.taskSwitch()}
