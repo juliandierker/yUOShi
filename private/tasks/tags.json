@@ -26,6 +26,30 @@
 
       "package": "Motivation",
       "credits": 2900
+    },
+    {
+      "parentId": "Motivation1",
+      "description": "Lest den Einführungstext und markiert die Schlüssel-Begriffe",
+      "taskId": "Motivation_IntrExtr",
+      "filePrefix": "Tag",
+      "sequenceId": 2,
+      "content": [
+        {
+          "title": "Motivation Begriffsklärung",
+          "subtitle": "Definitionen und Abgrenzungen",
+          "text": "Wenn die Rede von Motivation ist, kommen meistens die Begriffe intrinsische und extrinsische Motivationzur Sprache. Grundlegend ist mit dieserhandlungstheoretischen Unterscheidung gemeint, ob sich der angestrebte   Zielzustandinnerhalb   oder   außerhalb   einer   Handlung   befindet.   Wenn   demnach   von   intrinsischerMotivation geredet wird, kennzeichnet dies eine Tätigkeit, die dem Individuum Freudeund   Befriedigung   bei   der   Ausübung   bereitet,   also  von innen herausmotiviert   ist.Spricht man hingegen von extrinsischer Motivation, ist die Handlung durch das Outcome,also das erwartete Ergebnisgekennzeichnet. Die Handlung an sich ist somit eher Mittelzum   Zweck,   sich   hat   also   keine   direkte   Bedeutung   für   das   Individuum.   Generellschließen sich die beiden Arten der Motivation aber nicht gegenseitig aus, denn oft istdie Handlung ein Zusammenspiel innerer und äußerer Motivation, wie z.B. beim Lernen.Ein Schüler/in beschäftigt sich mit einem Lerngegenstand, weil er/sie ein persönlichesInteresse daran hat und gleichzeitig gute Noten anstrebt",
+          "keywords": [
+            "intrinsische",
+            "extrinsische",
+            "Motivation",
+            "innen",
+            "Ergebnis"
+          ]
+        }
+      ],
+
+      "package": "Motivation",
+      "credits": 2300
     }
   ]
 }

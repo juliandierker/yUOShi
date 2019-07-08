@@ -3,28 +3,36 @@
     {
       "name": "Motivation",
       "description": "Hier lernt ihr etwas über Motivation",
-      "content": 
-      [
-        {
-          "title": "Einleitung",
-          "sequenceId": 0,
-          "description": "Einleitung in das Thema Motivation",
-          "tasks": 
-          [
-          ]
-        },
+      "content": [
         {
           "title": "Was ist Motivation?",
+          "sequenceId": 0,
+          "description": "Tasks zum Thema Motivation",
+          "tasks": []
+        },
+        {
+          "title": "Quellen der Motivation",
           "sequenceId": 1,
           "description": "Tasks zum Thema Motivation",
-          "tasks": 
-          [
-          ]
+          "tasks": []
+        },
+        {
+          "title": "Motivationstheorie",
+          "sequenceId": 2,
+          "description": "Tasks zum Thema Motivation",
+          "tasks": []
+        },
+        {
+          "title": "Ziele!?",
+          "sequenceId": 3,
+          "description": "Tasks zum Thema Motivation",
+          "tasks": []
         }
       ]
     },
     {
       "name": "Identität",
+      "sequenceId": 0,
       "description": "Hier lernt ihr etwas über Identität",
       "content": [
         {}

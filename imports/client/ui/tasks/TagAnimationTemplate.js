@@ -20,7 +20,7 @@ export default class TagAnimationTemplate extends React.Component {
 
   componentDidMount() {}
   renderView() {
-    if (this.props.activeTask.taskId == "Motivation_Intro") {
+    if (this.props.activeTask.type == "tag") {
       return (
         <TagView
           student={this.props.student}

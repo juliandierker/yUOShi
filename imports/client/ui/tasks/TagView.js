@@ -106,7 +106,7 @@ export default class TagView extends React.Component {
   }
   solutionPrepare() {
     var sol = this.props.model.run(this.state.tags);
-    if (sol[0].includes("won")) {
+    if (sol && sol[0].includes("won")) {
       var meteorMethod =
         "solutionHandler.submit" + this.props.activeTask.filePrefix;
       Meteor.call(
