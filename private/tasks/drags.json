@@ -5,7 +5,7 @@
       "description": "Versucht die Bedürfnis-Pyramide nach Maslow in die richtige Reihenfolge zu bringen.",
       "taskId": "Maslow",
       "filePrefix": "Drag",
-      "sequenceId": 3,
+      "sequenceId": 5,
       "content": {},
       "package": "Motivation",
       "credits": 2500
@@ -15,7 +15,7 @@
       "description": "Ordnet Statements zu intrinsischer oder extrinsischer Motivation zu.",
       "taskId": "Motive",
       "filePrefix": "Drag",
-      "sequenceId": 4,
+      "sequenceId": 3,
       "content": {},
       "package": "Motivation",
       "credits": 2800,

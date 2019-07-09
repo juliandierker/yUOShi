@@ -3,6 +3,7 @@ import ReactDOM from "react-dom";
 import { Meteor } from "meteor/meteor";
 import PropTypes from "prop-types";
 import reactStringReplace from "react-string-replace";
+import ReactPlayer from "react-player";
 
 import { DragdropModel } from "../../../models/DragdropModel";
 import {
@@ -134,11 +135,17 @@ export default class TagView extends React.Component {
       });
     }
   }
+  renderVideo() {
+    if (this.props.activeTask.video) {
+      return <ReactPlayer url={this.props.activeTask.video} playing />;
+    }
+  }
   render() {
     return (
       <div>
         <Button onClick={() => this.solutionPrepare()}>Aufgabe lösen</Button>
         {this.renderView()}
+        {this.renderVideo()}
       </div>
     );
   }

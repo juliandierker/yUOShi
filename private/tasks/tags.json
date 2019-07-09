@@ -37,13 +37,105 @@
         {
           "title": "Motivation Begriffsklärung",
           "subtitle": "Definitionen und Abgrenzungen",
-          "text": "Wenn die Rede von Motivation ist, kommen meistens die Begriffe intrinsische und extrinsische Motivationzur Sprache. Grundlegend ist mit dieserhandlungstheoretischen Unterscheidung gemeint, ob sich der angestrebte   Zielzustandinnerhalb   oder   außerhalb   einer   Handlung   befindet.   Wenn   demnach   von   intrinsischerMotivation geredet wird, kennzeichnet dies eine Tätigkeit, die dem Individuum Freudeund   Befriedigung   bei   der   Ausübung   bereitet,   also  von innen herausmotiviert   ist.Spricht man hingegen von extrinsischer Motivation, ist die Handlung durch das Outcome,also das erwartete Ergebnisgekennzeichnet. Die Handlung an sich ist somit eher Mittelzum   Zweck,   sich   hat   also   keine   direkte   Bedeutung   für   das   Individuum.   Generellschließen sich die beiden Arten der Motivation aber nicht gegenseitig aus, denn oft istdie Handlung ein Zusammenspiel innerer und äußerer Motivation, wie z.B. beim Lernen.Ein Schüler/in beschäftigt sich mit einem Lerngegenstand, weil er/sie ein persönlichesInteresse daran hat und gleichzeitig gute Noten anstrebt",
+          "text": "Wenn die Rede von Motivation ist, kommen meistens die Begriffe intrinsische und extrinsische Motivationzur Sprache. Grundlegend ist mit dieserhandlungstheoretischen Unterscheidung gemeint, ob sich der angestrebte   Zielzustandinnerhalb   oder   außerhalb   einer   Handlung   befindet.   Wenn   demnach   von   intrinsischerMotivation geredet wird, kennzeichnet dies eine Tätigkeit, die dem Individuum Freudeund   Befriedigung   bei   der   Ausübung   bereitet,   also  von innen herausmotiviert   ist.Spricht man hingegen von extrinsischer Motivation, ist die Handlung durch das Outcome,also das erwartete Ergebnis gekennzeichnet. Die Handlung an sich ist somit eher Mittelzum   Zweck,   sich   hat   also   keine   direkte   Bedeutung   für   das   Individuum.   Generellschließen sich die beiden Arten der Motivation aber nicht gegenseitig aus, denn oft istdie Handlung ein Zusammenspiel innerer und äußerer Motivation, wie z.B. beim Lernen.Ein Schüler/in beschäftigt sich mit einem Lerngegenstand, weil er/sie ein persönlichesInteresse daran hat und gleichzeitig gute Noten anstrebt",
           "keywords": [
             "intrinsische",
             "extrinsische",
             "Motivation",
             "innen",
             "Ergebnis"
+          ]
+        }
+      ],
+
+      "package": "Motivation",
+      "credits": 2300
+    },
+    {
+      "parentId": "Motivation2",
+      "description": "Lest den Einführungstext und markiert die Schlüssel-Begriffe",
+      "video": "https://www.youtube.com/watch?v=UEZZBIH5Rlg",
+      "taskId": "Maslow_Theorie",
+      "filePrefix": "Tag",
+      "sequenceId": 4,
+      "content": [
+        {
+          "title": "Motivation Begriffsklärung",
+          "subtitle": "Maslows Bedürfnispyramide",
+          "text": "Eine der bekanntesten Theorien stellt  die Bedürfnishierarchie nach Abraham Maslow (1970) dar. Maslow geht davon aus, dass sich die menschlichen Bedürfnisse in einer ArtPyramide darstellen und aufeinander aufbauen. Nur wenn die Bedürfnisse auf den unteren Ebenen befriedigt seien, könnten die oberen angegangen werden.Auf der untersten Ebene der Pyramide befinden sich die sogenannten Grundbedürfnisse oder Physiologischen Bedürfnissen, welche z.B. Nahrung, Wärme und Sauerstoff beinhalten. Sind diese Bedürfnisse gedeckt, wird die nächste Stufe der Pyramide erreicht. Hier befinden sich die Sicherheitsbedürfnisse, also z.B. die Bedürfnisse nach einer bezahlbaren Wohnung, einem sicheren Job oder Gesetzen, die dieOrdnung erhalten. Wenn die Sicherheit gegeben ist, sind die Sozialbedürfnisse die nächste Priorität. Diese beinhalten vor allem den Wunsch nach Familie, Freunden, Zugehörigkeit, Intimität und Kommunikation. Auf der vierten Stufe der Pyramide befinden sich die Individualbedürfnisse. Diese beziehen sich auf den eigenen Status in der Gesellschaft, Wertschätzung, Unabhängigkeitund Erfolg. Die vier genannten Bedürfnisse sind laut Maslow als Mangelbedürfnisse einzustufen. Wenn der mit dem Bedürfnis einhergehende Mangel gedeckt ist, ist das Bedürfnis (zeitweise) befriedigt. Nach diesen Mangelbedürfnissen folgen die Daseinsbedürfnisse. Hierbei spielt vor allem Das Selbstverwirklichungsbedürfnis eine Rolle. Diesem Bedürfnis liegt zugrunde, dassein Individuum sein eigenes Potential ausschöpfen möchte, eine moralische Entwicklungvollzieht, Verantwortung übernimmt und kreativ ist. Bei Bedürfnissen aus diesem Bereich hört die Motivation nach Befriedigung nicht auf, sondern steigt, um neue Befriedigung zu erlangen. Sowohl Mangelbedürfnisse, als auch Daseinsbedürfnisse können nie vollständig befriedigt sein.",
+          "keywords": [
+            "Bedürfnisse",
+            "Grundbedürfnisse",
+            "Physiologischen",
+            "Sicherheitsbedürfniss",
+            "Sozialbedürfnisse",
+            "Individualbedürfnisse",
+            "Mangelbedürfnisse",
+            "Selbstverwirklichungsbedürfnis"
+          ]
+        }
+      ],
+
+      "package": "Motivation",
+      "credits": 2300
+    },
+    {
+      "parentId": "Motivation2",
+      "description": "Lest den Einführungstext und markiert die Schlüssel-Begriffe",
+      "taskId": "Selbstbestimmungs_Theorie",
+      "filePrefix": "Tag",
+      "sequenceId": 5,
+      "content": [
+        {
+          "title": "Selbstbestimmungs-Theorie",
+          "subtitle": "Selbstbestimmungs-Theorie",
+          "text": "Auch die Selbstbestimmungstheorie (SDT) nach Deci und Ryan (1993) spielt in der Motivations-Forschung eine zentrale Rolle. Sie zählt zu den humanistischen Ansätzen über Motivation. Aus Sicht dieser Theorie stellt die veranlagte Komponente der menschlichen Motivation einen entscheidenden Aspekt für die individuelle Persönlichkeitsorganisation dar. Persönliche Interessen, Ziele und Wünsche sind demnach stark mit der eigenen Persönlichkeit verknüpft. Die Theorie geht davon aus, dass der Mensch in der Lage ist, sich einer Gruppe zugehörig zu fühlen. Ähnlich der Bedürfnishierarchie steht das Bedürfnis der Selbstbestimmung im Mittelpunkt des Handelns. Ein Individuum strebt demnach stets nach Erfüllung der eigenen Wünsche, ohne dabei dem Druck und Belohnungen von außen nachzugeben. Ähnlich wie bei anderen Theorien wird auch hier eine Unterscheidung zwischen extrinsischer und intrinsischer Motivation vorgenommen. Deci klassifiziert eine Handlung, die nur um ihrer selbst Willen unternommen wird als intrinsisch motiviert. Alle anderen Handlungen, die einem übergeordneten Ziel folgen, sind demnach extrinsisch motiviert.",
+          "keywords": [
+            "Motivations-Forschung",
+            "humanistisch",
+            "Motivation",
+            "individuelle",
+            "Persönlichkeitsorganisation"
+          ]
+        }
+      ],
+
+      "package": "Motivation",
+      "credits": 2300
+    },
+    {
+      "parentId": "Motivation2",
+      "description": "Lest den Einführungstext und markiert die Schlüssel-Begriffe",
+      "taskId": "Xwert_Theorie",
+      "filePrefix": "Tag",
+      "sequenceId": 6,
+      "content": [
+        {
+          "title": "Xwert_Theorie",
+          "subtitle": "Xwert_Theorie",
+          "text": "Das Erwartungs-Wert-Modell nach Heckhausen(1977) hat einen großen Einfluss auf die moderne Motivationsforschung. In einer Formel kann das Ausmaß der Motivation bezüglich einer konkreten Aktivität dargestellt werden: M = E x W - Die Motivation (M) ergibt sich somit aus dem Produkt der Erwartung (E) eines bestimmtenErgebnisses einer Handlung und dem Wert (W), bzw. der Attraktivität,  den dieses Ergebnisfür die handelnde Person hat.Es Das Modell nach Heckhausen beschreibt vier verschiedene Stationen Stufen im kognitiven Prozess der Motivationsentwicklung, denen sich bei unterschiedlicher Handlung differenzierte Erwartungen zuordnen lassen. Die erste StationStufebetrifft eine Vermutung über die Situation-Ergebnis-Erwartung, das heißt, was passieren würde, wenn das Individuum nicht handelt. In Stufe zwei des Modells werden verschiedene Handlungschancen in der gegebenen Situation betrachtet und das dazu erwartete Ergebnis bewertet. Stufe drei beschäftigt sich dann mit den möglicherweise resultierenden Folgen des Ergebnisses. Grundsätzlich spielt der Nutzen der Handlungsergebnisse eine zentrale Rolle für den tatsächlichen Motivationsprozess. Genau wie in der beschriebenen Formel ist Motivation ist nach dieser Theorie demnach ein Produkt aus der Erwartung, ein bestimmtes Ziel zu erreichen und dem Wert, den das Ziel für das Individuum besitzt. Geht einer dieser beiden Werte gegen 0, hat das Ziel beispielsweise keinen emotionalen Wert für den Betroffenen, ergibt auch das Produkt 0 und es entsteht keine Motivation, das ziel Ziel zu erreichen. So beschäftigt sich ein Schüler beispielsweise erst mit einem Fach, wenn es für seinen späteren Berufswunsch relevant ist.",
+          "keywords": ["Erwartungs-Wert", "Situation", "Ergebnis"]
+        }
+      ],
+
+      "package": "Motivation",
+      "credits": 2300
+    },
+    {
+      "parentId": "Motivation3",
+      "description": "Lest den Einführungstext und markiert die Schlüssel-Begriffe",
+      "taskId": "Ziele",
+      "filePrefix": "Tag",
+      "sequenceId": 7,
+      "content": [
+        {
+          "title": "Ziele",
+          "subtitle": "Ziele",
+          "text": "Die Zielsetzungstheorie nach Edwin Locke und Gary Latham wird grundsätzlich in die Kategorie der Motivationsstrategien eingeordnet. Dennoch zeigt sie wesentliche Bestandteile einer Theorie, um den Motivationsprozess besser zu verstehen. Die zentraleAnnahme dieser Theorie ist, dass Motivation maßgeblich über die gesetzten Ziele und deren Erreichen gesteuert wird und somit als Auslöser des menschlichen Handelns gilt. Je herausfordernder und präziser ein Ziel dabei gestaltet wird, desto höher ist auch die Motivation, dieses zu erreichen. In diesem Prozess der Zielsetzung spielen verschiedene Moderatoren eine Rolle, wie z.B. Feedback zu erbrachten Leistungen oder die Selbstwirksamkeit, also die Einschätzung einer Person über ihr Können.",
+          "keywords": [
+            "Zielsetzungstheorie",
+            "Motivationsstrategien",
+            "Moderatoren"
           ]
         }
       ],

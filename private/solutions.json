@@ -17,5 +17,21 @@
     "IST-Zustand",
     "SOLL-Zustand",
     "Interesse"
-  ]
+  ],
+  "Motivation_IntrExtr": [
+    "intrinsische",
+    "extrinsische",
+    "Motivation",
+    "innen",
+    "Ergebnis"
+  ],
+  "Selbstbestimmungs_Theorie": [
+    "Motivations-Forschung",
+    "humanistisch",
+    "Motivation",
+    "individuelle",
+    "Persönlichkeitsorganisation"
+  ],
+  "Xwert_Theorie": ["Erwartungs-Wert", "Situation", "Ergebnis"],
+  "Ziele": ["Zielsetzungstheorie", "Motivationsstrategien", "Moderatoren"]
 }
