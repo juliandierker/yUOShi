@@ -43,15 +43,15 @@ export default class TagView extends React.Component {
   renderListElem() {
     return this.props.activeTask.content[0].keywords.map((keyword, index) => {
       return (
-        <List.Item as="a">
+        <List.Item key={keyword + index} as="a">
           {this.state.tags.includes(keyword) ? (
-            <Icon color="green" name="check" />
+            <Icon key={"icon" + index} color="green" name="check" />
           ) : (
-            <Icon name="help" />
+            <Icon key={"icon" + index} name="help" />
           )}
 
-          <List.Content>
-            <List.Header>{keyword}</List.Header>
+          <List.Content key={"content" + index}>
+            <List.Header key={"header" + index}>{keyword}</List.Header>
           </List.Content>
         </List.Item>
       );
@@ -64,6 +64,8 @@ export default class TagView extends React.Component {
       tags.push(match);
       this.setState({ tags });
       for (var i in elA) {
+        console.log(elA[i]);
+        console.log(match);
         ReactDOM.render(<Label>{match}</Label>, elA[i]);
       }
     }
@@ -72,21 +74,24 @@ export default class TagView extends React.Component {
     var plainText = this.props.activeTask.content[0].text;
     var textArr = this.props.activeTask.content[0].text.split(" ");
     var keyArr = this.props.activeTask.content[0].keywords;
-    for (var i in textArr) {
+    let tmpKey = 0;
+    for (var i = 0; i < textArr.length; i++) {
       if (keyArr.includes(textArr[i])) {
         var replacerStr = keyArr[keyArr.indexOf(textArr[i])];
-        // plainText = plainText.replace("positiv", {<p>testy</p>});
-        plainText = reactStringReplace(plainText, replacerStr, (match, i) => (
-          <span
-            className={match}
-            style={{ color: "black", lineHeight: "2" }}
-            onClick={() => this.handleClickTag(match)}
-            key={match + i}
-            href={match}
-          >
-            {match}
-          </span>
-        ));
+        plainText = reactStringReplace(plainText, replacerStr, (match, j) => {
+          tmpKey++;
+          return (
+            <span
+              key={"textSpan" + tmpKey}
+              className={match}
+              style={{ color: "black", lineHeight: "2" }}
+              onClick={() => this.handleClickTag(match)}
+              href={match}
+            >
+              {match}
+            </span>
+          );
+        });
       }
     }
     return <Segment id="defTextReader">{plainText}</Segment>;
