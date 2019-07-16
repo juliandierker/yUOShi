@@ -101,9 +101,9 @@ export default class MotiveView extends React.Component {
   }
   renderTable() {
     return (
-      <Segment key="sdjvak5">
-        <Grid key="sdjvak1" columns={2} relaxed="very">
-          <Grid.Column key="sdjvak2">
+      <Segment className="selected">
+        <Grid columns={2} relaxed="very">
+          <Grid.Column>
             <h4>Intrinsische Motivation</h4>
             <div
               id="intr_target"
@@ -116,7 +116,7 @@ export default class MotiveView extends React.Component {
               }}
             />
           </Grid.Column>
-          <Grid.Column key="sdjvak3">
+          <Grid.Column>
             <h4>Extrinsische Motivation</h4>
             <div
               id="extr_target"
@@ -129,9 +129,7 @@ export default class MotiveView extends React.Component {
             />
           </Grid.Column>
         </Grid>
-        <Divider vertical key="sdjvak4">
-          oder
-        </Divider>
+        <Divider vertical>oder</Divider>
       </Segment>
     );
   }
