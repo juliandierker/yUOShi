@@ -3,7 +3,14 @@ import { Meteor } from "meteor/meteor";
 import PropTypes from "prop-types";
 import { Button } from "semantic-ui-react";
 import { TweenMax } from "gsap";
-import { Header, Table } from "semantic-ui-react";
+import {
+  Header,
+  Table,
+  Divider,
+  Grid,
+  Segment,
+  Image
+} from "semantic-ui-react";
 import Swal from "sweetalert2";
 
 export default class MotiveView extends React.Component {
@@ -49,8 +56,6 @@ export default class MotiveView extends React.Component {
   }
   componentDidUpdate() {
     this.initDragDrop();
-
-    console.log("update");
   }
   componentWillUnmount() {
     window.removeEventListener("load", this.handleLoad());
@@ -75,7 +80,6 @@ export default class MotiveView extends React.Component {
   }
   dropItem() {
     let that = this.vars.that;
-
     if (this.hitTest("#" + this.target.id + "_target")) {
       var index = that.state.index;
       if (that.state.lastElem != this.target.id) {
@@ -97,26 +101,38 @@ export default class MotiveView extends React.Component {
   }
   renderTable() {
     return (
-      <Table.Header>
-        <Table.Row>
-          <Table.HeaderCell />
-          <Table.HeaderCell />
-
-          <Table.HeaderCell>
-            Intrinsische Motivation
-            <div id="intr_target" className="selected Motive">
-              +
-            </div>
-          </Table.HeaderCell>
-
-          <Table.HeaderCell>
-            Extrinsische Motivation
-            <div id="extr_target" className="selected Motive">
-              +
-            </div>
-          </Table.HeaderCell>
-        </Table.Row>
-      </Table.Header>
+      <Segment key="sdjvak5">
+        <Grid key="sdjvak1" columns={2} relaxed="very">
+          <Grid.Column key="sdjvak2">
+            <h4>Intrinsische Motivation</h4>
+            <div
+              id="intr_target"
+              className="selected Motive"
+              style={{
+                width: "400px",
+                height: "100%",
+                minHeight: "200px",
+                justifyContent: "space-around"
+              }}
+            />
+          </Grid.Column>
+          <Grid.Column key="sdjvak3">
+            <h4>Extrinsische Motivation</h4>
+            <div
+              id="extr_target"
+              className="selected Motive"
+              style={{
+                height: "100%",
+                minHeight: "200px",
+                justifyContent: "space-around"
+              }}
+            />
+          </Grid.Column>
+        </Grid>
+        <Divider vertical key="sdjvak4">
+          oder
+        </Divider>
+      </Segment>
     );
   }
   renderStatements() {
@@ -150,7 +166,6 @@ export default class MotiveView extends React.Component {
     );
   }
   renderMotivation() {
-    console.log("FIIIIRED");
     return (
       <div id="svgDiv">
         <div className="motiveWrapper">
@@ -160,17 +175,6 @@ export default class MotiveView extends React.Component {
           {this.renderTable()}
 
           <h1>Motivation</h1>
-
-          <svg width="0" height="0">
-            <defs>
-              <clipPath id="part1_m" clipPathUnits="objectBoundingBox">
-                <rect width="300" height="100" />
-              </clipPath>
-              <clipPath id="part2_m" clipPathUnits="objectBoundingBox">
-                <rect width="300" height="100" />
-              </clipPath>
-            </defs>
-          </svg>
         </div>
       </div>
     );

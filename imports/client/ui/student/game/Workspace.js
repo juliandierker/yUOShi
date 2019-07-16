@@ -49,9 +49,9 @@ export default class Workspace extends React.Component {
   componentDidMount() {
     let currentTask = this.props.student.tasks;
     let regex = "\\d+";
-    if(currentTask && currentTask.parentId) {
-    let currentSubPackageIndex = currentTask.parentId.match(regex);
-    this.setState( {currentSubPackageIndex: currentSubPackageIndex});
+    if (currentTask && currentTask.parentId) {
+      let currentSubPackageIndex = currentTask.parentId.match(regex);
+      this.setState({ currentSubPackageIndex: currentSubPackageIndex });
     }
     // this.checkProgress();
   }
@@ -214,7 +214,6 @@ export default class Workspace extends React.Component {
           courses: this.props.courses,
           trainings: this.props.trainings
         };
-
         if (this.state.activeTask && this.state.activeTask.type == "drag") {
           return <DragAnimationTemplate {...taskProps} />;
         } else if (
@@ -255,21 +254,25 @@ export default class Workspace extends React.Component {
     if (!solvedTasks || solvedTasks.length == 0) return false;
     return true;
   }
-  
+
   renderSolBtn() {
     return <Button> Aufgabe lösen </Button>;
   }
 
   getActiveSubpackage() {
     let pId;
-    if(this.props.student.tasks[0]) {
+    if (this.props.student.tasks[0]) {
       pId = this.props.student.tasks[0].parentId;
-    } else if(this.props.student.currentTraining[0]){
+    } else if (this.props.student.currentTraining[0]) {
       pId = this.props.student.currentTraining[0].parentId;
     } else {
       return;
     }
-    return this.props.student.currentPackage[0].content.filter(subpackage => (this.props.student.currentPackage[0].name + subpackage.sequenceId === pId))[0];
+    return this.props.student.currentPackage[0].content.filter(
+      subpackage =>
+        this.props.student.currentPackage[0].name + subpackage.sequenceId ===
+        pId
+    )[0];
   }
 
   render() {

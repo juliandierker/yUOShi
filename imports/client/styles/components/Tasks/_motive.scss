@@ -41,92 +41,6 @@
   padding-right: 60px;
 }
 
-.Motive {
-  padding: 40px 0;
-  text-align: center;
-  margin: 0 auto;
-  background-blend-mode: lighten;
-  cursor: pointer;
-  color: #222;
-  animation: down 0.5s;
-  animation-fill-mode: forwards;
-  animation-timing-function: ease-in;
-  transform: translateY(-500%);
-  transition: background-color 0.5s;
-}
-.Motive:hover {
-  color: white;
-  text-shadow: 1px 1px 2px #000;
-}
-
-/* All images from pexels.com */
-.Motive:nth-child(1) {
-  background-color: #6c7c98;
-
-  background-size: cover;
-  width: 70%;
-  -webkit-clip-path: rect(100% 0, 100% 100%, 0% 100%);
-  clip-path: rect(100% 0, 100% 100%, 0% 100%);
-
-  animation-delay: 2s;
-}
-
-.Motive:nth-child(1):hover {
-  background-color: rgba(202, 197, 94, 0.2);
-}
-
-.Motive:nth-child(2) {
-  background-color: #6c7c98;
-  background-size: cover;
-  width: 50%;
-  -webkit-clip-path: rect(100% 0, 100% 100%, 0% 100%);
-  clip-path: rect(100% 0, 100% 100%, 0% 100%);
-
-  animation-delay: 1.5s;
-}
-
-.Motive:nth-child(2):hover {
-  background-color: rgba(252, 172, 106, 0.2);
-}
-
-.Motive:nth-child(3) {
-  background-color: rgba(130, 140, 125, 0.7);
-  background-size: cover;
-  width: 75%;
-  -webkit-clip-path: rect(16.5% 0, 83% 0, 100% 100%, 0 100%);
-  clip-path: polygon(16.5% 0, 83% 0, 100% 100%, 0 100%);
-
-  animation-delay: 1s;
-}
-.Motive:nth-child(3):hover {
-  background-color: rgba(130, 140, 125, 0.2);
-}
-
-.Motive:nth-child(4) {
-  background-color: rgba(103, 176, 118, 0.7);
-  background-size: cover;
-  width: 100%;
-  -webkit-clip-path: polygon(12.5% 0, 87.5% 0, 100% 100%, 0 100%);
-  clip-path: polygon(12.5% 0, 87.5% 0, 100% 100%, 0 100%);
-
-  animation-delay: 0.5s;
-}
-.Motive:nth-child(5):hover {
-  background-color: rgb(244, 188, 66);
-}
-.Motive:nth-child(5) {
-  background-color: rgb(244, 188, 66);
-  background-size: cover;
-  width: 100%;
-  -webkit-clip-path: polygon(8.5% 0, 91% 0 100%, 0 100%);
-  clip-path: polygon(8.5% 0, 91% 0, 100% 100%, 0 100%);
-
-  animation-delay: 0.5s;
-}
-.Motive:nth-child(5):hover {
-  background-color: rgba(103, 176, 118, 0.2);
-}
-
 h1,
 p {
   color: rgba(255, 255, 255, 0);
@@ -174,14 +88,4 @@ p:nth-of-type(4) {
     width: 480px;
     left: -90px;
   }
-}
-
-.Motive:nth-child(1) {
-  -webkit-clip-path: url("#part1_m");
-  clip-path: url("#part1_m");
-}
-
-.Motive:nth-child(2) {
-  -webkit-clip-path: url("#part2_m");
-  clip-path: url("#part2_m");
 }
