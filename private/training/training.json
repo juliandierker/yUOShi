@@ -4,7 +4,9 @@
       "Motivation": [
         {
           "name": "Motivation",
+          "title": "Motivation Beispiel",
           "trainingId": "Motivation Problem",
+          "parentId": "Motivation0",
           "sequenceId": 0,
           "content": "Sie sind gut in das Schuljahr gestartet und persönlich äußerst motiviert. Insgesamt haben Sie auch ein gutes Gefühl und eine nette Klasse. Jetzt kann es richtig losgehen! Doch nach und nach fällt Ihnen auf, dass einige Schüler*innen immer öfter zu spät kommen. Die Intensität der Diskussionen wird weniger, fast scheint es so, als ob andere Dinge interessanter geworden sind. Schüler*innen, die vorher sehr aktiv waren, scheinen nur noch das nötigste zu machen. Sie sind verwundert… Warum ist die Klasse so unmotiviert? Ihre Arbeit fällt Ihnen dadurch auch schwerer und am liebsten würden Sie die Schüler wach schütteln. Sie merken, dass Sie selbst immer weniger Lust haben, zu unterrichten. Was können Sie also tun? Wie lässt sich die Klasse motivieren? Finden Sie es heraus und lernen Sie alles über Motivation!",
           "tasks": ["Motive", "Maslow"],
@@ -14,7 +16,9 @@
       "Identität": [
         {
           "name": "Identität",
+          "title": "Identität Beispiel",
           "trainingId": "Identität Problem",
+          "parentId": "Identität 0",
           "sequenceId": 1,
           "content": "Nach der sechsten Stunde treffen sich die Zehntklässler Anne und Fabian, um zusammen in der Mensa ihrer Realschule zu Mittag zu essen. „Was ist heute los mit dir? Du bist schon den ganzen Tag so nachdenklich. Hast du Probleme zuhause?“ fragt Anne. Fabian hadert mit sich, aber dann gibt er zu: „Nein, nein… Zuhause ist alles in Ordnung. Nur vorhin im Politik-Unterricht, wo wir über unsere Pläne und Vorstellungen für die Zukunft gesprochen haben, da habe ich irgendwie Angst bekommen. Alle wissen schon genau, wie es nach der zehnten Klasse weitergeht, haben einen Plan, eine Idee… Du willst aufs Wirtschaftsgymnasium ge-hen, studieren und irgendwann mal eine Familie gründen, Leon will eine Ausbildung zum Tischler machen, Lisas Plan ist es, die Welt zu bereisen und viele Kulturen kennenzulernen, Nico will an die Fachoberschule und anschließend Krankenpfleger werden, aber ich… ich ha-be noch überhaupt keine Ahnung, wer ich bin und was ich von meinem Leben will.“",
           "tasks": ["Motive", "Maslow"],
@@ -22,7 +26,9 @@
         },
         {
           "name": "Identität",
+          "title": "Identität Beispiel",
           "trainingId": "Identität Problem",
+          "parentId": "Identität 0",
           "sequenceId": 2,
           "content": "",
           "tasks": ["Motive", "Maslow"],

@@ -261,10 +261,15 @@ export default class Workspace extends React.Component {
   }
 
   getActiveSubpackage() {
-    if(!this.props.student.tasks[0]){
+    let pId;
+    if(this.props.student.tasks[0]) {
+      pId = this.props.student.tasks[0].parentId;
+    } else if(this.props.student.currentTraining[0]){
+      pId = this.props.student.currentTraining[0].parentId;
+    } else {
       return;
     }
-    return this.props.student.currentPackage[0].content.filter(subpackage => (this.props.student.currentPackage[0].name + subpackage.sequenceId === this.props.student.tasks[0].parentId))[0]
+    return this.props.student.currentPackage[0].content.filter(subpackage => (this.props.student.currentPackage[0].name + subpackage.sequenceId === pId))[0];
   }
 
   render() {
@@ -278,8 +283,8 @@ export default class Workspace extends React.Component {
         <TaskProgress
           student={this.props.student}
           currentPackage={this.props.student.currentPackage[0]}
+          trainings={this.props.trainings}
           activeSubpackage={activesubpackage}
-          icon={"student"}
         />
         <div className="workspace__container" style={{ marginLeft: "16px" }}>
           {this.taskSwitch()}
