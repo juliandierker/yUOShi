@@ -85,7 +85,9 @@ export default class StudentOverview extends React.Component {
 
     this.props.history.push("/student/game");
   }
-  componentDidUpdate(prevProps, prevState) {}
+  componentDidUpdate(prevProps, prevState) {
+    console.log("update");
+  }
   componentWillUnmount() {
     this.teacherTracker.stop();
   }
@@ -148,7 +150,6 @@ export default class StudentOverview extends React.Component {
             render={props => (
               <GameOverview
                 courses={this.state.courses}
-                // handleNextTask={this.handleNextTask.bind(this)}
                 student={this.state.student}
                 tasks={this.state.tasks}
                 trainings={this.state.trainings}

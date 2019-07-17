@@ -6,7 +6,7 @@ import { Button, Card, Image } from "semantic-ui-react";
 import { Dropdown, Icon, Menu, Segment } from "semantic-ui-react";
 
 import StudentTopMenu from "../StudentTopMenu";
-
+import SchoolFloor from "../vektors/SchoolFloor";
 import Swal from "sweetalert2";
 import withReactContent from "sweetalert2-react-content";
 
@@ -28,9 +28,9 @@ export default class Gameoverview extends React.Component {
 
     let currentTask = this.props.student.tasks;
     let regex = "\\d+";
-    if(currentTask && currentTask.parentId) {
-    let currentSubPackageIndex = currentTask.parentId.match(regex);
-    this.setState( {currentSubPackageIndex: currentSubPackageIndex});
+    if (currentTask && currentTask.parentId) {
+      let currentSubPackageIndex = currentTask.parentId.match(regex);
+      this.setState({ currentSubPackageIndex: currentSubPackageIndex });
     }
 
     if (!this.state.tasks) {
@@ -78,50 +78,15 @@ export default class Gameoverview extends React.Component {
       console.log("else");
       Meteor.call("students.getPackage", pack, student._id, (err, res) => {
         if (res) {
-          console.log("HÄÄÄ");
           this.props.history.push("/student/workspace");
         }
       });
     }
   }
+  renderSchool() {
+    return <SchoolFloor />;
+  }
 
-  // renderTracks() {
-  //   if (this.state.tasks) {
-  //     return this.state.tasks.map((task, index) => {
-  //       return (
-  //         <Card.Group>
-  //           <Card>
-  //             <Image
-  //               src={"/tasks/" + task.filePrefix + "/" + task.taskId + ".jpg"}
-  //               wrapped
-  //               ui={false}
-  //             />
-  //             <Card.Content>
-  //               <Card.Header>{task.taskId}</Card.Header>
-  //               <Card.Meta>
-  //                 <span className="date">Zuweisung</span>
-  //               </Card.Meta>
-  //               <Card.Description>{task.description}</Card.Description>
-  //             </Card.Content>
-  //             <Button
-  //               onClick={() => this.handleGetTask(task)}
-  //               basic
-  //               color="green"
-  //             >
-  //               Bearbeiten
-  //             </Button>
-  //             <Card.Content extra>
-  //               <Icon name="expand arrows alternate" />
-  //               {task.credits}
-  //             </Card.Content>
-  //           </Card>
-  //         </Card.Group>
-  //       );
-  //     });
-  //   } else {
-  //     return <Loading />;
-  //   }
-  // }
   renderTracks() {
     if (this.state.packages) {
       return (
@@ -139,7 +104,9 @@ export default class Gameoverview extends React.Component {
                   <Card.Header>{pack.name}</Card.Header>
                   <Card.Meta>
                     <span className="date">
-                      {"Aufgaben " + pack.content[this.state.currentSubPackageIndex].tasks.length}
+                      {"Aufgaben " +
+                        pack.content[this.state.currentSubPackageIndex].tasks
+                          .length}
                     </span>
                     <span className="date">
                       {"Inhalte " + pack.trainings.length}
@@ -168,7 +135,7 @@ export default class Gameoverview extends React.Component {
     }
   }
   render() {
-    return <div>{this.renderTracks()}</div>;
+    return <div>{this.renderSchool()}</div>;
   }
 }
 
