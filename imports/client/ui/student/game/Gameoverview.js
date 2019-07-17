@@ -40,7 +40,6 @@ export default class Gameoverview extends React.Component {
   componentDidUpdate(prevProps, prevState) {
     if (this.props.tasks && !prevProps.tasks && !this.state.tasks) {
       var tasks = this.props.tasks;
-      console.log("tetetet");
       this.setState({ tasks });
     }
   }

@@ -81,7 +81,6 @@ class TaskProgress extends Component {
   }
 
   renderSubPackage(sub, complete) {
-    console.log(sub);
     const icon =
       this.props.activeSubpackage &&
       sub.sequenceId < this.props.activeSubpackage.sequenceId ? (

@@ -58,41 +58,50 @@ export default class TagView extends React.Component {
     });
   }
   handleClickTag(match) {
-    var elA = document.getElementsByClassName(match);
+    var el = document.getElementsByClassName(match);
+
     if (!this.state.tags.includes(match)) {
       var tags = this.state.tags;
       tags.push(match);
       this.setState({ tags });
-      for (var i in elA) {
-        console.log(elA[i]);
-        console.log(match);
-        ReactDOM.render(<Label>{match}</Label>, elA[i]);
+      for (var i = 0; i < el.length; i++) {
+        if (i == 0) {
+          ReactDOM.render(<Label key={match + i}>{match}</Label>, el[i]);
+        } else {
+          ReactDOM.render(
+            <strong style={{ color: "#585858" }} key={match + i}>
+              {match}
+            </strong>,
+            el[i]
+          );
+        }
       }
     }
   }
   renderText() {
     var plainText = this.props.activeTask.content[0].text;
-    var textArr = this.props.activeTask.content[0].text.split(" ");
     var keyArr = this.props.activeTask.content[0].keywords;
     let tmpKey = 0;
-    for (var i = 0; i < textArr.length; i++) {
-      if (keyArr.includes(textArr[i])) {
-        var replacerStr = keyArr[keyArr.indexOf(textArr[i])];
-        plainText = reactStringReplace(plainText, replacerStr, (match, j) => {
-          tmpKey++;
-          return (
+    for (var i in keyArr) {
+      const replacerStr = keyArr[i];
+      var re = new RegExp("(?:" + replacerStr + ")(\\W)", "g");
+      var plainText = reactStringReplace(plainText, re, (match, j) => {
+        tmpKey++;
+        return (
+          <React.Fragment key={"textFragment" + tmpKey}>
+            {" "}
             <span
               key={"textSpan" + tmpKey}
-              className={match}
+              className={replacerStr}
               style={{ color: "black", lineHeight: "2" }}
-              onClick={() => this.handleClickTag(match)}
-              href={match}
+              onClick={() => this.handleClickTag(replacerStr)}
             >
-              {match}
+              {replacerStr}
             </span>
-          );
-        });
-      }
+            {match}
+          </React.Fragment>
+        );
+      });
     }
     return <Segment id="defTextReader">{plainText}</Segment>;
   }

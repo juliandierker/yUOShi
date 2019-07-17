@@ -32,7 +32,7 @@ export default class StudentOverview extends React.Component {
     let taskHandle = Meteor.subscribe("tasks");
     let trainingHandle = Meteor.subscribe("training");
     let packageHandle = Meteor.subscribe("package");
-    this.teacherTracker = Tracker.autorun(() => {
+    this.studentTracker = Tracker.autorun(() => {
       if (
         studentHandle.ready() &&
         tokenHandle.ready() &&
@@ -89,7 +89,7 @@ export default class StudentOverview extends React.Component {
     console.log("update");
   }
   componentWillUnmount() {
-    this.teacherTracker.stop();
+    this.studentTracker.stop();
   }
 
   handleNextTask() {
