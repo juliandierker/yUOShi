@@ -289,7 +289,10 @@ export default class Workspace extends React.Component {
           trainings={this.props.trainings}
           activeSubpackage={activesubpackage}
         />
-        <div className="workspace__container" style={{ marginLeft: "16px" }}>
+        <div
+          className="workspace__container"
+          style={{ marginLeft: "16px", marginTop: "60px" }}
+        >
           {this.taskSwitch()}
         </div>
       </div>
