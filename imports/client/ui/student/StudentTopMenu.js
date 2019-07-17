@@ -69,7 +69,6 @@ export default class StudentTopMenu extends React.Component {
           secondary
           style={{
             paddingLeft: "20px",
-            backgroundColor: "#eeeeee",
             width: "100%",
             height: "30px"
           }}
@@ -95,7 +94,7 @@ export default class StudentTopMenu extends React.Component {
           {/* Start Badges*/}
           <Menu.Item
             style={{
-              backgroundColor: "#dfdfdf",
+              backgroundColor: "#eeeeee",
               paddingTop: "3px",
               paddingBottom: "0px",
               margin: "0px"
@@ -110,7 +109,6 @@ export default class StudentTopMenu extends React.Component {
               style={{ minWidth: "120px" }}
               item
               simple
-              text={this.returnUser()}
             >
               <Dropdown.Menu style={{ marginTop: "0px" }}>
                 <Dropdown.Item icon="user" text="Profil" />
