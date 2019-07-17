@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Icon, Step } from "semantic-ui-react";
+import { Icon, Step, Sticky } from "semantic-ui-react";
 
 // This component renders the overview of the progress of the current Trainingspackage.
 
@@ -154,11 +154,11 @@ class TaskProgress extends Component {
 
   render() {
     return (
-      <div style={{ height: "100%", minWidth: "200px" }}>
+      <Sticky style={{ height: "100%", minWidth: "200px" }} offset={50}>
         <Step.Group fluid vertical>
           {this.renderSubPackages()}
         </Step.Group>
-      </div>
+      </Sticky>
     );
   }
 }

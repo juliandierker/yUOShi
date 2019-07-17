@@ -67,7 +67,9 @@ export default class StudentTopMenu extends React.Component {
       <React.Fragment>
         <Menu
           secondary
+          fixed="top"
           style={{
+            backgroundColor: "white",
             paddingLeft: "20px",
             width: "100%",
             height: "30px"
