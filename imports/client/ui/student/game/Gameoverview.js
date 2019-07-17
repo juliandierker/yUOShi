@@ -40,6 +40,7 @@ export default class Gameoverview extends React.Component {
   componentDidUpdate(prevProps, prevState) {
     if (this.props.tasks && !prevProps.tasks && !this.state.tasks) {
       var tasks = this.props.tasks;
+      console.log("tetetet");
       this.setState({ tasks });
     }
   }
@@ -82,10 +83,46 @@ export default class Gameoverview extends React.Component {
       });
     }
   }
-  renderSchool() {
+  renderSchoolFloor() {
     return <SchoolFloor />;
   }
-
+  // renderTracks() {
+  //   if (this.state.tasks) {
+  //     return this.state.tasks.map((task, index) => {
+  //       return (
+  //         <Card.Group>
+  //           <Card>
+  //             <Image
+  //               src={"/tasks/" + task.filePrefix + "/" + task.taskId + ".jpg"}
+  //               wrapped
+  //               ui={false}
+  //             />
+  //             <Card.Content>
+  //               <Card.Header>{task.taskId}</Card.Header>
+  //               <Card.Meta>
+  //                 <span className="date">Zuweisung</span>
+  //               </Card.Meta>
+  //               <Card.Description>{task.description}</Card.Description>
+  //             </Card.Content>
+  //             <Button
+  //               onClick={() => this.handleGetTask(task)}
+  //               basic
+  //               color="green"
+  //             >
+  //               Bearbeiten
+  //             </Button>
+  //             <Card.Content extra>
+  //               <Icon name="expand arrows alternate" />
+  //               {task.credits}
+  //             </Card.Content>
+  //           </Card>
+  //         </Card.Group>
+  //       );
+  //     });
+  //   } else {
+  //     return <Loading />;
+  //   }
+  // }
   renderTracks() {
     if (this.state.packages) {
       return (
@@ -134,7 +171,7 @@ export default class Gameoverview extends React.Component {
     }
   }
   render() {
-    return <div>{this.renderSchool()}</div>;
+    return <div>{this.renderSchoolFloor()}</div>;
   }
 }
 

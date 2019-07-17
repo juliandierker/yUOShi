@@ -1991,12 +1991,28 @@ export default class schoolFloor extends React.Component {
               </g>
             </g>
             <g id="g50">
+              <g clipPath="url(#clipPath56)" id="classR">
+                <ellipse
+                  ry="22.5"
+                  rx="26"
+                  id="svg_1"
+                  cy="242.58853"
+                  cx="199.66663"
+                  stroke-width="1.5"
+                  stroke="#000"
+                  fill="#fff"
+                />
+                <path
+                  style={{ fill: "#EBBA16;" }}
+                  d="m 695.789,615.039 -22.012,444.241 78.766,33.8 28.52,1254.23 -171.817,14.31 -16.156,326.1 360.601,12.66 38.977,-829.21 216.092,92.71 L 1284.2,957.891 695.789,615.039 m 1097.571,620.231 -0.31,42.19 0.45,-16.63 v -25.47 l -0.14,-0.09 m -0.31,42.23 -10.4,1451.97 15.02,0.53 36.7,-1430.07 -41.32,-22.43 m 298.09,150.78 38.13,1071.72 33.05,-477.38 157.87,33.63 27.24,-461.86 -107.33,-69.57 h -39.81 v -10.74 h 23.24 l -132.39,-85.8 m 513.28,422.1 -0.57,79.6 29.43,6.26 -28.86,-85.86 m 132.49,507.26 -114.97,18.24 -0.23,202.46 -22.49,3.57 -0.38,53.04 -318.37,95.05 5.8,-98.42 -151.47,24.04 16.61,466.83 755.01,-373.44 -31.76,-94.5 c -26.14,-9.38 -49.78,-25.76 -69.89,-47.6 -7.45,-8.08 -14.42,-16.91 -20.84,-26.43 -7.68,-11.35 -14.59,-23.67 -20.66,-36.82 -21.31,-46.23 -32.05,-102.7 -28.36,-163.66 0.46,-7.53 1.13,-14.99 2,-22.36 m -428.97,270.5 v 0 l -4.27,72.41 0.75,-12.83 3.52,-59.58"
+                />
+              </g>
               <g clipPath="url(#clipPath56)" id="g52">
                 <path
                   id="path64"
                   style={{
                     fill: "url(#linearGradient62)",
-                    fillOpacity: 0,
+                    fillOpacity: 1,
                     fillRule: "nonzero",
                     stroke: "none"
                   }}
@@ -2004,12 +2020,12 @@ export default class schoolFloor extends React.Component {
                 />
               </g>
             </g>
-            <text x="20%" style={{ stroke: "#000", fontSize: "40px" }}>
+            {/* <text x="20%" style={{ stroke: "#000", fontSize: "40px" }}>
               <textPath xlinkHref="#path64">
                 <Icon color="green" name="check" />
                 SVG Text on a linear path{" "}
               </textPath>
-            </text>
+            </text> */}
 
             <g id="g66">
               <g clipPath="url(#clipPath72)" id="g68">
