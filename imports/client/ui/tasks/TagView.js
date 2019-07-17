@@ -58,41 +58,74 @@ export default class TagView extends React.Component {
     });
   }
   handleClickTag(match) {
-    var elA = document.getElementsByClassName(match);
+    console.log(match);
+    var el = document.getElementsByClassName(match);
+
     if (!this.state.tags.includes(match)) {
       var tags = this.state.tags;
       tags.push(match);
       this.setState({ tags });
-      for (var i in elA) {
-        console.log(elA[i]);
-        console.log(match);
-        ReactDOM.render(<Label>{match}</Label>, elA[i]);
+      for (var i in el) {
+        if (i == 0) {
+          ReactDOM.render(<Label>{match}</Label>, el[i]);
+        } else {
+          ReactDOM.render(
+            <strong style={{ color: "#585858" }}>{match}</strong>,
+            el[i]
+          );
+        }
       }
     }
   }
   renderText() {
+    console.log("render");
     var plainText = this.props.activeTask.content[0].text;
     var textArr = this.props.activeTask.content[0].text.split(" ");
     var keyArr = this.props.activeTask.content[0].keywords;
     let tmpKey = 0;
-    for (var i = 0; i < textArr.length; i++) {
-      if (keyArr.includes(textArr[i])) {
-        var replacerStr = keyArr[keyArr.indexOf(textArr[i])];
-        plainText = reactStringReplace(plainText, replacerStr, (match, j) => {
-          tmpKey++;
-          return (
-            <span
-              key={"textSpan" + tmpKey}
-              className={match}
-              style={{ color: "black", lineHeight: "2" }}
-              onClick={() => this.handleClickTag(match)}
-              href={match}
-            >
-              {match}
-            </span>
-          );
-        });
-      }
+    // for (var i = 0; i < textArr.length; i++) {
+    //   if (keyArr.includes(textArr[i])) {
+    //     var replacerStr = keyArr[keyArr.indexOf(textArr[i])];
+    //     console.log(replacerStr);
+    //     console.log(textArr[i + 1]);
+    //     var re = new RegExp(replacerStr + "\\s", "g");
+    //     console.log(re);
+    //     plainText = reactStringReplace(plainText, re, (match, j) => {
+    //       tmpKey++;
+    //       return (
+    //         <span
+    //           key={"textSpan" + tmpKey}
+    //           className={match}
+    //           style={{ color: "black", lineHeight: "2" }}
+    //           onClick={() => this.handleClickTag(match)}
+    //           href={match}
+    //         >
+    //           {match}
+    //         </span>
+    //       );
+    //     });
+    //   }
+    // }
+    for (var i in keyArr) {
+      console.log(i);
+      var replacerStr = keyArr[i];
+      var re = new RegExp("(?:" + replacerStr + ")(\\W)", "g");
+      console.log(re);
+      var plainText = reactStringReplace(plainText, re, (match, j) => {
+        console.log(replacerStr + match);
+        tmpKey++;
+        return (
+          <span
+            key={"textSpan" + tmpKey}
+            className={replacerStr}
+            style={{ color: "black", lineHeight: "2" }}
+            onClick={() => this.handleClickTag("'" + replacerStr + "'")}
+            href={match}
+          >
+            {replacerStr + match}
+          </span>
+        );
+      });
     }
     return <Segment id="defTextReader">{plainText}</Segment>;
   }
