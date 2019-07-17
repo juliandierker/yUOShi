@@ -1993,14 +1993,11 @@ export default class schoolFloor extends React.Component {
             <g id="g50">
               <g clipPath="url(#clipPath56)" id="classR">
                 <ellipse
-                  ry="22.5"
-                  rx="26"
-                  id="svg_1"
-                  cy="242.58853"
-                  cx="199.66663"
-                  stroke-width="1.5"
-                  stroke="#000"
-                  fill="#fff"
+                  style={{ fill: "#23A24D" }}
+                  cx="29"
+                  cy="50"
+                  rx="29"
+                  ry="8"
                 />
                 <path
                   style={{ fill: "#EBBA16;" }}
@@ -2020,12 +2017,12 @@ export default class schoolFloor extends React.Component {
                 />
               </g>
             </g>
-            {/* <text x="20%" style={{ stroke: "#000", fontSize: "40px" }}>
+            <text x="20%" style={{ stroke: "#000", fontSize: "40px" }}>
               <textPath xlinkHref="#path64">
                 <Icon color="green" name="check" />
                 SVG Text on a linear path{" "}
               </textPath>
-            </text> */}
+            </text>
 
             <g id="g66">
               <g clipPath="url(#clipPath72)" id="g68">
@@ -7300,6 +7297,16 @@ export default class schoolFloor extends React.Component {
               d="m 6024.47,415 h -103.06 l -44.15,540.969 160.69,-4.27 L 6024.47,415 m -152.63,607.2 -12.54,153.81 184.23,-1.73 -2.47,-98.69 -168.33,-4.01 -0.89,-49.38"
             />
           </g>
+          <ellipse
+            ry="22.5"
+            rx="26"
+            id="svg_1"
+            cy="242.58853"
+            cx="199.66663"
+            stroke-width="1.5"
+            stroke="#000"
+            fill="#fff"
+          />
         </g>
       </svg>
     );
