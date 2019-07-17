@@ -2,7 +2,14 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { Tracker } from "meteor/tracker";
 import Loading from "../Loading";
-import { Dropdown, Icon, Menu, Segment } from "semantic-ui-react";
+import {
+  Dropdown,
+  Icon,
+  Menu,
+  Segment,
+  MenuItem,
+  Image
+} from "semantic-ui-react";
 
 export default class StudentTopMenu extends React.Component {
   constructor(props) {
@@ -28,7 +35,6 @@ export default class StudentTopMenu extends React.Component {
   handleMenuItemClick = (e, { name }) => {
     this.updateMenuButton();
     this.setState({ visible: !this.state.visible });
-    console.log(name);
     if (name === "Freies Spiel") {
       this.props.history.push("/student/game");
     }
@@ -39,73 +45,90 @@ export default class StudentTopMenu extends React.Component {
       this.props.history.push("/student/workspace");
     }
   };
-  renderCredits() {
-    return this.state.student ? (
-      <h3> {"Punkte " + this.state.student.credits} </h3>
-    ) : null;
+  getCredits() {
+    return this.state.student ? this.state.student.credits : 0;
   }
-  renderLevel() {
-    return this.state.student ? (
-      <h3> {"Level " + this.state.student.level} </h3>
-    ) : null;
+  getLevel() {
+    return this.state.student ? this.state.student.level : 0;
   }
   returnUser() {
-    return (Meteor.user())?( Meteor.user().username) : (false);
+    return Meteor.user() ? Meteor.user().username : "";
   }
   render() {
+    const dropdownTrigger = (
+      <span>
+        <Image avatar src={"https://via.placeholder.com/50"} />
+        {this.returnUser()}
+      </span>
+    );
+
     const { activeItem } = this.state;
     return (
-      <div>
-        <Menu secondary>
-          <Dropdown item icon="bars" simple>
-            <Dropdown.Menu>
-              <Dropdown.Item>
-                <Icon name="dropdown" />
-                <span className="text">New</span>
-
-                <Dropdown.Menu>
-                  <Dropdown.Item>Freies Spiel</Dropdown.Item>
-                  <Dropdown.Item>yUOShi</Dropdown.Item>
-                </Dropdown.Menu>
-              </Dropdown.Item>
-              <Dropdown.Item>yUOShi</Dropdown.Item>
-              <Dropdown.Item>yUOShi...</Dropdown.Item>
-            </Dropdown.Menu>
-          </Dropdown>
-          <Menu.Item name="Name">
-            <h3> {this.returnUser()} </h3>
-          </Menu.Item>
-          <Menu.Item name="Points">{this.renderCredits()}</Menu.Item>
-          <Menu.Item name="Experience">{this.renderLevel()}</Menu.Item>
-
+      <React.Fragment>
+        <Menu
+          secondary
+          style={{
+            paddingLeft: "20px",
+            backgroundColor: "#eeeeee",
+            width: "100%",
+            height: "30px"
+          }}
+        >
           <Menu.Item
-            position="right"
-            name="Freies Spiel"
+            position="left"
+            name="Klassenzimmer"
             active={activeItem === "freegame"}
             onClick={this.handleMenuItemClick}
           />
           <Menu.Item
-            position="right"
-            name="Arbeitsfläche"
+            position="left"
+            name="Lehrendenzimmer"
             active={activeItem === "overview"}
             onClick={this.handleMenuItemClick}
           />
           <Menu.Item
-            position="right"
-            name="Kursübersicht"
+            position="left"
+            name="Mein Büro"
             active={activeItem === "overview"}
             onClick={this.handleMenuItemClick}
           />
-
-          <Menu.Menu position="right">
-            <Menu.Item
-              icon="power off"
-              active={activeItem === "logout"}
-              onClick={() => Meteor.logout()}
-            />
-          </Menu.Menu>
+          {/* Start Badges*/}
+          <Menu.Item
+            style={{
+              backgroundColor: "#dfdfdf",
+              paddingTop: "3px",
+              paddingBottom: "0px",
+              margin: "0px"
+            }}
+          >
+            <Menu.Item position="right" icon="certificate" />
+            {/* End Badges*/}
+            <Menu.Item icon="euro sign" name={" " + this.getCredits()} />
+            <Menu.Item icon="play" name={"" + this.getLevel()} /> {/* Level */}
+            <Dropdown
+              trigger={dropdownTrigger}
+              style={{ minWidth: "120px" }}
+              item
+              simple
+              text={this.returnUser()}
+            >
+              <Dropdown.Menu style={{ marginTop: "0px" }}>
+                <Dropdown.Item icon="user" text="Profil" />
+                <Dropdown.Item
+                  icon="power off"
+                  text="Ausloggen"
+                  active={activeItem === "overview"}
+                  onClick={() =>
+                    Meteor.logout(() => {
+                      //TODO: logout is not reactive
+                    })
+                  }
+                />
+              </Dropdown.Menu>
+            </Dropdown>
+          </Menu.Item>
         </Menu>
-      </div>
+      </React.Fragment>
     );
   }
 }
