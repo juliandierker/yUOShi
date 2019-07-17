@@ -32,18 +32,15 @@ export default class TagView extends React.Component {
     var sol = this.props.activeTask.content[0].keywords;
 
     if (sol.length == this.state.tags.length) {
-      Swal.fire({
-        position: "top-end",
-        type: "success",
-        title: "Geschafft",
-        timer: 1500
-      });
+      if (!this.state.finished) {
+        this.setState({ finished: true });
+      }
     }
   }
   renderListElem() {
     return this.props.activeTask.content[0].keywords.map((keyword, index) => {
       return (
-        <List.Item key={keyword + index} as="a">
+        <List.Item style={{ fontSize: "12px" }} key={keyword + index} as="a">
           {this.state.tags.includes(keyword) ? (
             <Icon key={"icon" + index} color="green" name="check" />
           ) : (
@@ -57,15 +54,16 @@ export default class TagView extends React.Component {
       );
     });
   }
-  handleClickTag(match) {
+  handleClickTag(match, key) {
     var el = document.getElementsByClassName(match);
+    var highlighted = document.getElementById(match + key);
 
     if (!this.state.tags.includes(match)) {
       var tags = this.state.tags;
       tags.push(match);
       this.setState({ tags });
       for (var i = 0; i < el.length; i++) {
-        if (i == 0) {
+        if (el[i] === highlighted) {
           ReactDOM.render(<Label key={match + i}>{match}</Label>, el[i]);
         } else {
           ReactDOM.render(
@@ -87,14 +85,16 @@ export default class TagView extends React.Component {
       var re = new RegExp("(?:" + replacerStr + ")(\\W)", "g");
       var plainText = reactStringReplace(plainText, re, (match, j) => {
         tmpKey++;
+        const k = tmpKey;
         return (
           <React.Fragment key={"textFragment" + tmpKey}>
             {" "}
             <span
               key={"textSpan" + tmpKey}
               className={replacerStr}
+              id={replacerStr + k}
               style={{ color: "black", lineHeight: "2" }}
-              onClick={() => this.handleClickTag(replacerStr)}
+              onClick={() => this.handleClickTag(replacerStr, k)}
             >
               {replacerStr}
             </span>
@@ -106,7 +106,11 @@ export default class TagView extends React.Component {
     return <Segment id="defTextReader">{plainText}</Segment>;
   }
   renderTaglist() {
-    return <List>{this.renderListElem()}</List>;
+    return (
+      <Segment style={{ position: "fixed" }}>
+        <List>{this.renderListElem()}</List>
+      </Segment>
+    );
   }
 
   renderView() {
@@ -155,11 +159,27 @@ export default class TagView extends React.Component {
     }
   }
   render() {
+    //TODO: Check if all tags are tagged
+
+    const buttonDisabled = this.state.finished ? false : true;
+    const buttonColor = this.state.finished ? "green" : "grey";
     return (
       <div>
-        <Button onClick={() => this.solutionPrepare()}>Aufgabe lösen</Button>
         {this.renderView()}
         {this.renderVideo()}
+        <Button
+          color={buttonColor}
+          disabled={buttonDisabled}
+          style={{
+            marginTop: "10px",
+            marginBottom: "10px",
+            marginRight: "60px"
+          }}
+          floated="right"
+          onClick={() => this.solutionPrepare()}
+        >
+          Weiter
+        </Button>
       </div>
     );
   }
