@@ -17,6 +17,18 @@
     "SOLL-Zustand",
     "Interesse"
   ],
+
+  "Maslow_Theorie": [
+    "Bedürfnisse",
+    "Grundbedürfnisse",
+    "Physiologischen",
+    "Sicherheitsbedürfnisse",
+    "Sozialbedürfnisse",
+    "Individualbedürfnisse",
+    "Mangelbedürfnisse",
+    "Selbstverwirklichungsbedürfnis"
+  ],
+  
   "Motivation_IntrExtr": [
     "intrinsische",
     "extrinsische",
