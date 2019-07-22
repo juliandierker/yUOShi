@@ -35,8 +35,20 @@ export default class StudentTopMenu extends React.Component {
   handleMenuItemClick = (e, { name }) => {
     this.updateMenuButton();
     this.setState({ visible: !this.state.visible });
-    if (name === "Freies Spiel") {
-      this.props.history.push("/student/game");
+    if (name === "Klassenzimmer") {
+      if (document.getElementById("path19102")) {
+        var elem = document.getElementById("path19102");
+        var text = document.getElementById("text19162");
+        console.log(text);
+        var box = document.getElementById("rect19151");
+        elem.style.fill = "rgb(4, 216, 76)";
+        text.style.visibility = "visible";
+        box.style.visibility = "visible";
+        var that = this;
+        setTimeout(function() {
+          that.props.history.push("/student/test");
+        }, 1500);
+      }
     }
     if (name === "Kursübersicht") {
       this.props.history.push("/student/overview");

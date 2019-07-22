@@ -84,7 +84,7 @@ export default class Gameoverview extends React.Component {
     }
   }
   renderSchoolFloor() {
-    return <SchoolFloor />;
+    return <SchoolFloor history={this.props.history} />;
   }
   // renderTracks() {
   //   if (this.state.tasks) {
