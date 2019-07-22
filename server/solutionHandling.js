@@ -94,6 +94,25 @@ Meteor.methods({
     }
     return correct;
   },
+  "solutionHandler.submitCloze"(studentSolution, studentId, task) {
+    let correctAnswers = [];
+    let allCorrect = true;
+    for (let i = 0; i < studentSolution.length; i++) {
+      if (
+        studentSolution[i].toString().toLowerCase() ===
+        Solutions[task.taskId][i].toString().toLowerCase()
+      ) {
+        correctAnswers.push(true);
+      } else {
+        correctAnswers.push(false);
+        allCorrect = false;
+      }
+    }
+    if (allCorrect) {
+      solveTask(studentId, task.taskId);
+    }
+    return correctAnswers;
+  },
   "solutionHandler.submitTag"(studentSolution, studentId, task) {
     var correct = studentSolution.length == Solutions[task.taskId].length;
     // var correct = equals(studentSolution, Solutions[task.taskId]);

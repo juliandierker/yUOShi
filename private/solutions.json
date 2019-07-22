@@ -28,13 +28,8 @@
     "Mangelbedürfnisse",
     "Selbstverwirklichungsbedürfnis"
   ],
-  
-  "Motivation_IntrExtr": [
-    "intrinsische",
-    "extrinsische",
-    "innen",
-    "Ergebnis"
-  ],
+
+  "Motivation_IntrExtr": ["intrinsische", "extrinsische", "innen", "Ergebnis"],
   "Selbstbestimmungs_Theorie": [
     "Motivations-Forschung",
     "humanistisch",
@@ -43,5 +38,6 @@
     "Persönlichkeitsorganisation"
   ],
   "Xwert_Theorie": ["Erwartungs-Wert", "Situation", "Ergebnis"],
-  "Ziele": ["Zielsetzungstheorie", "Motivationsstrategien", "Moderatoren"]
+  "Ziele": ["Zielsetzungstheorie", "Motivationsstrategien", "Moderatoren"],
+  "ZieleCloze": ["Zielsetzungstheorie", "Motivationsstrategien", "Moderatoren"]
 }
