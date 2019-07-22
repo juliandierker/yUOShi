@@ -104,7 +104,10 @@ export default class TagView extends React.Component {
       });
     }
     return (
-      <Segment id="defTextReader" style={{ whiteSpace: "pre-line" }}>
+      <Segment
+        id="defTextReader"
+        style={{ maxWidth: "125%", whiteSpace: "pre-line" }}
+      >
         {plainText}
       </Segment>
     );
@@ -177,7 +180,7 @@ export default class TagView extends React.Component {
           style={{
             marginTop: "10px",
             marginBottom: "10px",
-            marginRight: "60px"
+            marginRight: "18.4%"
           }}
           floated="right"
           onClick={() => this.solutionPrepare()}
