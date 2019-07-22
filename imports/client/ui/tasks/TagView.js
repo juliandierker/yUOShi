@@ -104,7 +104,7 @@ export default class TagView extends React.Component {
       });
     }
     return (
-      <Segment id="defTextReader" style={{ whiteSpace: "pre-wrap" }}>
+      <Segment id="defTextReader" style={{ whiteSpace: "pre-line" }}>
         {plainText}
       </Segment>
     );
