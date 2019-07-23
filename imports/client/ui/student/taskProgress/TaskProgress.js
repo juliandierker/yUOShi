@@ -154,7 +154,11 @@ class TaskProgress extends Component {
 
   render() {
     return (
-      <Sticky style={{ height: "100%", minWidth: "200px" }} offset={50}>
+      <Sticky
+        scrollContext={null}
+        style={{ height: "100%", minWidth: "200px" }}
+        offset={50}
+      >
         <Step.Group fluid vertical>
           {this.renderSubPackages()}
         </Step.Group>
