@@ -1,12 +1,9 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { Meteor } from "meteor/meteor";
-import { Icon } from "semantic-ui-react";
-import { Animated } from "react-animated-css";
-
+import ReactSnap from "react-snap-svg";
 export default class schoolFloor extends React.Component {
   handleClassroomClick() {
-    console.log("testy");
     var elem = document.getElementById("path19102");
     var text = document.getElementById("text19162");
     console.log(text);
@@ -9470,7 +9467,9 @@ export default class schoolFloor extends React.Component {
           inkscapegroupmode="layer"
           id="layer6"
           inkscapelabel="marker_raw"
-          style={{ opacity: 1 }}
+          style={{ opacity: 1, cursor: "pointer" }}
+          className="testyy testyy-1"
+          onClick={() => this.handleClassroomClick()}
         >
           <g
             id="g19122"
@@ -9478,23 +9477,21 @@ export default class schoolFloor extends React.Component {
           >
             <path
               id="path19100"
-              style={{ fill: "#8a9585", cursor: "pointer" }}
+              style={{ fill: "#8a9585" }}
               data-old_color="#5ca33b"
               className="active-path"
               data-original="#5CA33B"
               d="m 390.02734,194.76172 c 0,68.55078 -35.42187,128.82812 -88.95312,163.53125 -8.06641,5.23437 -14.80078,12.26562 -19.53906,20.625 l -69.94532,123.5625 c -0.15625,0.27344 -0.3164,0.53515 -0.49609,0.80078 -7.47266,11.88281 -25.12891,11.62109 -32.16016,-0.80078 L 108.98828,378.91797 C 104.26172,370.56641 97.539062,363.53906 89.484375,358.32422 35.183594,323.13672 -0.492188,261.64453 0.519531,191.89062 2.03125,87.03125 87.628906,1.476562 192.48828,0.0195312 c 6.27735,-0.0859374 12.4961,0.1249998 18.62891,0.6210938 100.15234,8.054687 178.91015,91.886719 178.91015,194.121095 z m 0,0"
               inkscapeconnector-curvature={0}
-              onClick={() => this.handleClassroomClick()}
             />
             <path
               id="path19102"
-              style={{ fill: "#80897d", cursor: "pointer" }}
+              style={{ fill: "#80897d" }}
               data-old_color="#6dc54a"
               className
               data-original="#6DC54A"
               d="m 390.02734,194.76172 c 0,68.55078 -35.42187,128.82812 -88.95312,163.53125 -8.06641,5.23437 -14.80078,12.26562 -19.53906,20.625 l -69.94532,123.5625 c -0.15625,0.27344 -0.3164,0.53515 -0.49609,0.80078 -0.17969,-0.26563 -0.33594,-0.52734 -0.49609,-0.80078 l -69.94532,-123.5625 c -4.72656,-8.35156 -11.44921,-15.37891 -19.5039,-20.59375 C 66.847656,323.13672 31.171875,261.64453 32.183594,191.89062 33.628906,91.410156 112.28125,8.664062 211.11719,0.640625 311.26953,8.695312 390.02734,92.527344 390.02734,194.76172 Z m 0,0"
               inkscapeconnector-curvature={0}
-              onClick={() => this.handleClassroomClick()}
             />
             <path
               id="path19104"
@@ -9503,15 +9500,13 @@ export default class schoolFloor extends React.Component {
               d="m 339.07031,194.52734 c 0,79.44141 -64.41406,143.8086 -143.80859,143.8086 -79.42188,0 -143.804689,-64.38282 -143.804689,-143.8086 0,-85.36718 74.105469,-152.316402 159.636719,-142.929684 71.97266,7.886719 127.97656,68.871094 127.97656,142.929684 z m 0,0"
               inkscapeconnector-curvature={0}
               style={{ fill: "#c2eaf2", cursor: "pointer" }}
-              onClick={() => this.handleClassroomClick()}
             />
             <path
               id="path19106"
               data-original="#DEF4F8"
               d="m 339.07031,194.52734 c 0,74.07422 -56.0039,135.0586 -127.97656,142.94141 C 139.125,329.58594 83.121094,268.60156 83.121094,194.52734 c 0,-74.05859 56.003906,-135.042965 127.972656,-142.929684 71.97266,7.886719 127.97656,68.871094 127.97656,142.929684 z m 0,0"
               inkscapeconnector-curvature={0}
-              style={{ fill: "#def4f8", cursor: "pointer" }}
-              onClick={() => this.handleClassroomClick()}
+              style={{ fill: "#def4f8" }}
             />
             <path
               id="path19108"
@@ -9526,7 +9521,7 @@ export default class schoolFloor extends React.Component {
               data-original="#FFD993"
               d="m 309.78125,169.50391 v 112.0039 c -26.26953,34.53516 -67.80469,56.82813 -114.51953,56.82813 -46.73438,0 -88.25781,-22.29297 -114.515626,-56.81641 V 169.50391 c 0,-17.77344 14.417968,-32.19141 32.191406,-32.19141 h 164.65234 c 17.77344,0 32.19141,14.41797 32.19141,32.19141 z m 0,0"
               inkscapeconnector-curvature={0}
-              style={{ fill: "#ffd993" }}
+              style={{ fill: "#ffd993", cursor: "pointer" }}
             />
             <path
               id="path19112"
@@ -9543,7 +9538,7 @@ export default class schoolFloor extends React.Component {
               inkscapeconnector-curvature={0}
               style={{ fill: "#ffb52d" }}
             />
-            <g id="g19120" style={{ fill: "#f29500" }}>
+            <g id="g19120" style={{ fill: "#f29500", cursor: "pointer" }}>
               <path
                 id="path19116"
                 className
