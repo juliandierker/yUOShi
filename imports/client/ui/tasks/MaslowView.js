@@ -111,7 +111,6 @@ export default class MaslowView extends React.Component {
                 </clipPath>
               </defs>
             </svg>
-            <div />
           </div>
         </div>
       </div>

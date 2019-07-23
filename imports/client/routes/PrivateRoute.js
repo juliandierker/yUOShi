@@ -29,6 +29,9 @@ const PrivateRoute = ({ component: Component, path, ...rest }) => {
               }) ||
               matchPath(location.pathname, {
                 path: "/student/workspace"
+              }) ||
+              matchPath(location.pathname, {
+                path: "/student/classroom"
               })
             );
           console.log(wrongPupil);

@@ -3,6 +3,12 @@ import PropTypes from "prop-types";
 import { Meteor } from "meteor/meteor";
 import ReactSnap from "react-snap-svg";
 export default class schoolFloor extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      classHover: false
+    };
+  }
   handleClassroomClick() {
     var elem = document.getElementById("path19102");
     var text = document.getElementById("text19162");
@@ -16,11 +22,48 @@ export default class schoolFloor extends React.Component {
       that.props.history.push("/student/test");
     }, 1500);
   }
+
+  hoverOnClass() {
+    console.log("hover");
+    if (!this.state.classHover) {
+      this.setState({ classHover: true });
+      var menu = document.getElementById("classMenuItem");
+      var text = document.getElementById("text19162");
+      var box = document.getElementById("rect19151");
+      var elem = document.getElementById("path19102");
+      elem.style.fill = "rgb(206, 239, 174)";
+      menu.className = "active left item";
+      text.style.visibility = "visible";
+      box.style.visibility = "visible";
+    }
+  }
+  hoverOffClass() {
+    console.log("leave");
+    if (this.state.classHover) {
+      this.setState({ classHover: false });
+      var text = document.getElementById("text19162");
+      var elem = document.getElementById("path19102");
+
+      var box = document.getElementById("rect19151");
+      elem.style.fill = "#80897d";
+      var menu = document.getElementById("classMenuItem");
+      menu.className = "left item";
+
+      text.style.visibility = "hidden";
+      box.style.visibility = "hidden";
+    }
+  }
+
+  animateClassLayer() {
+    console.log("animate");
+    const s = new Snap("#layer6");
+    console.log(s);
+  }
   render() {
     return (
       <svg
         width="100%"
-        height="100%"
+        height="60%"
         viewBox="0 0 297 210"
         version="1.1"
         id="svg8"
@@ -9464,6 +9507,8 @@ export default class schoolFloor extends React.Component {
           </g>
         </g>
         <g
+          onMouseEnter={() => this.hoverOnClass()}
+          onMouseLeave={() => this.hoverOffClass()}
           inkscapegroupmode="layer"
           id="layer6"
           inkscapelabel="marker_raw"
@@ -9471,6 +9516,7 @@ export default class schoolFloor extends React.Component {
           className="testyy testyy-1"
           onClick={() => this.handleClassroomClick()}
         >
+          {this.animateClassLayer()}
           <g
             id="g19122"
             transform="matrix(0.05129999,0,0,0.04498282,59.596193,87.999829)"

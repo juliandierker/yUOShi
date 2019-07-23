@@ -242,8 +242,6 @@ export default class Workspace extends React.Component {
   }
   renderTraining() {
     const { packageStarted, dimmer } = this.state;
-
-    return <div />;
   }
 
   isTaskSolved(t) {

@@ -13,6 +13,7 @@ import { Dropdown, Icon, Menu, Segment, Button } from "semantic-ui-react";
 import StudentCourses from "./StudentCourses";
 import StudentTopMenu from "./StudentTopMenu";
 import GameOverview from "./game/Gameoverview";
+import ClassRoom from "./game/ClassRoom";
 import Workspace from "./game/Workspace";
 import Loading from "../Loading";
 
@@ -159,6 +160,19 @@ export default class StudentOverview extends React.Component {
             )}
           />
           <Route
+            path="/student/classroom"
+            render={props => (
+              <ClassRoom
+                courses={this.state.courses}
+                student={this.state.student}
+                tasks={this.state.tasks}
+                trainings={this.state.trainings}
+                packages={this.state.packages}
+                {...props}
+              />
+            )}
+          />
+          <Route
             path="/student/studentoverview"
             render={props => (
               <StudentCourses
@@ -199,8 +213,6 @@ export default class StudentOverview extends React.Component {
           courses={this.state.courses}
           student={this.state.student}
         /> */}
-
-        <div />
       </div>
     );
   }

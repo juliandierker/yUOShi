@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import { Tracker } from "meteor/tracker";
 import Loading from "../../Loading";
 import { Button, Card, Image } from "semantic-ui-react";
-import { Dropdown, Icon, Menu, Segment } from "semantic-ui-react";
+import { Dropdown, Icon, Menu, Segment, Grid } from "semantic-ui-react";
 
 import StudentTopMenu from "../StudentTopMenu";
 import SchoolFloor from "../vektors/SchoolFloor";
@@ -171,7 +171,44 @@ export default class Gameoverview extends React.Component {
     }
   }
   render() {
-    return <div>{this.renderSchoolFloor()}</div>;
+    return (
+      <div id="gameOverView">
+        <Grid>
+          <Grid.Row
+            style={{
+              textAlign: "center",
+              width: "100%",
+              backgroundColor: "rgb(108, 124, 152)"
+            }}
+          >
+            Zeitstrahl
+          </Grid.Row>
+          <Grid.Column width={10}>{this.renderSchoolFloor()}</Grid.Column>
+          <Grid.Column width={3}>
+            <Grid.Row>
+              {" "}
+              Ankündigungen
+              <Image src="https://react.semantic-ui.com/images/wireframe/media-paragraph.png" />
+            </Grid.Row>
+            <Grid.Row>
+              {" "}
+              Ankündigungen
+              <Image src="https://react.semantic-ui.com/images/wireframe/media-paragraph.png" />
+            </Grid.Row>
+            <Grid.Row>
+              {" "}
+              Ankündigungen
+              <Image src="https://react.semantic-ui.com/images/wireframe/media-paragraph.png" />
+            </Grid.Row>
+            <Grid.Row>
+              {" "}
+              Ankündigungen
+              <Image src="https://react.semantic-ui.com/images/wireframe/media-paragraph.png" />
+            </Grid.Row>
+          </Grid.Column>
+        </Grid>
+      </div>
+    );
   }
 }
 
