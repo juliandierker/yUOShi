@@ -9,7 +9,8 @@ import {
   Divider,
   Grid,
   Segment,
-  Image
+  Image,
+  Card
 } from "semantic-ui-react";
 import Swal from "sweetalert2";
 
@@ -21,7 +22,8 @@ export default class MotiveView extends React.Component {
     this.state = {
       statements: [],
       index: 0,
-      lastElem: null
+      extr_container: [],
+      intr_container: []
     };
   }
   handleLoad() {
@@ -45,8 +47,6 @@ export default class MotiveView extends React.Component {
       onRelease: this.dropItem,
       that: this
     });
-
-    // onRelease: this.dropItem
   }
   componentDidMount() {
     if (this.state.activeTask == null) {
@@ -54,16 +54,19 @@ export default class MotiveView extends React.Component {
     }
     window.addEventListener("load", this.handleLoad());
   }
+
   componentDidUpdate() {
     this.initDragDrop();
   }
+
   componentWillUnmount() {
     window.removeEventListener("load", this.handleLoad());
   }
-  rerenderItems(that) {
+
+  rerenderItems(that, container) {
     var boundsBefore, boundsAfter;
     boundsBefore = that.target.getBoundingClientRect();
-    $(that.target).appendTo("#" + that.target.id + "_target");
+    $(that.target).appendTo("#" + container + "_target");
     boundsAfter = that.target.getBoundingClientRect();
     TweenMax.fromTo(
       that.target,
@@ -78,38 +81,45 @@ export default class MotiveView extends React.Component {
       }
     );
   }
+
   dropItem() {
     let that = this.vars.that;
-    if (this.hitTest("#" + this.target.id + "_target")) {
-      var index = that.state.index;
-      if (that.state.lastElem != this.target.id) {
-        if (
-          that.state.index ==
-          that.props.activeTask.statements[0].length - 1
-        ) {
-          that.rerenderItems(this);
-
-          Swal.fire("das sieht gut aus");
-        } else {
-          that.setState({ index: ++index, lastElem: this.target.id });
-          that.rerenderItems(this);
-        }
-      }
+    let index = that.state.index;
+    let hit = "";
+    if (this.hitTest("#intr_target")) {
+      let intr = that.state.intr_container ? that.state.intr_container : [];
+      intr.push(this.target);
+      hit = "intr";
+      that.setState({ intr_container: intr });
+    } else if (this.hitTest("#extr_target")) {
+      let extr = that.state.extr_container ? that.state.extr_container : [];
+      extr.push(this.target);
+      hit = "extr";
+      that.setState({ extr_container: extr });
     } else {
       TweenMax.to(this.target, 0.5, { x: 0, y: 0 });
+      return;
+    }
+    if (that.state.index != that.props.activeTask.statements[0].length - 1) {
+      that.setState({ index: ++index });
+      that.rerenderItems(this, hit);
+    } else {
+      that.rerenderItems(this, hit);
+
+      Swal.fire("Du hast alle Statements genutzt!");
     }
   }
+
   renderTable() {
     return (
-      <Segment className="selected">
-        <Grid columns={2} relaxed="very">
+      <Segment className="selected" style={{ width: "100%" }}>
+        <Grid columns={2} stretched>
           <Grid.Column>
             <h4>Intrinsische Motivation</h4>
             <div
               id="intr_target"
               className="selected Motive"
               style={{
-                width: "400px",
                 height: "100%",
                 minHeight: "200px",
                 justifyContent: "space-around"
@@ -133,6 +143,7 @@ export default class MotiveView extends React.Component {
       </Segment>
     );
   }
+
   renderStatements() {
     var statements = this.props.activeTask.statements[0];
     for (var i in statements) {
@@ -140,9 +151,12 @@ export default class MotiveView extends React.Component {
         var tmp;
         return statements.slice(0, this.state.index + 1).map(statement => {
           return (
-            <div id={statement[0]} className="dragItem">
-              {statement[1]}
-            </div>
+            <Card
+              centered
+              description={[statement[1]]}
+              className="dragItem"
+              id={statement[0]}
+            />
           );
         });
       } else {
@@ -153,6 +167,7 @@ export default class MotiveView extends React.Component {
       return <div>Du hast alle Statements benutzt.</div>;
     }
   }
+
   renderElemCounter() {
     return (
       <div>
@@ -163,12 +178,15 @@ export default class MotiveView extends React.Component {
       </div>
     );
   }
-  renderMotivation() {
+
+  render() {
     return (
-      <div id="svgDiv">
+      <div id="svgDiv" style={{ width: "100%" }}>
         <div className="motiveWrapper">
           {this.renderElemCounter()}
-          {this.renderStatements()}
+          <Card.Group style={{ margin: "0px" }}>
+            {this.renderStatements()}
+          </Card.Group>
 
           {this.renderTable()}
 
@@ -176,8 +194,5 @@ export default class MotiveView extends React.Component {
         </div>
       </div>
     );
-  }
-  render() {
-    return <div>{this.renderMotivation()}</div>;
   }
 }
