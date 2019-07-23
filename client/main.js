@@ -2,7 +2,8 @@ import { Meteor } from "meteor/meteor";
 import ReactDOM from "react-dom";
 import { Tracker } from "meteor/tracker";
 import { Session } from "meteor/session";
-import { routes, onAuthChange } from "../imports/client/routes/routes";
+import React from "react";
+import Routes, { onAuthChange } from "../imports/client/routes/routes";
 import "../imports/startup/simple-schema-configuration.js";
 import "../imports/client/ui/um/UserAdministration";
 
@@ -42,7 +43,7 @@ Tracker.autorun(() => {
   onAuthChange(currentUser);
 
   Meteor.startup(() => {
-    ReactDOM.render(routes, document.getElementById("app"));
+    ReactDOM.render(<Routes />, document.getElementById("app"));
     Session.set("showVisible", true);
     // setCookie("resume", "true", false);
     // if (!getCookie("resume")) {
