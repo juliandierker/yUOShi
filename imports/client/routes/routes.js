@@ -8,11 +8,14 @@ import PublicRoute from "./PublicRoute";
 import PrivateRoute from "./PrivateRoute";
 import Login from "../ui/um/Login";
 import NotFound from "../ui/NotFound";
+
+import { createContainer } from "meteor/react-meteor-data";
 // Students
 import StudentOverview from "../ui/student/StudentOverview";
 // Teachers
 import TeacherOverview from "../ui/teacher/pregame/TeacherOverview";
 import Gameoverview from "../ui/student/game/Gameoverview";
+import { renderInputFields } from "../ui/um/UserAdministration";
 export const browserHistory = createBrowserHistory();
 const unAuthPages = ["/"];
 
@@ -53,13 +56,23 @@ export const onAuthChange = currentUser => {
   }
 };
 
-export const routes = (
-  <Router history={browserHistory}>
-    <Switch>
-      <PublicRoute exact path="/" component={Login} />
-      <PrivateRoute path="/student" component={StudentOverview} />
-      <PrivateRoute path="/teacher" component={TeacherOverview} />
-      <Route path="/(.*)" component={NotFound} />
-    </Switch>
-  </Router>
-);
+class Routes extends React.Component {
+  render() {
+    return (
+      <Router history={browserHistory}>
+        <Switch>
+          <PublicRoute exact path="/" component={Login} />
+          <PrivateRoute path="/student" component={StudentOverview} />
+          <PrivateRoute path="/teacher" component={TeacherOverview} />
+          <Route path="/(.*)" component={NotFound} />
+        </Switch>
+      </Router>
+    );
+  }
+}
+
+export default createContainer(() => {
+  return {
+    userId: Meteor.userId()
+  };
+}, Routes);
