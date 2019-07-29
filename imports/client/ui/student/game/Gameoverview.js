@@ -174,7 +174,7 @@ export default class Gameoverview extends React.Component {
     return (
       <div id="gameOverView">
         <Grid>
-          <Grid.Row
+          {/* <Grid.Row
             style={{
               textAlign: "center",
               width: "100%",
@@ -182,7 +182,7 @@ export default class Gameoverview extends React.Component {
             }}
           >
             Zeitstrahl
-          </Grid.Row>
+          </Grid.Row> */}
           <Grid.Column width={10}>{this.renderSchoolFloor()}</Grid.Column>
           <Grid.Column width={3}>
             <Grid.Row>

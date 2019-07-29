@@ -19,7 +19,7 @@ export default class schoolFloor extends React.Component {
     box.style.visibility = "visible";
     var that = this;
     setTimeout(function() {
-      that.props.history.push("/student/test");
+      that.props.history.push("/student/classroom");
     }, 1500);
   }
 
@@ -63,7 +63,7 @@ export default class schoolFloor extends React.Component {
     return (
       <svg
         width="100%"
-        height="60%"
+        height="75%"
         viewBox="0 0 297 210"
         version="1.1"
         id="svg8"
