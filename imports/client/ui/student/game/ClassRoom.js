@@ -40,8 +40,10 @@ export default class ClassRoom extends React.Component {
     this.window_text = document.getElementById("window_text");
     this.window_marker = document.getElementById("window_marker");
 
-    if (this.props.student.currentPackage[0].name == "Motivation") {
-      this.pupilGroup_marker.childNodes[1].style.fill = "#5BA23A";
+    if (this.props.student.currentPackage.length > 0) {
+      if (this.props.student.currentPackage[0].name == "Motivation") {
+        this.pupilGroup_marker.childNodes[1].style.fill = "#5BA23A";
+      }
     }
   }
   initTaskpackage() {}
