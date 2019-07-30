@@ -65,45 +65,7 @@ export default class Workspace extends React.Component {
       }
     }
   }
-  componentDidUpdate(prevProps, prevState) {
-    // var prevTask = prevState.activeTask;
-    // var curTaskNum = this.props.student.tasks.length;
-    // // solved last task
-    // if (prevTask && curTaskNum === 0 && !this.state.showSolution) {
-    //   console.log("ever reached???");
-    //   // this.setState({ activeTask: false });
-    // } else if (!prevTask && curTaskNum > 0) {
-    //   console.log("entered here");
-    //   var activeTask = this.getActiveTask();
-    //
-    //   //TODO setState correctly
-    //   console.log(this.state.activeTask);
-    //   //TODO CLEAN HERE
-    //   if (this.state.activeTask && this.state.activeTask.length == 0) {
-    //     console.log("workspace update");
-    //   }
-    // } else {
-    //   // no tasks change or received task without submitting last one
-    //   console.log(this.state.activeTask);
-    //   if (this.state.activeTask || this.state.activeTask == "undefined") {
-    //     var currentTaskState = this.getActiveTask();
-    //     var taskStateChange = !equals(
-    //       prevState.currentTaskState,
-    //       currentTaskState
-    //     );
-    //   } else {
-    //     if (this.props.student.tasks.length >= prevProps.student.tasks.length) {
-    //       var tasks = this.props.student.tasks;
-    //
-    //       console.log("A");
-    //       console.log(tasks);
-    //       // this.setState({
-    //       //   activeTask: tasks[tasks.length - 1]
-    //       // });
-    //     }
-    //   }
-    // }
-  }
+  componentDidUpdate(prevProps, prevState) {}
   componentWillUnmount() {
     if (this.state.activeTask) {
       Meteor.call(
@@ -126,17 +88,16 @@ export default class Workspace extends React.Component {
   getActiveTask() {
     var student = this.props.student;
 
-    if (student) {
-      if (this.props.student.lastActiveTaskId) {
-        for (var i in student.tasks) {
-          if (student.tasks[i]._id == student.lastActiveTaskId)
-            return student.tasks[i];
-        }
-      } else {
-        return student.tasks[student.tasks.length - 1];
+    if (student && this.props.student.lastActiveTaskId) {
+      for (var i in student.tasks) {
+        if (student.tasks[i]._id == student.lastActiveTaskId)
+          return student.tasks[i];
       }
+    } else {
+      return student.tasks[student.tasks.length - 1];
     }
   }
+
   taskSwitch() {
     var student = this.props.student;
     var taskPackage = student.currentPackage;
@@ -186,19 +147,6 @@ export default class Workspace extends React.Component {
       student.solvedTraining.length > 0
     ) {
       this.props.handleNextTask();
-
-      // if (
-      //   student.solvedTasks.length == student.currentPackage[0].content[this.state.currentSubPackageIndex].tasks.length
-      // ) {
-      //   this.props.handleNextTask();
-      // } else {
-      //   console.log("Y");
-      //   if (student.tasks.length == 0) {
-      //     console.log("X");
-      //     console.log("reach");
-      //     this.props.handleNextTask();
-      //   }
-      // }
     }
     //tasks are activated after intro trainings
     else {

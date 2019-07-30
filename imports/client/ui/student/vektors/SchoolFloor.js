@@ -9621,75 +9621,73 @@ export default class schoolFloor extends React.Component {
             }}
           />
         </g>
-        <g inkscapegroupmode="layer" id="layer8" inkscapelabel="classText">
-          <text
-            xmlSpace="preserve"
+        <text
+          xmlSpace="preserve"
+          style={{
+            fontStyle: "normal",
+            fontVariant: "normal",
+            fontWeight: "normal",
+            fontStretch: "normal",
+            fontSize: "8.59389019px",
+            lineHeight: "1.25",
+            fontFamily: "Loma",
+            InkscapeFontSpecification: "Loma",
+            letterSpacing: "0px",
+            wordSpacing: "0px",
+            fill: "#000000",
+            fillOpacity: 1,
+            stroke: "none",
+            strokeWidth: "0.21484725",
+            visibility: "hidden"
+          }}
+          x="62.591473"
+          y="130.23853"
+          id="text19162"
+          transform="scale(1.1179932,0.89445983)"
+        >
+          <tspan
+            sodipodirole="line"
+            id="tspan19160"
+            x="63.752995"
+            y="130.23853"
             style={{
               fontStyle: "normal",
               fontVariant: "normal",
               fontWeight: "normal",
               fontStretch: "normal",
-              fontSize: "8.59389019px",
-              lineHeight: "1.25",
+              fontSize: "6.87511206px",
               fontFamily: "Loma",
               InkscapeFontSpecification: "Loma",
-              letterSpacing: "0px",
-              wordSpacing: "0px",
-              fill: "#000000",
-              fillOpacity: 1,
-              stroke: "none",
-              strokeWidth: "0.21484725",
-              visibility: "hidden"
+              textAlign: "center",
+              textAnchor: "middle",
+              fill: "#ffffff",
+              strokeWidth: "0.21484725"
             }}
-            x="62.591473"
-            y="130.23853"
-            id="text19162"
-            transform="scale(1.1179932,0.89445983)"
           >
-            <tspan
-              sodipodirole="line"
-              id="tspan19160"
-              x="63.752995"
-              y="130.23853"
-              style={{
-                fontStyle: "normal",
-                fontVariant: "normal",
-                fontWeight: "normal",
-                fontStretch: "normal",
-                fontSize: "6.87511206px",
-                fontFamily: "Loma",
-                InkscapeFontSpecification: "Loma",
-                textAlign: "center",
-                textAnchor: "middle",
-                fill: "#ffffff",
-                strokeWidth: "0.21484725"
-              }}
-            >
-              Klassenzimmer{" "}
-            </tspan>
-            <tspan
-              sodipodirole="line"
-              x="62.591473"
-              y="140.9809"
-              style={{
-                fontStyle: "normal",
-                fontVariant: "normal",
-                fontWeight: "normal",
-                fontStretch: "normal",
-                fontSize: "6.87511206px",
-                fontFamily: "Loma",
-                InkscapeFontSpecification: "Loma",
-                textAlign: "center",
-                textAnchor: "middle",
-                fill: "#ffffff",
-                strokeWidth: "0.21484725"
-              }}
-              id="tspan19164"
-            >
-              betreten
-            </tspan>
-          </text>
-        </g>
+            Klassenzimmer{" "}
+          </tspan>
+          <tspan
+            sodipodirole="line"
+            x="62.591473"
+            y="140.9809"
+            style={{
+              fontStyle: "normal",
+              fontVariant: "normal",
+              fontWeight: "normal",
+              fontStretch: "normal",
+              fontSize: "6.87511206px",
+              fontFamily: "Loma",
+              InkscapeFontSpecification: "Loma",
+              textAlign: "center",
+              textAnchor: "middle",
+              fill: "#ffffff",
+              strokeWidth: "0.21484725"
+            }}
+            id="tspan19164"
+          >
+            betreten
+          </tspan>
+        </text>
       </svg>
     );
   }
