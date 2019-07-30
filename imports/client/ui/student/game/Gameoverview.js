@@ -3,10 +3,10 @@ import PropTypes from "prop-types";
 import { Tracker } from "meteor/tracker";
 import Loading from "../../Loading";
 import { Button, Card, Image } from "semantic-ui-react";
-import { Dropdown, Icon, Menu, Segment } from "semantic-ui-react";
+import { Dropdown, Icon, Menu, Segment, Grid } from "semantic-ui-react";
 
 import StudentTopMenu from "../StudentTopMenu";
-
+import SchoolFloor from "../vektors/SchoolFloor";
 import Swal from "sweetalert2";
 import withReactContent from "sweetalert2-react-content";
 
@@ -40,6 +40,7 @@ export default class Gameoverview extends React.Component {
   componentDidUpdate(prevProps, prevState) {
     if (this.props.tasks && !prevProps.tasks && !this.state.tasks) {
       var tasks = this.props.tasks;
+      console.log("tetetet");
       this.setState({ tasks });
     }
   }
@@ -82,7 +83,46 @@ export default class Gameoverview extends React.Component {
       });
     }
   }
-
+  renderSchoolFloor() {
+    return <SchoolFloor history={this.props.history} />;
+  }
+  // renderTracks() {
+  //   if (this.state.tasks) {
+  //     return this.state.tasks.map((task, index) => {
+  //       return (
+  //         <Card.Group>
+  //           <Card>
+  //             <Image
+  //               src={"/tasks/" + task.filePrefix + "/" + task.taskId + ".jpg"}
+  //               wrapped
+  //               ui={false}
+  //             />
+  //             <Card.Content>
+  //               <Card.Header>{task.taskId}</Card.Header>
+  //               <Card.Meta>
+  //                 <span className="date">Zuweisung</span>
+  //               </Card.Meta>
+  //               <Card.Description>{task.description}</Card.Description>
+  //             </Card.Content>
+  //             <Button
+  //               onClick={() => this.handleGetTask(task)}
+  //               basic
+  //               color="green"
+  //             >
+  //               Bearbeiten
+  //             </Button>
+  //             <Card.Content extra>
+  //               <Icon name="expand arrows alternate" />
+  //               {task.credits}
+  //             </Card.Content>
+  //           </Card>
+  //         </Card.Group>
+  //       );
+  //     });
+  //   } else {
+  //     return <Loading />;
+  //   }
+  // }
   renderTracks() {
     if (this.state.packages) {
       return (
@@ -131,7 +171,44 @@ export default class Gameoverview extends React.Component {
     }
   }
   render() {
-    return <div>{this.renderTracks()}</div>;
+    return (
+      <div id="gameOverView">
+        <Grid>
+          {/* <Grid.Row
+            style={{
+              textAlign: "center",
+              width: "100%",
+              backgroundColor: "rgb(108, 124, 152)"
+            }}
+          >
+            Zeitstrahl
+          </Grid.Row> */}
+          <Grid.Column width={10}>{this.renderSchoolFloor()}</Grid.Column>
+          <Grid.Column width={3}>
+            <Grid.Row>
+              {" "}
+              Ankündigungen
+              <Image src="https://react.semantic-ui.com/images/wireframe/media-paragraph.png" />
+            </Grid.Row>
+            <Grid.Row>
+              {" "}
+              Ankündigungen
+              <Image src="https://react.semantic-ui.com/images/wireframe/media-paragraph.png" />
+            </Grid.Row>
+            <Grid.Row>
+              {" "}
+              Ankündigungen
+              <Image src="https://react.semantic-ui.com/images/wireframe/media-paragraph.png" />
+            </Grid.Row>
+            <Grid.Row>
+              {" "}
+              Ankündigungen
+              <Image src="https://react.semantic-ui.com/images/wireframe/media-paragraph.png" />
+            </Grid.Row>
+          </Grid.Column>
+        </Grid>
+      </div>
+    );
   }
 }
 

@@ -66,7 +66,7 @@ export default class Workspace extends React.Component {
       }
     }
   }
-
+  componentDidUpdate(prevProps, prevState) {}
   componentWillUnmount() {
     if (this.state.activeTask) {
       Meteor.call(
@@ -89,17 +89,16 @@ export default class Workspace extends React.Component {
   getActiveTask() {
     var student = this.props.student;
 
-    if (student) {
-      if (this.props.student.lastActiveTaskId) {
-        for (var i in student.tasks) {
-          if (student.tasks[i]._id == student.lastActiveTaskId)
-            return student.tasks[i];
-        }
-      } else {
-        return student.tasks[student.tasks.length - 1];
+    if (student && this.props.student.lastActiveTaskId) {
+      for (var i in student.tasks) {
+        if (student.tasks[i]._id == student.lastActiveTaskId)
+          return student.tasks[i];
       }
+    } else {
+      return student.tasks[student.tasks.length - 1];
     }
   }
+
   taskSwitch() {
     var student = this.props.student;
     var taskPackage = student.currentPackage;
@@ -197,8 +196,6 @@ export default class Workspace extends React.Component {
   }
   renderTraining() {
     const { packageStarted, dimmer } = this.state;
-
-    return <div />;
   }
 
   isTaskSolved(t) {

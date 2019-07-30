@@ -32,11 +32,42 @@ export default class StudentTopMenu extends React.Component {
     }
   }
   updateMenuButton() {}
+  hoverOnClass() {
+    if (document.getElementById("path19102")) {
+      var elem = document.getElementById("path19102");
+      var text = document.getElementById("text19162");
+      var box = document.getElementById("rect19151");
+      elem.style.fill = "rgb(206, 239, 174)";
+      text.style.visibility = "visible";
+      box.style.visibility = "visible";
+    }
+  }
+  hoverOffClass() {
+    if (document.getElementById("path19102")) {
+      var elem = document.getElementById("path19102");
+      var text = document.getElementById("text19162");
+      var box = document.getElementById("rect19151");
+      elem.style.fill = "#80897d";
+      text.style.visibility = "hidden";
+      box.style.visibility = "hidden";
+    }
+  }
   handleMenuItemClick = (e, { name }) => {
     this.updateMenuButton();
     this.setState({ visible: !this.state.visible });
-    if (name === "Freies Spiel") {
-      this.props.history.push("/student/game");
+    if (name === "Klassenzimmer") {
+      if (document.getElementById("path19102")) {
+        var elem = document.getElementById("path19102");
+        var text = document.getElementById("text19162");
+        var box = document.getElementById("rect19151");
+        elem.style.fill = "rgb(4, 216, 76)";
+        text.style.visibility = "visible";
+        box.style.visibility = "visible";
+        var that = this;
+        setTimeout(function() {
+          that.props.history.push("/student/classroom");
+        }, 1500);
+      }
     }
     if (name === "Kursübersicht") {
       this.props.history.push("/student/overview");
@@ -76,10 +107,13 @@ export default class StudentTopMenu extends React.Component {
           }}
         >
           <Menu.Item
+            id="classMenuItem"
             position="left"
             name="Klassenzimmer"
             active={activeItem === "freegame"}
             onClick={this.handleMenuItemClick}
+            onMouseEnter={() => this.hoverOnClass()}
+            onMouseLeave={() => this.hoverOffClass()}
           />
           <Menu.Item
             position="left"
