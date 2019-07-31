@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { Meteor } from "meteor/meteor";
-import ReactSnap from "react-snap-svg";
 export default class schoolFloor extends React.Component {
   constructor(props) {
     super(props);
