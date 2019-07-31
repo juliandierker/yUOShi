@@ -9510,7 +9510,6 @@ export default class schoolFloor extends React.Component {
           className="testyy testyy-1"
           onClick={() => this.handleClassroomClick()}
         >
-          {this.animateClassLayer()}
           <g
             id="g19122"
             transform="matrix(0.05129999,0,0,0.04498282,59.596193,87.999829)"
