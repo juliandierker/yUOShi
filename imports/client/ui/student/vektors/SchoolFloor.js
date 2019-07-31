@@ -53,11 +53,6 @@ export default class schoolFloor extends React.Component {
     }
   }
 
-  animateClassLayer() {
-    console.log("animate");
-    const s = new Snap("#layer6");
-    console.log(s);
-  }
   render() {
     return (
       <svg
