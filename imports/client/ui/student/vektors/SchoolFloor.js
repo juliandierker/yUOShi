@@ -57,7 +57,7 @@ export default class schoolFloor extends React.Component {
     return (
       <svg
         width="100%"
-        height="75%"
+        height="100%"
         viewBox="0 0 297 210"
         version="1.1"
         id="svg8"

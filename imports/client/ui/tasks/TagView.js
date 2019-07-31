@@ -4,6 +4,7 @@ import { Meteor } from "meteor/meteor";
 import PropTypes from "prop-types";
 import reactStringReplace from "react-string-replace";
 import ReactPlayer from "react-player";
+import { Grid } from "semantic-ui-react";
 
 import { DragdropModel } from "../../../models/DragdropModel";
 import {
@@ -119,12 +120,15 @@ export default class TagView extends React.Component {
       </Segment>
     );
   }
-
+  getTaskImage() {}
   renderView() {
     return (
       <Grid columns={2}>
         <Grid.Row>
-          <Grid.Column id="column_left">{this.renderTaglist()}</Grid.Column>
+          <Grid.Column id="column_left">
+            <Grid.Row>{this.getTaskImage()}</Grid.Row>
+            {this.renderTaglist()}
+          </Grid.Column>
           <Grid.Column>{this.renderText()}</Grid.Column>
         </Grid.Row>
       </Grid>
