@@ -37,8 +37,14 @@ export default class DragAnimationTemplate extends React.Component {
           }
         }
       }
-      let solvedPercentage =
-        correctAnswers / this.props.activeTask.statements[0].length;
+      let solvedPercentage = 1;
+      if (this.props.activeTask.taskId == "Motive") {
+        solvedPercentage =
+          correctAnswers / this.props.activeTask.statements[0].length;
+      } else if (this.props.activeTask.taskId == "Maslow") {
+        console.log(correctAnswers);
+        solvedPercentage = correctAnswers / 5;
+      }
 
       var meteorMethod =
         "solutionHandler.submit" + this.props.activeTask.filePrefix;
@@ -132,6 +138,7 @@ export default class DragAnimationTemplate extends React.Component {
         renderable = (
           <MaslowView
             {...taskProps}
+            showSolution={this.state.showSolution}
             key={"draganimationcomponentMaslow" + this.state.childKeyIteration}
           />
         );

@@ -1,12 +1,3 @@
-@keyframes down {
-  0% {
-    transform: translateY(-500%);
-  }
-  100% {
-    transform: translateY(0%);
-  }
-}
-
 @keyframes show {
   0% {
     color: rgba(255, 255, 255, 0);
@@ -57,11 +48,6 @@
   background-blend-mode: lighten;
   cursor: pointer;
   color: #222;
-  animation: down 0.5s;
-  animation-fill-mode: forwards;
-  animation-timing-function: ease-in;
-  transform: translateY(-500%);
-  transition: background-color 0.5s;
 }
 .Maslow:hover {
   color: white;
@@ -78,30 +64,22 @@
 /* All images from pexels.com */
 .Maslow:nth-child(1) {
   background: rgba(170, 180, 160, 0.7);
-
-  animation-delay: 1.3s;
 }
 
 .Maslow:nth-child(2) {
   background: rgba(155, 165, 145, 0.7);
-
-  animation-delay: 1.1s;
 }
 
 .Maslow:nth-child(3) {
   background: rgba(140, 150, 130, 0.7);
-
-  animation-delay: 0.9s;
 }
 
 .Maslow:nth-child(4) {
   background: rgba(125, 135, 115, 0.7);
-  animation-delay: 0.7s;
 }
 
 .Maslow:nth-child(5) {
   background: rgba(110, 120, 100, 0.7);
-  animation-delay: 0.5s;
 }
 
 .Maslow:nth-child(1):hover {
@@ -136,18 +114,6 @@ h1 {
 }
 p {
   padding-top: 1em;
-}
-p:nth-of-type(1) {
-  animation-delay: 3s;
-}
-p:nth-of-type(2) {
-  animation-delay: 3.4s;
-}
-p:nth-of-type(3) {
-  animation-delay: 3.8s;
-}
-p:nth-of-type(4) {
-  animation-delay: 4.2s;
 }
 
 @supports not (shape-outside: polygon(310px 0, 130px 405px, 558px 405px)) {
@@ -195,4 +161,12 @@ p:nth-of-type(4) {
 .Maslow:nth-child(5) {
   -webkit-clip-path: url("#part5");
   clip-path: url("#part5");
+}
+
+.correct {
+  background-color: #41dd65 !important;
+}
+
+.false {
+  background-color: #ff4848 !important;
 }
