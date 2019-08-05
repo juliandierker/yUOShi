@@ -25,10 +25,11 @@ function solveTask(studentId, taskId, solvedPercentage) {
     currentTask["endTime"] = endTime;
     currentTask["taskState"] = "solved";
 
-    student.exp += Math.round(
-      task.credits * (solvedPercentage ? solvedPercentage : 1)
-    );
-
+    let taskexp = task.credits;
+    if (solvedPercentage || solvedPercentage == 0) {
+      taskexp = Math.round(taskexp * solvedPercentage);
+    }
+    student.exp += taskexp;
     // update student
     var studentUpdates = {
       $push: { solvedTasks: currentTask },
@@ -57,9 +58,11 @@ function solveTask(studentId, taskId, solvedPercentage) {
       // studentUpdates["$addToSet"]["earning"] = money;
       student.date = moment().format("MMM Do,h:mm a");
     }
-    var newCredits = Math.round(
-      task.credits * (solvedPercentage ? solvedPercentage : 1)
-    );
+
+    let newCredits = task.credits;
+    if (solvedPercentage || solvedPercentage == 0) {
+      newCredits = Math.round(newCredits * solvedPercentage);
+    }
     for (var bonus in currentTask.taskState.bonuses) {
       newCredits += currentTask.taskState.bonuses[bonus];
     }
