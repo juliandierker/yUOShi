@@ -15,7 +15,7 @@ export default class DragAnimationTemplate extends React.Component {
     this.view = null;
     this.model = DragdropModel.getNewModel();
     this.model.init(props.student, props.activeTask);
-    this.state = {showSolution: false, childKeyIteration: 0}
+    this.state = { showSolution: false, childKeyIteration: 0 };
   }
 
   shouldComponentUpdate(nextProps) {
@@ -28,17 +28,18 @@ export default class DragAnimationTemplate extends React.Component {
     }
   }
   solutionPrepare() {
-    if(this.state.showSolution) {
+    if (this.state.showSolution) {
       let correctAnswers = 0;
-      for(let i = 0; i < this.model.correctArr.length; i++) {
-        for(let j = 0; j < this.model.correctArr[i].length; j++) {
-          if(this.model.correctArr[i][j]) {
+      for (let i = 0; i < this.model.correctArr.length; i++) {
+        for (let j = 0; j < this.model.correctArr[i].length; j++) {
+          if (this.model.correctArr[i][j]) {
             correctAnswers++;
           }
         }
       }
-      let solvedPercentage = correctAnswers / this.props.activeTask.statements[0].length
-      
+      let solvedPercentage =
+        correctAnswers / this.props.activeTask.statements[0].length;
+
       var meteorMethod =
         "solutionHandler.submit" + this.props.activeTask.filePrefix;
       Meteor.call(
@@ -61,17 +62,21 @@ export default class DragAnimationTemplate extends React.Component {
           position: "top-end",
           type: "warning",
           title: "Nicht ganz...",
-          text: "Es sind nicht alle Felder richtg. Willst du es nochmal versuchen, oder willst du dir die Lösung anschauen?",
+          text:
+            "Es sind nicht alle Felder richtg. Willst du es nochmal versuchen, oder willst du dir die Lösung anschauen?",
           confirmButtonText: "Lösung zeigen",
           cancelButtonText: "Nochmal versuchen",
           cancelButtonColor: "#3085d6",
           showCancelButton: true
-        }).then((result) => {
-          if(result.value) {
-            this.setState({showSolution: true});
+        }).then(result => {
+          if (result.value) {
+            this.setState({ showSolution: true });
             this.forceUpdate();
           } else {
-            this.setState({showSolution: false, childKeyIteration: (this.state.childKeyIteration === 0 ? 1 : 0)});
+            this.setState({
+              showSolution: false,
+              childKeyIteration: this.state.childKeyIteration === 0 ? 1 : 0
+            });
             this.forceUpdate();
           }
         });
@@ -94,7 +99,6 @@ export default class DragAnimationTemplate extends React.Component {
       this.props.student._id,
       this.props.activeTask,
       (err, res) => {
-
         if (!res) {
           Swal.fire({
             position: "top-end",
@@ -116,7 +120,7 @@ export default class DragAnimationTemplate extends React.Component {
 
   render() {
     let renderable;
-    if(this.props.activeTask){
+    if (this.props.activeTask) {
       let taskProps = {
         student: this.props.student,
         tasks: this.props.tasks,
@@ -125,9 +129,20 @@ export default class DragAnimationTemplate extends React.Component {
         model: this.model
       };
       if (this.props.activeTask.taskId == "Maslow") {
-        renderable= <MaslowView {...taskProps} key={"draganimationcomponentMaslow" + this.state.childKeyIteration}/>;
+        renderable = (
+          <MaslowView
+            {...taskProps}
+            key={"draganimationcomponentMaslow" + this.state.childKeyIteration}
+          />
+        );
       } else if (this.props.activeTask.taskId == "Motive") {
-        renderable= <MotiveView {...taskProps} showSolution = {this.state.showSolution} key={"draganimationcomponentMotive" + this.state.childKeyIteration}/>;
+        renderable = (
+          <MotiveView
+            {...taskProps}
+            showSolution={this.state.showSolution}
+            key={"draganimationcomponentMotive" + this.state.childKeyIteration}
+          />
+        );
       }
     }
 
@@ -135,7 +150,12 @@ export default class DragAnimationTemplate extends React.Component {
     return (
       <div>
         <div className="dragAnimation__wrapper">{renderable}</div>
-        <Button style={{marginTop: "10px", marginRight: "10px", float: "right"}} onClick={() => this.solutionPrepare()}>{buttonText}</Button>
+        <Button
+          style={{ marginTop: "10px", marginRight: "10px", float: "right" }}
+          onClick={() => this.solutionPrepare()}
+        >
+          {buttonText}
+        </Button>
       </div>
     );
   }

@@ -25,7 +25,9 @@ function solveTask(studentId, taskId, solvedPercentage) {
     currentTask["endTime"] = endTime;
     currentTask["taskState"] = "solved";
 
-    student.exp += (task.credits  * (solvedPercentage ? solvedPercentage : 1));
+    student.exp += Math.round(
+      task.credits * (solvedPercentage ? solvedPercentage : 1)
+    );
 
     // update student
     var studentUpdates = {
@@ -55,8 +57,9 @@ function solveTask(studentId, taskId, solvedPercentage) {
       // studentUpdates["$addToSet"]["earning"] = money;
       student.date = moment().format("MMM Do,h:mm a");
     }
-    var newCredits = task.credits * (solvedPercentage ? solvedPercentage : 1);
-
+    var newCredits = Math.round(
+      task.credits * (solvedPercentage ? solvedPercentage : 1)
+    );
     for (var bonus in currentTask.taskState.bonuses) {
       newCredits += currentTask.taskState.bonuses[bonus];
     }
@@ -87,8 +90,13 @@ function solveTask(studentId, taskId, solvedPercentage) {
 }
 
 Meteor.methods({
-  "solutionHandler.submitDrag"(studentSolution, studentId, task, solvedPercentage) {
-    if(solvedPercentage !== undefined) {
+  "solutionHandler.submitDrag"(
+    studentSolution,
+    studentId,
+    task,
+    solvedPercentage
+  ) {
+    if (solvedPercentage !== undefined) {
       solveTask(studentId, task.taskId, solvedPercentage);
     }
     var correct = equals(studentSolution, Solutions[task.taskId]);

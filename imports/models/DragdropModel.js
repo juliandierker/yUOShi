@@ -14,30 +14,30 @@ export const DragdropModel = {
       run: function(solution) {
         this.reset();
 
-        for(let i = 0; i < solution.length; i++) {
+        for (let i = 0; i < solution.length; i++) {
           let correctArr = [];
           let checkElem = solution[i].id.split("_")[0];
-            for(let j = 0; j < solution[i].children.length; j++) {
-              if(solution[i].children[j].id == checkElem) {
-                correctArr.push(true);
-                if(this.solution.indexOf(checkElem) === -1) {
-                  this.solution.push(checkElem)
-                }
-              } else {
-                correctArr.push(false);
-                this.visQueue.push(["fail", checkElem])
+          for (let j = 0; j < solution[i].children.length; j++) {
+            if (solution[i].children[j].id == checkElem) {
+              correctArr.push(true);
+              if (this.solution.indexOf(checkElem) === -1) {
+                this.solution.push(checkElem);
               }
+            } else {
+              correctArr.push(false);
+              this.visQueue.push(["fail", checkElem]);
             }
+          }
           this.correctArr.push(correctArr);
         }
         let allCorrect = true;
-        for(let i = 0; i< this.correctArr.length; i++)  {
-          if(this.correctArr[i].includes(false)) {
+        for (let i = 0; i < this.correctArr.length; i++) {
+          if (this.correctArr[i].includes(false)) {
             allCorrect = false;
           }
         }
 
-        if(allCorrect) {
+        if (allCorrect) {
           this.visQueue.push(["won", null]);
           return true;
         } else {
