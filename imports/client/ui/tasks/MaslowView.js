@@ -168,7 +168,6 @@ export default class MaslowView extends React.Component {
             <div id="physological_target" className="selected Maslow" />
 
             <div className="dragItemGroup">
-              {/* TODO: render shuffeled array */}
               {divArray.map(div => {
                 return div;
               })}
