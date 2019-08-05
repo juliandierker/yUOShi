@@ -1,20 +1,22 @@
 {
   "tasks": [
     {
-      "parentId": "",
-      "title": "Introduction",
-      "description": "Lest den Einführungstext und markiert die Schlüssel-Begriffe",
-      "taskId": "Motivation_Intro",
-      "filePrefix": "Tag",
+      "parentId": "Motivation0",
+      "title": "Motivationsbegriffe",
+      "description": "In diesem Memory müsst ihr zu Begriffen die entsprechenden Bilder zuweisen.",
+      "taskId": "Motivation_Memory",
+      "filePrefix": "Memory",
       "sequenceId": 1,
+      "package": "Motivation",
+      "credits": 3000,
       "content": [
         {
           "title": "Motivation Begriffsklärung",
-          "subtitle": "Definitionen und Abgrenzungen",
-          "text": "Der Begriff Motivation stammt ursprünglich von dem lateinischen Wort „movere“ ab, was übersetzt soviel bedeutet wie „bewegen“. Der Versuch der Begriffsklärung macht deutlich, dass viele verschiedene Ansätze und Überlegungen über Motivation existieren.\nSind hierbei doch deutliche Gemeinsamkeiten zu erkennen, legen die verschiedenen Definitionen   je   nach   Bezugswissenschaft   einen   unterschiedlichen   Fokus   der Betrachtung. Während z.B. Krapp et al. (2014, S. 194f.) Motivation als die „generelle Frage nach dem ‚Warum’ oder ‚Wozu’ des menschlichen Verhaltens“ beschreibt, sehen Rheinberg   und   Vollmeyer   Motivation   „als   eine   aktivierende   Ausrichtung   des momentanen   Lebensvollzugs   auf   einen   positiv   bewerteten   Zielzustand“   an (Schiefele/Schaffner, 2015, S. 154). Eine weitere gängige Definition versteht Motivation als eine Art internen Zustand,welcher für die Aktivierung des menschlichen Verhaltens zuständig ist, die Richtung des Verhaltens festlegt und es aufrecht hält. Hierbei wird deutlich, dass Rheinberg und Vollmeyer vor allem auf die Vergänglichkeit der Motivation und auf ihre energetische Wirkung anspielen, während letztere ihren Fokus auf die innere Herkunft der Motivation legt.\n\nHäufig kommt es vor, dass der Motivationsbegriff mit dem Motiv gleichgesetzt wird. Um dies zu differenzieren, bedarf es einer klaren Abgrenzung. Das Motiv beschreibt die Veranlagung einer Person, nach einem wertgeladenen Zielzustand zu streben, also kurzgesagt die überdauernde Handlungsbereitschaft eines Individuums. Dies kann zum Beispiel ein inneres Motiv nach Leistung, Macht oder Beziehungen sein. Dadurch kann das Motiv zum Auslöser für den stattfindenden Prozess, die Motivation, werden. \n\n Eine weitere Abgrenzung muss zwischen den Begriffen Motivation und  Bedürfnis stattfinden. Das Bedürfnis bezeichnet den Wunsch bzw. das Verlangen danach, einem Mangel entgegenzuwirken, egal ob dieser tatsächlich vorhanden oder eingebildet ist. Besteht ein Bedürfnis über längere Zeit, kann es mit dem Begriff des Motivs gleichgesetzt werden. Es beschreibt dann die Neigung des Menschens, eine bestimmte Klasse von Zielen zu erreichen. \n \n Hier wird deutlich, dass auch das Ziel näher erläutert werden sollte. Der Zielbegriff definiert ein Ergebnis oder einen Zustand, den sich ein Individuum zu erreichen vorgenommen hat. Hierbei ist die konkrete Zielsetzung ausschlaggebend dafür, dass ein Individuum die Diskrepanz zwischen dem IST-Zustand und dem SOLL-Zustand wahrnimmt und motiviert ist, diese zu verkleinern. Eine Zielsetzung hat die Funktion, die Aufmerksamkeit des Individuums auf eine Aufgabe zu lenken, Energie für die Bewältigung der Aufgabe zu liefern, die Ausdauer bis zur Erfüllung der Aufgabe zu erhalten und den Erwerb neuen Wissens zufördern. \n\nEin weiteres verwandtes Konzept, welches häufig in der Motivationsforschung Anwendung findet, ist das Interesse. Interesse beschreibt eine mehr oder weniger starke Wertschätzung eines Gegenstandes oder Bereichs, die in der Auseinandersetzung mit diesem zustande kommt. Dabei kann zwischen zwei Arten vonInteresse unterschieden werden. Zum einen das individuelle, oder auch persönliche Interesse, welches einen überdauernden Aspekt der Persönlichkeit darstellt und sich z.B.in einer langfristigen Vorliebe für bestimmte Fächer oder Aktivitäten äußert. Zum anderen das situationsspezifische Interesse, welches sich eher kurzlebig präsentiert und z.B. die Begeisterung für ein bestimmtes Material im Unterricht darstellt.",
+          "subtitle": "",
+          "conten": "",
           "keywords": [
-            "Motivation",
-            "Motivation_source",
+            "Sicherheitsbedürfnisse",
+            "körperliche Bedürfnisse",
             "Bedürfnis",
             "Bedürfnis_source"
           ]

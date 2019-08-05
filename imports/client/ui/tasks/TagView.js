@@ -4,7 +4,6 @@ import { Meteor } from "meteor/meteor";
 import PropTypes from "prop-types";
 import reactStringReplace from "react-string-replace";
 import ReactPlayer from "react-player";
-import { Grid } from "semantic-ui-react";
 
 import { DragdropModel } from "../../../models/DragdropModel";
 import {
