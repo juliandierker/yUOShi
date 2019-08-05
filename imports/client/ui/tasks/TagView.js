@@ -4,7 +4,6 @@ import { Meteor } from "meteor/meteor";
 import PropTypes from "prop-types";
 import reactStringReplace from "react-string-replace";
 import ReactPlayer from "react-player";
-import { Grid } from "semantic-ui-react";
 
 import { DragdropModel } from "../../../models/DragdropModel";
 import {
@@ -18,6 +17,7 @@ import {
   Label
 } from "semantic-ui-react";
 import Swal from "sweetalert2";
+
 export default class TagView extends React.Component {
   constructor(props) {
     super(props);
