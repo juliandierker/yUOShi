@@ -12,7 +12,6 @@ export const ClozeModel = {
 
       run: function(solution) {
         // !!!!!!!! Samplesolution not available
-        // console.log(this.sampleSolution);
         // if (this.sampleSolution.length == solution.length) {
         //   if (!this.visQueue.includes("fail")) {
         //     this.visQueue.push(["won", null]);
