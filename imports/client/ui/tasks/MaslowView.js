@@ -128,6 +128,35 @@ export default class MaslowView extends React.Component {
     }
   }
   renderPyramid() {
+    let divArray = [
+      <div id="selfActualization" className="dragItem">
+        Selbstverwirklichung
+      </div>,
+      <div id="esteem" className="dragItem">
+        Individualbedürfnisse
+      </div>,
+      <div id="socialneeds" className="dragItem">
+        Soziale Bedürfnisse
+      </div>,
+      <div id="safety" className="dragItem">
+        Sicherheits Bedürfnisse
+      </div>,
+      <div id="physological" className="dragItem">
+        Körperliche Bedürfnisse
+      </div>
+    ];
+
+    function shuffle(a) {
+      for (let i = a.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [a[i], a[j]] = [a[j], a[i]];
+      }
+      return a;
+    }
+
+    divArray = shuffle(divArray);
+    console.log(divArray);
+
     return (
       <div id="svgDiv">
         <div className="pyramidWrapper">
@@ -139,21 +168,10 @@ export default class MaslowView extends React.Component {
             <div id="physological_target" className="selected Maslow" />
 
             <div className="dragItemGroup">
-              <div id="selfActualization" className="dragItem">
-                Selbstverwirklichung
-              </div>
-              <div id="esteem" className="dragItem">
-                Individualbedürfnisse
-              </div>
-              <div id="socialneeds" className="dragItem">
-                Soziale Bedürfnisse
-              </div>
-              <div id="safety" className="dragItem">
-                Sicherheits Bedürfnisse
-              </div>
-              <div id="physological" className="dragItem">
-                Körperliche Bedürfnisse
-              </div>
+              {/* TODO: render shuffeled array */}
+              {divArray.map(div => {
+                return div;
+              })}
             </div>
           </div>
 
