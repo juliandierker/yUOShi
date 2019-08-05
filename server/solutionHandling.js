@@ -6,7 +6,7 @@ import { Students } from "../imports/api/students";
 import { Tasks } from "../imports/api/tasks";
 var Solutions = JSON.parse(Assets.getText("solutions.json"));
 
-function solveTask(studentId, taskId) {
+function solveTask(studentId, taskId, solvedPercentage) {
   try {
     const student = Students.findOne({ _id: studentId });
     const task = Tasks.findOne({ taskId: taskId });
@@ -25,7 +25,7 @@ function solveTask(studentId, taskId) {
     currentTask["endTime"] = endTime;
     currentTask["taskState"] = "solved";
 
-    student.exp += task.credits;
+    student.exp += (task.credits  * (solvedPercentage ? solvedPercentage : 1));
 
     // update student
     var studentUpdates = {
@@ -55,7 +55,7 @@ function solveTask(studentId, taskId) {
       // studentUpdates["$addToSet"]["earning"] = money;
       student.date = moment().format("MMM Do,h:mm a");
     }
-    var newCredits = task.credits;
+    var newCredits = task.credits * (solvedPercentage ? solvedPercentage : 1);
 
     for (var bonus in currentTask.taskState.bonuses) {
       newCredits += currentTask.taskState.bonuses[bonus];
@@ -87,7 +87,10 @@ function solveTask(studentId, taskId) {
 }
 
 Meteor.methods({
-  "solutionHandler.submitDrag"(studentSolution, studentId, task) {
+  "solutionHandler.submitDrag"(studentSolution, studentId, task, solvedPercentage) {
+    if(solvedPercentage !== undefined) {
+      solveTask(studentId, task.taskId, solvedPercentage);
+    }
     var correct = equals(studentSolution, Solutions[task.taskId]);
     if (correct) {
       solveTask(studentId, task.taskId);
