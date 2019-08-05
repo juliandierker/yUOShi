@@ -7,34 +7,48 @@ export const DragdropModel = {
         this._id = task._id;
         this.taskId = task.taskId;
         this.visQueue = [];
+        this.correctArr = [];
         this.solution = [];
       },
 
       run: function(solution) {
         this.reset();
-        for (var i = 0; i < solution.length; i++) {
-          var checkElem = solution[i].id.split("_")[0];
-          if (solution[i].children.length > 0) {
-            if (!(solution[i].children[0].id == checkElem)) {
-              this.visQueue.push(["fail", checkElem]);
-              return false;
-            } else {
-              this.solution.push(checkElem);
+
+        for(let i = 0; i < solution.length; i++) {
+          let correctArr = [];
+          let checkElem = solution[i].id.split("_")[0];
+            for(let j = 0; j < solution[i].children.length; j++) {
+              if(solution[i].children[j].id == checkElem) {
+                correctArr.push(true);
+                if(this.solution.indexOf(checkElem) === -1) {
+                  this.solution.push(checkElem)
+                }
+              } else {
+                correctArr.push(false);
+                this.visQueue.push(["fail", checkElem])
+              }
             }
-          } else {
-            this.visQueue.push(["fail", checkElem]);
-            return false;
+          this.correctArr.push(correctArr);
+        }
+        let allCorrect = true;
+        for(let i = 0; i< this.correctArr.length; i++)  {
+          if(this.correctArr[i].includes(false)) {
+            allCorrect = false;
           }
         }
-        if (!this.visQueue.includes("fail")) {
+
+        if(allCorrect) {
           this.visQueue.push(["won", null]);
           return true;
+        } else {
+          return false;
         }
       },
 
       reset: function() {
         this.visQueue = [];
         this.solution = [];
+        this.correctArr = [];
       }
     };
     return model;

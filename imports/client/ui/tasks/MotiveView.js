@@ -35,10 +35,9 @@ export default class MotiveView extends React.Component {
       directionObject = document.getElementById("directionObject"),
       original = document.getElementById("original"),
       logoElement = document.getElementById("logoElement");
-    //getDirection() can return 3 types of direction...
-    directionStart.innerHTML = '"' + getDirection("start") + '"'; //direction from start of drag
-    directionVelocity.innerHTML = '"' + getDirection("velocity") + '"'; //momentary velocity *requires ThrowPropsPlugin
-    directionObject.innerHTML = '"' + getDirection(logoElement) + '"'; //direction from an object
+    directionStart.innerHTML = '"' + getDirection("start") + '"'; 
+    directionVelocity.innerHTML = '"' + getDirection("velocity") + '"'; 
+    directionObject.innerHTML = '"' + getDirection(logoElement) + '"'; 
   }
 
   initDragDrop() {
@@ -57,6 +56,31 @@ export default class MotiveView extends React.Component {
 
   componentDidUpdate() {
     this.initDragDrop();
+    if(this.props.showSolution) {
+      let intrNodes = document.getElementById("intr_target").childNodes
+      let extrNodes = document.getElementById("extr_target").childNodes
+      const correctArr = this.props.model.correctArr;
+      if(correctArr.length >= 2) {
+        for(let i = 0; i < correctArr[0].length; i++) {
+          if(intrNodes[i]) {
+            if(correctArr[0][i] === true) {
+              intrNodes[i].classList.add("correct")
+            } else {
+              intrNodes[i].classList.add("false")
+            }
+          }
+        }
+        for(let i = 0; i < correctArr[1].length; i++) {
+          if(extrNodes[i]) {
+            if(correctArr[1][i] === true) {
+              extrNodes[i].classList.add("correct")
+            } else {
+              extrNodes[i].classList.add("false")
+            }
+          }
+        }
+      }
+    }
   }
 
   componentWillUnmount() {
@@ -105,8 +129,6 @@ export default class MotiveView extends React.Component {
       that.rerenderItems(this, hit);
     } else {
       that.rerenderItems(this, hit);
-
-      Swal.fire("Du hast alle Statements genutzt!");
     }
   }
 
@@ -152,6 +174,8 @@ export default class MotiveView extends React.Component {
         return statements.slice(0, this.state.index + 1).map(statement => {
           return (
             <Card
+            // when i add the key prop, it renders more than one card???
+              // key={"card" + i+statement[1]}
               centered
               description={[statement[1]]}
               className="dragItem"
@@ -189,8 +213,6 @@ export default class MotiveView extends React.Component {
           </Card.Group>
 
           {this.renderTable()}
-
-          <h1>Motivation</h1>
         </div>
       </div>
     );
