@@ -35,14 +35,81 @@ export default class MaslowView extends React.Component {
   componentDidMount() {
     window.addEventListener("load", this.handleLoad());
   }
+
+  componentDidUpdate() {
+    if (this.props.showSolution) {
+      let selfActualizationNodes = document.getElementById(
+        "selfActualization_target"
+      ).childNodes;
+      let esteemNodes = document.getElementById("esteem_target").childNodes;
+      let socialneedsNodes = document.getElementById("socialneeds_target")
+        .childNodes;
+      let safetyNodes = document.getElementById("safety_target").childNodes;
+      let physologicalNodes = document.getElementById("physological_target")
+        .childNodes;
+
+      const correctArr = this.props.model.correctArr;
+      if (correctArr.length >= 5) {
+        for (let i = 0; i < correctArr[0].length; i++) {
+          if (selfActualizationNodes[i]) {
+            selfActualizationNodes[i].classList.add(
+              correctArr[0][i] === true ? "correct" : "false"
+            );
+          }
+        }
+        for (let i = 0; i < correctArr[1].length; i++) {
+          if (esteemNodes[i]) {
+            esteemNodes[i].classList.add(
+              correctArr[1][i] === true ? "correct" : "false"
+            );
+          }
+        }
+        for (let i = 0; i < correctArr[2].length; i++) {
+          if (socialneedsNodes[i]) {
+            socialneedsNodes[i].classList.add(
+              correctArr[2][i] === true ? "correct" : "false"
+            );
+          }
+        }
+        for (let i = 0; i < correctArr[3].length; i++) {
+          if (safetyNodes[i]) {
+            safetyNodes[i].classList.add(
+              correctArr[3][i] === true ? "correct" : "false"
+            );
+          }
+        }
+        for (let i = 0; i < correctArr[4].length; i++) {
+          if (physologicalNodes[i]) {
+            physologicalNodes[i].classList.add(
+              correctArr[4][i] === true ? "correct" : "false"
+            );
+          }
+        }
+      }
+    }
+  }
+
   componentWillUnmount() {
     window.removeEventListener("load", this.handleLoad());
   }
   dropItem() {
     var boundsBefore, boundsAfter;
-    if (this.hitTest("#" + this.target.id + "_target")) {
+    const targets = [
+      "selfActualization",
+      "esteem",
+      "socialneeds",
+      "safety",
+      "physological"
+    ];
+    let targetHit = "";
+    for (let i = 0; i < targets.length; i++) {
+      if (this.hitTest("#" + targets[i] + "_target")) {
+        targetHit = "#" + targets[i] + "_target";
+      }
+    }
+    if (targetHit !== "") {
       boundsBefore = this.target.getBoundingClientRect();
-      $(this.target).appendTo("#" + this.target.id + "_target");
+      $(this.target).appendTo(targetHit);
       boundsAfter = this.target.getBoundingClientRect();
       TweenMax.fromTo(
         this.target,

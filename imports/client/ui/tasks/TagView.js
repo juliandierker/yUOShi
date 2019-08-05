@@ -17,6 +17,7 @@ import {
   Label
 } from "semantic-ui-react";
 import Swal from "sweetalert2";
+
 export default class TagView extends React.Component {
   constructor(props) {
     super(props);

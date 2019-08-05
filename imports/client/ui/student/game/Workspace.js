@@ -249,7 +249,7 @@ export default class Workspace extends React.Component {
         />
         <div
           className="workspace__container"
-          style={{ marginLeft: "16px", marginTop: "60px" }}
+          style={{ marginLeft: "16px", marginTop: "60px", width: "100%" }}
         >
           {this.taskSwitch()}
         </div>
