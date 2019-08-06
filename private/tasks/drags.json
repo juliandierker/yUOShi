@@ -6,7 +6,7 @@
       "description": "Versucht die Bedürfnis-Pyramide nach Maslow in die richtige Reihenfolge zu bringen.",
       "taskId": "Maslow",
       "filePrefix": "Drag",
-      "sequenceId": 5,
+      "sequenceId": 6,
       "content": {},
       "package": "Motivation",
       "credits": 2500

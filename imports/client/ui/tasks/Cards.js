@@ -10,6 +10,7 @@ export default class Card extends React.Component {
     this.props.click(framework);
   }
   render() {
+    var def = this.props.framework.name.split("-")[1];
     return (
       <div
         className={
@@ -21,13 +22,11 @@ export default class Card extends React.Component {
       >
         <div className="front">?</div>
         <div className="back">
-          <img
-            src={
-              "https://raw.githubusercontent.com/samiheikki/javascript-guessing-game/master/static/logos/" +
-              this.props.framework +
-              ".png"
-            }
-          />
+          {this.props.framework.name.includes("def") ? (
+            def
+          ) : (
+            <img src={"/tasks/Memory/" + this.props.framework.name + ".png"} />
+          )}
         </div>
       </div>
     );
