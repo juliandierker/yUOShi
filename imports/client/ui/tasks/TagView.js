@@ -201,8 +201,6 @@ export default class TagView extends React.Component {
     }
   }
   render() {
-    //TODO: Check if all tags are tagged
-
     const buttonDisabled = this.state.finished ? false : true;
     const buttonColor = this.state.finished ? "green" : "grey";
     return (
