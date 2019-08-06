@@ -1,12 +1,3 @@
-@keyframes show {
-  0% {
-    color: rgba(255, 255, 255, 0);
-  }
-  100% {
-    color: rgba(255, 255, 255, 1);
-  }
-}
-
 * {
   margin: 0;
   padding: 0;
@@ -36,8 +27,6 @@
 
 .dragItem {
   align-self: center;
-  //vertical-align: middle;
-  //align-items: center;
 }
 
 .Maslow {
@@ -61,47 +50,6 @@
   stroke-width: 1px;
 }
 
-/* All images from pexels.com */
-.Maslow:nth-child(1) {
-  background: rgba(170, 180, 160, 0.7);
-}
-
-.Maslow:nth-child(2) {
-  background: rgba(155, 165, 145, 0.7);
-}
-
-.Maslow:nth-child(3) {
-  background: rgba(140, 150, 130, 0.7);
-}
-
-.Maslow:nth-child(4) {
-  background: rgba(125, 135, 115, 0.7);
-}
-
-.Maslow:nth-child(5) {
-  background: rgba(110, 120, 100, 0.7);
-}
-
-.Maslow:nth-child(1):hover {
-  background: rgba(170, 180, 160, 0.2);
-}
-
-.Maslow:nth-child(2):hover {
-  background: rgba(155, 165, 145, 0.2);
-}
-
-.Maslow:nth-child(3):hover {
-  background: rgba(140, 150, 130, 0.2);
-}
-
-.Maslow:nth-child(4):hover {
-  background: rgba(125, 135, 115, 0.2);
-}
-
-.Maslow:nth-child(5):hover {
-  background: rgba(110, 120, 100, 0.2);
-}
-
 h1,
 p {
   color: rgba(255, 255, 255, 0);
@@ -117,6 +65,9 @@ p {
 }
 
 @supports not (shape-outside: polygon(310px 0, 130px 405px, 558px 405px)) {
+  p:nth-of-type(n) {
+    height: 50px;
+  }
   p {
     position: relative;
     float: right;
@@ -140,27 +91,36 @@ p {
 }
 
 .Maslow:nth-child(1) {
+  background: rgba(170, 180, 160, 0.7);
   -webkit-clip-path: url("#part1");
   clip-path: url("#part1");
 }
 
 .Maslow:nth-child(2) {
+  background: rgba(155, 165, 145, 0.7);
   -webkit-clip-path: url("#part2");
   clip-path: url("#part2");
 }
 
 .Maslow:nth-child(3) {
+  background: rgba(140, 150, 130, 0.7);
   -webkit-clip-path: url("#part3");
   clip-path: url("#part3");
 }
 
 .Maslow:nth-child(4) {
+  background: rgba(125, 135, 115, 0.7);
   -webkit-clip-path: url("#part4");
   clip-path: url("#part4");
 }
 .Maslow:nth-child(5) {
+  background: rgba(110, 120, 100, 0.7);
   -webkit-clip-path: url("#part5");
   clip-path: url("#part5");
+}
+
+.Maslow:nth-child(n):hover {
+  background: rgba(110, 120, 100, 0.2);
 }
 
 .correct {
