@@ -5,7 +5,6 @@ import PropTypes from "prop-types";
 import reactStringReplace from "react-string-replace";
 import ReactPlayer from "react-player";
 
-import { DragdropModel } from "../../../models/DragdropModel";
 import {
   Button,
   Header,
@@ -14,7 +13,8 @@ import {
   Grid,
   Icon,
   Segment,
-  Label
+  Label,
+  Modal
 } from "semantic-ui-react";
 import Swal from "sweetalert2";
 
@@ -24,7 +24,8 @@ export default class TagView extends React.Component {
     this.state = {
       active: null,
       tags: [],
-      finished: false
+      finished: false,
+      videoOpen: true
     };
     this.view = null;
   }
@@ -166,12 +167,40 @@ export default class TagView extends React.Component {
   }
   renderVideo() {
     if (this.props.activeTask.video) {
-      return <ReactPlayer url={this.props.activeTask.video} playing />;
+      return (
+        <Modal
+          basic
+          size="tiny"
+          open={this.state.videoOpen}
+          onClose={() => this.setState({ videoOpen: false })}
+          trigger={
+            <Button onClick={() => this.setState({ videoOpen: true })}>
+              Video ansehen
+            </Button>
+          }
+        >
+          <Modal.Content>
+            <ReactPlayer
+              style={{ margin: "auto" }}
+              url={this.props.activeTask.video}
+              playing
+              controls={true}
+            />
+
+            <Button
+              style={{ marginLeft: "70%", marginTop: "10px" }}
+              color="orange"
+              onClick={() => this.setState({ videoOpen: false })}
+              inverted
+            >
+              Später ansehen
+            </Button>
+          </Modal.Content>
+        </Modal>
+      );
     }
   }
   render() {
-    //TODO: Check if all tags are tagged
-
     const buttonDisabled = this.state.finished ? false : true;
     const buttonColor = this.state.finished ? "green" : "grey";
     return (

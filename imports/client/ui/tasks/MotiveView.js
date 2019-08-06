@@ -48,8 +48,17 @@ export default class MotiveView extends React.Component {
     });
   }
   componentDidMount() {
+    function shuffle(a) {
+      for (let i = a[0].length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [a[0][i], a[0][j]] = [a[0][j], a[0][i]];
+      }
+      return a;
+    }
+    let shuffled = shuffle(this.props.activeTask.statements);
+    console.log(shuffled);
     if (this.state.activeTask == null) {
-      this.setState({ statements: this.props.activeTask.statements });
+      this.setState({ statements: shuffled });
     }
     window.addEventListener("load", this.handleLoad());
   }
@@ -124,7 +133,7 @@ export default class MotiveView extends React.Component {
       TweenMax.to(this.target, 0.5, { x: 0, y: 0 });
       return;
     }
-    if (that.state.index != that.props.activeTask.statements[0].length - 1) {
+    if (that.state.index != that.state.statements[0].length - 1) {
       that.setState({ index: ++index });
       that.rerenderItems(this, hit);
     } else {
@@ -167,7 +176,7 @@ export default class MotiveView extends React.Component {
   }
 
   renderStatements() {
-    var statements = this.props.activeTask.statements[0];
+    var statements = this.state.statements[0];
     for (var i in statements) {
       if (i == this.state.index) {
         var tmp;
