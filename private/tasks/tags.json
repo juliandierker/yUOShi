@@ -80,7 +80,7 @@
       "description": "Lest den Einführungstext und markiert die Schlüssel-Begriffe",
       "taskId": "Selbstbestimmungs_Theorie",
       "filePrefix": "Tag",
-      "sequenceId": 6,
+      "sequenceId": 7,
       "content": [
         {
           "title": "Selbstbestimmungs-Theorie",
@@ -105,7 +105,7 @@
       "description": "Lest den Einführungstext und markiert die Schlüssel-Begriffe",
       "taskId": "Xwert_Theorie",
       "filePrefix": "Tag",
-      "sequenceId": 7,
+      "sequenceId": 8,
       "content": [
         {
           "title": "Xwert_Theorie",
@@ -124,7 +124,7 @@
       "description": "Lest den Einführungstext und markiert die Schlüssel-Begriffe",
       "taskId": "Ziele",
       "filePrefix": "Tag",
-      "sequenceId": 7,
+      "sequenceId": 9,
       "content": [
         {
           "title": "Ziele",

@@ -94,6 +94,7 @@ export default class StudentOverview extends React.Component {
   }
 
   handleNextTask() {
+    console.log("entered");
     var student = this.state.student;
     if (student.currentPackage.length > 0) {
       if (student.solvedTasks.length > 0) {
@@ -104,6 +105,8 @@ export default class StudentOverview extends React.Component {
       }
     }
     if (student.tasks.length == 0) {
+      console.log("enteredB");
+      console.log(sequenceId);
       Meteor.call(
         "students.getNextTask",
         student.currentPackage[0].name,

@@ -7,6 +7,7 @@ import DragAnimationTemplate from "../../tasks/DragAnimationTemplate";
 import TrainingAnimationTemplate from "../../tasks/TrainingAnimationTemplate";
 import TagAnimationTemplate from "../../tasks/TagAnimationTemplate";
 import ClozeAnimationTemplate from "../../tasks/ClozeAnimationTemplate";
+import MemoryAnimationTemplate from "../../tasks/MemoryAnimationTemplate";
 
 import equals from "fast-deep-equal";
 import { Button, Icon, Header, Image, Grid } from "semantic-ui-react";
@@ -175,6 +176,11 @@ export default class Workspace extends React.Component {
           this.state.activeTask.type == "cloze"
         ) {
           return <ClozeAnimationTemplate {...taskProps} />;
+        } else if (
+          this.state.activeTask &&
+          this.state.activeTask.type == "memory"
+        ) {
+          return <MemoryAnimationTemplate {...taskProps} />;
         }
       } else {
         let taskProps = {

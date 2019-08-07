@@ -134,5 +134,12 @@ Meteor.methods({
       solveTask(studentId, task.taskId);
     }
     return correct;
+  },
+  "solutionHandler.submitMemory"(studentSolution, studentId, task) {
+    var correct = studentSolution.length == task.content[0].keywords.length * 2;
+    if (correct) {
+      solveTask(studentId, task.taskId);
+    }
+    return correct;
   }
 });
