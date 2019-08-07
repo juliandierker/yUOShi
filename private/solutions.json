@@ -28,13 +28,14 @@
     "Selbstverwirklichungsbedürfnis"
   ],
 
-  "Motivation_IntrExtr": ["intrinsische", "extrinsische", "innen", "Ergebnis"],
+  "Motivation_IntrExtr": ["intrinsische Motivation", "Tätigkeit selbst",  "Extrinsische Motivation",  "Mittel zum Zweck", "Zusammenspiel","Korrumpierungseffekt", "getrennte Skalen"],
   "Selbstbestimmungs_Theorie": [
     "Deci und Ryan",
-    "humanistischen",
-    "Autonomie",
-    "Kompetenz",
-    "Eingebundenheit"
+    "humanistischen Ansätzen",
+    "intrinsische Motivation",
+    "Bedürfnis nach Autonomie",
+    "Bedürfnis des Kompetenzerlebens",
+    "Bedürfnis nach sozialer Eingebundenheit"
   ],
   "Xwert_Theorie": ["Erwartungs-Wert", "Situation", "Ergebnis"],
   "Ziele": ["Zielsetzungstheorie", "Locke", "Moderatoren"],
