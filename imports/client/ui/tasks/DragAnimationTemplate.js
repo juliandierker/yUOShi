@@ -42,7 +42,6 @@ export default class DragAnimationTemplate extends React.Component {
         solvedPercentage =
           correctAnswers / this.props.activeTask.statements[0].length;
       } else if (this.props.activeTask.taskId == "Maslow") {
-        console.log(correctAnswers);
         solvedPercentage = correctAnswers / 5;
       }
 
@@ -98,7 +97,6 @@ export default class DragAnimationTemplate extends React.Component {
         "solutionHandler.submit" + this.props.activeTask.filePrefix;
       var solution = this.model.solution;
     }
-    console.log(solution);
     Meteor.call(
       meteorMethod,
       solution,

@@ -56,7 +56,6 @@ export default class MotiveView extends React.Component {
       return a;
     }
     let shuffled = shuffle(this.props.activeTask.statements);
-    console.log(shuffled);
     if (this.state.activeTask == null) {
       this.setState({ statements: shuffled });
     }
