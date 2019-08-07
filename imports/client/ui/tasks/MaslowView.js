@@ -1,13 +1,20 @@
 import React from "react";
-import { Meteor } from "meteor/meteor";
-import PropTypes from "prop-types";
-import { Button } from "semantic-ui-react";
 import { TweenMax } from "gsap";
 
 export default class MaslowView extends React.Component {
   constructor(props) {
     super(props);
     this.view = null;
+
+    this.state = {
+      statements: [
+        { id: "selfActualization", name: "Selbstverwirklichung" },
+        { id: "esteem", name: "Individualbedürfnisse" },
+        { id: "socialneeds", name: "Soziale Bedürfnisse" },
+        { id: "safety", name: "Sicherheits Bedürfnisse" },
+        { id: "physological", name: "Körperliche Bedürfnisse" }
+      ]
+    };
     this.handleLoad = this.handleLoad.bind(this);
   }
   handleLoad() {
@@ -33,12 +40,22 @@ export default class MaslowView extends React.Component {
     });
   }
   componentDidMount() {
+    function shuffle(a) {
+      for (let i = a.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [a[i], a[j]] = [a[j], a[i]];
+      }
+      return a;
+    }
+    let shuffled = shuffle(this.state.statements);
+    this.setState({ statements: shuffled });
     window.addEventListener("load", this.handleLoad());
   }
 
   componentDidUpdate() {
+    this.initDragDrop();
     if (this.props.showSolution) {
-      let selfActualizationNodes = document.getElementById(
+      const selfActualizationNodes = document.getElementById(
         "selfActualization_target"
       ).childNodes;
       let esteemNodes = document.getElementById("esteem_target").childNodes;
@@ -48,6 +65,7 @@ export default class MaslowView extends React.Component {
       let physologicalNodes = document.getElementById("physological_target")
         .childNodes;
 
+      // TODO: Reduce this garbage
       const correctArr = this.props.model.correctArr;
       if (correctArr.length >= 5) {
         for (let i = 0; i < correctArr[0].length; i++) {
@@ -127,36 +145,8 @@ export default class MaslowView extends React.Component {
       TweenMax.to(this.target, 0.5, { x: 0, y: 0 });
     }
   }
+
   renderPyramid() {
-    let divArray = [
-      <div id="selfActualization" className="dragItem">
-        Selbstverwirklichung
-      </div>,
-      <div id="esteem" className="dragItem">
-        Individualbedürfnisse
-      </div>,
-      <div id="socialneeds" className="dragItem">
-        Soziale Bedürfnisse
-      </div>,
-      <div id="safety" className="dragItem">
-        Sicherheits Bedürfnisse
-      </div>,
-      <div id="physological" className="dragItem">
-        Körperliche Bedürfnisse
-      </div>
-    ];
-
-    function shuffle(a) {
-      for (let i = a.length - 1; i > 0; i--) {
-        const j = Math.floor(Math.random() * (i + 1));
-        [a[i], a[j]] = [a[j], a[i]];
-      }
-      return a;
-    }
-
-    divArray = shuffle(divArray);
-    console.log(divArray);
-
     return (
       <div id="svgDiv">
         <div className="pyramidWrapper">
@@ -168,8 +158,12 @@ export default class MaslowView extends React.Component {
             <div id="physological_target" className="selected Maslow" />
 
             <div className="dragItemGroup">
-              {divArray.map(div => {
-                return div;
+              {this.state.statements.map(statement => {
+                return (
+                  <div id={statement.id} className="dragItem">
+                    {statement.name}
+                  </div>
+                );
               })}
             </div>
           </div>

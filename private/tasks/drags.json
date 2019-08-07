@@ -6,7 +6,7 @@
       "description": "Versucht die Bedürfnis-Pyramide nach Maslow in die richtige Reihenfolge zu bringen.",
       "taskId": "Maslow",
       "filePrefix": "Drag",
-      "sequenceId": 6,
+      "sequenceId": 5,
       "content": {},
       "package": "Motivation",
       "credits": 2500
@@ -35,77 +35,7 @@
             "intr",
             "Die Klasse arbeitet gerne mit, weil sie dadurch etwas lernen."
           ],
-          ["extr", "Die Lehrkraft vergibt Sternchen für gute Mitarbeit"],
-          ["intr", "Max hat Spaß am Unterricht, weshalb er sich oft meldet."],
-          [
-            "extr",
-            "Laura wird ermahnt, wenn sie im Unterricht nicht mitmacht."
-          ],
-          [
-            "intr",
-            "Ben liest gerne Bücher und beschäftigt sich deshalb mit dem Thema für die Deutschklausur."
-          ],
-          [
-            "extr",
-            "Mara bekommt von ihrer Oma 5Euro, wenn sie in Deutsch eine gute Note schreibt."
-          ],
-          ["intr", "Jana ist traurig, wenn sie eine schlechte Note bekommt."],
-          [
-            "extr",
-            "Richards Mutter ist enttäuscht, wenn er eine schlechte Note bekommt"
-          ],
-          ["intr", "Alexander ist eine ordentliche Mappenführung wichtig."],
-          [
-            "extr",
-            "Clara führt ihre Mappe ordentlich, um dadurch ein Sternchen zu bekommen."
-          ],
-          [
-            "intr",
-            "Malena passt in Biologie auf, weil sie Ärztin werden möchte."
-          ],
-          [
-            "extr",
-            "Dennis bekommt eine gute Note von der Lehrerin, wenn er in Biologie aufpasst."
-          ],
-          [
-            "intr",
-            "Lisa ist es wichtig, Zusammenhänge zu verstehen, weshalb sie sich bei einer Aufgabe anstrengt."
-          ],
-          [
-            "extr",
-            "Henrik strengt sich bei einer Aufgabe an, weil die Lehrerin eine Belohnung versprochen hat."
-          ],
-          [
-            "intr",
-            "Christian interessiert sich für Religion und liest deshalb das Kapitel."
-          ],
-          ["extr", "Anna liest das Kapitel, weil sie morgen geprüft wird."],
-          ["intr", "Lena trägt Converse, weil ihr diese Schuhe gefallen."],
-          [
-            "extr",
-            "Lara hat sich UGG-Boots gekauft, weil momentan alle diese Schuhe tragen."
-          ],
-          [
-            "intr",
-            "Anna findet Fußball spitze und freut sich auf die Unterrichtsstunde dazu."
-          ],
-          [
-            "extr",
-            "Paul nimmt gerne am Sportunterricht teil, weil ihn jeder in seine Mannschaft wählt."
-          ],
-          ["intr", "Max übt Mathe, weil er besser werden möchte."],
-          [
-            "extr",
-            "Claudias Mutter möchte, dass sie jeden Tag eine Matheaufgabe rechnet."
-          ],
-          [
-            "intr",
-            "Matti übt die Rückhand beim Tennis, weil er sich weiterentwickeln will."
-          ],
-          [
-            "extr",
-            "Sebastian arbeitet an seiner Kraultechnik, um den nächsten Wettkampf zu gewinnen.Maslow_Theorie"
-          ]
+          ["extr", "Die Lehrkraft vergibt Sternchen für gute Mitarbeit"]
         ]
       ]
     }
