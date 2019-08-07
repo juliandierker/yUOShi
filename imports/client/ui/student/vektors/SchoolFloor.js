@@ -8,48 +8,55 @@ export default class schoolFloor extends React.Component {
       classHover: false
     };
   }
-  handleClassroomClick() {
-    var elem = document.getElementById("path19102");
-    var text = document.getElementById("text19162");
-    console.log(text);
-    var box = document.getElementById("rect19151");
-    elem.style.fill = "rgb(4, 216, 76)";
+  handleClassroomClick(id) {
+    var markers = document.getElementsByClassName(id + "Marker");
+    var text = document.getElementById(id + "Text");
+    var box = document.getElementById(id + "Rect");
+    for (var i in markers) {
+      console.log(markers[i]);
+      if (markers[i].style) {
+        markers[i].style.fill = "rgb(4, 216, 76)";
+      }
+    }
+
     text.style.visibility = "visible";
     box.style.visibility = "visible";
     var that = this;
     setTimeout(function() {
-      that.props.history.push("/student/classroom");
+      that.props.history.push("/student/" + id);
     }, 1500);
   }
 
   hoverOnClass(id) {
-    console.log(event);
-    console.log(document.getElementById(id));
-    console.log("hover");
+    var markers = document.getElementsByClassName(id + "Marker");
+    var text = document.getElementById(id + "Text");
+    var box = document.getElementById(id + "Rect");
     if (!this.state.classHover) {
       this.setState({ classHover: true });
       var menu = document.getElementById("classMenuItem");
-      var text = document.getElementById("text19162");
-      var box = document.getElementById("rect19151");
-      var elem = document.getElementById("path19102");
-      elem.style.fill = "rgb(206, 239, 174)";
+      for (var i in markers) {
+        if (markers[i].style) {
+          markers[i].style.fill = "rgb(4, 216, 76)";
+        }
+      }
       menu.className = "active left item";
       text.style.visibility = "visible";
       box.style.visibility = "visible";
     }
   }
-  hoverOffClass() {
-    console.log("leave");
+  hoverOffClass(id) {
+    var markers = document.getElementsByClassName(id + "Marker");
+    var text = document.getElementById(id + "Text");
+    var box = document.getElementById(id + "Rect");
     if (this.state.classHover) {
       this.setState({ classHover: false });
-      var text = document.getElementById("text19162");
-      var elem = document.getElementById("path19102");
-
-      var box = document.getElementById("rect19151");
-      elem.style.fill = "#80897d";
+      for (var i in markers) {
+        if (markers[i].style) {
+          markers[i].style.fill = "#5BA23A";
+        }
+      }
       var menu = document.getElementById("classMenuItem");
       menu.className = "left item";
-
       text.style.visibility = "hidden";
       box.style.visibility = "hidden";
     }
@@ -67,7 +74,7 @@ export default class schoolFloor extends React.Component {
         y="0px"
         viewBox="0 0 1920 1080"
         xmlSpace="preserve"
-        style={{ marginTop: "3%" }}
+        style={{ marginTop: "4%" }}
       >
         <polygon
           fill="#E1E1E1"
@@ -7565,20 +7572,21 @@ export default class schoolFloor extends React.Component {
         </g>
         <g>
           <g
-            id="officeMarker"
-            className="officeMarkers"
-            onMouseEnter={() => this.hoverOnClass("officeMarker")}
-            onMouseLeave={() => this.hoverOffClass()}
-            onClick={() => this.handleClassroomClick()}
+            id="office"
+            onMouseEnter={() => this.hoverOnClass("office")}
+            onMouseLeave={() => this.hoverOffClass("office")}
+            onClick={() => this.handleClassroomClick("office")}
             style={{ opacity: 1, cursor: "pointer" }}
           >
             <path
+              className="officeMarker"
               fill="#73B850"
               d="M664,796.8c0,12.2-6.4,22.9-15.8,29.1c-1.4,0.9-2.7,2.2-3.5,3.7l-12.5,21.9c0,0,0,0.1-0.1,0.1
   			c-1.4,2.1-4.5,2.1-5.8-0.1l-12.5-21.9c-0.8-1.5-2.1-2.8-3.5-3.7c-9.7-6.2-16.1-17.2-15.8-29.6c0.2-18.7,15.5-33.8,34.2-34.2
   			c1.2,0,2.2,0,3.3,0.1C650.1,763.7,664,778.6,664,796.8z"
             />
             <path
+              className="officeMarker"
               fill="#73B850"
               d="M664,796.8c0,12.2-6.4,22.9-15.8,29.1c-1.4,0.9-2.7,2.2-3.5,3.7l-12.5,21.9c0,0,0,0.1-0.1,0.1l-0.1-0.1
   			l-12.5-21.9c-0.8-1.5-2.1-2.8-3.5-3.7c-9.7-6.2-16.1-17.2-15.8-29.6c0.2-17.9,14.2-32.6,31.9-34.1
@@ -7631,6 +7639,7 @@ export default class schoolFloor extends React.Component {
           </g>
         </g>
         <image
+          id="officeRect"
           style={{ visibility: "hidden" }}
           width={558}
           height={213}
@@ -7663,30 +7672,40 @@ export default class schoolFloor extends React.Component {
           transform="matrix(0.272 0 0 0.272 555.067 859.932)"
         />
         <text
+          id="officeText"
           transform="matrix(1 0 0 1 588.3174 881.7705)"
           fill="#70706F"
           fontFamily="'Roboto-Bold'"
           fontSize="14.394px"
+          style={{ visibility: "hidden" }}
         >
-          Lorem Ipsum
+          Büro
         </text>
-        <text
+        {/* <text
           transform="matrix(1 0 0 1 572.8286 899.043)"
           fill="#70706F"
           fontFamily="'Roboto-Regular'"
           fontSize="11.5152px"
         >
           Dolor sit amet sit amet
-        </text>
+        </text> */}
         <g>
-          <g>
+          <g
+            id="teacherRoom"
+            onMouseEnter={() => this.hoverOnClass("teacherRoom")}
+            onMouseLeave={() => this.hoverOffClass("teacherRoom")}
+            onClick={() => this.handleClassroomClick("teacherRoom")}
+            style={{ opacity: 1, cursor: "pointer" }}
+          >
             <path
+              className="teacherRoomMarker"
               fill="#5BA23A"
               d="M990.2,402.3c0,12.2-6.4,22.9-15.8,29.1c-1.4,0.9-2.7,2.2-3.5,3.7l-12.5,21.9c0,0,0,0.1-0.1,0.1
   			c-1.4,2.1-4.5,2.1-5.8-0.1l-12.5-21.9c-0.8-1.5-2.1-2.8-3.5-3.7c-9.7-6.2-16.1-17.2-15.8-29.6c0.2-18.7,15.5-33.8,34.2-34.2
   			c1.2,0,2.2,0,3.3,0.1C976.2,369.2,990.2,384.1,990.2,402.3z"
             />
             <path
+              className="teacherRoomMarker"
               fill="#73B850"
               d="M990.2,402.3c0,12.2-6.4,22.9-15.8,29.1c-1.4,0.9-2.7,2.2-3.5,3.7l-12.5,21.9c0,0,0,0.1-0.1,0.1l-0.1-0.1
   			l-12.5-21.9c-0.8-1.5-2.1-2.8-3.5-3.7c-9.7-6.2-16.1-17.2-15.8-29.6c0.2-17.9,14.2-32.6,31.9-34.1
@@ -7739,6 +7758,8 @@ export default class schoolFloor extends React.Component {
           </g>
         </g>
         <image
+          style={{ visibility: "hidden" }}
+          id="teacherRoomRect"
           width={554}
           height={213}
           xlinkHref="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAi8AAADZCAYAAADogNBpAAAACXBIWXMAACjBAAAowQEoPF0ZAAAA
@@ -7771,30 +7792,41 @@ export default class schoolFloor extends React.Component {
           transform="matrix(0.272 0 0 0.272 881.5999 465.4744)"
         />
         <text
+          style={{ visibility: "hidden" }}
+          id="teacherRoomText"
           transform="matrix(1 0 0 1 914.4565 487.2749)"
           fill="#70706F"
           fontFamily="'Roboto-Bold'"
           fontSize="14.394px"
         >
-          Lorem Ipsum
+          Lehrerzimmer
         </text>
-        <text
+        {/* <text
+          className="teacherRoomText"
           transform="matrix(1 0 0 1 898.9673 504.5483)"
           fill="#70706F"
           fontFamily="'Roboto-Regular'"
           fontSize="11.5152px"
         >
           Dolor sit amet sit amet
-        </text>
+        </text> */}
         <g>
-          <g>
+          <g
+            id="classroom"
+            onMouseEnter={() => this.hoverOnClass("classroom")}
+            onMouseLeave={() => this.hoverOffClass("classroom")}
+            onClick={() => this.handleClassroomClick("classroom")}
+            style={{ opacity: 1, cursor: "pointer" }}
+          >
             <path
+              className="classroomMarker"
               fill="#5BA23A"
               d="M1144.6,902.6c0,12.2-6.4,22.9-15.8,29.1c-1.4,0.9-2.7,2.2-3.5,3.7l-12.5,21.9c0,0,0,0.1-0.1,0.1
   			c-1.4,2.1-4.5,2.1-5.8-0.1l-12.5-21.9c-0.8-1.5-2.1-2.8-3.5-3.7c-9.7-6.2-16.1-17.2-15.8-29.6c0.2-18.7,15.5-33.8,34.2-34.2
   			c1.2,0,2.2,0,3.3,0.1C1130.5,869.4,1144.6,884.4,1144.6,902.6z"
             />
             <path
+              className="classroomMarker"
               fill="#73B850"
               d="M1144.6,902.6c0,12.2-6.4,22.9-15.8,29.1c-1.4,0.9-2.7,2.2-3.5,3.7l-12.5,21.9c0,0,0,0.1-0.1,0.1l-0.1-0.1
   			l-12.5-21.9c-0.8-1.5-2.1-2.8-3.5-3.7c-9.7-6.2-16.1-17.2-15.8-29.6c0.2-17.9,14.2-32.6,31.9-34.1
@@ -7847,6 +7879,8 @@ export default class schoolFloor extends React.Component {
           </g>
         </g>
         <image
+          style={{ visibility: "hidden" }}
+          id="classroomRect"
           width={558}
           height={213}
           xlinkHref="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAjMAAADZCAYAAADVErEPAAAACXBIWXMAACjBAAAowQEoPF0ZAAAA
@@ -7877,21 +7911,23 @@ export default class schoolFloor extends React.Component {
           transform="matrix(0.272 0 0 0.272 1035.457 965.5458)"
         />
         <text
+          style={{ visibility: "hidden" }}
+          id="classroomText"
           transform="matrix(1 0 0 1 1068.8633 987.5225)"
           fill="#70706F"
           fontFamily="'Roboto-Bold'"
           fontSize="14.394px"
         >
-          Lorem Ipsum
+          Klassenzimmer
         </text>
-        <text
+        {/* <text
           transform="matrix(1 0 0 1 1053.374 1004.7959)"
           fill="#70706F"
           fontFamily="'Roboto-Regular'"
           fontSize="11.5152px"
         >
           Dolor sit amet sit amet
-        </text>
+        </text> */}
       </svg>
     );
   }

@@ -32,35 +32,61 @@ export default class StudentTopMenu extends React.Component {
     }
   }
   updateMenuButton() {}
-  hoverOnClass() {
-    if (document.getElementById("path19102")) {
-      var elem = document.getElementById("path19102");
-      var text = document.getElementById("text19162");
-      var box = document.getElementById("rect19151");
-      elem.style.fill = "rgb(206, 239, 174)";
-      text.style.visibility = "visible";
-      box.style.visibility = "visible";
+  hoverOnClass(id) {
+    if (document.getElementsByClassName(id + "Marker").length > 0) {
+      var markers = document.getElementsByClassName(id + "Marker");
+      var text = document.getElementById(id + "Text");
+      var box = document.getElementById(id + "Rect");
+      if (!this.state.classHover) {
+        this.setState({ classHover: true });
+        var menu = document.getElementById("classMenuItem");
+        for (var i in markers) {
+          if (markers[i].style) {
+            markers[i].style.fill = "rgb(4, 216, 76)";
+          }
+        }
+        menu.className = "active left item";
+        text.style.visibility = "visible";
+        box.style.visibility = "visible";
+      }
     }
   }
-  hoverOffClass() {
-    if (document.getElementById("path19102")) {
-      var elem = document.getElementById("path19102");
-      var text = document.getElementById("text19162");
-      var box = document.getElementById("rect19151");
-      elem.style.fill = "#80897d";
-      text.style.visibility = "hidden";
-      box.style.visibility = "hidden";
+  hoverOffClass(id) {
+    if (document.getElementsByClassName(id + "Marker").length > 0) {
+      var markers = document.getElementsByClassName(id + "Marker");
+      var text = document.getElementById(id + "Text");
+      var box = document.getElementById(id + "Rect");
+      if (this.state.classHover) {
+        this.setState({ classHover: false });
+        for (var i in markers) {
+          if (markers[i].style) {
+            markers[i].style.fill = "#5BA23A";
+          }
+        }
+        var menu = document.getElementById("classMenuItem");
+        menu.className = "left item";
+        text.style.visibility = "hidden";
+        box.style.visibility = "hidden";
+      }
     }
   }
   handleMenuItemClick = (e, { name }) => {
+    console.log("clicked");
     this.updateMenuButton();
     this.setState({ visible: !this.state.visible });
     if (name === "Klassenzimmer") {
-      if (document.getElementById("path19102")) {
-        var elem = document.getElementById("path19102");
-        var text = document.getElementById("text19162");
-        var box = document.getElementById("rect19151");
-        elem.style.fill = "rgb(4, 216, 76)";
+      var id = "classroom";
+      if (document.getElementsByClassName("classroomMarker").length > 0) {
+        var markers = document.getElementsByClassName(id + "Marker");
+        var text = document.getElementById(id + "Text");
+        var box = document.getElementById(id + "Rect");
+        for (var i in markers) {
+          console.log(markers[i]);
+          if (markers[i].style) {
+            markers[i].style.fill = "rgb(4, 216, 76)";
+          }
+        }
+
         text.style.visibility = "visible";
         box.style.visibility = "visible";
         var that = this;
@@ -112,8 +138,8 @@ export default class StudentTopMenu extends React.Component {
             name="Klassenzimmer"
             active={activeItem === "freegame"}
             onClick={this.handleMenuItemClick}
-            onMouseEnter={() => this.hoverOnClass()}
-            onMouseLeave={() => this.hoverOffClass()}
+            onMouseEnter={() => this.hoverOnClass("classroom")}
+            onMouseLeave={() => this.hoverOffClass("classroom")}
           />
           <Menu.Item
             position="left"
