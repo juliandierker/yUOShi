@@ -22,7 +22,9 @@ export default class schoolFloor extends React.Component {
     }, 1500);
   }
 
-  hoverOnClass() {
+  hoverOnClass(id) {
+    console.log(event);
+    console.log(document.getElementById(id));
     console.log("hover");
     if (!this.state.classHover) {
       this.setState({ classHover: true });
@@ -65,6 +67,7 @@ export default class schoolFloor extends React.Component {
         y="0px"
         viewBox="0 0 1920 1080"
         xmlSpace="preserve"
+        style={{ marginTop: "3%" }}
       >
         <polygon
           fill="#E1E1E1"
@@ -7561,9 +7564,16 @@ export default class schoolFloor extends React.Component {
           <polygon points="1078.1,242.9 1078.1,246.2 1071.6,257 1070.1,256.7 	" />
         </g>
         <g>
-          <g>
+          <g
+            id="officeMarker"
+            className="officeMarkers"
+            onMouseEnter={() => this.hoverOnClass("officeMarker")}
+            onMouseLeave={() => this.hoverOffClass()}
+            onClick={() => this.handleClassroomClick()}
+            style={{ opacity: 1, cursor: "pointer" }}
+          >
             <path
-              fill="#5BA23A"
+              fill="#73B850"
               d="M664,796.8c0,12.2-6.4,22.9-15.8,29.1c-1.4,0.9-2.7,2.2-3.5,3.7l-12.5,21.9c0,0,0,0.1-0.1,0.1
   			c-1.4,2.1-4.5,2.1-5.8-0.1l-12.5-21.9c-0.8-1.5-2.1-2.8-3.5-3.7c-9.7-6.2-16.1-17.2-15.8-29.6c0.2-18.7,15.5-33.8,34.2-34.2
   			c1.2,0,2.2,0,3.3,0.1C650.1,763.7,664,778.6,664,796.8z"
@@ -7621,6 +7631,7 @@ export default class schoolFloor extends React.Component {
           </g>
         </g>
         <image
+          style={{ visibility: "hidden" }}
           width={558}
           height={213}
           xlinkHref="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAi8AAADZCAYAAADogNBpAAAACXBIWXMAACjBAAAowQEoPF0ZAAAA
