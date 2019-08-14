@@ -56,6 +56,10 @@ export default class TagView extends React.Component {
       );
     });
   }
+  renderImage(match) {
+    console.log(match);
+    return <Image src={"/tasks" + match} size="small" floated="left" />;
+  }
   handleClickTag(match, key) {
     var el = document.getElementsByClassName(match);
     var highlighted = document.getElementById(match + key);
@@ -82,6 +86,32 @@ export default class TagView extends React.Component {
     var plainText = this.props.activeTask.content[0].text;
     var keyArr = this.props.activeTask.content[0].keywords;
     let tmpKey = 0;
+
+    //adding images
+    const images = this.props.activeTask.content[0].images;
+    const entries = Object.entries(images);
+    const imgKeys = Object.keys(images);
+    console.log(images);
+    for (const imgKey in imgKeys) {
+      console.log(entries[imgKey][1]);
+      var regExp = new RegExp(entries[imgKey][0], "g", 1);
+
+      var plainText = reactStringReplace(plainText, regExp, (match, j) => {
+        return (
+          <React.Fragment key={"textFragment" + tmpKey}>
+            <Image
+              src={"/tasks" + entries[imgKey][1]}
+              size="small"
+              floated="left"
+            />
+            {entries[imgKey][0]}
+          </React.Fragment>
+        );
+      });
+    }
+
+    //preparing text for tags
+
     for (var i in keyArr) {
       const replacerStr = keyArr[i];
       var re = new RegExp("(?:" + replacerStr + ")(\\W)", "g");

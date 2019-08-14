@@ -20,7 +20,11 @@
             "IST-Zustand",
             "SOLL-Zustand",
             "Interesse"
-          ]
+          ],
+          "images": {
+            "Motivation": "/Tag/Motivation.jpg",
+            "Interesse": "/Tag/Interesse.jpg"
+          }
         }
       ],
 
@@ -39,7 +43,15 @@
           "title": "Motivation Begriffsklärung",
           "subtitle": "Definitionen und Abgrenzungen",
           "text": "Die wohl bekannteste und auch klassischste Unterteilung in der Motivationsforschung ist die von intrinsischer und extrinsischer Motivation. Grundlegend geht es bei dieser handlungstheoretischen Unterscheidung darum, ob sich der angestrebte Zielzustand innerhalb   oder   außerhalb   einer   Handlung   befindet. \n Die intrinsische Motivation kennzeichnet eine Tätigkeit, die dem Individuum Freude und Interessensbefriedigung bei der Ausübung bereitet, also  von innen herausmotiviert ist. Intrinsisch motiviert sein, bedeutet keine Belohnungen oder Anreize zu benötigen, da die Tätigkeit selbst als Belohnung fungiert. Wenn ein Kind zum Beispiel gerne malt, ohne, dass es dazu aufgefordert wird, passiert dies höchstwahrscheinlich aus einer intrinsischen Motivation heraus.   \n\n Extrinsische Motivation hingegen kennzeichnet eine Handlung, die durch das Outcome, das erwartete Ergebnis, motiviert ist. Die Handlung an sich ist somit Mittel zum Zweck und hat keine direkte   Bedeutung   für   das   Individuum. Vielmehr geht es zum Beispiel um Belohnungen, Anreize oder auch Bestrafungen, welche potentielle Konsequenzen dieser Handlungen darstellen. Ein Kind wird öfter malen, wenn es für jedes Bild von seiner Großmutter Bonbons bekommt. Dabei geht es ihm vor allem um die Bonbons und weniger um das eigentliche Malen. \n\n Generell schließen sich die beiden Quellen der Motivation aber nicht gegenseitig aus, denn oft ist die Handlung ein Zusammenspiel innerer und äußerer Motivation, wie z.B. beim Lernen. Ein/e Schüler/in beschäftigt sich mit einem Lerngegenstand, weil er/sie ein persönliches Interesse daran hat und gleichzeitig gute Noten anstrebt. Ein Effekt, der allerdings auftreten kann, ist der sogenannte „Korrumpierungseffekt“ oder „Undermining Effekt“. Hier wird eine ursprüngliche intrinsische Motivation durch das Zutun externer Anreize abgeschwächt. Das Kind, das eigentlich aus Eigeninteresse sehr gerne malt und plötzlich im Kindergarten für jedes gemalte Bild 5 Euro bekommt, wird von sich aus zuhause weniger malen. Die intrinsische Motivation wurde als von der extrinischen überlagert.   \n\n Gelegentlich werden intrinsische und extrinsische Motivation als die zwei Enden einer Skala vermutet, sodass man entweder intrinsisch oder extrinsisch motiviert ist. Mittlerweile geht die Forschung aber eher davon aus, dass es sich um zwei getrennte Skalen handelt und man gleichzeitig hoch intrinsisch und hoch extrinsisch motiviert sein kann. ",
-          "keywords": ["intrinsische Motivation", "Tätigkeit selbst", "Extrinsische Motivation",  "Mittel zum Zweck", "Zusammenspiel", "Korrumpierungseffekt", "getrennte Skalen"]
+          "keywords": [
+            "intrinsische Motivation",
+            "Tätigkeit selbst",
+            "Extrinsische Motivation",
+            "Mittel zum Zweck",
+            "Zusammenspiel",
+            "Korrumpierungseffekt",
+            "getrennte Skalen"
+          ]
         }
       ],
 
