@@ -31,7 +31,8 @@ export default class Workspace extends React.Component {
       showSolution: false,
       showCurrentTasks: true,
       packageStarted: null,
-      currentSubPackageIndex: 0
+      currentSubPackageIndex: 0,
+      hasActiveTaskOrTraining: false
     };
     this.handler = ev => {
       if (this.state.activeTask) {
@@ -101,40 +102,91 @@ export default class Workspace extends React.Component {
   }
 
   taskSwitch() {
-    var student = this.props.student;
-    var taskPackage = student.currentPackage;
-    var currentTasks = student.tasks;
-    var currentTraining = student.currentTraining;
-    var solvedTraining = student.solvedTraining;
-    //TODO check if we finished all tasks of a package
-    //first training not initialized
-    if (
-      taskPackage.length > 0 &&
-      solvedTraining.length == 0 &&
-      currentTraining.length == 0 &&
-      currentTasks.length == 0
-    ) {
-      const trainings = this.props.trainings;
-      var currentPackage = taskPackage[0];
-      for (var i in trainings) {
-        let name = currentPackage.name;
-        if (currentPackage.name == trainings[i][name][0].name) {
-          var trainingObj = trainings[i][name];
+    let student = this.props.student;
+    let taskPackage = student.currentPackage;
+    let currentTasks = student.tasks;
+    let currentTraining = student.currentTraining;
+    let solvedTraining = student.solvedTraining;
+    let solvedTasks = student.solvedTasks;
+    let currentSequenceId = student.currentSequenceId;
+
+    if (taskPackage.length === 0) {
+      // No Package -- kann der Fall überhaupt auftreten????
+      return;
+    }
+    if (currentTraining.length === 0) {
+      if (currentTasks.length === 0) {
+        if (solvedTraining.length === 0) {
+          // Init Training
+          const currentPackage = taskPackage[0];
+          for (var i in this.props.trainings) {
+            let name = currentPackage.name;
+            if (currentPackage.name == this.props.trainings[i][name][0].name) {
+              var trainingObj = this.props.trainings[i][name];
+            }
+          }
+          if (trainingObj) {
+            Meteor.call(
+              "students.initTraining",
+              trainingObj,
+              this.props.student._id
+            );
+          }
+          return;
+        } else {
+          let contentCount = 0;
+          for (let i = 0; i < taskPackage[0].content.length; i++) {
+            contentCount += taskPackage[0].content[i].tasks.length;
+          }
+          if (solvedTasks.length >= contentCount - 1) {
+            // Handle Outro
+            return <h3>Outro</h3>;
+          } else {
+            // Handle next Task
+            this.props.handleNextTask();
+          }
+          return;
         }
+      } else {
+        let taskProps = {
+          student: this.props.student,
+          tasks: this.props.tasks,
+          activeTask: this.state.activeTask,
+          courses: this.props.courses,
+          trainings: this.props.trainings
+        };
+
+        if (student.tasks[student.tasks.length - 1]) {
+          if (
+            this.state.activeTask &&
+            this.state.activeTask.taskId ==
+              student.tasks[student.tasks.length - 1].taskId
+          ) {
+            // Task anzeigen
+
+            switch (this.state.activeTask.type) {
+              case "drag":
+                return <DragAnimationTemplate {...taskProps} />;
+              case "tag":
+                return <TagAnimationTemplate {...taskProps} />;
+              case "cloze":
+                return <ClozeAnimationTemplate {...taskProps} />;
+              case "memory":
+                return <MemoryAnimationTemplate {...taskProps} />;
+            }
+          } else {
+            // update state
+            this.setState({
+              activeTask: student.tasks[student.tasks.length - 1]
+            });
+            return;
+          }
+        }
+        //Outro anzeigen
+        return <DragAnimationTemplate {...taskProps} />;
       }
-      if (trainingObj) {
-        Meteor.call(
-          "students.initTraining",
-          trainingObj,
-          this.props.student._id
-        );
-      }
-      //first training was initialized
-    } else if (
-      currentTraining.length > 0 &&
-      currentTasks.length == 0 &&
-      student.solvedTasks.length == 0
-    ) {
+    } else {
+      //training anzeigen
       let taskProps = {
         student: this.props.student,
         tasks: this.props.tasks,
@@ -143,62 +195,7 @@ export default class Workspace extends React.Component {
         trainings: this.props.trainings
       };
       return <TrainingAnimationTemplate {...taskProps} />;
-    } else if (
-      currentTraining.length == 0 &&
-      student.tasks.length == 0 &&
-      student.solvedTraining.length > 0
-    ) {
-      this.props.handleNextTask();
     }
-    //tasks are activated after intro trainings
-    else {
-      var propTask = student.tasks[student.tasks.length - 1];
-      if (
-        this.state.activeTask &&
-        this.state.activeTask.taskId == propTask.taskId
-      ) {
-        let taskProps = {
-          student: this.props.student,
-          tasks: this.props.tasks,
-          activeTask: this.state.activeTask,
-          courses: this.props.courses,
-          trainings: this.props.trainings
-        };
-        if (this.state.activeTask && this.state.activeTask.type == "drag") {
-          return <DragAnimationTemplate {...taskProps} />;
-        } else if (
-          this.state.activeTask &&
-          this.state.activeTask.type == "tag"
-        ) {
-          return <TagAnimationTemplate {...taskProps} />;
-        } else if (
-          this.state.activeTask &&
-          this.state.activeTask.type == "cloze"
-        ) {
-          return <ClozeAnimationTemplate {...taskProps} />;
-        } else if (
-          this.state.activeTask &&
-          this.state.activeTask.type == "memory"
-        ) {
-          return <MemoryAnimationTemplate {...taskProps} />;
-        }
-      } else {
-        let taskProps = {
-          student: this.props.student,
-          tasks: this.props.tasks,
-          activeTask: student.tasks[student.tasks.length - 1],
-          courses: this.props.courses,
-          trainings: this.props.trainings
-        };
-        this.setState({
-          activeTask: student.tasks[student.tasks.length - 1]
-        });
-        if (student.tasks[student.tasks.length - 1].type == "drag") {
-          return <DragAnimationTemplate {...taskProps} />;
-        }
-      }
-    }
-    //package is completed
   }
   renderTraining() {
     const { packageStarted, dimmer } = this.state;

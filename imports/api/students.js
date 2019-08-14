@@ -21,6 +21,7 @@ Meteor.methods({
       lastActiveTaskId: null,
       courses: [],
       tasks: [],
+      currentSequenceId: 0,
       currentTraining: [],
       solvedTraining: [],
       solvedTasks: [],
@@ -41,11 +42,12 @@ Meteor.methods({
     Students.update(_id, { $addToSet: { tasks } });
   },
   "students.getNextTask": function(packageName, sequenceId, _id) {
-    var tasks = Tasks.find({
+    let tasks = Tasks.find({
       package: packageName,
       sequenceId: sequenceId
     }).fetch()[0];
     Students.update(_id, { $addToSet: { tasks } });
+    Students.update(_id, { $inc: { currentSequenceId: 1 } });
   },
   //Gets a package and it's first training
   "students.getPackage": function(packageName, _id) {
@@ -60,7 +62,7 @@ Meteor.methods({
   "students.initTraining": function(training, _id) {
     try {
       Students.update(_id, { $set: { currentTraining: training } });
-      return true;
+      return Students.find({ _id: _id }).fetch()[0];
     } catch (e) {
       console.log(e);
     }

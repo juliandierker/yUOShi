@@ -2,6 +2,7 @@ import { Meteor } from "meteor/meteor";
 import { Tasks } from "../../api/tasks";
 
 function createDragTask(taskSpecs) {
+  taskSpecs["isTask"] = true;
   taskSpecs["taskId"] = taskSpecs["taskId"];
   taskSpecs["type"] = "drag";
   taskSpecs["package"] = taskSpecs["package"];
@@ -12,6 +13,7 @@ function createDragTask(taskSpecs) {
   return taskSpecs;
 }
 function createTagTask(taskSpecs) {
+  taskSpecs["isTask"] = true;
   taskSpecs["taskId"] = taskSpecs["taskId"];
   taskSpecs["type"] = "tag";
   taskSpecs["content"] = taskSpecs["content"];
@@ -24,6 +26,7 @@ function createTagTask(taskSpecs) {
 }
 
 function createClozeTask(taskSpecs) {
+  taskSpecs["isTask"] = true;
   taskSpecs["taskId"] = taskSpecs["taskId"];
   taskSpecs["type"] = "cloze";
   taskSpecs["content"] = taskSpecs["content"];
@@ -34,6 +37,7 @@ function createClozeTask(taskSpecs) {
   return taskSpecs;
 }
 function createMemory(taskSpecs) {
+  taskSpecs["isTask"] = true;
   taskSpecs["taskId"] = taskSpecs["taskId"];
   taskSpecs["type"] = "memory";
   taskSpecs["content"] = taskSpecs["content"];

@@ -58,7 +58,6 @@ export default class StudentOverview extends React.Component {
               if (err) {
                 console.log(err);
               } else {
-                console.log(res);
                 const courses = this.initCourses(
                   res,
                   student._id,
@@ -86,9 +85,7 @@ export default class StudentOverview extends React.Component {
 
     this.props.history.push("/student/game");
   }
-  componentDidUpdate(prevProps, prevState) {
-    console.log("update");
-  }
+  componentDidUpdate(prevProps, prevState) {}
   componentWillUnmount() {
     this.studentTracker.stop();
   }

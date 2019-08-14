@@ -3,7 +3,6 @@ import React from "react";
 import { Route, Redirect } from "react-router-dom";
 
 const PublicRoute = ({ component: Component, path, ...rest }) => {
-  console.log("puuublic");
   return (
     <Route
       path={path}

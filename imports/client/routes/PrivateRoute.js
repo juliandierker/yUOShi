@@ -34,7 +34,6 @@ const PrivateRoute = ({ component: Component, path, ...rest }) => {
                 path: "/student/classroom"
               })
             );
-          console.log(wrongPupil);
           const wrongTeacher =
             role === "teacher" &&
             !(

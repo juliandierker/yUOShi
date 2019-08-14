@@ -11,7 +11,6 @@ export default class schoolFloor extends React.Component {
   handleClassroomClick() {
     var elem = document.getElementById("path19102");
     var text = document.getElementById("text19162");
-    console.log(text);
     var box = document.getElementById("rect19151");
     elem.style.fill = "rgb(4, 216, 76)";
     text.style.visibility = "visible";
@@ -23,7 +22,6 @@ export default class schoolFloor extends React.Component {
   }
 
   hoverOnClass() {
-    console.log("hover");
     if (!this.state.classHover) {
       this.setState({ classHover: true });
       var menu = document.getElementById("classMenuItem");
@@ -37,7 +35,6 @@ export default class schoolFloor extends React.Component {
     }
   }
   hoverOffClass() {
-    console.log("leave");
     if (this.state.classHover) {
       this.setState({ classHover: false });
       var text = document.getElementById("text19162");
@@ -9527,14 +9524,12 @@ export default class schoolFloor extends React.Component {
               id="path19102"
               style={{ fill: "#80897d" }}
               data-old_color="#6dc54a"
-              className
               data-original="#6DC54A"
               d="m 390.02734,194.76172 c 0,68.55078 -35.42187,128.82812 -88.95312,163.53125 -8.06641,5.23437 -14.80078,12.26562 -19.53906,20.625 l -69.94532,123.5625 c -0.15625,0.27344 -0.3164,0.53515 -0.49609,0.80078 -0.17969,-0.26563 -0.33594,-0.52734 -0.49609,-0.80078 l -69.94532,-123.5625 c -4.72656,-8.35156 -11.44921,-15.37891 -19.5039,-20.59375 C 66.847656,323.13672 31.171875,261.64453 32.183594,191.89062 33.628906,91.410156 112.28125,8.664062 211.11719,0.640625 311.26953,8.695312 390.02734,92.527344 390.02734,194.76172 Z m 0,0"
               inkscapeconnector-curvature={0}
             />
             <path
               id="path19104"
-              className
               data-original="#C2EAF2"
               d="m 339.07031,194.52734 c 0,79.44141 -64.41406,143.8086 -143.80859,143.8086 -79.42188,0 -143.804689,-64.38282 -143.804689,-143.8086 0,-85.36718 74.105469,-152.316402 159.636719,-142.929684 71.97266,7.886719 127.97656,68.871094 127.97656,142.929684 z m 0,0"
               inkscapeconnector-curvature={0}
@@ -9556,7 +9551,6 @@ export default class schoolFloor extends React.Component {
             />
             <path
               id="path19110"
-              className
               data-original="#FFD993"
               d="m 309.78125,169.50391 v 112.0039 c -26.26953,34.53516 -67.80469,56.82813 -114.51953,56.82813 -46.73438,0 -88.25781,-22.29297 -114.515626,-56.81641 V 169.50391 c 0,-17.77344 14.417968,-32.19141 32.191406,-32.19141 h 164.65234 c 17.77344,0 32.19141,14.41797 32.19141,32.19141 z m 0,0"
               inkscapeconnector-curvature={0}
@@ -9564,7 +9558,6 @@ export default class schoolFloor extends React.Component {
             />
             <path
               id="path19112"
-              className
               data-original="#FFCD71"
               d="M 277.58984,137.3125 H 112.9375 c -8.09375,0 -15.484375,2.99609 -21.140625,7.92969 v -0.004 c -2.496094,2.17578 -4.695313,4.76953 -6.449219,7.67578 -5.953125,9.89844 -4.601562,15.23828 -4.601562,52.22266 v 76.38281 c 26.257816,34.52344 67.781246,56.81641 114.515626,56.81641 5.35156,0 10.62891,-0.29688 15.82422,-0.86719 C 146.16797,330.34766 94.25,280.04297 84.699219,215.89063 c -0.398438,-2.65625 2.730469,-4.375 4.757812,-2.60938 3.6875,3.22266 9.082031,7.92578 17.011719,14.86328 5.78516,5.06641 13.20313,7.85156 20.88672,7.85156 h 135.80469 c 7.68359,0 15.11718,-2.78515 20.89843,-7.85156 27.5625,-24.11328 24.41407,-21.30469 25.72266,-22.6289 v -36.01172 c 0,-17.77735 -14.41406,-32.19141 -32.19141,-32.19141 z m 0,0"
               inkscapeconnector-curvature={0}
@@ -9580,14 +9573,12 @@ export default class schoolFloor extends React.Component {
             <g id="g19120" style={{ fill: "#f29500", cursor: "pointer" }}>
               <path
                 id="path19116"
-                className
                 data-original="#000000"
                 d="m 139.05859,249.71875 c -5.97265,0 -10.8164,-4.84375 -10.8164,-10.82031 V 200.375 c 0,-5.97266 4.84375,-10.81641 10.8164,-10.81641 5.97657,0 10.82032,4.84375 10.82032,10.81641 v 38.52344 c 0,5.97656 -4.84375,10.82031 -10.82032,10.82031 z m 0,0"
                 inkscapeconnector-curvature={0}
               />
               <path
                 id="path19118"
-                className
                 data-original="#000000"
                 d="m 251.46484,249.71875 c -5.97265,0 -10.8164,-4.84375 -10.8164,-10.82031 V 200.375 c 0,-5.97266 4.84375,-10.81641 10.8164,-10.81641 5.97657,0 10.82032,4.84375 10.82032,10.81641 v 38.52344 c 0,5.97656 -4.84375,10.82031 -10.82032,10.82031 z m 0,0"
                 inkscapeconnector-curvature={0}
