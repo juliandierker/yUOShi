@@ -171,44 +171,7 @@ export default class Gameoverview extends React.Component {
     }
   }
   render() {
-    return (
-      <div id="gameOverView">
-        <Grid>
-          {/* <Grid.Row
-            style={{
-              textAlign: "center",
-              width: "100%",
-              backgroundColor: "rgb(108, 124, 152)"
-            }}
-          >
-            Zeitstrahl
-          </Grid.Row> */}
-          <Grid.Column width={10}>{this.renderSchoolFloor()}</Grid.Column>
-          <Grid.Column width={3}>
-            <Grid.Row>
-              {" "}
-              Ankündigungen
-              <Image src="https://react.semantic-ui.com/images/wireframe/media-paragraph.png" />
-            </Grid.Row>
-            <Grid.Row>
-              {" "}
-              Ankündigungen
-              <Image src="https://react.semantic-ui.com/images/wireframe/media-paragraph.png" />
-            </Grid.Row>
-            <Grid.Row>
-              {" "}
-              Ankündigungen
-              <Image src="https://react.semantic-ui.com/images/wireframe/media-paragraph.png" />
-            </Grid.Row>
-            <Grid.Row>
-              {" "}
-              Ankündigungen
-              <Image src="https://react.semantic-ui.com/images/wireframe/media-paragraph.png" />
-            </Grid.Row>
-          </Grid.Column>
-        </Grid>
-      </div>
-    );
+    return <div id="gameOverView">{this.renderSchoolFloor()}</div>;
   }
 }
 
