@@ -55,52 +55,24 @@ export default class MaslowView extends React.Component {
   componentDidUpdate() {
     this.initDragDrop();
     if (this.props.showSolution) {
-      const selfActualizationNodes = document.getElementById(
-        "selfActualization_target"
-      ).childNodes;
-      let esteemNodes = document.getElementById("esteem_target").childNodes;
-      let socialneedsNodes = document.getElementById("socialneeds_target")
-        .childNodes;
-      let safetyNodes = document.getElementById("safety_target").childNodes;
-      let physologicalNodes = document.getElementById("physological_target")
-        .childNodes;
+      const nodes = [
+        document.getElementById("selfActualization_target").childNodes,
+        document.getElementById("esteem_target").childNodes,
+        document.getElementById("socialneeds_target").childNodes,
+        document.getElementById("safety_target").childNodes,
+        document.getElementById("physological_target").childNodes
+      ];
 
-      // TODO: Reduce this garbage
       const correctArr = this.props.model.correctArr;
+
       if (correctArr.length >= 5) {
-        for (let i = 0; i < correctArr[0].length; i++) {
-          if (selfActualizationNodes[i]) {
-            selfActualizationNodes[i].classList.add(
-              correctArr[0][i] === true ? "correct" : "false"
-            );
-          }
-        }
-        for (let i = 0; i < correctArr[1].length; i++) {
-          if (esteemNodes[i]) {
-            esteemNodes[i].classList.add(
-              correctArr[1][i] === true ? "correct" : "false"
-            );
-          }
-        }
-        for (let i = 0; i < correctArr[2].length; i++) {
-          if (socialneedsNodes[i]) {
-            socialneedsNodes[i].classList.add(
-              correctArr[2][i] === true ? "correct" : "false"
-            );
-          }
-        }
-        for (let i = 0; i < correctArr[3].length; i++) {
-          if (safetyNodes[i]) {
-            safetyNodes[i].classList.add(
-              correctArr[3][i] === true ? "correct" : "false"
-            );
-          }
-        }
-        for (let i = 0; i < correctArr[4].length; i++) {
-          if (physologicalNodes[i]) {
-            physologicalNodes[i].classList.add(
-              correctArr[4][i] === true ? "correct" : "false"
-            );
+        for (let i = 0; i < correctArr.length; i++) {
+          for (let j = 0; j < correctArr[i].length; j++) {
+            if (nodes[i][j]) {
+              nodes[i][j].classList.add(
+                correctArr[i][j] === true ? "correct" : "false"
+              );
+            }
           }
         }
       }
