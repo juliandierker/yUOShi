@@ -120,53 +120,52 @@ export default class MaslowView extends React.Component {
 
   renderPyramid() {
     return (
-      <div id="svgDiv">
-        <div className="pyramidWrapper">
-          <div className="pyramid">
-            <div id="selfActualization_target" className="selected Maslow" />
-            <div id="esteem_target" className="selected Maslow" />
-            <div id="socialneeds_target" className="selected Maslow" />
-            <div id="safety_target" className="selected Maslow" />
-            <div id="physological_target" className="selected Maslow" />
+      <div className="pyramidWrapper">
+        <div className="pyramid">
+          <div id="selfActualization_target" className="selected Maslow" />
+          <div id="esteem_target" className="selected Maslow" />
+          <div id="socialneeds_target" className="selected Maslow" />
+          <div id="safety_target" className="selected Maslow" />
+          <div id="physological_target" className="selected Maslow" />
 
-            <div className="dragItemGroup">
-              {this.state.statements.map(statement => {
-                return (
-                  <div id={statement.id} className="dragItem">
-                    {statement.name}
-                  </div>
-                );
-              })}
-            </div>
-          </div>
-
-          <h1>Maslow Pyramide</h1>
-          <div>
-            <svg width="0" height="0">
-              <defs>
-                <clipPath id="part1" clipPathUnits="objectBoundingBox">
-                  <polygon points="0.5 0, 0.6 1, 0.4 1" />
-                </clipPath>
-                <clipPath id="part2" clipPathUnits="objectBoundingBox">
-                  <polygon points="0.4 0, 0.6 0, 0.7 1, 0.3 1" />
-                </clipPath>
-                <clipPath id="part3" clipPathUnits="objectBoundingBox">
-                  <polygon points="0.3 0, 0.7 0, 0.8 1, 0.2 1" />
-                </clipPath>
-                <clipPath id="part4" clipPathUnits="objectBoundingBox">
-                  <polygon points="0.2 0, 0.8 0, 0.9 1, 0.1 1" />
-                </clipPath>
-                <clipPath id="part5" clipPathUnits="objectBoundingBox">
-                  <polygon points="0.1 0, 0.9 0, 1 1, 0 1" />
-                </clipPath>
-              </defs>
-            </svg>
+          <div className="dragItemGroup">
+            {this.state.statements.map(statement => {
+              return (
+                <div
+                  key={statement.id + "_key"}
+                  id={statement.id}
+                  className="dragItem"
+                >
+                  {statement.name}
+                </div>
+              );
+            })}
           </div>
         </div>
+
+        <svg width="0" height="0">
+          <defs>
+            <clipPath id="part1" clipPathUnits="objectBoundingBox">
+              <polygon points="0.5 0, 0.6 1, 0.4 1" />
+            </clipPath>
+            <clipPath id="part2" clipPathUnits="objectBoundingBox">
+              <polygon points="0.4 0, 0.6 0, 0.7 1, 0.3 1" />
+            </clipPath>
+            <clipPath id="part3" clipPathUnits="objectBoundingBox">
+              <polygon points="0.3 0, 0.7 0, 0.8 1, 0.2 1" />
+            </clipPath>
+            <clipPath id="part4" clipPathUnits="objectBoundingBox">
+              <polygon points="0.2 0, 0.8 0, 0.9 1, 0.1 1" />
+            </clipPath>
+            <clipPath id="part5" clipPathUnits="objectBoundingBox">
+              <polygon points="0.1 0, 0.9 0, 1 1, 0 1" />
+            </clipPath>
+          </defs>
+        </svg>
       </div>
     );
   }
   render() {
-    return <div>{this.renderPyramid()}</div>;
+    return <div id="svgdiv">{this.renderPyramid()}</div>;
   }
 }
