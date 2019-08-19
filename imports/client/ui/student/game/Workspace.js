@@ -48,7 +48,7 @@ export default class Workspace extends React.Component {
   show = dimmer => () => this.setState({ dimmer, packageStarted: true });
   close = () => this.setState({ packageStarted: false });
 
-  //TODO Check the clicked package and the progress in the package
+  // TODO: Check the clicked package and the progress in the package
   componentDidMount() {
     let currentTask = this.props.student.tasks;
     let regex = "\\d+";
@@ -56,18 +56,8 @@ export default class Workspace extends React.Component {
       let currentSubPackageIndex = currentTask.parentId.match(regex);
       this.setState({ currentSubPackageIndex: currentSubPackageIndex });
     }
-    // this.checkProgress();
   }
-  checkProgress() {
-    if (!this.state.currentPackage) {
-      if (!this.state.packageStarted) {
-        this.show();
-        this.setState({ currentPackage: this.props.student.currentPackage });
-      } else {
-        this.setState({ currentPackage: this.props.student.currentPackage });
-      }
-    }
-  }
+
   componentDidUpdate(prevProps, prevState) {}
   componentWillUnmount() {
     if (this.state.activeTask) {
@@ -105,11 +95,18 @@ export default class Workspace extends React.Component {
     let student = this.props.student;
     let taskPackage = student.currentPackage;
 
+    let contentCount = 0;
+    for (let i = 0; i < taskPackage[0].content.length; i++) {
+      contentCount += taskPackage[0].content[i].tasks.length;
+    }
+
+    // Handle Package
     if (taskPackage.length === 0) {
-      // No Package -- kann der Fall überhaupt auftreten????
+      // No Package
       return;
     }
 
+    // create collection if props for Tasks and Trainings
     let taskProps = {
       student: this.props.student,
       tasks: this.props.tasks,
@@ -118,11 +115,16 @@ export default class Workspace extends React.Component {
       trainings: this.props.trainings
     };
 
-    if (student.currentTraining.length > 0) {
-      //training anzeigen
+    // Handle Training
+    if (
+      student.currentTraining.length > 0 &&
+      student.currentTraining[0].sequenceId === student.currentSequenceId
+    ) {
+      // Show Training
       return <TrainingAnimationTemplate {...taskProps} />;
     }
 
+    // Handle Task
     if (student.tasks.length > 0) {
       if (student.tasks[student.tasks.length - 1]) {
         if (
@@ -130,7 +132,7 @@ export default class Workspace extends React.Component {
           this.state.activeTask.taskId ==
             student.tasks[student.tasks.length - 1].taskId
         ) {
-          // Task anzeigen
+          // Show Task
           switch (this.state.activeTask.type) {
             case "drag":
               return <DragAnimationTemplate {...taskProps} />;
@@ -142,16 +144,18 @@ export default class Workspace extends React.Component {
               return <MemoryAnimationTemplate {...taskProps} />;
           }
         }
-
-        this.setState({
-          activeTask: student.tasks[student.tasks.length - 1]
-        });
+        // set active task
+        if (student.solvedTasks.length < contentCount - 1) {
+          this.setState({
+            activeTask: student.tasks[student.tasks.length - 1]
+          });
+        }
       }
       return;
     }
 
+    // Handle Training Init
     if (student.solvedTraining.length === 0) {
-      // Init Training
       const currentPackage = taskPackage[0];
       for (var i in this.props.trainings) {
         let name = currentPackage.name;
@@ -160,41 +164,23 @@ export default class Workspace extends React.Component {
         }
       }
       if (trainingObj) {
+        // Init new Training
         Meteor.call(
           "students.initTraining",
           trainingObj,
           this.props.student._id
         );
+        return;
       }
+    }
+    if (student.solvedTasks.length < contentCount - 1) {
+      // Handle next Task
+      this.props.handleNextTask();
       return;
     }
-    let contentCount = 0;
-    for (let i = 0; i < taskPackage[0].content.length; i++) {
-      contentCount += taskPackage[0].content[i].tasks.length;
-    }
-    if (student.solvedTasks.length >= contentCount - 1) {
-      // Handle Outro
-      return <h3>Outro</h3>;
-    }
-    // Handle next Task
-    this.props.handleNextTask();
-  }
 
-  renderTraining() {
-    const { packageStarted, dimmer } = this.state;
-  }
-
-  isTaskSolved(t) {
-    const solvedTasks = this.props.student.solvedTasks.filter(
-      task => t._id == task._id
-    );
-
-    if (!solvedTasks || solvedTasks.length == 0) return false;
-    return true;
-  }
-
-  renderSolBtn() {
-    return <Button> Aufgabe lösen </Button>;
+    // Show Outro
+    return <h3>Outro</h3>;
   }
 
   getActiveSubpackage() {
