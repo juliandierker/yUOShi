@@ -95,7 +95,7 @@ export default class TagView extends React.Component {
               key={"textSpan" + tmpKey}
               className={replacerStr}
               id={replacerStr + k}
-              style={{ color: "black", lineHeight: "2" }}
+              style={{ lineHeight: "2" }}
               onClick={() => this.handleClickTag(replacerStr, k)}
             >
               {replacerStr}
