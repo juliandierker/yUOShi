@@ -104,99 +104,82 @@ export default class Workspace extends React.Component {
   taskSwitch() {
     let student = this.props.student;
     let taskPackage = student.currentPackage;
-    let currentTasks = student.tasks;
-    let currentTraining = student.currentTraining;
-    let solvedTraining = student.solvedTraining;
-    let solvedTasks = student.solvedTasks;
-    let currentSequenceId = student.currentSequenceId;
 
     if (taskPackage.length === 0) {
       // No Package -- kann der Fall überhaupt auftreten????
       return;
     }
-    if (currentTraining.length === 0) {
-      if (currentTasks.length === 0) {
-        if (solvedTraining.length === 0) {
-          // Init Training
-          const currentPackage = taskPackage[0];
-          for (var i in this.props.trainings) {
-            let name = currentPackage.name;
-            if (currentPackage.name == this.props.trainings[i][name][0].name) {
-              var trainingObj = this.props.trainings[i][name];
-            }
-          }
-          if (trainingObj) {
-            Meteor.call(
-              "students.initTraining",
-              trainingObj,
-              this.props.student._id
-            );
-          }
-          return;
-        } else {
-          let contentCount = 0;
-          for (let i = 0; i < taskPackage[0].content.length; i++) {
-            contentCount += taskPackage[0].content[i].tasks.length;
-          }
-          if (solvedTasks.length >= contentCount - 1) {
-            // Handle Outro
-            return <h3>Outro</h3>;
-          } else {
-            // Handle next Task
-            this.props.handleNextTask();
-          }
-          return;
-        }
-      } else {
-        let taskProps = {
-          student: this.props.student,
-          tasks: this.props.tasks,
-          activeTask: this.state.activeTask,
-          courses: this.props.courses,
-          trainings: this.props.trainings
-        };
 
-        if (student.tasks[student.tasks.length - 1]) {
-          if (
-            this.state.activeTask &&
-            this.state.activeTask.taskId ==
-              student.tasks[student.tasks.length - 1].taskId
-          ) {
-            // Task anzeigen
+    let taskProps = {
+      student: this.props.student,
+      tasks: this.props.tasks,
+      activeTask: this.state.activeTask,
+      courses: this.props.courses,
+      trainings: this.props.trainings
+    };
 
-            switch (this.state.activeTask.type) {
-              case "drag":
-                return <DragAnimationTemplate {...taskProps} />;
-              case "tag":
-                return <TagAnimationTemplate {...taskProps} />;
-              case "cloze":
-                return <ClozeAnimationTemplate {...taskProps} />;
-              case "memory":
-                return <MemoryAnimationTemplate {...taskProps} />;
-            }
-          } else {
-            // update state
-            this.setState({
-              activeTask: student.tasks[student.tasks.length - 1]
-            });
-            return;
-          }
-        }
-        //Outro anzeigen
-        return <DragAnimationTemplate {...taskProps} />;
-      }
-    } else {
+    if (student.currentTraining.length > 0) {
       //training anzeigen
-      let taskProps = {
-        student: this.props.student,
-        tasks: this.props.tasks,
-        activeTask: this.state.activeTask,
-        courses: this.props.courses,
-        trainings: this.props.trainings
-      };
       return <TrainingAnimationTemplate {...taskProps} />;
     }
+
+    if (student.tasks.length > 0) {
+      if (student.tasks[student.tasks.length - 1]) {
+        if (
+          this.state.activeTask &&
+          this.state.activeTask.taskId ==
+            student.tasks[student.tasks.length - 1].taskId
+        ) {
+          // Task anzeigen
+          switch (this.state.activeTask.type) {
+            case "drag":
+              return <DragAnimationTemplate {...taskProps} />;
+            case "tag":
+              return <TagAnimationTemplate {...taskProps} />;
+            case "cloze":
+              return <ClozeAnimationTemplate {...taskProps} />;
+            case "memory":
+              return <MemoryAnimationTemplate {...taskProps} />;
+          }
+        }
+
+        this.setState({
+          activeTask: student.tasks[student.tasks.length - 1]
+        });
+      }
+      return;
+    }
+
+    if (student.solvedTraining.length === 0) {
+      // Init Training
+      const currentPackage = taskPackage[0];
+      for (var i in this.props.trainings) {
+        let name = currentPackage.name;
+        if (currentPackage.name == this.props.trainings[i][name][0].name) {
+          var trainingObj = this.props.trainings[i][name];
+        }
+      }
+      if (trainingObj) {
+        Meteor.call(
+          "students.initTraining",
+          trainingObj,
+          this.props.student._id
+        );
+      }
+      return;
+    }
+    let contentCount = 0;
+    for (let i = 0; i < taskPackage[0].content.length; i++) {
+      contentCount += taskPackage[0].content[i].tasks.length;
+    }
+    if (student.solvedTasks.length >= contentCount - 1) {
+      // Handle Outro
+      return <h3>Outro</h3>;
+    }
+    // Handle next Task
+    this.props.handleNextTask();
   }
+
   renderTraining() {
     const { packageStarted, dimmer } = this.state;
   }
