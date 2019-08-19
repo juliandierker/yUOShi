@@ -1,5 +1,4 @@
 import { Meteor } from "meteor/meteor";
-import { Tracker } from "meteor/tracker";
 import { Roles } from "meteor/alanning:roles";
 import React from "react";
 import { Router, Route, matchPath, Switch } from "react-router-dom";
@@ -9,7 +8,6 @@ import PrivateRoute from "./PrivateRoute";
 import Login from "../ui/um/Login";
 import NotFound from "../ui/NotFound";
 
-import { createContainer } from "meteor/react-meteor-data";
 // Students
 import StudentOverview from "../ui/student/StudentOverview";
 // Teachers
@@ -18,6 +16,8 @@ import Gameoverview from "../ui/student/game/Gameoverview";
 import ClassRoom from "../ui/student/game/ClassRoom";
 export const browserHistory = createBrowserHistory();
 const unAuthPages = ["/"];
+
+import { withTracker } from "meteor/react-meteor-data";
 
 const DefaultRoutes = {
   student: "/student/studentoverview",
@@ -71,8 +71,8 @@ class Routes extends React.Component {
   }
 }
 
-export default createContainer(() => {
+export default withTracker(() => {
   return {
     userId: Meteor.userId()
   };
-}, Routes);
+})(Routes);
