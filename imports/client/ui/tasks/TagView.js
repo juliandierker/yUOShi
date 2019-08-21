@@ -115,11 +115,13 @@ export default class TagView extends React.Component {
     );
   }
   renderTaglist() {
-    return (
-      <Segment style={{ position: "fixed" }}>
-        <List>{this.renderListElem()}</List>
-      </Segment>
-    );
+    if (this.props.activeTask.content[0].keywords.length !== 0) {
+      return (
+        <Segment style={{ position: "fixed" }}>
+          <List>{this.renderListElem()}</List>
+        </Segment>
+      );
+    }
   }
   getTaskImage() {}
   renderView() {
@@ -137,7 +139,10 @@ export default class TagView extends React.Component {
   }
   solutionPrepare() {
     var sol = this.props.model.run(this.state.tags);
-    if (sol && sol[0].includes("won")) {
+    if (
+      (sol && sol[0].includes("won")) ||
+      this.props.activeTask.content[0].keywords.length === 0
+    ) {
       var meteorMethod =
         "solutionHandler.submit" + this.props.activeTask.filePrefix;
       Meteor.call(
@@ -201,8 +206,15 @@ export default class TagView extends React.Component {
     }
   }
   render() {
-    const buttonDisabled = this.state.finished ? false : true;
-    const buttonColor = this.state.finished ? "green" : "grey";
+    let buttonDisabled = true;
+    let buttonColor = "grey";
+    if (
+      this.state.finished ||
+      this.props.activeTask.content[0].keywords.length === 0
+    ) {
+      buttonDisabled = false;
+      buttonColor = "green";
+    }
     return (
       <div>
         {this.renderView()}

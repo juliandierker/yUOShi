@@ -128,8 +128,9 @@ Meteor.methods({
     return correctAnswers;
   },
   "solutionHandler.submitTag"(studentSolution, studentId, task) {
-    var correct = studentSolution.length == Solutions[task.taskId].length;
-    // var correct = equals(studentSolution, Solutions[task.taskId]);
+    var correct =
+      !Solutions[task.taskId] ||
+      studentSolution.length == Solutions[task.taskId].length;
     if (correct) {
       solveTask(studentId, task.taskId);
     }
