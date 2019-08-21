@@ -28,7 +28,15 @@
     "Selbstverwirklichungsbedürfnis"
   ],
 
-  "Motivation_IntrExtr": ["intrinsische Motivation", "Tätigkeit selbst",  "Extrinsische Motivation",  "Mittel zum Zweck", "Zusammenspiel","Korrumpierungseffekt", "getrennte Skalen"],
+  "Motivation_IntrExtr": [
+    "intrinsische Motivation",
+    "Tätigkeit selbst",
+    "Extrinsische Motivation",
+    "Mittel zum Zweck",
+    "Zusammenspiel",
+    "Korrumpierungseffekt",
+    "getrennte Skalen"
+  ],
   "Selbstbestimmungs_Theorie": [
     "Deci und Ryan",
     "humanistischen Ansätzen",
@@ -39,5 +47,9 @@
   ],
   "Xwert_Theorie": ["Erwartungs-Wert", "Situation", "Ergebnis"],
   "Ziele": ["Zielsetzungstheorie", "Locke", "Moderatoren"],
-  "ZieleCloze": ["Zielsetzungstheorie", "Locke", "Moderatoren"]
+  "ZieleCloze": ["Zielsetzungstheorie", "Locke", "Moderatoren"],
+  "MultiChoiceEx": [
+    { "id": 1, "sol": ["Ja"] },
+    { "id": 2, "sol": ["Ja", "Darum"] }
+  ]
 }

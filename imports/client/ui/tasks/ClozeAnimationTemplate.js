@@ -8,7 +8,7 @@ import ClozeView from "./ClozeView";
 export default class ClozeAnimationTemplate extends Component {
   constructor(props) {
     super(props);
-    this.sttae = {
+    this.state = {
       activeTask: null
     };
     this.view = null;

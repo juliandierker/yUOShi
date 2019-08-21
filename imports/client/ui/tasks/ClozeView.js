@@ -3,7 +3,7 @@ import { Segment, Input, Button, List, Icon, Grid } from "semantic-ui-react";
 import reactStringReplace from "react-string-replace";
 import { Meteor } from "meteor/meteor";
 
-export default class Clozeview extends Component {
+export default class ClozeView extends Component {
   constructor(props) {
     super(props);
 

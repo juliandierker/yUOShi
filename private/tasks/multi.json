@@ -1,0 +1,43 @@
+{
+  "tasks": [
+    {
+      "parentId": "Motivation0",
+      "title": "Multiple Choice Example",
+      "description": "Ein Beispiel für multiple Choice Fragen",
+      "taskId": "MultiChoiceEx",
+      "filePrefix": "Multi",
+      "sequenceId": 1,
+      "content": [
+        {
+          "questions": [
+            {
+              "QuestionId": 1,
+              "Question": "Ist ein Apfel grün?",
+              "AnswerSet": [
+                "Ja",
+                "Nein",
+                "Farbe ist nur ein konstrukt der Gesellschaft!"
+              ],
+              "multi": false
+            },
+            {
+              "QuestionId": 2,
+              "Question": "Warum???",
+              "AnswerSet": [
+                "Darum",
+                "Ja",
+                "Warum nicht?",
+                "Alle guten dinge sind 4!",
+                "Oder doch 5?"
+              ],
+              "multi": true
+            }
+          ]
+        }
+      ],
+
+      "package": "Motivation",
+      "credits": 2300
+    }
+  ]
+}
