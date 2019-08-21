@@ -39,7 +39,15 @@
           "title": "Motivation Begriffsklärung",
           "subtitle": "Definitionen und Abgrenzungen",
           "text": "Die wohl bekannteste und auch klassischste Unterteilung in der Motivationsforschung ist die von intrinsischer und extrinsischer Motivation. Grundlegend geht es bei dieser handlungstheoretischen Unterscheidung darum, ob sich der angestrebte Zielzustand innerhalb   oder   außerhalb   einer   Handlung   befindet. \n Die intrinsische Motivation kennzeichnet eine Tätigkeit, die dem Individuum Freude und Interessensbefriedigung bei der Ausübung bereitet, also  von innen herausmotiviert ist. Intrinsisch motiviert sein, bedeutet keine Belohnungen oder Anreize zu benötigen, da die Tätigkeit selbst als Belohnung fungiert. Wenn ein Kind zum Beispiel gerne malt, ohne, dass es dazu aufgefordert wird, passiert dies höchstwahrscheinlich aus einer intrinsischen Motivation heraus.   \n\n Extrinsische Motivation hingegen kennzeichnet eine Handlung, die durch das Outcome, das erwartete Ergebnis, motiviert ist. Die Handlung an sich ist somit Mittel zum Zweck und hat keine direkte   Bedeutung   für   das   Individuum. Vielmehr geht es zum Beispiel um Belohnungen, Anreize oder auch Bestrafungen, welche potentielle Konsequenzen dieser Handlungen darstellen. Ein Kind wird öfter malen, wenn es für jedes Bild von seiner Großmutter Bonbons bekommt. Dabei geht es ihm vor allem um die Bonbons und weniger um das eigentliche Malen. \n\n Generell schließen sich die beiden Quellen der Motivation aber nicht gegenseitig aus, denn oft ist die Handlung ein Zusammenspiel innerer und äußerer Motivation, wie z.B. beim Lernen. Ein/e Schüler/in beschäftigt sich mit einem Lerngegenstand, weil er/sie ein persönliches Interesse daran hat und gleichzeitig gute Noten anstrebt. Ein Effekt, der allerdings auftreten kann, ist der sogenannte „Korrumpierungseffekt“ oder „Undermining Effekt“. Hier wird eine ursprüngliche intrinsische Motivation durch das Zutun externer Anreize abgeschwächt. Das Kind, das eigentlich aus Eigeninteresse sehr gerne malt und plötzlich im Kindergarten für jedes gemalte Bild 5 Euro bekommt, wird von sich aus zuhause weniger malen. Die intrinsische Motivation wurde als von der extrinischen überlagert.   \n\n Gelegentlich werden intrinsische und extrinsische Motivation als die zwei Enden einer Skala vermutet, sodass man entweder intrinsisch oder extrinsisch motiviert ist. Mittlerweile geht die Forschung aber eher davon aus, dass es sich um zwei getrennte Skalen handelt und man gleichzeitig hoch intrinsisch und hoch extrinsisch motiviert sein kann. ",
-          "keywords": ["intrinsische Motivation", "Tätigkeit selbst", "Extrinsische Motivation",  "Mittel zum Zweck", "Zusammenspiel", "Korrumpierungseffekt", "getrennte Skalen"]
+          "keywords": [
+            "intrinsische Motivation",
+            "Tätigkeit selbst",
+            "Extrinsische Motivation",
+            "Mittel zum Zweck",
+            "Zusammenspiel",
+            "Korrumpierungseffekt",
+            "getrennte Skalen"
+          ]
         }
       ],
 
@@ -106,7 +114,7 @@
       "description": "Lest den Einführungstext und markiert die Schlüssel-Begriffe",
       "taskId": "Xwert_Theorie",
       "filePrefix": "Tag",
-      "sequenceId": 8,
+      "sequenceId": 9,
       "content": [
         {
           "title": "Xwert_Theorie",
@@ -125,7 +133,7 @@
       "description": "Lest den Einführungstext und markiert die Schlüssel-Begriffe",
       "taskId": "Ziele",
       "filePrefix": "Tag",
-      "sequenceId": 9,
+      "sequenceId": 10,
       "content": [
         {
           "title": "Ziele",
@@ -141,6 +149,25 @@
 
       "package": "Motivation",
       "credits": 2300
+    },
+    {
+      "parentId": "Motivation3",
+      "title": "SMART",
+      "description": "Lest den Text zum Thema Zielsetzung durch SMART durch.",
+      "taskId": "SMART",
+      "filePrefix": "Tag",
+      "sequenceId": 8,
+      "content": [
+        {
+          "title": "SMART",
+          "subtitle": "Smart",
+          "text": "Durch Ziele kann der Sinn einer Handlung besser erkannt und der Weg zur Erreichung dieses Ziels   geplant   und   durchgeführt   werden.   Ziele   führen   dem   Menschen   das   „Warum“   derHandlung   vor   Augen.   Dabei   beschreibt   das   Ziel,   wie   eingangs   bereits   aufgeführt,   dieDiskrepanz zwischen dem IST-Zustand und dem SOLL-Zustand.\nWie in der Zielsetzungstheorie beschrieben, können Ziele dazu dienen, die Motivation zulenken und aufrechtzuhalten. Im Alltag werden Ziele allerdings oftmals allgemein formuliertz.B.   „Ich   werde   abnehmen“,   „Ich   werde   dieses   Semester   die   Klausuren   bestehen“,   waslangfristig dazu führt, dass Ziele mit geringerer Wahrscheinlichkeit erreicht werden und dieMotivation sinkt. \n\nUm dem entgegen zu wirken und Ziele erreichbarer zu gestalten, kann die SMART-Formelangewendet werden. Hierbei werden Ziele konkret operationalisiert und es werden klareKriterien   für   die   Zielerreichung   erstellt.   Außerdem   können   anhand   der   Zielsetzung   mitSMART wesentliche Vereinbarungen über die zeitliche Datierung und die Rückmeldung zubesagtem   Ziel   getroffen   werden.   Daher   kommt   diese   Methodik   vor   allem   imProjektmanagement, im Coaching, in der Karriereplanung und in Trainings zum Einsatz. \n\n SMART steht (aus dem Englischen übersetzt) für: \n     Spezifisch\n     Messbar\n     Akzeptiert (auch attraktiv / anziehend / angemessen)\n     Realistisch\n     Terminiert\n\nSpezifisch  meint in diesem Zusammenhang, dass gesetzte Ziele klar und deutlich definiertwerden sollten, um so möglichst wenig Spielraum für Interpretationen zu schaffen: „Was willich genau erreichen“.\nBeispiel: „Ich will die Mathe Klausur „Algebra 1“ dieses Semester bestehen“. \n\nMessbar meint, dass das Ziel kontrollierbar sein muss. Dies bedeutet, es muss klar sein, abwann das Ziel erreicht ist und wie man das Ziel messen kann: „Wie viel genau muss ichwovon tun“.\nBeispiel: „Die Endnote soll 4,0 oder besser sein.“\n\nAkzeptiert steht in der Formel für die Akzeptanz des Ziels durch alle beteiligten Personen.Jeder   sollte   mit   der   Zielformulierung   einverstanden   sein   und   die   Ziel-Vereinbarung„unterzeichnen“. Außerdem sollte das Ziel durch das Verhalten der Beteiligten beeinflussbarsein. Das A kann auch für „attraktiv“ stehen, was bedeutet, dass das Ziel für einen selbstpositiv sein soll. Ein Ansatz, um mehr Akzeptanz oder Attraktivität zu schaffen, wäre es zumBeispiel   eine   gemeinsame   Zielsetzung,   sodass   andere   auch   beteiligt   werden   und   denFortschritt kontrollieren können\nBeispiel:   „Ich   werde   eine   Lerngruppe   mit   Martina   und   Leon   machen,   in   der   wir   unsgegenseitig motivieren“.\n\nRealistisch steht für die Realisierbarkeit/Erreichbarkeit des Ziels. Zu hoch angesetzte Zielewirken   eher   demotivierend   auf   Menschen.   Optimal   angesetzte   Ziele   wirken   im   erstenMoment frustrierend, da sie nicht sofort zu erreichen sind. Durch eine gewisse Anstrengungkann das Ziel jedoch erreicht werden, was wiederum motiviert. Oft sind gut gesteckte Zieleautomatisch realistisch, da man sich diese sonst nicht setzen würde.\n\nTerminiert beschreibt den festzulegenden Zeitraum einer Zielsetzung, der unbedingt präzisefestgelegt   werden   sollte.   Ratsam   sind   hierbei   auch   Zwischenprüfungen,   um   eventuelleAbweichungen bei der Zielerreichung festzustellen und schnell korrigieren zu können.Beispiel: „dafür treffen wir uns immer Montags, Mittwochs und jeden zweiten Freitag um 16Uhr für zwei Stunden in der Lernlandschaft der Universität.\n\nDes Weiteren ist es ratsam, Zielsetzungen immer positiv zu formulieren da negative Aussagendemotivierend wirken. Formulierungen, die UN- oder NICHT- enthalten, sollten ebenfallsvermieden werden.\nBeispiel: „Ich werde nicht durchfallen“ (Negativ)  „Ich werde bestehen“\n\nDie Wahl der Zielsetzung ist dabei entscheidend. So sollten immer Ziele gewählt werden, die(persönlich) sinnvoll scheinen, sowie eine Entwicklung des Individuums hervorrufen. Hierbeikann an Stärken, Schwächen oder Kompetenzen des Individuums angeknüpft werden.",
+          "keywords": []
+        }
+      ],
+
+      "package": "Motivation",
+      "credits": 2000
     }
   ]
 }
