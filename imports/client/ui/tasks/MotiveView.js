@@ -178,19 +178,19 @@ export default class MotiveView extends React.Component {
     var statements = this.state.statements[0];
     for (var i in statements) {
       if (i == this.state.index) {
-        var tmp;
-        return statements.slice(0, this.state.index + 1).map(statement => {
-          return (
-            <Card
-              // when i add the key prop, it renders more than one card???
-              // key={"card" + i+statement[1]}
-              centered
-              description={[statement[1]]}
-              className="dragItem"
-              id={statement[0]}
-            />
-          );
-        });
+        return statements
+          .slice(this.state.index, this.state.index + 1)
+          .map(statement => {
+            return (
+              <Card
+                key={"card" + i + statement[1]}
+                centered
+                description={[statement[1]]}
+                className="dragItem"
+                id={statement[0]}
+              />
+            );
+          });
       } else {
         var found = false;
       }
