@@ -57,6 +57,7 @@ export default class MultiChoiceView extends Component {
     return set.map((answer, index) => {
       return (
         <Checkbox
+          style={{ width: "100%" }}
           key={"Checkbox_" + questionId + "_" + index}
           id={"cb_" + questionId + "_" + index + "_" + (multi ? "m" : "")}
           radio={!multi}
@@ -81,18 +82,26 @@ export default class MultiChoiceView extends Component {
 
   renderQuestion(question) {
     return (
-      <Card key={"questionCard_" + question.QuestionId}>
-        <Card.Content>
-          <Card.Header>{question.Question}</Card.Header>
-          <Card.Description>
-            {this.renderAnswerSet(
-              question.QuestionId,
-              question.AnswerSet,
-              question.multi
-            )}
-          </Card.Description>
-        </Card.Content>
-      </Card>
+      <div
+        key={"questionDiv_" + question.QuestionId}
+        style={{ width: "100%", paddingBottom: "16px" }}
+      >
+        <Card
+          key={"questionCard_" + question.QuestionId}
+          style={{ marginLeft: "10%", minWidth: "30%" }}
+        >
+          <Card.Content>
+            <Card.Header>{question.Question}</Card.Header>
+            <Card.Description>
+              {this.renderAnswerSet(
+                question.QuestionId,
+                question.AnswerSet,
+                question.multi
+              )}
+            </Card.Description>
+          </Card.Content>
+        </Card>
+      </div>
     );
   }
 
