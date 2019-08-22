@@ -8,6 +8,7 @@ import TrainingAnimationTemplate from "../../tasks/TrainingAnimationTemplate";
 import TagAnimationTemplate from "../../tasks/TagAnimationTemplate";
 import ClozeAnimationTemplate from "../../tasks/ClozeAnimationTemplate";
 import MemoryAnimationTemplate from "../../tasks/MemoryAnimationTemplate";
+import MultiChoiceAnimationTemplate from "../../tasks/MultiChoiceAnimationTemplate";
 
 import equals from "fast-deep-equal";
 import { Button, Icon, Header, Image, Grid } from "semantic-ui-react";
@@ -142,6 +143,8 @@ export default class Workspace extends React.Component {
               return <ClozeAnimationTemplate {...taskProps} />;
             case "memory":
               return <MemoryAnimationTemplate {...taskProps} />;
+            case "multiChoice":
+              return <MultiChoiceAnimationTemplate {...taskProps} />;
           }
         }
         // set active task

@@ -47,11 +47,27 @@ function createMemory(taskSpecs) {
 
   return taskSpecs;
 }
+
+function createMultiChoice(taskSpecs) {
+  taskSpecs["isTask"] = true;
+  taskSpecs["taskId"] = taskSpecs["taskId"];
+  taskSpecs["type"] = "multiChoice";
+  taskSpecs["content"] = taskSpecs["content"];
+  taskSpecs["package"] = taskSpecs["package"];
+  taskSpecs["autoGrading"] = true;
+  taskSpecs["filePrefix"] = taskSpecs["filePrefix"];
+
+  return taskSpecs;
+}
+
 export function addTasks() {
   var dragTasks = JSON.parse(Assets.getText("tasks/drags.json"))["tasks"];
   var tagTasks = JSON.parse(Assets.getText("tasks/tags.json"))["tasks"];
   var clozeTasks = JSON.parse(Assets.getText("tasks/cloze.json"))["tasks"];
   var memoryTasks = JSON.parse(Assets.getText("tasks/memory.json"))["tasks"];
+  var multiChoiceTasks = JSON.parse(Assets.getText("tasks/multi.json"))[
+    "tasks"
+  ];
 
   for (var i = 0; i < dragTasks.length; i++) {
     Meteor.call("tasks.insert", createDragTask(dragTasks[i]));
@@ -64,5 +80,9 @@ export function addTasks() {
   }
   for (var i = 0; i < memoryTasks.length; i++) {
     Meteor.call("tasks.insert", createMemory(memoryTasks[i]));
+  }
+
+  for (var i = 0; i < multiChoiceTasks.length; i++) {
+    Meteor.call("tasks.insert", createMultiChoice(multiChoiceTasks[i]));
   }
 }

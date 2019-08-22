@@ -142,5 +142,77 @@ Meteor.methods({
       solveTask(studentId, task.taskId);
     }
     return correct;
+  },
+  "solutionHandler.submitMulti"(
+    studentSolution,
+    studentId,
+    task,
+    solvedPercentage
+  ) {
+    if (solvedPercentage !== undefined) {
+      solveTask(studentId, task.taskId, solvedPercentage);
+      return null;
+    }
+    let falseQuestions = [];
+    let solution = Solutions[task.taskId];
+    if (!solution) return false;
+
+    let totalAnswerCount = 0;
+    let falseCount = 0;
+    for (let i = 0; i < task.content[0].questions.length; i++) {
+      totalAnswerCount += task.content[0].questions[i].AnswerSet.length;
+      if (
+        studentSolution.find(element => {
+          return (
+            element.id.toString() ===
+            task.content[0].questions[i].QuestionId.toString()
+          );
+        }) === undefined
+      ) {
+        let missingQuestionAnswers = solution.find(element => {
+          return (
+            element.id.toString() ===
+            task.content[0].questions[i].QuestionId.toString()
+          );
+        });
+        falseCount += missingQuestionAnswers.sol.length;
+        falseQuestions.push(missingQuestionAnswers);
+      }
+    }
+
+    for (let i = 0; i < studentSolution.length; i++) {
+      let solutionAnswers = solution.find(element => {
+        return element.id.toString() === studentSolution[i].id;
+      });
+      let questionCorrect = true;
+      for (let j = 0; j < studentSolution[i].values.length; j++) {
+        if (!solutionAnswers.sol.includes(studentSolution[i].values[j])) {
+          questionCorrect = false;
+          falseCount++;
+        }
+      }
+      for (let j = 0; j < solutionAnswers.sol.length; j++) {
+        if (!studentSolution[i].values.includes(solutionAnswers.sol[j])) {
+          questionCorrect = false;
+          falseCount++;
+        }
+      }
+
+      if (!questionCorrect) {
+        falseQuestions.push(solutionAnswers);
+      }
+    }
+
+    if (falseCount === 0) {
+      solveTask(studentId, task.taskId, 1);
+    }
+
+    let retval = {
+      falseCount,
+      totalAnswerCount,
+      falseQuestions
+    };
+
+    return retval;
   }
 });
