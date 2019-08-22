@@ -1,17 +1,68 @@
 import React, { Component } from "react";
 import { Meteor } from "meteor/meteor";
-import { Card, Checkbox, Grid } from "semantic-ui-react";
+import { Card, Checkbox, Button } from "semantic-ui-react";
+import Swal from "sweetalert2";
 
 export default class MultiChoiceView extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      checkedAnswers: []
+      checkedAnswers: [],
+      showSolution: false,
+      childKeyIteration: 0,
+      result: null
     };
   }
 
-  solutionPrepare() {}
+  solutionPrepare() {
+    let meteorMethod =
+      "solutionHandler.submit" + this.props.activeTask.filePrefix;
+    if (this.state.showSolution) {
+      let result = this.state.result;
+      let solvedPercentage = result.falseCount / result.totalAnswerCount;
+      Meteor.call(
+        meteorMethod,
+        this.state.checkedAnswers,
+        this.props.student._id,
+        this.props.activeTask,
+        solvedPercentage
+      );
+    } else {
+      Meteor.call(
+        meteorMethod,
+        this.state.checkedAnswers,
+        this.props.student._id,
+        this.props.activeTask,
+        (err, res) => {
+          if (res && res.falseCount > 0) {
+            Swal.fire({
+              position: "top-end",
+              type: "warning",
+              title: "Nicht ganz...",
+              text:
+                "Es sind nicht alle Fragen richtig beantwortet. Willst du es nochmal versuchen, oder möchtest du dir die Lösung anschauen?",
+              confirmButtonText: "Lösung zeigen",
+              cancelButtonText: "Nochmal versuchen",
+              cancelButtonColor: "#3085d6",
+              showCancelButton: true
+            }).then(result => {
+              if (result.value) {
+                this.setState({ showSolution: true, result: res });
+                this.forceUpdate();
+              } else {
+                this.setState({
+                  showSolution: false,
+                  checkedAnswers: [],
+                  childKeyIteration: this.state.childKeyIteration === 0 ? 1 : 0
+                });
+              }
+            });
+          }
+        }
+      );
+    }
+  }
 
   handleChange(e, { value }) {
     const questionId = e.target.id.split("_")[1];
@@ -53,11 +104,24 @@ export default class MultiChoiceView extends Component {
     let checkedAnswers = this.state.checkedAnswers.find(element => {
       return element.id.toString() === questionId.toString();
     });
+    let correctAnswers = [];
+    if (this.state.showSolution) {
+      let falseQuestion = this.state.result.falseQuestions.find(element => {
+        return element.id.toString() === questionId.toString();
+      });
+      if (falseQuestion) {
+        correctAnswers = falseQuestion.sol;
+      }
+    }
 
     return set.map((answer, index) => {
+      let color = "";
+      if (this.state.showSolution) {
+        color = correctAnswers.includes(answer) ? "green" : "red";
+      }
       return (
         <Checkbox
-          style={{ width: "100%" }}
+          style={{ width: "100%", backgroundColor: color }}
           key={"Checkbox_" + questionId + "_" + index}
           id={"cb_" + questionId + "_" + index + "_" + (multi ? "m" : "")}
           radio={!multi}
@@ -106,6 +170,21 @@ export default class MultiChoiceView extends Component {
   }
 
   render() {
-    return <React.Fragment>{this.renderQuestions()}</React.Fragment>;
+    return (
+      <React.Fragment>
+        {this.renderQuestions()}
+        <Button
+          style={{
+            marginTop: "10px",
+            marginBottom: "10px",
+            marginRight: "18.4%"
+          }}
+          floated="right"
+          onClick={() => this.solutionPrepare()}
+        >
+          Weiter
+        </Button>
+      </React.Fragment>
+    );
   }
 }

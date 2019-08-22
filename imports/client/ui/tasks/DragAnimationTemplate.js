@@ -68,7 +68,7 @@ export default class DragAnimationTemplate extends React.Component {
           type: "warning",
           title: "Nicht ganz...",
           text:
-            "Es sind nicht alle Felder richtg. Willst du es nochmal versuchen, oder willst du dir die Lösung anschauen?",
+            "Es sind nicht alle Felder richtg. Willst du es nochmal versuchen, oder möchtest du dir die Lösung anschauen?",
           confirmButtonText: "Lösung zeigen",
           cancelButtonText: "Nochmal versuchen",
           cancelButtonColor: "#3085d6",
