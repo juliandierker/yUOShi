@@ -22,8 +22,8 @@
             "Interesse"
           ],
           "images": {
-            "Motivation": "/Tag/Motivation.jpg",
-            "Interesse": "/Tag/Ziel.jpg"
+            "Motivation": "/Tag/Motivation0/Motivation.jpg",
+            "Interesse": "/Tag/Motivation0/Ziel.jpg"
           }
         }
       ],
@@ -33,7 +33,7 @@
     },
     {
       "parentId": "Motivation1",
-      "title": "Intrinsisch/Extrinsisch",
+      "title": "Intrinsisch&Extrinsisch",
       "description": "Lest den Einführungstext und markiert die Schlüssel-Begriffe",
       "taskId": "Motivation_IntrExtr",
       "filePrefix": "Tag",
@@ -51,7 +51,11 @@
             "Zusammenspiel",
             "Korrumpierungseffekt",
             "getrennte Skalen"
-          ]
+          ],
+          "images": {
+            "intrinsische Motivation": "/Tag/Motivation1/Intrinsisch&Extrinsisch.jpg",
+            "Korrumpierungseffekt": "/Tag/Motivation1/Korrumpierungseffekt.jpg"
+          }
         }
       ],
 
@@ -79,7 +83,11 @@
             "Individualbedürfnisse",
             "Mangelbedürfnisse",
             "Selbstverwirklichungsbedürfnis"
-          ]
+          ],
+          "images": {
+            "Maslowtheorie": "/Tag/Motivation2/Maslowtheorie.jpg",
+            "Mangelbedürfnisse": "/Tag/Motivation2/Selbstverwirklichung.jpg"
+          }
         }
       ],
 
@@ -105,7 +113,11 @@
             "Bedürfnis nach Autonomie",
             "Bedürfnis des Kompetenzerlebens",
             "Bedürfnis nach sozialer Eingebundenheit"
-          ]
+          ],
+          "images": {
+            "Selbstbestimmung": "/Tag/Motivation3/Selbstbestimmung.jpg",
+            "Moderatoren": "/Tag/Motivation3/Bedürfnis nach Autonomie.jpg"
+          }
         }
       ],
 
@@ -121,10 +133,14 @@
       "sequenceId": 8,
       "content": [
         {
-          "title": "Xwert_Theorie",
+          "title": "Xwert-Theorie",
           "subtitle": "Xwert_Theorie",
           "text": "Das Erwartungs-Wert-Modell nach Heckhausen(1977) hat einen großen Einfluss auf die moderne Motivationsforschung. In einer Formel kann das Ausmaß der Motivation bezüglich einer konkreten Aktivität dargestellt werden: M = E x W - \n Die Motivation (M) ergibt sich somit aus dem Produkt der Erwartung (E) eines bestimmten Ergebnisses einer Handlung und dem Wert (W), bzw. der Attraktivität,  den dieses Ergebnis für die handelnde Person hat. \n\n Das Modell nach Heckhausen beschreibt vier verschiedene Stationen Stufen im kognitiven Prozess der Motivationsentwicklung, denen sich bei unterschiedlicher Handlung differenzierte Erwartungen zuordnen lassen. Die erste Stufe betrifft eine Vermutung über die Situation-Ergebnis-Erwartung, das heißt, was passieren würde, wenn das Individuum nicht handelt. In Stufe zwei des Modells werden verschiedene Handlungschancen in der gegebenen Situation betrachtet und das zu erwartende Ergebnis bewertet. Stufe drei beschäftigt sich dann mit den möglicherweise resultierenden Folgen des Ergebnisses. \nGrundsätzlich spielt der Nutzen der Handlungsergebnisse eine zentrale Rolle für den tatsächlichen Motivationsprozess. Genau wie in der beschriebenen Formel ist Motivation nach dieser Theorie demnach ein Produkt aus der Erwartung, ein bestimmtes Ziel zu erreichen und dem Wert, den das Ziel für das Individuum besitzt. Geht einer dieser beiden Werte gegen 0, hat das Ziel beispielsweise keinen emotionalen Wert für den Betroffenen, ergibt auch das Produkt 0 und es entsteht keine Motivation, das Ziel zu erreichen. \nSo beschäftigt sich ein Schüler beispielsweise erst mit einem Fach, wenn es für seinen späteren Berufswunsch relevant ist.",
-          "keywords": ["Erwartungs-Wert", "Situation", "Ergebnis"]
+          "keywords": ["Erwartungs-Wert", "Situation", "Ergebnis"],
+          "images": {
+            "Selbstbestimmung": "/Tag/Motivation4/Xwert-Theorie.jpg",
+            "Moderatoren": "/Tag/Motivation4/Ergebnis.jpg"
+          }
         }
       ],
 
@@ -147,7 +163,11 @@
             "Zielsetzungstheorie",
             "Motivationsstrategien",
             "Moderatoren"
-          ]
+          ],
+          "images": {
+            "Motivationsstrategien": "/Tag/Motivation5/Motivationsstrategien.jpg",
+            "Moderatoren": "/Tag/Motivation5/Moderatoren.jpg"
+          }
         }
       ],
 

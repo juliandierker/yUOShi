@@ -90,40 +90,28 @@ export default class TagView extends React.Component {
     //adding images
     const images = this.props.activeTask.content[0].images;
     const entries = Object.entries(images);
-    console.log(entries);
     const imgKeys = Object.keys(images);
-    console.log(images);
-    for (const imgKey in imgKeys) {
-      console.log(entries[imgKey][1]);
-      var regExp = new RegExp(entries[imgKey][0], "g", 1);
-
-      // var plainText = reactStringReplace(plainText, regExp, (match, j) => {
-      //   return (
-      //     <React.Fragment key={"textFragment" + tmpKey}>
-      //       <Image
-      //         src={"/tasks" + entries[imgKey][1]}
-      //         size="small"
-      //         floated="left"
-      //       />
-      //       {entries[imgKey][0]}
-      //     </React.Fragment>
-      //   );
-      // });
-    }
 
     //preparing text for tags
     var count = 0;
     for (var i in keyArr) {
       const replacerStr = keyArr[i];
-
       var re = new RegExp("(?:" + replacerStr + ")(\\W)", "g");
       var plainText = reactStringReplace(plainText, re, (match, j) => {
-        console.log(replacerStr);
         tmpKey++;
         const k = tmpKey;
         return (
           <React.Fragment key={"textFragment" + tmpKey}>
-            {" "}
+            {imgKeys && replacerStr == imgKeys[1] && count == 0
+              ? (count++,
+                (
+                  <Image
+                    src={"/tasks/" + entries[1][1]}
+                    style={{ width: "100%", marginTop: "3%" }}
+                    floated="left"
+                  />
+                ))
+              : null}
             <span
               key={"textSpan" + tmpKey}
               className={replacerStr}
@@ -134,35 +122,54 @@ export default class TagView extends React.Component {
               {replacerStr}
             </span>
             {match}
-            {replacerStr == imgKeys[1] && count == 0
-              ? (count++,
-                (
-                  <Image
-                    src={"/tasks/" + entries[1][1]}
-                    size="small"
-                    floated="left"
-                  />
-                ))
-              : null}
           </React.Fragment>
         );
       });
     }
+    var middle = Math.floor(plainText.length / 2);
+    var partOne = plainText.slice(0, middle + 1);
+    var partTwo = plainText.slice(middle + 1, plainText.length);
     return (
       <Segment
         id="defTextReader"
-        style={{ maxWidth: "125%", whiteSpace: "pre-line" }}
+        style={{ maxWidth: "100%", whiteSpace: "pre-line" }}
       >
-        <Image src={"/tasks/" + entries[0][1]} size="small" floated="left" />
-        {plainText}
-        <Image src={"/tasks/" + entries[1][1]} size="small" centered />
+        <Header as="h1"> {this.props.activeTask.title}</Header>
+
+        <Image
+          style={{ width: "100%", marginBottom: "5%" }}
+          src={"/tasks/" + entries[0][1]}
+          size="medium"
+          centered
+        />
+        <Grid divided="vertically">
+          <Grid.Row columns={2}>
+            <Grid.Column> {partOne}</Grid.Column>
+            <Grid.Column>{partTwo} </Grid.Column>
+          </Grid.Row>
+        </Grid>
       </Segment>
     );
   }
   renderTaglist() {
+    const buttonDisabled = this.state.finished ? false : true;
+    const buttonColor = this.state.finished ? "green" : "grey";
     return (
       <Segment style={{ position: "fixed" }}>
         <List>{this.renderListElem()}</List>
+        <Button
+          color={buttonColor}
+          disabled={buttonDisabled}
+          style={{
+            marginTop: "10px",
+            marginBottom: "10px",
+            marginRight: "18.4%"
+          }}
+          floated="right"
+          onClick={() => this.solutionPrepare()}
+        >
+          Weiter
+        </Button>
       </Segment>
     );
   }
@@ -246,25 +253,10 @@ export default class TagView extends React.Component {
     }
   }
   render() {
-    const buttonDisabled = this.state.finished ? false : true;
-    const buttonColor = this.state.finished ? "green" : "grey";
     return (
       <div>
         {this.renderView()}
         {this.renderVideo()}
-        <Button
-          color={buttonColor}
-          disabled={buttonDisabled}
-          style={{
-            marginTop: "10px",
-            marginBottom: "10px",
-            marginRight: "18.4%"
-          }}
-          floated="right"
-          onClick={() => this.solutionPrepare()}
-        >
-          Weiter
-        </Button>
       </div>
     );
   }
