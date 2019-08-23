@@ -90,32 +90,35 @@ export default class TagView extends React.Component {
     //adding images
     const images = this.props.activeTask.content[0].images;
     const entries = Object.entries(images);
+    console.log(entries);
     const imgKeys = Object.keys(images);
     console.log(images);
     for (const imgKey in imgKeys) {
       console.log(entries[imgKey][1]);
       var regExp = new RegExp(entries[imgKey][0], "g", 1);
 
-      var plainText = reactStringReplace(plainText, regExp, (match, j) => {
-        return (
-          <React.Fragment key={"textFragment" + tmpKey}>
-            <Image
-              src={"/tasks" + entries[imgKey][1]}
-              size="small"
-              floated="left"
-            />
-            {entries[imgKey][0]}
-          </React.Fragment>
-        );
-      });
+      // var plainText = reactStringReplace(plainText, regExp, (match, j) => {
+      //   return (
+      //     <React.Fragment key={"textFragment" + tmpKey}>
+      //       <Image
+      //         src={"/tasks" + entries[imgKey][1]}
+      //         size="small"
+      //         floated="left"
+      //       />
+      //       {entries[imgKey][0]}
+      //     </React.Fragment>
+      //   );
+      // });
     }
 
     //preparing text for tags
-
+    var count = 0;
     for (var i in keyArr) {
       const replacerStr = keyArr[i];
+
       var re = new RegExp("(?:" + replacerStr + ")(\\W)", "g");
       var plainText = reactStringReplace(plainText, re, (match, j) => {
+        console.log(replacerStr);
         tmpKey++;
         const k = tmpKey;
         return (
@@ -131,6 +134,16 @@ export default class TagView extends React.Component {
               {replacerStr}
             </span>
             {match}
+            {replacerStr == imgKeys[1] && count == 0
+              ? (count++,
+                (
+                  <Image
+                    src={"/tasks/" + entries[1][1]}
+                    size="small"
+                    floated="left"
+                  />
+                ))
+              : null}
           </React.Fragment>
         );
       });
@@ -140,7 +153,9 @@ export default class TagView extends React.Component {
         id="defTextReader"
         style={{ maxWidth: "125%", whiteSpace: "pre-line" }}
       >
+        <Image src={"/tasks/" + entries[0][1]} size="small" floated="left" />
         {plainText}
+        <Image src={"/tasks/" + entries[1][1]} size="small" centered />
       </Segment>
     );
   }
