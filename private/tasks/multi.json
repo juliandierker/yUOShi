@@ -6,7 +6,7 @@
       "description": "Ein Beispiel für multiple Choice Fragen",
       "taskId": "MultiChoiceEx",
       "filePrefix": "Multi",
-      "sequenceId": 11,
+      "sequenceId": 12,
       "content": [
         {
           "questions": [

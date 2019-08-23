@@ -56,6 +56,10 @@ export default class TagView extends React.Component {
       );
     });
   }
+  renderImage(match) {
+    console.log(match);
+    return <Image src={"/tasks" + match} size="small" floated="left" />;
+  }
   handleClickTag(match, key) {
     var el = document.getElementsByClassName(match);
     var highlighted = document.getElementById(match + key);
@@ -82,6 +86,14 @@ export default class TagView extends React.Component {
     var plainText = this.props.activeTask.content[0].text;
     var keyArr = this.props.activeTask.content[0].keywords;
     let tmpKey = 0;
+
+    //adding images
+    const images = this.props.activeTask.content[0].images;
+    const entries = Object.entries(images);
+    const imgKeys = Object.keys(images);
+
+    //preparing text for tags
+    var count = 0;
     for (var i in keyArr) {
       const replacerStr = keyArr[i];
       var re = new RegExp("(?:" + replacerStr + ")(\\W)", "g");
@@ -90,7 +102,16 @@ export default class TagView extends React.Component {
         const k = tmpKey;
         return (
           <React.Fragment key={"textFragment" + tmpKey}>
-            {" "}
+            {imgKeys && replacerStr == imgKeys[1] && count == 0
+              ? (count++,
+                (
+                  <Image
+                    src={"/tasks/" + entries[1][1]}
+                    style={{ width: "100%", marginTop: "3%" }}
+                    floated="left"
+                  />
+                ))
+              : null}
             <span
               key={"textSpan" + tmpKey}
               className={replacerStr}
@@ -105,23 +126,52 @@ export default class TagView extends React.Component {
         );
       });
     }
+    var middle = Math.floor(plainText.length / 2);
+    var partOne = plainText.slice(0, middle + 1);
+    var partTwo = plainText.slice(middle + 1, plainText.length);
     return (
       <Segment
         id="defTextReader"
-        style={{ maxWidth: "125%", whiteSpace: "pre-line" }}
+        style={{ maxWidth: "100%", whiteSpace: "pre-line" }}
       >
-        {plainText}
+        <Header as="h1"> {this.props.activeTask.title}</Header>
+
+        <Image
+          style={{ width: "100%", marginBottom: "5%" }}
+          src={"/tasks/" + entries[0][1]}
+          size="medium"
+          centered
+        />
+        <Grid divided="vertically">
+          <Grid.Row columns={2}>
+            <Grid.Column> {partOne}</Grid.Column>
+            <Grid.Column>{partTwo} </Grid.Column>
+          </Grid.Row>
+        </Grid>
       </Segment>
     );
   }
   renderTaglist() {
-    if (this.props.activeTask.content[0].keywords.length !== 0) {
-      return (
-        <Segment style={{ position: "fixed" }}>
-          <List>{this.renderListElem()}</List>
-        </Segment>
-      );
-    }
+    const buttonDisabled = this.state.finished ? false : true;
+    const buttonColor = this.state.finished ? "green" : "grey";
+    return (
+      <Segment style={{ position: "fixed" }}>
+        <List>{this.renderListElem()}</List>
+        <Button
+          color={buttonColor}
+          disabled={buttonDisabled}
+          style={{
+            marginTop: "10px",
+            marginBottom: "10px",
+            marginRight: "18.4%"
+          }}
+          floated="right"
+          onClick={() => this.solutionPrepare()}
+        >
+          Weiter
+        </Button>
+      </Segment>
+    );
   }
   getTaskImage() {}
   renderView() {
@@ -206,32 +256,10 @@ export default class TagView extends React.Component {
     }
   }
   render() {
-    let buttonDisabled = true;
-    let buttonColor = "grey";
-    if (
-      this.state.finished ||
-      this.props.activeTask.content[0].keywords.length === 0
-    ) {
-      buttonDisabled = false;
-      buttonColor = "green";
-    }
     return (
       <div>
         {this.renderView()}
         {this.renderVideo()}
-        <Button
-          color={buttonColor}
-          disabled={buttonDisabled}
-          style={{
-            marginTop: "10px",
-            marginBottom: "10px",
-            marginRight: "18.4%"
-          }}
-          floated="right"
-          onClick={() => this.solutionPrepare()}
-        >
-          Weiter
-        </Button>
       </div>
     );
   }
