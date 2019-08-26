@@ -116,7 +116,7 @@ export default class MultiChoiceView extends Component {
 
     return set.map((answer, index) => {
       let color = "";
-      if (this.state.showSolution) {
+      if (this.state.showSolution && correctAnswers.length > 0) {
         color = correctAnswers.includes(answer) ? "green" : "red";
       }
       return (

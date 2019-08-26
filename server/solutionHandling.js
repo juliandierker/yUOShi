@@ -153,53 +153,57 @@ Meteor.methods({
       solveTask(studentId, task.taskId, solvedPercentage);
       return null;
     }
+
     let falseQuestions = [];
     let solution = Solutions[task.taskId];
-    if (!solution) return false;
+    if (!solution) return null;
 
     let totalAnswerCount = 0;
     let falseCount = 0;
     for (let i = 0; i < task.content[0].questions.length; i++) {
-      totalAnswerCount += task.content[0].questions[i].AnswerSet.length;
-      if (
-        studentSolution.find(element => {
-          return (
-            element.id.toString() ===
-            task.content[0].questions[i].QuestionId.toString()
-          );
-        }) === undefined
-      ) {
-        let missingQuestionAnswers = solution.find(element => {
-          return (
-            element.id.toString() ===
-            task.content[0].questions[i].QuestionId.toString()
-          );
-        });
-        falseCount += missingQuestionAnswers.sol.length;
-        falseQuestions.push(missingQuestionAnswers);
-      }
-    }
-
-    for (let i = 0; i < studentSolution.length; i++) {
-      let solutionAnswers = solution.find(element => {
-        return element.id.toString() === studentSolution[i].id;
-      });
       let questionCorrect = true;
-      for (let j = 0; j < studentSolution[i].values.length; j++) {
-        if (!solutionAnswers.sol.includes(studentSolution[i].values[j])) {
-          questionCorrect = false;
-          falseCount++;
+      totalAnswerCount += task.content[0].questions[i].AnswerSet.length;
+      const currentSolution = solution.find(element => {
+        return (
+          element.id.toString() ===
+          task.content[0].questions[i].QuestionId.toString()
+        );
+      });
+
+      if (currentSolution.sol.length !== 0) {
+        //TODO: check answers
+        let studentSolutionAnswers = studentSolution.find(element => {
+          return element.id.toString() === currentSolution.id.toString();
+        });
+        // let studentSolutionAnswerSet = studentSolutionAnswers !== undefined ? studentSolutionAnswers.sol;
+        if (studentSolutionAnswers === undefined) {
+          falseCount += currentSolution.sol.length;
+          falseQuestions.push(currentSolution);
+        } else {
+          for (let j = 0; j < studentSolutionAnswers.values.length; j++) {
+            if (
+              !currentSolution.sol.includes(studentSolutionAnswers.values[j])
+            ) {
+              questionCorrect = false;
+              falseCount++;
+            }
+          }
+          for (let j = 0; j < currentSolution.sol; j++) {
+            if (
+              !studentSolutionAnswers.values.includes(currentSolution.sol[j])
+            ) {
+              questionCorrect = false;
+              falseCount++;
+            }
+          }
         }
-      }
-      for (let j = 0; j < solutionAnswers.sol.length; j++) {
-        if (!studentSolution[i].values.includes(solutionAnswers.sol[j])) {
-          questionCorrect = false;
-          falseCount++;
-        }
+      } else {
+        // console.log(currentSolution);
+        // TODO: save answers for later evaluation in "Lehrendenzimmer"
       }
 
       if (!questionCorrect) {
-        falseQuestions.push(solutionAnswers);
+        falseQuestions.push(currentSolution);
       }
     }
 

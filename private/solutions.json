@@ -49,7 +49,14 @@
   "Ziele": ["Zielsetzungstheorie", "Locke", "Moderatoren"],
   "ZieleCloze": ["Zielsetzungstheorie", "Locke", "Moderatoren"],
   "MultiChoiceEx": [
-    { "id": 1, "sol": ["Ja"] },
-    { "id": 2, "sol": ["Ja", "Darum"] }
+    {
+      "id": 1,
+      "sol": [
+        "Intrinsische Motivation bedeutet, dass die Motivation von innen heraus kommt, zum Beispiel durch Interesse",
+        "Der Korrumpierungseffekt kann auch als „Undermining Effekt“ bezeichnet werden"
+      ]
+    },
+    { "id": 2, "sol": [] },
+    { "id": 3, "sol": [] } 
   ]
 }

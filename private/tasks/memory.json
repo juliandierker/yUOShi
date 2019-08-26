@@ -6,7 +6,7 @@
       "description": "In diesem Memory müsst ihr zu Begriffen die entsprechenden Bilder zuweisen.",
       "taskId": "Motivation_Memory",
       "filePrefix": "Memory",
-      "sequenceId": 5,
+      "sequenceId": 6,
       "package": "Motivation",
       "credits": 3000,
       "content": [

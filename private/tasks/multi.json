@@ -1,36 +1,49 @@
 {
   "tasks": [
     {
-      "parentId": "Motivation3",
-      "title": "Multiple Choice Example",
-      "description": "Ein Beispiel für multiple Choice Fragen",
+      "parentId": "Motivation1",
+      "title": "Fragen zum Text",
+      "description": "Markiere die Aussagen",
       "taskId": "MultiChoiceEx",
       "filePrefix": "Multi",
-      "sequenceId": 12,
+      "sequenceId": 3,
       "content": [
         {
           "questions": [
             {
               "QuestionId": 1,
-              "Question": "Ist ein Apfel grün?",
+              "Question": "Markiere alle richtigen Aussagen",
               "AnswerSet": [
-                "Ja",
+                "Intrinsische Motivation bedeutet, dass die Motivation von innen heraus kommt, zum Beispiel durch Interesse",
                 "Nein",
-                "Farbe ist nur ein konstrukt der Gesellschaft!"
+                "Farbe ist nur ein konstrukt der Gesellschaft!",
+                "Der Korrumpierungseffekt kann auch als „Undermining Effekt“ bezeichnet werden"
               ],
-              "multi": false
+              "multi": true
             },
             {
               "QuestionId": 2,
-              "Question": "Warum???",
+              "Question": "Was motiviert dich, Lehrer*in werden zu wollen? Priorisiere die folgendenAspekte! Die Ergebnisse werden im Lehrerzimmer für deinen Kurs einzusehen sein!",
               "AnswerSet": [
-                "Darum",
-                "Ja",
-                "Warum nicht?",
-                "Alle guten dinge sind 4!",
-                "Oder doch 5?"
+                "Sicheres Einkommen",
+                "Verbeamtet werden",
+                "Regelmäßige Ferien",
+                "Pädagogisch handeln",
+                "Schüler*innen motivieren",
+                "Spannende Themen behandeln"
               ],
               "multi": true
+            },
+            {
+              "QuestionId": 3,
+              "Question": "Würdest du dich in erster Linie als extrinsisch oder intrinsisch motiviert beschreiben?",
+              "AnswerSet": [
+                "Extrinsisch",
+                "Intrinsisch",
+                "Beides",
+                "Weder noch"
+              ],
+              "multi": false
             }
           ]
         }
