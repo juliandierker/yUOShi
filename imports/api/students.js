@@ -47,7 +47,6 @@ Meteor.methods({
       sequenceId: sequenceId
     }).fetch()[0];
     Students.update(_id, { $addToSet: { tasks } });
-    Students.update(_id, { $inc: { currentSequenceId: 1 } });
   },
   //Gets a package and it's first training
   "students.getPackage": function(packageName, _id) {
@@ -81,6 +80,7 @@ Meteor.methods({
       }
     };
     Students.update({ _id: student._id }, studentUpdates);
+    Students.update({ _id: student._id }, { $inc: { currentSequenceId: 1 } });
   }
 });
 

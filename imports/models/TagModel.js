@@ -8,6 +8,7 @@ export const TagModel = {
         this.taskId = task.taskId;
         this.solution = [];
         this.visQueue = [];
+        console.log(task.content[0].keywords);
         this.sampleSolution = task.content[0].keywords;
       },
 
@@ -20,7 +21,10 @@ export const TagModel = {
         return this.visQueue;
       },
 
-      reset: function() {}
+      reset: function() {
+        this.solution = [];
+        this.visQueue = [];
+      }
     };
     return model;
   }

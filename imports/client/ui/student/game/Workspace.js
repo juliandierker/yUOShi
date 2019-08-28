@@ -33,6 +33,7 @@ export default class Workspace extends React.Component {
       showCurrentTasks: true,
       packageStarted: null,
       currentSubPackageIndex: 0,
+      currentSequenceId: 0,
       hasActiveTaskOrTraining: false
     };
     this.handler = ev => {
@@ -95,6 +96,72 @@ export default class Workspace extends React.Component {
   taskSwitch() {
     let student = this.props.student;
     let taskPackage = student.currentPackage;
+
+    if (this.state.currentSequenceId !== student.currentSequenceId) {
+      this.props.handleNextTask();
+      this.setState({ currentSequenceId: student.currentSequenceId });
+      this.forceUpdate();
+    }
+
+    let packageTrainings = this.props.trainings[0][
+      student.currentPackage[0].name
+    ];
+    // Get current Training
+    let currentTask = packageTrainings.find(elem => {
+      return elem.sequenceId === student.currentSequenceId;
+    });
+    // Get current Task
+    if (!currentTask) {
+      currentTask = this.props.tasks.find(elem => {
+        return elem.sequenceId === student.currentSequenceId;
+      });
+    }
+
+    if (currentTask) {
+      if (currentTask.isTask) {
+        let taskProps = {
+          student: this.props.student,
+          tasks: this.props.tasks,
+          activeTask: currentTask,
+          courses: this.props.courses,
+          trainings: this.props.trainings
+        };
+
+        console.log(taskProps);
+
+        switch (currentTask.type) {
+          case "drag":
+            return <DragAnimationTemplate {...taskProps} />;
+          case "tag":
+            return <TagAnimationTemplate {...taskProps} />;
+          case "cloze":
+            return <ClozeAnimationTemplate {...taskProps} />;
+          case "memory":
+            return <MemoryAnimationTemplate {...taskProps} />;
+          case "multiChoice":
+            return <MultiChoiceAnimationTemplate {...taskProps} />;
+        }
+      } else {
+        console.log(currentTask);
+        let currentTaskArray = [];
+        currentTaskArray.push(currentTask);
+        Meteor.call("students.initTraining", currentTaskArray, student._id);
+
+        student.currentTraining = currentTaskArray;
+
+        let taskProps = {
+          student: this.props.student,
+          tasks: this.props.tasks,
+          activeTask: currentTask,
+          courses: this.props.courses,
+          trainings: this.props.trainings
+        };
+
+        return <TrainingAnimationTemplate {...taskProps} />;
+      }
+    }
+
+    return "NO MORE TASKS!!!";
 
     let contentCount = 0;
     for (let i = 0; i < taskPackage[0].content.length; i++) {

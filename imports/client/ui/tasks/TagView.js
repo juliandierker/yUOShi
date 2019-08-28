@@ -30,8 +30,28 @@ export default class TagView extends React.Component {
     this.view = null;
   }
 
+  componentDidMount() {}
+
+  unmountLabels() {
+    let elems = document.getElementsByClassName("ui label");
+    if (elems) {
+      for (let i in elems) {
+        console.log(elems[i]);
+
+        elems[i].remove();
+      }
+    }
+  }
+
   componentDidUpdate(prevProps, prevState) {
     var sol = this.props.activeTask.content[0].keywords;
+    if (prevProps.activeTask._id != this.props.activeTask._id) {
+      this.unmountLabels();
+      if (this.state.tags.length > 0) {
+        const tags = [];
+        this.setState({ tags });
+      }
+    }
 
     if (sol.length == this.state.tags.length) {
       if (!this.state.finished) {
@@ -39,6 +59,11 @@ export default class TagView extends React.Component {
       }
     }
   }
+
+  componentWillUnmount() {
+    this.unmountLabels();
+  }
+
   renderListElem() {
     return this.props.activeTask.content[0].keywords.map((keyword, index) => {
       return (
@@ -64,16 +89,25 @@ export default class TagView extends React.Component {
     var el = document.getElementsByClassName(match);
     var highlighted = document.getElementById(match + key);
 
+    console.log(el, highlighted);
     if (!this.state.tags.includes(match)) {
       var tags = this.state.tags;
       tags.push(match);
       this.setState({ tags });
       for (var i = 0; i < el.length; i++) {
+        ReactDOM.unmountComponentAtNode(el[i]);
         if (el[i] === highlighted) {
-          ReactDOM.render(<Label key={match + i}>{match}</Label>, el[i]);
-        } else {
           ReactDOM.render(
-            <strong style={{ color: "#585858" }} key={match + i}>
+            <Label key={match + i} id={match}>
+              {match}
+            </Label>,
+            el[i]
+          );
+        } else {
+          ReactDOM.unmountComponentAtNode(el[i]);
+
+          ReactDOM.render(
+            <strong id={match} style={{ color: "#585858" }} key={match + i}>
               {match}
             </strong>,
             el[i]
