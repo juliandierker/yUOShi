@@ -39,6 +39,7 @@ export default class TrainingAnimationTemplate extends React.Component {
   }
   renderTraining() {
     const { open, dimmer, currentTraining } = this.state;
+    console.log(currentTraining);
     if (currentTraining) {
       return (
         <div className="modalTraining_div">
