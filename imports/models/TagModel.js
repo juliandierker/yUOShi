@@ -1,5 +1,3 @@
-import { Meteor } from "meteor/meteor";
-
 export const TagModel = {
   getNewModel: function() {
     var model = {
@@ -8,7 +6,6 @@ export const TagModel = {
         this.taskId = task.taskId;
         this.solution = [];
         this.visQueue = [];
-        console.log(task.content[0].keywords);
         this.sampleSolution = task.content[0].keywords;
       },
 

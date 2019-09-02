@@ -1,5 +1,4 @@
 import React from "react";
-import ReactDom from "react-dom";
 import PropTypes from "prop-types";
 import { Meteor } from "meteor/meteor";
 
@@ -11,9 +10,7 @@ import MemoryAnimationTemplate from "../../tasks/MemoryAnimationTemplate";
 import MultiChoiceAnimationTemplate from "../../tasks/MultiChoiceAnimationTemplate";
 
 import equals from "fast-deep-equal";
-import { Button, Icon, Header, Image, Grid } from "semantic-ui-react";
 import { Tasks } from "../../../../api/tasks";
-import { Students } from "../../../../api/students";
 
 import TaskProgress from "../taskProgress/TaskProgress";
 
