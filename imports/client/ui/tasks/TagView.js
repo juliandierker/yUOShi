@@ -30,23 +30,9 @@ export default class TagView extends React.Component {
     this.view = null;
   }
 
-  componentDidMount() {}
-
-  unmountLabels() {
-    let elems = document.getElementsByClassName("ui label");
-    if (elems) {
-      for (let i in elems) {
-        console.log(elems[i]);
-
-        elems[i].remove();
-      }
-    }
-  }
-
   componentDidUpdate(prevProps, prevState) {
     var sol = this.props.activeTask.content[0].keywords;
     if (prevProps.activeTask._id != this.props.activeTask._id) {
-      this.unmountLabels();
       if (this.state.tags.length > 0) {
         const tags = [];
         this.setState({ tags });
@@ -58,10 +44,6 @@ export default class TagView extends React.Component {
         this.setState({ finished: true });
       }
     }
-  }
-
-  componentWillUnmount() {
-    this.unmountLabels();
   }
 
   renderListElem() {
@@ -82,14 +64,12 @@ export default class TagView extends React.Component {
     });
   }
   renderImage(match) {
-    console.log(match);
     return <Image src={"/tasks" + match} size="small" floated="left" />;
   }
   handleClickTag(match, key) {
     var el = document.getElementsByClassName(match);
     var highlighted = document.getElementById(match + key);
 
-    console.log(el, highlighted);
     if (!this.state.tags.includes(match)) {
       var tags = this.state.tags;
       tags.push(match);
