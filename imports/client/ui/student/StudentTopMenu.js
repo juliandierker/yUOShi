@@ -2,6 +2,8 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { Tracker } from "meteor/tracker";
 import Loading from "../Loading";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faMailBulk } from "@fortawesome/free-solid-svg-icons";
 import {
   Dropdown,
   Icon,
@@ -45,7 +47,7 @@ export default class StudentTopMenu extends React.Component {
             markers[i].style.fill = "rgb(4, 216, 76)";
           }
         }
-        menu.className = "active left item";
+        menu.className = "active item";
         text.style.visibility = "visible";
         box.style.visibility = "visible";
       }
@@ -64,7 +66,8 @@ export default class StudentTopMenu extends React.Component {
           }
         }
         var menu = document.getElementById("classMenuItem");
-        menu.className = "left item";
+        menu.className = "item";
+
         text.style.visibility = "hidden";
         box.style.visibility = "hidden";
       }
@@ -72,6 +75,7 @@ export default class StudentTopMenu extends React.Component {
   }
   handleMenuItemClick = (e, { name }) => {
     console.log("clicked");
+    console.log(name);
     this.updateMenuButton();
     this.setState({ visible: !this.state.visible });
     if (name === "Klassenzimmer") {
@@ -120,21 +124,25 @@ export default class StudentTopMenu extends React.Component {
     );
 
     const { activeItem } = this.state;
+    const element = <FontAwesomeIcon icon={faMailBulk} />;
+
     return (
       <React.Fragment>
         <Menu
           secondary
           fixed="top"
           style={{
-            backgroundColor: "white",
-            paddingLeft: "20px",
+            justifyContent: "center",
+            backgroundColor: "#6A96E2",
             width: "100%",
-            height: "30px"
+            height: "5%"
           }}
         >
           <Menu.Item
             id="classMenuItem"
-            position="left"
+            style={{
+              color: "white"
+            }}
             name="Klassenzimmer"
             active={activeItem === "freegame"}
             onClick={this.handleMenuItemClick}
@@ -142,38 +150,60 @@ export default class StudentTopMenu extends React.Component {
             onMouseLeave={() => this.hoverOffClass("classroom")}
           />
           <Menu.Item
-            position="left"
             name="Lehrendenzimmer"
+            style={{
+              color: "white"
+            }}
             active={activeItem === "overview"}
             onClick={this.handleMenuItemClick}
           />
           <Menu.Item
-            position="left"
             name="Mein Büro"
+            style={{
+              color: "white"
+            }}
             active={activeItem === "overview"}
             onClick={this.handleMenuItemClick}
           />
           {/* Start Badges*/}
           <Menu.Item
             style={{
-              backgroundColor: "#eeeeee",
               paddingTop: "3px",
               paddingBottom: "0px",
               margin: "0px"
             }}
           >
-            <Menu.Item position="right" icon="certificate" />
+            <Menu.Item
+              style={{
+                color: "white"
+              }}
+              icon="certificate"
+            />
             {/* End Badges*/}
-            <Menu.Item icon="euro sign" name={" " + this.getCredits()} />
-            <Menu.Item icon="play" name={"" + this.getLevel()} /> {/* Level */}
+            <Menu.Item
+              style={{
+                color: "white"
+              }}
+              icon="euro sign"
+              name={" " + this.getCredits()}
+            />
+            <Menu.Item
+              style={{
+                color: "white"
+              }}
+              icon="play"
+              name={"" + this.getLevel()}
+            />{" "}
+            {/* Level */}
             <Dropdown
+              color="white"
               trigger={dropdownTrigger}
-              style={{ minWidth: "120px" }}
+              style={{ minWidth: "120px", color: "white" }}
               item
               simple
             >
               <Dropdown.Menu style={{ marginTop: "0px" }}>
-                <Dropdown.Item icon="user" text="Profil" />
+                <Dropdown.Item color="white" icon="user" text="Profil" />
                 <Dropdown.Item
                   icon="power off"
                   text="Ausloggen"
