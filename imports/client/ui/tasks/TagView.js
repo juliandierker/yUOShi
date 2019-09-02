@@ -165,11 +165,12 @@ export default class TagView extends React.Component {
       </Segment>
     );
   }
+
   renderTaglist() {
     const buttonDisabled = this.state.finished ? false : true;
     const buttonColor = this.state.finished ? "green" : "grey";
     return (
-      <Segment style={{ position: "fixed" }}>
+      <Segment style={{ position: "fixed", margin: "20% 0 0 9%" }}>
         <List>{this.renderListElem()}</List>
         <Button
           color={buttonColor}

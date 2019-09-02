@@ -13,6 +13,7 @@ import equals from "fast-deep-equal";
 import { Tasks } from "../../../../api/tasks";
 
 import TaskProgress from "../taskProgress/TaskProgress";
+import { Segment } from "semantic-ui-react";
 
 /**
  * This component should control the progress of a student in a task-package
@@ -173,6 +174,25 @@ export default class Workspace extends React.Component {
     )[0];
   }
 
+  renderDescription() {
+    let description = this.props.tasks.find(elem => {
+      return elem.sequenceId === this.props.student.currentSequenceId;
+    }).description;
+    return (
+      <Segment
+        style={{
+          width: "10%",
+          marginTop: "4%",
+          marginLeft: "10%",
+          maxHeight: "500px",
+          position: "fixed"
+        }}
+      >
+        {description}
+      </Segment>
+    );
+  }
+
   render() {
     let activesubpackage = this.getActiveSubpackage();
     return (
@@ -181,12 +201,13 @@ export default class Workspace extends React.Component {
           display: "flex"
         }}
       >
-        <TaskProgress
+        {/* <TaskProgress
           student={this.props.student}
           currentPackage={this.props.student.currentPackage[0]}
           trainings={this.props.trainings}
           activeSubpackage={activesubpackage}
-        />
+        /> */}
+        {this.renderDescription()}
         <div
           className="workspace__container"
           style={{ marginLeft: "16px", marginTop: "60px", width: "100%" }}
