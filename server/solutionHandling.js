@@ -67,10 +67,13 @@ function solveTask(studentId, taskId, solvedPercentage) {
       newCredits += currentTask.taskState.bonuses[bonus];
     }
     studentUpdates["$inc"]["credits"] = newCredits;
+    studentUpdates["$inc"]["currentSequenceId"] = 1;
+    console.log(studentUpdates);
     Students.update({ _id: studentId }, studentUpdates);
   } catch (e) {
     console.log(e);
   }
+
   //TODO Badges
 
   // var studentBadges = student.badges;

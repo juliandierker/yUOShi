@@ -32,6 +32,12 @@ export default class TagView extends React.Component {
 
   componentDidUpdate(prevProps, prevState) {
     var sol = this.props.activeTask.content[0].keywords;
+    if (prevProps.activeTask._id != this.props.activeTask._id) {
+      if (this.state.tags.length > 0) {
+        const tags = [];
+        this.setState({ tags });
+      }
+    }
 
     if (sol.length == this.state.tags.length) {
       if (!this.state.finished) {
@@ -39,6 +45,7 @@ export default class TagView extends React.Component {
       }
     }
   }
+
   renderListElem() {
     return this.props.activeTask.content[0].keywords.map((keyword, index) => {
       return (
@@ -57,7 +64,6 @@ export default class TagView extends React.Component {
     });
   }
   renderImage(match) {
-    console.log(match);
     return <Image src={"/tasks" + match} size="small" floated="left" />;
   }
   handleClickTag(match, key) {
@@ -69,11 +75,19 @@ export default class TagView extends React.Component {
       tags.push(match);
       this.setState({ tags });
       for (var i = 0; i < el.length; i++) {
+        ReactDOM.unmountComponentAtNode(el[i]);
         if (el[i] === highlighted) {
-          ReactDOM.render(<Label key={match + i}>{match}</Label>, el[i]);
-        } else {
           ReactDOM.render(
-            <strong style={{ color: "#585858" }} key={match + i}>
+            <Label key={match + i} id={match}>
+              {match}
+            </Label>,
+            el[i]
+          );
+        } else {
+          ReactDOM.unmountComponentAtNode(el[i]);
+
+          ReactDOM.render(
+            <strong id={match} style={{ color: "#585858" }} key={match + i}>
               {match}
             </strong>,
             el[i]

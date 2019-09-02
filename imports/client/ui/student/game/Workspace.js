@@ -1,5 +1,4 @@
 import React from "react";
-import ReactDom from "react-dom";
 import PropTypes from "prop-types";
 import { Meteor } from "meteor/meteor";
 
@@ -11,9 +10,7 @@ import MemoryAnimationTemplate from "../../tasks/MemoryAnimationTemplate";
 import MultiChoiceAnimationTemplate from "../../tasks/MultiChoiceAnimationTemplate";
 
 import equals from "fast-deep-equal";
-import { Button, Icon, Header, Image, Grid } from "semantic-ui-react";
 import { Tasks } from "../../../../api/tasks";
-import { Students } from "../../../../api/students";
 
 import TaskProgress from "../taskProgress/TaskProgress";
 
@@ -33,6 +30,7 @@ export default class Workspace extends React.Component {
       showCurrentTasks: true,
       packageStarted: null,
       currentSubPackageIndex: 0,
+      currentSequenceId: 0,
       hasActiveTaskOrTraining: false
     };
     this.handler = ev => {
@@ -94,96 +92,69 @@ export default class Workspace extends React.Component {
 
   taskSwitch() {
     let student = this.props.student;
-    let taskPackage = student.currentPackage;
 
-    let contentCount = 0;
-    for (let i = 0; i < taskPackage[0].content.length; i++) {
-      contentCount += taskPackage[0].content[i].tasks.length;
-    }
-
-    // Handle Package
-    if (taskPackage.length === 0) {
-      // No Package
-      return;
-    }
-
-    // create collection if props for Tasks and Trainings
-    let taskProps = {
-      student: this.props.student,
-      tasks: this.props.tasks,
-      activeTask: this.state.activeTask,
-      courses: this.props.courses,
-      trainings: this.props.trainings
-    };
-
-    // Handle Training
-    if (
-      student.currentTraining.length > 0 &&
-      student.currentTraining[0].sequenceId === student.currentSequenceId
-    ) {
-      // Show Training
-      return <TrainingAnimationTemplate {...taskProps} />;
-    }
-
-    // Handle Task
-    if (student.tasks.length > 0) {
-      if (student.tasks[student.tasks.length - 1]) {
-        if (
-          this.state.activeTask &&
-          this.state.activeTask.taskId ==
-            student.tasks[student.tasks.length - 1].taskId
-        ) {
-          // Show Task
-          switch (this.state.activeTask.type) {
-            case "drag":
-              return <DragAnimationTemplate {...taskProps} />;
-            case "tag":
-              return <TagAnimationTemplate {...taskProps} />;
-            case "cloze":
-              return <ClozeAnimationTemplate {...taskProps} />;
-            case "memory":
-              return <MemoryAnimationTemplate {...taskProps} />;
-            case "multiChoice":
-              return <MultiChoiceAnimationTemplate {...taskProps} />;
-          }
-        }
-        // set active task
-        if (student.solvedTasks.length < contentCount - 1) {
-          this.setState({
-            activeTask: student.tasks[student.tasks.length - 1]
-          });
-        }
-      }
-      return;
-    }
-
-    // Handle Training Init
-    if (student.solvedTraining.length === 0) {
-      const currentPackage = taskPackage[0];
-      for (var i in this.props.trainings) {
-        let name = currentPackage.name;
-        if (currentPackage.name == this.props.trainings[i][name][0].name) {
-          var trainingObj = this.props.trainings[i][name];
-        }
-      }
-      if (trainingObj) {
-        // Init new Training
-        Meteor.call(
-          "students.initTraining",
-          trainingObj,
-          this.props.student._id
-        );
-        return;
-      }
-    }
-    if (student.solvedTasks.length < contentCount - 1) {
-      // Handle next Task
+    if (this.state.currentSequenceId !== student.currentSequenceId) {
       this.props.handleNextTask();
+      this.setState({ currentSequenceId: student.currentSequenceId });
       return;
     }
 
-    // Show Outro
-    return <h3>Outro</h3>;
+    let packageTrainings = this.props.trainings[0][
+      student.currentPackage[0].name
+    ];
+    // Get current Training
+    let currentTask = packageTrainings.find(elem => {
+      return elem.sequenceId === student.currentSequenceId;
+    });
+    // Get current Task
+    if (!currentTask) {
+      currentTask = this.props.tasks.find(elem => {
+        return elem.sequenceId === student.currentSequenceId;
+      });
+    }
+
+    if (currentTask) {
+      if (currentTask.isTask) {
+        let taskProps = {
+          student: this.props.student,
+          tasks: this.props.tasks,
+          activeTask: currentTask,
+          courses: this.props.courses,
+          trainings: this.props.trainings
+        };
+
+        switch (currentTask.type) {
+          case "drag":
+            return <DragAnimationTemplate {...taskProps} />;
+          case "tag":
+            return <TagAnimationTemplate {...taskProps} />;
+          case "cloze":
+            return <ClozeAnimationTemplate {...taskProps} />;
+          case "memory":
+            return <MemoryAnimationTemplate {...taskProps} />;
+          case "multiChoice":
+            return <MultiChoiceAnimationTemplate {...taskProps} />;
+        }
+      } else {
+        let currentTaskArray = [];
+        currentTaskArray.push(currentTask);
+        Meteor.call("students.initTraining", currentTaskArray, student._id);
+
+        student.currentTraining = currentTaskArray;
+
+        let taskProps = {
+          student: this.props.student,
+          tasks: this.props.tasks,
+          activeTask: currentTask,
+          courses: this.props.courses,
+          trainings: this.props.trainings
+        };
+
+        return <TrainingAnimationTemplate {...taskProps} />;
+      }
+    }
+
+    return "Package should have ended!";
   }
 
   getActiveSubpackage() {

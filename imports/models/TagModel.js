@@ -1,5 +1,3 @@
-import { Meteor } from "meteor/meteor";
-
 export const TagModel = {
   getNewModel: function() {
     var model = {
@@ -20,7 +18,10 @@ export const TagModel = {
         return this.visQueue;
       },
 
-      reset: function() {}
+      reset: function() {
+        this.solution = [];
+        this.visQueue = [];
+      }
     };
     return model;
   }
