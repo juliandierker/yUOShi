@@ -13,7 +13,7 @@ import equals from "fast-deep-equal";
 import { Tasks } from "../../../../api/tasks";
 
 import TaskProgress from "../taskProgress/TaskProgress";
-import { Segment } from "semantic-ui-react";
+import { Segment, Button } from "semantic-ui-react";
 
 /**
  * This component should control the progress of a student in a task-package
@@ -44,6 +44,11 @@ export default class Workspace extends React.Component {
       }
     };
     window.addEventListener("beforeunload", this.handler);
+
+    this.handleNextTaskButtonClick = this.handleNextTaskButtonClick.bind(this);
+    this.handlePreviousTaskButtonClick = this.handlePreviousTaskButtonClick.bind(
+      this
+    );
   }
   show = dimmer => () => this.setState({ dimmer, packageStarted: true });
   close = () => this.setState({ packageStarted: false });
@@ -174,21 +179,59 @@ export default class Workspace extends React.Component {
     )[0];
   }
 
+  handleNextTaskButtonClick() {
+    Meteor.call("students.showNextTask", this.props.student);
+  }
+
+  handlePreviousTaskButtonClick() {
+    if (this.props.student.currentSequenceId > 1) {
+      Meteor.call("students.showPreviousTask", this.props.student);
+    }
+  }
+
+  renderNavigationButtons() {
+    //TODO: render vor- und zurückbuttons
+    return (
+      <div
+        style={{
+          position: "absolute",
+          margin: "auto",
+          bottom: "0px",
+          width: "100%"
+        }}
+      >
+        <Button
+          onClick={this.handlePreviousTaskButtonClick}
+          style={{ marginLeft: "20.5%" }}
+        >
+          vorherige Aufgabe
+        </Button>
+        <Button
+          onClick={this.handleNextTaskButtonClick}
+          style={{ marginLeft: "29.5%" }}
+        >
+          nächste Aufgabe
+        </Button>
+      </div>
+    );
+  }
+
   renderDescription() {
-    let description = this.props.tasks.find(elem => {
+    let task = this.props.tasks.find(elem => {
       return elem.sequenceId === this.props.student.currentSequenceId;
-    }).description;
+    });
+    if (!task) return;
     return (
       <Segment
         style={{
           width: "10%",
           marginTop: "4%",
-          marginLeft: "10%",
+          marginLeft: "5%",
           maxHeight: "500px",
           position: "fixed"
         }}
       >
-        {description}
+        {task.description}
       </Segment>
     );
   }
@@ -205,14 +248,19 @@ export default class Workspace extends React.Component {
           student={this.props.student}
           currentPackage={this.props.student.currentPackage[0]}
           trainings={this.props.trainings}
-          activeSubpackage={activesubpackage}
-        /> */}
+          activeSubpackage={activesubpackage} 
+        />*/}
         {this.renderDescription()}
         <div
           className="workspace__container"
-          style={{ marginLeft: "16px", marginTop: "60px", width: "100%" }}
+          style={{
+            marginTop: "60px",
+            height: "100vh",
+            width: "100%"
+          }}
         >
           {this.taskSwitch()}
+          {this.renderNavigationButtons()}
         </div>
       </div>
     );

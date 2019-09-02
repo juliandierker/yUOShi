@@ -81,6 +81,12 @@ Meteor.methods({
     };
     Students.update({ _id: student._id }, studentUpdates);
     Students.update({ _id: student._id }, { $inc: { currentSequenceId: 1 } });
+  },
+  "students.showNextTask": function(student) {
+    Students.update({ _id: student._id }, { $inc: { currentSequenceId: 1 } });
+  },
+  "students.showPreviousTask": function(student) {
+    Students.update({ _id: student._id }, { $inc: { currentSequenceId: -1 } });
   }
 });
 

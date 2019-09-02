@@ -146,7 +146,12 @@ export default class TagView extends React.Component {
     return (
       <Segment
         id="defTextReader"
-        style={{ maxWidth: "100%", whiteSpace: "pre-line" }}
+        style={{
+          maxWidth: "100%",
+          whiteSpace: "pre-line",
+          height: "90vh",
+          overflowY: "auto"
+        }}
       >
         <Header as="h1"> {this.props.activeTask.title}</Header>
 
@@ -165,12 +170,11 @@ export default class TagView extends React.Component {
       </Segment>
     );
   }
-
   renderTaglist() {
     const buttonDisabled = this.state.finished ? false : true;
     const buttonColor = this.state.finished ? "green" : "grey";
     return (
-      <Segment style={{ position: "fixed", margin: "20% 0 0 9%" }}>
+      <Segment style={{ position: "fixed", margin: "20% 0 0 5%" }}>
         <List>{this.renderListElem()}</List>
         <Button
           color={buttonColor}
@@ -178,7 +182,8 @@ export default class TagView extends React.Component {
           style={{
             marginTop: "10px",
             marginBottom: "10px",
-            marginRight: "18.4%"
+            marginRight: "18.4%",
+            maxWidth: "230px"
           }}
           floated="right"
           onClick={() => this.solutionPrepare()}

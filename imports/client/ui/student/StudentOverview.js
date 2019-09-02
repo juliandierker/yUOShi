@@ -91,20 +91,19 @@ export default class StudentOverview extends React.Component {
   }
 
   handleNextTask() {
-    var student = this.state.student;
-    if (student.currentPackage.length > 0) {
-      if (student.solvedTasks.length > 0) {
-        var sequenceId =
-          student.solvedTasks[student.solvedTasks.length - 1].sequenceId + 1;
-      } else {
-        var sequenceId = 1;
-      }
-    }
-    if (student.tasks.length == 0) {
+    let student = this.state.student;
+
+    if (
+      !student.solvedTasks.find(elem => {
+        return (
+          elem.sequenceId.toString() === student.currentSequenceId.toString()
+        );
+      })
+    ) {
       Meteor.call(
         "students.getNextTask",
         student.currentPackage[0].name,
-        sequenceId,
+        student.currentSequenceId,
         student._id,
         (err, res) => {
           if (res) {
