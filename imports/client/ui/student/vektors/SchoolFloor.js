@@ -12672,7 +12672,7 @@ export default class schoolFloor extends React.Component {
           >
             Lorem Ipsum
           </text>
-          <g>
+          <g id="classroom_marker">
             <path
               className="st357"
               d="M1124.8,587.8c0,12.9-23.3,45.6-23.3,45.6s-23.4-32.7-23.4-45.6c0-12.9,10.4-23.3,23.3-23.3
@@ -12700,7 +12700,7 @@ export default class schoolFloor extends React.Component {
           >
             Lorem Ipsum
           </text>
-          <g>
+          <g id="teacher_room">
             <path
               className="st357"
               d="M956.8,179.8c0,12.9-23.3,45.6-23.3,45.6s-23.4-32.7-23.4-45.6c0-12.9,10.4-23.3,23.3-23.3
@@ -12722,7 +12722,7 @@ export default class schoolFloor extends React.Component {
             d="M836.3,678h-85.6c-2.9,0-5.3-2.4-5.3-5.3v-34.3c0-2.9,2.4-5.3,5.3-5.3h85.6c2.9,0,5.3,2.4,5.3,5.3v34.3
 	C841.6,675.6,839.2,678,836.3,678z"
           />
-          <g>
+          <g id="office_marker">
             <path
               className="st357"
               d="M815.8,597.8c0,12.9-23.3,45.6-23.3,45.6s-23.4-32.7-23.4-45.6c0-12.9,10.4-23.3,23.3-23.3

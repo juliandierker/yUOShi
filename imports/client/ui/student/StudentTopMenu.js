@@ -78,6 +78,8 @@ export default class StudentTopMenu extends React.Component {
     console.log(name);
     this.updateMenuButton();
     this.setState({ visible: !this.state.visible });
+    this.props.history.push("/student/classroom");
+
     if (name === "Klassenzimmer") {
       var id = "classroom";
       if (document.getElementsByClassName("classroomMarker").length > 0) {
@@ -94,6 +96,7 @@ export default class StudentTopMenu extends React.Component {
         text.style.visibility = "visible";
         box.style.visibility = "visible";
         var that = this;
+        console.log("entered");
         setTimeout(function() {
           that.props.history.push("/student/classroom");
         }, 1500);
