@@ -8,6 +8,19 @@ export default class schoolFloor extends React.Component {
       classHover: false
     };
   }
+  componentDidMount() {
+    this.initVektorElements();
+  }
+  initVektorElements() {
+    const class_elem = document.getElementById("Marker_Klassenzimmer");
+    const teacher_elem = document.getElementById("Marker_Lehrerzimmer");
+    const office_elem = document.getElementById("Marker_Büro");
+    var that = this;
+    class_elem.addEventListener("click", function() {
+      that.props.history.push("/student/classroom");
+    });
+  }
+
   handleClassroomClick(id) {
     var markers = document.getElementsByClassName(id + "Marker");
     var text = document.getElementById(id + "Text");
@@ -11727,15 +11740,17 @@ export default class schoolFloor extends React.Component {
           </g>
           <g id="Marker_Klassenzimmer">
             <path
+              id="classroom_textbox"
               className="st336"
               d="M1146.3,644h-85.6c-2.9,0-5.3-2.4-5.3-5.3v-34.3c0-2.9,2.4-5.3,5.3-5.3h85.6c2.9,0,5.3,2.4,5.3,5.3v34.3
 		C1151.6,641.6,1149.2,644,1146.3,644z"
             />
             <text
+              id="classroom_text"
               transform="matrix(1 0 0 1 1070.0835 633.667)"
               className="st370 st371"
             >
-              Lorem Ipsum
+              Klassenzimmer
             </text>
             <g>
               <path
@@ -11752,23 +11767,32 @@ export default class schoolFloor extends React.Component {
                 d="M1111.7,603.1c10.6,0.8,18.3,3.2,18.3,6.1c0,3.5-11.9,6.4-26.5,6.4s-26.5-2.9-26.5-6.4
 			c0-2.8,7.6-5.2,18.2-6.1"
               />
-              <circle className="st19" cx="1103.9" cy="562.6" r="15.5" />
+              <circle
+                id="classroom_pointer"
+                className="st19"
+                cx="1103.9"
+                cy="562.6"
+                r="15.5"
+              />
             </g>
           </g>
           <g id="Marker_Lehrerzimmer">
             <path
+              id="teacherroom_textbox"
               className="st336"
               d="M979.3,234h-85.6c-2.9,0-5.3-2.4-5.3-5.3v-34.3c0-2.9,2.4-5.3,5.3-5.3h85.6c2.9,0,5.3,2.4,5.3,5.3v34.3
 		C984.6,231.6,982.2,234,979.3,234z"
             />
             <text
+              id="teacherroom_text"
               transform="matrix(1 0 0 1 903.0835 223.667)"
               className="st370 st371"
             >
-              Lorem Ipsum
+              Lehrendenzimmer
             </text>
             <g>
               <path
+                id="teacherroom_marker"
                 className="st372"
                 d="M958.8,153.8c0,12.9-23.3,45.6-23.3,45.6s-23.4-32.7-23.4-45.6c0-12.9,10.4-23.3,23.3-23.3
 			S958.8,140.9,958.8,153.8z"
@@ -11782,17 +11806,25 @@ export default class schoolFloor extends React.Component {
                 d="M943.7,195.1c10.6,0.8,18.3,3.2,18.3,6.1c0,3.5-11.9,6.4-26.5,6.4s-26.5-2.9-26.5-6.4
 			c0-2.8,7.6-5.2,18.2-6.1"
               />
-              <circle className="st19" cx="935.9" cy="154.6" r="15.5" />
+              <circle
+                id="teacherroom_pointer"
+                className="st19"
+                cx="935.9"
+                cy="154.6"
+                r="15.5"
+              />
             </g>
           </g>
           <g id="Marker_Büro">
             <path
+              id="office_textbox"
               className="st336"
               d="M838.3,652h-85.6c-2.9,0-5.3-2.4-5.3-5.3v-34.3c0-2.9,2.4-5.3,5.3-5.3h85.6c2.9,0,5.3,2.4,5.3,5.3v34.3
 		C843.6,649.6,841.2,652,838.3,652z"
             />
             <g>
               <path
+                id="office_marker"
                 className="st372"
                 d="M817.8,571.8c0,12.9-23.3,45.6-23.3,45.6s-23.4-32.7-23.4-45.6c0-12.9,10.4-23.3,23.3-23.3
 			S817.8,558.9,817.8,571.8z"
@@ -11806,13 +11838,20 @@ export default class schoolFloor extends React.Component {
                 d="M802.7,613.1c10.6,0.8,18.3,3.2,18.3,6.1c0,3.5-11.9,6.4-26.5,6.4s-26.5-2.9-26.5-6.4
 			c0-2.8,7.6-5.2,18.2-6.1"
               />
-              <circle className="st19" cx="794.9" cy="572.6" r="15.5" />
+              <circle
+                id="office_pointer"
+                className="st19"
+                cx="794.9"
+                cy="572.6"
+                r="15.5"
+              />
             </g>
             <text
+              id="office_text"
               transform="matrix(1 0 0 1 762.0835 641.667)"
               className="st370 st371"
             >
-              Lorem Ipsum
+              Büro
             </text>
           </g>
         </svg>
