@@ -1,77 +1,20 @@
 import React, { Component } from "react";
-import { makeStyles } from "@material-ui/core/styles";
-import Stepper from "@material-ui/core/Stepper";
-import Step from "@material-ui/core/Step";
-import StepLabel from "@material-ui/core/StepLabel";
-import StepContent from "@material-ui/core/StepContent";
-import Button from "@material-ui/core/Button";
-import Paper from "@material-ui/core/Paper";
-import Typography from "@material-ui/core/Typography";
+import { Icon, Step, Sticky } from "semantic-ui-react";
+
 // This component renders the overview of the progress of the current Trainingspackage.
 
-class TaskProgress extends Component {
+class TaskProgressOld extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      subPackages: [],
-      activeStep: 0,
-      steps: []
+      subPackages: []
     };
   }
-  getSteps() {
-    return this.state.subPackages[0].map((subPackage, index) => {
-      return subPackage.title;
-    });
-  }
-  renderStepper() {
-    var classes = makeStyles(theme => ({
-      root: {
-        width: "90%"
-      },
-      button: {
-        marginTop: theme.spacing(1),
-        marginRight: theme.spacing(1)
-      },
-      actionsContainer: {
-        marginBottom: theme.spacing(2)
-      },
-      resetContainer: {
-        padding: theme.spacing(3)
-      }
-    }));
-    const activeStep = this.state.activeStep;
-    console.log(activeStep);
-    const steps = this.getSteps();
-
-    function handleNext() {
-      setActiveStep(prevActiveStep => prevActiveStep + 1);
-    }
-
-    function handleBack() {
-      setActiveStep(prevActiveStep => prevActiveStep - 1);
-    }
-
-    function handleReset() {
-      setActiveStep(0);
-    }
-
+  renderTask(task, iconName, k) {
     return (
-      <div className={classes.root}>
-        <Stepper activeStep={activeStep} orientation="vertical">
-          {steps.map((label, index) => (
-            <Step key={label}>
-              <StepLabel>{label}</StepLabel>
-            </Step>
-          ))}
-        </Stepper>
-        {activeStep === steps.length && (
-          <Paper square elevation={0} className={classes.resetContainer}>
-            <Typography>All steps completed - you&apos;re finished</Typography>
-            <Button onClick={handleReset} className={classes.button}>
-              Reset
-            </Button>
-          </Paper>
-        )}
+      <div key={k}>
+        <Icon size="tiny" name={iconName} />
+        {task.name}
       </div>
     );
   }
@@ -210,8 +153,18 @@ class TaskProgress extends Component {
   }
 
   render() {
-    return <div> {this.renderStepper()} </div>;
+    return (
+      <Sticky
+        scrollContext={null}
+        style={{ height: "100%", minWidth: "200px" }}
+        offset={50}
+      >
+        <Step.Group fluid vertical>
+          {this.renderSubPackages()}
+        </Step.Group>
+      </Sticky>
+    );
   }
 }
 
-export default TaskProgress;
+export default TaskProgressOld;

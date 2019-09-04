@@ -34,7 +34,7 @@ export default class ClassRoom extends React.Component {
     let student = that.props.student;
     motivation_elem.addEventListener("click", function() {
       if (student.currentPackage.length > 0) {
-        this.props.history.push("/student/workspace");
+        that.props.history.push("/student/workspace");
       } else {
         Meteor.call(
           "students.getPackage",

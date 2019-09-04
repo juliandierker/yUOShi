@@ -34,6 +34,7 @@ export default class Workspace extends React.Component {
       currentSequenceId: 0,
       hasActiveTaskOrTraining: false
     };
+    this.dragInstance = React.createRef();
     this.handler = ev => {
       if (this.state.activeTask) {
         Meteor.call(
@@ -98,10 +99,25 @@ export default class Workspace extends React.Component {
 
   taskSwitch() {
     let student = this.props.student;
-
+    var cTask = null;
     if (this.state.currentSequenceId !== student.currentSequenceId) {
       this.props.handleNextTask();
-      this.setState({ currentSequenceId: student.currentSequenceId });
+      for (var i in this.props.tasks) {
+        if (this.props.tasks[i].sequenceId == student.currentSequenceId) {
+          cTask = this.props.tasks[i];
+        }
+      }
+      this.props.tasks.map(task => {
+        if (task.sequenceId == student.currentSequenceId) {
+          console.log("A");
+          var cTask = task;
+        }
+      });
+      this.setState({
+        currentSequenceId: student.currentSequenceId,
+        activeTask: cTask
+      });
+
       return;
     }
 
@@ -131,7 +147,9 @@ export default class Workspace extends React.Component {
 
         switch (currentTask.type) {
           case "drag":
-            return <DragAnimationTemplate {...taskProps} />;
+            return (
+              <DragAnimationTemplate {...taskProps} ref={this.dragInstance} />
+            );
           case "tag":
             return <TagAnimationTemplate {...taskProps} />;
           case "cloze":
@@ -244,12 +262,13 @@ export default class Workspace extends React.Component {
           display: "flex"
         }}
       >
-        {/* <TaskProgress
+        <TaskProgress
+          currentTask={this.state.activeTask}
           student={this.props.student}
           currentPackage={this.props.student.currentPackage[0]}
           trainings={this.props.trainings}
-          activeSubpackage={activesubpackage} 
-        />*/}
+          activeSubpackage={activesubpackage}
+        />
         {this.renderDescription()}
         <div
           className="workspace__container"
