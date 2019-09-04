@@ -33,6 +33,9 @@
     },
     {
       "parentId": "Motivation1",
+
+      "multi": "todo",
+
       "title": "Intrinsisch&Extrinsisch",
       "description": "Lest den Einführungstext und markiert die Schlüssel-Begriffe",
       "taskId": "Motivation_IntrExtr",
