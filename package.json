@@ -11,6 +11,9 @@
   },
   "dependencies": {
     "@babel/runtime": "^7.1.5",
+    "@fortawesome/fontawesome-svg-core": "^1.2.22",
+    "@fortawesome/free-solid-svg-icons": "^5.10.2",
+    "@fortawesome/react-fontawesome": "^0.1.4",
     "fast-deep-equal": "^2.0.1",
     "gsap": "^2.0.2",
     "meteor-node-stubs": "^0.4.1",
