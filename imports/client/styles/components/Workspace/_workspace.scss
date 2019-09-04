@@ -1,0 +1,70 @@
+.workspace__container {
+  height: 85vh;
+  margin: 0 auto;
+  margin-top: 66px;
+}
+
+#defTextReader {
+  height: 85vh;
+  max-width: 100%;
+  white-space: pre-line;
+  overflow-y: auto;
+}
+
+// Smartphone
+@media screen and (max-width: 767px) {
+  .workspace__container {
+    width: 100%;
+    height: 75vh;
+  }
+
+  #defTextReader {
+    width: 100%;
+    height: 75vh;
+  }
+
+  #NavigationButtonContainer {
+    text-align: center;
+    margin-top: 0.5rem;
+  }
+  #prevButton {
+    width: 85%;
+    margin-bottom: -1rem;
+    margin-top: 0.5rem;
+  }
+
+  #nextButton {
+    width: 85%;
+    margin-top: -2rem;
+  }
+}
+
+// Tablet
+@media screen and (min-width: 768px) and (max-width: 1024px) {
+  .workspace__container {
+    width: 60%;
+  }
+
+  #NavigationButtonContainer {
+    text-align: center;
+    margin-top: 0.5rem;
+  }
+}
+
+// Desktop
+@media screen and (min-width: 1025px) {
+  .workspace__container {
+    width: 40%;
+  }
+
+  #NavigationButtonContainer {
+    margin-top: 0.5rem;
+    width: 40% !important;
+    margin: 0 auto;
+  }
+  #prevButton {
+  }
+
+  #nextButton {
+  }
+}

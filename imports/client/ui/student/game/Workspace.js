@@ -13,7 +13,8 @@ import equals from "fast-deep-equal";
 import { Tasks } from "../../../../api/tasks";
 
 import TaskProgress from "../taskProgress/TaskProgress";
-import { Segment, Button } from "semantic-ui-react";
+
+import { Segment, Button, Grid } from "semantic-ui-react";
 
 /**
  * This component should control the progress of a student in a task-package
@@ -210,27 +211,23 @@ export default class Workspace extends React.Component {
   renderNavigationButtons() {
     //TODO: render vor- und zurückbuttons
     return (
-      <div
-        style={{
-          position: "absolute",
-          margin: "auto",
-          bottom: "0px",
-          width: "100%"
-        }}
-      >
-        <Button
-          onClick={this.handlePreviousTaskButtonClick}
-          style={{ marginLeft: "20.5%" }}
-        >
-          vorherige Aufgabe
-        </Button>
-        <Button
-          onClick={this.handleNextTaskButtonClick}
-          style={{ marginLeft: "29.5%" }}
-        >
-          nächste Aufgabe
-        </Button>
-      </div>
+      <Grid stackable>
+        <Grid.Row id="NavigationButtonContainer">
+          <Grid.Column width={8}>
+            <Button
+              id="prevButton"
+              onClick={this.handlePreviousTaskButtonClick}
+            >
+              vorherige Aufgabe
+            </Button>
+          </Grid.Column>
+          <Grid.Column width={8}>
+            <Button id="nextButton" onClick={this.handleNextTaskButtonClick}>
+              nächste Aufgabe
+            </Button>
+          </Grid.Column>
+        </Grid.Row>
+      </Grid>
     );
   }
 
@@ -257,31 +254,31 @@ export default class Workspace extends React.Component {
   render() {
     let activesubpackage = this.getActiveSubpackage();
     return (
-      <div
-        style={{
-          display: "flex"
-        }}
-      >
-        <TaskProgress
-          currentTask={this.state.activeTask}
-          student={this.props.student}
-          currentPackage={this.props.student.currentPackage[0]}
-          trainings={this.props.trainings}
-          activeSubpackage={activesubpackage}
-        />
-        {this.renderDescription()}
+      <React.Fragment>
         <div
-          className="workspace__container"
           style={{
-            marginTop: "60px",
-            height: "100vh",
-            width: "100%"
+            display: "flex"
           }}
         >
-          {this.taskSwitch()}
-          {this.renderNavigationButtons()}
+          <TaskProgress
+            currentTask={this.state.activeTask}
+            student={this.props.student}
+            currentPackage={this.props.student.currentPackage[0]}
+            trainings={this.props.trainings}
+            activeSubpackage={activesubpackage}
+          />
+          {this.renderDescription()}
+
+          {this.renderDescription()}
+          <div className="workspace__container">
+            {this.taskSwitch()}
+            {console.log(this.tagInstance)}
+
+            {this.test}
+          </div>
         </div>
-      </div>
+        {this.renderNavigationButtons()}
+      </React.Fragment>
     );
   }
 }

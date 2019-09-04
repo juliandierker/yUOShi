@@ -4,6 +4,7 @@ import { Meteor } from "meteor/meteor";
 import PropTypes from "prop-types";
 import reactStringReplace from "react-string-replace";
 import ReactPlayer from "react-player";
+import KeywordList from "./KeywordList";
 
 import {
   Button,
@@ -46,23 +47,6 @@ export default class TagView extends React.Component {
     }
   }
 
-  renderListElem() {
-    return this.props.activeTask.content[0].keywords.map((keyword, index) => {
-      return (
-        <List.Item style={{ fontSize: "12px" }} key={keyword + index} as="a">
-          {this.state.tags.includes(keyword) ? (
-            <Icon key={"icon" + index} color="green" name="check" />
-          ) : (
-            <Icon key={"icon" + index} name="help" />
-          )}
-
-          <List.Content key={"content" + index}>
-            <List.Header key={"header" + index}>{keyword}</List.Header>
-          </List.Content>
-        </List.Item>
-      );
-    });
-  }
   renderImage(match) {
     return <Image src={"/tasks" + match} size="small" floated="left" />;
   }
@@ -144,15 +128,7 @@ export default class TagView extends React.Component {
     var partOne = plainText.slice(0, middle + 1);
     var partTwo = plainText.slice(middle + 1, plainText.length);
     return (
-      <Segment
-        id="defTextReader"
-        style={{
-          maxWidth: "100%",
-          whiteSpace: "pre-line",
-          height: "90vh",
-          overflowY: "auto"
-        }}
-      >
+      <Segment id="defTextReader">
         <Header as="h1"> {this.props.activeTask.title}</Header>
 
         <Image
@@ -170,41 +146,14 @@ export default class TagView extends React.Component {
       </Segment>
     );
   }
-  renderTaglist() {
-    const buttonDisabled = this.state.finished ? false : true;
-    const buttonColor = this.state.finished ? "green" : "grey";
-    return (
-      <Segment style={{ position: "fixed", margin: "20% 0 0 5%" }}>
-        <List>{this.renderListElem()}</List>
-        <Button
-          color={buttonColor}
-          disabled={buttonDisabled}
-          style={{
-            marginTop: "10px",
-            marginBottom: "10px",
-            marginRight: "18.4%",
-            maxWidth: "230px"
-          }}
-          floated="right"
-          onClick={() => this.solutionPrepare()}
-        >
-          Weiter
-        </Button>
-      </Segment>
-    );
-  }
+
   getTaskImage() {}
   renderView() {
     return (
-      <Grid columns={2}>
-        <Grid.Row>
-          <Grid.Column id="column_left">
-            <Grid.Row>{this.getTaskImage()}</Grid.Row>
-            {this.renderTaglist()}
-          </Grid.Column>
-          <Grid.Column>{this.renderText()}</Grid.Column>
-        </Grid.Row>
-      </Grid>
+      <React.Fragment>
+        {this.getTaskImage()}
+        {this.renderText()}
+      </React.Fragment>
     );
   }
   solutionPrepare() {
