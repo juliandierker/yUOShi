@@ -4,20 +4,16 @@ import { Meteor } from "meteor/meteor";
 import PropTypes from "prop-types";
 import reactStringReplace from "react-string-replace";
 import ReactPlayer from "react-player";
-import KeywordList from "./KeywordList";
 
 import {
   Button,
   Header,
-  List,
   Image,
   Grid,
-  Icon,
   Segment,
   Label,
   Modal
 } from "semantic-ui-react";
-import Swal from "sweetalert2";
 
 export default class TagView extends React.Component {
   constructor(props) {
@@ -25,24 +21,16 @@ export default class TagView extends React.Component {
     this.state = {
       active: null,
       tags: [],
-      finished: false,
       videoOpen: true
     };
     this.view = null;
   }
 
   componentDidUpdate(prevProps, prevState) {
-    var sol = this.props.activeTask.content[0].keywords;
     if (prevProps.activeTask._id != this.props.activeTask._id) {
       if (this.state.tags.length > 0) {
         const tags = [];
         this.setState({ tags });
-      }
-    }
-
-    if (sol.length == this.state.tags.length) {
-      if (!this.state.finished) {
-        this.setState({ finished: true });
       }
     }
   }
@@ -54,29 +42,27 @@ export default class TagView extends React.Component {
     var el = document.getElementsByClassName(match);
     var highlighted = document.getElementById(match + key);
 
-    if (!this.state.tags.includes(match)) {
-      var tags = this.state.tags;
-      tags.push(match);
-      this.setState({ tags });
-      for (var i = 0; i < el.length; i++) {
+    var tags = this.state.tags;
+    tags.push(match);
+    this.props.externUpdate(tags);
+    for (var i = 0; i < el.length; i++) {
+      ReactDOM.unmountComponentAtNode(el[i]);
+      if (el[i] === highlighted) {
+        ReactDOM.render(
+          <Label key={match + i} id={match}>
+            {match}
+          </Label>,
+          el[i]
+        );
+      } else {
         ReactDOM.unmountComponentAtNode(el[i]);
-        if (el[i] === highlighted) {
-          ReactDOM.render(
-            <Label key={match + i} id={match}>
-              {match}
-            </Label>,
-            el[i]
-          );
-        } else {
-          ReactDOM.unmountComponentAtNode(el[i]);
 
-          ReactDOM.render(
-            <strong id={match} style={{ color: "#585858" }} key={match + i}>
-              {match}
-            </strong>,
-            el[i]
-          );
-        }
+        ReactDOM.render(
+          <strong id={match} style={{ color: "#585858" }} key={match + i}>
+            {match}
+          </strong>,
+          el[i]
+        );
       }
     }
   }
@@ -147,48 +133,6 @@ export default class TagView extends React.Component {
     );
   }
 
-  getTaskImage() {}
-  renderView() {
-    return (
-      <React.Fragment>
-        {this.getTaskImage()}
-        {this.renderText()}
-      </React.Fragment>
-    );
-  }
-  solutionPrepare() {
-    var sol = this.props.model.run(this.state.tags);
-    if (
-      (sol && sol[0].includes("won")) ||
-      this.props.activeTask.content[0].keywords.length === 0
-    ) {
-      var meteorMethod =
-        "solutionHandler.submit" + this.props.activeTask.filePrefix;
-      Meteor.call(
-        meteorMethod,
-        this.state.tags,
-        this.props.student._id,
-        this.props.activeTask,
-        (err, res) => {
-          if (res) {
-            Swal.fire({
-              position: "top-end",
-              type: "success",
-              title: "Geschafft",
-              timer: 1500
-            });
-          }
-        }
-      );
-    } else {
-      Swal.fire({
-        position: "top-end",
-        type: "warning",
-        title: "Die Lösung ist noch nicht korrekt.",
-        timer: 1500
-      });
-    }
-  }
   renderVideo() {
     if (this.props.activeTask.video) {
       return (
@@ -227,7 +171,7 @@ export default class TagView extends React.Component {
   render() {
     return (
       <div>
-        {this.renderView()}
+        {this.renderText()}
         {this.renderVideo()}
       </div>
     );

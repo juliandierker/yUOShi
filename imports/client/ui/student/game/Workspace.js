@@ -15,6 +15,7 @@ import { Tasks } from "../../../../api/tasks";
 import TaskProgress from "../taskProgress/TaskProgress";
 
 import { Segment, Button, Grid } from "semantic-ui-react";
+import KeywordList from "../../tasks/KeywordList";
 
 /**
  * This component should control the progress of a student in a task-package
@@ -33,9 +34,10 @@ export default class Workspace extends React.Component {
       packageStarted: null,
       currentSubPackageIndex: 0,
       currentSequenceId: 0,
-      hasActiveTaskOrTraining: false
+      hasActiveTaskOrTraining: false,
+      finishedKeywords: []
     };
-    this.dragInstance = React.createRef();
+    this.tagInstance = React.createRef();
     this.handler = ev => {
       if (this.state.activeTask) {
         Meteor.call(
@@ -148,11 +150,16 @@ export default class Workspace extends React.Component {
 
         switch (currentTask.type) {
           case "drag":
-            return (
-              <DragAnimationTemplate {...taskProps} ref={this.dragInstance} />
-            );
+            return <DragAnimationTemplate {...taskProps} />;
           case "tag":
-            return <TagAnimationTemplate {...taskProps} />;
+            return (
+              <TagAnimationTemplate
+                {...taskProps}
+                externUpdate={this.externUpdate.bind(this)}
+                finishedKeywords={this.state.finishedKeywords}
+                ref={this.tagInstance}
+              />
+            );
           case "cloze":
             return <ClozeAnimationTemplate {...taskProps} />;
           case "memory":
@@ -230,6 +237,13 @@ export default class Workspace extends React.Component {
       </Grid>
     );
   }
+  externUpdate(tagState) {
+    this.setState({ finishedKeywords: tagState });
+  }
+
+  handleKWContinue() {
+    this.tagInstance.current.solutionPrepare();
+  }
 
   renderDescription() {
     let task = this.props.tasks.find(elem => {
@@ -251,6 +265,18 @@ export default class Workspace extends React.Component {
     );
   }
 
+  renderKeywordList() {
+    if (this.state.activeTask && this.state.activeTask.type === "tag") {
+      return (
+        <KeywordList
+          handleClick={this.handleKWContinue.bind(this)}
+          keywords={this.state.activeTask.content[0].keywords}
+          finishedKeywords={this.state.finishedKeywords}
+        />
+      );
+    }
+  }
+
   render() {
     let activesubpackage = this.getActiveSubpackage();
     return (
@@ -269,13 +295,8 @@ export default class Workspace extends React.Component {
           />
           {this.renderDescription()}
 
-          {this.renderDescription()}
-          <div className="workspace__container">
-            {this.taskSwitch()}
-            {console.log(this.tagInstance)}
-
-            {this.test}
-          </div>
+          <div className="workspace__container">{this.taskSwitch()}</div>
+          {this.renderKeywordList()}
         </div>
         {this.renderNavigationButtons()}
       </React.Fragment>
