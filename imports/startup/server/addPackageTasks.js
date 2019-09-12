@@ -1,5 +1,4 @@
 import { Meteor } from "meteor/meteor";
-import { Tasks } from "../../api/tasks";
 
 function createDragTask(taskSpecs) {
   taskSpecs["isTask"] = true;
@@ -8,8 +7,6 @@ function createDragTask(taskSpecs) {
   taskSpecs["package"] = taskSpecs["package"];
   taskSpecs["autoGrading"] = true;
   taskSpecs["filePrefix"] = taskSpecs["filePrefix"];
-  // taskSpecs["taskurl"] =
-  //   "/Tasks/Maze/TaskPictures/" + taskSpecs["taskId"] + ".jpeg";
   return taskSpecs;
 }
 function createTagTask(taskSpecs) {
@@ -20,8 +17,6 @@ function createTagTask(taskSpecs) {
   taskSpecs["package"] = taskSpecs["package"];
   taskSpecs["autoGrading"] = true;
   taskSpecs["filePrefix"] = taskSpecs["filePrefix"];
-  // taskSpecs["taskurl"] =
-  //   "/Tasks/Maze/TaskPictures/" + taskSpecs["taskId"] + ".jpeg";
   return taskSpecs;
 }
 
@@ -60,29 +55,42 @@ function createMultiChoice(taskSpecs) {
   return taskSpecs;
 }
 
-export function addTasks() {
-  var dragTasks = JSON.parse(Assets.getText("tasks/drags.json"))["tasks"];
-  var tagTasks = JSON.parse(Assets.getText("tasks/tags.json"))["tasks"];
-  var clozeTasks = JSON.parse(Assets.getText("tasks/cloze.json"))["tasks"];
-  var memoryTasks = JSON.parse(Assets.getText("tasks/memory.json"))["tasks"];
-  var multiChoiceTasks = JSON.parse(Assets.getText("tasks/multi.json"))[
-    "tasks"
-  ];
+function addTasks(packageName, path) {
+  let tasks = JSON.parse(Assets.getText(path))["tasks"];
+  let trainings = [];
 
-  for (var i = 0; i < dragTasks.length; i++) {
-    Meteor.call("tasks.insert", createDragTask(dragTasks[i]));
+  for (let i in tasks) {
+    if (tasks[i].isTraining) {
+      trainings.push(tasks[i]);
+    } else {
+      let newtask = {};
+      switch (tasks[i].filePrefix) {
+        case "Drag":
+          newtask = createDragTask(tasks[i]);
+          break;
+        case "Tag":
+          newtask = createTagTask(tasks[i]);
+          break;
+        case "Multi":
+          newtask = createMultiChoice(tasks[i]);
+          break;
+        case "Memory":
+          newtask = createMemory(tasks[i]);
+          break;
+        case "Cloze":
+          newtask = createClozeTask(tasks[i]);
+          break;
+      }
+      Meteor.call("tasks.insert", newtask);
+    }
   }
-  for (var i = 0; i < tagTasks.length; i++) {
-    Meteor.call("tasks.insert", createTagTask(tagTasks[i]));
-  }
-  for (var i = 0; i < clozeTasks.length; i++) {
-    Meteor.call("tasks.insert", createClozeTask(clozeTasks[i]));
-  }
-  for (var i = 0; i < memoryTasks.length; i++) {
-    Meteor.call("tasks.insert", createMemory(memoryTasks[i]));
-  }
+  return trainings;
+}
 
-  for (var i = 0; i < multiChoiceTasks.length; i++) {
-    Meteor.call("tasks.insert", createMultiChoice(multiChoiceTasks[i]));
-  }
+export function addPackageTasks() {
+  let trainings = {};
+  trainings["Motivation"] = addTasks("Motivation", "tasks/motivation.json");
+  trainings["Identität"] = addTasks("Identität", "tasks/identity.json");
+
+  Meteor.call("training.insert", trainings);
 }

@@ -9,9 +9,8 @@ import { Courses } from "../../api/courses";
 import { Students } from "../../api/students";
 import { Tasks } from "../../api/tasks";
 import { Package } from "../../api/package";
-import { addTasks } from "./addTasks";
 import { addPackages } from "./addPackages";
-import { addTraining } from "./addTraining";
+import { addPackageTasks } from "./addPackageTasks";
 import { addGameData, addSurveyData } from "./addGameData";
 
 export function resetDatabase() {
@@ -21,8 +20,7 @@ export function resetDatabase() {
   if (Meteor.isDevelopment) {
     setupTestCourse(true);
   }
-  addTasks();
-  addTraining();
+  addPackageTasks();
   addPackages();
   initPackages();
   setupStudents();
@@ -41,17 +39,17 @@ function initPackages() {
     var trainings = Training.find({}).fetch();
 
     for (var j in content) {
-      var tasks = Tasks.find({parentId: packages[i].name+content[j].sequenceId}).fetch();
+      var tasks = Tasks.find({
+        parentId: packages[i].name + content[j].sequenceId
+      }).fetch();
       content[j].tasks = tasks;
     }
 
     var packageUpdates = {
-      $set: { "content": content}
-    }
+      $set: { content: content }
+    };
 
-    Package.update({ _id: packages[i]._id}, packageUpdates);
-
-
+    Package.update({ _id: packages[i]._id }, packageUpdates);
 
     for (var k in trainings[0][pname]) {
       tmp2.push(

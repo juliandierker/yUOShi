@@ -1,0 +1,397 @@
+{
+  "tasks": [
+    {
+      "name": "Motivation",
+      "title": "Einleitung",
+      "isTraining": true,
+      "trainingId": "Motivation Problem",
+      "parentId": "Motivation0",
+      "sequenceId": 0,
+      "content": "Sie sind gut in das Schuljahr gestartet und persönlich äußerst motiviert. Insgesamt haben Sie auch ein gutes Gefühl und eine nette Klasse. Jetzt kann es richtig losgehen! Doch nach und nach fällt Ihnen auf, dass einige Schüler*innen immer öfter zu spät kommen. Die Intensität der Diskussionen wird weniger, fast scheint es so, als ob andere Dinge interessanter geworden sind. Schüler*innen, die vorher sehr aktiv waren, scheinen nur noch das nötigste zu machen. Sie sind verwundert… Warum ist die Klasse so unmotiviert? Ihre Arbeit fällt Ihnen dadurch auch schwerer und am liebsten würden Sie die Schüler wach schütteln. Sie merken, dass Sie selbst immer weniger Lust haben, zu unterrichten. Was können Sie also tun? Wie lässt sich die Klasse motivieren? Finden Sie es heraus und lernen Sie alles über Motivation!"
+    },
+    {
+      "parentId": "Motivation0",
+      "title": "Der Motivationsbegriff",
+      "description": "Lest den Einführungstext und markiert die Schlüssel-Begriffe",
+      "taskId": "Motivation_Intro",
+      "filePrefix": "Tag",
+      "sequenceId": 1,
+      "content": [
+        {
+          "title": "Motivation Begriffsklärung",
+          "subtitle": "Definitionen und Abgrenzungen",
+          "text": "Der Begriff Motivation stammt ursprünglich von dem lateinischen Wort „movere“ ab, was übersetzt soviel bedeutet wie „bewegen“. Der Versuch der Begriffsklärung macht deutlich, dass viele verschiedene Ansätze und Überlegungen über Motivation existieren.\nSind hierbei doch deutliche Gemeinsamkeiten zu erkennen, legen die verschiedenen Definitionen   je   nach   Bezugswissenschaft   einen   unterschiedlichen   Fokus   der Betrachtung. Während z.B. Krapp et al. (2014, S. 194f.) Motivation als die „generelle Frage nach dem ‚Warum’ oder ‚Wozu’ des menschlichen Verhaltens“ beschreibt, sehen Rheinberg   und   Vollmeyer   Motivation   „als   eine   aktivierende   Ausrichtung   des momentanen   Lebensvollzugs   auf   einen   positiv   bewerteten   Zielzustand“   an (Schiefele/Schaffner, 2015, S. 154). Eine weitere gängige Definition versteht Motivation als eine Art internen Zustand,welcher für die Aktivierung des menschlichen Verhaltens zuständig ist, die Richtung des Verhaltens festlegt und es aufrecht hält. Hierbei wird deutlich, dass Rheinberg und Vollmeyer vor allem auf die Vergänglichkeit der Motivation und auf ihre energetische Wirkung anspielen, während letztere ihren Fokus auf die innere Herkunft der Motivation legt.\n\nHäufig kommt es vor, dass der Motivationsbegriff mit dem Motiv gleichgesetzt wird. Um dies zu differenzieren, bedarf es einer klaren Abgrenzung. Das Motiv beschreibt die Veranlagung einer Person, nach einem wertgeladenen Zielzustand zu streben, also kurzgesagt die überdauernde Handlungsbereitschaft eines Individuums. Dies kann zum Beispiel ein inneres Motiv nach Leistung, Macht oder Beziehungen sein. Dadurch kann das Motiv zum Auslöser für den stattfindenden Prozess, die Motivation, werden. \n\n Eine weitere Abgrenzung muss zwischen den Begriffen Motivation und  Bedürfnis stattfinden. Das Bedürfnis bezeichnet den Wunsch bzw. das Verlangen danach, einem Mangel entgegenzuwirken, egal ob dieser tatsächlich vorhanden oder eingebildet ist. Besteht ein Bedürfnis über längere Zeit, kann es mit dem Begriff des Motivs gleichgesetzt werden. Es beschreibt dann die Neigung des Menschens, eine bestimmte Klasse von Zielen zu erreichen. \n \n Hier wird deutlich, dass auch das Ziel näher erläutert werden sollte. Der Zielbegriff definiert ein Ergebnis oder einen Zustand, den sich ein Individuum zu erreichen vorgenommen hat. Hierbei ist die konkrete Zielsetzung ausschlaggebend dafür, dass ein Individuum die Diskrepanz zwischen dem IST-Zustand und dem SOLL-Zustand wahrnimmt und motiviert ist, diese zu verkleinern. Eine Zielsetzung hat die Funktion, die Aufmerksamkeit des Individuums auf eine Aufgabe zu lenken, Energie für die Bewältigung der Aufgabe zu liefern, die Ausdauer bis zur Erfüllung der Aufgabe zu erhalten und den Erwerb neuen Wissens zufördern. \n\nEin weiteres verwandtes Konzept, welches häufig in der Motivationsforschung Anwendung findet, ist das Interesse. Interesse beschreibt eine mehr oder weniger starke Wertschätzung eines Gegenstandes oder Bereichs, die in der Auseinandersetzung mit diesem zustande kommt. Dabei kann zwischen zwei Arten vonInteresse unterschieden werden. Zum einen das individuelle, oder auch persönliche Interesse, welches einen überdauernden Aspekt der Persönlichkeit darstellt und sich z.B.in einer langfristigen Vorliebe für bestimmte Fächer oder Aktivitäten äußert. Zum anderen das situationsspezifische Interesse, welches sich eher kurzlebig präsentiert und z.B. die Begeisterung für ein bestimmtes Material im Unterricht darstellt.",
+          "keywords": [
+            "Motivation",
+            "Motiv",
+            "Bedürfnis",
+            "Ziel",
+            "IST-Zustand",
+            "SOLL-Zustand",
+            "Interesse"
+          ],
+          "images": {
+            "Motivation": "/Tag/Motivation0/Motivation.jpg",
+            "Interesse": "/Tag/Motivation0/Ziel.jpg"
+          }
+        }
+      ],
+
+      "package": "Motivation",
+      "credits": 2900
+    },
+    {
+      "parentId": "Motivation1",
+
+      "multi": "todo",
+
+      "title": "Intrinsisch&Extrinsisch",
+      "description": "Lest den Einführungstext und markiert die Schlüssel-Begriffe",
+      "taskId": "Motivation_IntrExtr",
+      "filePrefix": "Tag",
+      "sequenceId": 2,
+      "content": [
+        {
+          "title": "Motivation Begriffsklärung",
+          "subtitle": "Definitionen und Abgrenzungen",
+          "text": "Die wohl bekannteste und auch klassischste Unterteilung in der Motivationsforschung ist die von intrinsischer und extrinsischer Motivation. Grundlegend geht es bei dieser handlungstheoretischen Unterscheidung darum, ob sich der angestrebte Zielzustand innerhalb   oder   außerhalb   einer   Handlung   befindet. \n Die intrinsische Motivation kennzeichnet eine Tätigkeit, die dem Individuum Freude und Interessensbefriedigung bei der Ausübung bereitet, also  von innen herausmotiviert ist. Intrinsisch motiviert sein, bedeutet keine Belohnungen oder Anreize zu benötigen, da die Tätigkeit selbst als Belohnung fungiert. Wenn ein Kind zum Beispiel gerne malt, ohne, dass es dazu aufgefordert wird, passiert dies höchstwahrscheinlich aus einer intrinsischen Motivation heraus.   \n\n Extrinsische Motivation hingegen kennzeichnet eine Handlung, die durch das Outcome, das erwartete Ergebnis, motiviert ist. Die Handlung an sich ist somit Mittel zum Zweck und hat keine direkte   Bedeutung   für   das   Individuum. Vielmehr geht es zum Beispiel um Belohnungen, Anreize oder auch Bestrafungen, welche potentielle Konsequenzen dieser Handlungen darstellen. Ein Kind wird öfter malen, wenn es für jedes Bild von seiner Großmutter Bonbons bekommt. Dabei geht es ihm vor allem um die Bonbons und weniger um das eigentliche Malen. \n\n Generell schließen sich die beiden Quellen der Motivation aber nicht gegenseitig aus, denn oft ist die Handlung ein Zusammenspiel innerer und äußerer Motivation, wie z.B. beim Lernen. Ein/e Schüler/in beschäftigt sich mit einem Lerngegenstand, weil er/sie ein persönliches Interesse daran hat und gleichzeitig gute Noten anstrebt. Ein Effekt, der allerdings auftreten kann, ist der sogenannte „Korrumpierungseffekt“ oder „Undermining Effekt“. Hier wird eine ursprüngliche intrinsische Motivation durch das Zutun externer Anreize abgeschwächt. Das Kind, das eigentlich aus Eigeninteresse sehr gerne malt und plötzlich im Kindergarten für jedes gemalte Bild 5 Euro bekommt, wird von sich aus zuhause weniger malen. Die intrinsische Motivation wurde als von der extrinischen überlagert.   \n\n Gelegentlich werden intrinsische und extrinsische Motivation als die zwei Enden einer Skala vermutet, sodass man entweder intrinsisch oder extrinsisch motiviert ist. Mittlerweile geht die Forschung aber eher davon aus, dass es sich um zwei getrennte Skalen handelt und man gleichzeitig hoch intrinsisch und hoch extrinsisch motiviert sein kann. ",
+          "keywords": [
+            "intrinsische Motivation",
+            "Tätigkeit selbst",
+            "Extrinsische Motivation",
+            "Mittel zum Zweck",
+            "Zusammenspiel",
+            "Korrumpierungseffekt",
+            "getrennte Skalen"
+          ],
+          "images": {
+            "intrinsische Motivation": "/Tag/Motivation1/Intrinsisch&Extrinsisch.jpg",
+            "Korrumpierungseffekt": "/Tag/Motivation1/Korrumpierungseffekt.jpg"
+          }
+        }
+      ],
+
+      "package": "Motivation",
+      "credits": 2300
+    },
+    {
+      "parentId": "Motivation1",
+      "title": "Fragen zum Text",
+      "description": "Markiere die Aussagen",
+      "taskId": "MultiChoiceEx",
+      "filePrefix": "Multi",
+      "sequenceId": 3,
+      "content": [
+        {
+          "questions": [
+            {
+              "QuestionId": 1,
+              "Question": "Markiere alle richtigen Aussagen",
+              "AnswerSet": [
+                "Intrinsische Motivation bedeutet, dass die Motivation von innen heraus kommt, zum Beispiel durch Interesse",
+                "Nein",
+                "Farbe ist nur ein konstrukt der Gesellschaft!",
+                "Der Korrumpierungseffekt kann auch als „Undermining Effekt“ bezeichnet werden"
+              ],
+              "multi": true
+            },
+            {
+              "QuestionId": 2,
+              "Question": "Was motiviert dich, Lehrer*in werden zu wollen? Priorisiere die folgendenAspekte! Die Ergebnisse werden im Lehrerzimmer für deinen Kurs einzusehen sein!",
+              "AnswerSet": [
+                "Sicheres Einkommen",
+                "Verbeamtet werden",
+                "Regelmäßige Ferien",
+                "Pädagogisch handeln",
+                "Schüler*innen motivieren",
+                "Spannende Themen behandeln"
+              ],
+              "multi": true
+            },
+            {
+              "QuestionId": 3,
+              "Question": "Würdest du dich in erster Linie als extrinsisch oder intrinsisch motiviert beschreiben?",
+              "AnswerSet": [
+                "Extrinsisch",
+                "Intrinsisch",
+                "Beides",
+                "Weder noch"
+              ],
+              "multi": false
+            }
+          ]
+        }
+      ],
+
+      "package": "Motivation",
+      "credits": 2300
+    },
+    {
+      "parentId": "Motivation1",
+      "title": "Motive zuordnen",
+      "description": "Ordnet Statements zu intrinsischer oder extrinsischer Motivation zu.",
+      "taskId": "Motive",
+      "filePrefix": "Drag",
+      "sequenceId": 4,
+      "content": {},
+      "package": "Motivation",
+      "credits": 2800,
+      "statements": [
+        [
+          [
+            "intr",
+            "Lena interessiert sich für Sport, weshalb sie gerne neue Sportarten ausprobiert."
+          ],
+          [
+            "extr",
+            "Lukas Vater ist Physiker, weshalb er sich mit physikalischen Themen beschäftigen soll."
+          ],
+          [
+            "intr",
+            "Die Klasse arbeitet gerne mit, weil sie dadurch etwas lernen."
+          ],
+          ["extr", "Die Lehrkraft vergibt Sternchen für gute Mitarbeit"],
+          ["intr", "Max hat Spaß am Unterricht, weshalb er sich oft meldet."],
+          [
+            "extr",
+            "Laura wird ermahnt, wenn sie im Unterricht nicht mitmacht."
+          ],
+          [
+            "intr",
+            "Ben liest gerne Bücher und beschäftigt sich deshalb mit dem Thema für die Deutschklausur."
+          ],
+          [
+            "extr",
+            "Mara bekommt von ihrer Oma 5Euro, wenn sie in Deutsch eine gute Note schreibt."
+          ],
+          ["intr", "Jana ist traurig, wenn sie eine schlechte Note bekommt."],
+          [
+            "extr",
+            "Richards Mutter ist enttäuscht, wenn er eine schlechte Note bekommt"
+          ],
+          ["intr", "Alexander ist eine ordentliche Mappenführung wichtig."],
+          [
+            "extr",
+            "Clara führt ihre Mappe ordentlich, um dadurch ein Sternchen zu bekommen."
+          ],
+          [
+            "intr",
+            "Malena passt in Biologie auf, weil sie Ärztin werden möchte."
+          ],
+          [
+            "extr",
+            "Dennis bekommt eine gute Note von der Lehrerin, wenn er in Biologie aufpasst."
+          ],
+          [
+            "intr",
+            "Lisa ist es wichtig, Zusammenhänge zu verstehen, weshalb sie sich bei einer Aufgabe anstrengt."
+          ],
+          [
+            "extr",
+            "Henrik strengt sich bei einer Aufgabe an, weil die Lehrerin eine Belohnung versprochen hat."
+          ],
+          [
+            "intr",
+            "Christian interessiert sich für Religion und liest deshalb das Kapitel."
+          ],
+          ["extr", "Anna liest das Kapitel, weil sie morgen geprüft wird."],
+          ["intr", "Lena trägt Converse, weil ihr diese Schuhe gefallen."],
+          [
+            "extr",
+            "Lara hat sich UGG-Boots gekauft, weil momentan alle diese Schuhe tragen."
+          ],
+          [
+            "intr",
+            "Anna findet Fußball spitze und freut sich auf die Unterrichtsstunde dazu."
+          ],
+          [
+            "extr",
+            "Paul nimmt gerne am Sportunterricht teil, weil ihn jeder in seine Mannschaft wählt."
+          ],
+          ["intr", "Max übt Mathe, weil er besser werden möchte."],
+          [
+            "extr",
+            "Claudias Mutter möchte, dass sie jeden Tag eine Matheaufgabe rechnet."
+          ],
+          [
+            "intr",
+            "Matti übt die Rückhand beim Tennis, weil er sich weiterentwickeln will."
+          ],
+          [
+            "extr",
+            "Sebastian arbeitet an seiner Kraultechnik, um den nächsten Wettkampf zu gewinnen."
+          ]
+        ]
+      ]
+    },
+    {
+      "parentId": "Motivation2",
+      "title": "Maslow Theorie",
+      "description": "Lest den Einführungstext und markiert die Schlüssel-Begriffe",
+      "video": "https://www.youtube.com/watch?v=UEZZBIH5Rlg",
+      "taskId": "Maslow_Theorie",
+      "filePrefix": "Tag",
+      "sequenceId": 5,
+      "content": [
+        {
+          "title": "Motivation Begriffsklärung",
+          "subtitle": "Maslows Bedürfnispyramide",
+          "text": "Eine der bekanntesten Theorien stellt  die Bedürfnishierarchie nach Abraham Maslow (1970) dar. Maslow geht davon aus, dass sich die menschlichen Bedürfnisse in einer Art Pyramide darstellen und aufeinander aufbauen. Nur wenn die Bedürfnisse auf den unteren Ebenen befriedigt seien, könnten die oberen angegangen werden.\n Auf der untersten Ebene der Pyramide befinden sich die sogenannten Grundbedürfnisse oder Physiologische Bedürfnisse, welche z.B. Nahrung, Wärme und Sauerstoff beinhalten. Sind diese Bedürfnisse gedeckt, wird die nächste Stufe der Pyramide erreicht. \n Hier befinden sich die Sicherheitsbedürfnisse, also z.B. die Bedürfnisse nach einer bezahlbaren Wohnung, einem sicheren Job oder Gesetzen, welche die Ordnung erhalten. \n Wenn die Sicherheit gegeben ist, sind die Sozialbedürfnisse die nächste Priorität. Diese beinhalten vor allem den Wunsch nach Familie, Freunden, Zugehörigkeit, Intimität und Kommunikation. \n Auf der vierten Stufe der Pyramide befinden sich die Individualbedürfnisse. Diese beziehen sich auf den eigenen Status in der Gesellschaft, Wertschätzung, Unabhängigkeitund Erfolg. Die vier genannten Bedürfnisse sind laut Maslow als Mangelbedürfnisse einzustufen. Wenn der mit dem Bedürfnis einhergehende Mangel gedeckt ist, ist das Bedürfnis (zeitweise) befriedigt. Nach diesen Mangelbedürfnissen folgen die Daseinsbedürfnisse. Hierbei spielt vor allem Das Selbstverwirklichungsbedürfnis eine Rolle. Diesem Bedürfnis liegt zugrunde, dass ein Individuum sein eigenes Potential ausschöpfen möchte, eine moralische Entwicklung vollzieht, Verantwortung übernimmt und kreativ ist. Bei Bedürfnissen aus diesem Bereich hört die Motivation nach Befriedigung nicht auf, sondern steigt, um neue Befriedigung zu erlangen. \n Sowohl Mangelbedürfnisse, als auch Daseinsbedürfnisse können nie vollständig befriedigt sein.",
+          "keywords": [
+            "Bedürfnisse",
+            "Grundbedürfnisse",
+            "Sicherheitsbedürfnisse",
+            "Sozialbedürfnisse",
+            "Individualbedürfnisse",
+            "Mangelbedürfnisse",
+            "Selbstverwirklichungsbedürfnis"
+          ],
+          "images": {
+            "Maslowtheorie": "/Tag/Motivation2/Maslowtheorie.jpg",
+            "Mangelbedürfnisse": "/Tag/Motivation2/Selbstverwirklichung.jpg"
+          }
+        }
+      ],
+
+      "package": "Motivation",
+      "credits": 2300
+    },
+    {
+      "parentId": "Motivation2",
+      "title": "Motivationsbegriffe",
+      "description": "In diesem Memory müsst ihr zu Begriffen die entsprechenden Bilder zuweisen.",
+      "taskId": "Motivation_Memory",
+      "filePrefix": "Memory",
+      "sequenceId": 6,
+      "package": "Motivation",
+      "credits": 3000,
+      "content": [
+        {
+          "title": "Motivation Begriffsklärung",
+          "subtitle": "",
+          "conten": "",
+          "keywords": [
+            "Selbstverwirklichung",
+            "Soziale Bedürfnisse",
+            "Körperliche Bedürfnisse"
+          ]
+        }
+      ]
+    },
+    {
+      "parentId": "Motivation2",
+      "title": "Maslow-Pyramide",
+      "description": "Versucht die Bedürfnis-Pyramide nach Maslow in die richtige Reihenfolge zu bringen.",
+      "taskId": "Maslow",
+      "filePrefix": "Drag",
+      "sequenceId": 7,
+      "content": {},
+      "package": "Motivation",
+      "credits": 2500
+    },
+    {
+      "parentId": "Motivation3",
+      "title": "Ziele Lückentext",
+      "description": "Löse den Lückentext",
+      "taskId": "ZieleCloze",
+      "filePrefix": "Cloze",
+      "sequenceId": 8,
+      "content": [
+        {
+          "title": "Ziele",
+          "subtitle": "Langer Text",
+          "keywords": ["Zielsetzungstheorie", "Locke", "Moderatoren"],
+          "text": "Die ##0## nach Edwin ##1## und Gary Latham wird grundsätzlich in die Kategorie der Motivationsstrategien eingeordnet. Dennoch zeigt sie wesentliche Bestandteile einer Theorie, um den Motivationsprozess besser zu verstehen. Die zentraleAnnahme dieser Theorie ist, dass Motivation maßgeblich über die gesetzten Ziele und deren Erreichen gesteuert wird und somit als Auslöser des menschlichen Handelns gilt. Je herausfordernder und präziser ein Ziel dabei gestaltet wird, desto höher ist auch die Motivation, dieses zu erreichen. In diesem Prozess der Zielsetzung spielen verschiedene ##2## eine Rolle, wie z.B. Feedback zu erbrachten Leistungen oder die Selbstwirksamkeit, also die Einschätzung einer Person über ihr Können."
+        }
+      ],
+      "package": "Motivation",
+      "credits": 3000
+    },
+    {
+      "parentId": "Motivation2",
+      "title": "Selbstbestimmungstheorie",
+      "description": "Lest den Einführungstext und markiert die Schlüssel-Begriffe",
+      "taskId": "Selbstbestimmungs_Theorie",
+      "filePrefix": "Tag",
+      "sequenceId": 9,
+      "content": [
+        {
+          "title": "Selbstbestimmungs-Theorie",
+          "subtitle": "Selbstbestimmungs-Theorie",
+          "text": "Auch die Selbstbestimmungstheorie (SDT) nach Deci und Ryan (1993) spielt in der Motivations-Forschung eine zentrale Rolle. Sie zählt zu den humanistischen Ansätzen unter den Motivationstheorien und wurde in den 80er Jahren entwickelt. Aus Sicht dieser Theorie stellt die veranlagte Komponente der menschlichen Motivation einen entscheidenden Aspekt für die individuelle Persönlichkeitsorganisation dar.Im Mittelpunkt der Theorie wird das Individuum als selbstbestimmtes Wesen gesehen. Demnach fühlt er sich im Umgang mit anderen Menschen kompetent und fähig, sowie in der Lage, Beziehungen aufzubauen und aufrecht zu erhalten. Weitergehend besitzt der selbstbestimmte Mensch einen Entscheidungsspielraum und die Kontrolle über das eigene Leben. Persönliche Interessen, Ziele und Wünsche sind stark mit der eigenen Persönlichkeit verknüpft. \n\n Die Theorie geht davon aus, dass Menschen in der Lage sind, sich einer Gruppe zugehörig zu fühlen. Ähnlich der Bedürfnishierarchie steht das Bedürfnis der Selbstbestimmung im Mittelpunkt des Handelns. Ein selbstbestimmtes Individuum strebt nach Erfüllung der eigenen Wünsche, ohne dabei dem Druck und Belohnungen von außen nachzugeben. Ähnlich wie bei anderen Theorien wird auch hier eine Unterscheidung zwischen extrinsischer und intrinsischer Motivation vorgenommen. Deci und Ryan klassifizieren eine Handlung, die nur um ihrer selbst willen unternommen wird, als intrinsisch motiviert, somit gilt die intrinsische Motivation als „Prototyp“ der Selbstbestimmung. Alle anderen Handlungen, die einem übergeordneten Ziel folgen, sind extrinsisch motiviert. \n\nEine Grundvoraussetzung für selbstbestimmtes Handeln ist nach Deci und Ryan die Integration bzw. Internalisierung von externen Zielen in das individuelle Selbstsystem. Dabei spielen die sogenannten grundlegenden psychologischen Bedürfnisse eine wichtige Rolle.\nNach Deci und Ryan existiert neben den biologischen Antriebsfaktoren (Hunger, Durst, Schlaf) auch ein emotionsbasiertes Steuerungssystem des menschlichen Verhaltens, welches angeboren ist. Hiermit sind die grundlegenden psychologischen Bedürfnisse (Basic Needs) gemeint, welche sich aus dem Erleben von Autonomie, sozialer Eingebundenheit und das Erleben von Kompetenz zusammensetzen. Die Befriedigung dieser Bedürfnisse ist obligatorisch und durch sie werden motivationale Handlungen ausgelöst.\n\nWie oben beschrieben, beinhaltet das Bedürfnis nach Autonomie (Selbstbestimmung) das Bestreben, Ziele und Vorgehensweisen der eigenen Handlung selbst zu bestimmten. Dieses Bedürfnis steht in engem Zusammenhang mit dem Kompetenzbedürfnis.\n\nDas Bedürfnis nach sozialer Eingebundenheit impliziert das Bestreben nach befriedigenden Sozialkontakten des Menschen. Das Individuum möchte ein Gefühl von Akzeptanz und Anerkennung in einer Gruppe erfahren. \n\nDas Bedürfnis des Kompetenzerlebens umfasst den Wunsch des Individuums, sich selbst als „wirksam“ zu sehen, Anforderungen aus eigener Kraft zu bewältigen und fehlende Kompetenzen erwerben zu können",
+          "keywords": [
+            "Deci und Ryan",
+            "humanistischen Ansätzen",
+            "intrinsische Motivation",
+            "Bedürfnis nach Autonomie",
+            "Bedürfnis des Kompetenzerlebens",
+            "Bedürfnis nach sozialer Eingebundenheit"
+          ],
+          "images": {
+            "Selbstbestimmung": "/Tag/Motivation3/Selbstbestimmung.jpg",
+            "Moderatoren": "/Tag/Motivation3/Bedürfnis nach Autonomie.jpg"
+          }
+        }
+      ],
+
+      "package": "Motivation",
+      "credits": 2300
+    },
+    {
+      "parentId": "Motivation3",
+      "title": "SMART",
+      "description": "Lest den Text zum Thema Zielsetzung durch SMART durch.",
+      "taskId": "SMART",
+      "filePrefix": "Tag",
+      "sequenceId": 10,
+      "content": [
+        {
+          "title": "SMART",
+          "subtitle": "Smart",
+          "text": "Durch Ziele kann der Sinn einer Handlung besser erkannt und der Weg zur Erreichung dieses Ziels   geplant   und   durchgeführt   werden.   Ziele   führen   dem   Menschen   das   „Warum“   derHandlung   vor   Augen.   Dabei   beschreibt   das   Ziel,   wie   eingangs   bereits   aufgeführt,   dieDiskrepanz zwischen dem IST-Zustand und dem SOLL-Zustand.\nWie in der Zielsetzungstheorie beschrieben, können Ziele dazu dienen, die Motivation zulenken und aufrechtzuhalten. Im Alltag werden Ziele allerdings oftmals allgemein formuliertz.B.   „Ich   werde   abnehmen“,   „Ich   werde   dieses   Semester   die   Klausuren   bestehen“,   waslangfristig dazu führt, dass Ziele mit geringerer Wahrscheinlichkeit erreicht werden und dieMotivation sinkt. \n\nUm dem entgegen zu wirken und Ziele erreichbarer zu gestalten, kann die SMART-Formelangewendet werden. Hierbei werden Ziele konkret operationalisiert und es werden klareKriterien   für   die   Zielerreichung   erstellt.   Außerdem   können   anhand   der   Zielsetzung   mitSMART wesentliche Vereinbarungen über die zeitliche Datierung und die Rückmeldung zubesagtem   Ziel   getroffen   werden.   Daher   kommt   diese   Methodik   vor   allem   imProjektmanagement, im Coaching, in der Karriereplanung und in Trainings zum Einsatz. \n\n SMART steht (aus dem Englischen übersetzt) für: \n     Spezifisch\n     Messbar\n     Akzeptiert (auch attraktiv / anziehend / angemessen)\n     Realistisch\n     Terminiert\n\nSpezifisch  meint in diesem Zusammenhang, dass gesetzte Ziele klar und deutlich definiertwerden sollten, um so möglichst wenig Spielraum für Interpretationen zu schaffen: „Was willich genau erreichen“.\nBeispiel: „Ich will die Mathe Klausur „Algebra 1“ dieses Semester bestehen“. \n\nMessbar meint, dass das Ziel kontrollierbar sein muss. Dies bedeutet, es muss klar sein, abwann das Ziel erreicht ist und wie man das Ziel messen kann: „Wie viel genau muss ichwovon tun“.\nBeispiel: „Die Endnote soll 4,0 oder besser sein.“\n\nAkzeptiert steht in der Formel für die Akzeptanz des Ziels durch alle beteiligten Personen.Jeder   sollte   mit   der   Zielformulierung   einverstanden   sein   und   die   Ziel-Vereinbarung„unterzeichnen“. Außerdem sollte das Ziel durch das Verhalten der Beteiligten beeinflussbarsein. Das A kann auch für „attraktiv“ stehen, was bedeutet, dass das Ziel für einen selbstpositiv sein soll. Ein Ansatz, um mehr Akzeptanz oder Attraktivität zu schaffen, wäre es zumBeispiel   eine   gemeinsame   Zielsetzung,   sodass   andere   auch   beteiligt   werden   und   denFortschritt kontrollieren können\nBeispiel:   „Ich   werde   eine   Lerngruppe   mit   Martina   und   Leon   machen,   in   der   wir   unsgegenseitig motivieren“.\n\nRealistisch steht für die Realisierbarkeit/Erreichbarkeit des Ziels. Zu hoch angesetzte Zielewirken   eher   demotivierend   auf   Menschen.   Optimal   angesetzte   Ziele   wirken   im   erstenMoment frustrierend, da sie nicht sofort zu erreichen sind. Durch eine gewisse Anstrengungkann das Ziel jedoch erreicht werden, was wiederum motiviert. Oft sind gut gesteckte Zieleautomatisch realistisch, da man sich diese sonst nicht setzen würde.\n\nTerminiert beschreibt den festzulegenden Zeitraum einer Zielsetzung, der unbedingt präzisefestgelegt   werden   sollte.   Ratsam   sind   hierbei   auch   Zwischenprüfungen,   um   eventuelleAbweichungen bei der Zielerreichung festzustellen und schnell korrigieren zu können.Beispiel: „dafür treffen wir uns immer Montags, Mittwochs und jeden zweiten Freitag um 16Uhr für zwei Stunden in der Lernlandschaft der Universität.\n\nDes Weiteren ist es ratsam, Zielsetzungen immer positiv zu formulieren da negative Aussagendemotivierend wirken. Formulierungen, die UN- oder NICHT- enthalten, sollten ebenfallsvermieden werden.\nBeispiel: „Ich werde nicht durchfallen“ (Negativ)  „Ich werde bestehen“\n\nDie Wahl der Zielsetzung ist dabei entscheidend. So sollten immer Ziele gewählt werden, die(persönlich) sinnvoll scheinen, sowie eine Entwicklung des Individuums hervorrufen. Hierbeikann an Stärken, Schwächen oder Kompetenzen des Individuums angeknüpft werden.",
+          "keywords": ["Handlung", "Akzeptanz", "Zeitraum einer Zielsetzung"],
+          "images": {
+            "Selbstbestimmung": "/Tag/Motivation4/Xwert-Theorie.jpg",
+            "Moderatoren": "/Tag/Motivation4/Ergebnis.jpg"
+          }
+        }
+      ],
+
+      "package": "Motivation",
+      "credits": 2000
+    },
+    {
+      "parentId": "Motivation2",
+      "title": "X-Wert Theorie",
+      "description": "Lest den Einführungstext und markiert die Schlüssel-Begriffe",
+      "taskId": "Xwert_Theorie",
+      "filePrefix": "Tag",
+      "sequenceId": 11,
+      "content": [
+        {
+          "title": "Xwert-Theorie",
+          "subtitle": "Xwert_Theorie",
+          "text": "Das Erwartungs-Wert-Modell nach Heckhausen(1977) hat einen großen Einfluss auf die moderne Motivationsforschung. In einer Formel kann das Ausmaß der Motivation bezüglich einer konkreten Aktivität dargestellt werden: M = E x W - \n Die Motivation (M) ergibt sich somit aus dem Produkt der Erwartung (E) eines bestimmten Ergebnisses einer Handlung und dem Wert (W), bzw. der Attraktivität,  den dieses Ergebnis für die handelnde Person hat. \n\n Das Modell nach Heckhausen beschreibt vier verschiedene Stationen Stufen im kognitiven Prozess der Motivationsentwicklung, denen sich bei unterschiedlicher Handlung differenzierte Erwartungen zuordnen lassen. Die erste Stufe betrifft eine Vermutung über die Situation-Ergebnis-Erwartung, das heißt, was passieren würde, wenn das Individuum nicht handelt. In Stufe zwei des Modells werden verschiedene Handlungschancen in der gegebenen Situation betrachtet und das zu erwartende Ergebnis bewertet. Stufe drei beschäftigt sich dann mit den möglicherweise resultierenden Folgen des Ergebnisses. \nGrundsätzlich spielt der Nutzen der Handlungsergebnisse eine zentrale Rolle für den tatsächlichen Motivationsprozess. Genau wie in der beschriebenen Formel ist Motivation nach dieser Theorie demnach ein Produkt aus der Erwartung, ein bestimmtes Ziel zu erreichen und dem Wert, den das Ziel für das Individuum besitzt. Geht einer dieser beiden Werte gegen 0, hat das Ziel beispielsweise keinen emotionalen Wert für den Betroffenen, ergibt auch das Produkt 0 und es entsteht keine Motivation, das Ziel zu erreichen. \nSo beschäftigt sich ein Schüler beispielsweise erst mit einem Fach, wenn es für seinen späteren Berufswunsch relevant ist.",
+          "keywords": ["Erwartungs-Wert", "Situation", "Ergebnis"],
+          "images": {
+            "Selbstbestimmung": "/Tag/Motivation4/Xwert-Theorie.jpg",
+            "Moderatoren": "/Tag/Motivation4/Ergebnis.jpg"
+          }
+        }
+      ],
+
+      "package": "Motivation",
+      "credits": 2300
+    },
+    {
+      "name": "Motivation",
+      "title": "Outro",
+      "isTraining": true,
+      "trainingId": "Motivation Problem",
+      "parentId": "Motivation3",
+      "sequenceId": 12,
+      "content": "Sie sind gut in das Schuljahr gestartet und persönlich äußerst motiviert. Insgesamt haben Sie auch ein gutes Gefühl und eine nette Klasse. Jetzt kann es richtig losgehen! Doch nach und nach fällt Ihnen auf, dass einige Schüler*innen immer öfter zu spät kommen. Die Intensität der Diskussionen wird weniger, fast scheint es so, als ob andere Dinge interessanter geworden sind. Schüler*innen, die vorher sehr aktiv waren, scheinen nur noch das nötigste zu machen. Sie sind verwundert… Warum ist die Klasse so unmotiviert? Ihre Arbeit fällt Ihnen dadurch auch schwerer und am liebsten würden Sie die Schüler wach schütteln. Sie merken, dass Sie selbst immer weniger Lust haben, zu unterrichten. Was können Sie also tun? Wie lässt sich die Klasse motivieren? Finden Sie es heraus und lernen Sie alles über Motivation!",
+      "package": "Motivation"
+    }
+  ]
+}
