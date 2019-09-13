@@ -3,13 +3,13 @@ import React from "react";
 import { Segment, List, Button, Icon } from "semantic-ui-react";
 
 export default class KeywordList extends React.Component {
-  //PROPS: finished, keywords, finisehdKeywords, solutionPrepare()
+  //PROPS: finished, keywords, finishedKeywords, solutionPrepare()
 
   renderListElem() {
     return this.props.keywords.map((keyword, index) => {
       return (
         <List.Item style={{ fontSize: "12px" }} key={keyword + index} as="a">
-          {this.props.finisehdKeywords.includes(keyword) ? (
+          {this.props.finishedKeywords.includes(keyword) ? (
             <Icon key={"icon" + index} color="green" name="check" />
           ) : (
             <Icon key={"icon" + index} name="help" />
@@ -24,8 +24,10 @@ export default class KeywordList extends React.Component {
   }
 
   render() {
-    const buttonDisabled = this.props.finished ? false : true;
-    const buttonColor = this.props.finished ? "green" : "grey";
+    const finished =
+      this.props.keywords.length === this.props.finishedKeywords.length;
+    const buttonDisabled = finished ? false : true;
+    const buttonColor = finished ? "green" : "grey";
 
     return (
       <Segment style={{ position: "fixed", margin: "20% 0 0 5%" }}>
@@ -40,7 +42,7 @@ export default class KeywordList extends React.Component {
             maxWidth: "230px"
           }}
           floated="right"
-          onClick={() => this.props.solutionPrepare()}
+          onClick={() => this.props.handleClick()}
         >
           Weiter
         </Button>

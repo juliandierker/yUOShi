@@ -1,0 +1,22 @@
+{
+  "tasks": [
+    {
+      "name": "Identität",
+      "title": "Identität Beispiel",
+      "isTraining": true,
+      "trainingId": "Identität Problem",
+      "parentId": "Identität 0",
+      "sequenceId": 1,
+      "content": "Nach der sechsten Stunde treffen sich die Zehntklässler Anne und Fabian, um zusammen in der Mensa ihrer Realschule zu Mittag zu essen. „Was ist heute los mit dir? Du bist schon den ganzen Tag so nachdenklich. Hast du Probleme zuhause?“ fragt Anne. Fabian hadert mit sich, aber dann gibt er zu: „Nein, nein… Zuhause ist alles in Ordnung. Nur vorhin im Politik-Unterricht, wo wir über unsere Pläne und Vorstellungen für die Zukunft gesprochen haben, da habe ich irgendwie Angst bekommen. Alle wissen schon genau, wie es nach der zehnten Klasse weitergeht, haben einen Plan, eine Idee… Du willst aufs Wirtschaftsgymnasium ge-hen, studieren und irgendwann mal eine Familie gründen, Leon will eine Ausbildung zum Tischler machen, Lisas Plan ist es, die Welt zu bereisen und viele Kulturen kennenzulernen, Nico will an die Fachoberschule und anschließend Krankenpfleger werden, aber ich… ich ha-be noch überhaupt keine Ahnung, wer ich bin und was ich von meinem Leben will.“"
+    },
+    {
+      "name": "Identität",
+      "title": "Identität Beispiel",
+      "isTraining": true,
+      "trainingId": "Identität Problem",
+      "parentId": "Identität 0",
+      "sequenceId": 2,
+      "content": "bla"
+    }
+  ]
+}

@@ -8,6 +8,7 @@ import TagAnimationTemplate from "../../tasks/TagAnimationTemplate";
 import ClozeAnimationTemplate from "../../tasks/ClozeAnimationTemplate";
 import MemoryAnimationTemplate from "../../tasks/MemoryAnimationTemplate";
 import MultiChoiceAnimationTemplate from "../../tasks/MultiChoiceAnimationTemplate";
+import KeywordList from "../../tasks/KeywordList";
 
 import equals from "fast-deep-equal";
 import { Tasks } from "../../../../api/tasks";
@@ -32,9 +33,10 @@ export default class Workspace extends React.Component {
       packageStarted: null,
       currentSubPackageIndex: 0,
       currentSequenceId: 0,
-      hasActiveTaskOrTraining: false
+      hasActiveTaskOrTraining: false,
+      finishedKeywords: []
     };
-    this.dragInstance = React.createRef();
+    this.tagInstance = React.createRef();
     this.handler = ev => {
       if (this.state.activeTask) {
         Meteor.call(
@@ -47,9 +49,7 @@ export default class Workspace extends React.Component {
     window.addEventListener("beforeunload", this.handler);
 
     this.handleNextTaskButtonClick = this.handleNextTaskButtonClick.bind(this);
-    this.handlePreviousTaskButtonClick = this.handlePreviousTaskButtonClick.bind(
-      this
-    );
+    this.handlePreviousTaskButtonClick = this.handlePreviousTaskButtonClick.bind();
   }
   show = dimmer => () => this.setState({ dimmer, packageStarted: true });
   close = () => this.setState({ packageStarted: false });
@@ -147,11 +147,16 @@ export default class Workspace extends React.Component {
 
         switch (currentTask.type) {
           case "drag":
-            return (
-              <DragAnimationTemplate {...taskProps} ref={this.dragInstance} />
-            );
+            return <DragAnimationTemplate {...taskProps} />;
           case "tag":
-            return <TagAnimationTemplate {...taskProps} />;
+            return (
+              <TagAnimationTemplate
+                {...taskProps}
+                externUpdate={this.externUpdate.bind(this)}
+                finishedKeywords={this.state.finishedKeywords}
+                ref={this.tagInstance}
+              />
+            );
           case "cloze":
             return <ClozeAnimationTemplate {...taskProps} />;
           case "memory":
@@ -202,7 +207,7 @@ export default class Workspace extends React.Component {
   }
 
   handlePreviousTaskButtonClick() {
-    if (this.props.student.currentSequenceId > 1) {
+    if (this.props.student && this.props.student.currentSequenceId > 1) {
       Meteor.call("students.showPreviousTask", this.props.student);
     }
   }
@@ -233,7 +238,13 @@ export default class Workspace extends React.Component {
       </div>
     );
   }
+  externUpdate(tagState) {
+    this.setState({ finishedKeywords: tagState });
+  }
 
+  handleKWContinue() {
+    this.tagInstance.current.solutionPrepare();
+  }
   renderDescription() {
     let task = this.props.tasks.find(elem => {
       return elem.sequenceId === this.props.student.currentSequenceId;
@@ -246,7 +257,9 @@ export default class Workspace extends React.Component {
 
     return (
       <Grid id="workspaceGrid">
-        <Grid.Column width={3}>{this.renderDescription()}</Grid.Column>
+        <Grid.Column width={3}>
+          {this.renderDescription()} {this.renderKeywordList()}
+        </Grid.Column>
         <Grid.Column width={6}>
           <div
             className="workspace__container"
@@ -271,11 +284,23 @@ export default class Workspace extends React.Component {
       </Grid>
     );
   }
+  renderKeywordList() {
+    if (this.state.activeTask && this.state.activeTask.type === "tag") {
+      return (
+        <KeywordList
+          handleClick={this.handleKWContinue.bind(this)}
+          keywords={this.state.activeTask.content[0].keywords}
+          finishedKeywords={this.state.finishedKeywords}
+        />
+      );
+    }
+  }
   render() {
     return (
       <div
         style={{
-          display: "flex"
+          display: "flex",
+          justfyContent: "center"
         }}
       >
         {this.renderWorkspaceGrid()}>{this.renderNavigationButtons()}

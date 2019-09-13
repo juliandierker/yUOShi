@@ -2,7 +2,6 @@ import React from "react";
 import { Meteor } from "meteor/meteor";
 import PropTypes from "prop-types";
 import { TagModel } from "../../../models/TagModel";
-import { Button, Header, Modal, Image, Grid } from "semantic-ui-react";
 
 import Swal from "sweetalert2";
 import TagView from "./TagView";
@@ -18,21 +17,48 @@ export default class TagAnimationTemplate extends React.Component {
     this.model.init(props.student, props.activeTask);
   }
 
-  componentDidMount() {}
-  renderView() {
-    if (this.props.activeTask.type == "tag") {
-      return (
-        <TagView
-          student={this.props.student}
-          model={this.model}
-          activeTask={this.props.activeTask}
-        />
+  solutionPrepare() {
+    var sol = this.model.run(this.props.finishedKeywords);
+    if (
+      (sol && sol[0].includes("won")) ||
+      this.props.activeTask.content[0].keywords.length === 0
+    ) {
+      var meteorMethod =
+        "solutionHandler.submit" + this.props.activeTask.filePrefix;
+      Meteor.call(
+        meteorMethod,
+        this.props.finishedKeywords,
+        this.props.student._id,
+        this.props.activeTask,
+        (err, res) => {
+          if (res) {
+            Swal.fire({
+              position: "top-end",
+              type: "success",
+              title: "Geschafft",
+              timer: 1500
+            });
+          }
+        }
       );
+    } else {
+      Swal.fire({
+        position: "top-end",
+        type: "warning",
+        title: "Die Lösung ist noch nicht korrekt.",
+        timer: 1500
+      });
     }
   }
 
   render() {
-    return <div>{this.renderView()}</div>;
+    return (
+      <TagView
+        externUpdate={this.props.externUpdate}
+        student={this.props.student}
+        activeTask={this.props.activeTask}
+      />
+    );
   }
 }
 
