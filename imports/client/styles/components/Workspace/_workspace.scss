@@ -54,7 +54,7 @@
 // Desktop
 @media screen and (min-width: 1025px) {
   .workspace__container {
-    width: 40%;
+    width: 100%;
   }
 
   #NavigationButtonContainer {
@@ -66,5 +66,19 @@
   }
 
   #nextButton {
+  }
+
+  #workspaceGrid {
+    justify-content: center;
+  }
+  #workspaceStepper {
+    margin-top: 60px;
+  }
+  #workspaceDescription {
+    width: 10%;
+    margin-top: 60px;
+    margin-left: 5%;
+    max-height: 700px;
+    position: fixed;
   }
 }

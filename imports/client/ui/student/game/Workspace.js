@@ -13,7 +13,6 @@ import equals from "fast-deep-equal";
 import { Tasks } from "../../../../api/tasks";
 
 import TaskProgress from "../taskProgress/TaskProgress";
-
 import { Segment, Button, Grid } from "semantic-ui-react";
 
 /**
@@ -211,23 +210,27 @@ export default class Workspace extends React.Component {
   renderNavigationButtons() {
     //TODO: render vor- und zurückbuttons
     return (
-      <Grid stackable>
-        <Grid.Row id="NavigationButtonContainer">
-          <Grid.Column width={8}>
-            <Button
-              id="prevButton"
-              onClick={this.handlePreviousTaskButtonClick}
-            >
-              vorherige Aufgabe
-            </Button>
-          </Grid.Column>
-          <Grid.Column width={8}>
-            <Button id="nextButton" onClick={this.handleNextTaskButtonClick}>
-              nächste Aufgabe
-            </Button>
-          </Grid.Column>
-        </Grid.Row>
-      </Grid>
+      <div
+        style={{
+          position: "absolute",
+          margin: "auto",
+          bottom: "0px",
+          width: "100%"
+        }}
+      >
+        <Button
+          onClick={this.handlePreviousTaskButtonClick}
+          style={{ marginLeft: "20.5%" }}
+        >
+          vorherige Aufgabe
+        </Button>
+        <Button
+          onClick={this.handleNextTaskButtonClick}
+          style={{ marginLeft: "29.5%" }}
+        >
+          nächste Aufgabe
+        </Button>
+      </div>
     );
   }
 
@@ -236,30 +239,27 @@ export default class Workspace extends React.Component {
       return elem.sequenceId === this.props.student.currentSequenceId;
     });
     if (!task) return;
-    return (
-      <Segment
-        style={{
-          width: "10%",
-          marginTop: "4%",
-          marginLeft: "5%",
-          maxHeight: "500px",
-          position: "fixed"
-        }}
-      >
-        {task.description}
-      </Segment>
-    );
+    return <Segment id="workspaceDescription">{task.description}</Segment>;
   }
-
-  render() {
+  renderWorkspaceGrid() {
     let activesubpackage = this.getActiveSubpackage();
+
     return (
-      <React.Fragment>
-        <div
-          style={{
-            display: "flex"
-          }}
-        >
+      <Grid id="workspaceGrid">
+        <Grid.Column width={3}>{this.renderDescription()}</Grid.Column>
+        <Grid.Column width={6}>
+          <div
+            className="workspace__container"
+            style={{
+              width: "100%",
+              marginTop: "60px",
+              height: "100vh"
+            }}
+          >
+            {this.taskSwitch()}
+          </div>
+        </Grid.Column>
+        <Grid.Column width={3}>
           <TaskProgress
             currentTask={this.state.activeTask}
             student={this.props.student}
@@ -267,18 +267,19 @@ export default class Workspace extends React.Component {
             trainings={this.props.trainings}
             activeSubpackage={activesubpackage}
           />
-          {this.renderDescription()}
-
-          {this.renderDescription()}
-          <div className="workspace__container">
-            {this.taskSwitch()}
-            {console.log(this.tagInstance)}
-
-            {this.test}
-          </div>
-        </div>
-        {this.renderNavigationButtons()}
-      </React.Fragment>
+        </Grid.Column>
+      </Grid>
+    );
+  }
+  render() {
+    return (
+      <div
+        style={{
+          display: "flex"
+        }}
+      >
+        {this.renderWorkspaceGrid()}>{this.renderNavigationButtons()}
+      </div>
     );
   }
 }

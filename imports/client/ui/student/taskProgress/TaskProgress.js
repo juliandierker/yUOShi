@@ -56,7 +56,7 @@ class TaskProgress extends Component {
     }
 
     return (
-      <div className={classes.root}>
+      <div id="workspaceStepper" className={classes.root}>
         <Stepper activeStep={activeStep} orientation="vertical">
           {steps.map((label, index) => (
             <Step key={label}>
@@ -79,6 +79,7 @@ class TaskProgress extends Component {
   componentWillMount() {
     this.generateSubPackages();
   }
+  componentDidUpdate() {}
   generateSubPackages() {
     let newSubPackages = [];
     this.props.currentPackage.content.map(subPackage => {
