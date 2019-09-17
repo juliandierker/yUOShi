@@ -15,16 +15,28 @@ class TaskProgress extends Component {
     this.state = {
       subPackages: [],
       //TODO get init activeStep
-      activeStep: 0,
+      activeStep: this.getInitStep(),
       steps: []
     };
+  }
+  getInitStep() {
+    console.log(this.props);
+    var stepId = null;
+    const currentPackage = this.props.currentPackage;
+    const trainings = this.props.trainings[0][currentPackage.name];
+    if (!this.props.currentTask) {
+      return 0;
+    } else {
+      var cStr = this.props.currentTask.parentId;
+      stepId = cStr.slice(cStr.length - 1, cStr.length);
+      return parseInt(stepId);
+    }
   }
   getSteps() {
     var stepArr = [];
     const currentPackage = this.props.currentPackage;
     const trainings = this.props.trainings[0][currentPackage.name];
     stepArr.push(trainings[0].title);
-    console.log(trainings);
     this.state.subPackages[0].map((subPackage, index) => {
       stepArr.push(subPackage.title);
     });
@@ -49,7 +61,6 @@ class TaskProgress extends Component {
     }));
     const activeStep = this.state.activeStep;
     const steps = this.getSteps();
-    console.log(steps);
     function handleNext() {
       setActiveStep(prevActiveStep => prevActiveStep + 1);
     }
@@ -89,6 +100,8 @@ class TaskProgress extends Component {
   componentDidUpdate(prevProps, prevState) {
     if (prevProps.currentTask && this.props.currentTask)
       this.checkProgress(prevProps);
+
+    if (!prevProps.currentTask && this.props.currentTask) this.getInitStep();
   }
   checkProgress(prevProps) {
     const prevTask = prevProps.currentTask;
