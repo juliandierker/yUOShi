@@ -3,7 +3,9 @@
   margin: 0 auto;
   margin-top: 66px;
 }
-
+#workspaceGrid {
+  justify-content: center;
+}
 #defTextReader {
   height: 85vh;
   max-width: 100%;
@@ -68,9 +70,6 @@
   #nextButton {
   }
 
-  #workspaceGrid {
-    justify-content: center;
-  }
   #workspaceStepper {
     margin-top: 60px;
   }

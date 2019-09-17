@@ -14,14 +14,22 @@ class TaskProgress extends Component {
     super(props);
     this.state = {
       subPackages: [],
+      //TODO get init activeStep
       activeStep: 0,
       steps: []
     };
   }
   getSteps() {
-    return this.state.subPackages[0].map((subPackage, index) => {
-      return subPackage.title;
+    var stepArr = [];
+    const currentPackage = this.props.currentPackage;
+    const trainings = this.props.trainings[0][currentPackage.name];
+    stepArr.push(trainings[0].title);
+    console.log(trainings);
+    this.state.subPackages[0].map((subPackage, index) => {
+      stepArr.push(subPackage.title);
     });
+    stepArr.push(trainings[1].title);
+    return stepArr;
   }
   renderStepper() {
     var classes = makeStyles(theme => ({
@@ -40,9 +48,8 @@ class TaskProgress extends Component {
       }
     }));
     const activeStep = this.state.activeStep;
-    console.log(activeStep);
     const steps = this.getSteps();
-
+    console.log(steps);
     function handleNext() {
       setActiveStep(prevActiveStep => prevActiveStep + 1);
     }
@@ -66,7 +73,7 @@ class TaskProgress extends Component {
         </Stepper>
         {activeStep === steps.length && (
           <Paper square elevation={0} className={classes.resetContainer}>
-            <Typography>All steps completed - you&apos;re finished</Typography>
+            <Typography />
             <Button onClick={handleReset} className={classes.button}>
               Reset
             </Button>
@@ -79,7 +86,32 @@ class TaskProgress extends Component {
   componentWillMount() {
     this.generateSubPackages();
   }
-  componentDidUpdate() {}
+  componentDidUpdate(prevProps, prevState) {
+    if (prevProps.currentTask && this.props.currentTask)
+      this.checkProgress(prevProps);
+  }
+  checkProgress(prevProps) {
+    const prevTask = prevProps.currentTask;
+    const currentTask = this.props.currentTask;
+    var stepId = null;
+    var prevId = null;
+    if (
+      currentTask.sequenceId != prevTask.sequenceId &&
+      currentTask.parentId &&
+      prevTask.parentId != currentTask.parentId
+    ) {
+      var cStr = currentTask.parentId;
+      var pStr = prevTask.parentId;
+      stepId = cStr.slice(cStr.length - 1, cStr.length);
+      prevId = pStr.slice(pStr.length - 1, pStr.length);
+
+      if (stepId > prevId) {
+        this.setState({ activeStep: this.state.activeStep + 1 });
+      } else if (stepId < prevId && prevId != 0) {
+        this.setState({ activeStep: this.state.activeStep - 1 });
+      }
+    }
+  }
   generateSubPackages() {
     let newSubPackages = [];
     this.props.currentPackage.content.map(subPackage => {

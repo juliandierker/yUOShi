@@ -46,10 +46,13 @@ export default class Workspace extends React.Component {
         );
       }
     };
+
     window.addEventListener("beforeunload", this.handler);
 
     this.handleNextTaskButtonClick = this.handleNextTaskButtonClick.bind(this);
-    this.handlePreviousTaskButtonClick = this.handlePreviousTaskButtonClick.bind();
+    this.handlePreviousTaskButtonClick = this.handlePreviousTaskButtonClick.bind(
+      this
+    );
   }
   show = dimmer => () => this.setState({ dimmer, packageStarted: true });
   close = () => this.setState({ packageStarted: false });
@@ -109,7 +112,6 @@ export default class Workspace extends React.Component {
       }
       this.props.tasks.map(task => {
         if (task.sequenceId == student.currentSequenceId) {
-          console.log("A");
           var cTask = task;
         }
       });
@@ -213,6 +215,7 @@ export default class Workspace extends React.Component {
   }
 
   renderNavigationButtons() {
+    var that = this;
     //TODO: render vor- und zurückbuttons
     return (
       <div
@@ -299,7 +302,6 @@ export default class Workspace extends React.Component {
     return (
       <div
         style={{
-          display: "flex",
           justfyContent: "center"
         }}
       >
