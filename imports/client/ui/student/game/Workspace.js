@@ -184,8 +184,14 @@ export default class Workspace extends React.Component {
         return <TrainingAnimationTemplate {...taskProps} />;
       }
     }
-
-    return "Package should have ended!";
+    let taskProps = {
+      student: this.props.student,
+      tasks: this.props.tasks,
+      activeTask: currentTask,
+      courses: this.props.courses,
+      trainings: this.props.trainings
+    };
+    return <TrainingAnimationTemplate {...taskProps} />;
   }
 
   getActiveSubpackage() {
