@@ -5,9 +5,9 @@
   perspective: 1000px;
   margin-bottom: -15px;
   .card {
-    width: 15%;
+    width: 30%;
     user-select: none;
-    height: 110px;
+    height: 168px;
     padding: 10px;
     box-sizing: border-box;
     text-align: center;
@@ -40,6 +40,8 @@
     .back {
       transform: rotateY(180deg);
       line-height: 110px;
+      padding-top: 1rem;
+      margin-bottom: 1rem;
       img {
         vertical-align: middle;
         width: 70%;
