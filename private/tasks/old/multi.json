@@ -6,34 +6,22 @@
       "description": "Markiere die Aussagen",
       "taskId": "MultiChoiceEx",
       "filePrefix": "Multi",
-      "sequenceId": 3,
+      "sequenceId": 4,
       "content": [
         {
           "questions": [
             {
-              "QuestionId": 1,
+              "QuestionId": 2,
               "Question": "Markiere alle richtigen Aussagen",
               "AnswerSet": [
                 "Intrinsische Motivation bedeutet, dass die Motivation von innen heraus kommt, zum Beispiel durch Interesse",
-                "Nein",
-                "Farbe ist nur ein konstrukt der Gesellschaft!",
+                "Extrinsische Motivation bedeutet, dass vor allem der Weg zum Ergebnis bedeutsam ist und weniger das Ergebnis selbst",
+                "Eine Tätigkeit kann entweder intrinsisch oder extrinsisch sein, aber nicht beides gleichzeitig",
                 "Der Korrumpierungseffekt kann auch als „Undermining Effekt“ bezeichnet werden"
               ],
               "multi": true
             },
-            {
-              "QuestionId": 2,
-              "Question": "Was motiviert dich, Lehrer*in werden zu wollen? Priorisiere die folgendenAspekte! Die Ergebnisse werden im Lehrerzimmer für deinen Kurs einzusehen sein!",
-              "AnswerSet": [
-                "Sicheres Einkommen",
-                "Verbeamtet werden",
-                "Regelmäßige Ferien",
-                "Pädagogisch handeln",
-                "Schüler*innen motivieren",
-                "Spannende Themen behandeln"
-              ],
-              "multi": true
-            },
+
             {
               "QuestionId": 3,
               "Question": "Würdest du dich in erster Linie als extrinsisch oder intrinsisch motiviert beschreiben?",
@@ -44,6 +32,53 @@
                 "Weder noch"
               ],
               "multi": false
+            }
+          ]
+        },
+        {
+          "parentId": "Motivation1",
+          "title": "Was motiviert dich LehrerIn werden zu wollen?",
+          "description": "Markiere die Aussagen",
+          "taskId": "MultiChoiceEx2",
+          "filePrefix": "Multi",
+          "sequenceId": 2,
+          "content": [
+            {
+              "QuestionId": 1,
+              "Question": "Markiere drei Antworten, die auf dich zutreffen. Eure Antworten werden annonym im Lehrerzimmer ausgestellt.",
+              "AnswerSet": [
+                "Sicheres Einkommen",
+                "Verbeamtet werden",
+                "Regelmäßige Ferien",
+                "Pädagogisch handeln",
+                "Schüler*innen motivieren",
+                "Spannende Themen behandeln",
+                "Ferien",
+                "sonstiges"
+              ],
+              "multi": true
+            }
+          ]
+        },
+        {
+          "parentId": "Motivation4",
+          "title": "Was motiviert dich LehrerIn werden zu wollen?",
+          "description": "Markiere korrekte Aussagen",
+          "taskId": "MultiChoiceEx2",
+          "filePrefix": "Multi",
+          "sequenceId": 16,
+          "content": [
+            {
+              "QuestionId": 3,
+              "Question": "Ich werde am Montag beim Gehaltsgespräch folgende Argumente vortragen (…), eine Erhöhung um 10% vorschlagen, um mich dann auf maximal 6,5% herunterhandeln zu lassen.",
+              "AnswerSet": [
+                "Spezifisch",
+                "Messbar",
+                "Akzeptiert",
+                "Realistisch",
+                "Terminiert"
+              ],
+              "multi": true
             }
           ]
         }

@@ -6,7 +6,7 @@
       "description": "Löse den Lückentext",
       "taskId": "ZieleCloze",
       "filePrefix": "Cloze",
-      "sequenceId": 8,
+      "sequenceId": 14,
       "content": [
         {
           "title": "Ziele",
@@ -16,7 +16,25 @@
         }
       ],
       "package": "Motivation",
-      "credits": 3000
+      "credits": 3
+    },
+    {
+      "parentId": "Motivation3",
+      "title": "Motivation anhand der X-Wert-Theorie berrechnen",
+      "description": "Welcher Schüler ist am motiviertesten und wie hoch ist sein Wert?",
+      "taskId": "XwertCloze",
+      "filePrefix": "Cloze",
+      "sequenceId": 12,
+      "content": [
+        {
+          "title": "XwertCloze",
+          "subtitle": "Rechnungsaufgabe",
+          "keywords": ["0.534", "0.4213", "0.3213"],
+          "text": ""
+        }
+      ],
+      "package": "Motivation",
+      "credits": 10
     }
   ]
 }
