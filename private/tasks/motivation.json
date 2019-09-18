@@ -68,7 +68,7 @@
     },
 
     {
-      "parentId": "Motivation1",
+      "parentId": "Motivation2",
       "multi": "todo",
       "title": "Intrinsisch&Extrinsisch",
       "description": "Lest den Einführungstext und markiert die Schlüssel-Begriffe",
@@ -101,7 +101,7 @@
     },
 
     {
-      "parentId": "Motivation1",
+      "parentId": "Motivation2",
       "title": "Fragen zum Text",
       "description": "Markiere die Aussagen",
       "taskId": "MultiChoiceEx",
@@ -109,19 +109,15 @@
       "sequenceId": 4,
       "content": [
         {
-          "questions": [
-            {
-              "QuestionId": 2,
-              "Question": "Markiere alle richtigen Aussagen",
-              "AnswerSet": [
-                "Intrinsische Motivation bedeutet, dass die Motivation von innen heraus kommt, zum Beispiel durch Interesse",
-                "Extrinsische Motivation bedeutet, dass vor allem der Weg zum Ergebnis bedeutsam ist und weniger das Ergebnis selbst",
-                "Eine Tätigkeit kann entweder intrinsisch oder extrinsisch sein, aber nicht beides gleichzeitig",
-                "Der Korrumpierungseffekt kann auch als „Undermining Effekt“ bezeichnet werden"
-              ],
-              "multi": true
-            }
-          ]
+          "QuestionId": 2,
+          "Question": "Markiere alle richtigen Aussagen",
+          "AnswerSet": [
+            "Intrinsische Motivation bedeutet, dass die Motivation von innen heraus kommt, zum Beispiel durch Interesse",
+            "Extrinsische Motivation bedeutet, dass vor allem der Weg zum Ergebnis bedeutsam ist und weniger das Ergebnis selbst",
+            "Eine Tätigkeit kann entweder intrinsisch oder extrinsisch sein, aber nicht beides gleichzeitig",
+            "Der Korrumpierungseffekt kann auch als „Undermining Effekt“ bezeichnet werden"
+          ],
+          "multi": true
         }
       ],
 
@@ -129,7 +125,7 @@
       "credits": 2300
     },
     {
-      "parentId": "Motivation1",
+      "parentId": "Motivation2",
       "title": "Motive zuordnen",
       "description": "Ordnet Statements zu intrinsischer oder extrinsischer Motivation zu.",
       "taskId": "Motive",
@@ -259,7 +255,7 @@
       "credits": 2300
     },
     {
-      "parentId": "Motivation2",
+      "parentId": "Motivation3",
       "title": "Motivationsbegriffe",
       "description": "In diesem Memory müsst ihr zu Begriffen die entsprechenden Bilder zuweisen.",
       "taskId": "Motivation_Memory",
@@ -281,7 +277,7 @@
       ]
     },
     {
-      "parentId": "Motivation2",
+      "parentId": "Motivation3",
       "title": "Maslow-Pyramide",
       "description": "Versucht die Bedürfnis-Pyramide nach Maslow in die richtige Reihenfolge zu bringen.",
       "taskId": "Maslow",
@@ -293,7 +289,7 @@
     },
 
     {
-      "parentId": "Motivation4",
+      "parentId": "Motivation3",
       "title": "Selbstbestimmungstheorie",
       "description": "Lest den Einführungstext und markiert die Schlüssel-Begriffe",
       "taskId": "Selbstbestimmungs_Theorie",
@@ -324,7 +320,7 @@
     },
 
     {
-      "parentId": "Motivation2",
+      "parentId": "Motivation3",
       "title": "Die Selbstbestimmungstheorie",
       "description": "Selbstbestimmungstheorie",
       "taskId": "Sdt",
@@ -343,7 +339,7 @@
       "credits": 9
     },
     {
-      "parentId": "Motivation2",
+      "parentId": "Motivation3",
       "title": "Die Erwartungs-X-Wert Theorie",
       "description": "Lest den Einführungstext und markiert die Schlüssel-Begriffe",
       "taskId": "Xwert_Theorie",
@@ -409,7 +405,7 @@
     },
 
     {
-      "parentId": "Motivation3",
+      "parentId": "Motivation4",
       "title": "Ziele Lückentext",
       "description": "Löse den Lückentext",
 
