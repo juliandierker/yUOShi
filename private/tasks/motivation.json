@@ -7,7 +7,47 @@
       "trainingId": "Motivation Problem",
       "parentId": "Motivation0",
       "sequenceId": 0,
-      "content": "Sie sind gut in das Schuljahr gestartet und persönlich äußerst motiviert. Insgesamt haben Sie auch ein gutes Gefühl und eine nette Klasse. Jetzt kann es richtig losgehen! Doch nach und nach fällt Ihnen auf, dass einige Schüler*innen immer öfter zu spät kommen. Die Intensität der Diskussionen wird weniger, fast scheint es so, als ob andere Dinge interessanter geworden sind. Schüler*innen, die vorher sehr aktiv waren, scheinen nur noch das nötigste zu machen. Sie sind verwundert… Warum ist die Klasse so unmotiviert? Ihre Arbeit fällt Ihnen dadurch auch schwerer und am liebsten würden Sie die Schüler wach schütteln. Sie merken, dass Sie selbst immer weniger Lust haben, zu unterrichten. Was können Sie also tun? Wie lässt sich die Klasse motivieren? Finden Sie es heraus und lernen Sie alles über Motivation!"
+      "image": "Teacher.png",
+      "content": [
+        {
+          "intro": "Sie sind gut in das Schuljahr gestartet und persönlich äußerst motiviert. Insgesamt haben Sie auch ein gutes Gefühl und eine nette Klasse. Jetzt kann es richtig losgehen! Doch nach und nach fällt Ihnen auf, dass einige Schüler*innen immer öfter zu spät kommen. Die Intensität der Diskussionen wird weniger, fast scheint es so, als ob andere Dinge interessanter geworden sind. Schüler*innen, die vorher sehr aktiv waren, scheinen nur noch das nötigste zu machen. Sie sind verwundert… Warum ist die Klasse so unmotiviert? Ihre Arbeit fällt Ihnen dadurch auch schwerer und am liebsten würden Sie die Schüler wach schütteln. Sie merken, dass Sie selbst immer weniger Lust haben, zu unterrichten. Was können Sie also tun? Wie lässt sich die Klasse motivieren? Finden Sie es heraus und lernen Sie alles über Motivation!",
+          "quests": [
+            {
+              "questId": 1,
+              "questName": "Magda",
+              "Magda": "Magda ist normalerweise sehr engagiert und begeisterungsfähig. In der Klasse übernimmt sie gerne freiwillig Aufgaben. Allerdings hat sie sich nicht gemeldet als es um die Position der Klassensprecherin ging, was dich sehr wundert. Im letzten Schuljahr hat sie das so gut gemacht und dieses Jahr würdest du die Klassensprecherinnen auch besser unterstützen und entlohnen können. Was ist los mit ihr, warum will sie nicht?",
+              "image": "Magda.png",
+              "prePhrase": "Magda freut sich über dein Interesse und das Gespräch mit dir. Sie scheint selbst gar nicht recht zu wissen, warum sie sich dieses Jahr nicht freiwillig gemeldet hat und verspricht, sich nächstes Jahr wieder mehr zu engagieren.",
+
+              "Question": "Warum konnte Magda sich nicht dazu motivieren, sich für das Amt als Klassensprecherin zu melden? Welcher Grund ist deiner Meinung nach und mit Blick auf dein Wissen über Motivation der wahrscheinlichste?",
+              "AnswerSet": [
+                "dadurch, dass du einen neuen Anreiz geschaffen hast ( Entlohnung für das Amt), ist ein Korrumpierungseffekt aufgetreten, indem Magdas intrinsische Motivation von dem externen Anreiz überlagert wurde",
+                "Durch die Unterstützung, die du außerdem angeboten hast, fühlte sich Magda in ihrem Autonomieerleben eingeschränkt und war deswegen weniger intrinsisch motiviert",
+                "Durch ihr Amt hat Magda sich ihren Klassenkameraden überlegen gefühlt, sodass ihr Bedürfnis nach sozialer Eingebundenheit nicht erfüllt war, dies wollte sie nun ändern",
+                "Magda hat nicht genügend Aufmerksamkeit für ihre Tätigkeit bekommen und war daher unmotiviert; durch dein Interesse kann sie aber wieder motiviert werden",
+                "Magda hatte zunächst ein stark ausgeprägte Machtmotiv, was sich nun durch die Veränderungen in der Adoleszenz in ein Anschlussmotiv gewandelt hat. Dadurch hat sie weniger Motivation, das Amt auszufüllen"
+              ],
+              "multi": true
+            },
+            {
+              "questId": 2,
+              "questName": "Tino",
+              "Tino": "Tinos Familie ist vor kurzem erst hergezogen. Trotzdem konnte er sich schnell in die Klasse integrieren und ist vor allem in den kreativeren Fächern ein guter Schüler. Du hast vor einiger Zeit mit einem Ausbildungsbetrieb zusammen ein Kunstprojekt gestartet. Dabei geht es genau um die Themen, für die sich Tino sehr interessiert. Du hoffst, dass Tino sich dort ganz entfalten kann. Er hat sich auch gefreut und zu Anfang sehr gut mitgemacht. Nun hat sich der Ausbildungsbetrieb bei dir gemeldet und berichtet, dass Tino in letzter Zeit weniger aufgeschlossen ist und in sich gekehrt scheint. Woran kann das liegen?",
+              "image": "Tino.png",
+              "prePhrase": "Warum hatte Tino zuletzt Probleme, sich in dem Kunstprojekt  zu motivieren? Welcher Grund ist deiner Meinung nach und mit Blick auf dein Wissen über Motivation der wahrscheinlichste?",
+              "Question": "Warum konnte Magda sich nicht dazu motivieren, sich für das Amt als Klassensprecherin zu melden? Welcher Grund ist deiner Meinung nach und mit Blick auf dein Wissen über Motivation der wahrscheinlichste?",
+              "AnswerSet": [
+                "Durch die Angst (mögliche Scheidung der Eltern /  möglicher Umzug) wurde Kreativität und Motivation gehemmt",
+                "Durch die Angst vor der Scheidung seiner Eltern und den möglichen Umzug ist das Sicherheitsbedürfnis und evtl. das Sozialbedürfnis von Tino nicht erfüllt gewesen und somit konnte er auch keine Motivation aufbringen, sich in dem Kunstprojekt selbst zu „verwirklichen“",
+                "Das Kunstprojekt hat Tino nicht die Freiheit gegeben, sich künstlerisch auszuleben. Durch die starke Verschulung fühlt er sich in seiner Autonomie eingeschränkt und war deswegen weniger motiviert",
+                "Tino hat im Laufe des Projekts das Interesse verloren: Sein künstlerisches Interesse war nur situationsbedingt, weil ein Mädchen in dem gleichen Kurs, an dem er interessiert war und dann nicht mehr",
+                "Tinos Mutter ist Kunsthistorikerin und dewegen wollte er sie mit dem Projekt beeindrucken. Der subjektive Wert, den er deswegen dem Projekt gegeben hat, war sehr hoch. Nachdem sich Tinos Eltern nur noch auf die mögliche Scheidung konzentrieren, ist für ihn die Wichtigkeit und der Nutzen für die Motivation gesunken"
+              ],
+              "multi": true
+            }
+          ]
+        }
+      ]
     },
     {
       "parentId": "Motivation1",
@@ -471,7 +511,7 @@
             "SMART",
             "Ziel",
             "Zielsetzungstheorie",
-            "Erwartungs-X-Wert-Theorie"
+            "Erwartungs XWert Theorie"
           ]
         }
       ]
@@ -479,13 +519,53 @@
 
     {
       "name": "Motivation",
-      "title": "Outro",
+      "title": "Fallbearbeitung",
       "isTraining": true,
+      "finalTraining": true,
       "trainingId": "Motivation Problem",
-      "parentId": "Motivation5",
+      "parentId": "Motivation0",
       "sequenceId": 17,
-      "content": "Zeit die Fälle aus dem vorigen Intro zu bearbeiten und das Wissen aus den Aufgaben anzuwenden.",
-      "package": "Motivation"
+      "image": "Teacher.png",
+      "content": [
+        {
+          "intro": "Sie sind gut in das Schuljahr gestartet und persönlich äußerst motiviert. Insgesamt haben Sie auch ein gutes Gefühl und eine nette Klasse. Jetzt kann es richtig losgehen! Doch nach und nach fällt Ihnen auf, dass einige Schüler*innen immer öfter zu spät kommen. Die Intensität der Diskussionen wird weniger, fast scheint es so, als ob andere Dinge interessanter geworden sind. Schüler*innen, die vorher sehr aktiv waren, scheinen nur noch das nötigste zu machen. Sie sind verwundert… Warum ist die Klasse so unmotiviert? Ihre Arbeit fällt Ihnen dadurch auch schwerer und am liebsten würden Sie die Schüler wach schütteln. Sie merken, dass Sie selbst immer weniger Lust haben, zu unterrichten. Was können Sie also tun? Wie lässt sich die Klasse motivieren? Finden Sie es heraus und lernen Sie alles über Motivation!",
+          "quests": [
+            {
+              "questId": 1,
+              "questName": "Magda",
+              "Magda": "Magda ist normalerweise sehr engagiert und begeisterungsfähig. In der Klasse übernimmt sie gerne freiwillig Aufgaben. Allerdings hat sie sich nicht gemeldet als es um die Position der Klassensprecherin ging, was dich sehr wundert. Im letzten Schuljahr hat sie das so gut gemacht und dieses Jahr würdest du die Klassensprecherinnen auch besser unterstützen und entlohnen können. Was ist los mit ihr, warum will sie nicht?",
+              "image": "Magda.png",
+              "prePhrase": "Magda freut sich über dein Interesse und das Gespräch mit dir. Sie scheint selbst gar nicht recht zu wissen, warum sie sich dieses Jahr nicht freiwillig gemeldet hat und verspricht, sich nächstes Jahr wieder mehr zu engagieren.",
+
+              "Question": "Warum konnte Magda sich nicht dazu motivieren, sich für das Amt als Klassensprecherin zu melden? Welcher Grund ist deiner Meinung nach und mit Blick auf dein Wissen über Motivation der wahrscheinlichste?",
+              "AnswerSet": [
+                "dadurch, dass du einen neuen Anreiz geschaffen hast ( Entlohnung für das Amt), ist ein Korrumpierungseffekt aufgetreten, indem Magdas intrinsische Motivation von dem externen Anreiz überlagert wurde",
+                "Durch die Unterstützung, die du außerdem angeboten hast, fühlte sich Magda in ihrem Autonomieerleben eingeschränkt und war deswegen weniger intrinsisch motiviert",
+                "Durch ihr Amt hat Magda sich ihren Klassenkameraden überlegen gefühlt, sodass ihr Bedürfnis nach sozialer Eingebundenheit nicht erfüllt war, dies wollte sie nun ändern",
+                "Magda hat nicht genügend Aufmerksamkeit für ihre Tätigkeit bekommen und war daher unmotiviert; durch dein Interesse kann sie aber wieder motiviert werden",
+                "Magda hatte zunächst ein stark ausgeprägte Machtmotiv, was sich nun durch die Veränderungen in der Adoleszenz in ein Anschlussmotiv gewandelt hat. Dadurch hat sie weniger Motivation, das Amt auszufüllen"
+              ],
+              "multi": true
+            },
+            {
+              "questId": 2,
+              "questName": "Tino",
+              "Tino": "Tinos Familie ist vor kurzem erst hergezogen. Trotzdem konnte er sich schnell in die Klasse integrieren und ist vor allem in den kreativeren Fächern ein guter Schüler. Du hast vor einiger Zeit mit einem Ausbildungsbetrieb zusammen ein Kunstprojekt gestartet. Dabei geht es genau um die Themen, für die sich Tino sehr interessiert. Du hoffst, dass Tino sich dort ganz entfalten kann. Er hat sich auch gefreut und zu Anfang sehr gut mitgemacht. Nun hat sich der Ausbildungsbetrieb bei dir gemeldet und berichtet, dass Tino in letzter Zeit weniger aufgeschlossen ist und in sich gekehrt scheint. Woran kann das liegen?",
+              "image": "Tino.png",
+              "prePhrase": "Warum hatte Tino zuletzt Probleme, sich in dem Kunstprojekt  zu motivieren? Welcher Grund ist deiner Meinung nach und mit Blick auf dein Wissen über Motivation der wahrscheinlichste?",
+              "Question": "Warum konnte Magda sich nicht dazu motivieren, sich für das Amt als Klassensprecherin zu melden? Welcher Grund ist deiner Meinung nach und mit Blick auf dein Wissen über Motivation der wahrscheinlichste?",
+              "AnswerSet": [
+                "Durch die Angst (mögliche Scheidung der Eltern /  möglicher Umzug) wurde Kreativität und Motivation gehemmt",
+                "Durch die Angst vor der Scheidung seiner Eltern und den möglichen Umzug ist das Sicherheitsbedürfnis und evtl. das Sozialbedürfnis von Tino nicht erfüllt gewesen und somit konnte er auch keine Motivation aufbringen, sich in dem Kunstprojekt selbst zu „verwirklichen“",
+                "Das Kunstprojekt hat Tino nicht die Freiheit gegeben, sich künstlerisch auszuleben. Durch die starke Verschulung fühlt er sich in seiner Autonomie eingeschränkt und war deswegen weniger motiviert",
+                "Tino hat im Laufe des Projekts das Interesse verloren: Sein künstlerisches Interesse war nur situationsbedingt, weil ein Mädchen in dem gleichen Kurs, an dem er interessiert war und dann nicht mehr",
+                "Tinos Mutter ist Kunsthistorikerin und dewegen wollte er sie mit dem Projekt beeindrucken. Der subjektive Wert, den er deswegen dem Projekt gegeben hat, war sehr hoch. Nachdem sich Tinos Eltern nur noch auf die mögliche Scheidung konzentrieren, ist für ihn die Wichtigkeit und der Nutzen für die Motivation gesunken"
+              ],
+              "multi": true
+            }
+          ]
+        }
+      ]
     }
   ]
 }

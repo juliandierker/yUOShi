@@ -109,7 +109,6 @@ export default class MemoryView extends React.Component {
     this.state.finalizedFrameworks = finalizedFrameworks;
   }
   check() {
-    console.log("A");
     var def = "";
     var mainIndex = null;
     var checkIndex = null;
@@ -118,7 +117,6 @@ export default class MemoryView extends React.Component {
         def = elem.name.name.split("-")[1];
         mainIndex = curIndex;
         mainIndex > 0 ? (checkIndex = 0) : (checkIndex = 1);
-        console.log("B");
       }
     });
     let finalizedFrameworks = this.state.finalizedFrameworks;
