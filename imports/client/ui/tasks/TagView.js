@@ -142,9 +142,13 @@ export default class TagView extends React.Component {
           open={this.state.videoOpen}
           onClose={() => this.setState({ videoOpen: false })}
           trigger={
-            <Button onClick={() => this.setState({ videoOpen: true })}>
-              Video ansehen
-            </Button>
+            <Button
+              onClick={() => this.setState({ videoOpen: true })}
+              style={{ backgroundColor: "#8fb0e8", color: "white" }}
+              content="Video ansehen"
+              icon="play"
+              labelPosition="right"
+            />
           }
         >
           <Modal.Content>
