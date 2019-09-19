@@ -14,7 +14,7 @@ import equals from "fast-deep-equal";
 import { Tasks } from "../../../../api/tasks";
 
 import TaskProgress from "../taskProgress/TaskProgress";
-import { Segment, Button, Grid } from "semantic-ui-react";
+import { Segment, Button, Grid, Icon } from "semantic-ui-react";
 
 /**
  * This component should control the progress of a student in a task-package
@@ -227,23 +227,27 @@ export default class Workspace extends React.Component {
       <div
         style={{
           position: "absolute",
-          margin: "auto",
-          bottom: "0px",
-          width: "100%"
+          bottom: "35px",
+          width: "50%",
+          textAlign: "center",
+          marginLeft: "25%"
         }}
       >
         <Button
+          id="prevTaskBtn"
+          content="Vorherige Aufgabe"
+          icon="left arrow"
+          labelPosition="left"
           onClick={this.handlePreviousTaskButtonClick}
-          style={{ marginLeft: "20.5%" }}
-        >
-          vorherige Aufgabe
-        </Button>
+        />
+
         <Button
+          id="nextTaskBtn"
+          content="Nächste Aufgabe"
+          icon="right arrow"
+          labelPosition="right"
           onClick={this.handleNextTaskButtonClick}
-          style={{ marginLeft: "29.5%" }}
-        >
-          nächste Aufgabe
-        </Button>
+        />
       </div>
     );
   }
