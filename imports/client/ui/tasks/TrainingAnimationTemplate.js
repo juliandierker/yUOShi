@@ -93,13 +93,15 @@ export default class TrainingAnimationTemplate extends React.Component {
       return (
         <Button.Group attached="top">
           <Button
-            labelPosition="right"
-            content="zurück"
+            id="prevBtn"
+            Position="center"
+            content="Zurück"
             onClick={this.backAction.bind(this)}
           />
           <Button
-            labelPosition="right"
-            content="weiter"
+            id="nextBtn"
+            Position="center"
+            content="Weiter"
             onClick={this.nextAction.bind(this)}
           />
           {introIndex == finalIndex ? (
@@ -154,8 +156,8 @@ export default class TrainingAnimationTemplate extends React.Component {
             open={open}
             onClose={this.close}
           >
-            <Modal.Header />
-            <Modal.Content image>
+            {/* <Modal.Header id="ModalHeader" /> */}
+            <Modal.Content image id="ImageContent">
               <Grid>
                 <Grid.Row>
                   <Grid.Column width={5}>
@@ -168,9 +170,14 @@ export default class TrainingAnimationTemplate extends React.Component {
                       }
                     />
                   </Grid.Column>
-                  <Grid.Column width={11}>
+                  <Grid.Column
+                    width={10}
+                    style={{
+                      marginTop: "1rem"
+                    }}
+                  >
                     <Modal.Description>
-                      <Header>
+                      <Header id="IntroTrainingText">
                         {this.state.stepName[this.state.introIndex]}
                       </Header>
                       {this.state.stepContent[this.state.introIndex]}
@@ -180,7 +187,7 @@ export default class TrainingAnimationTemplate extends React.Component {
                 </Grid.Row>
               </Grid>
             </Modal.Content>
-            <Modal.Actions>{this.renderBtns()}</Modal.Actions>
+            <Modal.Actions id="ModalActions">{this.renderBtns()}</Modal.Actions>
           </Modal>
         </div>
       );
