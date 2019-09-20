@@ -88,7 +88,6 @@ export default class TrainingAnimationTemplate extends React.Component {
     }
   }
   renderBtns() {
-    console.log(this);
     const { introIndex, finalIndex, currentTraining } = this.state;
     if (!currentTraining.finalTraining) {
       return (
@@ -117,16 +116,13 @@ export default class TrainingAnimationTemplate extends React.Component {
     }
   }
   renderOutro() {
-    console.log("testy0");
     const { currentTraining } = this.state;
     const content = this.props.student.currentTraining[0].content[0].quests;
-    console.log(currentTraining);
-    console.log(this.state);
+
     if (
       currentTraining.finalTraining &&
       this.state.introIndex < this.state.finalIndex
     ) {
-      console.log("testyA");
       const multiObj = {
         AnswerSet: content[this.state.introIndex].AnswerSet,
         QuestionId: content[this.state.introIndex].questId,
