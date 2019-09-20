@@ -121,7 +121,10 @@ export default class MultiChoiceView extends Component {
       }
       return (
         <Checkbox
-          style={{ width: "100%", backgroundColor: color }}
+          style={{
+            width: "100%",
+            marginBottom: "2rem"
+          }}
           key={"Checkbox_" + questionId + "_" + index}
           id={"cb_" + questionId + "_" + index + "_" + (multi ? "m" : "")}
           radio={!multi}
@@ -153,10 +156,12 @@ export default class MultiChoiceView extends Component {
       >
         <Card
           key={"questionCard_" + question.QuestionId}
-          style={{ marginLeft: "10%", minWidth: "30%" }}
+          style={{ width: "100%" }}
         >
           <Card.Content>
-            <Card.Header>{question.Question}</Card.Header>
+            <Card.Header style={{ marginBottom: "2rem" }}>
+              {question.Question}
+            </Card.Header>
             <Card.Description>
               {this.renderAnswerSet(
                 question.QuestionId,
