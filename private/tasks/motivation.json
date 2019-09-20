@@ -10,7 +10,7 @@
       "image": "Teacher.png",
       "content": [
         {
-          "intro": "Sie sind gut in das Schuljahr gestartet und persönlich äußerst motiviert. Insgesamt haben Sie auch ein gutes Gefühl und eine nette Klasse. Jetzt kann es richtig losgehen! Doch nach und nach fällt Ihnen auf, dass einige Schüler*innen immer öfter zu spät kommen. Die Intensität der Diskussionen wird weniger, fast scheint es so, als ob andere Dinge interessanter geworden sind. Schüler*innen, die vorher sehr aktiv waren, scheinen nur noch das nötigste zu machen. Sie sind verwundert… Warum ist die Klasse so unmotiviert? Ihre Arbeit fällt Ihnen dadurch auch schwerer und am liebsten würden Sie die Schüler wach schütteln. Sie merken, dass Sie selbst immer weniger Lust haben, zu unterrichten. Was können Sie also tun? Wie lässt sich die Klasse motivieren? Finden Sie es heraus und lernen Sie alles über Motivation!",
+          "intro": "Sie sind gut in das Schuljahr gestartet und persönlich äußerst motiviert. Insgesamt haben Sie auch ein gutes Gefühl und eine nette Klasse. Du hast das Gefühl, zu den meisten Schüler*innen ein gutes Verhältnis aufbauen zu können. Im Laufe des Schuljahrs bemerkst du aber bei einigen Schüler*innen Veränderungen im Verhalten, die du selbstverständlich protokollierst. Sie wirken insgesamt unmotivierter und strengen sich weniger an als vorher. Folgende Schüler*innen fallen dir dabei besonders auf",
           "quests": [
             {
               "questId": 1,
@@ -52,7 +52,7 @@
     {
       "parentId": "Motivation1",
       "title": "Was ist Motivation?",
-      "description": "Lest den Text und markiert die Schlüsselbegriffe",
+      "description": "Lest den Text und markiert die unten stehenden Schlüsselbegriffe, indem ihr sie im Text findet und anklickt.",
       "taskId": "Motivation_Intro",
       "filePrefix": "Tag",
       "sequenceId": 1,
@@ -84,7 +84,7 @@
     {
       "parentId": "Motivation1",
       "title": "Was motiviert dich LehrerIn werden zu wollen?",
-      "description": "Markiere die Aussagen",
+      "description": "Markiert die Antwort(en), die auf euch zutreffen. ",
       "taskId": "MultiChoiceEx2",
       "filePrefix": "Multi",
       "sequenceId": 2,
@@ -111,7 +111,7 @@
       "parentId": "Motivation2",
       "multi": "todo",
       "title": "Intrinsisch & Extrinsisch",
-      "description": "Lest den Text und markiert die Schlüsselbegriffe",
+      "description": "Lest den Text und markiert die unten stehenden Schlüsselbegriffe, indem ihr sie im Text findet und anklickt.",
       "taskId": "Motivation_IntrExtr",
       "filePrefix": "Tag",
       "sequenceId": 3,
@@ -265,7 +265,7 @@
     {
       "parentId": "Motivation3",
       "title": "Maslow Theorie",
-      "description": "Lest den Text und markiert die Schlüsselbegriffe",
+      "description": "Lest den Text und markiert die unten stehenden Schlüsselbegriffe, indem ihr sie im Text findet und anklickt.",
       "video": "https://www.youtube.com/watch?v=UEZZBIH5Rlg",
       "taskId": "Maslow_Theorie",
       "filePrefix": "Tag",
@@ -331,7 +331,7 @@
     {
       "parentId": "Motivation3",
       "title": "Selbstbestimmungstheorie",
-      "description": "Lest den Text und markiert die Schlüsselbegriffe",
+      "description": "Lest den Text und markiert die unten stehenden Schlüsselbegriffe, indem ihr sie im Text findet und anklickt.",
       "taskId": "Selbstbestimmungs_Theorie",
       "filePrefix": "Tag",
       "sequenceId": 9,
