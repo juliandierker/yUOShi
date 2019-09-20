@@ -19,6 +19,7 @@ import MultiChoiceAnimationTemplate from "./MultiChoiceAnimationTemplate.js";
 export default class TrainingAnimationTemplate extends React.Component {
   constructor(props) {
     super(props);
+    console.log(props.student.currentTraining);
     this.state = {
       currentTraining: null,
       open: false,
@@ -33,6 +34,7 @@ export default class TrainingAnimationTemplate extends React.Component {
   }
   show = dimmer => () => this.setState({ dimmer, open: true });
   close = () => this.solveTraining();
+
   initIntroSteps() {
     const content = this.props.student.currentTraining[0].content[0];
     console.log(content);
@@ -49,6 +51,7 @@ export default class TrainingAnimationTemplate extends React.Component {
     stepIcon.push(this.props.student.currentTraining[0].image);
     this.setState({ stepContent, stepName, stepIcon });
   }
+
   componentDidMount() {
     if (this.state.currentTraining == null) {
       console.log(this.props.student.currentTraining[0]);
@@ -59,6 +62,7 @@ export default class TrainingAnimationTemplate extends React.Component {
       });
     }
   }
+
   solveTraining() {
     Meteor.call(
       "students.solveTraining",
@@ -67,6 +71,7 @@ export default class TrainingAnimationTemplate extends React.Component {
     );
     this.setState({ open: false });
   }
+
   backAction() {
     const { introIndex } = this.state;
 
@@ -84,36 +89,60 @@ export default class TrainingAnimationTemplate extends React.Component {
   }
   renderBtns() {
     console.log(this);
-    const { introIndex, finalIndex } = this.state;
-
-    return (
-      <Button.Group attached="top">
-        <Button
-          labelPosition="right"
-          content="zurück"
-          onClick={this.backAction.bind(this)}
-        />
-        <Button
-          labelPosition="right"
-          content="weiter"
-          onClick={this.nextAction.bind(this)}
-        />
-        {introIndex == finalIndex ? (
+    const { introIndex, finalIndex, currentTraining } = this.state;
+    if (!currentTraining.finalTraining) {
+      return (
+        <Button.Group attached="top">
           <Button
-            positive
-            icon="checkmark"
             labelPosition="right"
-            content="Los gehts"
-            onClick={this.close}
+            content="zurück"
+            onClick={this.backAction.bind(this)}
           />
-        ) : null}
-      </Button.Group>
-    );
+          <Button
+            labelPosition="right"
+            content="weiter"
+            onClick={this.nextAction.bind(this)}
+          />
+          {introIndex == finalIndex ? (
+            <Button
+              positive
+              icon="checkmark"
+              labelPosition="right"
+              content="Los gehts"
+              onClick={this.close}
+            />
+          ) : null}
+        </Button.Group>
+      );
+    }
   }
   renderOutro() {
+    console.log("testy0");
     const { currentTraining } = this.state;
-    if (currentTraining) {
-      console.log(currentTraining);
+    const content = this.props.student.currentTraining[0].content[0].quests;
+    console.log(currentTraining);
+    console.log(this.state);
+    if (
+      currentTraining.finalTraining &&
+      this.state.introIndex < this.state.finalIndex
+    ) {
+      console.log("testyA");
+      const multiObj = {
+        AnswerSet: content[this.state.introIndex].AnswerSet,
+        QuestionId: content[this.state.introIndex].questId,
+        Question: content[this.state.introIndex].Question,
+        multi: content[this.state.introIndex].multi
+      };
+      console.log(multiObj);
+      let taskProps = {
+        student: this.props.student,
+        tasks: this.props.tasks,
+        activeTask: multiObj,
+        courses: this.props.courses,
+        trainings: this.props.trainings
+      };
+      console.log("testyB");
+      return <MultiChoiceAnimationTemplate {...taskProps} />;
     }
   }
   renderTraining() {
@@ -121,7 +150,14 @@ export default class TrainingAnimationTemplate extends React.Component {
     if (currentTraining) {
       return (
         <div className="modalTraining_div">
-          <Modal that={this} dimmer={dimmer} open={open} onClose={this.close}>
+          <Modal
+            style={{ top: "5px" }}
+            size="fullscreen"
+            that={this}
+            dimmer={dimmer}
+            open={open}
+            onClose={this.close}
+          >
             <Modal.Header />
             <Modal.Content image>
               <Grid>

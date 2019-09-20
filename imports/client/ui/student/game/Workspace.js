@@ -167,6 +167,7 @@ export default class Workspace extends React.Component {
             return <MultiChoiceAnimationTemplate {...taskProps} />;
         }
       } else {
+        console.log("BBBBBBB");
         let currentTaskArray = [];
         currentTaskArray.push(currentTask);
         Meteor.call("students.initTraining", currentTaskArray, student._id);
@@ -184,14 +185,14 @@ export default class Workspace extends React.Component {
         return <TrainingAnimationTemplate {...taskProps} />;
       }
     }
-    let taskProps = {
-      student: this.props.student,
-      tasks: this.props.tasks,
-      activeTask: currentTask,
-      courses: this.props.courses,
-      trainings: this.props.trainings
-    };
-    return <TrainingAnimationTemplate {...taskProps} />;
+    // let taskProps = {
+    //   student: this.props.student,
+    //   tasks: this.props.tasks,
+    //   activeTask: currentTask,
+    //   courses: this.props.courses,
+    //   trainings: this.props.trainings
+    // };
+    // return <TrainingAnimationTemplate {...taskProps} />;
   }
 
   getActiveSubpackage() {

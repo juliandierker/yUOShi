@@ -138,13 +138,14 @@ export default class MultiChoiceView extends Component {
     console.log(this.props.activeTask);
     return (
       <Card.Group>
-        {this.renderQuestion(this.props.activeTask.content[0])}
+        {this.props.activeTask.content
+          ? this.renderQuestion(this.props.activeTask.content[0])
+          : this.renderQuestion(this.props.activeTask)}
       </Card.Group>
     );
   }
 
   renderQuestion(question) {
-    console.log(question);
     return (
       <div
         key={"questionDiv_" + question.QuestionId}
