@@ -160,6 +160,8 @@ export default class MultiChoiceView extends Component {
         >
           <Card.Content>
             <Card.Header style={{ marginBottom: "2rem" }}>
+              <br />
+
               {question.Question}
             </Card.Header>
             <Card.Description>

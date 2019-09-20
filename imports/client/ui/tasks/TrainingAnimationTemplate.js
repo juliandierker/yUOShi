@@ -176,7 +176,7 @@ export default class TrainingAnimationTemplate extends React.Component {
                       marginTop: "1rem"
                     }}
                   >
-                    <Modal.Description>
+                    <Modal.Description id="introDescription">
                       <Header id="IntroTrainingText">
                         {this.state.stepName[this.state.introIndex]}
                       </Header>

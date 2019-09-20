@@ -1,7 +1,7 @@
 {
   "tasks": [
     {
-      "name": "Motivation",
+      "name": "❤️ Willkommen ❤️",
       "title": "Einleitung",
       "isTraining": true,
       "trainingId": "Motivation Problem",
@@ -10,7 +10,7 @@
       "image": "Teacher.png",
       "content": [
         {
-          "intro": "Sie sind gut in das Schuljahr gestartet und persönlich äußerst motiviert. Insgesamt haben Sie auch ein gutes Gefühl und eine nette Klasse. Du hast das Gefühl, zu den meisten Schüler*innen ein gutes Verhältnis aufbauen zu können. Im Laufe des Schuljahrs bemerkst du aber bei einigen Schüler*innen Veränderungen im Verhalten, die du selbstverständlich protokollierst. Sie wirken insgesamt unmotivierter und strengen sich weniger an als vorher. Folgende Schüler*innen fallen dir dabei besonders auf",
+          "intro": "Du bist gut in das Schuljahr gestartet und persönlich äußerst motiviert. Insgesamt hast du auch ein gutes Gefühl und eine nette Klasse. Du hast das Gefühl, zu den meisten Schüler*innen ein gutes Verhältnis aufbauen zu können. Im Laufe des Schuljahrs bemerkst du aber bei einigen Schüler*innen Veränderungen im Verhalten, die du selbstverständlich protokollierst. Sie wirken insgesamt unmotivierter und strengen sich weniger an als vorher. Folgende Schüler*innen fallen dir dabei besonders auf",
           "quests": [
             {
               "questId": 1,
@@ -52,7 +52,7 @@
     {
       "parentId": "Motivation1",
       "title": "Was ist Motivation?",
-      "description": "Lest den Text und markiert die unten stehenden Schlüsselbegriffe, indem ihr sie im Text findet und anklickt.",
+      "description": "Lies den Text und markiere die unten stehenden Schlüsselbegriffe, indem ihr sie im Text findet und anklickt.",
       "taskId": "Motivation_Intro",
       "filePrefix": "Tag",
       "sequenceId": 1,
@@ -83,15 +83,15 @@
 
     {
       "parentId": "Motivation1",
-      "title": "Was motiviert dich LehrerIn werden zu wollen?",
-      "description": "Markiert die Antwort(en), die auf euch zutreffen. ",
+      "title": "Markiere drei Antworten, die auf dich zutreffen. Eure Antworten werden anonym im Lehrerzimmer ausgestellt und können im Seminar diskutiert werden.",
+      "description": "Entscheide dich für drei Antwort(en), die am ehesten auf dich zutreffen. ",
       "taskId": "MultiChoiceEx2",
       "filePrefix": "Multi",
       "sequenceId": 2,
       "content": [
         {
           "QuestionId": 1,
-          "Question": "Markiere drei Antworten, die auf dich zutreffen. Eure Antworten werden annonym im Lehrerzimmer ausgestellt.",
+          "Question": "Was ist mit dir? Was motiviert dich eigentlich Lehrer oder Lehrerin werden zu wollen?",
           "AnswerSet": [
             "Sicheres Einkommen",
             "Verbeamtet werden",
@@ -111,7 +111,7 @@
       "parentId": "Motivation2",
       "multi": "todo",
       "title": "Intrinsisch & Extrinsisch",
-      "description": "Lest den Text und markiert die unten stehenden Schlüsselbegriffe, indem ihr sie im Text findet und anklickt.",
+      "description": "Lies den Text und markiere die unten stehenden Schlüsselbegriffe, indem ihr sie im Text findet und anklickt.",
       "taskId": "Motivation_IntrExtr",
       "filePrefix": "Tag",
       "sequenceId": 3,
@@ -265,7 +265,7 @@
     {
       "parentId": "Motivation3",
       "title": "Maslow Theorie",
-      "description": "Lest den Text und markiert die unten stehenden Schlüsselbegriffe, indem ihr sie im Text findet und anklickt.",
+      "description": "Lies den Text und markiere die unten stehenden Schlüsselbegriffe, indem ihr sie im Text findet und anklickt.",
       "video": "https://www.youtube.com/watch?v=UEZZBIH5Rlg",
       "taskId": "Maslow_Theorie",
       "filePrefix": "Tag",
@@ -331,7 +331,7 @@
     {
       "parentId": "Motivation3",
       "title": "Selbstbestimmungstheorie",
-      "description": "Lest den Text und markiert die unten stehenden Schlüsselbegriffe, indem ihr sie im Text findet und anklickt.",
+      "description": "Lies den Text und markiere die unten stehenden Schlüsselbegriffe, indem ihr sie im Text findet und anklickt.",
       "taskId": "Selbstbestimmungs_Theorie",
       "filePrefix": "Tag",
       "sequenceId": 9,
@@ -363,7 +363,7 @@
       "parentId": "Motivation3",
       "title": "Die Selbstbestimmungstheorie",
       "description": "Selbstbestimmungstheorie",
-      "taskId": "Sdt",
+      "taskId": "todo",
       "filePrefix": "Drag",
       "sequenceId": 10,
       "content": {
@@ -381,7 +381,7 @@
     {
       "parentId": "Motivation3",
       "title": "Die Erwartungs-X-Wert Theorie",
-      "description": "Lest den Einführungstext und markiert die Schlüssel-Begriffe",
+      "description": "Lies den Einführungstext und markiere die Schlüssel-Begriffe",
       "taskId": "Xwert_Theorie",
       "filePrefix": "Tag",
       "sequenceId": 11,
@@ -402,12 +402,12 @@
       "credits": 3
     },
     {
-      "parentId": "Motivation3",
+      "parentId": "tba",
       "title": "Motivation anhand der X-Wert-Theorie berrechnen",
       "description": "Welcher Schüler ist am motiviertesten und wie hoch ist sein Wert?",
       "taskId": "XwertCloze",
       "filePrefix": "Cloze",
-      "sequenceId": 12,
+      "sequenceId": 99,
       "content": [
         {
           "title": "XwertCloze",
@@ -421,12 +421,12 @@
     },
 
     {
-      "parentId": "Motivation4",
+      "parentId": "tba",
       "title": "Die Zielsetzungstheorie nach Locke & Latham",
-      "description": "Lest den Text zur Zielsetzungstheorie und markiert die Schlüsselbegriffe.",
+      "description": "Lies den Text zur Zielsetzungstheorie und markiere die Schlüsselbegriffe.",
       "taskId": "Zielsetzungstheorie_Theorie",
       "filePrefix": "Tag",
-      "sequenceId": 13,
+      "sequenceId": 99,
       "content": [
         {
           "title": "Zielsetzungstheorie",
@@ -445,13 +445,13 @@
     },
 
     {
-      "parentId": "Motivation4",
+      "parentId": "tba",
       "title": "Ziele Lückentext",
       "description": "Löse den Lückentext",
 
       "taskId": "ZieleCloze",
       "filePrefix": "Cloze",
-      "sequenceId": 14,
+      "sequenceId": 99,
       "content": [
         {
           "title": "Ziele",
@@ -465,12 +465,12 @@
     },
 
     {
-      "parentId": "Motivation4",
+      "parentId": "tba",
       "title": "SMART",
-      "description": "Lest den Text zum Thema Zielsetzung durch SMART durch.",
+      "description": "Lies den Text zum Thema Zielsetzung durch SMART durch.",
       "taskId": "SMART",
       "filePrefix": "Tag",
-      "sequenceId": 15,
+      "sequenceId": 99,
       "content": [
         {
           "title": "SMART",
@@ -508,9 +508,6 @@
             "Intrinsische Motivation",
             "Maslow",
             "Selbstbestimmungstheorie",
-            "SMART",
-            "Ziel",
-            "Zielsetzungstheorie",
             "Erwartungs XWert Theorie"
           ]
         }
