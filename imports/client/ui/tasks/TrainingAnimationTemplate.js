@@ -102,7 +102,7 @@ export default class TrainingAnimationTemplate extends React.Component {
         />
         {introIndex == finalIndex ? (
           <Button
-            positive
+            id="viewBtn"
             icon="checkmark"
             labelPosition="right"
             content="Los gehts"
