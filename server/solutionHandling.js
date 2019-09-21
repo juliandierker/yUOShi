@@ -159,60 +159,59 @@ Meteor.methods({
 
     let falseQuestions = [];
     let solution = Solutions[task.taskId];
+    console.log(solution);
+    console.log("bbb");
+
     if (!solution) return null;
 
     let totalAnswerCount = 0;
     let falseCount = 0;
-    for (let i = 0; i < task.content[0].questions.length; i++) {
-      let questionCorrect = true;
-      totalAnswerCount += task.content[0].questions[i].AnswerSet.length;
-      const currentSolution = solution.find(element => {
-        return (
-          element.id.toString() ===
-          task.content[0].questions[i].QuestionId.toString()
-        );
-      });
+    let questionCorrect = true;
+    totalAnswerCount += task.content[0].AnswerSet.length;
+    const currentSolution = solution.find(element => {
+      return element.id.toString() === task.content[0].QuestionId.toString();
+    });
+    console.log("aaaaaaa");
 
-      if (currentSolution.sol.length !== 0) {
-        //TODO: check answers
-        let studentSolutionAnswers = studentSolution.find(element => {
-          return element.id.toString() === currentSolution.id.toString();
-        });
-        // let studentSolutionAnswerSet = studentSolutionAnswers !== undefined ? studentSolutionAnswers.sol;
-        if (studentSolutionAnswers === undefined) {
-          falseCount += currentSolution.sol.length;
-          falseQuestions.push(currentSolution);
-        } else {
-          for (let j = 0; j < studentSolutionAnswers.values.length; j++) {
-            if (
-              !currentSolution.sol.includes(studentSolutionAnswers.values[j])
-            ) {
-              questionCorrect = false;
-              falseCount++;
-            }
-          }
-          for (let j = 0; j < currentSolution.sol; j++) {
-            if (
-              !studentSolutionAnswers.values.includes(currentSolution.sol[j])
-            ) {
-              questionCorrect = false;
-              falseCount++;
-            }
+    console.log(currentSolution);
+
+    if (currentSolution.sol.length !== 0) {
+      //TODO: check answers
+      let studentSolutionAnswers = studentSolution.find(element => {
+        return element.id.toString() === currentSolution.id.toString();
+      });
+      // let studentSolutionAnswerSet = studentSolutionAnswers !== undefined ? studentSolutionAnswers.sol;
+      console.log(studentSolutionAnswers);
+
+      if (studentSolutionAnswers === undefined) {
+        falseCount += currentSolution.sol.length;
+        falseQuestions.push(currentSolution);
+      } else {
+        for (let j = 0; j < studentSolutionAnswers.values.length; j++) {
+          if (!currentSolution.sol.includes(studentSolutionAnswers.values[j])) {
+            questionCorrect = false;
+            falseCount++;
           }
         }
-      } else {
-        // console.log(currentSolution);
-        // TODO: save answers for later evaluation in "Lehrendenzimmer"
+        for (let j = 0; j < currentSolution.sol; j++) {
+          if (!studentSolutionAnswers.values.includes(currentSolution.sol[j])) {
+            questionCorrect = false;
+            falseCount++;
+          }
+        }
       }
-
-      if (!questionCorrect) {
-        falseQuestions.push(currentSolution);
-      }
+    } else {
+      // console.log(currentSolution);
+      // TODO: save answers for later evaluation in "Lehrendenzimmer"
     }
 
-    if (falseCount === 0) {
-      solveTask(studentId, task.taskId, 1);
+    if (!questionCorrect) {
+      falseQuestions.push(currentSolution);
     }
+
+    // if (falseCount === 0) {
+    //   solveTask(studentId, task.taskId, 1);
+    // }
 
     let retval = {
       falseCount,

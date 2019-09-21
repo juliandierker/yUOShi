@@ -3,6 +3,7 @@
     {
       "name": "❤️ Willkommen ❤️",
       "title": "Einleitung",
+      "package": "Motivation",
       "isTraining": true,
       "trainingId": "Motivation Problem",
       "parentId": "Motivation0",
@@ -83,6 +84,8 @@
 
     {
       "parentId": "Motivation1",
+      "package": "Motivation",
+
       "title": "Markiere drei Antworten, die auf dich zutreffen. Eure Antworten werden anonym im Lehrerzimmer ausgestellt und können im Seminar diskutiert werden.",
       "description": "Entscheide dich für drei Antwort(en), die am ehesten auf dich zutreffen. ",
       "taskId": "MultiChoiceEx2",
@@ -517,6 +520,7 @@
     {
       "name": "Motivation",
       "title": "Fallbearbeitung",
+      "package": "Motivation",
       "isTraining": true,
       "finalTraining": true,
       "trainingId": "Motivation Problem",

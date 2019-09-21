@@ -18,6 +18,7 @@ export default class MultiChoiceView extends Component {
   solutionPrepare() {
     let meteorMethod =
       "solutionHandler.submit" + this.props.activeTask.filePrefix;
+
     if (this.state.showSolution) {
       let result = this.state.result;
       let solvedPercentage = result.falseCount / result.totalAnswerCount;
@@ -35,7 +36,32 @@ export default class MultiChoiceView extends Component {
         this.props.student._id,
         this.props.activeTask,
         (err, res) => {
+          if (err) console.log(err);
+          if (res.falseCount == 0) {
+            Swal.fire({
+              position: "top-end",
+              type: "warning",
+              title: "Das reicht noch nicht...",
+              text: "Ihr solltet zumindest eine Antwortmöglichkeit nutzen...",
+              confirmButtonText: "Lösung zeigen",
+              cancelButtonText: "Nochmal versuchen",
+              cancelButtonColor: "#3085d6",
+              showCancelButton: true
+            }).then(result => {
+              if (result.value) {
+                this.setState({ showSolution: true, result: res });
+                this.forceUpdate();
+              } else {
+                this.setState({
+                  showSolution: false,
+                  checkedAnswers: [],
+                  childKeyIteration: this.state.childKeyIteration === 0 ? 1 : 0
+                });
+              }
+            });
+          }
           if (res && res.falseCount > 0) {
+            console.log(res);
             Swal.fire({
               position: "top-end",
               type: "warning",
@@ -101,6 +127,7 @@ export default class MultiChoiceView extends Component {
   }
 
   renderAnswerSet(questionId, set, multi) {
+    console.log(questionId, set, multi);
     let checkedAnswers = this.state.checkedAnswers.find(element => {
       return element.id.toString() === questionId.toString();
     });
@@ -123,7 +150,8 @@ export default class MultiChoiceView extends Component {
         <Checkbox
           style={{
             width: "100%",
-            marginBottom: "2rem"
+            marginBottom: "2rem",
+            backgroundColor: color
           }}
           key={"Checkbox_" + questionId + "_" + index}
           id={"cb_" + questionId + "_" + index + "_" + (multi ? "m" : "")}
