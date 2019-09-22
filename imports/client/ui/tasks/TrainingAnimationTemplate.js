@@ -127,6 +127,8 @@ export default class TrainingAnimationTemplate extends React.Component {
     ) {
       const multiObj = {
         AnswerSet: content[this.state.introIndex].AnswerSet,
+        taskId: this.props.student.currentTraining[0].taskId,
+        filePrefix: content[this.state.introIndex].filePrefix,
         QuestionId: content[this.state.introIndex].questId,
         Question: content[this.state.introIndex].Question,
         multi: content[this.state.introIndex].multi
@@ -147,49 +149,47 @@ export default class TrainingAnimationTemplate extends React.Component {
     const { open, dimmer, currentTraining } = this.state;
     if (currentTraining) {
       return (
-        <div className="modalTraining_div">
-          <Modal
-            style={{ top: "5px" }}
-            size="fullscreen"
-            that={this}
-            dimmer={dimmer}
-            open={open}
-            onClose={this.close}
-          >
-            {/* <Modal.Header id="ModalHeader" /> */}
-            <Modal.Content image id="ImageContent">
-              <Grid>
-                <Grid.Row>
-                  <Grid.Column width={5}>
-                    <Image
-                      wrapped
-                      size="medium"
-                      src={
-                        "/training/quests/" +
-                        this.state.stepIcon[this.state.introIndex]
-                      }
-                    />
-                  </Grid.Column>
-                  <Grid.Column
-                    width={10}
-                    style={{
-                      marginTop: "1rem"
-                    }}
-                  >
-                    <Modal.Description id="introDescription">
-                      <Header id="IntroTrainingText">
-                        {this.state.stepName[this.state.introIndex]}
-                      </Header>
-                      {this.state.stepContent[this.state.introIndex]}
-                      {this.renderOutro()}
-                    </Modal.Description>
-                  </Grid.Column>
-                </Grid.Row>
-              </Grid>
-            </Modal.Content>
-            <Modal.Actions id="ModalActions">{this.renderBtns()}</Modal.Actions>
-          </Modal>
-        </div>
+        <Modal
+          style={{ overflowY: "scroll" }}
+          className="scrolling"
+          that={this}
+          dimmer={dimmer}
+          open={open}
+          onClose={this.close}
+        >
+          {/* <Modal.Header id="ModalHeader" /> */}
+          <Modal.Content image id="ImageContent">
+            <Grid>
+              <Grid.Row>
+                <Grid.Column width={5}>
+                  <Image
+                    wrapped
+                    size="medium"
+                    src={
+                      "/training/quests/" +
+                      this.state.stepIcon[this.state.introIndex]
+                    }
+                  />
+                </Grid.Column>
+                <Grid.Column
+                  width={10}
+                  // style={{
+                  //   marginTop: "1rem"
+                  // }}
+                >
+                  <Modal.Description id="introDescription">
+                    <Header id="IntroTrainingText">
+                      {this.state.stepName[this.state.introIndex]}
+                    </Header>
+                    {this.state.stepContent[this.state.introIndex]}
+                    {this.renderOutro()}
+                  </Modal.Description>
+                </Grid.Column>
+              </Grid.Row>
+            </Grid>
+          </Modal.Content>
+          <Modal.Actions id="ModalActions">{this.renderBtns()}</Modal.Actions>
+        </Modal>
       );
     }
   }

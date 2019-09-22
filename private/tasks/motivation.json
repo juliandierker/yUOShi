@@ -1,9 +1,10 @@
 {
   "tasks": [
     {
-      "name": "❤️ Willkommen ❤️",
+      "name": "❤️-Willkommen",
       "title": "Einleitung",
       "package": "Motivation",
+      "taskId": "MultiChoiceEx",
       "isTraining": true,
       "trainingId": "Motivation Problem",
       "parentId": "Motivation0",
@@ -14,7 +15,9 @@
           "intro": "Du bist gut in das Schuljahr gestartet und persönlich äußerst motiviert. Insgesamt hast du auch ein gutes Gefühl und eine nette Klasse. Du hast das Gefühl, zu den meisten Schüler*innen ein gutes Verhältnis aufbauen zu können. Im Laufe des Schuljahrs bemerkst du aber bei einigen Schüler*innen Veränderungen im Verhalten, die du selbstverständlich protokollierst. Sie wirken insgesamt unmotivierter und strengen sich weniger an als vorher. Folgende Schüler*innen fallen dir dabei besonders auf",
           "quests": [
             {
-              "questId": 1,
+              "filePrefix": "Multi",
+
+              "questId": 4,
               "questName": "Magda",
               "Magda": "Magda ist normalerweise sehr engagiert und begeisterungsfähig. In der Klasse übernimmt sie gerne freiwillig Aufgaben. Allerdings hat sie sich nicht gemeldet als es um die Position der Klassensprecherin ging, was dich sehr wundert. Im letzten Schuljahr hat sie das so gut gemacht und dieses Jahr würdest du die Klassensprecherinnen auch besser unterstützen und entlohnen können. Was ist los mit ihr, warum will sie nicht?",
               "image": "Magda.png",
@@ -31,7 +34,8 @@
               "multi": true
             },
             {
-              "questId": 2,
+              "questId": 5,
+              "filePrefix": "Multi",
               "questName": "Tino",
               "Tino": "Tinos Familie ist vor kurzem erst hergezogen. Trotzdem konnte er sich schnell in die Klasse integrieren und ist vor allem in den kreativeren Fächern ein guter Schüler. Du hast vor einiger Zeit mit einem Ausbildungsbetrieb zusammen ein Kunstprojekt gestartet. Dabei geht es genau um die Themen, für die sich Tino sehr interessiert. Du hoffst, dass Tino sich dort ganz entfalten kann. Er hat sich auch gefreut und zu Anfang sehr gut mitgemacht. Nun hat sich der Ausbildungsbetrieb bei dir gemeldet und berichtet, dass Tino in letzter Zeit weniger aufgeschlossen ist und in sich gekehrt scheint. Woran kann das liegen?",
               "image": "Tino.png",
@@ -88,7 +92,7 @@
 
       "title": "Markiere drei Antworten, die auf dich zutreffen. Eure Antworten werden anonym im Lehrerzimmer ausgestellt und können im Seminar diskutiert werden.",
       "description": "Entscheide dich für drei Antwort(en), die am ehesten auf dich zutreffen. ",
-      "taskId": "MultiChoiceEx2",
+      "taskId": "MultiChoiceEx",
       "filePrefix": "Multi",
       "sequenceId": 2,
       "content": [
@@ -497,7 +501,7 @@
       "description": "In diesem Memory müsst ihr zu Begriffen die entsprechenden Bilder zuweisen.",
       "taskId": "Motivation_Memory",
       "filePrefix": "Memory",
-      "sequenceId": 16,
+      "sequenceId": 12,
       "package": "Motivation",
       "credits": 3,
       "content": [
@@ -519,24 +523,26 @@
 
     {
       "name": "Motivation",
+      "taskId": "MultiChoiceEx",
       "title": "Fallbearbeitung",
       "package": "Motivation",
       "isTraining": true,
       "finalTraining": true,
       "trainingId": "Motivation Problem",
       "parentId": "Motivation0",
-      "sequenceId": 17,
+      "sequenceId": 13,
       "image": "Teacher.png",
       "content": [
         {
           "intro": "Sie sind gut in das Schuljahr gestartet und persönlich äußerst motiviert. Insgesamt haben Sie auch ein gutes Gefühl und eine nette Klasse. Jetzt kann es richtig losgehen! Doch nach und nach fällt Ihnen auf, dass einige Schüler*innen immer öfter zu spät kommen. Die Intensität der Diskussionen wird weniger, fast scheint es so, als ob andere Dinge interessanter geworden sind. Schüler*innen, die vorher sehr aktiv waren, scheinen nur noch das nötigste zu machen. Sie sind verwundert… Warum ist die Klasse so unmotiviert? Ihre Arbeit fällt Ihnen dadurch auch schwerer und am liebsten würden Sie die Schüler wach schütteln. Sie merken, dass Sie selbst immer weniger Lust haben, zu unterrichten. Was können Sie also tun? Wie lässt sich die Klasse motivieren? Finden Sie es heraus und lernen Sie alles über Motivation!",
           "quests": [
             {
-              "questId": 1,
+              "questId": 4,
               "questName": "Magda",
               "Magda": "Magda ist normalerweise sehr engagiert und begeisterungsfähig. In der Klasse übernimmt sie gerne freiwillig Aufgaben. Allerdings hat sie sich nicht gemeldet als es um die Position der Klassensprecherin ging, was dich sehr wundert. Im letzten Schuljahr hat sie das so gut gemacht und dieses Jahr würdest du die Klassensprecherinnen auch besser unterstützen und entlohnen können. Was ist los mit ihr, warum will sie nicht?",
               "image": "Magda.png",
               "prePhrase": "Magda freut sich über dein Interesse und das Gespräch mit dir. Sie scheint selbst gar nicht recht zu wissen, warum sie sich dieses Jahr nicht freiwillig gemeldet hat und verspricht, sich nächstes Jahr wieder mehr zu engagieren.",
+              "filePrefix": "Multi",
 
               "Question": "Warum konnte Magda sich nicht dazu motivieren, sich für das Amt als Klassensprecherin zu melden? Welcher Grund ist deiner Meinung nach und mit Blick auf dein Wissen über Motivation der wahrscheinlichste?",
               "AnswerSet": [
@@ -549,10 +555,12 @@
               "multi": true
             },
             {
-              "questId": 2,
+              "questId": 5,
               "questName": "Tino",
               "Tino": "Tinos Familie ist vor kurzem erst hergezogen. Trotzdem konnte er sich schnell in die Klasse integrieren und ist vor allem in den kreativeren Fächern ein guter Schüler. Du hast vor einiger Zeit mit einem Ausbildungsbetrieb zusammen ein Kunstprojekt gestartet. Dabei geht es genau um die Themen, für die sich Tino sehr interessiert. Du hoffst, dass Tino sich dort ganz entfalten kann. Er hat sich auch gefreut und zu Anfang sehr gut mitgemacht. Nun hat sich der Ausbildungsbetrieb bei dir gemeldet und berichtet, dass Tino in letzter Zeit weniger aufgeschlossen ist und in sich gekehrt scheint. Woran kann das liegen?",
               "image": "Tino.png",
+              "filePrefix": "Multi",
+
               "prePhrase": "Warum hatte Tino zuletzt Probleme, sich in dem Kunstprojekt  zu motivieren? Welcher Grund ist deiner Meinung nach und mit Blick auf dein Wissen über Motivation der wahrscheinlichste?",
               "Question": "Warum konnte Magda sich nicht dazu motivieren, sich für das Amt als Klassensprecherin zu melden? Welcher Grund ist deiner Meinung nach und mit Blick auf dein Wissen über Motivation der wahrscheinlichste?",
               "AnswerSet": [

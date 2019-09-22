@@ -164,10 +164,14 @@ export default class Workspace extends React.Component {
           case "memory":
             return <MemoryAnimationTemplate {...taskProps} />;
           case "multiChoice":
-            return <MultiChoiceAnimationTemplate {...taskProps} />;
+            return (
+              <MultiChoiceAnimationTemplate
+                {...taskProps}
+                handleNextTask={this.props.handleNextTask}
+              />
+            );
         }
       } else {
-        console.log("BBBBBBB");
         let currentTaskArray = [];
         currentTaskArray.push(currentTask);
         Meteor.call("students.initTraining", currentTaskArray, student._id);

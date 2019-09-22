@@ -158,23 +158,35 @@ Meteor.methods({
     }
 
     let falseQuestions = [];
+    console.log("AAAAAAAAAA");
+    console.log(task);
+    console.log(task.taskId);
+
     let solution = Solutions[task.taskId];
-    console.log(solution);
-    console.log("bbb");
 
     if (!solution) return null;
 
     let totalAnswerCount = 0;
     let falseCount = 0;
     let questionCorrect = true;
-    totalAnswerCount += task.content[0].AnswerSet.length;
-    const currentSolution = solution.find(element => {
-      return element.id.toString() === task.content[0].QuestionId.toString();
-    });
-    console.log("aaaaaaa");
+
+    if (task.content) {
+      console.log("entered");
+      totalAnswerCount += task.content[0].AnswerSet.length;
+      const currentSolution = solution.find(element => {
+        return element.id.toString() === task.content[0].QuestionId.toString();
+      });
+    } else {
+      totalAnswerCount += task.AnswerSet.length;
+      const currentSolution = solution.find(element => {
+        return element.id.toString() === task.QuestionId.toString();
+      });
+    }
 
     console.log(currentSolution);
-
+    if (currentSolution.sol[0] === "free") {
+      return currentSolution.sol.concat(studentSolution);
+    }
     if (currentSolution.sol.length !== 0) {
       //TODO: check answers
       let studentSolutionAnswers = studentSolution.find(element => {

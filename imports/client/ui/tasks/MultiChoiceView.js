@@ -16,9 +16,10 @@ export default class MultiChoiceView extends Component {
   }
 
   solutionPrepare() {
+    console.log(this.props.activeTask);
     let meteorMethod =
       "solutionHandler.submit" + this.props.activeTask.filePrefix;
-
+    console.log(meteorMethod);
     if (this.state.showSolution) {
       let result = this.state.result;
       let solvedPercentage = result.falseCount / result.totalAnswerCount;
@@ -37,6 +38,18 @@ export default class MultiChoiceView extends Component {
         this.props.activeTask,
         (err, res) => {
           if (err) console.log(err);
+          if (res && res[0] === "free") {
+            Swal.fire({
+              position: "top-end",
+              type: "success",
+              title: "Danke",
+              toast: true,
+              text: "Deine Gründe werden im Lehrendenzimmer ausgestellt.",
+              timer: 2000
+            }).then(result => {
+              this.props.handleNextTask();
+            });
+          }
           if (res.falseCount == 0) {
             Swal.fire({
               position: "top-end",
@@ -61,7 +74,6 @@ export default class MultiChoiceView extends Component {
             });
           }
           if (res && res.falseCount > 0) {
-            console.log(res);
             Swal.fire({
               position: "top-end",
               type: "warning",
