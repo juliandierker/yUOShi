@@ -17,7 +17,6 @@ export default class MultiChoiceAnimationTemplate extends Component {
   }
 
   renderView() {
-    console.log(this.props.activeTask);
     return (
       <MultiChoiceView
         handleNextTask={this.props.handleNextTask}

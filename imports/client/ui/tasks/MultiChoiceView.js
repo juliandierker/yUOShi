@@ -16,10 +16,8 @@ export default class MultiChoiceView extends Component {
   }
 
   solutionPrepare() {
-    console.log(this.props.activeTask);
     let meteorMethod =
       "solutionHandler.submit" + this.props.activeTask.filePrefix;
-    console.log(meteorMethod);
     if (this.state.showSolution) {
       let result = this.state.result;
       let solvedPercentage = result.falseCount / result.totalAnswerCount;
@@ -49,8 +47,7 @@ export default class MultiChoiceView extends Component {
             }).then(result => {
               this.props.handleNextTask();
             });
-          }
-          if (res.falseCount == 0) {
+          } else if (res.falseCount == 0) {
             Swal.fire({
               position: "top-end",
               type: "warning",
@@ -139,7 +136,6 @@ export default class MultiChoiceView extends Component {
   }
 
   renderAnswerSet(questionId, set, multi) {
-    console.log(questionId, set, multi);
     let checkedAnswers = this.state.checkedAnswers.find(element => {
       return element.id.toString() === questionId.toString();
     });
@@ -178,7 +174,6 @@ export default class MultiChoiceView extends Component {
   }
 
   renderQuestions() {
-    console.log(this.props.activeTask);
     return (
       <Card.Group>
         {this.props.activeTask.content
