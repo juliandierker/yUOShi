@@ -523,7 +523,7 @@
     },
 
     {
-      "name": "Motivation",
+      "name": "Fallbearbeitung",
       "taskId": "MultiChoiceEx",
       "title": "Fallbearbeitung",
       "package": "Motivation",
@@ -563,7 +563,7 @@
               "filePrefix": "Multi",
 
               "prePhrase": "Warum hatte Tino zuletzt Probleme, sich in dem Kunstprojekt  zu motivieren? Welcher Grund ist deiner Meinung nach und mit Blick auf dein Wissen über Motivation der wahrscheinlichste?",
-              "Question": "Warum konnte Magda sich nicht dazu motivieren, sich für das Amt als Klassensprecherin zu melden? Welcher Grund ist deiner Meinung nach und mit Blick auf dein Wissen über Motivation der wahrscheinlichste?",
+              "Question": "Warum hatte Tino zuletzt Probleme, sich in dem Kunstprojekt  zu motivieren? Welcher Grund ist deiner Meinung nach und mit Blick auf dein Wissen über Motivation der wahrscheinlichste?",
               "AnswerSet": [
                 "Durch die Angst (mögliche Scheidung der Eltern /  möglicher Umzug) wurde Kreativität und Motivation gehemmt",
                 "Durch die Angst vor der Scheidung seiner Eltern und den möglichen Umzug ist das Sicherheitsbedürfnis und evtl. das Sozialbedürfnis von Tino nicht erfüllt gewesen und somit konnte er auch keine Motivation aufbringen, sich in dem Kunstprojekt selbst zu „verwirklichen“",

@@ -25,7 +25,7 @@ class TaskProgress extends Component {
     const currentPackage = this.props.currentPackage;
     const trainings = this.props.trainings[0][currentPackage.name];
     if (!this.props.currentTask) {
-      return 0;
+      return 1;
     } else {
       var cStr = this.props.currentTask.parentId;
       console.log(this.props.currentTask.parentId);

@@ -23,6 +23,7 @@ export default class MultiChoiceAnimationTemplate extends Component {
         student={this.props.student}
         model={this.model}
         activeTask={this.props.activeTask}
+        renderNextStep={this.props.renderNextStep}
       />
     );
   }

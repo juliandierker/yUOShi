@@ -34,6 +34,9 @@ export default class TrainingAnimationTemplate extends React.Component {
   show = dimmer => () => this.setState({ dimmer, open: true });
   close = () => this.solveTraining();
 
+  renderNextStep() {
+    this.setState({ introIndex: this.state.introIndex + 1 });
+  }
   initIntroSteps() {
     const content = this.props.student.currentTraining[0].content[0];
     let stepContent = [];
@@ -116,6 +119,15 @@ export default class TrainingAnimationTemplate extends React.Component {
           ) : null}
         </Button.Group>
       );
+    } else {
+      return (
+        <Button
+          id="nextBtn"
+          Position="center"
+          content="Nächster Fall"
+          onClick={this.nextAction.bind(this)}
+        />
+      );
     }
   }
   renderOutro() {
@@ -139,7 +151,8 @@ export default class TrainingAnimationTemplate extends React.Component {
         tasks: this.props.tasks,
         activeTask: multiObj,
         courses: this.props.courses,
-        trainings: this.props.trainings
+        trainings: this.props.trainings,
+        renderNextStep: this.renderNextStep.bind(this)
       };
       return <MultiChoiceAnimationTemplate {...taskProps} />;
     }
@@ -160,21 +173,36 @@ export default class TrainingAnimationTemplate extends React.Component {
             <Grid>
               <Grid.Row>
                 <Grid.Column width={5}>
-                  <Image
-                    wrapped
-                    size="medium"
-                    src={
-                      "/training/quests/" +
-                      this.state.stepIcon[this.state.introIndex]
-                    }
-                  />
+                  {this.state.currentTraining.finalTraining ? (
+                    <Image
+                      wrapped
+                      size="medium"
+                      src={
+                        "/training/quests/" +
+                        this.state.stepIcon[this.state.introIndex + 1]
+                      }
+                    />
+                  ) : (
+                    <Image
+                      wrapped
+                      size="medium"
+                      src={
+                        "/training/quests/" +
+                        this.state.stepIcon[this.state.introIndex]
+                      }
+                    />
+                  )}
                 </Grid.Column>
                 <Grid.Column width={10}>
                   <Modal.Description id="introDescription">
                     <Header id="IntroTrainingText">
-                      {this.state.stepName[this.state.introIndex]}
+                      {this.state.currentTraining.finalTraining
+                        ? this.state.stepName[this.state.introIndex + 1]
+                        : this.state.stepName[this.state.introIndex]}
                     </Header>
-                    {this.state.stepContent[this.state.introIndex]}
+                    {this.state.currentTraining.finalTraining
+                      ? this.state.stepContent[this.state.introIndex + 1]
+                      : this.state.stepContent[this.state.introIndex]}
                     {this.renderOutro()}
                   </Modal.Description>
                 </Grid.Column>
