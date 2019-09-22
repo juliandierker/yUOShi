@@ -19,12 +19,11 @@ import MultiChoiceAnimationTemplate from "./MultiChoiceAnimationTemplate.js";
 export default class TrainingAnimationTemplate extends React.Component {
   constructor(props) {
     super(props);
-    console.log(props.student.currentTraining);
     this.state = {
       currentTraining: null,
       open: false,
       introIndex: 0,
-      finalIndex: props.student.currentTraining[0].content[0].quests.length,
+      finalIndex: props.student.currentTraining[0].content[0].quests.length + 1,
       stepContent: [],
       stepName: [],
       stepIcon: [],
@@ -37,16 +36,20 @@ export default class TrainingAnimationTemplate extends React.Component {
 
   initIntroSteps() {
     const content = this.props.student.currentTraining[0].content[0];
-    console.log(content);
     let stepContent = [];
     let stepName = [];
     let stepIcon = [];
+
+    stepContent.push(content.intro);
+    stepName.push(this.props.student.currentTraining[0].name);
+    stepIcon.push(this.props.student.currentTraining[0].image);
+
     for (var i in content.quests) {
       stepContent.push(content.quests[i][content.quests[i].questName]);
       stepName.push(content.quests[i].questName);
       stepIcon.push(content.quests[i].image);
     }
-    stepContent.push(content.intro);
+    stepContent.push(content.outro);
     stepName.push(this.props.student.currentTraining[0].name);
     stepIcon.push(this.props.student.currentTraining[0].image);
     this.setState({ stepContent, stepName, stepIcon });
@@ -54,7 +57,6 @@ export default class TrainingAnimationTemplate extends React.Component {
 
   componentDidMount() {
     if (this.state.currentTraining == null) {
-      console.log(this.props.student.currentTraining[0]);
       this.setState({
         currentTraining: this.props.student.currentTraining[0],
         open: true,
@@ -80,7 +82,6 @@ export default class TrainingAnimationTemplate extends React.Component {
     }
   }
   nextAction() {
-    console.log(this);
     const { introIndex, finalIndex } = this.state;
 
     if (introIndex < finalIndex) {
@@ -133,7 +134,6 @@ export default class TrainingAnimationTemplate extends React.Component {
         Question: content[this.state.introIndex].Question,
         multi: content[this.state.introIndex].multi
       };
-      console.log(multiObj);
       let taskProps = {
         student: this.props.student,
         tasks: this.props.tasks,
@@ -141,7 +141,6 @@ export default class TrainingAnimationTemplate extends React.Component {
         courses: this.props.courses,
         trainings: this.props.trainings
       };
-      console.log("testyB");
       return <MultiChoiceAnimationTemplate {...taskProps} />;
     }
   }
@@ -157,7 +156,6 @@ export default class TrainingAnimationTemplate extends React.Component {
           open={open}
           onClose={this.close}
         >
-          {/* <Modal.Header id="ModalHeader" /> */}
           <Modal.Content image id="ImageContent">
             <Grid>
               <Grid.Row>
@@ -171,12 +169,7 @@ export default class TrainingAnimationTemplate extends React.Component {
                     }
                   />
                 </Grid.Column>
-                <Grid.Column
-                  width={10}
-                  // style={{
-                  //   marginTop: "1rem"
-                  // }}
-                >
+                <Grid.Column width={10}>
                   <Modal.Description id="introDescription">
                     <Header id="IntroTrainingText">
                       {this.state.stepName[this.state.introIndex]}

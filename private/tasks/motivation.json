@@ -13,6 +13,7 @@
       "content": [
         {
           "intro": "Du bist gut in das Schuljahr gestartet und persönlich äußerst motiviert. Insgesamt hast du auch ein gutes Gefühl und eine nette Klasse. Du hast das Gefühl, zu den meisten Schüler*innen ein gutes Verhältnis aufbauen zu können. Im Laufe des Schuljahrs bemerkst du aber bei einigen Schüler*innen Veränderungen im Verhalten, die du selbstverständlich protokollierst. Sie wirken insgesamt unmotivierter und strengen sich weniger an als vorher. Folgende Schüler*innen fallen dir dabei besonders auf",
+          "outro": "Bevor du den Schüler*innen helfen kannst, kannst du dich genauer mit dem Thema Motivation befassen.",
           "quests": [
             {
               "filePrefix": "Multi",
@@ -191,12 +192,12 @@
             "extr",
             "James Vater ist Physiker. Er soll sich mit neuen physikalischen Themen beschäftigen."
           ],
+          ["intr", "Die SuS arbeiten gerne mit, weil sie dadurch mehr lernen."],
+          ["extr", "Die Lehrkraft vergibt Sternchen für gute Mitarbeit"],
           [
             "intr",
-            "Die SuS arbeiten gerne mit, weil sie dadurch mehr lernen."
+            "Gülcan hat Spaß an deutscher Geschichte, deswegen meldet er sich oft."
           ],
-          ["extr", "Die Lehrkraft vergibt Sternchen für gute Mitarbeit"],
-          ["intr", "Gülcan hat Spaß an deutscher Geschichte, deswegen meldet er sich oft."],
           [
             "extr",
             "Laura wird ermahnt, wenn sie im Unterricht nicht mitmacht."
@@ -209,7 +210,10 @@
             "extr",
             "Mara bekommt von ihrer Oma 5 Euro, wenn sie in Deutsch eine gute Note schreibt."
           ],
-          ["intr", "Tiffany ist traurig, wenn sie eine schlechte Note bekommt."],
+          [
+            "intr",
+            "Tiffany ist traurig, wenn sie eine schlechte Note bekommt."
+          ],
           [
             "extr",
             "Richards Mutter ist enttäuscht, wenn er eine schlechte Note bekommt"
@@ -219,10 +223,7 @@
             "extr",
             "Clara führt ihre Mappe ordentlich, um dadurch ein Sternchen zu bekommen."
           ],
-          [
-            "intr",
-            "Miguel passt in Biologie auf, weil er Arzt werden möchte."
-          ],
+          ["intr", "Miguel passt in Biologie auf, weil er Arzt werden möchte."],
           [
             "extr",
             "Dennis bekommt eine gute Note von der Lehrerin, wenn er in Biologie aufpasst."
