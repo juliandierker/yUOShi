@@ -269,7 +269,9 @@ export default class MultiChoiceView extends Component {
           style={{
             marginTop: "10px",
             marginBottom: "10px",
-            marginRight: "18.4%"
+            marginRight: "18.4%",
+            backgroundColor: "rgb(143, 176, 232)",
+            color: "white"
           }}
           floated="right"
           onClick={() => this.solutionPrepare()}
