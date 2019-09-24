@@ -226,7 +226,8 @@ export default class Workspace extends React.Component {
           bottom: "35px",
           width: "50%",
           textAlign: "center",
-          marginLeft: "25%"
+          marginLeft: "25%",
+          marginRight: "25%"
         }}
       >
         <Button
@@ -266,22 +267,18 @@ export default class Workspace extends React.Component {
 
     return (
       <Grid id="workspaceGrid">
-        <Grid.Column width={3}>
+        <Grid.Column
+          width={3}
+          style={{
+            padding: "0rem"
+          }}
+        >
           {this.renderDescription()} {this.renderKeywordList()}
         </Grid.Column>
-        <Grid.Column width={6}>
-          <div
-            className="workspace__container"
-            style={{
-              width: "100%",
-              marginTop: "60px",
-              height: "100vh"
-            }}
-          >
-            {this.taskSwitch()}
-          </div>
+        <Grid.Column width={8}>
+          <div className="workspace__container">{this.taskSwitch()}</div>
         </Grid.Column>
-        <Grid.Column width={3}>
+        <Grid.Column width={4}>
           <TaskProgress
             currentTask={this.state.activeTask}
             student={this.props.student}
