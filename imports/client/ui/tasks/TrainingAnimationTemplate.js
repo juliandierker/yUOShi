@@ -98,13 +98,13 @@ export default class TrainingAnimationTemplate extends React.Component {
         <Button.Group attached="top">
           <Button
             id="prevBtn"
-            Position="center"
+            // Position="center"
             content="Zurück"
             onClick={this.backAction.bind(this)}
           />
           <Button
             id="nextBtn"
-            Position="center"
+            // Position="center"
             content="Weiter"
             onClick={this.nextAction.bind(this)}
           />
@@ -123,7 +123,7 @@ export default class TrainingAnimationTemplate extends React.Component {
       return (
         <Button
           id="nextBtn"
-          Position="center"
+          // Position="center"
           content="Nächster Fall"
           onClick={this.nextAction.bind(this)}
         />
@@ -159,13 +159,19 @@ export default class TrainingAnimationTemplate extends React.Component {
   }
   renderTraining() {
     const { open, dimmer, currentTraining } = this.state;
+
     if (currentTraining) {
+      const currentIntroIndex = this.state.currentTraining.finalTraining
+        ? this.state.introIndex + 1
+        : this.state.introIndex;
+
       return (
         <Modal
           style={{ overflowY: "scroll" }}
           className="scrolling"
           that={this}
           dimmer={dimmer}
+          closeOnDimmerClick={false}
           open={open}
           onClose={this.close}
         >
@@ -173,36 +179,21 @@ export default class TrainingAnimationTemplate extends React.Component {
             <Grid>
               <Grid.Row>
                 <Grid.Column width={5}>
-                  {this.state.currentTraining.finalTraining ? (
-                    <Image
-                      wrapped
-                      size="medium"
-                      src={
-                        "/training/quests/" +
-                        this.state.stepIcon[this.state.introIndex + 1]
-                      }
-                    />
-                  ) : (
-                    <Image
-                      wrapped
-                      size="medium"
-                      src={
-                        "/training/quests/" +
-                        this.state.stepIcon[this.state.introIndex]
-                      }
-                    />
-                  )}
+                  <Image
+                    wrapped
+                    size="medium"
+                    src={
+                      "/training/quests/" +
+                      this.state.stepIcon[currentIntroIndex]
+                    }
+                  />
                 </Grid.Column>
                 <Grid.Column width={10}>
                   <Modal.Description id="introDescription">
                     <Header id="IntroTrainingText">
-                      {this.state.currentTraining.finalTraining
-                        ? this.state.stepName[this.state.introIndex + 1]
-                        : this.state.stepName[this.state.introIndex]}
+                      {this.state.stepName[currentIntroIndex]}
                     </Header>
-                    {this.state.currentTraining.finalTraining
-                      ? this.state.stepContent[this.state.introIndex + 1]
-                      : this.state.stepContent[this.state.introIndex]}
+                    {this.state.stepContent[currentIntroIndex]}
                     {this.renderOutro()}
                   </Modal.Description>
                 </Grid.Column>
@@ -214,6 +205,7 @@ export default class TrainingAnimationTemplate extends React.Component {
       );
     }
   }
+
   render() {
     return <div>{this.renderTraining()}</div>;
   }

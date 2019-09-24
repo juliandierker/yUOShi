@@ -189,14 +189,6 @@ export default class Workspace extends React.Component {
         return <TrainingAnimationTemplate {...taskProps} />;
       }
     }
-    // let taskProps = {
-    //   student: this.props.student,
-    //   tasks: this.props.tasks,
-    //   activeTask: currentTask,
-    //   courses: this.props.courses,
-    //   trainings: this.props.trainings
-    // };
-    // return <TrainingAnimationTemplate {...taskProps} />;
   }
 
   getActiveSubpackage() {
@@ -227,7 +219,6 @@ export default class Workspace extends React.Component {
 
   renderNavigationButtons() {
     var that = this;
-    //TODO: render vor- und zurückbuttons
     return (
       <div
         style={{

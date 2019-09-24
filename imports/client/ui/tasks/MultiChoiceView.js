@@ -50,24 +50,9 @@ export default class MultiChoiceView extends Component {
           } else if (res.falseCount == 0) {
             Swal.fire({
               position: "top-end",
-              type: "warning",
-              title: "Das reicht noch nicht...",
-              text: "Ihr solltet zumindest eine Antwortmöglichkeit nutzen...",
-              confirmButtonText: "Lösung zeigen",
-              cancelButtonText: "Nochmal versuchen",
-              cancelButtonColor: "#3085d6",
-              showCancelButton: true
-            }).then(result => {
-              if (result.value) {
-                this.setState({ showSolution: true, result: res });
-                this.forceUpdate();
-              } else {
-                this.setState({
-                  showSolution: false,
-                  checkedAnswers: [],
-                  childKeyIteration: this.state.childKeyIteration === 0 ? 1 : 0
-                });
-              }
+              type: "success",
+              title: "Geschafft!",
+              timer: 2000
             });
           }
           if (res && res.falseCount > 0) {
