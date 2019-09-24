@@ -95,6 +95,8 @@ function solveTask(studentId, taskId, solvedPercentage) {
 }
 
 function solveMulti(
+  studentId,
+  taskId,
   currentSolution,
   falseCount,
   totalAnswerCount,
@@ -143,6 +145,10 @@ function solveMulti(
     totalAnswerCount,
     falseQuestions
   };
+
+  if (falseCount === 0) {
+    solveTask(studentId, taskId);
+  }
   return retval;
 }
 Meteor.methods({
@@ -223,6 +229,8 @@ Meteor.methods({
         return element.id.toString() === task.content[0].QuestionId.toString();
       });
       return solveMulti(
+        studentId,
+        task.taskId,
         currentSolution,
         falseCount,
         totalAnswerCount,
@@ -236,6 +244,8 @@ Meteor.methods({
         return element.id.toString() === task.QuestionId.toString();
       });
       return solveMulti(
+        studentId,
+        task.taskId,
         currentSolution,
         falseCount,
         totalAnswerCount,

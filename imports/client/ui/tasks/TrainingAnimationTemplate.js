@@ -100,13 +100,13 @@ export default class TrainingAnimationTemplate extends React.Component {
         <Button.Group attached="top">
           <Button
             id="prevBtn"
-            Position="center"
+            // Position="center"
             content="Zurück"
             onClick={this.backAction.bind(this)}
           />
           <Button
             id="nextBtn"
-            Position="center"
+            // Position="center"
             content="Weiter"
             onClick={this.nextAction.bind(this)}
           />
@@ -126,7 +126,7 @@ export default class TrainingAnimationTemplate extends React.Component {
       return (
         <Button
           id="nextBtn"
-          Position="center"
+          // Position="center"
           content="Nächster Fall"
           onClick={this.nextAction.bind(this)}
         />
@@ -162,62 +162,53 @@ export default class TrainingAnimationTemplate extends React.Component {
   }
   renderTraining() {
     const { open, dimmer, currentTraining } = this.state;
+
     if (currentTraining) {
+      const currentIntroIndex = this.state.currentTraining.finalTraining
+        ? this.state.introIndex + 1
+        : this.state.introIndex;
+
+      const modalContent = (
+        <Modal.Content image id="ImageContent">
+          <Modal.Description id="introDescription">
+            <Header id="IntroTrainingText">
+              {this.state.stepName[currentIntroIndex]}
+            </Header>
+            {this.state.stepContent[currentIntroIndex]}
+            {this.renderOutro()}
+          </Modal.Description>
+        </Modal.Content>
+      );
+
+      const modalContentContainer = (
+        <React.Fragment>
+          <Image
+            wrapped
+            size="small"
+            src={
+              "/training/quests/" + this.state.stepIcon[this.state.introIndex]
+            }
+          />
+          {modalContent}
+        </React.Fragment>
+      );
+
       return (
         <Modal
           style={{ overflowY: "scroll", height: "fit-content" }}
           className="scrolling"
           that={this}
           dimmer={dimmer}
+          closeOnDimmerClick={false}
           open={open}
           onClose={this.close}
         >
           <Segment.Group>
             <Responsive as={Segment} {...Responsive.onlyMobile}>
-              <Image
-                wrapped
-                size="small"
-                src={
-                  "/training/quests/" +
-                  this.state.stepIcon[this.state.introIndex]
-                }
-              />
-              <Modal.Content image id="ImageContent">
-                <Modal.Description id="introDescription">
-                  <Header id="IntroTrainingText">
-                    {this.state.currentTraining.finalTraining
-                      ? this.state.stepName[this.state.introIndex + 1]
-                      : this.state.stepName[this.state.introIndex]}
-                  </Header>
-                  {this.state.currentTraining.finalTraining
-                    ? this.state.stepContent[this.state.introIndex + 1]
-                    : this.state.stepContent[this.state.introIndex]}
-                  {this.renderOutro()}
-                </Modal.Description>
-              </Modal.Content>
+              {modalContentContainer}
             </Responsive>
             <Responsive as={Segment} {...Responsive.onlyTablet}>
-              <Image
-                wrapped
-                size="medium"
-                src={
-                  "/training/quests/" +
-                  this.state.stepIcon[this.state.introIndex]
-                }
-              />
-              <Modal.Content image id="ImageContent">
-                <Modal.Description id="introDescription">
-                  <Header id="IntroTrainingText">
-                    {this.state.currentTraining.finalTraining
-                      ? this.state.stepName[this.state.introIndex + 1]
-                      : this.state.stepName[this.state.introIndex]}
-                  </Header>
-                  {this.state.currentTraining.finalTraining
-                    ? this.state.stepContent[this.state.introIndex + 1]
-                    : this.state.stepContent[this.state.introIndex]}
-                  {this.renderOutro()}
-                </Modal.Description>
-              </Modal.Content>
+              {modalContentContainer}
             </Responsive>
 
             <Responsive as={Segment} {...Responsive.onlyComputer}>
@@ -233,21 +224,7 @@ export default class TrainingAnimationTemplate extends React.Component {
                       }
                     />
                   </div>
-                  <div class="ten wide column">
-                    <Modal.Content image id="ImageContent">
-                      <Modal.Description id="introDescription">
-                        <Header id="IntroTrainingText">
-                          {this.state.currentTraining.finalTraining
-                            ? this.state.stepName[this.state.introIndex + 1]
-                            : this.state.stepName[this.state.introIndex]}
-                        </Header>
-                        {this.state.currentTraining.finalTraining
-                          ? this.state.stepContent[this.state.introIndex + 1]
-                          : this.state.stepContent[this.state.introIndex]}
-                        {this.renderOutro()}
-                      </Modal.Description>
-                    </Modal.Content>
-                  </div>
+                  <div class="ten wide column">{modalContent}</div>
                 </div>
               </div>
             </Responsive>
@@ -258,6 +235,7 @@ export default class TrainingAnimationTemplate extends React.Component {
       );
     }
   }
+
   render() {
     return <div>{this.renderTraining()}</div>;
   }

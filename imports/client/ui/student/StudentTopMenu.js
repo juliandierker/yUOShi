@@ -74,8 +74,6 @@ export default class StudentTopMenu extends React.Component {
     }
   }
   handleMenuItemClick = (e, { name }) => {
-    console.log("clicked");
-    console.log(name);
     this.updateMenuButton();
     this.setState({ visible: !this.state.visible });
     this.props.history.push("/student/classroom");
@@ -87,7 +85,6 @@ export default class StudentTopMenu extends React.Component {
         var text = document.getElementById(id + "Text");
         var box = document.getElementById(id + "Rect");
         for (var i in markers) {
-          console.log(markers[i]);
           if (markers[i].style) {
             markers[i].style.fill = "rgb(4, 216, 76)";
           }
@@ -96,7 +93,6 @@ export default class StudentTopMenu extends React.Component {
         text.style.visibility = "visible";
         box.style.visibility = "visible";
         var that = this;
-        console.log("entered");
         setTimeout(function() {
           that.props.history.push("/student/classroom");
         }, 1500);
@@ -211,11 +207,7 @@ export default class StudentTopMenu extends React.Component {
                   icon="power off"
                   text="Ausloggen"
                   active={activeItem === "overview"}
-                  onClick={() =>
-                    Meteor.logout(() => {
-                      //TODO: logout is not reactive
-                    })
-                  }
+                  onClick={() => Meteor.logout(() => {})}
                 />
               </Dropdown.Menu>
             </Dropdown>
