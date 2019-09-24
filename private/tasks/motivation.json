@@ -541,6 +541,7 @@
             {
               "questId": 4,
               "questName": "Magda",
+              "hasNext": true,
               "Magda": "Magda ist normalerweise sehr engagiert und begeisterungsfähig. In der Klasse übernimmt sie gerne freiwillig Aufgaben. Allerdings hat sie sich nicht gemeldet als es um die Position der Klassensprecherin ging, was dich sehr wundert. Im letzten Schuljahr hat sie das so gut gemacht und dieses Jahr würdest du die Klassensprecherinnen auch besser unterstützen und entlohnen können. Was ist los mit ihr, warum will sie nicht?",
               "image": "Magda.png",
               "prePhrase": "Magda freut sich über dein Interesse und das Gespräch mit dir. Sie scheint selbst gar nicht recht zu wissen, warum sie sich dieses Jahr nicht freiwillig gemeldet hat und verspricht, sich nächstes Jahr wieder mehr zu engagieren.",
@@ -562,7 +563,7 @@
               "Tino": "Tinos Familie ist vor kurzem erst hergezogen. Trotzdem konnte er sich schnell in die Klasse integrieren und ist vor allem in den kreativeren Fächern ein guter Schüler. Du hast vor einiger Zeit mit einem Ausbildungsbetrieb zusammen ein Kunstprojekt gestartet. Dabei geht es genau um die Themen, für die sich Tino sehr interessiert. Du hoffst, dass Tino sich dort ganz entfalten kann. Er hat sich auch gefreut und zu Anfang sehr gut mitgemacht. Nun hat sich der Ausbildungsbetrieb bei dir gemeldet und berichtet, dass Tino in letzter Zeit weniger aufgeschlossen ist und in sich gekehrt scheint. Woran kann das liegen?",
               "image": "Tino.png",
               "filePrefix": "Multi",
-
+              "hasNext": false,
               "prePhrase": "Warum hatte Tino zuletzt Probleme, sich in dem Kunstprojekt  zu motivieren? Welcher Grund ist deiner Meinung nach und mit Blick auf dein Wissen über Motivation der wahrscheinlichste?",
               "Question": "Warum hatte Tino zuletzt Probleme, sich in dem Kunstprojekt  zu motivieren? Welcher Grund ist deiner Meinung nach und mit Blick auf dein Wissen über Motivation der wahrscheinlichste?",
               "AnswerSet": [
