@@ -13,6 +13,13 @@
   overflow-y: auto;
 }
 
+#dragDrop {
+  margin: 0 auto;
+  color: white;
+  border-radius: 5px;
+  background-color: #6a96e2;
+}
+
 // Smartphone
 @media screen and (max-width: 767px) {
   .workspace__container {

@@ -3,6 +3,8 @@ import { Meteor } from "meteor/meteor";
 import PropTypes from "prop-types";
 import { DragdropModel } from "../../../models/DragdropModel";
 import {
+  Responsive,
+  Segment,
   Button,
   Header,
   Modal,
@@ -111,6 +113,7 @@ export default class TrainingAnimationTemplate extends React.Component {
           {introIndex == finalIndex ? (
             <Button
               positive
+              id="posiBtn"
               icon="checkmark"
               labelPosition="right"
               content="Los gehts"
@@ -162,27 +165,65 @@ export default class TrainingAnimationTemplate extends React.Component {
     if (currentTraining) {
       return (
         <Modal
-          style={{ overflowY: "scroll" }}
+          style={{ overflowY: "scroll", height: "fit-content" }}
           className="scrolling"
           that={this}
           dimmer={dimmer}
           open={open}
           onClose={this.close}
         >
-          <Modal.Content image id="ImageContent">
-            <Grid>
-              <Grid.Row>
-                <Grid.Column width={5}>
-                  {this.state.currentTraining.finalTraining ? (
-                    <Image
-                      wrapped
-                      size="medium"
-                      src={
-                        "/training/quests/" +
-                        this.state.stepIcon[this.state.introIndex + 1]
-                      }
-                    />
-                  ) : (
+          <Segment.Group>
+            <Responsive as={Segment} {...Responsive.onlyMobile}>
+              <Image
+                wrapped
+                size="small"
+                src={
+                  "/training/quests/" +
+                  this.state.stepIcon[this.state.introIndex]
+                }
+              />
+              <Modal.Content image id="ImageContent">
+                <Modal.Description id="introDescription">
+                  <Header id="IntroTrainingText">
+                    {this.state.currentTraining.finalTraining
+                      ? this.state.stepName[this.state.introIndex + 1]
+                      : this.state.stepName[this.state.introIndex]}
+                  </Header>
+                  {this.state.currentTraining.finalTraining
+                    ? this.state.stepContent[this.state.introIndex + 1]
+                    : this.state.stepContent[this.state.introIndex]}
+                  {this.renderOutro()}
+                </Modal.Description>
+              </Modal.Content>
+            </Responsive>
+            <Responsive as={Segment} {...Responsive.onlyTablet}>
+              <Image
+                wrapped
+                size="medium"
+                src={
+                  "/training/quests/" +
+                  this.state.stepIcon[this.state.introIndex]
+                }
+              />
+              <Modal.Content image id="ImageContent">
+                <Modal.Description id="introDescription">
+                  <Header id="IntroTrainingText">
+                    {this.state.currentTraining.finalTraining
+                      ? this.state.stepName[this.state.introIndex + 1]
+                      : this.state.stepName[this.state.introIndex]}
+                  </Header>
+                  {this.state.currentTraining.finalTraining
+                    ? this.state.stepContent[this.state.introIndex + 1]
+                    : this.state.stepContent[this.state.introIndex]}
+                  {this.renderOutro()}
+                </Modal.Description>
+              </Modal.Content>
+            </Responsive>
+
+            <Responsive as={Segment} {...Responsive.onlyComputer}>
+              <div class="ui grid">
+                <div class="row">
+                  <div class="four wide column">
                     <Image
                       wrapped
                       size="medium"
@@ -191,24 +232,27 @@ export default class TrainingAnimationTemplate extends React.Component {
                         this.state.stepIcon[this.state.introIndex]
                       }
                     />
-                  )}
-                </Grid.Column>
-                <Grid.Column width={10}>
-                  <Modal.Description id="introDescription">
-                    <Header id="IntroTrainingText">
-                      {this.state.currentTraining.finalTraining
-                        ? this.state.stepName[this.state.introIndex + 1]
-                        : this.state.stepName[this.state.introIndex]}
-                    </Header>
-                    {this.state.currentTraining.finalTraining
-                      ? this.state.stepContent[this.state.introIndex + 1]
-                      : this.state.stepContent[this.state.introIndex]}
-                    {this.renderOutro()}
-                  </Modal.Description>
-                </Grid.Column>
-              </Grid.Row>
-            </Grid>
-          </Modal.Content>
+                  </div>
+                  <div class="ten wide column">
+                    <Modal.Content image id="ImageContent">
+                      <Modal.Description id="introDescription">
+                        <Header id="IntroTrainingText">
+                          {this.state.currentTraining.finalTraining
+                            ? this.state.stepName[this.state.introIndex + 1]
+                            : this.state.stepName[this.state.introIndex]}
+                        </Header>
+                        {this.state.currentTraining.finalTraining
+                          ? this.state.stepContent[this.state.introIndex + 1]
+                          : this.state.stepContent[this.state.introIndex]}
+                        {this.renderOutro()}
+                      </Modal.Description>
+                    </Modal.Content>
+                  </div>
+                </div>
+              </div>
+            </Responsive>
+          </Segment.Group>
+
           <Modal.Actions id="ModalActions">{this.renderBtns()}</Modal.Actions>
         </Modal>
       );
