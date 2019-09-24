@@ -48,18 +48,18 @@
   "Xwert_Theorie": ["Erwartungs-Wert", "Situation", "Ergebnis"],
   "Ziele": ["Zielsetzungstheorie", "Locke", "Moderatoren"],
   "ZieleCloze": ["Zielsetzungstheorie", "Locke", "Moderatoren"],
-  "MultiChoiceEx": [
-    {
-      "id": 1,
-      "sol": ["free"]
-    },
+  "MultiWhy": [{ "id": 1, "sol": ["free"] }],
+  "MultiExtrIntr": [
     {
       "id": 2,
       "sol": [
         "Intrinsische Motivation bedeutet, dass die Motivation von innen heraus kommt, zum Beispiel durch Interesse",
         "Der Korrumpierungseffekt kann auch als „Undermining Effekt“ bezeichnet werden"
       ]
-    },
+    }
+  ],
+
+  "MultiOutro": [
     {
       "id": 3,
       "sol": [

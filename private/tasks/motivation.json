@@ -4,7 +4,7 @@
       "name": "❤️-Willkommen",
       "title": "Einleitung",
       "package": "Motivation",
-      "taskId": "MultiChoiceEx",
+      "taskId": "MultiIntro",
       "isTraining": true,
       "trainingId": "Motivation Problem",
       "parentId": "Motivation0",
@@ -93,9 +93,10 @@
 
       "title": "Markiere drei Antworten, die auf dich zutreffen. Eure Antworten werden anonym im Lehrerzimmer ausgestellt und können im Seminar diskutiert werden.",
       "description": "Entscheide dich für drei Antwort(en), die am ehesten auf dich zutreffen. ",
-      "taskId": "MultiChoiceEx",
+      "taskId": "MultiWhy",
       "filePrefix": "Multi",
       "sequenceId": 2,
+      "credits": 1,
       "content": [
         {
           "QuestionId": 1,
@@ -152,7 +153,7 @@
       "parentId": "Motivation2",
       "title": "Fragen zum Text",
       "description": "Markiere die richtigen Aussagen",
-      "taskId": "MultiChoiceEx",
+      "taskId": "MultiExtrIntr",
       "filePrefix": "Multi",
       "sequenceId": 4,
       "content": [
@@ -524,7 +525,7 @@
 
     {
       "name": "Fallbearbeitung",
-      "taskId": "MultiChoiceEx",
+      "taskId": "MultiOutro",
       "title": "Fallbearbeitung",
       "package": "Motivation",
       "isTraining": true,
