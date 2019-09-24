@@ -11,16 +11,25 @@ export default class MultiChoiceView extends Component {
       checkedAnswers: [],
       showSolution: false,
       childKeyIteration: 0,
-      result: null
+      result: null,
+      next: false,
+      fails: 0,
+      totalAnswerCount: 0
     };
   }
 
   solutionPrepare() {
     let meteorMethod =
       "solutionHandler.submit" + this.props.activeTask.filePrefix;
-    if (this.state.showSolution) {
+    if (this.state.showSolution && !this.state.next) {
       let result = this.state.result;
-      let solvedPercentage = result.falseCount / result.totalAnswerCount;
+      let solvedPercentage = null;
+      if (this.state.totalAnswerCount > 0) {
+        solvedPercentage = this.state.falseCount / this.state.totalAnswerCount;
+      } else {
+        solvedPercentage = result.falseCount / result.totalAnswerCount;
+      }
+
       Meteor.call(
         meteorMethod,
         this.state.checkedAnswers,
@@ -28,6 +37,12 @@ export default class MultiChoiceView extends Component {
         this.props.activeTask,
         solvedPercentage
       );
+    } else if (this.state.next) {
+      this.props.renderNextStep();
+      this.state.checkedAnswers,
+        this.props.student._id,
+        this.props.activeTask,
+        this.setState({ next: false, showSolution: false });
     } else {
       Meteor.call(
         meteorMethod,
@@ -36,7 +51,57 @@ export default class MultiChoiceView extends Component {
         this.props.activeTask,
         (err, res) => {
           if (err) console.log(err);
-          if (res && res[0] === "free") {
+          if ((res.next || this.state.fails > 0) && res.falseCount > 0) {
+            Swal.fire({
+              position: "top-end",
+              type: "warning",
+              title: "Nicht ganz...",
+              text:
+                "Es sind nicht alle Fragen richtig beantwortet. Willst du es nochmal versuchen, oder möchtest du dir die Lösung anschauen?",
+              confirmButtonText: "Lösung zeigen",
+              cancelButtonText: "Nochmal versuchen",
+              cancelButtonColor: "#3085d6",
+              showCancelButton: true
+            }).then(result => {
+              if (result.value) {
+                this.setState({
+                  showSolution: true,
+                  result: res,
+                  next: true,
+                  fails: this.state.fails + res.falseCount,
+                  totalAnswerCount:
+                    this.state.totalAnswerCount + res.totalAnswerCount
+                });
+                this.forceUpdate();
+              } else {
+                this.setState({
+                  showSolution: false,
+                  fails: (this.state.fails += res.falseCount),
+                  totalAnswerCount: (this.state.totalAnswerCount +=
+                    res.totalAnswerCount),
+                  checkedAnswers: [],
+                  childKeyIteration: this.state.childKeyIteration === 0 ? 1 : 0
+                });
+              }
+            });
+          } else if (res.next && res.falseCount == 0) {
+            Swal.fire({
+              position: "top-end",
+              type: "success",
+              title: "Weiter gehts zum nächsten Fall."
+            }).then(result => {
+              if (result.value) {
+                this.setState({ showSolution: true, result: res, next: true });
+                this.forceUpdate();
+              } else {
+                this.setState({
+                  showSolution: false,
+                  checkedAnswers: [],
+                  childKeyIteration: this.state.childKeyIteration === 0 ? 1 : 0
+                });
+              }
+            });
+          } else if (res && res[0] === "free") {
             Swal.fire({
               position: "top-end",
               type: "success",
@@ -54,8 +119,7 @@ export default class MultiChoiceView extends Component {
               title: "Geschafft!",
               timer: 2000
             });
-          }
-          if (res && res.falseCount > 0) {
+          } else if (res && res.falseCount > 0) {
             Swal.fire({
               position: "top-end",
               type: "warning",

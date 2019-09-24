@@ -144,6 +144,7 @@ export default class TrainingAnimationTemplate extends React.Component {
         filePrefix: content[this.state.introIndex].filePrefix,
         QuestionId: content[this.state.introIndex].questId,
         Question: content[this.state.introIndex].Question,
+        hasNext: content[this.state.introIndex].hasNext,
         multi: content[this.state.introIndex].multi
       };
       let taskProps = {
