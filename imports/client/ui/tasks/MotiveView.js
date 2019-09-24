@@ -189,8 +189,7 @@ export default class MotiveView extends React.Component {
                 key={"card" + i + statement[1]}
                 style={{
                   marginBottom: "1rem",
-                  height: "5rem",
-                  width: "20rem"
+                  height: "5rem"
                 }}
                 className=" dragItem"
                 id="dragDrop"

@@ -30,17 +30,12 @@ export default class KeywordList extends React.Component {
     const buttonColor = finished ? "green" : "grey";
 
     return (
-      <Segment style={{ position: "fixed", margin: "20% 0 0 5%" }}>
+      <Segment id="KeywordList">
         <List>{this.renderListElem()}</List>
         <Button
+          id="KeywordListBtn"
           color={buttonColor}
           disabled={buttonDisabled}
-          style={{
-            marginTop: "10px",
-            marginBottom: "10px",
-            marginRight: "18.4%",
-            maxWidth: "230px"
-          }}
           floated="right"
           onClick={() => this.props.handleClick()}
         >
