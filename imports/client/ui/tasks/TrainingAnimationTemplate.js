@@ -71,6 +71,7 @@ export default class TrainingAnimationTemplate extends React.Component {
   }
 
   solveTraining() {
+    console.log("soooooooolve");
     Meteor.call(
       "students.solveTraining",
       this.props.student,
@@ -88,7 +89,6 @@ export default class TrainingAnimationTemplate extends React.Component {
   }
   nextAction() {
     const { introIndex, finalIndex } = this.state;
-
     if (introIndex < finalIndex) {
       this.setState({ introIndex: introIndex + 1 });
     }
