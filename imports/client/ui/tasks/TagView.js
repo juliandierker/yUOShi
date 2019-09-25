@@ -42,6 +42,7 @@ export default class TagView extends React.Component {
     var el = document.getElementsByClassName(match);
     var highlighted = document.getElementById(match + key);
 
+    if (this.state.tags.includes(match)) return;
     var tags = this.state.tags;
     tags.push(match);
     this.props.externUpdate(tags);
