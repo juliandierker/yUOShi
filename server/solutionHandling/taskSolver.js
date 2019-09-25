@@ -8,6 +8,7 @@ import { Tasks } from "../../imports/api/tasks";
 export function solveTask(studentId, taskId, solvedPercentage) {
   const student = Students.findOne({ _id: studentId });
   let task = getTask(studentId, taskId);
+  if (!task) return;
   updateStudentExperience(student, task, solvedPercentage);
   updateStudentCredits(student, task, solvedPercentage);
   setTaskSolved(student, task);
