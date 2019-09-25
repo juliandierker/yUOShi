@@ -2,67 +2,10 @@ import { Meteor } from "meteor/meteor";
 import equals from "fast-deep-equal";
 
 import { solveTask } from "./solutionHandling/taskSolver";
+import { checkMulti } from "./solutionHandling/multiSolver";
 
 var Solutions = JSON.parse(Assets.getText("solutions.json"));
 
-function solveMulti(
-  studentId,
-  task,
-  currentSolution,
-  falseCount,
-  totalAnswerCount,
-  falseQuestions,
-  questionCorrect,
-  studentSolution
-) {
-  if (currentSolution.sol[0] === "free") {
-    return currentSolution.sol.concat(studentSolution);
-  }
-  if (currentSolution.sol.length !== 0) {
-    let studentSolutionAnswers = studentSolution.find(element => {
-      return element.id.toString() === currentSolution.id.toString();
-    });
-
-    if (studentSolutionAnswers === undefined) {
-      falseCount += currentSolution.sol.length;
-      falseQuestions.push(currentSolution);
-    } else {
-      for (let j = 0; j < studentSolutionAnswers.values.length; j++) {
-        if (!currentSolution.sol.includes(studentSolutionAnswers.values[j])) {
-          questionCorrect = false;
-          falseCount++;
-        }
-      }
-      for (let j = 0; j < currentSolution.sol; j++) {
-        if (!studentSolutionAnswers.values.includes(currentSolution.sol[j])) {
-          questionCorrect = false;
-          falseCount++;
-        }
-      }
-    }
-  } else {
-    // TODO: save answers for later evaluation in "Lehrendenzimmer"
-  }
-
-  if (!questionCorrect) {
-    falseQuestions.push(currentSolution);
-  }
-
-  let retval = {
-    falseCount,
-    totalAnswerCount,
-    falseQuestions
-  };
-
-  if (task.hasNext) {
-    return Object.assign(retval, { next: true });
-  }
-
-  if (falseCount === 0) {
-    solveTask(studentId, task.taskId);
-  }
-  return retval;
-}
 Meteor.methods({
   "solutionHandler.submitDrag"(
     studentSolution,
@@ -124,48 +67,36 @@ Meteor.methods({
       solveTask(studentId, task.taskId, solvedPercentage);
       return null;
     }
-
-    let falseQuestions = [];
-
     let solution = Solutions[task.taskId];
-
     if (!solution) return null;
 
-    let totalAnswerCount = 0;
-    let falseCount = 0;
-    let questionCorrect = true;
-
-    if (task.content && task.isTask) {
-      totalAnswerCount += task.content[0].AnswerSet.length;
-      const currentSolution = solution.find(element => {
+    const currentSolution = solution.find(element => {
+      if (task.content) {
         return element.id.toString() === task.content[0].QuestionId.toString();
-      });
-      return solveMulti(
-        studentId,
-        task,
-        currentSolution,
-        falseCount,
-        totalAnswerCount,
-        falseQuestions,
-        questionCorrect,
-        studentSolution
-      );
-    } else {
-      totalAnswerCount += task.AnswerSet.length;
-      const currentSolution = solution.find(element => {
+      } else {
         return element.id.toString() === task.QuestionId.toString();
-      });
+      }
+    });
 
-      return solveMulti(
-        studentId,
-        task,
-        currentSolution,
-        falseCount,
-        totalAnswerCount,
-        falseQuestions,
-        questionCorrect,
-        studentSolution
-      );
+    // question has no "correct" answer
+    if (currentSolution.sol[0] === "free") {
+      return currentSolution.sol.concat(studentSolution);
     }
+
+    let retval = checkMulti(
+      task.content ? task.content[0] : task,
+      studentSolution,
+      currentSolution
+    );
+
+    if (task.hasNext) {
+      return Object.assign(retval, { next: true });
+    }
+
+    if (retval.falseCount === 0) {
+      solveTask(studentId, task.taskId);
+    }
+
+    return retval;
   }
 });
