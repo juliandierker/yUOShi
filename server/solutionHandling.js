@@ -7,7 +7,7 @@ var Solutions = JSON.parse(Assets.getText("solutions.json"));
 
 function solveMulti(
   studentId,
-  taskId,
+  task,
   currentSolution,
   falseCount,
   totalAnswerCount,
@@ -54,8 +54,12 @@ function solveMulti(
     falseQuestions
   };
 
+  if (task.hasNext) {
+    return Object.assign(retval, { next: true });
+  }
+
   if (falseCount === 0) {
-    solveTask(studentId, taskId);
+    solveTask(studentId, task.taskId);
   }
   return retval;
 }
@@ -138,7 +142,7 @@ Meteor.methods({
       });
       return solveMulti(
         studentId,
-        task.taskId,
+        task,
         currentSolution,
         falseCount,
         totalAnswerCount,
@@ -151,9 +155,10 @@ Meteor.methods({
       const currentSolution = solution.find(element => {
         return element.id.toString() === task.QuestionId.toString();
       });
+
       return solveMulti(
         studentId,
-        task.taskId,
+        task,
         currentSolution,
         falseCount,
         totalAnswerCount,

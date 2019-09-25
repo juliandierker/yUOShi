@@ -46,7 +46,6 @@ Meteor.methods({
       package: packageName,
       sequenceId: sequenceId
     }).fetch()[0];
-    console.log(tasks);
     Students.update(_id, { $addToSet: { tasks } });
   },
   //Gets a package and it's first training

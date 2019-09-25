@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { Meteor } from "meteor/meteor";
-
+import Swal from "sweetalert2";
 import DragAnimationTemplate from "../../tasks/DragAnimationTemplate";
 import TrainingAnimationTemplate from "../../tasks/TrainingAnimationTemplate";
 import TagAnimationTemplate from "../../tasks/TagAnimationTemplate";
@@ -78,6 +78,19 @@ export default class Workspace extends React.Component {
     }
     window.removeEventListener("beforeunload", this.handler);
   }
+
+  checkPackageProgress() {
+    console.log("entered");
+    var check = this.props.student.solvedTraining.filter(elem => {
+      console.log(elem);
+      console.log(this.props.student.currentPackage[0]);
+      return elem.package == this.props.student.currentPackage[0].name;
+    });
+    console.log(check);
+
+    return check.length >= 2;
+  }
+
   getCurrentTasksList() {
     if (this.props.student) {
       var currentTaskIds = this.props.student.tasks.map(currentTask => {
@@ -137,8 +150,8 @@ export default class Workspace extends React.Component {
       });
     }
 
-    if (currentTask) {
-      if (currentTask.isTask) {
+    if (currentTask || this.props.student.currentTraining.length == 0) {
+      if (currentTask && currentTask.isTask) {
         let taskProps = {
           student: this.props.student,
           tasks: this.props.tasks,
@@ -171,6 +184,16 @@ export default class Workspace extends React.Component {
               />
             );
         }
+      } else if (this.checkPackageProgress()) {
+        Swal.fire({
+          position: "top-end",
+          type: "success",
+          title: "🎉 Du hast das Paket Motivation abgeschlossen. 🎉",
+
+          timer: 2000
+        }).then(result => {
+          this.props.history.push("/student/classroom");
+        });
       } else {
         let currentTaskArray = [];
         currentTaskArray.push(currentTask);
@@ -226,7 +249,8 @@ export default class Workspace extends React.Component {
           bottom: "35px",
           width: "50%",
           textAlign: "center",
-          marginLeft: "25%"
+          marginLeft: "25%",
+          marginRight: "25%"
         }}
       >
         <Button
@@ -266,22 +290,18 @@ export default class Workspace extends React.Component {
 
     return (
       <Grid id="workspaceGrid">
-        <Grid.Column width={3}>
+        <Grid.Column
+          width={3}
+          style={{
+            padding: "0rem"
+          }}
+        >
           {this.renderDescription()} {this.renderKeywordList()}
         </Grid.Column>
-        <Grid.Column width={6}>
-          <div
-            className="workspace__container"
-            style={{
-              width: "100%",
-              marginTop: "60px",
-              height: "100vh"
-            }}
-          >
-            {this.taskSwitch()}
-          </div>
+        <Grid.Column width={8}>
+          <div className="workspace__container">{this.taskSwitch()}</div>
         </Grid.Column>
-        <Grid.Column width={3}>
+        <Grid.Column width={4}>
           <TaskProgress
             currentTask={this.state.activeTask}
             student={this.props.student}

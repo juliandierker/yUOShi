@@ -1,3 +1,9 @@
+#gameOverView {
+  margin-top: 4rem;
+}
+#Ebene_1 {
+  margin-top: 4rem;
+}
 .workspace__container {
   height: 85vh;
   margin: 0 auto;
@@ -6,6 +12,7 @@
 #workspaceGrid {
   justify-content: center;
 }
+
 #defTextReader {
   height: 85vh;
   max-width: 100%;
@@ -13,13 +20,26 @@
   overflow-y: auto;
 }
 
+#dragDrop {
+  margin: 0 auto;
+  color: white;
+  border-radius: 5px;
+  background-color: #6a96e2;
+}
+
 // Smartphone
 @media screen and (max-width: 767px) {
   .workspace__container {
     width: 100%;
     height: 75vh;
+    margin: 0rem;
   }
-
+  #workspaceGrid {
+    margin-top: 7rem;
+  }
+  #workspaceDescription {
+    margin-top: 1rem;
+  }
   #defTextReader {
     width: 100%;
     height: 75vh;
@@ -39,17 +59,42 @@
     width: 85%;
     margin-top: -2rem;
   }
+  #KeywordListBtn {
+    margin-top: -29px;
+    margin-right: -4.6%;
+    max-width: 230px;
+  }
+  .MuiStepper-root {
+    padding: 0rem !important;
+  }
 }
 
 // Tablet
 @media screen and (min-width: 768px) and (max-width: 1024px) {
   .workspace__container {
     width: 60%;
+    width: 100%;
+    margin-top: 3rem;
+    height: 100vh;
   }
-
+  #workspaceGrid {
+    margin-top: 2rem;
+  }
+  #workspaceDescription {
+    margin-top: 4rem;
+  }
   #NavigationButtonContainer {
     text-align: center;
     margin-top: 0.5rem;
+  }
+  #KeywordListBtn {
+    margin-top: -29px;
+    margin-right: -4.6%;
+    max-width: 230px;
+  }
+  .MuiStepper-root {
+    padding: 0rem !important;
+    margin-top: 3rem;
   }
 }
 
@@ -57,8 +102,12 @@
 @media screen and (min-width: 1025px) {
   .workspace__container {
     width: 100%;
+    margin-top: 60px;
+    height: 100vh;
   }
-
+  #workspaceGrid {
+    margin-top: 2rem;
+  }
   #NavigationButtonContainer {
     margin-top: 0.5rem;
     width: 40% !important;
@@ -79,5 +128,15 @@
     margin-left: 5%;
     max-height: 700px;
     position: fixed;
+  }
+  #KeywordList {
+    position: fixed;
+    margin: 20% 0 0 5%;
+  }
+  #KeywordListBtn {
+    margin-top: 10px;
+    margin-bottom: 10px;
+    margin-right: 18.4%;
+    max-width: 230px;
   }
 }

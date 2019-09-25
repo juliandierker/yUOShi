@@ -11,23 +11,50 @@ export default class MultiChoiceView extends Component {
       checkedAnswers: [],
       showSolution: false,
       childKeyIteration: 0,
-      result: null
+      result: null,
+      next: false,
+      final: false,
+      fails: 0,
+      totalAnswerCount: 0
     };
   }
 
   solutionPrepare() {
     let meteorMethod =
       "solutionHandler.submit" + this.props.activeTask.filePrefix;
-    if (this.state.showSolution) {
+    if (this.state.showSolution && this.state.final) {
+      console.log("V");
       let result = this.state.result;
-      let solvedPercentage = result.falseCount / result.totalAnswerCount;
+      let solvedPercentage = null;
+      if (this.state.totalAnswerCount > 0) {
+        solvedPercentage = this.state.falseCount / this.state.totalAnswerCount;
+      } else {
+        solvedPercentage = result.falseCount / result.totalAnswerCount;
+      }
+      const { currentTraining } = this.props.student;
+      console.log("AAAA");
       Meteor.call(
         meteorMethod,
         this.state.checkedAnswers,
         this.props.student._id,
         this.props.activeTask,
-        solvedPercentage
+        solvedPercentage,
+        (err, res) => {
+          if (!err) {
+            Meteor.call(
+              "students.solveTraining",
+              this.props.student,
+              currentTraining[currentTraining.length - 1]
+            );
+          }
+        }
       );
+    } else if (this.state.next) {
+      this.props.renderNextStep();
+      this.state.checkedAnswers,
+        this.props.student._id,
+        this.props.activeTask,
+        this.setState({ next: false, showSolution: false });
     } else {
       Meteor.call(
         meteorMethod,
@@ -36,10 +63,71 @@ export default class MultiChoiceView extends Component {
         this.props.activeTask,
         (err, res) => {
           if (err) console.log(err);
-          if (res && res[0] === "free") {
+          if ((res.next || this.state.fails > 0) && res.falseCount > 0) {
+            var tmp = this.state.fails > 0;
+
+            Swal.fire({
+              position: "top-end",
+              type: "warning",
+              title: "Nicht ganz...",
+              text:
+                "Es sind nicht alle Fragen richtig beantwortet. Willst du es nochmal versuchen, oder möchtest du dir die Lösung anschauen?",
+              confirmButtonText: "Lösung zeigen",
+              cancelButtonText: "Nochmal versuchen",
+              cancelButtonColor: "#3085d6",
+              showCancelButton: true
+            }).then(result => {
+              if (result.value) {
+                this.setState({
+                  showSolution: true,
+                  final: tmp,
+                  result: res,
+                  next: true,
+                  fails: this.state.fails + res.falseCount,
+                  totalAnswerCount:
+                    this.state.totalAnswerCount + res.totalAnswerCount
+                });
+                this.forceUpdate();
+              } else {
+                this.setState({
+                  showSolution: false,
+                  fails: (this.state.fails += res.falseCount),
+                  final: tmp,
+                  totalAnswerCount: (this.state.totalAnswerCount +=
+                    res.totalAnswerCount),
+                  checkedAnswers: [],
+                  childKeyIteration: this.state.childKeyIteration === 0 ? 1 : 0
+                });
+              }
+            });
+          } else if (res.next && res.falseCount == 0) {
             Swal.fire({
               position: "top-end",
               type: "success",
+              title: "Weiter gehts zum nächsten Fall."
+            }).then(result => {
+              if (result.value) {
+                this.setState({
+                  showSolution: true,
+                  result: res,
+                  next: true,
+                  final: false
+                });
+                this.forceUpdate();
+              } else {
+                this.setState({
+                  showSolution: false,
+                  checkedAnswers: [],
+                  final: false,
+                  childKeyIteration: this.state.childKeyIteration === 0 ? 1 : 0
+                });
+              }
+            });
+          } else if (res && res[0] === "free") {
+            Swal.fire({
+              position: "top-end",
+              type: "success",
+              final: true,
               title: "Danke",
               toast: true,
               text: "Deine Gründe werden im Lehrendenzimmer ausgestellt.",
@@ -54,11 +142,13 @@ export default class MultiChoiceView extends Component {
               title: "Geschafft!",
               timer: 2000
             });
-          }
-          if (res && res.falseCount > 0) {
+            this.setState({ final: true });
+          } else if (res && res.falseCount > 0) {
             Swal.fire({
               position: "top-end",
               type: "warning",
+              final: true,
+
               title: "Nicht ganz...",
               text:
                 "Es sind nicht alle Fragen richtig beantwortet. Willst du es nochmal versuchen, oder möchtest du dir die Lösung anschauen?",
@@ -68,11 +158,12 @@ export default class MultiChoiceView extends Component {
               showCancelButton: true
             }).then(result => {
               if (result.value) {
-                this.setState({ showSolution: true, result: res });
+                this.setState({ showSolution: true, result: res, final: true });
                 this.forceUpdate();
               } else {
                 this.setState({
                   showSolution: false,
+                  final: true,
                   checkedAnswers: [],
                   childKeyIteration: this.state.childKeyIteration === 0 ? 1 : 0
                 });
@@ -205,7 +296,9 @@ export default class MultiChoiceView extends Component {
           style={{
             marginTop: "10px",
             marginBottom: "10px",
-            marginRight: "18.4%"
+            marginRight: "18.4%",
+            backgroundColor: "rgb(143, 176, 232)",
+            color: "white"
           }}
           floated="right"
           onClick={() => this.solutionPrepare()}

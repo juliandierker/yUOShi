@@ -3,6 +3,8 @@ import { Meteor } from "meteor/meteor";
 import PropTypes from "prop-types";
 import { DragdropModel } from "../../../models/DragdropModel";
 import {
+  Responsive,
+  Segment,
   Button,
   Header,
   Modal,
@@ -69,6 +71,7 @@ export default class TrainingAnimationTemplate extends React.Component {
   }
 
   solveTraining() {
+    console.log("soooooooolve");
     Meteor.call(
       "students.solveTraining",
       this.props.student,
@@ -86,7 +89,6 @@ export default class TrainingAnimationTemplate extends React.Component {
   }
   nextAction() {
     const { introIndex, finalIndex } = this.state;
-
     if (introIndex < finalIndex) {
       this.setState({ introIndex: introIndex + 1 });
     }
@@ -111,6 +113,7 @@ export default class TrainingAnimationTemplate extends React.Component {
           {introIndex == finalIndex ? (
             <Button
               positive
+              id="posiBtn"
               icon="checkmark"
               labelPosition="right"
               content="Los gehts"
@@ -144,6 +147,7 @@ export default class TrainingAnimationTemplate extends React.Component {
         filePrefix: content[this.state.introIndex].filePrefix,
         QuestionId: content[this.state.introIndex].questId,
         Question: content[this.state.introIndex].Question,
+        hasNext: content[this.state.introIndex].hasNext,
         multi: content[this.state.introIndex].multi
       };
       let taskProps = {
@@ -165,9 +169,34 @@ export default class TrainingAnimationTemplate extends React.Component {
         ? this.state.introIndex + 1
         : this.state.introIndex;
 
+      const modalContent = (
+        <Modal.Content image id="ImageContent">
+          <Modal.Description id="introDescription">
+            <Header id="IntroTrainingText">
+              {this.state.stepName[currentIntroIndex]}
+            </Header>
+            {this.state.stepContent[currentIntroIndex]}
+            {this.renderOutro()}
+          </Modal.Description>
+        </Modal.Content>
+      );
+
+      const modalContentContainer = (
+        <React.Fragment>
+          <Image
+            wrapped
+            size="small"
+            src={
+              "/training/quests/" + this.state.stepIcon[this.state.introIndex]
+            }
+          />
+          {modalContent}
+        </React.Fragment>
+      );
+
       return (
         <Modal
-          style={{ overflowY: "scroll" }}
+          style={{ overflowY: "scroll", height: "fit-content" }}
           className="scrolling"
           that={this}
           dimmer={dimmer}
@@ -175,31 +204,33 @@ export default class TrainingAnimationTemplate extends React.Component {
           open={open}
           onClose={this.close}
         >
-          <Modal.Content image id="ImageContent">
-            <Grid>
-              <Grid.Row>
-                <Grid.Column width={5}>
-                  <Image
-                    wrapped
-                    size="medium"
-                    src={
-                      "/training/quests/" +
-                      this.state.stepIcon[currentIntroIndex]
-                    }
-                  />
-                </Grid.Column>
-                <Grid.Column width={10}>
-                  <Modal.Description id="introDescription">
-                    <Header id="IntroTrainingText">
-                      {this.state.stepName[currentIntroIndex]}
-                    </Header>
-                    {this.state.stepContent[currentIntroIndex]}
-                    {this.renderOutro()}
-                  </Modal.Description>
-                </Grid.Column>
-              </Grid.Row>
-            </Grid>
-          </Modal.Content>
+          <Segment.Group>
+            <Responsive as={Segment} {...Responsive.onlyMobile}>
+              {modalContentContainer}
+            </Responsive>
+            <Responsive as={Segment} {...Responsive.onlyTablet}>
+              {modalContentContainer}
+            </Responsive>
+
+            <Responsive as={Segment} {...Responsive.onlyComputer}>
+              <div class="ui grid">
+                <div class="row">
+                  <div class="four wide column">
+                    <Image
+                      wrapped
+                      size="medium"
+                      src={
+                        "/training/quests/" +
+                        this.state.stepIcon[this.state.introIndex]
+                      }
+                    />
+                  </div>
+                  <div class="ten wide column">{modalContent}</div>
+                </div>
+              </div>
+            </Responsive>
+          </Segment.Group>
+
           <Modal.Actions id="ModalActions">{this.renderBtns()}</Modal.Actions>
         </Modal>
       );

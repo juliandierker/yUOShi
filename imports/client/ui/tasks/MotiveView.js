@@ -164,7 +164,8 @@ export default class MotiveView extends React.Component {
               style={{
                 height: "100%",
                 minHeight: "200px",
-                justifyContent: "space-around"
+                justifyContent: "space-around",
+                marginLeft: "1.5rem"
               }}
             />
           </Grid.Column>
@@ -181,14 +182,20 @@ export default class MotiveView extends React.Component {
         return statements
           .slice(this.state.index, this.state.index + 1)
           .map(statement => {
+            console.log(statement);
             return (
-              <Card
-                key={"card" + i + statement[1]}
-                centered
+              <div
                 description={[statement[1]]}
-                className="dragItem"
-                id={statement[0]}
-              />
+                key={"card" + i + statement[1]}
+                style={{
+                  marginBottom: "1rem",
+                  height: "5rem"
+                }}
+                className=" dragItem"
+                id="dragDrop"
+              >
+                {statement[1]}
+              </div>
             );
           });
       } else {

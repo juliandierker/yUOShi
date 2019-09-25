@@ -109,8 +109,6 @@ export default class StudentOverview extends React.Component {
         (err, res) => {
           if (res) {
             this.props.history.push("/student/workspace");
-          } else if (err) {
-            alert("Danke für deine Teilnahme :)");
           }
         }
       );
@@ -184,6 +182,7 @@ export default class StudentOverview extends React.Component {
             path="/student/workspace"
             render={props => (
               <Workspace
+                history={this.props.history}
                 student={this.state.student}
                 handleNextTask={this.handleNextTask.bind(this)}
                 courses={this.state.courses}
