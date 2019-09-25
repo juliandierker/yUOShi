@@ -238,7 +238,7 @@ export default class MemoryView extends React.Component {
           floated="right"
           onClick={() => this.solutionPrepare()}
         >
-          Weiter
+          Aufgabe lösen
         </Button>
       </div>
     );
