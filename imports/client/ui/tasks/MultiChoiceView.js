@@ -303,7 +303,7 @@ export default class MultiChoiceView extends Component {
           floated="right"
           onClick={() => this.solutionPrepare()}
         >
-          Weiter
+          Aufgabe lösen
         </Button>
       </React.Fragment>
     );

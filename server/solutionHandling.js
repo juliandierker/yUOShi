@@ -1,160 +1,11 @@
 import { Meteor } from "meteor/meteor";
 import equals from "fast-deep-equal";
-import { Mongo } from "meteor/mongo";
 
-import { Students } from "../imports/api/students";
-import { Tasks } from "../imports/api/tasks";
+import { solveTask } from "./solutionHandling/taskSolver";
+import { checkMulti } from "./solutionHandling/multiSolver";
+
 var Solutions = JSON.parse(Assets.getText("solutions.json"));
 
-function solveTask(studentId, taskId, solvedPercentage) {
-  try {
-    const student = Students.findOne({ _id: studentId });
-    const task = Tasks.findOne({ taskId: taskId });
-
-    var currentTask = Students.find(
-      { _id: studentId, "tasks.taskId": taskId },
-      { fields: { "tasks.$": 1, _id: 0 } }
-    ).fetch()[0];
-    if (!currentTask) {
-      return "Task already solved!";
-    }
-
-    currentTask = currentTask.tasks[0];
-
-    var endTime = moment().format("dddd, MMMM Do YYYY, h:mm:ss a");
-    currentTask["endTime"] = endTime;
-    currentTask["taskState"] = "solved";
-
-    let taskexp = task.credits;
-    if (solvedPercentage || solvedPercentage == 0) {
-      taskexp = Math.round(taskexp * solvedPercentage);
-    }
-    student.exp += taskexp;
-    // update student
-    var studentUpdates = {
-      $push: { solvedTasks: currentTask },
-      $inc: {},
-      $set: { lastActiveTaskId: taskId },
-      $pull: { tasks: { taskId: taskId } }
-    };
-
-    if (student.exp > student.level * student.level * 1000) {
-      studentUpdates["$inc"]["level"] = 1;
-      studentUpdates["$set"]["exp"] =
-        student.exp - student.level * student.level * 1000;
-    } else {
-      studentUpdates["$set"]["exp"] = student.exp;
-    }
-    if (student.date == moment().format("MMM Do,h:mm a")) {
-      if (student.earning.length != 1) {
-        // var money = Companies.update({ _id: studentid }, { $pop: { earning: 1 } });
-      }
-      money = task.credits + student.earning[student.earning.length - 1];
-      Companies.update({ _id: studentid }, { $addToSet: { earning: money } });
-      // studentUpdates["$addToSet"]["earning"] = money;
-    } else {
-      var money = task.credits + student.earning[student.earning.length - 1];
-      Students.update({ _id: studentId }, { $addToSet: { earning: money } });
-      // studentUpdates["$addToSet"]["earning"] = money;
-      student.date = moment().format("MMM Do,h:mm a");
-    }
-
-    let newCredits = task.credits;
-    if (solvedPercentage || solvedPercentage == 0) {
-      newCredits = Math.round(newCredits * solvedPercentage);
-    }
-    for (var bonus in currentTask.taskState.bonuses) {
-      newCredits += currentTask.taskState.bonuses[bonus];
-    }
-    studentUpdates["$inc"]["credits"] = newCredits;
-    studentUpdates["$inc"]["currentSequenceId"] = 1;
-    Students.update({ _id: studentId }, studentUpdates);
-  } catch (e) {
-    console.log(e);
-  }
-
-  //TODO Badges
-
-  // var studentBadges = student.badges;
-  // var badges = [];
-  // if (studen.solvedTasks.length == 1) {
-  //   badges.push("assignments");
-  // }
-  // if (newCredits > 3000) {
-  //   badges.push("money");
-  // }npm install fast-deep-equal
-
-  //
-  // for (var i = 0; i < compBadges.length; i++) {
-  //   if (badges.includes(compBadges[i])) {
-  //     compBadges.splice(i, 1);
-  //   }
-  // }
-
-  // studenUpdates["$set"]["badges"] = badges.concat(compBadges);
-}
-
-function solveMulti(
-  studentId,
-  task,
-  currentSolution,
-  falseCount,
-  totalAnswerCount,
-  falseQuestions,
-  questionCorrect,
-  studentSolution
-) {
-  if (currentSolution.sol[0] === "free") {
-    return currentSolution.sol.concat(studentSolution);
-  }
-  if (currentSolution.sol.length !== 0) {
-    //TODO: check answers
-    let studentSolutionAnswers = studentSolution.find(element => {
-      return element.id.toString() === currentSolution.id.toString();
-    });
-    // let studentSolutionAnswerSet = studentSolutionAnswers !== undefined ? studentSolutionAnswers.sol;
-
-    if (studentSolutionAnswers === undefined) {
-      falseCount += currentSolution.sol.length;
-      falseQuestions.push(currentSolution);
-    } else {
-      for (let j = 0; j < studentSolutionAnswers.values.length; j++) {
-        if (!currentSolution.sol.includes(studentSolutionAnswers.values[j])) {
-          questionCorrect = false;
-          falseCount++;
-        }
-      }
-      for (let j = 0; j < currentSolution.sol; j++) {
-        if (!studentSolutionAnswers.values.includes(currentSolution.sol[j])) {
-          questionCorrect = false;
-          falseCount++;
-        }
-      }
-    }
-  } else {
-    // console.log(currentSolution);
-    // TODO: save answers for later evaluation in "Lehrendenzimmer"
-  }
-
-  if (!questionCorrect) {
-    falseQuestions.push(currentSolution);
-  }
-
-  let retval = {
-    falseCount,
-    totalAnswerCount,
-    falseQuestions
-  };
-
-  if (task.hasNext) {
-    return Object.assign(retval, { next: true });
-  }
-
-  if (falseCount === 0) {
-    solveTask(studentId, task.taskId);
-  }
-  return retval;
-}
 Meteor.methods({
   "solutionHandler.submitDrag"(
     studentSolution,
@@ -216,48 +67,36 @@ Meteor.methods({
       solveTask(studentId, task.taskId, solvedPercentage);
       return null;
     }
-
-    let falseQuestions = [];
-
     let solution = Solutions[task.taskId];
-
     if (!solution) return null;
 
-    let totalAnswerCount = 0;
-    let falseCount = 0;
-    let questionCorrect = true;
-
-    if (task.content && task.isTask) {
-      totalAnswerCount += task.content[0].AnswerSet.length;
-      const currentSolution = solution.find(element => {
+    const currentSolution = solution.find(element => {
+      if (task.content) {
         return element.id.toString() === task.content[0].QuestionId.toString();
-      });
-      return solveMulti(
-        studentId,
-        task,
-        currentSolution,
-        falseCount,
-        totalAnswerCount,
-        falseQuestions,
-        questionCorrect,
-        studentSolution
-      );
-    } else {
-      totalAnswerCount += task.AnswerSet.length;
-      const currentSolution = solution.find(element => {
+      } else {
         return element.id.toString() === task.QuestionId.toString();
-      });
+      }
+    });
 
-      return solveMulti(
-        studentId,
-        task,
-        currentSolution,
-        falseCount,
-        totalAnswerCount,
-        falseQuestions,
-        questionCorrect,
-        studentSolution
-      );
+    // question has no "correct" answer
+    if (currentSolution.sol[0] === "free") {
+      return currentSolution.sol.concat(studentSolution);
     }
+
+    let retval = checkMulti(
+      task.content ? task.content[0] : task,
+      studentSolution,
+      currentSolution
+    );
+
+    if (task.hasNext) {
+      return Object.assign(retval, { next: true });
+    }
+
+    if (retval.falseCount === 0) {
+      solveTask(studentId, task.taskId);
+    }
+
+    return retval;
   }
 });
