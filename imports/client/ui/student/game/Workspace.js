@@ -243,16 +243,7 @@ export default class Workspace extends React.Component {
   renderNavigationButtons() {
     var that = this;
     return (
-      <div
-        style={{
-          position: "absolute",
-          bottom: "35px",
-          width: "50%",
-          textAlign: "center",
-          marginLeft: "25%",
-          marginRight: "25%"
-        }}
-      >
+      <div id="renderNavigationButtons">
         <Button
           id="prevTaskBtn"
           content="Vorherige Aufgabe"
@@ -291,7 +282,7 @@ export default class Workspace extends React.Component {
     return (
       <Grid id="workspaceGrid">
         <Grid.Column
-          width={3}
+          width={4}
           style={{
             padding: "0rem"
           }}
@@ -301,7 +292,7 @@ export default class Workspace extends React.Component {
         <Grid.Column width={8}>
           <div className="workspace__container">{this.taskSwitch()}</div>
         </Grid.Column>
-        <Grid.Column width={4}>
+        <Grid.Column width={3}>
           <TaskProgress
             currentTask={this.state.activeTask}
             student={this.props.student}

@@ -13,13 +13,11 @@
   float: left;
   font-family: "Gabriela";
   shape-outside: polygon(310px 0, 130px 405px, 620px 405px);
-  padding-right: 60px;
 }
 
 .dragItemGroup {
   margin-top: 20px;
   display: flex;
-
   justify-content: space-evenly;
 }
 
@@ -28,7 +26,7 @@
 }
 
 .Maslow {
-  width: 800px;
+  width: 100%;
   padding: 40px 0;
   text-align: center;
   margin: 0 auto;
