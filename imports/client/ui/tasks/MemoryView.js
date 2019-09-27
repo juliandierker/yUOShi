@@ -209,6 +209,7 @@ export default class MemoryView extends React.Component {
   render() {
     const buttonDisabled = this.state.finished ? false : true;
     const buttonColor = this.state.finished ? "green" : "grey";
+
     return (
       <div>
         <div className="playground">
