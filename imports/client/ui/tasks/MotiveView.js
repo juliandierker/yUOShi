@@ -114,16 +114,49 @@ export default class MotiveView extends React.Component {
     );
   }
 
+  mouseHitTest(mouseX, mouseY, boundingRect) {
+    // Rectangle bounds
+    let top = boundingRect.top;
+    let bottom = boundingRect.top + boundingRect.height;
+    let left = boundingRect.left;
+    let right = boundingRect.left + boundingRect.width;
+
+    if (
+      mouseX >= left &&
+      mouseX <= right &&
+      mouseY >= top &&
+      mouseY <= bottom
+    ) {
+      return true;
+    }
+
+    return false;
+  }
+
   dropItem() {
     let that = this.vars.that;
+    let e = window.event;
+
+    let hitIntr = that.mouseHitTest(
+      e.pageX,
+      e.pageY,
+      document.getElementById("intr_hitContainer").getBoundingClientRect()
+    );
+
+    let hitExtr = that.mouseHitTest(
+      e.pageX,
+      e.pageY,
+      document.getElementById("extr_hitContainer").getBoundingClientRect()
+    );
+
     let index = that.state.index;
     let hit = "";
-    if (this.hitTest("#intr_target")) {
+    if (hitIntr) {
       let intr = that.state.intr_container ? that.state.intr_container : [];
       intr.push(this.target);
       hit = "intr";
       that.setState({ intr_container: intr });
-    } else if (this.hitTest("#extr_target")) {
+    } else if (hitExtr) {
       let extr = that.state.extr_container ? that.state.extr_container : [];
       extr.push(this.target);
       hit = "extr";
@@ -144,7 +177,7 @@ export default class MotiveView extends React.Component {
     return (
       <Segment className="selected" style={{ width: "100%" }}>
         <Grid columns={2} stretched>
-          <Grid.Column>
+          <Grid.Column id="intr_hitContainer">
             <h4>Intrinsische Motivation</h4>
             <div
               id="intr_target"
@@ -156,7 +189,7 @@ export default class MotiveView extends React.Component {
               }}
             />
           </Grid.Column>
-          <Grid.Column>
+          <Grid.Column id="extr_hitContainer">
             <h4>Extrinsische Motivation</h4>
             <div
               id="extr_target"
@@ -182,7 +215,6 @@ export default class MotiveView extends React.Component {
         return statements
           .slice(this.state.index, this.state.index + 1)
           .map(statement => {
-            console.log(statement);
             return (
               <div
                 description={[statement[1]]}
