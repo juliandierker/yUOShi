@@ -39,7 +39,7 @@ export default class KeywordList extends React.Component {
           floated="right"
           onClick={() => this.props.handleClick()}
         >
-          Weiter
+          Aufgabe lösen
         </Button>
       </Segment>
     );
