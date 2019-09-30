@@ -108,7 +108,6 @@
             "Pädagogisch handeln",
             "Schüler*innen motivieren",
             "Spannende Themen behandeln",
-            "Ferien",
             "sonstiges"
           ],
           "multi": true
@@ -372,15 +371,39 @@
       "parentId": "Motivation3",
       "title": "Die Selbstbestimmungstheorie",
       "description": "Selbstbestimmungstheorie",
-      "taskId": "todo",
+      "taskId": "Selbstestimmung",
       "filePrefix": "Drag",
       "sequenceId": 10,
       "content": {
         "statements": [
           [
-            ["soz_eing", "BLA"],
-            ["autonomie", "BLALBLA"],
-            ["kompetenz", "BLABLLBALBL"]
+            [
+              "soz_eing",
+              "Ich fühle mich in meiner sozialen Gruppe angekommen."
+            ],
+            [
+              "soz_eing",
+              "Meine Meinung und Einstellung wird geschätzt und akzeptiert."
+            ],
+
+            ["autonomie", "Ich kann das alleine schaffen."],
+            [
+              "autonomie",
+              "Ich brauche erst Hilfe, wenn ich nicht weiterkomme."
+            ],
+            [
+              "autonomie",
+              "Ich mache das, weil ich es für den richtigen Weg zum Ziel halte."
+            ],
+
+            [
+              "kompetenz",
+              "Ich habe die nötigen Fähigkeiten, diese Aufgabe zu bewältigen."
+            ],
+            [
+              "kompetenz",
+              "Ich bin in der Lage, mir die nötigen Kompetenzen anzueignen, die ich für die Aufgabe benötige."
+            ]
           ]
         ]
       },
