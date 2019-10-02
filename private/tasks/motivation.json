@@ -182,6 +182,9 @@
       "content": {},
       "package": "Motivation",
       "credits": 12,
+      "categories": ["intr", "extr"],
+      "scale": false,
+      "orientation": "horizontal",
       "statements": [
         [
           [

@@ -280,7 +280,7 @@ export default class Workspace extends React.Component {
     let activesubpackage = this.getActiveSubpackage();
 
     return (
-      <Grid id="workspaceGrid">
+      <Grid scrollable id="workspaceGrid">
         <Grid.Column
           width={4}
           style={{

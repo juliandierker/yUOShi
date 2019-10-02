@@ -3,11 +3,12 @@ import { Meteor } from "meteor/meteor";
 import PropTypes from "prop-types";
 import { Button } from "semantic-ui-react";
 import { DragdropModel } from "../../../models/DragdropModel";
-
+import DragdropTemplate from "./DragdropTemplate";
 import Swal from "sweetalert2";
+import { Container, Draggable } from "react-smooth-dnd";
 
 import MaslowView from "./MaslowView";
-import MotiveView from "./MotiveView";
+import MotiveView from "./MotiveView_old";
 
 export default class DragAnimationTemplate extends React.Component {
   constructor(props) {
@@ -141,12 +142,18 @@ export default class DragAnimationTemplate extends React.Component {
           />
         );
       } else if (this.props.activeTask.taskId == "Motive") {
+        console.log("AAA");
         renderable = (
-          <MotiveView
+          <DragdropTemplate
             {...taskProps}
             showSolution={this.state.showSolution}
             key={"draganimationcomponentMotive" + this.state.childKeyIteration}
           />
+          // <MotiveView
+          //   {...taskProps}
+          //   showSolution={this.state.showSolution}
+          //   key={"draganimationcomponentMotive" + this.state.childKeyIteration}
+          // />
         );
       }
     }
@@ -154,7 +161,13 @@ export default class DragAnimationTemplate extends React.Component {
     let buttonText = this.state.showSolution ? "Weiter" : "Aufgabe lösen";
     return (
       <div>
-        <div className="dragAnimation__wrapper">{renderable}</div>
+        {console.log(renderable)}
+        <div
+          style={{ overflowY: "auto", maxHeight: "90vh" }}
+          className="dragAnimation__wrapper"
+        >
+          {renderable}
+        </div>
         <Button
           style={{ marginTop: "10px", marginRight: "10px", float: "right" }}
           onClick={() => this.solutionPrepare()}

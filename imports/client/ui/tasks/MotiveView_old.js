@@ -175,36 +175,33 @@ export default class MotiveView extends React.Component {
 
   renderTable() {
     return (
-      <Segment className="selected" style={{ width: "100%" }}>
-        <Grid columns={2} stretched>
-          <Grid.Column id="intr_hitContainer">
-            <h4>Intrinsische Motivation</h4>
-            <div
-              id="intr_target"
-              className="selected Motive"
-              style={{
-                height: "100%",
-                minHeight: "200px",
-                justifyContent: "space-around"
-              }}
-            />
-          </Grid.Column>
-          <Grid.Column id="extr_hitContainer">
-            <h4>Extrinsische Motivation</h4>
-            <div
-              id="extr_target"
-              className="selected Motive"
-              style={{
-                height: "100%",
-                minHeight: "200px",
-                justifyContent: "space-around",
-                marginLeft: "1.5rem"
-              }}
-            />
-          </Grid.Column>
-        </Grid>
-        <Divider vertical>oder</Divider>
-      </Segment>
+      <div style={{ overflowY: "auto", maxHeight: "90vh" }}>
+        <div id="intr_hitContainer">
+          <h4>Intrinsische Motivation</h4>
+          <div
+            id="intr_target"
+            className="selected Motive"
+            style={{
+              height: "100%",
+              minHeight: "200px",
+              justifyContent: "space-around"
+            }}
+          />
+        </div>
+        <div id="extr_hitContainer">
+          <h4>Extrinsische Motivation</h4>
+          <div
+            id="extr_target"
+            className="selected Motive"
+            style={{
+              height: "100%",
+              minHeight: "200px",
+              justifyContent: "space-around",
+              marginLeft: "1.5rem"
+            }}
+          />
+        </div>
+      </div>
     );
   }
 
