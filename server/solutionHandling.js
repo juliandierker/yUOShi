@@ -22,7 +22,15 @@ Meteor.methods({
     }
     return correct;
   },
-  "solutionHandler.submitCloze"(studentSolution, studentId, task) {
+  "solutionHandler.submitCloze"(
+    studentSolution,
+    studentId,
+    task,
+    solvedPercentage
+  ) {
+    if (solvedPercentage !== undefined) {
+      solveTask(studentId, task.taskId, solvedPercentage);
+    }
     let correctAnswers = [];
     let allCorrect = true;
     for (let i = 0; i < studentSolution.length; i++) {

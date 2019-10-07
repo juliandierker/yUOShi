@@ -9,6 +9,19 @@ import { Tasks } from "./tasks";
 import { Package } from "./package";
 export const Students = new Mongo.Collection("students");
 
+function checkTaskRequirements(req, solvedTasks) {
+  let allRequiredFound = true;
+  for (let i in req) {
+    let found = solvedTasks.find(elem => {
+      return elem.taskId === req[i];
+    });
+    if (found === undefined) {
+      allRequiredFound = false;
+    }
+  }
+  return allRequiredFound;
+}
+
 Meteor.methods({
   "students.insert": function(userId, studipUserId) {
     Students.insert({
@@ -83,9 +96,36 @@ Meteor.methods({
     Students.update({ _id: student._id }, { $inc: { currentSequenceId: 1 } });
   },
   "students.showNextTask": function(student) {
+    let task = Tasks.find({
+      package: student.currentPackage[0].name,
+      sequenceId: student.currentSequenceId + 1
+    }).fetch()[0];
+    if (task.requires) {
+      if (!checkTaskRequirements(task.requires, student.solvedTasks)) {
+        Students.update(
+          { _id: student._id },
+          { $inc: { currentSequenceId: 2 } }
+        );
+        return;
+      }
+    }
     Students.update({ _id: student._id }, { $inc: { currentSequenceId: 1 } });
   },
   "students.showPreviousTask": function(student) {
+    let task = Tasks.find({
+      package: student.currentPackage[0].name,
+      sequenceId: student.currentSequenceId - 1
+    }).fetch()[0];
+    if (task.requires) {
+      if (!checkTaskRequirements(task.requires, student.solvedTasks)) {
+        Students.update(
+          { _id: student._id },
+          { $inc: { currentSequenceId: -2 } }
+        );
+        return;
+      }
+    }
+
     Students.update({ _id: student._id }, { $inc: { currentSequenceId: -1 } });
   }
 });

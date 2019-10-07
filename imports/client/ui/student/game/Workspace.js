@@ -80,13 +80,9 @@ export default class Workspace extends React.Component {
   }
 
   checkPackageProgress() {
-    console.log("entered");
     var check = this.props.student.solvedTraining.filter(elem => {
-      console.log(elem);
-      console.log(this.props.student.currentPackage[0]);
       return elem.package == this.props.student.currentPackage[0].name;
     });
-    console.log(check);
 
     return check.length >= 2;
   }

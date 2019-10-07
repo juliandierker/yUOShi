@@ -100,7 +100,6 @@ export default class StudentOverview extends React.Component {
         );
       })
     ) {
-      console.log(student.currentSequenceId);
       Meteor.call(
         "students.getNextTask",
         student.currentPackage[0].name,
