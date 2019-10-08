@@ -100,7 +100,7 @@ Meteor.methods({
       package: student.currentPackage[0].name,
       sequenceId: student.currentSequenceId + 1
     }).fetch()[0];
-    if (task.requires) {
+    if (task && task.requires) {
       if (!checkTaskRequirements(task.requires, student.solvedTasks)) {
         Students.update(
           { _id: student._id },
