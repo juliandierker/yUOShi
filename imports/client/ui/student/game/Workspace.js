@@ -16,6 +16,9 @@ import { Tasks } from "../../../../api/tasks";
 import TaskProgress from "../taskProgress/TaskProgress";
 import { Segment, Button, Grid, Icon } from "semantic-ui-react";
 
+import Hyphenated from "react-hyphen";
+import de from "hyphenated-de";
+
 /**
  * This component should control the progress of a student in a task-package
  * Workspace -> renders Package-values -> renders tasks or trainings
@@ -270,7 +273,11 @@ export default class Workspace extends React.Component {
       return elem.sequenceId === this.props.student.currentSequenceId;
     });
     if (!task) return;
-    return <Segment id="workspaceDescription">{task.description}</Segment>;
+    return (
+      <Segment id="workspaceDescription">
+        <Hyphenated language={de}>{task.description}</Hyphenated>
+      </Segment>
+    );
   }
   renderWorkspaceGrid() {
     let activesubpackage = this.getActiveSubpackage();
@@ -283,7 +290,8 @@ export default class Workspace extends React.Component {
             padding: "0rem"
           }}
         >
-          {this.renderDescription()} {this.renderKeywordList()}
+          {this.renderDescription()}
+          {this.renderKeywordList()}
         </Grid.Column>
         <Grid.Column width={8}>
           <div className="workspace__container">{this.taskSwitch()}</div>
