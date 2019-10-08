@@ -1,6 +1,10 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import { Meteor } from "meteor/meteor";
+
+import Hyphenated from "react-hyphen";
+import de from "hyphenated-de";
+
 export default class Card extends React.Component {
   constructor(props) {
     super(props);
@@ -23,7 +27,7 @@ export default class Card extends React.Component {
         <div className="front">?</div>
         <div className="back">
           {this.props.framework.name.includes("def") ? (
-            def
+            <Hyphenated language={de}>{def}</Hyphenated>
           ) : (
             <img src={"/tasks/Memory/" + this.props.framework.name + ".png"} />
           )}

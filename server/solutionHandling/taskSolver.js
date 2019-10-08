@@ -90,7 +90,7 @@ function updateStudentCredits(student, task, solvedPercentage) {
     newCredits = Math.round(newCredits * solvedPercentage);
   }
 
-  updateStudentData(student._id, { $set: { credits: newCredits } });
+  updateStudentData(student._id, { $inc: { credits: newCredits } });
 }
 
 /**

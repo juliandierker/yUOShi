@@ -2,6 +2,9 @@ import React from "react";
 
 import { Segment, List, Button, Icon } from "semantic-ui-react";
 
+import Hyphenated from "react-hyphen";
+import de from "hyphenated-de";
+
 export default class KeywordList extends React.Component {
   //PROPS: finished, keywords, finishedKeywords, solutionPrepare()
 
@@ -30,18 +33,20 @@ export default class KeywordList extends React.Component {
     const buttonColor = finished ? "green" : "grey";
 
     return (
-      <Segment id="KeywordList">
-        <List>{this.renderListElem()}</List>
-        <Button
-          id="KeywordListBtn"
-          color={buttonColor}
-          disabled={buttonDisabled}
-          floated="right"
-          onClick={() => this.props.handleClick()}
-        >
-          Aufgabe lösen
-        </Button>
-      </Segment>
+      <Hyphenated language={de}>
+        <Segment id="KeywordList">
+          <List>{this.renderListElem()}</List>
+          <Button
+            id="KeywordListBtn"
+            color={buttonColor}
+            disabled={buttonDisabled}
+            floated="right"
+            onClick={() => this.props.handleClick()}
+          >
+            Aufgabe lösen
+          </Button>
+        </Segment>
+      </Hyphenated>
     );
   }
 }

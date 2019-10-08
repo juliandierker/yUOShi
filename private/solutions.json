@@ -48,6 +48,8 @@
   "Xwert_Theorie": ["Erwartungs-Wert", "Situation", "Ergebnis"],
   "Ziele": ["Zielsetzungstheorie", "Locke", "Moderatoren"],
   "ZieleCloze": ["Zielsetzungstheorie", "Locke", "Moderatoren"],
+  "XwertCloze": ["5", "0", "0", "3", "3,75", "-0,875"],
+  "XWertMulti": [{ "id": 1, "sol": ["Lisa (M = 5)"] }],
   "MultiWhy": [{ "id": 1, "sol": ["free"] }],
   "MultiExtrIntr": [
     {

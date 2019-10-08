@@ -1,9 +1,12 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import { Meteor } from "meteor/meteor";
-import PropTypes from "prop-types";
+import PropTypes, { elementType } from "prop-types";
 import reactStringReplace from "react-string-replace";
 import ReactPlayer from "react-player";
+
+import Hyphenated from "react-hyphen";
+import de from "hyphenated-de";
 
 import {
   Button,
@@ -111,6 +114,18 @@ export default class TagView extends React.Component {
         );
       });
     }
+
+    // Add hyphens to text
+    for (let i = 0; i < plainText.length; i++) {
+      if (typeof plainText[i] == "string") {
+        plainText[i] = (
+          <Hyphenated language={de} key={"hyphenText-" + i}>
+            {plainText[i]}
+          </Hyphenated>
+        );
+      }
+    }
+
     var middle = Math.floor(plainText.length / 2);
     var partOne = plainText.slice(0, middle + 1);
     var partTwo = plainText.slice(middle + 1, plainText.length);
@@ -126,8 +141,8 @@ export default class TagView extends React.Component {
         />
         <Grid divided="vertically">
           <Grid.Row columns={2}>
-            <Grid.Column> {partOne}</Grid.Column>
-            <Grid.Column>{partTwo} </Grid.Column>
+            <Grid.Column>{partOne}</Grid.Column>
+            <Grid.Column>{partTwo}</Grid.Column>
           </Grid.Row>
         </Grid>
       </Segment>

@@ -20,7 +20,6 @@ class TaskProgress extends Component {
     };
   }
   getInitStep() {
-    console.log(this.props);
     var stepId = null;
     const currentPackage = this.props.currentPackage;
     const trainings = this.props.trainings[0][currentPackage.name];
@@ -28,7 +27,6 @@ class TaskProgress extends Component {
       return 1;
     } else {
       var cStr = this.props.currentTask.parentId;
-      console.log(this.props.currentTask.parentId);
       stepId = cStr.slice(cStr.length - 1, cStr.length);
       return parseInt(stepId);
     }
@@ -118,8 +116,6 @@ class TaskProgress extends Component {
       var pStr = prevTask.parentId;
       stepId = cStr.slice(cStr.length - 1, cStr.length);
       prevId = pStr.slice(pStr.length - 1, pStr.length);
-      console.log(stepId);
-      console.log(prevId);
       if (stepId > prevId) {
         this.setState({ activeStep: this.state.activeStep + 1 });
       } else if (stepId < prevId && prevId != 0) {

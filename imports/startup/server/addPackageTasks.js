@@ -60,6 +60,7 @@ function addTasks(packageName, path) {
   let trainings = [];
 
   for (let i in tasks) {
+    tasks[i]["sequenceId"] = parseInt(i);
     if (tasks[i].isTraining) {
       trainings.push(tasks[i]);
     } else {
