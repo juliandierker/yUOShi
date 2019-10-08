@@ -10,41 +10,26 @@ export const DragdropModel = {
         this.correctArr = [];
         this.solution = [];
       },
-
-      run: function(solution) {
-        this.reset();
-
-        for (let i = 0; i < solution.length; i++) {
-          let correctArr = [];
-          let checkElem = solution[i].id.split("_")[0];
-          for (let j = 0; j < solution[i].children.length; j++) {
-            if (solution[i].children[j].id == checkElem) {
-              correctArr.push(true);
-              if (this.solution.indexOf(checkElem) === -1) {
-                this.solution.push(checkElem);
-              }
-            } else {
-              correctArr.push(false);
-              this.visQueue.push(["fail", checkElem]);
-            }
+      checkSolution: function(solution) {
+        solution.children.map(child => {
+          if (solution.solution != child.solution) {
+            this.visQueue.push("fail", child);
           }
-          this.correctArr.push(correctArr);
-        }
-        let allCorrect = true;
-        for (let i = 0; i < this.correctArr.length; i++) {
-          if (this.correctArr[i].includes(false)) {
-            allCorrect = false;
-          }
-        }
-
-        if (allCorrect) {
-          this.visQueue.push(["won", null]);
+        });
+        if (!this.visQueue.includes("fail")) {
+          this.visQueue.push("won", null);
           return true;
         } else {
           return false;
         }
       },
-
+      run: function(solutions) {
+        this.reset();
+        this.solution = solutions;
+        return solutions.map(solution => {
+          return this.checkSolution(solution);
+        });
+      },
       reset: function() {
         this.visQueue = [];
         this.solution = [];

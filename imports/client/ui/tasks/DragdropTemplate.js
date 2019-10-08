@@ -30,39 +30,77 @@ export default class DragdropTemplate extends Component {
     this.onColumnDrop = this.onColumnDrop.bind(this);
     this.onCardDrop = this.onCardDrop.bind(this);
     this.getCardPayload = this.getCardPayload.bind(this);
-    console.log(props.activeTask.statements[0].length);
+    const catLength = props.activeTask.categories.length;
     this.state = {
       scene: {
         type: "container",
         props: {
-          orientation: "horizontal"
+          orientation: "horizontal",
+          id: "dragdropContainer"
         },
-        children: generateItems(props.activeTask.categories.length, i => ({
-          log: console.log("Tetete"),
+        children: generateItems(catLength, i => ({
           id: `column${i}`,
+          solution: props.activeTask.solArray[i],
           type: "container",
           name: props.activeTask.categories[i],
           props: {
-            orientation: "vertical",
+            id: `column${i}`,
+            orientation: props.activeTask.orientation,
             className: "card-container"
           },
-          children: generateItems(props.activeTask.statements[0].length, j => ({
-            log: console.log("bbbb"),
-            type: "draggable",
-            id: `${i}${j}`,
-            props: {
-              className: "card",
-              style: { backgroundColor: pickColor() }
-            },
-            log: console.log(props.activeTask.statements[j]),
-
-            data: props.activeTask.statements[0][j][1]
-          }))
+          children: generateItems(
+            props.activeTask.statements[0].length / catLength,
+            j => ({
+              type: "draggable",
+              id: `${i}${j}`,
+              props: {
+                className: "card",
+                id: `${i}${j}`,
+                style: { backgroundColor: pickColor() }
+              },
+              solution: props.activeTask.statements[0][j][0],
+              data: props.activeTask.statements[0][j][1]
+            }),
+            i
+          )
         }))
       }
     };
   }
+  componentDidUpdate() {
+    if (this.props.showSolution) this.renderSolutionState();
+  }
+  componentDidMount() {
+    if (this.props.activeTask.orientation === "horizontal") {
+      let elems = [
+        ...document.getElementsByClassName("smooth-dnd-draggable-wrapper")
+      ];
+      console.log(elems);
+      elems.map(elem => {
+        console.log(elem.style);
+        if (elem.style.display === "table-cell") {
+          elem.style.display = "auto";
+        }
+      });
+    }
+  }
+  renderSolutionState() {
+    const solutions = this.state.scene.children;
 
+    solutions.map(solution => {
+      solution.children.map(child => {
+        let elem = document.getElementById(child.id);
+        elem.style.backgroundColor = "green";
+        if (
+          this.props.model.visQueue.find(elem => {
+            return elem.id === child.id;
+          }) !== undefined
+        ) {
+          elem.style.backgroundColor = "red";
+        }
+      });
+    });
+  }
   render() {
     console.log("Drag render");
     return (

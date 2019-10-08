@@ -17,6 +17,7 @@ export default class DragAnimationTemplate extends React.Component {
     this.model = DragdropModel.getNewModel();
     this.model.init(props.student, props.activeTask);
     this.state = { showSolution: false, childKeyIteration: 0 };
+    this.viewScene = React.createRef();
   }
 
   shouldComponentUpdate(nextProps) {
@@ -29,6 +30,8 @@ export default class DragAnimationTemplate extends React.Component {
     }
   }
   solutionPrepare() {
+    const userSol = this.viewScene.current.state.scene.children;
+
     if (this.state.showSolution) {
       let correctAnswers = 0;
       for (let i = 0; i < this.model.correctArr.length; i++) {
@@ -57,50 +60,46 @@ export default class DragAnimationTemplate extends React.Component {
       );
       return;
     }
-
-    this.model.run(
-      document.getElementsByClassName(this.props.activeTask.taskId)
-    );
+    var sol = this.model.run(userSol);
     var visQueue = this.model.visQueue;
-    for (var i = 0; i < visQueue.length; i++) {
-      if (visQueue[i][0] == "fail") {
-        Swal.fire({
-          position: "top-end",
-          type: "warning",
-          title: "Nicht ganz...",
-          text:
-            "Es sind nicht alle Felder richtg. Willst du es nochmal versuchen, oder möchtest du dir die Lösung anschauen?",
-          confirmButtonText: "Lösung zeigen",
-          cancelButtonText: "Nochmal versuchen",
-          cancelButtonColor: "#3085d6",
-          showCancelButton: true
-        }).then(result => {
-          if (result.value) {
-            this.setState({ showSolution: true });
-            this.forceUpdate();
-          } else {
-            this.setState({
-              showSolution: false,
-              childKeyIteration: this.state.childKeyIteration === 0 ? 1 : 0
-            });
-            this.forceUpdate();
-          }
-        });
-        return false;
-      }
+    console.log(visQueue);
+    if (visQueue.includes("fail")) {
+      Swal.fire({
+        position: "top-end",
+        type: "warning",
+        title: "Nicht ganz...",
+        text:
+          "Es sind nicht alle Felder richtg. Willst du es nochmal versuchen, oder möchtest du dir die Lösung anschauen?",
+        confirmButtonText: "Lösung zeigen",
+        cancelButtonText: "Nochmal versuchen",
+        cancelButtonColor: "#3085d6",
+        showCancelButton: true
+      }).then(result => {
+        if (result.value) {
+          this.setState({ showSolution: true });
+          this.forceUpdate();
+        } else {
+          this.setState({
+            showSolution: false,
+            childKeyIteration: this.state.childKeyIteration === 0 ? 1 : 0
+          });
+          this.forceUpdate();
+        }
+      });
+      return false;
     }
-    this.submit();
+    console.log(userSol);
+    if (sol) this.submit(userSol);
   }
 
-  submit() {
+  submit(userSol) {
     if (this.props.activeTask.type === "drag") {
       var meteorMethod =
         "solutionHandler.submit" + this.props.activeTask.filePrefix;
-      var solution = this.model.solution;
     }
     Meteor.call(
       meteorMethod,
-      solution,
+      userSol,
       this.props.student._id,
       this.props.activeTask,
       (err, res) => {
@@ -147,6 +146,10 @@ export default class DragAnimationTemplate extends React.Component {
           <DragdropTemplate
             {...taskProps}
             showSolution={this.state.showSolution}
+            model={this.model}
+            ref={this.viewScene}
+            scale={null}
+            orientation={null}
             key={"draganimationcomponentMotive" + this.state.childKeyIteration}
           />
           // <MotiveView
@@ -164,7 +167,7 @@ export default class DragAnimationTemplate extends React.Component {
         {console.log(renderable)}
         <div
           style={{ overflowY: "auto", maxHeight: "90vh" }}
-          className="dragAnimation__wrapper"
+          className="dragAnimation__"
         >
           {renderable}
         </div>
