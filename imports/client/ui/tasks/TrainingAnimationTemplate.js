@@ -71,7 +71,6 @@ export default class TrainingAnimationTemplate extends React.Component {
   }
 
   solveTraining() {
-    console.log("soooooooolve");
     Meteor.call(
       "students.solveTraining",
       this.props.student,

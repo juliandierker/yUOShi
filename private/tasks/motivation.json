@@ -8,7 +8,6 @@
       "isTraining": true,
       "trainingId": "Motivation Problem",
       "parentId": "Motivation0",
-      "sequenceId": 0,
       "image": "Teacher.png",
       "content": [
         {
@@ -61,7 +60,6 @@
       "description": "Lies den Text und markiere die unten stehenden Schlüsselbegriffe, indem ihr sie im Text findet und anklickt.",
       "taskId": "Motivation_Intro",
       "filePrefix": "Tag",
-      "sequenceId": 1,
       "content": [
         {
           "title": "Motivation Begriffsklärung",
@@ -95,7 +93,6 @@
       "description": "Entscheide dich für drei Antwort(en), die am ehesten auf dich zutreffen. ",
       "taskId": "MultiWhy",
       "filePrefix": "Multi",
-      "sequenceId": 2,
       "credits": 1,
       "content": [
         {
@@ -123,7 +120,6 @@
       "description": "Lies den Text und markiere die unten stehenden Schlüsselbegriffe, indem du sie im Text findest und anklickst.",
       "taskId": "Motivation_IntrExtr",
       "filePrefix": "Tag",
-      "sequenceId": 3,
       "content": [
         {
           "title": "Motivation Begriffsklärung",
@@ -155,7 +151,6 @@
       "description": "Markiere die richtigen Aussagen",
       "taskId": "MultiExtrIntr",
       "filePrefix": "Multi",
-      "sequenceId": 4,
       "content": [
         {
           "QuestionId": 2,
@@ -179,7 +174,6 @@
       "description": "Ordne die Statements über Schüler*innen der intrinsischen oder extrinsischen Motivation zu. Welche Quelle der Motivation wird in der jeweiligen Aussage eher abgebildet? ",
       "taskId": "Motive",
       "filePrefix": "Drag",
-      "sequenceId": 5,
       "content": {},
       "package": "Motivation",
       "credits": 12,
@@ -278,7 +272,6 @@
       "video": "https://www.youtube.com/watch?v=UEZZBIH5Rlg",
       "taskId": "Maslow_Theorie",
       "filePrefix": "Tag",
-      "sequenceId": 6,
       "content": [
         {
           "title": "Motivation Begriffsklärung",
@@ -309,7 +302,6 @@
       "description": "Ein Memory zur Verinnerlichung: Ordne in diesem Memory den Bedürfnissen die entsprechenden Bilder oder Icons zu.",
       "taskId": "Motivation_Memory",
       "filePrefix": "Memory",
-      "sequenceId": 7,
       "package": "Motivation",
       "credits": 3,
       "content": [
@@ -331,7 +323,6 @@
       "description": "Und noch einmal: Versuche die Bedürfnisse nach Maslow in dieser Pyramide die richtige Reihenfolge zu bringen.",
       "taskId": "Maslow",
       "filePrefix": "Drag",
-      "sequenceId": 8,
       "content": {},
       "package": "Motivation",
       "credits": 5
@@ -343,7 +334,6 @@
       "description": "Lies den Text und markiere die unten stehenden Schlüsselbegriffe, indem du sie im Text findest und anklickst.",
       "taskId": "Selbstbestimmungs_Theorie",
       "filePrefix": "Tag",
-      "sequenceId": 9,
       "content": [
         {
           "title": "Selbstbestimmungs-Theorie",
@@ -367,14 +357,12 @@
       "package": "Motivation",
       "credits": 6
     },
-
     {
       "parentId": "Motivation3",
       "title": "Die Selbstbestimmungstheorie",
       "description": "Selbstbestimmungstheorie",
       "taskId": "todo",
       "filePrefix": "Drag",
-      "sequenceId": 10,
       "content": {
         "statements": [
           [
@@ -393,7 +381,6 @@
       "description": "Lies den Text und markiere die unten stehenden Schlüsselbegriffe, indem du sie im Text findest und anklickst",
       "taskId": "Xwert_Theorie",
       "filePrefix": "Tag",
-      "sequenceId": 11,
       "content": [
         {
           "title": "Xwert-Theorie",
@@ -416,7 +403,6 @@
       "description": "Berechnen Sie mit der Formel für die X-Wert Theorie, wie motiviert die jeweiligen Schüler sind. Wer wird sein Ziel erreichen? Der Wert für W ergibt sich manchmal aus mehreren Einzelwerten, die zusammengezählt werden müssen.",
       "taskId": "XwertCloze",
       "filePrefix": "Cloze",
-      "sequenceId": 12,
       "content": [
         {
           "title": "Ziele",
@@ -435,7 +421,6 @@
       "package": "Motivation",
       "credits": 6
     },
-
     {
       "parentId": "Motivation3",
       "title": "X-Wert",
@@ -443,7 +428,6 @@
       "taskId": "XWertMulti",
       "requires": ["XwertCloze"],
       "filePrefix": "Multi",
-      "sequenceId": 13,
       "content": [
         {
           "QuestionId": 1,
@@ -463,58 +447,12 @@
       "package": "Motivation",
       "credits": 2
     },
-
-    {
-      "parentId": "tba",
-      "title": "Ziele Lückentext",
-      "description": "Löse den Lückentext",
-
-      "taskId": "ZieleCloze",
-      "filePrefix": "Cloze",
-      "sequenceId": 99,
-      "content": [
-        {
-          "title": "Ziele",
-          "subtitle": "Langer Text",
-          "keywords": ["Zielsetzungstheorie", "Locke", "Moderatoren"],
-          "text": "Die ##0## nach Edwin ##1## und Gary Latham wird grundsätzlich in die Kategorie der Motivationsstrategien eingeordnet. Dennoch zeigt sie wesentliche Bestandteile einer Theorie, um den Motivationsprozess besser zu verstehen. Die zentraleAnnahme dieser Theorie ist, dass Motivation maßgeblich über die gesetzten Ziele und deren Erreichen gesteuert wird und somit als Auslöser des menschlichen Handelns gilt. Je herausfordernder und präziser ein Ziel dabei gestaltet wird, desto höher ist auch die Motivation, dieses zu erreichen. In diesem Prozess der Zielsetzung spielen verschiedene ##2## eine Rolle, wie z.B. Feedback zu erbrachten Leistungen oder die Selbstwirksamkeit, also die Einschätzung einer Person über ihr Können."
-        }
-      ],
-      "package": "Motivation",
-      "credits": 3
-    },
-
-    {
-      "parentId": "tba",
-      "title": "SMART",
-      "description": "Lies den Text zum Thema Zielsetzung durch SMART durch.",
-      "taskId": "SMART",
-      "filePrefix": "Tag",
-      "sequenceId": 99,
-      "content": [
-        {
-          "title": "SMART",
-          "subtitle": "Smart",
-          "text": "Durch Ziele kann der Sinn einer Handlung besser erkannt und der Weg zur Erreichung dieses Ziels   geplant   und   durchgeführt   werden.   Ziele   führen   dem   Menschen   das   „Warum“   derHandlung   vor   Augen.   Dabei   beschreibt   das   Ziel,   wie   eingangs   bereits   aufgeführt,   dieDiskrepanz zwischen dem IST-Zustand und dem SOLL-Zustand.\nWie in der Zielsetzungstheorie beschrieben, können Ziele dazu dienen, die Motivation zulenken und aufrechtzuhalten. Im Alltag werden Ziele allerdings oftmals allgemein formuliertz.B.   „Ich   werde   abnehmen“,   „Ich   werde   dieses   Semester   die   Klausuren   bestehen“,   waslangfristig dazu führt, dass Ziele mit geringerer Wahrscheinlichkeit erreicht werden und dieMotivation sinkt. \n\nUm dem entgegen zu wirken und Ziele erreichbarer zu gestalten, kann die SMART-Formelangewendet werden. Hierbei werden Ziele konkret operationalisiert und es werden klareKriterien   für   die   Zielerreichung   erstellt.   Außerdem   können   anhand   der   Zielsetzung   mit SMART wesentliche Vereinbarungen über die zeitliche Datierung und die Rückmeldung zubesagtem   Ziel   getroffen   werden.   Daher   kommt   diese   Methodik   vor   allem   imProjektmanagement, im Coaching, in der Karriereplanung und in Trainings zum Einsatz. \n\n SMART steht (aus dem Englischen übersetzt) für: \n     Spezifisch\n     Messbar\n     Akzeptiert (auch attraktiv / anziehend / angemessen)\n     Realistisch\n     Terminiert\n\nSpezifisch  meint in diesem Zusammenhang, dass gesetzte Ziele klar und deutlich definiertwerden sollten, um so möglichst wenig Spielraum für Interpretationen zu schaffen: „Was willich genau erreichen“.\nBeispiel: „Ich will die Mathe Klausur „Algebra 1“ dieses Semester bestehen“. \n\nMessbar meint, dass das Ziel kontrollierbar sein muss. Dies bedeutet, es muss klar sein, abwann das Ziel erreicht ist und wie man das Ziel messen kann: „Wie viel genau muss ichwovon tun“.\nBeispiel: „Die Endnote soll 4,0 oder besser sein.“\n\nAkzeptiert steht in der Formel für die Akzeptanz des Ziels durch alle beteiligten Personen.Jeder   sollte   mit   der   Zielformulierung   einverstanden   sein   und   die   Ziel-Vereinbarung„unterzeichnen“. Außerdem sollte das Ziel durch das Verhalten der Beteiligten beeinflussbarsein. Das A kann auch für „attraktiv“ stehen, was bedeutet, dass das Ziel für einen selbstpositiv sein soll. Ein Ansatz, um mehr Akzeptanz oder Attraktivität zu schaffen, wäre es zumBeispiel   eine   gemeinsame   Zielsetzung,   sodass   andere   auch   beteiligt   werden   und   denFortschritt kontrollieren können\nBeispiel:   „Ich   werde   eine   Lerngruppe   mit   Martina   und   Leon   machen,   in   der   wir   unsgegenseitig motivieren“.\n\nRealistisch steht für die Realisierbarkeit/Erreichbarkeit des Ziels. Zu hoch angesetzte Zielewirken   eher   demotivierend   auf   Menschen.   Optimal   angesetzte   Ziele   wirken   im   erstenMoment frustrierend, da sie nicht sofort zu erreichen sind. Durch eine gewisse Anstrengungkann das Ziel jedoch erreicht werden, was wiederum motiviert. Oft sind gut gesteckte Zieleautomatisch realistisch, da man sich diese sonst nicht setzen würde.\n\nTerminiert beschreibt den festzulegenden Zeitraum einer Zielsetzung, der unbedingt präzisefestgelegt   werden   sollte.   Ratsam   sind   hierbei   auch   Zwischenprüfungen,   um   eventuelleAbweichungen bei der Zielerreichung festzustellen und schnell korrigieren zu können.Beispiel: „dafür treffen wir uns immer Montags, Mittwochs und jeden zweiten Freitag um 16Uhr für zwei Stunden in der Lernlandschaft der Universität.\n\nDes Weiteren ist es ratsam, Zielsetzungen immer positiv zu formulieren da negative Aussagendemotivierend wirken. Formulierungen, die UN- oder NICHT- enthalten, sollten ebenfallsvermieden werden.\nBeispiel: „Ich werde nicht durchfallen“ (Negativ)  „Ich werde bestehen“\n\nDie Wahl der Zielsetzung ist dabei entscheidend. So sollten immer Ziele gewählt werden, die(persönlich) sinnvoll scheinen, sowie eine Entwicklung des Individuums hervorrufen. Hierbeikann an Stärken, Schwächen oder Kompetenzen des Individuums angeknüpft werden.",
-          "keywords": ["Handlung", "Akzeptanz", "Zeitraum einer Zielsetzung"],
-          "images": {
-            "Selbstbestimmung": "/Tag/Motivation4/Xwert-Theorie.svg",
-            "Moderatoren": "/Tag/Motivation4/Ergebnis.jpg"
-          }
-        }
-      ],
-
-      "package": "Motivation",
-      "credits": 2000
-    },
-
     {
       "parentId": "Motivation4",
       "title": "Motivationsbegriffe",
       "description": "In diesem Memory müsst ihr zu Begriffen die entsprechenden Bilder zuweisen.",
       "taskId": "Motivation_Memory",
       "filePrefix": "Memory",
-      "sequenceId": 14,
       "package": "Motivation",
       "credits": 3,
       "content": [
@@ -533,7 +471,6 @@
         }
       ]
     },
-
     {
       "name": "Fallbearbeitung",
       "taskId": "MultiOutro",
@@ -543,7 +480,6 @@
       "finalTraining": true,
       "trainingId": "Motivation Problem",
       "parentId": "Motivation0",
-      "sequenceId": 15,
       "image": "Teacher.png",
       "content": [
         {
