@@ -213,9 +213,9 @@ export default class TrainingAnimationTemplate extends React.Component {
             </Responsive>
 
             <Responsive as={Segment} {...Responsive.onlyComputer}>
-              <div class="ui grid">
-                <div class="row">
-                  <div class="four wide column">
+              <div className="ui grid">
+                <div className="row">
+                  <div className="four wide column">
                     <Image
                       wrapped
                       size="medium"
@@ -225,7 +225,7 @@ export default class TrainingAnimationTemplate extends React.Component {
                       }
                     />
                   </div>
-                  <div class="ten wide column">{modalContent}</div>
+                  <div className="ten wide column">{modalContent}</div>
                 </div>
               </div>
             </Responsive>
