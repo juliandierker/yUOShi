@@ -1,7 +1,7 @@
 {
   "tasks": [
     {
-      "name": "❤️-Willkommen",
+      "name": "❤️-lich Willkommen",
       "title": "Einleitung",
       "package": "Motivation",
       "taskId": "MultiIntro",
@@ -179,19 +179,77 @@
       "categories": ["intrinsisch", "extrinsisch"],
       "solArray": ["intr", "extr"],
       "scale": false,
-      "orientation": "horizontal",
+      "orientation": ["horizontal", "vertical"],
+      "nested": false,
       "statements": [
+        ["intr", "Die SuS arbeiten gerne mit, weil sie dadurch mehr lernen."],
+        ["extr", "Die Lehrkraft vergibt Sternchen für gute Mitarbeit"],
         [
-          [
-            "intr",
-            "Olga interessiert sich für Sport, deswegen hat sie sich für drei neue Kurse angemeldet."
-          ],
-          [
-            "extr",
-            "James Vater ist Physiker. Er soll sich mit neuen physikalischen Themen beschäftigen."
-          ],
-          ["intr", "Die SuS arbeiten gerne mit, weil sie dadurch mehr lernen."],
-          ["extr", "Die Lehrkraft vergibt Sternchen für gute Mitarbeit"]
+          "intr",
+          "Gülcan hat Spaß an deutscher Geschichte, deswegen meldet er sich oft."
+        ],
+        ["extr", "Laura wird ermahnt, wenn sie im Unterricht nicht mitmacht."],
+        [
+          "intr",
+          "Anastasia liest gerne Bücher und beschäftigt sich deshalb mit dem Thema für die Deutschklausur."
+        ],
+        [
+          "extr",
+          "Mara bekommt von ihrer Oma 5 Euro, wenn sie in Deutsch eine gute Note schreibt."
+        ],
+        ["intr", "Tiffany ist traurig, wenn sie eine schlechte Note bekommt."],
+        [
+          "extr",
+          "Richards Mutter ist enttäuscht, wenn er eine schlechte Note bekommt"
+        ],
+        ["intr", "Alexander ist eine ordentliche Mappenführung wichtig."],
+        [
+          "extr",
+          "Clara führt ihre Mappe ordentlich, um dadurch ein Sternchen zu bekommen."
+        ],
+        ["intr", "Miguel passt in Biologie auf, weil er Arzt werden möchte."],
+        [
+          "extr",
+          "Dennis bekommt eine gute Note von der Lehrerin, wenn er in Biologie aufpasst."
+        ],
+        [
+          "intr",
+          "Jenny ist es wichtig, Zusammenhänge zu verstehen, und daher strengt sie sich an."
+        ],
+        [
+          "extr",
+          "Henrik strengt sich bei einer Aufgabe an, weil die Lehrerin eine Belohnung versprochen hat."
+        ],
+        [
+          "intr",
+          "Christian interessiert sich für Religion und liest deshalb das Kapitel."
+        ],
+        ["extr", "Anna liest das Kapitel, weil sie morgen geprüft wird."],
+        ["intr", "Lena trägt Converse, weil ihr diese Schuhe gefallen."],
+        [
+          "extr",
+          "Lara hat sich UGG-Boots gekauft, weil momentan alle diese Schuhe tragen."
+        ],
+        [
+          "intr",
+          "Anna findet Fußball spitze und freut sich auf die Unterrichtsstunde dazu."
+        ],
+        [
+          "extr",
+          "Jens nimmt gerne am Sportunterricht teil, weil ihn jeder in seine Mannschaft wählt."
+        ],
+        ["intr", "Max übt Mathe, weil er besser werden möchte."],
+        [
+          "extr",
+          " Andres Mutter möchte, dass er jeden Tag eine Matheaufgabe rechnet."
+        ],
+        [
+          "intr",
+          "Matti übt die Rückhand beim Tennis, weil er sich weiterentwickeln will."
+        ],
+        [
+          "extr",
+          "Sebastian arbeitet an seiner Kraultechnik, um den nächsten Wettkampf zu gewinnen."
         ]
       ]
     },
@@ -255,6 +313,24 @@
       "filePrefix": "Drag",
       "content": {},
       "package": "Motivation",
+      "scale": 5,
+      "categories": ["Maslow-Pyramiede"],
+      "solArray": [
+        "selfActualization",
+        "esteem",
+        "socialneeds",
+        "safety",
+        "physological"
+      ],
+      "statements": [
+        ["selfActualization", "Selbstverwirklichung"],
+        ["esteem", "Individualbedürfnisse"],
+        ["socialneeds", "Selbstverwirklichung"],
+        ["safety", "Sicherheitsbedürfnisse"],
+        ["physological", "Körperliche Bedürfnisse"]
+      ],
+      "orientation": ["vertical", "vertical"],
+      "nested": true,
       "credits": 5
     },
 
@@ -295,34 +371,26 @@
       "filePrefix": "Drag",
       "content": {
         "statements": [
+          ["soz_eing", "Ich fühle mich in meiner sozialen Gruppe angekommen."],
           [
-            [
-              "soz_eing",
-              "Ich fühle mich in meiner sozialen Gruppe angekommen."
-            ],
-            [
-              "soz_eing",
-              "Meine Meinung und Einstellung wird geschätzt und akzeptiert."
-            ],
+            "soz_eing",
+            "Meine Meinung und Einstellung wird geschätzt und akzeptiert."
+          ],
 
-            ["autonomie", "Ich kann das alleine schaffen."],
-            [
-              "autonomie",
-              "Ich brauche erst Hilfe, wenn ich nicht weiterkomme."
-            ],
-            [
-              "autonomie",
-              "Ich mache das, weil ich es für den richtigen Weg zum Ziel halte."
-            ],
+          ["autonomie", "Ich kann das alleine schaffen."],
+          ["autonomie", "Ich brauche erst Hilfe, wenn ich nicht weiterkomme."],
+          [
+            "autonomie",
+            "Ich mache das, weil ich es für den richtigen Weg zum Ziel halte."
+          ],
 
-            [
-              "kompetenz",
-              "Ich habe die nötigen Fähigkeiten, diese Aufgabe zu bewältigen."
-            ],
-            [
-              "kompetenz",
-              "Ich bin in der Lage, mir die nötigen Kompetenzen anzueignen, die ich für die Aufgabe benötige."
-            ]
+          [
+            "kompetenz",
+            "Ich habe die nötigen Fähigkeiten, diese Aufgabe zu bewältigen."
+          ],
+          [
+            "kompetenz",
+            "Ich bin in der Lage, mir die nötigen Kompetenzen anzueignen, die ich für die Aufgabe benötige."
           ]
         ]
       },
