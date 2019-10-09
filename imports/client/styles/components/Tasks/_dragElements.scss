@@ -183,8 +183,9 @@ input:last-child {
   padding: 10px;
   margin: 5px;
   margin-right: 45px;
-  background-color: #f3f3f3;
+  background-color: rgb(106, 150, 226);
   box-shadow: 0 1px 1px rgba(0, 0, 0, 0.12), 0 1px 1px rgba(0, 0, 0, 0.24);
+  border-radius: 10px;
 }
 
 .card {
@@ -194,10 +195,15 @@ input:last-child {
   color: black;
   box-shadow: 0 1px 1px rgba(0, 0, 0, 0.12), 0 1px 1px rgba(0, 0, 0, 0.24);
   padding: 10px;
+  font-size: 1rem;
+  border-radius: 10px;
 }
 
 .card-column-header {
   font-size: 18px;
+  color: white;
+  font-weight: bold;
+  margin-bottom: 1rem;
 }
 
 .column-drag-handle {
