@@ -34,7 +34,6 @@ export default class DragdropTemplate extends Component {
     this.onCardDrop = this.onCardDrop.bind(this);
     this.getCardPayload = this.getCardPayload.bind(this);
     const catLength = props.activeTask.categories.length;
-    console.log(props.activeTask.statements);
     this.state = {
       scene: {
         type: "container",
@@ -79,9 +78,7 @@ export default class DragdropTemplate extends Component {
       let elems = [
         ...document.getElementsByClassName("smooth-dnd-draggable-wrapper")
       ];
-      console.log(elems);
       elems.map(elem => {
-        console.log(elem.style);
         if (elem.style.display === "table-cell") {
           elem.style.display = "auto";
         }
@@ -92,7 +89,6 @@ export default class DragdropTemplate extends Component {
     this.view.current.renderSolutionState();
   }
   render() {
-    console.log(this.state.scene);
     return this.props.activeTask.nested && this.state.scene ? (
       <DragdropViewNested
         scene={this.state.scene}

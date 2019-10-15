@@ -123,6 +123,8 @@ export default class MemoryView extends React.Component {
     let sol = this.state.sol;
     if (
       checkIndex != null &&
+      this.state.openedFrameworks[checkIndex] &&
+      this.state.openedFrameworks[checkIndex].name &&
       def === this.state.openedFrameworks[checkIndex].name.name &&
       this.state.openedFrameworks[0].index !=
         this.state.openedFrameworks[1].index
@@ -216,6 +218,7 @@ export default class MemoryView extends React.Component {
           {this.state.finalizedFrameworks.map((framework, index) => {
             return (
               <Card
+                key={"memCard-" + index}
                 task={this.props.activeTask}
                 framework={framework.name}
                 click={() => {
