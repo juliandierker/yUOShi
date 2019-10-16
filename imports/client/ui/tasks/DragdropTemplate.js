@@ -34,6 +34,7 @@ export default class DragdropTemplate extends Component {
     this.onCardDrop = this.onCardDrop.bind(this);
     this.getCardPayload = this.getCardPayload.bind(this);
     const catLength = props.activeTask.categories.length;
+
     this.state = {
       scene: {
         type: "container",
@@ -43,7 +44,8 @@ export default class DragdropTemplate extends Component {
         },
         children: generateItems(catLength, i => ({
           id: `column${i}`,
-          solution: props.activeTask.solArray[i],
+          solution: props.activeTask.solArray,
+          categorie: props.activeTask.solArray[i],
           type: "container",
           name: props.activeTask.categories[i],
           props: {
