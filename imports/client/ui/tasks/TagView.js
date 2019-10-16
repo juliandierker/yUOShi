@@ -3,20 +3,13 @@ import ReactDOM from "react-dom";
 import { Meteor } from "meteor/meteor";
 import PropTypes, { elementType } from "prop-types";
 import reactStringReplace from "react-string-replace";
-import ReactPlayer from "react-player";
+
+import VideoModal from "../modalComponents/VideoModal";
 
 import Hyphenated from "react-hyphen";
 import de from "hyphenated-de";
 
-import {
-  Button,
-  Header,
-  Image,
-  Grid,
-  Segment,
-  Label,
-  Modal
-} from "semantic-ui-react";
+import { Header, Image, Grid, Segment, Label } from "semantic-ui-react";
 
 export default class TagView extends React.Component {
   constructor(props) {
@@ -150,44 +143,15 @@ export default class TagView extends React.Component {
   }
 
   renderVideo() {
-    if (this.props.activeTask.video) {
-      return (
-        <Modal
-          basic
-          size="tiny"
-          open={this.state.videoOpen}
-          onClose={() => this.setState({ videoOpen: false })}
-          trigger={
-            <Button
-              onClick={() => this.setState({ videoOpen: true })}
-              style={{ backgroundColor: "#8fb0e8", color: "white" }}
-              content="Video ansehen"
-              icon="play"
-              labelPosition="right"
-            />
-          }
-        >
-          <Modal.Content>
-            <ReactPlayer
-              style={{ margin: "auto" }}
-              url={this.props.activeTask.video}
-              playing
-              controls={true}
-            />
-
-            <Button
-              style={{ marginLeft: "70%", marginTop: "10px" }}
-              color="orange"
-              onClick={() => this.setState({ videoOpen: false })}
-              inverted
-            >
-              Später ansehen
-            </Button>
-          </Modal.Content>
-        </Modal>
-      );
-    }
+    return (
+      <VideoModal
+        videoOpen={this.state.videoOpen}
+        onVideoClose={this.closeVideo}
+        video={this.props.activeTask.video}
+      />
+    );
   }
+
   render() {
     return (
       <div>

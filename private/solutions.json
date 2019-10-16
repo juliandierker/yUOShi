@@ -42,10 +42,10 @@
     "humanistischen Ansätzen",
     "intrinsische Motivation",
     "Bedürfnis nach Autonomie",
-    "Bedürfnis des Kompetenzerlebens",
-    "Bedürfnis nach sozialer Eingebundenheit"
+    "Bedürfnis nach sozialer Eingebundenheit",
+    "Bedürfnis des Kompetenzerlebens"
   ],
-  "Xwert_Theorie": ["Erwartungs-Wert", "Situation", "Ergebnis"],
+  "Xwert_Theorie": ["Erwartungs-X-Wert", "Situation", "Ergebnis"],
   "Ziele": ["Zielsetzungstheorie", "Locke", "Moderatoren"],
   "ZieleCloze": ["Zielsetzungstheorie", "Locke", "Moderatoren"],
   "XwertCloze": ["5", "0", "0", "3", "3,75", "-0,875"],

@@ -62,7 +62,6 @@ export default class DragAnimationTemplate extends React.Component {
     }
     var sol = this.model.run(userSol);
     var visQueue = this.model.visQueue;
-    console.log(visQueue);
     if (visQueue.includes("fail")) {
       Swal.fire({
         position: "top-end",
@@ -88,7 +87,6 @@ export default class DragAnimationTemplate extends React.Component {
       });
       return false;
     }
-    console.log(userSol);
     if (sol) this.submit(userSol);
   }
 
@@ -134,11 +132,6 @@ export default class DragAnimationTemplate extends React.Component {
       };
       if (this.props.activeTask.taskId == "Maslow") {
         renderable = (
-          // <MaslowView
-          //   {...taskProps}
-          //   showSolution={this.state.showSolution}
-          //   key={"draganimationcomponentMaslow" + this.state.childKeyIteration}
-          // />
           <DragdropTemplate
             {...taskProps}
             showSolution={this.state.showSolution}
@@ -149,7 +142,6 @@ export default class DragAnimationTemplate extends React.Component {
           />
         );
       } else if (this.props.activeTask.taskId == "Motive") {
-        console.log("AAA");
         renderable = (
           <DragdropTemplate
             {...taskProps}
@@ -159,11 +151,6 @@ export default class DragAnimationTemplate extends React.Component {
             scale={null}
             key={"draganimationcomponentMotive" + this.state.childKeyIteration}
           />
-          // <MotiveView
-          //   {...taskProps}
-          //   showSolution={this.state.showSolution}
-          //   key={"draganimationcomponentMotive" + this.state.childKeyIteration}
-          // />
         );
       }
     }
@@ -171,9 +158,8 @@ export default class DragAnimationTemplate extends React.Component {
     let buttonText = this.state.showSolution ? "Weiter" : "Aufgabe lösen";
     return (
       <div>
-        {console.log(renderable)}
         <div
-          style={{ overflowY: "auto", maxHeight: "90vh" }}
+          style={{ overflowY: "auto", maxHeight: "80vh" }}
           className="dragAnimation__"
         >
           {renderable}

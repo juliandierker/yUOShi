@@ -40,7 +40,6 @@ export default class DragdropViewNormal extends Component {
           }}
         >
           {this.props.scene.children.map(column => {
-            console.log(column);
             return (
               <Draggable key={column.id}>
                 {/*  TODO: fix vertical view without that hack*/}
@@ -52,21 +51,17 @@ export default class DragdropViewNormal extends Component {
                   <Container
                     {...column.props}
                     groupName="col"
-                    onDragStart={e => console.log("drag started", e)}
-                    onDragEnd={e => console.log("drag end", e)}
+                    onDragStart={e => {}}
+                    onDragEnd={e => {}}
                     onDrop={e => that.onCardDrop(column.id, e)}
                     getChildPayload={index =>
                       that.getCardPayload(column.id, index)
                     }
                     dragClass="card-ghost"
                     dropClass="card-ghost-drop"
-                    onDragEnter={() => {
-                      console.log("drag enter:", column.id);
-                    }}
-                    onDragLeave={() => {
-                      console.log("drag leave:", column.id);
-                    }}
-                    onDropReady={p => console.log("Drop ready: ", p)}
+                    onDragEnter={() => {}}
+                    onDragLeave={() => {}}
+                    onDropReady={p => {}}
                     dropPlaceholder={{
                       animationDuration: 150,
                       showOnTop: true,

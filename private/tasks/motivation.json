@@ -350,8 +350,8 @@
             "humanistischen Ansätzen",
             "intrinsische Motivation",
             "Bedürfnis nach Autonomie",
-            "Bedürfnis des Kompetenzerlebens",
-            "Bedürfnis nach sozialer Eingebundenheit"
+            "Bedürfnis nach sozialer Eingebundenheit",
+            "Bedürfnis des Kompetenzerlebens"
           ],
           "images": {
             "Selbstbestimmung": "/Tag/Motivation3/Selbstbestimmung.svg",
@@ -408,7 +408,7 @@
           "title": "Xwert-Theorie",
           "subtitle": "Xwert_Theorie",
           "text": "Erwartungs-X-Wert Modelle sind psychologische Modelle zur Erklärung von Handlungsabsicht. Alle dazugehörigen Theorien haben die Gemeinsamkeit sowohl die Erwartung an die Folgen als auch den Wert dieser Folgen zu betrachten.\n\n Ein Modellvorschlag von Heckhausen beschreibt vier verschiedene Stufen im kognitiven Prozess der Motivationsentwicklung, denen sich bei unterschiedlicher Handlung differenzierte Erwartungen zuordnen lassen. Die erste Stufe betrifft eine Vermutung über die Situation-Ergebnis-Erwartung, das heißt, was passieren würde, wenn das Individuum nicht handelt. \n In Stufe zwei des Modells werden verschiedene Handlungschancen in der gegebenen Situation betrachtet und das dazu erwartete Ergebnis bewertet.\n Stufe drei beschäftigt sich dann mit den möglicherweise resultierenden Folgen des Ergebnisses.\n Grundsätzlich spielt der Nutzen der Handlungsergebnisse eine zentrale Rolle für den tatsächlichen Motivationsprozess. Genau wie in der beschriebenen Formel ist Motivation nach dieser Theorie demnach ein Produkt aus der Erwartung, ein bestimmtes Ziel zu erreichen und dem Wert, den das Ziel für das Individuum besitzt. Um das zu verdeutlichen, wird die Motivation oftmals vereinfacht als Formel dargestellt. Geht einer der beiden Werte gegen 0, hat das Ziel beispielsweise keinen emotionalen Wert für den Betroffenen, ergibt auch das Produkt 0 und es entsteht keine Motivation, das Ziel zu erreichen. So beschäftigt sich ein Schüler beispielsweise erst mit einem Fach, wenn es für seinen späteren Berufswunsch relevant ist. \n\n Natürlich stellt die Formel hier keine wirkliche Mathematik dar, menschliches Verhalten ist zu komplex, um es so abbilden zu können.",
-          "keywords": ["Erwartungs-Wert", "Situation", "Ergebnis"],
+          "keywords": ["Erwartungs-X-Wert", "Situation", "Ergebnis"],
           "images": {
             "Selbstbestimmung": "/Tag/Motivation4/Xwert-Theorie.svg",
             "Moderatoren": "/Tag/Motivation4/Ergebnis.jpg"

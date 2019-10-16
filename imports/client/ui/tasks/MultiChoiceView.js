@@ -23,7 +23,6 @@ export default class MultiChoiceView extends Component {
     let meteorMethod =
       "solutionHandler.submit" + this.props.activeTask.filePrefix;
     if (this.state.showSolution && this.state.final) {
-      console.log("V");
       let result = this.state.result;
       let solvedPercentage = null;
       if (this.state.totalAnswerCount > 0) {
@@ -32,7 +31,6 @@ export default class MultiChoiceView extends Component {
         solvedPercentage = result.falseCount / result.totalAnswerCount;
       }
       const { currentTraining } = this.props.student;
-      console.log("AAAA");
       Meteor.call(
         meteorMethod,
         this.state.checkedAnswers,
@@ -127,7 +125,6 @@ export default class MultiChoiceView extends Component {
             Swal.fire({
               position: "top-end",
               type: "success",
-              final: true,
               title: "Danke",
               toast: true,
               text: "Deine Gründe werden im Lehrendenzimmer ausgestellt.",
