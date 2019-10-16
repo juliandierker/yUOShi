@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 import { Container, Draggable } from "react-smooth-dnd";
 import { applyDrag, generateItems } from "./utils";
+import DragdropViewNormal from "./DragdropViewNormal";
+import DragdropViewNested from "./DragdropViewNested";
 
 const lorem = `Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
 Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
@@ -15,16 +17,18 @@ const pickColor = () => {
 export default class DragdropTemplate extends Component {
   constructor(props) {
     super(props);
+    this.view = React.createRef();
 
     this.onColumnDrop = this.onColumnDrop.bind(this);
     this.onCardDrop = this.onCardDrop.bind(this);
     this.getCardPayload = this.getCardPayload.bind(this);
     const catLength = props.activeTask.categories.length;
+    console.log(props.activeTask.statements);
     this.state = {
       scene: {
         type: "container",
         props: {
-          orientation: "horizontal",
+          orientation: props.activeTask.orientation[0],
           id: "dragdropContainer"
         },
         children: generateItems(catLength, i => ({
@@ -34,11 +38,11 @@ export default class DragdropTemplate extends Component {
           name: props.activeTask.categories[i],
           props: {
             id: `column${i}`,
-            orientation: props.activeTask.orientation,
+            orientation: props.activeTask.orientation[1],
             className: "card-container"
           },
           children: generateItems(
-            props.activeTask.statements[0].length / catLength,
+            props.activeTask.statements.length / catLength,
             j => ({
               type: "draggable",
               id: `${i}${j}`,
@@ -47,8 +51,8 @@ export default class DragdropTemplate extends Component {
                 id: `${i}${j}`,
                 style: { backgroundColor: pickColor() }
               },
-              solution: props.activeTask.statements[0][j][0],
-              data: props.activeTask.statements[0][j][1]
+              solution: props.activeTask.statements[j][0],
+              data: props.activeTask.statements[j][1]
             }),
             i
           )
@@ -74,82 +78,24 @@ export default class DragdropTemplate extends Component {
     }
   }
   renderSolutionState() {
-    const solutions = this.state.scene.children;
-
-    solutions.map(solution => {
-      solution.children.map(child => {
-        let elem = document.getElementById(child.id);
-        elem.style.backgroundColor = "green";
-        if (
-          this.props.model.visQueue.find(elem => {
-            return elem.id === child.id;
-          }) !== undefined
-        ) {
-          elem.style.backgroundColor = "red";
-        }
-      });
-    });
+    this.view.current.renderSolutionState();
   }
   render() {
-    console.log("Drag render");
-    return (
-      <div className="card-scene">
-        <Container
-          orientation="horizontal"
-          onDrop={this.onColumnDrop}
-          dragHandleSelector=".column-drag-handle"
-          dropPlaceholder={{
-            animationDuration: 150,
-            showOnTop: true,
-            className: "cards-drop-preview"
-          }}
-        >
-          {this.state.scene.children.map(column => {
-            return (
-              <Draggable key={column.id}>
-                <div className={column.props.className}>
-                  <div className="card-column-header">{column.name}</div>
-                  <Container
-                    {...column.props}
-                    groupName="col"
-                    onDragStart={e => console.log("drag started", e)}
-                    onDragEnd={e => console.log("drag end", e)}
-                    onDrop={e => this.onCardDrop(column.id, e)}
-                    getChildPayload={index =>
-                      this.getCardPayload(column.id, index)
-                    }
-                    dragClass="card-ghost"
-                    dropClass="card-ghost-drop"
-                    onDragEnter={() => {
-                      console.log("drag enter:", column.id);
-                    }}
-                    onDragLeave={() => {
-                      console.log("drag leave:", column.id);
-                    }}
-                    onDropReady={p => console.log("Drop ready: ", p)}
-                    dropPlaceholder={{
-                      animationDuration: 150,
-                      showOnTop: true,
-                      className: "drop-preview"
-                    }}
-                    dropPlaceholderAnimationDuration={200}
-                  >
-                    {column.children.map(card => {
-                      return (
-                        <Draggable key={card.id}>
-                          <div {...card.props}>
-                            <p>{card.data}</p>
-                          </div>
-                        </Draggable>
-                      );
-                    })}
-                  </Container>
-                </div>
-              </Draggable>
-            );
-          })}
-        </Container>
-      </div>
+    console.log(this.state.scene);
+    return this.props.activeTask.nested && this.state.scene ? (
+      <DragdropViewNested
+        scene={this.state.scene}
+        model={this.props.model}
+        that={this}
+        ref={this.view}
+      />
+    ) : (
+      <DragdropViewNormal
+        model={this.props.model}
+        scene={this.state.scene}
+        that={this}
+        ref={this.view}
+      />
     );
   }
 

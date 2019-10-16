@@ -134,10 +134,18 @@ export default class DragAnimationTemplate extends React.Component {
       };
       if (this.props.activeTask.taskId == "Maslow") {
         renderable = (
-          <MaslowView
+          // <MaslowView
+          //   {...taskProps}
+          //   showSolution={this.state.showSolution}
+          //   key={"draganimationcomponentMaslow" + this.state.childKeyIteration}
+          // />
+          <DragdropTemplate
             {...taskProps}
             showSolution={this.state.showSolution}
-            key={"draganimationcomponentMaslow" + this.state.childKeyIteration}
+            model={this.model}
+            ref={this.viewScene}
+            scale={null}
+            key={"draganimationcomponentMotive" + this.state.childKeyIteration}
           />
         );
       } else if (this.props.activeTask.taskId == "Motive") {
@@ -149,7 +157,6 @@ export default class DragAnimationTemplate extends React.Component {
             model={this.model}
             ref={this.viewScene}
             scale={null}
-            orientation={null}
             key={"draganimationcomponentMotive" + this.state.childKeyIteration}
           />
           // <MotiveView
@@ -171,6 +178,9 @@ export default class DragAnimationTemplate extends React.Component {
         >
           {renderable}
         </div>
+        <span>
+          <Image avatar src={"https://via.placeholder.com/50"} />
+        </span>
         <Button
           style={{ marginTop: "10px", marginRight: "10px", float: "right" }}
           onClick={() => this.solutionPrepare()}
