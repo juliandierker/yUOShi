@@ -146,9 +146,6 @@ export default class DragAnimationTemplate extends React.Component {
             key={"draganimationcomponentMotive" + this.state.childKeyIteration}
           />{" "}
         </div>
-        <span>
-          <Image avatar src={"https://via.placeholder.com/50"} />
-        </span>
         <Button
           style={{ marginTop: "10px", marginRight: "10px", float: "right" }}
           onClick={() => this.solutionPrepare()}
