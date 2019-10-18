@@ -173,7 +173,7 @@
       "description": "Ordne die Statements über Schüler*innen der intrinsischen oder extrinsischen Motivation zu. Welche Quelle der Motivation wird in der jeweiligen Aussage eher abgebildet? ",
       "taskId": "Motive",
       "filePrefix": "Drag",
-      "content": {},
+      "multipleColumns": true,
       "package": "Motivation",
       "credits": 12,
       "categories": ["intrinsisch", "extrinsisch"],
@@ -311,7 +311,7 @@
       "description": "Und noch einmal: Versuche die Bedürfnisse nach Maslow in dieser Pyramide die richtige Reihenfolge zu bringen.",
       "taskId": "Maslow",
       "filePrefix": "Drag",
-      "content": {},
+      "multipleColumns": false,
       "package": "Motivation",
       "scale": 5,
       "categories": ["Maslow-Pyramiede"],
@@ -325,7 +325,7 @@
       "statements": [
         ["selfActualization", "Selbstverwirklichung"],
         ["esteem", "Individualbedürfnisse"],
-        ["socialneeds", "Selbstverwirklichung"],
+        ["socialneeds", "Soziale Bedürfnisse"],
         ["safety", "Sicherheitsbedürfnisse"],
         ["physological", "Körperliche Bedürfnisse"]
       ],

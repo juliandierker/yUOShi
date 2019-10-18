@@ -5,15 +5,22 @@ export const DragdropModel = {
     var model = {
       init: function(student, task) {
         this._id = task._id;
+        this.task = task;
         this.taskId = task.taskId;
         this.visQueue = [];
         this.correctArr = [];
         this.solution = [];
       },
       checkSolution: function(solution) {
-        solution.children.map(child => {
-          if (solution.solution != child.solution) {
-            this.visQueue.push("fail", child);
+        solution.children.map((child, index) => {
+          if (this.task.multipleColumns) {
+            if (solution.categorie != child.solution) {
+              this.visQueue.push("fail", child);
+            }
+          } else {
+            if (child.solution != this.task.solArray[index]) {
+              this.visQueue.push("fail", child);
+            }
           }
         });
         if (!this.visQueue.includes("fail")) {

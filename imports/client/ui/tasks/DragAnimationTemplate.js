@@ -62,6 +62,7 @@ export default class DragAnimationTemplate extends React.Component {
     }
     var sol = this.model.run(userSol);
     var visQueue = this.model.visQueue;
+    console.log(visQueue);
     if (visQueue.includes("fail")) {
       Swal.fire({
         position: "top-end",
@@ -121,48 +122,29 @@ export default class DragAnimationTemplate extends React.Component {
   }
 
   render() {
-    let renderable;
-    if (this.props.activeTask) {
-      let taskProps = {
-        student: this.props.student,
-        tasks: this.props.tasks,
-        activeTask: this.props.activeTask,
-        courses: this.props.courses,
-        model: this.model
-      };
-      if (this.props.activeTask.taskId == "Maslow") {
-        renderable = (
-          <DragdropTemplate
-            {...taskProps}
-            showSolution={this.state.showSolution}
-            model={this.model}
-            ref={this.viewScene}
-            scale={null}
-            key={"draganimationcomponentMotive" + this.state.childKeyIteration}
-          />
-        );
-      } else if (this.props.activeTask.taskId == "Motive") {
-        renderable = (
-          <DragdropTemplate
-            {...taskProps}
-            showSolution={this.state.showSolution}
-            model={this.model}
-            ref={this.viewScene}
-            scale={null}
-            key={"draganimationcomponentMotive" + this.state.childKeyIteration}
-          />
-        );
-      }
-    }
-
+    let taskProps = {
+      student: this.props.student,
+      tasks: this.props.tasks,
+      activeTask: this.props.activeTask,
+      courses: this.props.courses,
+      model: this.model
+    };
     let buttonText = this.state.showSolution ? "Weiter" : "Aufgabe lösen";
+
     return (
       <div>
         <div
           style={{ overflowY: "auto", maxHeight: "80vh" }}
           className="dragAnimation__"
         >
-          {renderable}
+          <DragdropTemplate
+            {...taskProps}
+            showSolution={this.state.showSolution}
+            model={this.model}
+            ref={this.viewScene}
+            scale={null}
+            key={"draganimationcomponentMotive" + this.state.childKeyIteration}
+          />{" "}
         </div>
         <span>
           <Image avatar src={"https://via.placeholder.com/50"} />
