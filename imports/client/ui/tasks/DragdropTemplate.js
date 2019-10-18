@@ -8,7 +8,18 @@ const lorem = `Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do e
 Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
 Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.`;
 
-const cardColors = ["white"];
+const cardColors = [
+  "azure",
+  "beige",
+  "bisque",
+  "blanchedalmond",
+  "burlywood",
+  "cornsilk",
+  "gainsboro",
+  "ghostwhite",
+  "ivory",
+  "khaki"
+];
 const pickColor = () => {
   let rand = Math.floor(Math.random() * 10);
   return cardColors[rand];
@@ -126,7 +137,13 @@ export default class DragdropTemplate extends Component {
     });
   }
   resizeChildren(children) {
-    children.map((child, index) => {});
+    children.map((child, index) => {
+      let tmp = child.props.style;
+      tmp.style.width = getWidth(index, this.props.activeTask) + "%";
+      console.log(tmp);
+      // this.setState({child.props.style.witdh :getWidth(index, this.props.activeTask) + "%"})
+      child.props.style = tmp;
+    });
   }
   onCardDrop(columnId, dropResult) {
     if (this.props.activeTask.scale) {

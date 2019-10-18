@@ -21,6 +21,6 @@ export const generateItems = (count, creator, offset = 0) => {
   for (let i = 0; i < count; i++) {
     result.push(creator(i + offset * count));
   }
-
+  console.log(result);
   return result;
 };
