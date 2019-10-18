@@ -313,7 +313,7 @@
       "filePrefix": "Drag",
       "multipleColumns": false,
       "package": "Motivation",
-      "scale": 5,
+      "scale": 10,
       "categories": ["Maslow-Pyramiede"],
       "solArray": [
         "selfActualization",

@@ -24,6 +24,15 @@ const pickColor = () => {
   let rand = Math.floor(Math.random() * 10);
   return cardColors[rand];
 };
+const getWidth = (depth, activeTask) => {
+  if (activeTask.scale) {
+    let len = activeTask.statements.length;
+    depth += 1;
+    return 100 - activeTask.scale * (len - depth);
+  } else {
+    return 100;
+  }
+};
 
 export default class DragdropTemplate extends Component {
   constructor(props) {
@@ -61,7 +70,13 @@ export default class DragdropTemplate extends Component {
               props: {
                 className: "card",
                 id: `${i}${j}`,
-                style: { backgroundColor: pickColor() }
+                style: {
+                  backgroundColor: pickColor(),
+                  width: getWidth(j, props.activeTask) + "%",
+                  marginRight: "auto",
+                  marginLeft: "auto",
+                  textAlign: "center"
+                }
               },
               solution: props.activeTask.statements[j][0],
               data: props.activeTask.statements[j][1]
@@ -121,8 +136,14 @@ export default class DragdropTemplate extends Component {
       scene
     });
   }
-
+  resizeChildren(children) {
+    children.map((child, index) => {});
+  }
   onCardDrop(columnId, dropResult) {
+    if (this.props.activeTask.scale) {
+      this.resizeChildren(this.state.scene.children[0].children);
+    }
+
     if (dropResult.removedIndex !== null || dropResult.addedIndex !== null) {
       const scene = Object.assign({}, this.state.scene);
       const column = scene.children.filter(p => p.id === columnId)[0];

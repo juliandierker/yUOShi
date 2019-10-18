@@ -92,9 +92,7 @@ export default class MemoryView extends React.Component {
         fail: false
       });
     });
-    // this.state.duplicatedFrameworks = this.state.frameworks.concat(
-    //   this.state.frameworks
-    // );
+
     this.state.randomizedFrameworks = this.shuffle(
       this.state.duplicatedFrameworks
     );
