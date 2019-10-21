@@ -16,12 +16,19 @@ Meteor.methods({
     if (solvedPercentage !== undefined) {
       solveTask(studentId, task.taskId, solvedPercentage);
     }
+
     // var correct = equals(studentSolution, Solutions[task.taskId]);
     var correct = true;
     studentSolution.map(solution => {
-      solution.children.map(child => {
-        if (solution.solution != child.solution) {
-          correct = false;
+      solution.children.map((child, index) => {
+        if (task.multipleColumns) {
+          if (solution.categorie != child.solution) {
+            correct = false;
+          }
+        } else {
+          if (child.solution != task.solArray[index]) {
+            correct = false;
+          }
         }
       });
     });

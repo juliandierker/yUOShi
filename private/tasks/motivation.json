@@ -211,45 +211,6 @@
         [
           "extr",
           "Dennis bekommt eine gute Note von der Lehrerin, wenn er in Biologie aufpasst."
-        ],
-        [
-          "intr",
-          "Jenny ist es wichtig, Zusammenhänge zu verstehen, und daher strengt sie sich an."
-        ],
-        [
-          "extr",
-          "Henrik strengt sich bei einer Aufgabe an, weil die Lehrerin eine Belohnung versprochen hat."
-        ],
-        [
-          "intr",
-          "Christian interessiert sich für Religion und liest deshalb das Kapitel."
-        ],
-        ["extr", "Anna liest das Kapitel, weil sie morgen geprüft wird."],
-        ["intr", "Lena trägt Converse, weil ihr diese Schuhe gefallen."],
-        [
-          "extr",
-          "Lara hat sich UGG-Boots gekauft, weil momentan alle diese Schuhe tragen."
-        ],
-        [
-          "intr",
-          "Anna findet Fußball spitze und freut sich auf die Unterrichtsstunde dazu."
-        ],
-        [
-          "extr",
-          "Jens nimmt gerne am Sportunterricht teil, weil ihn jeder in seine Mannschaft wählt."
-        ],
-        ["intr", "Max übt Mathe, weil er besser werden möchte."],
-        [
-          "extr",
-          " Andres Mutter möchte, dass er jeden Tag eine Matheaufgabe rechnet."
-        ],
-        [
-          "intr",
-          "Matti übt die Rückhand beim Tennis, weil er sich weiterentwickeln will."
-        ],
-        [
-          "extr",
-          "Sebastian arbeitet an seiner Kraultechnik, um den nächsten Wettkampf zu gewinnen."
         ]
       ]
     },
@@ -366,11 +327,12 @@
     {
       "parentId": "Motivation3",
       "title": "Die Selbstbestimmungstheorie",
-      "description": "Selbstbestimmungstheorie",
+      "description": "Ordne die Statements über Schüler*innen der sozialen Eingebundenheit, Autonomie oder Kompentenz zu. Welche Art der Selbstbestimmung liegt vor?",
       "taskId": "Selbstestimmung",
       "filePrefix": "Drag",
-      "categories": ["soz_eing", "autonomie", "kompetenz"],
-      "solArray": ["intr", "extr"],
+      "multipleColumns": true,
+      "categories": ["Sozial eingebunden", "Autonomie", "Kompetenz"],
+      "solArray": ["soz_eing", "autonomie", "kompetenz"],
       "scale": false,
       "orientation": ["vertical", "vertical"],
       "nested": false,

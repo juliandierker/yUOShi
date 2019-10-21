@@ -43,14 +43,16 @@ export default class DragdropTemplate extends Component {
             orientation: props.activeTask.orientation[1],
             className: "card-container"
           },
+          log2: console.log(props.activeTask.statements),
           children: generateItems(
-            props.activeTask.statements.length / catLength,
+            Math.floor(props.activeTask.statements.length / catLength),
             j => ({
               type: "draggable",
               id: `${i}${j}`,
               props: {
                 className: "card",
                 id: `${i}${j}`,
+                log: console.log(j),
                 style: {
                   backgroundColor: cardColor,
                   width: getWidth(j, props.activeTask) + "%",
