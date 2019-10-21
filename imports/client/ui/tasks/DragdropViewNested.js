@@ -24,7 +24,6 @@ export default class DragdropViewNested extends Component {
       });
     });
   }
-  calcWidth() {}
   render() {
     const that = this.props.that;
 
@@ -43,7 +42,6 @@ export default class DragdropViewNested extends Component {
           {this.props.scene.children.map(column => {
             return (
               <Draggable key={column.id}>
-                {/*  TODO: fix vertical view without that hack*/}
                 <div className={column.props.className}>
                   <div className="card-column-header">
                     <span className="column-drag-handle">&#x2630;</span>
@@ -53,7 +51,6 @@ export default class DragdropViewNested extends Component {
                     {...column.props}
                     groupName="col"
                     onDragStart={e => {}}
-                    onDragEnd={e => this.calcWidth()}
                     onDrop={e => that.onCardDrop(column.id, e)}
                     getChildPayload={index =>
                       that.getCardPayload(column.id, index)
