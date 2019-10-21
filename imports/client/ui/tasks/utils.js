@@ -12,7 +12,6 @@ export const applyDrag = (arr, dragResult) => {
   if (addedIndex !== null) {
     result.splice(addedIndex, 0, itemToAdd);
   }
-
   return result;
 };
 
@@ -21,6 +20,5 @@ export const generateItems = (count, creator, offset = 0) => {
   for (let i = 0; i < count; i++) {
     result.push(creator(i + offset * count));
   }
-
   return result;
 };

@@ -369,31 +369,35 @@
       "description": "Selbstbestimmungstheorie",
       "taskId": "Selbstestimmung",
       "filePrefix": "Drag",
-      "content": {
-        "statements": [
-          ["soz_eing", "Ich fühle mich in meiner sozialen Gruppe angekommen."],
-          [
-            "soz_eing",
-            "Meine Meinung und Einstellung wird geschätzt und akzeptiert."
-          ],
+      "categories": ["soz_eing", "autonomie", "kompetenz"],
+      "solArray": ["intr", "extr"],
+      "scale": false,
+      "orientation": ["vertical", "vertical"],
+      "nested": false,
+      "statements": [
+        ["soz_eing", "Ich fühle mich in meiner sozialen Gruppe angekommen."],
+        [
+          "soz_eing",
+          "Meine Meinung und Einstellung wird geschätzt und akzeptiert."
+        ],
 
-          ["autonomie", "Ich kann das alleine schaffen."],
-          ["autonomie", "Ich brauche erst Hilfe, wenn ich nicht weiterkomme."],
-          [
-            "autonomie",
-            "Ich mache das, weil ich es für den richtigen Weg zum Ziel halte."
-          ],
+        ["autonomie", "Ich kann das alleine schaffen."],
+        ["autonomie", "Ich brauche erst Hilfe, wenn ich nicht weiterkomme."],
+        [
+          "autonomie",
+          "Ich mache das, weil ich es für den richtigen Weg zum Ziel halte."
+        ],
 
-          [
-            "kompetenz",
-            "Ich habe die nötigen Fähigkeiten, diese Aufgabe zu bewältigen."
-          ],
-          [
-            "kompetenz",
-            "Ich bin in der Lage, mir die nötigen Kompetenzen anzueignen, die ich für die Aufgabe benötige."
-          ]
+        [
+          "kompetenz",
+          "Ich habe die nötigen Fähigkeiten, diese Aufgabe zu bewältigen."
+        ],
+        [
+          "kompetenz",
+          "Ich bin in der Lage, mir die nötigen Kompetenzen anzueignen, die ich für die Aufgabe benötige."
         ]
-      },
+      ],
+
       "package": "Motivation",
       "credits": 9
     },

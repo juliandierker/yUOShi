@@ -4,15 +4,7 @@ import { applyDrag, generateItems } from "./utils";
 import DragdropViewNormal from "./DragdropViewNormal";
 import DragdropViewNested from "./DragdropViewNested";
 
-const lorem = `Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
-Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
-Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.`;
-
-const cardColors = ["white"];
-const pickColor = () => {
-  let rand = Math.floor(Math.random() * 10);
-  return cardColors[rand];
-};
+const cardColor = "white";
 const getWidth = (depth, activeTask) => {
   if (activeTask.scale) {
     let len = activeTask.statements.length;
@@ -60,7 +52,7 @@ export default class DragdropTemplate extends Component {
                 className: "card",
                 id: `${i}${j}`,
                 style: {
-                  backgroundColor: pickColor(),
+                  backgroundColor: cardColor,
                   width: getWidth(j, props.activeTask) + "%",
                   marginRight: "auto",
                   marginLeft: "auto",
@@ -121,18 +113,19 @@ export default class DragdropTemplate extends Component {
   onColumnDrop(dropResult) {
     const scene = Object.assign({}, this.state.scene);
     scene.children = applyDrag(scene.children, dropResult);
+
     this.setState({
       scene
     });
   }
   resizeChildren(children) {
-    children.map((child, index) => {});
+    children.map((child, index) => {
+      let elem = document.getElementById(child.id);
+      let newWidth = getWidth(index, this.props.activeTask) + "%";
+      elem.style.width = newWidth;
+    });
   }
   onCardDrop(columnId, dropResult) {
-    if (this.props.activeTask.scale) {
-      this.resizeChildren(this.state.scene.children[0].children);
-    }
-
     if (dropResult.removedIndex !== null || dropResult.addedIndex !== null) {
       const scene = Object.assign({}, this.state.scene);
       const column = scene.children.filter(p => p.id === columnId)[0];
@@ -145,6 +138,9 @@ export default class DragdropTemplate extends Component {
       this.setState({
         scene
       });
+      if (this.props.activeTask.scale) {
+        this.resizeChildren(this.state.scene.children[0].children);
+      }
     }
   }
 }

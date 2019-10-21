@@ -1,14 +1,13 @@
 import React from "react";
 import { Meteor } from "meteor/meteor";
 import PropTypes from "prop-types";
-import { Button } from "semantic-ui-react";
-import { DragdropModel } from "../../../models/DragdropModel";
-import DragdropTemplate from "./DragdropTemplate";
+
 import Swal from "sweetalert2";
 import { Container, Draggable } from "react-smooth-dnd";
+import { Button } from "semantic-ui-react";
 
-import MaslowView from "./MaslowView";
-import MotiveView from "./MotiveView_old";
+import { DragdropModel } from "../../../models/DragdropModel";
+import DragdropTemplate from "./DragdropTemplate";
 
 export default class DragAnimationTemplate extends React.Component {
   constructor(props) {
@@ -62,7 +61,6 @@ export default class DragAnimationTemplate extends React.Component {
     }
     var sol = this.model.run(userSol);
     var visQueue = this.model.visQueue;
-    console.log(visQueue);
     if (visQueue.includes("fail")) {
       Swal.fire({
         position: "top-end",
