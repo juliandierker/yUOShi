@@ -3,7 +3,7 @@ import { Container, Draggable } from "react-smooth-dnd";
 import { applyDrag, generateItems } from "./utils";
 import DragdropViewNormal from "./DragdropViewNormal";
 import DragdropViewNested from "./DragdropViewNested";
-
+import DragdropViewFormular from "./DragdropViewFormular";
 const cardColor = "white";
 const getWidth = (depth, activeTask) => {
   if (activeTask.scale) {
@@ -87,21 +87,34 @@ export default class DragdropTemplate extends Component {
     this.view.current.renderSolutionState();
   }
   render() {
-    return this.props.activeTask.nested && this.state.scene ? (
-      <DragdropViewNested
-        scene={this.state.scene}
-        model={this.props.model}
-        that={this}
-        ref={this.view}
-      />
-    ) : (
-      <DragdropViewNormal
-        model={this.props.model}
-        scene={this.state.scene}
-        that={this}
-        ref={this.view}
-      />
-    );
+    if (this.props.activeTask.formular) {
+      return (
+        <DragdropViewFormular
+          scene={this.state.scene}
+          model={this.props.model}
+          that={this}
+          ref={this.view}
+        />
+      );
+    } else if (this.props.activeTask.nested && this.state.scene) {
+      return (
+        <DragdropViewNested
+          scene={this.state.scene}
+          model={this.props.model}
+          that={this}
+          ref={this.view}
+        />
+      );
+    } else {
+      return (
+        <DragdropViewNormal
+          model={this.props.model}
+          scene={this.state.scene}
+          that={this}
+          ref={this.view}
+        />
+      );
+    }
   }
 
   getCardPayload(columnId, index) {

@@ -84,7 +84,55 @@
       "package": "Motivation",
       "credits": 7
     },
+    {
+      "parentId": "Motivation1",
+      "title": "Begriffe der Motivation",
+      "description": "Ordne die Statements über Schüler*innen der intrinsischen oder extrinsischen Motivation zu. Welche Quelle der Motivation wird in der jeweiligen Aussage eher abgebildet? ",
+      "taskId": "Motive",
+      "filePrefix": "Drag",
+      "multipleColumns": true,
 
+      "package": "Motivation",
+      "credits": 12,
+      "categories": ["Titel", "Bild", "Beispiel"],
+      "solArray": ["intr", "extr"],
+      "scale": false,
+      "orientation": ["vertical", "vertical"],
+      "nested": false,
+      "formular": true,
+      "statements": [
+        ["intr", "Die SuS arbeiten gerne mit, weil sie dadurch mehr lernen."],
+        ["extr", "Die Lehrkraft vergibt Sternchen für gute Mitarbeit"],
+        [
+          "intr",
+          "Gülcan hat Spaß an deutscher Geschichte, deswegen meldet er sich oft."
+        ],
+        ["extr", "Laura wird ermahnt, wenn sie im Unterricht nicht mitmacht."],
+        [
+          "intr",
+          "Anastasia liest gerne Bücher und beschäftigt sich deshalb mit dem Thema für die Deutschklausur."
+        ],
+        [
+          "extr",
+          "Mara bekommt von ihrer Oma 5 Euro, wenn sie in Deutsch eine gute Note schreibt."
+        ],
+        ["intr", "Tiffany ist traurig, wenn sie eine schlechte Note bekommt."],
+        [
+          "extr",
+          "Richards Mutter ist enttäuscht, wenn er eine schlechte Note bekommt"
+        ],
+        ["intr", "Alexander ist eine ordentliche Mappenführung wichtig."],
+        [
+          "extr",
+          "Clara führt ihre Mappe ordentlich, um dadurch ein Sternchen zu bekommen."
+        ],
+        ["intr", "Miguel passt in Biologie auf, weil er Arzt werden möchte."],
+        [
+          "extr",
+          "Dennis bekommt eine gute Note von der Lehrerin, wenn er in Biologie aufpasst."
+        ]
+      ]
+    },
     {
       "parentId": "Motivation1",
       "package": "Motivation",
