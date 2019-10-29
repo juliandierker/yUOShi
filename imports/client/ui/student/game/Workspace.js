@@ -18,6 +18,7 @@ import { Segment, Button, Grid, Icon } from "semantic-ui-react";
 
 import Hyphenated from "react-hyphen";
 import de from "hyphenated-de";
+import Countdown from "../../Countdown";
 
 /**
  * This component should control the progress of a student in a task-package
@@ -37,7 +38,8 @@ export default class Workspace extends React.Component {
       currentSubPackageIndex: 0,
       currentSequenceId: 0,
       hasActiveTaskOrTraining: false,
-      finishedKeywords: []
+      finishedKeywords: [],
+      readFinished: false
     };
     this.tagInstance = React.createRef();
     this.handler = ev => {
@@ -70,7 +72,9 @@ export default class Workspace extends React.Component {
     }
   }
 
-  componentDidUpdate(prevProps, prevState) {}
+  componentDidUpdate(prevProps, prevState) {
+    this.checkReadFinish();
+  }
   componentWillUnmount() {
     if (this.state.activeTask) {
       Meteor.call(
@@ -80,6 +84,18 @@ export default class Workspace extends React.Component {
       );
     }
     window.removeEventListener("beforeunload", this.handler);
+  }
+
+  checkReadFinish() {
+    if (
+      this.props.student.tasks[0] &&
+      this.state.readFinished !==
+        this.props.student.tasks[0].taskState.readFinished
+    ) {
+      this.setState({
+        readFinished: this.props.student.tasks[0].taskState.readFinished
+      });
+    }
   }
 
   checkPackageProgress() {
@@ -308,8 +324,27 @@ export default class Workspace extends React.Component {
       </Grid>
     );
   }
+
   renderKeywordList() {
     if (this.state.activeTask && this.state.activeTask.type === "tag") {
+      if (!this.state.readFinished) {
+        return (
+          <div id="KeywordList">
+            <Countdown
+              seconds={120}
+              color="#6a96e2"
+              width="10px"
+              onComplete={() => {
+                Meteor.call(
+                  "solutionHandler.taskReadFinish",
+                  this.props.student._id,
+                  this.state.activeTask
+                );
+              }}
+            />
+          </div>
+        );
+      }
       return (
         <KeywordList
           handleClick={this.handleKWContinue.bind(this)}

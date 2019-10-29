@@ -1,0 +1,24 @@
+#countdown-svg {
+  position: absolute;
+  top: 0;
+  right: 20;
+  width: 80px;
+  height: 80px;
+  transform: rotateY(-180deg) rotateZ(-90deg);
+}
+
+#countdown-circle {
+  stroke-dasharray: 158px;
+  stroke-dashoffset: 0px;
+  stroke-linecap: round;
+  fill: none;
+}
+
+@keyframes countdown {
+  from {
+    stroke-dashoffset: 0px;
+  }
+  to {
+    stroke-dashoffset: 158px;
+  }
+}

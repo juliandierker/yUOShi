@@ -7,6 +7,8 @@ function createDragTask(taskSpecs) {
   taskSpecs["package"] = taskSpecs["package"];
   taskSpecs["autoGrading"] = true;
   taskSpecs["filePrefix"] = taskSpecs["filePrefix"];
+  taskSpecs["taskState"] = { save: false, help: false };
+
   return taskSpecs;
 }
 function createTagTask(taskSpecs) {
@@ -17,6 +19,8 @@ function createTagTask(taskSpecs) {
   taskSpecs["package"] = taskSpecs["package"];
   taskSpecs["autoGrading"] = true;
   taskSpecs["filePrefix"] = taskSpecs["filePrefix"];
+  taskSpecs["taskState"] = { save: false, help: false, readFinished: false };
+
   return taskSpecs;
 }
 
@@ -28,9 +32,11 @@ function createClozeTask(taskSpecs) {
   taskSpecs["package"] = taskSpecs["package"];
   taskSpecs["autoGrading"] = true;
   taskSpecs["filePrefix"] = taskSpecs["filePrefix"];
+  taskSpecs["taskState"] = { save: false, help: false };
 
   return taskSpecs;
 }
+
 function createMemory(taskSpecs) {
   taskSpecs["isTask"] = true;
   taskSpecs["taskId"] = taskSpecs["taskId"];
@@ -39,6 +45,7 @@ function createMemory(taskSpecs) {
   taskSpecs["package"] = taskSpecs["package"];
   taskSpecs["autoGrading"] = true;
   taskSpecs["filePrefix"] = taskSpecs["filePrefix"];
+  taskSpecs["taskState"] = { save: false, help: false };
 
   return taskSpecs;
 }
@@ -51,6 +58,7 @@ function createMultiChoice(taskSpecs) {
   taskSpecs["package"] = taskSpecs["package"];
   taskSpecs["autoGrading"] = true;
   taskSpecs["filePrefix"] = taskSpecs["filePrefix"];
+  taskSpecs["taskState"] = { save: false, help: false };
 
   return taskSpecs;
 }

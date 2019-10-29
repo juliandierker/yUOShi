@@ -4,6 +4,8 @@ import equals from "fast-deep-equal";
 import { solveTask } from "./solutionHandling/taskSolver";
 import { checkMulti } from "./solutionHandling/multiSolver";
 
+import { Students } from "../imports/api/students";
+
 var Solutions = JSON.parse(Assets.getText("solutions.json"));
 
 Meteor.methods({
@@ -66,6 +68,17 @@ Meteor.methods({
       solveTask(studentId, task.taskId);
     }
     return correct;
+  },
+  "solutionHandler.taskReadFinish"(studentId, task) {
+    let student = Students.find({
+      _id: studentId,
+      "tasks.taskId": task.taskId
+    }).fetch()[0];
+    let tasks = student.tasks;
+    tasks[0].taskState.readFinished = true;
+
+    Students.update({ _id: studentId }, { $set: { tasks } });
+    return;
   },
   "solutionHandler.submitMemory"(studentSolution, studentId, task) {
     var correct = studentSolution.length == task.content[0].keywords.length * 2;
