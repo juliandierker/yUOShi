@@ -217,6 +217,7 @@ export default class TrainingAnimationTemplate extends React.Component {
             that={this}
             dimmer={dimmer}
             closeOnDimmerClick={false}
+            closeOnEscape={false}
             open={open}
             onClose={this.close}
           >
