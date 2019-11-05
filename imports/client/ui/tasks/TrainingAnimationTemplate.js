@@ -131,15 +131,23 @@ export default class TrainingAnimationTemplate extends React.Component {
       );
     } else {
       return (
-        <Button
-          id="nextBtn"
-          content={
-            this.state.introIndex === this.state.finalIndex - 2
-              ? "Kapitel abschließen"
-              : "Nächster Fall"
-          }
-          onClick={this.nextAction.bind(this)}
-        />
+        <React.Fragment>
+          <Button
+            style={{ float: "left" }}
+            id="nextBtn"
+            content="Zurück zu den Aufgaben"
+            onClick={this.props.loadPrevTask}
+          />
+          <Button
+            id="nextBtn"
+            content={
+              this.state.introIndex === this.state.finalIndex - 2
+                ? "Kapitel abschließen"
+                : "Nächster Fall"
+            }
+            onClick={this.nextAction.bind(this)}
+          />
+        </React.Fragment>
       );
     }
   }
