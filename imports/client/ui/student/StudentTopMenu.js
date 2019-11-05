@@ -4,14 +4,110 @@ import { Tracker } from "meteor/tracker";
 import Loading from "../Loading";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faMailBulk } from "@fortawesome/free-solid-svg-icons";
+import _ from "lodash";
 import {
   Dropdown,
   Icon,
   Menu,
   Segment,
   MenuItem,
-  Image
+  Image,
+  Sidebar,
+  Responsive
 } from "semantic-ui-react";
+
+const NavBarMobile = ({
+  children,
+  leftItems,
+  onPusherClick,
+  onToggle,
+  visible
+}) => (
+  <Sidebar.Pushable>
+    <Sidebar
+      as={Menu}
+      animation="overlay"
+      icon="labeled"
+      items={leftItems}
+      vertical
+      visible={visible}
+    />
+    <Sidebar.Pusher
+      dimmed={visible}
+      onClick={onPusherClick}
+      style={{ minHeight: "100vh" }}
+    >
+      <Menu fixed="top" inverted>
+        <Menu.Item onClick={onToggle}>
+          <Icon name="sidebar" />
+        </Menu.Item>
+      </Menu>
+      {children}
+    </Sidebar.Pusher>
+  </Sidebar.Pushable>
+);
+
+const NavBarDesktop = ({ leftItems }) => (
+  <Menu fixed="top">
+    <Menu.Item />
+    {_.map(leftItems, item => (
+      <Menu.Item {...item} />
+    ))}
+  </Menu>
+);
+
+const NavBarChildren = ({ children }) => (
+  <Container style={{ marginTop: "5em" }}>{children}</Container>
+);
+
+class NavBar extends Component {
+  state = {
+    visible: false
+  };
+
+  handlePusher = () => {
+    const { visible } = this.state;
+
+    if (visible) this.setState({ visible: false });
+  };
+
+  handleToggle = () => this.setState({ visible: !this.state.visible });
+
+  render() {
+    const { children, leftItems } = this.props;
+    const { visible } = this.state;
+
+    return (
+      <div>
+        <Responsive {...Responsive.onlyMobile}>
+          <NavBarMobile
+            leftItems={leftItems}
+            onPusherClick={this.handlePusher}
+            onToggle={this.handleToggle}
+            visible={visible}
+          >
+            <NavBarChildren>{children}</NavBarChildren>
+          </NavBarMobile>
+        </Responsive>
+        <Responsive minWidth={Responsive.onlyTablet.minWidth}>
+          <NavBarDesktop leftItems={leftItems} />
+          <NavBarChildren>{children}</NavBarChildren>
+        </Responsive>
+      </div>
+    );
+  }
+}
+const leftItems = [
+  { as: "a", content: "Lehrendenzimmer", key: "lehrendenzimmer" },
+  { as: "a", content: "Klassenzimmer", key: "klassenzimmer" },
+  { as: "a", content: "Mein Büro", key: "mein büro" },
+  { as: "a", icon: "certificate", key: "certificate" },
+  { as: "a", icon: "euro sign", key: "euro sign" },
+  { as: "a", icon: "play", key: "play" },
+  { as: "a", content: "Level 1", key: "level" },
+  { as: "a", icon: "user", text: "profile", key: "user" }
+];
+const App = () => <NavBar leftItems={leftItems} />;
 
 export default class StudentTopMenu extends React.Component {
   constructor(props) {
@@ -127,92 +223,163 @@ export default class StudentTopMenu extends React.Component {
 
     return (
       <React.Fragment>
-        <Menu
-          secondary
-          fixed="top"
-          style={{
-            justifyContent: "center",
-            backgroundColor: "#6A96E2",
-            width: "100%",
-            height: "5%"
-          }}
-        >
-          <Menu.Item
-            id="classMenuItem"
+        <Responsive {...Responsive.onlyMobile}>
+          <Menu
+            attached="top"
             style={{
-              color: "white"
+              backgroundColor: "#6A96E2",
+              width: "100%",
+              height: "5%"
             }}
-            name="Klassenzimmer"
-            active={activeItem === "freegame"}
-            onClick={this.handleMenuItemClick}
-            onMouseEnter={() => this.hoverOnClass("classroom")}
-            onMouseLeave={() => this.hoverOffClass("classroom")}
-          />
-          <Menu.Item
-            name="Lehrendenzimmer"
+          >
+            <Dropdown item icon="bars" white simple>
+              <Dropdown.Menu
+                style={{
+                  backgroundColor: "#6A96E2",
+                  Color: "white!important"
+                }}
+              >
+                <Dropdown.Item
+                  active={activeItem === "freegame"}
+                  onClick={this.handleMenuItemClick}
+                  onMouseEnter={() => this.hoverOnClass("classroom")}
+                  onMouseLeave={() => this.hoverOffClass("classroom")}
+                >
+                  Klassenzimmer
+                </Dropdown.Item>
+                <Dropdown.Item
+                  active={activeItem === "overview"}
+                  onClick={this.handleMenuItemClick}
+                >
+                  Lehrendenzimmer
+                </Dropdown.Item>
+                <Dropdown.Item
+                  active={activeItem === "overview"}
+                  onClick={this.handleMenuItemClick}
+                >
+                  Mein Büro
+                </Dropdown.Item>
+                <Dropdown.Item icon="certificate" />
+                <Dropdown.Item
+                  icon="euro sign"
+                  name={" " + this.getCredits()}
+                />
+                <Dropdown.Item icon="play" name={"" + this.getLevel()} />
+                <Dropdown.Item>
+                  <Icon name="dropdown" />
+                  User0
+                  <Dropdown.Menu
+                    style={{
+                      backgroundColor: "#6A96E2",
+                      Color: "white!important"
+                    }}
+                  >
+                    <Dropdown.Item>
+                      <Icon name="user" />
+                      Profil
+                    </Dropdown.Item>
+                    <Dropdown.Item
+                      active={activeItem === "overview"}
+                      onClick={() => Meteor.logout(() => {})}
+                    >
+                      <Icon name="power off" />
+                      Ausloggen
+                    </Dropdown.Item>
+                  </Dropdown.Menu>
+                </Dropdown.Item>
+              </Dropdown.Menu>
+            </Dropdown>
+          </Menu>
+        </Responsive>
+        <Responsive as={Segment} {...Responsive.onlyComputer}>
+          Computer
+          <Menu
+            secondary
+            fixed="top"
             style={{
-              color: "white"
-            }}
-            active={activeItem === "overview"}
-            onClick={this.handleMenuItemClick}
-          />
-          <Menu.Item
-            name="Mein Büro"
-            style={{
-              color: "white"
-            }}
-            active={activeItem === "overview"}
-            onClick={this.handleMenuItemClick}
-          />
-          {/* Start Badges*/}
-          <Menu.Item
-            style={{
-              paddingTop: "3px",
-              paddingBottom: "0px",
-              margin: "0px"
+              justifyContent: "center",
+              backgroundColor: "#6A96E2",
+              width: "100%",
+              height: "5%"
             }}
           >
             <Menu.Item
+              id="classMenuItem"
               style={{
                 color: "white"
               }}
-              icon="certificate"
-            />
-            {/* End Badges*/}
-            <Menu.Item
-              style={{
-                color: "white"
-              }}
-              icon="euro sign"
-              name={" " + this.getCredits()}
+              name="Klassenzimmer"
+              active={activeItem === "freegame"}
+              onClick={this.handleMenuItemClick}
+              onMouseEnter={() => this.hoverOnClass("classroom")}
+              onMouseLeave={() => this.hoverOffClass("classroom")}
             />
             <Menu.Item
+              name="Lehrendenzimmer"
               style={{
                 color: "white"
               }}
-              icon="play"
-              name={"" + this.getLevel()}
-            />{" "}
-            {/* Level */}
-            <Dropdown
-              color="white"
-              trigger={dropdownTrigger}
-              style={{ minWidth: "120px", color: "white" }}
-              item
-              simple
+              active={activeItem === "overview"}
+              onClick={this.handleMenuItemClick}
+            />
+            <Menu.Item
+              name="Mein Büro"
+              style={{
+                color: "white"
+              }}
+              active={activeItem === "overview"}
+              onClick={this.handleMenuItemClick}
+            />
+            {/* Start Badges*/}
+            <Menu.Item
+              style={{
+                paddingTop: "3px",
+                paddingBottom: "0px",
+                margin: "0px"
+              }}
             >
-              <Dropdown.Menu style={{ marginTop: "0px" }}>
-                <Dropdown.Item color="white" icon="user" text="Profil" />
-                <Dropdown.Item
-                  icon="power off"
-                  text="Ausloggen"
-                  active={activeItem === "overview"}
-                  onClick={() => Meteor.logout(() => {})}
-                />
-              </Dropdown.Menu>
-            </Dropdown>
-          </Menu.Item>
-        </Menu>
+              <Menu.Item
+                style={{
+                  color: "white"
+                }}
+                icon="certificate"
+              />
+              {/* End Badges*/}
+              <Menu.Item
+                style={{
+                  color: "white"
+                }}
+                icon="euro sign"
+                name={" " + this.getCredits()}
+              />
+              <Menu.Item
+                style={{
+                  color: "white"
+                }}
+                icon="play"
+                name={"" + this.getLevel()}
+              />{" "}
+              {/* Level */}
+              <Dropdown
+                color="white"
+                trigger={dropdownTrigger}
+                style={{ minWidth: "120px", color: "white" }}
+                item
+                simple
+              >
+                <Dropdown.Menu style={{ marginTop: "0px" }}>
+                  <Dropdown.Item color="white" icon="user" text="Profil" />
+                  <Dropdown.Item
+                    icon="power off"
+                    text="Ausloggen"
+                    active={activeItem === "overview"}
+                    onClick={() => Meteor.logout(() => {})}
+                  />
+                </Dropdown.Menu>
+              </Dropdown>
+            </Menu.Item>
+          </Menu>
+        </Responsive>
       </React.Fragment>
     );
   }
