@@ -1,11 +1,5 @@
 // Smartphone
 @media screen and (max-width: 767px) {
-  #prevTaskBtn,
-  #nextTaskBtn {
-    width: 85% !important;
-    margin-bottom: 0.5rem;
-    margin-left: 2rem;
-  }
 }
 
 // Tablet
@@ -45,4 +39,13 @@
 
 #positivBtn {
   border-radius: 5px;
+}
+
+// Desktop
+@media screen and (min-width: 1025px) {
+  #prevTaskBtn {
+    background: rgb(106, 150, 226);
+    color: white;
+    margin-right: 4rem;
+  }
 }

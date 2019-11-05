@@ -258,23 +258,28 @@ export default class Workspace extends React.Component {
   renderNavigationButtons() {
     var that = this;
     return (
-      <div id="renderNavigationButtons">
-        <Button
-          id="prevTaskBtn"
-          content="Vorherige Aufgabe"
-          icon="left arrow"
-          labelPosition="left"
-          onClick={this.handlePreviousTaskButtonClick}
-        />
-
-        <Button
-          id="nextTaskBtn"
-          content="Nächste Aufgabe"
-          icon="right arrow"
-          labelPosition="right"
-          onClick={this.handleNextTaskButtonClick}
-        />
-      </div>
+      <Grid id="workspaceGrid" columns={2}>
+        <Grid.Row id="renderNavigationButtons">
+          <Grid.Column>
+            <Button
+              id="prevTaskBtn"
+              content="Vorherige Aufgabe"
+              icon="left arrow"
+              labelPosition="left"
+              onClick={this.handlePreviousTaskButtonClick}
+            />
+          </Grid.Column>
+          <Grid.Column>
+            <Button
+              id="nextTaskBtn"
+              content="Nächste Aufgabe"
+              icon="right arrow"
+              labelPosition="right"
+              onClick={this.handleNextTaskButtonClick}
+            />
+          </Grid.Column>
+        </Grid.Row>
+      </Grid>
     );
   }
   externUpdate(tagState) {
@@ -301,6 +306,7 @@ export default class Workspace extends React.Component {
     return (
       <Grid id="workspaceGrid">
         <Grid.Column
+          id="workspaceGridMobile"
           width={4}
           style={{
             padding: "0rem"
@@ -309,10 +315,10 @@ export default class Workspace extends React.Component {
           {this.renderDescription()}
           {this.renderKeywordList()}
         </Grid.Column>
-        <Grid.Column width={8}>
+        <Grid.Column width={8} id="workspaceGridMobile">
           <div className="workspace__container">{this.taskSwitch()}</div>
         </Grid.Column>
-        <Grid.Column width={3}>
+        <Grid.Column width={3} id="workspaceGridMobile">
           <TaskProgress
             currentTask={this.state.activeTask}
             student={this.props.student}
@@ -331,7 +337,7 @@ export default class Workspace extends React.Component {
         return (
           <div id="KeywordList">
             <Countdown
-              seconds={120}
+              seconds={1}
               color="#6a96e2"
               width="10px"
               onComplete={() => {
@@ -361,7 +367,8 @@ export default class Workspace extends React.Component {
           justfyContent: "center"
         }}
       >
-        {this.renderWorkspaceGrid()}>{this.renderNavigationButtons()}
+        {this.renderWorkspaceGrid()}
+        {this.renderNavigationButtons()}
       </div>
     );
   }

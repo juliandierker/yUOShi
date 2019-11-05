@@ -232,7 +232,7 @@ export default class StudentTopMenu extends React.Component {
               height: "5%"
             }}
           >
-            <Dropdown item icon="bars" white simple>
+            <Dropdown item icon="bars" simple>
               <Dropdown.Menu
                 style={{
                   backgroundColor: "#6A96E2",
