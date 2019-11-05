@@ -1,20 +1,14 @@
 import React from "react";
 import { Meteor } from "meteor/meteor";
 import PropTypes from "prop-types";
-import { DragdropModel } from "../../../models/DragdropModel";
 import {
   Responsive,
   Segment,
   Button,
   Header,
   Modal,
-  Image,
-  Icon,
-  List,
-  Grid
+  Image
 } from "semantic-ui-react";
-
-import Swal from "sweetalert2";
 
 import MultiChoiceAnimationTemplate from "./MultiChoiceAnimationTemplate.js";
 
@@ -40,23 +34,31 @@ export default class TrainingAnimationTemplate extends React.Component {
     this.setState({ introIndex: this.state.introIndex + 1 });
   }
   initIntroSteps() {
+    const isOutro = this.props.student.currentTraining[0].finalTraining;
     const content = this.props.student.currentTraining[0].content[0];
+
     let stepContent = [];
     let stepName = [];
     let stepIcon = [];
 
-    stepContent.push(content.intro);
-    stepName.push(this.props.student.currentTraining[0].name);
-    stepIcon.push(this.props.student.currentTraining[0].image);
+    if (!isOutro) {
+      stepContent.push(content.intro);
+      stepName.push(this.props.student.currentTraining[0].name);
+      stepIcon.push(this.props.student.currentTraining[0].image);
+    }
 
     for (var i in content.quests) {
       stepContent.push(content.quests[i][content.quests[i].questName]);
       stepName.push(content.quests[i].questName);
       stepIcon.push(content.quests[i].image);
     }
-    stepContent.push(content.outro);
-    stepName.push(this.props.student.currentTraining[0].name);
-    stepIcon.push(this.props.student.currentTraining[0].image);
+
+    if (!isOutro) {
+      stepContent.push(content.outro);
+      stepName.push(this.props.student.currentTraining[0].name);
+      stepIcon.push(this.props.student.currentTraining[0].image);
+    }
+
     this.setState({ stepContent, stepName, stepIcon });
   }
 
@@ -88,8 +90,16 @@ export default class TrainingAnimationTemplate extends React.Component {
   }
   nextAction() {
     const { introIndex, finalIndex } = this.state;
-    if (introIndex < finalIndex) {
-      this.setState({ introIndex: introIndex + 1 });
+    if (this.state.currentTraining.finalTraining) {
+      if (introIndex < finalIndex - 2) {
+        this.setState({ introIndex: introIndex + 1 });
+      } else if (introIndex == finalIndex - 2) {
+        this.solveTraining();
+      }
+    } else {
+      if (introIndex < finalIndex) {
+        this.setState({ introIndex: introIndex + 1 });
+      }
     }
   }
   renderBtns() {
@@ -99,13 +109,11 @@ export default class TrainingAnimationTemplate extends React.Component {
         <Button.Group attached="top">
           <Button
             id="prevBtn"
-            // Position="center"
             content="Zurück"
             onClick={this.backAction.bind(this)}
           />
           <Button
             id="nextBtn"
-            // Position="center"
             content="Weiter"
             onClick={this.nextAction.bind(this)}
           />
@@ -125,8 +133,11 @@ export default class TrainingAnimationTemplate extends React.Component {
       return (
         <Button
           id="nextBtn"
-          // Position="center"
-          content="Nächster Fall"
+          content={
+            this.state.introIndex === this.state.finalIndex - 2
+              ? "Kapitel abschließen"
+              : "Nächster Fall"
+          }
           onClick={this.nextAction.bind(this)}
         />
       );
@@ -137,6 +148,7 @@ export default class TrainingAnimationTemplate extends React.Component {
     const content = this.props.student.currentTraining[0].content[0].quests;
 
     if (
+      content[this.state.introIndex] &&
       currentTraining.finalTraining &&
       this.state.introIndex < this.state.finalIndex
     ) {
@@ -160,21 +172,17 @@ export default class TrainingAnimationTemplate extends React.Component {
       return <MultiChoiceAnimationTemplate {...taskProps} />;
     }
   }
-  renderTraining() {
+  render() {
     const { open, dimmer, currentTraining } = this.state;
 
     if (currentTraining) {
-      const currentIntroIndex = this.state.currentTraining.finalTraining
-        ? this.state.introIndex + 1
-        : this.state.introIndex;
-
       const modalContent = (
         <Modal.Content image id="ImageContent">
           <Modal.Description id="introDescription">
             <Header id="IntroTrainingText">
-              {this.state.stepName[currentIntroIndex]}
+              {this.state.stepName[this.state.introIndex]}
             </Header>
-            {this.state.stepContent[currentIntroIndex]}
+            {this.state.stepContent[this.state.introIndex]}
             {this.renderOutro()}
           </Modal.Description>
         </Modal.Content>
@@ -194,50 +202,50 @@ export default class TrainingAnimationTemplate extends React.Component {
       );
 
       return (
-        <Modal
-          style={{ overflowY: "scroll", height: "fit-content" }}
-          className="scrolling"
-          that={this}
-          dimmer={dimmer}
-          closeOnDimmerClick={false}
-          open={open}
-          onClose={this.close}
-        >
-          <Segment.Group>
-            <Responsive as={Segment} {...Responsive.onlyMobile}>
-              {modalContentContainer}
-            </Responsive>
-            <Responsive as={Segment} {...Responsive.onlyTablet}>
-              {modalContentContainer}
-            </Responsive>
+        <div>
+          <Modal
+            style={{ overflowY: "scroll", height: "fit-content" }}
+            className="scrolling"
+            that={this}
+            dimmer={dimmer}
+            closeOnDimmerClick={false}
+            open={open}
+            onClose={this.close}
+          >
+            <Segment.Group>
+              <Responsive as={Segment} {...Responsive.onlyMobile}>
+                {modalContentContainer}
+              </Responsive>
+              <Responsive as={Segment} {...Responsive.onlyTablet}>
+                {modalContentContainer}
+              </Responsive>
 
-            <Responsive as={Segment} {...Responsive.onlyComputer}>
-              <div className="ui grid">
-                <div className="row">
-                  <div className="four wide column">
-                    <Image
-                      wrapped
-                      size="medium"
-                      src={
-                        "/training/quests/" +
-                        this.state.stepIcon[this.state.introIndex]
-                      }
-                    />
+              <Responsive as={Segment} {...Responsive.onlyComputer}>
+                <div className="ui grid">
+                  <div className="row">
+                    <div className="four wide column">
+                      <Image
+                        wrapped
+                        size="medium"
+                        src={
+                          "/training/quests/" +
+                          this.state.stepIcon[this.state.introIndex]
+                        }
+                      />
+                    </div>
+                    <div className="ten wide column">{modalContent}</div>
                   </div>
-                  <div className="ten wide column">{modalContent}</div>
                 </div>
-              </div>
-            </Responsive>
-          </Segment.Group>
+              </Responsive>
+            </Segment.Group>
 
-          <Modal.Actions id="ModalActions">{this.renderBtns()}</Modal.Actions>
-        </Modal>
+            <Modal.Actions id="ModalActions">{this.renderBtns()}</Modal.Actions>
+          </Modal>
+        </div>
       );
+    } else {
+      return <div />;
     }
-  }
-
-  render() {
-    return <div>{this.renderTraining()}</div>;
   }
 }
 
