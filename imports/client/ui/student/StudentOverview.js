@@ -9,7 +9,14 @@ import { Students } from "../../../api/students";
 import { Tasks } from "../../../api/tasks";
 import { Training } from "../../../api/training";
 import { Package } from "../../../api/package";
-import { Dropdown, Icon, Menu, Segment, Button } from "semantic-ui-react";
+import {
+  Dropdown,
+  Icon,
+  Menu,
+  Segment,
+  Button,
+  Responsive
+} from "semantic-ui-react";
 import StudentCourses from "./StudentCourses";
 import StudentTopMenu from "./StudentTopMenu";
 import GameOverview from "./game/Gameoverview";
@@ -27,6 +34,10 @@ export default class StudentOverview extends React.Component {
     };
   }
   componentDidMount() {
+    //Check responsive viewport
+
+    <Responsive {...Responsive.onlyMobile} />;
+
     let studentHandle = Meteor.subscribe("student");
     let tokenHandle = Meteor.subscribe("tokenByUser");
     let coursesHandle = Meteor.subscribe("coursesByStudent");

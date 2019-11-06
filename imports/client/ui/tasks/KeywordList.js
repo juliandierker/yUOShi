@@ -1,14 +1,85 @@
 import React from "react";
 
-import { Segment, List, Button, Icon } from "semantic-ui-react";
+import {
+  Segment,
+  List,
+  Button,
+  Icon,
+  Grid,
+  Responsive
+} from "semantic-ui-react";
 
 import Hyphenated from "react-hyphen";
 import de from "hyphenated-de";
 
 export default class KeywordList extends React.Component {
   //PROPS: finished, keywords, finishedKeywords, solutionPrepare()
+  constructor(props) {
+    super(props);
 
-  renderListElem() {
+    this.state = {
+      isMobile: false
+    };
+  }
+  decideMobile() {
+    if (!this.state.isMobile) {
+      this.setState({ isMobile: true });
+    }
+  }
+  decideDesktop() {
+    if (this.state.isMobile) {
+      this.setState({ isMobile: false });
+    }
+  }
+  renderColumns(row) {
+    return row.map((keyword, index) => {
+      if (keyword === null) return "";
+      return (
+        <div
+          className="keyword-grid-row"
+          id="keywordGridColumn"
+          width={4}
+          style={{
+            padding: "0rem"
+          }}
+        >
+          {this.props.finishedKeywords.includes(keyword) ? (
+            <Icon key={"icon" + index} color="green" name="check" />
+          ) : (
+            <Icon key={"icon" + index} name="help" />
+          )}
+          {keyword}
+        </div>
+      );
+    });
+  }
+
+  renderRows() {
+    let rows = [];
+    for (let i = 0; i < this.props.keywords.length; i += 3) {
+      let rowArr = [];
+      rowArr.push(this.props.keywords[i] ? this.props.keywords[i] : null);
+      rowArr.push(
+        this.props.keywords[i + 1] ? this.props.keywords[i + 1] : null
+      );
+      rowArr.push(
+        this.props.keywords[i + 2] ? this.props.keywords[i + 2] : null
+      );
+      rows.push(rowArr);
+    }
+
+    return rows.map(row => {
+      return (
+        <Responsive {...Responsive.onlyMobile}>
+          <div className="keyword-grid-col">{this.renderColumns(row)}</div>
+        </Responsive>
+      );
+    });
+
+    // TODO: Render Columns
+  }
+
+  renderListElems() {
     return this.props.keywords.map((keyword, index) => {
       return (
         <List.Item style={{ fontSize: "12px" }} key={keyword + index} as="a">
@@ -25,7 +96,18 @@ export default class KeywordList extends React.Component {
       );
     });
   }
-
+  renderGrid() {
+    return (
+      <React.Fragment>
+        <Responsive {...Responsive.onlyMobile}>
+          <div className="keyword-grid">{this.renderRows()}</div>
+        </Responsive>
+        <Responsive {...Responsive.onlyComputer}>
+          <List>{this.renderListElems()}</List>
+        </Responsive>
+      </React.Fragment>
+    );
+  }
   render() {
     const finished =
       this.props.keywords.length === this.props.finishedKeywords.length;
@@ -35,7 +117,7 @@ export default class KeywordList extends React.Component {
     return (
       <Hyphenated language={de}>
         <Segment id="KeywordList">
-          <List>{this.renderListElem()}</List>
+          {this.renderGrid()}
           <Button
             id="KeywordListBtn"
             color={buttonColor}

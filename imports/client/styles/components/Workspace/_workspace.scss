@@ -19,7 +19,6 @@
   white-space: pre-line;
   overflow-y: auto;
 }
-
 #dragDrop {
   margin: 0 auto;
   color: white;
@@ -27,15 +26,25 @@
   background-color: #6a96e2;
 }
 
+.keyword-grid {
+  display: flex;
+}
+
 // Smartphone
 @media screen and (max-width: 767px) {
+  #workspaceGridMobile {
+    width: 87.5% !important;
+  }
   .workspace__container {
     width: 100%;
-    height: 75vh;
+    height: 20vh;
     margin: 0rem;
   }
+  #workspaceStepper {
+    display: none;
+  }
   #workspaceGrid {
-    margin-top: 7rem;
+    margin-top: 1rem;
   }
   #workspaceDescription {
     margin-top: 1rem;
@@ -44,28 +53,39 @@
     width: 100%;
     height: 75vh;
   }
-
+  .ui.menu .item:before {
+    background: none;
+  }
+  .text ~ .icon {
+    color: white;
+  }
+  .ui.menu .ui.dropdown .menu > .item {
+    color: white !important;
+  }
   #NavigationButtonContainer {
     text-align: center;
     margin-top: 0.5rem;
   }
-  #prevButton {
-    width: 85%;
-    margin-bottom: -1rem;
-    margin-top: 0.5rem;
-  }
 
-  #nextButton {
-    width: 85%;
-    margin-top: -2rem;
-  }
   #KeywordListBtn {
     margin-top: -29px;
     margin-right: -4.6%;
     max-width: 230px;
   }
+  #Ebene_1 {
+    width: 160%;
+    margin-top: 5rem;
+    margin-left: -7.85rem;
+  }
   .MuiStepper-root {
     padding: 0rem !important;
+  }
+  #countdown-svg {
+    margin-top: 18rem;
+  }
+  #renderNavigationButtons {
+    position: absolute;
+    bottom: 0px;
   }
 }
 
@@ -77,9 +97,7 @@
     margin-top: 3rem;
     height: 100vh;
   }
-  #workspaceGrid {
-    margin-top: 2rem;
-  }
+
   #workspaceDescription {
     margin-top: 4rem;
   }
@@ -116,9 +134,6 @@
     margin-top: 60px;
     height: 100vh;
   }
-  #workspaceGrid {
-    margin-top: 2rem;
-  }
   #NavigationButtonContainer {
     margin-top: 0.5rem;
     width: 40% !important;
@@ -150,10 +165,9 @@
   }
   #renderNavigationButtons {
     position: absolute;
-    bottom: 53px;
-    width: 50%;
+    bottom: 15px;
     text-align: center;
-    margin-left: 25%;
-    margin-right: 25%;
+  }
+  #prevTaskBtn {
   }
 }
