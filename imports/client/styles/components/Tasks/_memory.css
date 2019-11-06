@@ -2,6 +2,27 @@
   .playground .card {
     width: 45% !important;
   }
+  .playground .card .back img {
+    width: 100%;
+  }
+}
+
+@media screen and (min-width: 768px) and (max-width: 1024px) {
+  .playground .card .back {
+    font-size: 17px;
+  }
+  .playground .card .back img {
+    width: 100%;
+  }
+}
+
+@media screen and (min-width: 1025px) {
+  .playground .card {
+    height: 18rem;
+  }
+  .playground .card .back img {
+    width: 75%;
+  }
 }
 
 .playground {
@@ -57,13 +78,6 @@
 
 .playground .card .back img {
   vertical-align: middle;
-  width: 70%;
-}
-
-@media screen and (min-width: 1025px) {
-  .playground .card .back img {
-    width: 50%;
-  }
 }
 
 .playground .card.opened {
@@ -79,18 +93,6 @@
   animation: selected 0.8s 0s ease 1;
   animation-fill-mode: both;
   opacity: 0.2;
-}
-
-@media screen and (min-width: 1025px) {
-  .playground .card {
-    height: 18rem;
-  }
-}
-
-@media screen and (min-width: 768px) and (max-width: 1024px) {
-  .playground .card .back {
-    font-size: 17px;
-  }
 }
 
 @keyframes selected {

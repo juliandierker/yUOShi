@@ -102,6 +102,9 @@ export default class KeywordList extends React.Component {
         <Responsive {...Responsive.onlyMobile}>
           <div className="keyword-grid">{this.renderRows()}</div>
         </Responsive>
+        <Responsive {...Responsive.onlyTablet}>
+          <List>{this.renderListElems()}</List>
+        </Responsive>
         <Responsive {...Responsive.onlyComputer}>
           <List>{this.renderListElems()}</List>
         </Responsive>

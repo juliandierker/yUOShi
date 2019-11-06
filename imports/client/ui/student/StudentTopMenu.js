@@ -223,6 +223,70 @@ export default class StudentTopMenu extends React.Component {
 
     return (
       <React.Fragment>
+        <Responsive {...Responsive.onlyTablet}>
+          <Menu
+            attached="top"
+            style={{
+              backgroundColor: "#6A96E2",
+              width: "100%",
+              height: "5%"
+            }}
+          >
+            <Dropdown fluid item icon="bars" simple>
+              <Dropdown.Menu
+                fluid
+                style={{
+                  backgroundColor: "rgba(106, 150, 226, 0.9)",
+                  Color: "white!important",
+                  height: "85vH"
+                }}
+              >
+                <Dropdown.Item
+                  fluid
+                  active={activeItem === "freegame"}
+                  onClick={this.handleMenuItemClick}
+                  onMouseEnter={() => this.hoverOnClass("classroom")}
+                  onMouseLeave={() => this.hoverOffClass("classroom")}
+                >
+                  Klassenzimmer
+                </Dropdown.Item>
+                <Dropdown.Item
+                  fluid
+                  active={activeItem === "overview"}
+                  onClick={this.handleMenuItemClick}
+                >
+                  Lehrendenzimmer
+                </Dropdown.Item>
+                <Dropdown.Item
+                  fluid
+                  active={activeItem === "overview"}
+                  onClick={this.handleMenuItemClick}
+                >
+                  Mein Büro
+                </Dropdown.Item>
+                <Dropdown.Item icon="certificate" />
+                <Dropdown.Item
+                  icon="euro sign"
+                  name={" " + this.getCredits()}
+                />
+                <Dropdown.Item icon="play" name={"" + this.getLevel()} />
+
+                <Dropdown.Item fluid>
+                  <Icon name="user" />
+                  Profil
+                </Dropdown.Item>
+                <Dropdown.Item
+                  fluid
+                  active={activeItem === "overview"}
+                  onClick={() => Meteor.logout(() => {})}
+                >
+                  <Icon name="power off" />
+                  Ausloggen
+                </Dropdown.Item>
+              </Dropdown.Menu>
+            </Dropdown>
+          </Menu>
+        </Responsive>
         <Responsive {...Responsive.onlyMobile}>
           <Menu
             attached="top"
@@ -236,8 +300,9 @@ export default class StudentTopMenu extends React.Component {
               <Dropdown.Menu
                 fluid
                 style={{
-                  backgroundColor: "#6A96E2",
-                  Color: "white!important"
+                  backgroundColor: "rgba(106, 150, 226, 0.9)",
+                  Color: "white!important",
+                  height: "85vH"
                 }}
               >
                 <Dropdown.Item
