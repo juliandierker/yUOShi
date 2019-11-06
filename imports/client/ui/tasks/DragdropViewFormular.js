@@ -125,11 +125,11 @@ export default class DragdropViewFormular extends React.Component {
           <div id="defcard_motiv" className="selected DefCard" />
 
           <div className="dragItemGroup">
-            {this.state.statements.map(statement => {
+            {this.state.examples.map(example => {
               return (
                 <div
-                  key={statement.id + "_key"}
-                  id={statement.id}
+                  key={example.id + "_key"}
+                  id={example.id}
                   className="dragItem"
                 >
                   {statement.name}
@@ -163,7 +163,7 @@ export default class DragdropViewFormular extends React.Component {
             <div class="customCard">
               <img
                 class="customImage"
-                src="/tasks/Drag/ImagePlaceholder.png"
+                src={"/tasks/Drag/Motivationsbegriffe/" + statement.id + ".png"}
                 alt="Avatar"
               />
               <div class="customContainer">
