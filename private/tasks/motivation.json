@@ -382,7 +382,7 @@
       "categories": ["Sozial eingebunden", "Autonomie", "Kompetenz"],
       "solArray": ["soz_eing", "autonomie", "kompetenz"],
       "scale": false,
-      "orientation": ["vertical", "vertical"],
+      "orientation": ["horizontal", "vertical"],
       "nested": false,
       "statements": [
         ["soz_eing", "Ich fühle mich in meiner sozialen Gruppe angekommen."],

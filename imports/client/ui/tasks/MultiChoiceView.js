@@ -230,8 +230,6 @@ export default class MultiChoiceView extends Component {
       return (
         <Checkbox
           style={{
-            width: "100%",
-            marginBottom: "2rem",
             backgroundColor: color
           }}
           key={"Checkbox_" + questionId + "_" + index}
@@ -267,7 +265,7 @@ export default class MultiChoiceView extends Component {
           style={{ width: "100%" }}
         >
           <Card.Content>
-            <Card.Header style={{ marginBottom: "2rem" }}>
+            <Card.Header style={{ marginBottom: "2rem", textAlign: "left" }}>
               <br />
 
               {question.Question}
@@ -290,13 +288,7 @@ export default class MultiChoiceView extends Component {
       <React.Fragment>
         {this.renderQuestions()}
         <Button
-          style={{
-            marginTop: "10px",
-            marginBottom: "10px",
-            marginRight: "18.4%",
-            backgroundColor: "rgb(143, 176, 232)",
-            color: "white"
-          }}
+          id="solveTask"
           floated="right"
           onClick={() => this.solutionPrepare()}
         >

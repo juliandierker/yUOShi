@@ -232,14 +232,16 @@ export default class StudentTopMenu extends React.Component {
               height: "5%"
             }}
           >
-            <Dropdown item icon="bars" simple>
+            <Dropdown fluid item icon="bars" simple>
               <Dropdown.Menu
+                fluid
                 style={{
                   backgroundColor: "#6A96E2",
                   Color: "white!important"
                 }}
               >
                 <Dropdown.Item
+                  fluid
                   active={activeItem === "freegame"}
                   onClick={this.handleMenuItemClick}
                   onMouseEnter={() => this.hoverOnClass("classroom")}
@@ -248,12 +250,14 @@ export default class StudentTopMenu extends React.Component {
                   Klassenzimmer
                 </Dropdown.Item>
                 <Dropdown.Item
+                  fluid
                   active={activeItem === "overview"}
                   onClick={this.handleMenuItemClick}
                 >
                   Lehrendenzimmer
                 </Dropdown.Item>
                 <Dropdown.Item
+                  fluid
                   active={activeItem === "overview"}
                   onClick={this.handleMenuItemClick}
                 >
@@ -265,27 +269,18 @@ export default class StudentTopMenu extends React.Component {
                   name={" " + this.getCredits()}
                 />
                 <Dropdown.Item icon="play" name={"" + this.getLevel()} />
-                <Dropdown.Item>
-                  <Icon name="dropdown" />
-                  User0
-                  <Dropdown.Menu
-                    style={{
-                      backgroundColor: "#6A96E2",
-                      Color: "white!important"
-                    }}
-                  >
-                    <Dropdown.Item>
-                      <Icon name="user" />
-                      Profil
-                    </Dropdown.Item>
-                    <Dropdown.Item
-                      active={activeItem === "overview"}
-                      onClick={() => Meteor.logout(() => {})}
-                    >
-                      <Icon name="power off" />
-                      Ausloggen
-                    </Dropdown.Item>
-                  </Dropdown.Menu>
+
+                <Dropdown.Item fluid>
+                  <Icon name="user" />
+                  Profil
+                </Dropdown.Item>
+                <Dropdown.Item
+                  fluid
+                  active={activeItem === "overview"}
+                  onClick={() => Meteor.logout(() => {})}
+                >
+                  <Icon name="power off" />
+                  Ausloggen
                 </Dropdown.Item>
               </Dropdown.Menu>
             </Dropdown>

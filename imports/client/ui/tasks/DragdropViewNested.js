@@ -43,10 +43,7 @@ export default class DragdropViewNested extends Component {
             return (
               <Draggable key={column.id}>
                 <div className={column.props.className}>
-                  <div className="card-column-header">
-                    <span className="column-drag-handle">&#x2630;</span>
-                    {column.name}
-                  </div>
+                  <div className="card-column-header">{column.name}</div>
                   <Container
                     {...column.props}
                     groupName="col"

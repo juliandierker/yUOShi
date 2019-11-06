@@ -1,3 +1,12 @@
+// Smartphone
+@media screen and (max-width: 767px) {
+  .playground {
+    .card {
+      width: 45% !important;
+    }
+  }
+}
+
 .playground {
   display: flex;
   flex-wrap: wrap;
