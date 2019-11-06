@@ -221,7 +221,8 @@ export default class Workspace extends React.Component {
           tasks: this.props.tasks,
           activeTask: currentTask,
           courses: this.props.courses,
-          trainings: this.props.trainings
+          trainings: this.props.trainings,
+          loadPrevTask: this.handlePreviousTaskButtonClick.bind(this)
         };
 
         return <TrainingAnimationTemplate {...taskProps} />;
