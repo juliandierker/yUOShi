@@ -40,9 +40,16 @@
     height: 20vh;
     margin: 0rem;
   }
-  #workspaceStepper {
-    display: none;
+  .MuiPaper-root {
+    transform: scale(1.5);
+    margin-left: 30vw;
+    background-color: transparent !important;
   }
+
+  .MuiStepLabel-label {
+    color: rgba(255, 255, 255, 1) !important;
+  }
+
   #workspaceGrid {
     margin-top: 1rem;
   }
