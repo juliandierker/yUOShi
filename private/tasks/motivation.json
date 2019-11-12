@@ -88,7 +88,7 @@
       "parentId": "Motivation1",
       "title": "Begriffe der Motivation",
       "description": "Ordne die Statements über Schüler*innen der intrinsischen oder extrinsischen Motivation zu. Welche Quelle der Motivation wird in der jeweiligen Aussage eher abgebildet? ",
-      "taskId": "Motive",
+      "taskId": "Motivationsbegriffe",
       "filePrefix": "Drag",
       "multipleColumns": true,
 
@@ -101,35 +101,51 @@
       "nested": false,
       "formular": true,
       "statements": [
-        ["intr", "Die SuS arbeiten gerne mit, weil sie dadurch mehr lernen."],
-        ["extr", "Die Lehrkraft vergibt Sternchen für gute Mitarbeit"],
         [
-          "intr",
-          "Gülcan hat Spaß an deutscher Geschichte, deswegen meldet er sich oft."
-        ],
-        ["extr", "Laura wird ermahnt, wenn sie im Unterricht nicht mitmacht."],
-        [
-          "intr",
-          "Anastasia liest gerne Bücher und beschäftigt sich deshalb mit dem Thema für die Deutschklausur."
+          "motivation",
+          "Die aktivierende Ausrichtung des momentanen Lebensvollzugs auf einen positiv bewerteten Zielzustand."
         ],
         [
-          "extr",
-          "Mara bekommt von ihrer Oma 5 Euro, wenn sie in Deutsch eine gute Note schreibt."
+          "motiv",
+          "Die Veranlagung einer Person, nach einem wertgeladenen Zielzustand zu streben, also kurzgesagt die überdauernde Handlungsbereitschaft eines Individuums"
         ],
-        ["intr", "Tiffany ist traurig, wenn sie eine schlechte Note bekommt."],
         [
-          "extr",
-          "Richards Mutter ist enttäuscht, wenn er eine schlechte Note bekommt"
+          "bedürfnis",
+          "Der Wunsch bzw. das Verlangen danach, einem Mangel entgegenzuwirken, egal ob dieser tatsächlich vorhanden oder eingebildet ist"
         ],
-        ["intr", "Alexander ist eine ordentliche Mappenführung wichtig."],
         [
-          "extr",
-          "Clara führt ihre Mappe ordentlich, um dadurch ein Sternchen zu bekommen."
+          "ziel",
+          "Definiert ein Ergebnis oder einen Zustand, den sich ein Individuum zu erreichen vorgenommen hat."
         ],
-        ["intr", "Miguel passt in Biologie auf, weil er Arzt werden möchte."],
         [
-          "extr",
-          "Dennis bekommt eine gute Note von der Lehrerin, wenn er in Biologie aufpasst."
+          "interesse",
+          "Kann einen überdauernden Aspekt der Persönlichkeit darstellen und sich z.B.in einer langfristigen Vorliebe für bestimmte Fächer oder Aktivitäten äußern"
+        ]
+      ],
+      "images": [
+        ["motivation", "Motivation.svg"],
+        ["motiv", "Motivation.svg"],
+        ["bedürfnis", "Motivation.svg"],
+        ["ziel", "Motivation.svg"],
+        ["interesse", "Motivation.svg"]
+      ],
+      "examples": [
+        [
+          "motivation",
+          "Für ein gutes Ergebnis in der nächsten Klausur strengt Anton sich beim Lernen an."
+        ],
+        [
+          "motiv",
+          "Anton ist nur zufrieden mit guten Noten, er möchte Leistung bringen/zeigen"
+        ],
+        [
+          "bedürfnis",
+          "Anton ist heute Morgen müde und demotiviert und hätte grade einfach nur gerne einen Menschen, der ihn mal kurz in den Arm nimmt. "
+        ],
+        ["ziel", "Anton möchte Lehrer werden."],
+        [
+          "interesse",
+          "Dani arbeitet nach einer kurzen Einführung jetzt jeden Tag mit Holz."
         ]
       ]
     },

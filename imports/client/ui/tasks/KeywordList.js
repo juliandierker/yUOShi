@@ -67,16 +67,11 @@ export default class KeywordList extends React.Component {
       );
       rows.push(rowArr);
     }
-
-    return rows.map(row => {
-      return (
-        <Responsive {...Responsive.onlyMobile}>
-          <div className="keyword-grid-col">{this.renderColumns(row)}</div>
-        </Responsive>
-      );
+    let retval = rows.map(row => {
+      return <div className="keyword-grid-col">{this.renderColumns(row)}</div>;
     });
 
-    // TODO: Render Columns
+    return retval.length === 1 ? retval[0] : retval;
   }
 
   renderListElems() {

@@ -1,186 +1,188 @@
-import React, { Component } from "react";
-import { Container, Draggable } from "react-smooth-dnd";
-import { applyDrag, generateItems } from "./utils";
+import React from "react";
+import { TweenMax } from "gsap";
 
-const form = [
-  {
-    id: 0,
-    element: <h2>Form Header</h2>
-  },
-  {
-    id: 1,
-    label: "Full Name",
-    element: (
-      <div className="field-group">
-        <input type="text" />
-        <input type="text" />
-      </div>
-    )
-  },
-  {
-    id: 2,
-    label: "Email",
-    element: <input type="email" />
-  },
-  {
-    id: 3,
-    label: "Address",
-    element: <textarea name="address" id="" cols="30" rows="10" />
-  },
-  {
-    id: 5,
-    label: "Radio",
-    element: (
-      <div>
-        <div>
-          <label>
-            <input type="radio" name="r" /> option 1
-          </label>
-        </div>
-        <div>
-          <label>
-            <input type="radio" name="r" /> option 2
-          </label>
-        </div>
-        <div>
-          <label>
-            <input type="radio" name="r" /> option 3
-          </label>
-        </div>
-        <div>
-          <label>
-            <input type="radio" name="r" /> option 4
-          </label>
-        </div>
-        <div>
-          <label>
-            <input type="radio" name="r" /> option 5
-          </label>
-        </div>
-      </div>
-    )
-  },
-  {
-    id: 4,
-    label: "Options",
-    element: (
-      <select>
-        <option value="1">Option 1</option>
-        <option value="2" selected>
-          Option 2
-        </option>
-        <option value="3">Option 3</option>
-        <option value="4">Option 4</option>
-      </select>
-    )
-  },
-  {
-    id: 6,
-    label: "Checkbox",
-    element: (
-      <div>
-        <div>
-          <label>
-            <input type="checkbox" name="r" /> option 1
-          </label>
-        </div>
-        <div>
-          <label>
-            <input type="checkbox" name="r" /> option 2
-          </label>
-        </div>
-        <div>
-          <label>
-            <input type="checkbox" name="r" /> option 3
-          </label>
-        </div>
-        <div>
-          <label>
-            <input type="checkbox" name="r" /> option 4
-          </label>
-        </div>
-        <div>
-          <label>
-            <input type="checkbox" name="r" /> option 5
-          </label>
-        </div>
-      </div>
-    )
-  },
-  {
-    id: 7,
-    element: (
-      <div>
-        <button className="form-submit-button">Submit</button>
-      </div>
-    )
-  }
-];
-
-export default class DragdropViewFormular extends Component {
+export default class DragdropViewFormular extends React.Component {
   constructor(props) {
     super(props);
+    this.view = null;
+
     this.state = {
-      form
+      statements: [
+        { id: "motivation", name: "Motivation" },
+        { id: "motiv", name: "Motiv" }
+      ],
+      images: [
+        { id: "motivationImage", name: "Motivation" },
+        { id: "motivImage", name: "Motiv" }
+      ],
+      examples: [
+        { id: "motivationExample", name: "Motivation" },
+        { id: "motivExample", name: "Motiv" }
+      ]
     };
+    this.handleLoad = this.handleLoad.bind(this);
   }
-  onDrop(dropResult) {
-    console.log(dropResult);
-    console.log(this);
-    console.log(this.state.form);
-    return this.setState({ form: applyDrag(this.state.form, dropResult) });
+  handleLoad() {
+    this.initDragDrop();
   }
 
-  renderSolutionState() {
-    const that = this.props.that;
-    const solutions = this.props.scene.children;
+  updateDirections() {
+    var directionStart = document.getElementById("directionStart"),
+      directionVelocity = document.getElementById("directionVelocity"),
+      directionObject = document.getElementById("directionObject"),
+      original = document.getElementById("original"),
+      logoElement = document.getElementById("logoElement");
+    //getDirection() can return 3 types of direction...
+    directionStart.innerHTML = '"' + getDirection("start") + '"'; //direction from start of drag
+    directionVelocity.innerHTML = '"' + getDirection("velocity") + '"'; //momentary velocity *requires ThrowPropsPlugin
+    directionObject.innerHTML = '"' + getDirection(logoElement) + '"'; //direction from an object
+  }
 
-    solutions.map(solution => {
-      solution.children.map(child => {
-        let elem = document.getElementById(child.id);
-        elem.style.backgroundColor = "green";
-        if (
-          this.props.model.visQueue.find(elem => {
-            return elem.id === child.id;
-          }) !== undefined
-        ) {
-          elem.style.backgroundColor = "red";
+  initDragDrop() {
+    Draggable.create(".dragItem", {
+      type: "x,y",
+      onRelease: this.dropItem
+    });
+  }
+  componentDidMount() {
+    function shuffle(a) {
+      for (let i = a.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [a[i], a[j]] = [a[j], a[i]];
+      }
+      return a;
+    }
+    let shuffled = shuffle(this.state.statements);
+    this.setState({ statements: shuffled });
+    window.addEventListener("load", this.handleLoad());
+  }
+
+  componentDidUpdate() {
+    this.initDragDrop();
+    if (this.props.showSolution) {
+      const nodes = [
+        document.getElementById("selfActualization_target").childNodes,
+        document.getElementById("esteem_target").childNodes,
+        document.getElementById("socialneeds_target").childNodes,
+        document.getElementById("safety_target").childNodes,
+        document.getElementById("physological_target").childNodes
+      ];
+
+      const correctArr = this.props.model.correctArr;
+
+      if (correctArr.length >= 5) {
+        for (let i = 0; i < correctArr.length; i++) {
+          for (let j = 0; j < correctArr[i].length; j++) {
+            if (nodes[i][j]) {
+              nodes[i][j].classList.add(
+                correctArr[i][j] === true ? "correct" : "false"
+              );
+            }
+          }
         }
-      });
-    });
+      }
+    }
   }
 
-  generateForm(form) {
-    return form.map(item => {
-      return (
-        <Draggable key={item.id}>
-          <div className={`form-line`}>
-            <div className="label">
-              <span>{item.label}</span>
-            </div>
-            <div className="field">{item.element}</div>
-          </div>
-        </Draggable>
+  componentWillUnmount() {
+    window.removeEventListener("load", this.handleLoad());
+  }
+  dropItem() {
+    var boundsBefore, boundsAfter;
+    const targets = ["motivation", "motiv"];
+    let targetHit = "";
+    for (let i = 0; i < targets.length; i++) {
+      if (this.hitTest("#" + targets[i] + "_target")) {
+        targetHit = "#" + targets[i] + "_target";
+      }
+    }
+    if (targetHit !== "") {
+      boundsBefore = this.target.getBoundingClientRect();
+      $(this.target).appendTo(targetHit);
+      boundsAfter = this.target.getBoundingClientRect();
+      TweenMax.fromTo(
+        this.target,
+        0.3,
+        {
+          x: "+=" + (boundsBefore.left - boundsAfter.left),
+          y: "+=" + (boundsBefore.top - boundsAfter.top)
+        },
+        {
+          x: 0,
+          y: 0
+        }
       );
-    });
+    } else {
+      TweenMax.to(this.target, 0.5, { x: 0, y: 0 });
+    }
   }
 
-  render() {
-    console.log("formular");
-    const that = this.props.that;
+  renderDragContent() {
     return (
-      <div className="form-demo">
-        <div className="form">
-          <Container
-            style={{ paddingBottom: "200px" }}
-            dragClass="form-ghost"
-            dropClass="form-ghost-drop"
-            onDrop={this.onDrop.bind(this)}
-            nonDragAreaSelector=".field"
-          >
-            {this.generateForm(this.state.form)}
-          </Container>
+      <div className="defCardWrapper">
+        <div className="defCards">
+          <div id="defcard_motivation" className="selected DefCard" />
+          <div id="defcard_motiv" className="selected DefCard" />
+
+          <div className="dragItemGroup">
+            {this.state.statements.map(statement => {
+              return (
+                <div
+                  key={statement.id + "_key"}
+                  id={statement.id}
+                  className="dragItem"
+                >
+                  {statement.name}
+                </div>
+              );
+            })}
+            {this.state.images.map((image, index) => {
+              return (
+                <img
+                  src={
+                    "/tasks/Drag/Motivationsbegriffe/" +
+                    this.state.statements[index].id +
+                    ".png"
+                  }
+                  key={image.id + "_key"}
+                  id={image.id}
+                  className="dragItem"
+                />
+              );
+            })}
+          </div>
         </div>
+      </div>
+    );
+  }
+  renderTargets() {
+    return (
+      <div className="targetItemGroup">
+        {this.state.statements.map(statement => {
+          return (
+            <div class="customCard">
+              <img
+                class="customImage"
+                src="/tasks/Drag/ImagePlaceholder.png"
+                alt="Avatar"
+              />
+              <div class="customContainer">
+                <h4>
+                  <b>{statement.name}</b>
+                </h4>
+                <p>Architect & Engineer</p>
+              </div>
+            </div>
+          );
+        })}
+      </div>
+    );
+  }
+  render() {
+    return (
+      <div id="dragWrapper">
+        {this.renderTargets()}
+        {this.renderDragContent()}
       </div>
     );
   }
