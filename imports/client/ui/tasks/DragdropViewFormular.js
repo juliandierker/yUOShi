@@ -1,82 +1,142 @@
 import React from "react";
+import { Meteor } from "meteor/meteor";
+import PropTypes from "prop-types";
+import { Button } from "semantic-ui-react";
 import { TweenMax } from "gsap";
+import {
+  Header,
+  Table,
+  Divider,
+  Grid,
+  Segment,
+  Image,
+  Card
+} from "semantic-ui-react";
+import Swal from "sweetalert2";
 
 export default class DragdropViewFormular extends React.Component {
   constructor(props) {
     super(props);
     this.view = null;
-
+    console.log(props);
     this.state = {
-      statements: [
-        { id: "motivation", name: "Motivation" },
-        { id: "motiv", name: "Motiv" }
-      ],
-      images: [
-        { id: "motivationImage", name: "Motivation" },
-        { id: "motivImage", name: "Motiv" }
-      ],
-      examples: [
-        { id: "motivationExample", name: "Motivation" },
-        { id: "motivExample", name: "Motiv" }
-      ]
+      statements: props.activeTask.statements,
+      images: props.activeTask.images,
+      examples: props.activeTask.examples,
+      currentIndex: 0,
+      currentStatements: [],
+      currentImages: [],
+      currentExamples: [],
+      evItem: [],
+      currentIndex: 0
     };
+
     this.handleLoad = this.handleLoad.bind(this);
+  }
+  getStatements() {
+    let currentStatements = [];
+    for (
+      let i = this.state.currentIndex;
+      i < this.state.currentIndex + 2;
+      i++
+    ) {
+      currentStatements.push(this.state.statements[i]);
+    }
+    this.setState({ currentStatements });
+  }
+  getImages() {
+    let currentImages = [];
+    for (
+      let i = this.state.currentIndex;
+      i < this.state.currentIndex + 2;
+      i++
+    ) {
+      currentImages.push(this.state.images[i]);
+    }
+    this.setState({ currentImages });
+  }
+
+  //TODO auslagern
+
+  mouseHitTest(mouseX, mouseY, containerId) {
+    let boundingRect = document
+      .getElementById(containerId)
+      .getBoundingClientRect();
+    // Rectangle bounds
+    let top = boundingRect.top;
+    let bottom = boundingRect.top + boundingRect.height;
+    let left = boundingRect.left;
+    let right = boundingRect.left + boundingRect.width;
+    if (
+      mouseX >= left &&
+      mouseX <= right &&
+      mouseY >= top &&
+      mouseY <= bottom
+    ) {
+      console.log("ja");
+      return true;
+    }
+    return false;
+  }
+
+  getExamples() {
+    let currentExamples = [];
+    for (
+      let i = this.state.currentIndex;
+      i < this.state.currentIndex + 2;
+      i++
+    ) {
+      currentExamples.push(this.state.examples[i]);
+    }
+    this.setState({ currentExamples: currentExamples });
   }
   handleLoad() {
     this.initDragDrop();
   }
-
-  updateDirections() {
-    var directionStart = document.getElementById("directionStart"),
-      directionVelocity = document.getElementById("directionVelocity"),
-      directionObject = document.getElementById("directionObject"),
-      original = document.getElementById("original"),
-      logoElement = document.getElementById("logoElement");
-    //getDirection() can return 3 types of direction...
-    directionStart.innerHTML = '"' + getDirection("start") + '"'; //direction from start of drag
-    directionVelocity.innerHTML = '"' + getDirection("velocity") + '"'; //momentary velocity *requires ThrowPropsPlugin
-    directionObject.innerHTML = '"' + getDirection(logoElement) + '"'; //direction from an object
+  setCurrents() {
+    const { statements, images, examples } = this.state;
   }
 
   initDragDrop() {
     Draggable.create(".dragItem", {
       type: "x,y",
-      onRelease: this.dropItem
+      onRelease: this.dropItem,
+      that: this
     });
   }
   componentDidMount() {
-    function shuffle(a) {
-      for (let i = a.length - 1; i > 0; i--) {
-        const j = Math.floor(Math.random() * (i + 1));
-        [a[i], a[j]] = [a[j], a[i]];
-      }
-      return a;
+    this.getStatements();
+    this.getExamples();
+    this.getImages();
+    if (this.state.activeTask == null) {
+      console.log(this.props);
+      this.setState({ statements: this.props.activeTask.statements });
     }
-    let shuffled = shuffle(this.state.statements);
-    this.setState({ statements: shuffled });
     window.addEventListener("load", this.handleLoad());
   }
 
   componentDidUpdate() {
     this.initDragDrop();
     if (this.props.showSolution) {
-      const nodes = [
-        document.getElementById("selfActualization_target").childNodes,
-        document.getElementById("esteem_target").childNodes,
-        document.getElementById("socialneeds_target").childNodes,
-        document.getElementById("safety_target").childNodes,
-        document.getElementById("physological_target").childNodes
-      ];
-
+      let intrNodes = document.getElementById("intr_target").childNodes;
+      let extrNodes = document.getElementById("extr_target").childNodes;
       const correctArr = this.props.model.correctArr;
-
-      if (correctArr.length >= 5) {
-        for (let i = 0; i < correctArr.length; i++) {
-          for (let j = 0; j < correctArr[i].length; j++) {
-            if (nodes[i][j]) {
-              nodes[i][j].classList.add(
-                correctArr[i][j] === true ? "correct" : "false"
-              );
+      if (correctArr.length >= 2) {
+        for (let i = 0; i < correctArr[0].length; i++) {
+          if (intrNodes[i]) {
+            if (correctArr[0][i] === true) {
+              intrNodes[i].classList.add("correct");
+            } else {
+              intrNodes[i].classList.add("false");
+            }
+          }
+        }
+        for (let i = 0; i < correctArr[1].length; i++) {
+          if (extrNodes[i]) {
+            if (correctArr[1][i] === true) {
+              extrNodes[i].classList.add("correct");
+            } else {
+              extrNodes[i].classList.add("false");
             }
           }
         }
@@ -87,102 +147,123 @@ export default class DragdropViewFormular extends React.Component {
   componentWillUnmount() {
     window.removeEventListener("load", this.handleLoad());
   }
-  dropItem() {
+
+  rerenderItems(that, container) {
+    console.log("AAA", that);
     var boundsBefore, boundsAfter;
-    const targets = ["motivation", "motiv"];
-    let targetHit = "";
-    for (let i = 0; i < targets.length; i++) {
-      if (this.hitTest("#" + targets[i] + "_target")) {
-        targetHit = "#" + targets[i] + "_target";
+    boundsBefore = that.target.getBoundingClientRect();
+    $(that.target).appendTo("#" + container + "_target");
+    boundsAfter = that.target.getBoundingClientRect();
+    TweenMax.fromTo(
+      that.target,
+      0.3,
+      {
+        x: "+=" + (boundsBefore.left - boundsAfter.left),
+        y: "+=" + (boundsBefore.top - boundsAfter.top)
+      },
+      {
+        x: 0,
+        y: 0
       }
-    }
-    if (targetHit !== "") {
-      boundsBefore = this.target.getBoundingClientRect();
-      $(this.target).appendTo(targetHit);
-      boundsAfter = this.target.getBoundingClientRect();
-      TweenMax.fromTo(
-        this.target,
-        0.3,
-        {
-          x: "+=" + (boundsBefore.left - boundsAfter.left),
-          y: "+=" + (boundsBefore.top - boundsAfter.top)
-        },
-        {
-          x: 0,
-          y: 0
-        }
-      );
+    );
+  }
+
+  dropItem(event) {
+    console.log(event);
+    let that = this.vars.that;
+    let index = that.state.currentIndex;
+    const { currentStatements, currentExamples } = that.state;
+    let hit = "";
+    console.log(this.target.id);
+    if (that.mouseHitTest(event.clientX, event.clientY, this.target.id)) {
+      console.log("success1");
     } else {
+      console.log("noooo");
       TweenMax.to(this.target, 0.5, { x: 0, y: 0 });
     }
+
+    // if (that.state.index != that.state.statements[0].length - 1) {
+    //   console.log("if =?=");
+    //   that.setState({ index: ++index });
+    //   that.rerenderItems(this, hit);
+    // } else {
+    //   that.rerenderItems(this, hit);
+    // }
   }
+  renderTargetCards() {
+    const { currentStatements, currentExamples, currentImages } = this.state;
+    return currentStatements.map((statements, index) => {
+      // return statements.map(statement => {
+      return (
+        <div class="customCard">
+          <img
+            src={
+              "/tasks/Drag/" +
+              this.props.activeTask.taskId +
+              "/" +
+              statements[0] +
+              ".png"
+            }
+            alt="Avatar"
+            style={{ width: "100%" }}
+          />
+          <div class="customContainer">
+            <h4>
+              <b>{statements[0]}</b>
+            </h4>
+            <div className="targetDrop" id={statements[0] + "statement_target"}>
+              <p>Definition:</p>
+              {/* <p>{statements[1]}</p> */}
+            </div>
+            <div
+              className="targetDrop"
+              id={currentExamples[index][0] + "example_target"}
+            >
+              <p>Beispiel:</p>
 
-  renderDragContent() {
-    return (
-      <div className="defCardWrapper">
-        <div className="defCards">
-          <div id="defcard_motivation" className="selected DefCard" />
-          <div id="defcard_motiv" className="selected DefCard" />
-
-          <div className="dragItemGroup">
-            {this.state.examples.map(example => {
-              return (
-                <div
-                  key={example.id + "_key"}
-                  id={example.id}
-                  className="dragItem"
-                >
-                  {statement.name}
-                </div>
-              );
-            })}
-            {this.state.images.map((image, index) => {
-              return (
-                <img
-                  src={
-                    "/tasks/Drag/Motivationsbegriffe/" +
-                    this.state.statements[index].id +
-                    ".png"
-                  }
-                  key={image.id + "_key"}
-                  id={image.id}
-                  className="dragItem"
-                />
-              );
-            })}
+              {/* <p>{currentExamples[index][1]}</p> */}
+            </div>
           </div>
         </div>
-      </div>
-    );
+      );
+      // });
+    });
   }
-  renderTargets() {
-    return (
-      <div className="targetItemGroup">
-        {this.state.statements.map(statement => {
-          return (
-            <div class="customCard">
-              <img
-                class="customImage"
-                src={"/tasks/Drag/Motivationsbegriffe/" + statement.id + ".png"}
-                alt="Avatar"
-              />
-              <div class="customContainer">
-                <h4>
-                  <b>{statement.name}</b>
-                </h4>
-                <p>Architect & Engineer</p>
-              </div>
-            </div>
-          );
-        })}
-      </div>
-    );
+  renderCardGrid() {
+    return this.renderTargetCards();
   }
+
+  renderDragStatements() {
+    const { currentStatements } = this.state;
+    return currentStatements.map((statement, index) => {
+      return (
+        <div id={statement[0] + "statement_target"} className="dragItem">
+          {statement[1]}
+        </div>
+      );
+    });
+  }
+
+  renderDragExamples() {
+    const { currentExamples } = this.state;
+
+    return currentExamples.map((example, index) => {
+      return (
+        <div id={example[0] + "example_target"} className="dragItem">
+          {example[1]}
+        </div>
+      );
+    });
+  }
+
   render() {
     return (
-      <div id="dragWrapper">
-        {this.renderTargets()}
-        {this.renderDragContent()}
+      <div id="svgDiv" style={{ width: "100%" }}>
+        <div className="motiveWrapper">
+          {this.renderCardGrid()}
+          {this.renderDragStatements()}
+          {this.renderDragExamples()}
+        </div>
       </div>
     );
   }

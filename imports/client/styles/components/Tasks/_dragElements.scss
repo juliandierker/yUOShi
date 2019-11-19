@@ -440,7 +440,12 @@ input:last-child {
 .customCard:hover {
   box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
 }
-
+.targetDrop {
+  width: 350px;
+  height: 70px;
+  padding: 10px;
+  border: 1px solid #aaaaaa;
+}
 .customContainer {
   padding: 2px 16px;
 }

@@ -90,7 +90,7 @@ export default class DragdropTemplate extends Component {
     if (this.props.activeTask.formular) {
       return (
         <DragdropViewFormular
-          scene={this.state.scene}
+          activeTask={this.props.activeTask}
           model={this.props.model}
           that={this}
           ref={this.view}
