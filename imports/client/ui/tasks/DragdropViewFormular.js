@@ -59,8 +59,9 @@ export default class DragdropViewFormular extends React.Component {
   //TODO auslagern
 
   mouseHitTest(mouseX, mouseY, containerId) {
+    let targetId = containerId.split("_")[0] + "_target";
     let boundingRect = document
-      .getElementById(containerId)
+      .getElementById(targetId)
       .getBoundingClientRect();
     // Rectangle bounds
     let top = boundingRect.top;
@@ -148,11 +149,13 @@ export default class DragdropViewFormular extends React.Component {
     window.removeEventListener("load", this.handleLoad());
   }
 
-  rerenderItems(that, container) {
-    console.log("AAA", that);
-    var boundsBefore, boundsAfter;
+  rerenderItems(that, containerId) {
+    console.log(that);
+    console.log(this);
+    let targetId = containerId.split("_")[0] + "_target";
+    let boundsBefore, boundsAfter;
     boundsBefore = that.target.getBoundingClientRect();
-    $(that.target).appendTo("#" + container + "_target");
+    $(that.target).appendTo("#" + targetId);
     boundsAfter = that.target.getBoundingClientRect();
     TweenMax.fromTo(
       that.target,
@@ -169,34 +172,51 @@ export default class DragdropViewFormular extends React.Component {
   }
 
   dropItem(event) {
-    console.log(event);
     let that = this.vars.that;
+    console.log(this);
     let index = that.state.currentIndex;
     const { currentStatements, currentExamples } = that.state;
-    let hit = "";
-    console.log(this.target.id);
     if (that.mouseHitTest(event.clientX, event.clientY, this.target.id)) {
-      console.log("success1");
+      that.rerenderItems(this, this.target.id);
     } else {
-      console.log("noooo");
       TweenMax.to(this.target, 0.5, { x: 0, y: 0 });
     }
-
-    // if (that.state.index != that.state.statements[0].length - 1) {
-    //   console.log("if =?=");
-    //   that.setState({ index: ++index });
-    //   that.rerenderItems(this, hit);
-    // } else {
-    //   that.rerenderItems(this, hit);
-    // }
   }
   renderTargetCards() {
     const { currentStatements, currentExamples, currentImages } = this.state;
     return currentStatements.map((statements, index) => {
       // return statements.map(statement => {
       return (
+        // <div class="customCard">
+        //   <img
+        //     src={
+        //       "/tasks/Drag/" +
+        //       this.props.activeTask.taskId +
+        //       "/" +
+        //       statements[0] +
+        //       ".png"
+        //     }
+        //     alt="Avatar"
+        //     style={{ width: "100%" }}
+        //   />
+        //   <div class="customContainer">
+        //     <h4>
+        //       <b>{statements[0]}</b>
+        //     </h4>
+        //     <div className="targetDrop" id={statements[0] + "statement_target"}>
+        //       <p>Definition:</p>
+        //       {/* <p>{statements[1]}</p> */}
+        //     </div>
+        //     <div
+        //       className="targetDrop"
+        //       id={currentExamples[index][0] + "example_target"}
+        //     >
+        //       <p>Beispiel:</p>
+        //     </div>
+        //   </div>
+        // </div>
         <div class="customCard">
-          <img
+          <Image
             src={
               "/tasks/Drag/" +
               this.props.activeTask.taskId +
@@ -204,29 +224,41 @@ export default class DragdropViewFormular extends React.Component {
               statements[0] +
               ".png"
             }
-            alt="Avatar"
-            style={{ width: "100%" }}
+            size="tiny"
+            circular
           />
-          <div class="customContainer">
-            <h4>
-              <b>{statements[0]}</b>
-            </h4>
+          <h2> {statements[0]}</h2>
+          <div class="customCard-body">
             <div className="targetDrop" id={statements[0] + "statement_target"}>
               <p>Definition:</p>
               {/* <p>{statements[1]}</p> */}
             </div>
-            <div
-              className="targetDrop"
-              id={currentExamples[index][0] + "example_target"}
-            >
+            <div className="targetDrop" id={statements[0] + "example_target"}>
               <p>Beispiel:</p>
-
-              {/* <p>{currentExamples[index][1]}</p> */}
+              {/* <p>{statements[1]}</p> */}
             </div>
           </div>
+          <div class="customCard-footer" />
         </div>
       );
-      // });
+    });
+  }
+  renderSolutionState() {
+    const that = this.props.that;
+    const solutions = this.props.scene.children;
+
+    solutions.map(solution => {
+      solution.children.map(child => {
+        let elem = document.getElementById(child.id);
+        elem.style.backgroundColor = "green";
+        if (
+          this.props.model.visQueue.find(elem => {
+            return elem.id === child.id;
+          }) !== undefined
+        ) {
+          elem.style.backgroundColor = "red";
+        }
+      });
     });
   }
   renderCardGrid() {
@@ -237,7 +269,7 @@ export default class DragdropViewFormular extends React.Component {
     const { currentStatements } = this.state;
     return currentStatements.map((statement, index) => {
       return (
-        <div id={statement[0] + "statement_target"} className="dragItem">
+        <div id={statement[0] + "statement_start"} className="dragItem">
           {statement[1]}
         </div>
       );
@@ -249,7 +281,7 @@ export default class DragdropViewFormular extends React.Component {
 
     return currentExamples.map((example, index) => {
       return (
-        <div id={example[0] + "example_target"} className="dragItem">
+        <div id={example[0] + "example_start"} className="dragItem">
           {example[1]}
         </div>
       );

@@ -11,7 +11,13 @@ export const DragdropModel = {
         this.correctArr = [];
         this.solution = [];
       },
+      checkFormular: function(solution) {
+        this.visQueue.push("won", null);
+        return true;
+      },
       checkSolution: function(solution) {
+        if (this.task.formular) return this.checkFormular();
+
         solution.children.map((child, index) => {
           if (this.task.multipleColumns) {
             if (solution.categorie != child.solution) {

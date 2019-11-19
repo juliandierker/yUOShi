@@ -427,9 +427,29 @@ input:last-child {
 }
 
 .customCard {
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.8);
-  transition: 0.3s;
-  width: 40%;
+  min-height: 195px;
+  border-radius: 25px;
+  border: 2px solid #6a96e2;
+}
+.customCard-img-top {
+  position: absolute;
+  width: 20%;
+  border-bottom: 0;
+  object-fit: cover;
+  object-position: center;
+}
+.customCard-body {
+  width: 70%;
+  right: 0;
+}
+.customCard p.-text {
+  font-size: 12px;
+}
+.customCard-footer {
+  position: absolute;
+  width: 50%;
+  bottom: 0;
+  right: 0;
 }
 
 .customImage {
@@ -437,14 +457,11 @@ input:last-child {
   height: 50px;
 }
 
-.customCard:hover {
-  box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
-}
 .targetDrop {
-  width: 350px;
-  height: 70px;
-  padding: 10px;
-  border: 1px solid #aaaaaa;
+  width: 100%;
+  min-height: 50px;
+  border-radius: 25px;
+  border: 1px dotted #6a96e2;
 }
 .customContainer {
   padding: 2px 16px;
