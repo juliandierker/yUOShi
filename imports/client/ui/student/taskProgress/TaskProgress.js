@@ -262,7 +262,7 @@ class TaskProgress extends Component {
     return (
       <div>
         <Responsive {...Responsive.onlyMobile}>
-          <Modal trigger={<Icon name="compass" />} basic>
+          <Modal trigger={<Icon id="stepperModalIcon" name="compass" />} basic>
             <Modal.Content id="stepperModal">
               {this.renderStepper()}
             </Modal.Content>

@@ -30,6 +30,13 @@
   display: flex;
 }
 
+#stepperModalIcon {
+  position: absolute;
+  top: 9vh;
+  right: 1vh;
+  font-size: 2em;
+}
+
 // Smartphone
 @media screen and (max-width: 767px) {
   #workspaceGridMobile {
