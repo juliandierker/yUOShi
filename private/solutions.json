@@ -60,6 +60,14 @@
       ]
     }
   ],
+
+  "MultiSMART": [
+    {
+      "id": 1,
+      "correct": [],
+      "neutral": ["Akzeptiert", "Realistisch"]
+    }
+  ],
   "MultiOutro": [
     {
       "id": 3,

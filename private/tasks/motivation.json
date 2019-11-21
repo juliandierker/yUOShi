@@ -86,6 +86,30 @@
     },
     {
       "parentId": "Motivation1",
+      "package": "Motivation",
+
+      "title": "Fehlersuche - soll das SMART sein?",
+      "description": "Lies die angegebenen Zielformulierungen und entscheide, ob diese SMART sind. \n Tipp: Bei manchen Zielen kann aufgrund des geringen Hintergrundwissens nicht genau festgesetzt werden, ob alle Kriterien erfüllt sind. Hier sind beide Antworten richtig.",
+      "taskId": "MultiSMART",
+      "filePrefix": "Multi",
+      "credits": 1,
+      "content": [
+        {
+          "QuestionId": 1,
+          "Question": "Ich möchte mehr Geld verdienen.",
+          "AnswerSet": [
+            "Spezifisch",
+            "Messbar",
+            "Akzeptiert",
+            "Realistisch",
+            "Terminiert"
+          ],
+          "multi": true
+        }
+      ]
+    },
+    {
+      "parentId": "Motivation1",
       "title": "Begriffe der Motivation",
       "description": "Ordne die Statements über Schüler*innen der intrinsischen oder extrinsischen Motivation zu. Welche Quelle der Motivation wird in der jeweiligen Aussage eher abgebildet? ",
       "taskId": "Motivationsbegriffe",
