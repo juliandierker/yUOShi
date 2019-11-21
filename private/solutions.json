@@ -49,22 +49,21 @@
   "Ziele": ["Zielsetzungstheorie", "Locke", "Moderatoren"],
   "ZieleCloze": ["Zielsetzungstheorie", "Locke", "Moderatoren"],
   "XwertCloze": ["5", "0", "0", "3", "3,75", "-0,875"],
-  "XWertMulti": [{ "id": 1, "sol": ["Lisa (M = 5)"] }],
-  "MultiWhy": [{ "id": 1, "sol": ["free"] }],
+  "XWertMulti": [{ "id": 1, "correct": ["Lisa (M = 5)"] }],
+  "MultiWhy": [{ "id": 1, "correct": ["free"] }],
   "MultiExtrIntr": [
     {
-      "id": 2,
-      "sol": [
+      "id": 1,
+      "correct": [
         "Intrinsische Motivation bedeutet, dass die Motivation von innen heraus kommt, zum Beispiel durch Interesse",
         "Der Korrumpierungseffekt kann auch als „Undermining Effekt“ bezeichnet werden"
       ]
     }
   ],
-
   "MultiOutro": [
     {
       "id": 3,
-      "sol": [
+      "correct": [
         "Spezifisch",
         "Messbar",
         "Akzeptiert",
@@ -74,7 +73,7 @@
     },
     {
       "id": 4,
-      "sol": [
+      "correct": [
         "dadurch, dass du einen neuen Anreiz geschaffen hast ( Entlohnung für das Amt), ist ein Korrumpierungseffekt aufgetreten, indem Magdas intrinsische Motivation von dem externen Anreiz überlagert wurde",
         "Durch die Unterstützung, die du außerdem angeboten hast, fühlte sich Magda in ihrem Autonomieerleben eingeschränkt und war deswegen weniger intrinsisch motiviert",
         "Durch ihr Amt hat Magda sich ihren Klassenkameraden überlegen gefühlt, sodass ihr Bedürfnis nach sozialer Eingebundenheit nicht erfüllt war, dies wollte sie nun ändern"
@@ -82,7 +81,7 @@
     },
     {
       "id": 5,
-      "sol": [
+      "correct": [
         "Durch die Angst vor der Scheidung seiner Eltern und den möglichen Umzug ist das Sicherheitsbedürfnis und evtl. das Sozialbedürfnis von Tino nicht erfüllt gewesen und somit konnte er auch keine Motivation aufbringen, sich in dem Kunstprojekt selbst zu „verwirklichen“",
         "Durch die Angst (mögliche Scheidung der Eltern /  möglicher Umzug) wurde Kreativität und Motivation gehemmt"
       ]
@@ -91,7 +90,7 @@
   "Quests": [
     {
       "id": 1,
-      "sol": [
+      "correct": [
         "dadurch, dass du einen neuen Anreiz geschaffen hast ( Entlohnung für das Amt), ist ein Korrumpierungseffekt aufgetreten, indem Magdas intrinsische Motivation von dem externen Anreiz überlagert wurde",
         "Durch die Unterstützung, die du außerdem angeboten hast, fühlte sich Magda in ihrem Autonomieerleben eingeschränkt und war deswegen weniger intrinsisch motiviert",
         "Durch ihr Amt hat Magda sich ihren Klassenkameraden überlegen gefühlt, sodass ihr Bedürfnis nach sozialer Eingebundenheit nicht erfüllt war, dies wollte sie nun ändern"
@@ -99,7 +98,7 @@
     },
     {
       "id": 2,
-      "sol": [
+      "correct": [
         "Durch die Angst vor der Scheidung seiner Eltern und den möglichen Umzug ist das Sicherheitsbedürfnis und evtl. das Sozialbedürfnis von Tino nicht erfüllt gewesen und somit konnte er auch keine Motivation aufbringen, sich in dem Kunstprojekt selbst zu „verwirklichen“",
         "Durch die Angst (mögliche Scheidung der Eltern /  möglicher Umzug) wurde Kreativität und Motivation gehemmt"
       ]
