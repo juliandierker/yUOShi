@@ -116,8 +116,8 @@ Meteor.methods({
     });
 
     // question has no "correct" answer
-    if (currentSolution.sol[0] === "free") {
-      return currentSolution.sol.concat(studentSolution);
+    if (currentSolution.correct[0] === "free") {
+      return currentSolution.correct.concat(studentSolution);
     }
 
     let retval = checkMulti(

@@ -26,9 +26,13 @@ export default class MultiChoiceView extends Component {
       let result = this.state.result;
       let solvedPercentage = null;
       if (this.state.totalAnswerCount > 0) {
-        solvedPercentage = this.state.falseCount / this.state.totalAnswerCount;
+        solvedPercentage =
+          (this.state.totalAnswerCount - this.state.falseCount) /
+          this.state.totalAnswerCount;
       } else {
-        solvedPercentage = result.falseCount / result.totalAnswerCount;
+        solvedPercentage =
+          (result.totalAnswerCount - result.falseCount) /
+          result.totalAnswerCount;
       }
       const { currentTraining } = this.props.student;
       Meteor.call(
@@ -218,14 +222,21 @@ export default class MultiChoiceView extends Component {
         return element.id.toString() === questionId.toString();
       });
       if (falseQuestion) {
-        correctAnswers = falseQuestion.sol;
+        correctAnswers = falseQuestion.correct;
       }
     }
 
     return set.map((answer, index) => {
       let color = "";
       if (this.state.showSolution && correctAnswers.length > 0) {
-        color = correctAnswers.includes(answer) ? "green" : "red";
+        if (
+          this.state.result.neutralAnswers !== undefined &&
+          this.state.result.neutralAnswers.includes(answer)
+        ) {
+          color = "yellow";
+        } else {
+          color = correctAnswers.includes(answer) ? "green" : "red";
+        }
       }
       return (
         <Checkbox
