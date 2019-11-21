@@ -12,12 +12,11 @@ export const DragdropModel = {
         this.solution = [];
       },
       checkFormular: function(solution) {
-        this.visQueue.push("won", null);
+        this.visQueue.push("won");
         return true;
       },
       checkSolution: function(solution) {
         if (this.task.formular) return this.checkFormular();
-
         solution.children.map((child, index) => {
           if (this.task.multipleColumns) {
             if (solution.categorie != child.solution) {
@@ -30,9 +29,10 @@ export const DragdropModel = {
           }
         });
         if (!this.visQueue.includes("fail")) {
-          this.visQueue.push("won", null);
+          this.visQueue.push("won");
           return true;
         } else {
+          console.log("falsly entered");
           return false;
         }
       },

@@ -28,7 +28,9 @@ export default class DragdropViewFormular extends React.Component {
       currentImages: [],
       currentExamples: [],
       evItem: [],
-      currentIndex: 0
+      solvedStatements: [],
+      solvedImages: [],
+      solvedExamples: []
     };
 
     this.handleLoad = this.handleLoad.bind(this);
@@ -244,9 +246,6 @@ export default class DragdropViewFormular extends React.Component {
     });
   }
   renderSolutionState() {
-    const that = this.props.that;
-    const solutions = this.props.scene.children;
-
     solutions.map(solution => {
       solution.children.map(child => {
         let elem = document.getElementById(child.id);
