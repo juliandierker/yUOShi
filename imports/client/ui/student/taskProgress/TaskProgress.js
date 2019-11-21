@@ -7,7 +7,7 @@ import StepContent from "@material-ui/core/StepContent";
 import Button from "@material-ui/core/Button";
 import Paper from "@material-ui/core/Paper";
 import Typography from "@material-ui/core/Typography";
-import { Responsive, Modal, Icon, Header } from "semantic-ui-react";
+import { Responsive, Modal, Icon, Button as Btn } from "semantic-ui-react";
 // This component renders the overview of the progress of the current Trainingspackage.
 
 class TaskProgress extends Component {
@@ -262,7 +262,16 @@ class TaskProgress extends Component {
     return (
       <div>
         <Responsive {...Responsive.onlyMobile}>
-          <Modal trigger={<Icon id="stepperModalIcon" name="compass" />} basic>
+          <Modal
+            closeOnDocumentClick={true}
+            closeIcon={<Icon id="stepperModalCloseIcon" name="close" />}
+            trigger={
+              <Btn id="stepperModalIcon" primary>
+                Fortschritt
+              </Btn>
+            }
+            basic
+          >
             <Modal.Content id="stepperModal">
               {this.renderStepper()}
             </Modal.Content>
