@@ -116,8 +116,15 @@ export default class StudentTopMenu extends React.Component {
       courses: null,
       teacher: null,
       activeItem: false,
+      dropDown: false,
       student: null
     };
+  }
+  handleDropdownClick() {
+    const { dropDown } = this.state;
+    if (dropDown) {
+    }
+    this.setState({ dropDown: !dropDown });
   }
   componentDidUpdate(prevProps, prevState) {
     if (prevState.student == null && this.props.student != null) {
@@ -223,7 +230,7 @@ export default class StudentTopMenu extends React.Component {
 
     return (
       <React.Fragment>
-        <Responsive {...Responsive.onlyTablet}>
+        <Responsive {...Responsive.onlyMobile}>
           <Menu
             attached="top"
             style={{
@@ -232,13 +239,19 @@ export default class StudentTopMenu extends React.Component {
               height: "5%"
             }}
           >
-            <Dropdown fluid item icon="bars" simple>
+            <Dropdown
+              onClick={() => this.handleDropdownClick()}
+              open={this.state.dropDown}
+              fluid
+              item
+              icon={this.state.dropDown ? "close" : "bars"}
+            >
               <Dropdown.Menu
                 fluid
                 style={{
                   backgroundColor: "rgba(106, 150, 226, 0.9)",
                   Color: "white!important",
-                  height: "85vH"
+                  height: "100vH"
                 }}
               >
                 <Dropdown.Item
@@ -287,7 +300,7 @@ export default class StudentTopMenu extends React.Component {
             </Dropdown>
           </Menu>
         </Responsive>
-        <Responsive {...Responsive.onlyMobile}>
+        <Responsive {...Responsive.onlyTablet}>
           <Menu
             attached="top"
             style={{
@@ -296,13 +309,20 @@ export default class StudentTopMenu extends React.Component {
               height: "5%"
             }}
           >
-            <Dropdown fluid item icon="bars" simple>
+            <Dropdown
+              onClick={() => this.handleDropdownClick()}
+              open={this.state.dropDown}
+              fluid
+              item
+              icon={this.state.dropDown ? "close" : "bars"}
+            >
               <Dropdown.Menu
                 fluid
                 style={{
                   backgroundColor: "rgba(106, 150, 226, 0.9)",
                   Color: "white!important",
-                  height: "85vH"
+                  height: "100vH",
+                  paddingTop: "2rem"
                 }}
               >
                 <Dropdown.Item

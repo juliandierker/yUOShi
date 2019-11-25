@@ -54,7 +54,7 @@
   }
   #defTextReader {
     width: 100%;
-    height: 75vh;
+    height: 45vh;
   }
   .ui.menu .item:before {
     background: none;
@@ -64,6 +64,9 @@
   }
   .ui.menu .ui.dropdown .menu > .item {
     color: white !important;
+    text-align: center;
+    padding-bottom: 2rem !important;
+    font-size: 1.5rem !important;
   }
   #NavigationButtonContainer {
     text-align: center;
@@ -96,6 +99,22 @@
   #solveTask {
     background-color: rgb(143, 176, 232);
     color: white;
+  }
+  #Ebene_0 {
+    transform: scale(1, 1);
+    transition: 1s;
+
+    &:hover {
+      transform: scale(1.5, 1.5);
+    }
+  }
+  #Ebene_1 {
+    transform: scale(1, 1);
+    transition: 1s;
+
+    &:hover {
+      transform: scale(1.5, 1.5);
+    }
   }
 }
 
@@ -135,6 +154,9 @@
   }
   .ui.menu .ui.dropdown .menu > .item {
     color: white !important;
+    text-align: center;
+    padding-bottom: 2rem !important;
+    font-size: 1.5rem !important;
   }
   .MuiStepper-root {
     padding: 0rem !important;
@@ -142,6 +164,25 @@
   }
   .dragItemGroup {
     display: inherit !important;
+  }
+  #Ebene_0 {
+    transform: scale(1, 1);
+    transition: 1s;
+
+    &:hover {
+      transform: scale(1.5, 1.5);
+    }
+  }
+  #Ebene_1 {
+    transform: scale(1, 1);
+    transition: 1s;
+
+    &:hover {
+      transform: scale(1.5, 1.5);
+    }
+  }
+  #countdown-svg {
+    margin-top: 18rem;
   }
   #solveTask {
     margin-top: 10px;
@@ -204,5 +245,13 @@
     margin-right: 18.4%;
     background-color: rgb(143, 176, 232);
     color: white;
+  }
+  #Ebene_1 {
+    transform: scale(1, 1);
+    transition: 1s;
+
+    &:hover {
+      transform: scale(1.5, 1.5);
+    }
   }
 }
