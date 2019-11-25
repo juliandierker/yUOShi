@@ -14,10 +14,15 @@ export function checkMulti(question, studentSolution, correctSolution) {
       studentSolution.length > 0
         ? studentSolution[0].values.includes(answers[i])
         : false;
-    let answerIsCorrect = correctSolution.sol.includes(answers[i]);
+    let answerIsCorrect = correctSolution.correct.includes(answers[i]);
 
     if (answerIsSelected != answerIsCorrect) {
-      falseCount++;
+      let answerNeutral =
+        correctSolution.neutral !== undefined &&
+        correctSolution.neutral.includes(answers[i]);
+      if (!answerNeutral) {
+        falseCount++;
+      }
     }
   }
   let falseQuestions = [];
@@ -28,6 +33,7 @@ export function checkMulti(question, studentSolution, correctSolution) {
   let retval = {
     falseCount,
     totalAnswerCount: answers.length,
+    neutralAnswers: correctSolution.neutral,
     falseQuestions
   };
 

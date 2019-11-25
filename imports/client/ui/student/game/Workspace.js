@@ -319,15 +319,13 @@ export default class Workspace extends React.Component {
         <Grid.Column width={8} id="workspaceGridMobile">
           <div className="workspace__container">{this.taskSwitch()}</div>
         </Grid.Column>
-        <Grid.Column width={3} id="workspaceGridMobile">
-          <TaskProgress
-            currentTask={this.state.activeTask}
-            student={this.props.student}
-            currentPackage={this.props.student.currentPackage[0]}
-            trainings={this.props.trainings}
-            activeSubpackage={activesubpackage}
-          />
-        </Grid.Column>
+        <TaskProgress
+          currentTask={this.state.activeTask}
+          student={this.props.student}
+          currentPackage={this.props.student.currentPackage[0]}
+          trainings={this.props.trainings}
+          activeSubpackage={activesubpackage}
+        />
       </Grid>
     );
   }
