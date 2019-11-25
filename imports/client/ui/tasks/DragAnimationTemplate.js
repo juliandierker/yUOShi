@@ -35,7 +35,8 @@ export default class DragAnimationTemplate extends React.Component {
   }
 
   learnCardPrepare() {
-    console.log(this.viewScene);
+    if (this.viewScene) console.log(this.viewScene);
+    if (this.state.viewScene) console.log(this.state.viewScene);
     const viewScene = this.viewScene.current.view.current.state;
 
     // Meteor.call(
@@ -154,15 +155,60 @@ export default class DragAnimationTemplate extends React.Component {
       }
     );
   }
+  externDragUpdate(target) {
+    const dragState = this.viewScene.current.view.current.state;
+    const dragView = this.viewScene.current.view.current;
+    let currentStatements = dragState.currentStatements;
+    let currentExamples = dragState.currentExamples;
+    let currentIndex = dragState.currentIndex;
+
+    let solvedStatements = dragState.solvedStatements;
+    let solvedExamples = dragState.solvedExamples;
+    let targetStr;
+    if (target.includes("statement")) {
+      targetStr = target.split("statement")[0];
+      for (var i in currentStatements) {
+        if (currentStatements[i][0] === targetStr) {
+          solvedStatements.push(currentStatements[i]);
+          // currentStatements.splice(i, 1);
+        }
+      }
+    } else {
+      targetStr = target.split("example")[0];
+      for (var i in currentStatements) {
+        if (currentStatements[i][0] === targetStr) {
+          solvedExamples.push(currentExamples[i]);
+          // currentExamples.splice(i, 1);
+        }
+      }
+    }
+
+    dragView.setState({
+      currentStatements,
+      currentExamples,
+      solvedStatements,
+      solvedExamples,
+      currentIndex: ++dragState.currentIndex
+    });
+    console.log(solvedStatements.length);
+    console.log(dragState);
+    if (
+      (solvedStatements.length && solvedExamples.length) ==
+      dragState.currentIndex / 2
+    ) {
+      console.log("yes");
+      dragView.getStatements();
+      dragView.getExamples();
+    }
+
+    console.log(dragState.currentIndex);
+  }
   renderLearnCardBtn() {
-    console.log("TEST");
     let viewScene = null;
     if (!this.viewScene.current) {
-      console.log(this.state);
       if (this.state.viewScene) viewScene = this.state.viewScene;
     } else {
       viewScene = this.viewScene.current.view.current.state;
-      console.log("B");
     }
 
     if (this.props.activeTask.formular && viewScene) {
@@ -171,16 +217,15 @@ export default class DragAnimationTemplate extends React.Component {
       const solvedStatements = viewScene.statements.length;
       const currentIndex = viewScene.currentIndex;
 
-      return solvedStatements < statements && currentIndex > currentStatements
-        ? console.log("bb") && (
-            <Button
-              style={{ marginTop: "10px", marginRight: "10px", float: "left" }}
-              onClick={() => this.renderNextCards()}
-            >
-              {"Weiter"}
-            </Button>
-          )
-        : null;
+      return solvedStatements < statements &&
+        currentIndex > currentStatements ? (
+        <Button
+          style={{ marginTop: "10px", marginRight: "10px", float: "left" }}
+          onClick={() => this.renderNextCards()}
+        >
+          {"Weiter"}
+        </Button>
+      ) : null;
     } else return null;
   }
 
@@ -205,6 +250,7 @@ export default class DragAnimationTemplate extends React.Component {
             showSolution={this.state.showSolution}
             model={this.model}
             ref={this.viewScene}
+            externDragUpdate={this.externDragUpdate.bind(this)}
             scale={null}
             key={"draganimationcomponentMotive" + this.state.childKeyIteration}
           />{" "}

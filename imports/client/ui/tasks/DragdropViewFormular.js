@@ -76,7 +76,6 @@ export default class DragdropViewFormular extends React.Component {
       mouseY >= top &&
       mouseY <= bottom
     ) {
-      console.log("ja");
       return true;
     }
     return false;
@@ -150,10 +149,10 @@ export default class DragdropViewFormular extends React.Component {
   componentWillUnmount() {
     window.removeEventListener("load", this.handleLoad());
   }
-
+  updateDrags(containerId) {
+    //TODO
+  }
   rerenderItems(that, containerId) {
-    console.log(that);
-    console.log(this);
     let targetId = containerId.split("_")[0] + "_target";
     let boundsBefore, boundsAfter;
     boundsBefore = that.target.getBoundingClientRect();
@@ -171,15 +170,16 @@ export default class DragdropViewFormular extends React.Component {
         y: 0
       }
     );
+    this.updateDrags(containerId);
   }
 
   dropItem(event) {
     let that = this.vars.that;
-    console.log(this);
     let index = that.state.currentIndex;
     const { currentStatements, currentExamples } = that.state;
     if (that.mouseHitTest(event.clientX, event.clientY, this.target.id)) {
       that.rerenderItems(this, this.target.id);
+      that.props.externDragUpdate(this.target.id);
     } else {
       TweenMax.to(this.target, 0.5, { x: 0, y: 0 });
     }
