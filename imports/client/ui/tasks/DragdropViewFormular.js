@@ -64,6 +64,7 @@ export default class DragdropViewFormular extends React.Component {
   //TODO auslagern
 
   mouseHitTest(mouseX, mouseY, containerId) {
+    console.log(containerId);
     let targetId = containerId.split("_")[0] + "_target";
     let boundingRect = document
       .getElementById(targetId)
@@ -165,7 +166,7 @@ export default class DragdropViewFormular extends React.Component {
       0.3,
       {
         x: "+=" + (boundsBefore.left - boundsAfter.left - 1),
-        y: "+=" + (boundsBefore.top - boundsAfter.top + 6)
+        y: "+=" + (boundsBefore.top - boundsAfter.top + 10)
       },
       {
         x: 0,
@@ -193,14 +194,12 @@ export default class DragdropViewFormular extends React.Component {
         let targetStr = this.target.id.split("statement")[0];
         if (that.checkSolutions(solvedStatements, targetStr).length == 0) {
           that.rerenderItems(this, that, this.target.id);
-          this.target.classList.remove("dragItem");
         }
       }
     } else if (this.target.id.includes("example")) {
       let targetStr = this.target.id.split("example")[0];
       if (that.checkSolutions(solvedExamples, targetStr).length == 0) {
         that.rerenderItems(this, that, this.target.id);
-        this.target.classList.remove("dragItem");
       }
     } else {
       TweenMax.to(this.target, 0.5, { x: 0, y: 0 });
@@ -220,17 +219,25 @@ export default class DragdropViewFormular extends React.Component {
               statements[0] +
               ".png"
             }
+            floated="right"
             size="tiny"
             circular
           />
-          <h2> {statements[0]}</h2>
+          <h2
+            style={{
+              fontWeight: "bold",
+              textTransform: "Capitalize"
+            }}
+          >
+            {statements[0]}
+          </h2>
           <div class="customCard-body">
             <div className="targetDrop" id={statements[0] + "statement_target"}>
-              <p>Definition:</p>
+              <p class="targetDropDefinition">Definition:</p>
               {/* <p>{statements[1]}</p> */}
             </div>
             <div className="targetDrop" id={statements[0] + "example_target"}>
-              <p>Beispiel:</p>
+              <p class="targetDropExample">Beispiel:</p>
               {/* <p>{statements[1]}</p> */}
             </div>
           </div>
