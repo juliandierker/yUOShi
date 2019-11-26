@@ -6,20 +6,16 @@
   margin-bottom: 10px;
   z-index: 1000;
   display: inline-block;
-  color: rgb(106, 150, 226);
-  border: 1px solid rgb(106, 150, 226);
+  color: black;
+  border: 1px solid lightgrey;
+  border-radius: 3rem;
   background: white;
-  box-shadow: 0 0 5px -1px rgba(0, 0, 0, 0.2);
   cursor: pointer;
   vertical-align: middle;
-  padding: 5px;
-  text-align: center;
+  text-align: left;
   font-family: sans-serif;
   font-size: 1rem;
-  margin-left: 1rem;
-  height: 3rem;
-  padding-top: 0.75rem;
-  border-radius: 0.28571429rem;
+  padding: 1rem;
 }
 
 .selected {
@@ -430,6 +426,8 @@ input:last-child {
   min-height: 195px;
   border-radius: 25px;
   border: 2px solid #6a96e2;
+  margin-bottom: 2rem;
+  padding: 2rem;
 }
 .customCard-img-top {
   position: absolute;
@@ -439,7 +437,6 @@ input:last-child {
   object-position: center;
 }
 .customCard-body {
-  width: 70%;
   right: 0;
 }
 .customCard p.-text {
@@ -459,9 +456,15 @@ input:last-child {
 
 .targetDrop {
   width: 100%;
-  min-height: 50px;
-  border-radius: 25px;
-  border: 1px dotted #6a96e2;
+  min-height: 6rem;
+  border-radius: 15px;
+  border: 2px dashed #6a96e2;
+  font-size: 1rem;
+  margin-top: 3rem;
+}
+.targetDropDefinition,
+.targetDropExample {
+  padding-left: 1rem;
 }
 .customContainer {
   padding: 2px 16px;
