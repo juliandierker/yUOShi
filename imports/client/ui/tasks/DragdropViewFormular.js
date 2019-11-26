@@ -226,10 +226,18 @@ export default class DragdropViewFormular extends React.Component {
               statements[0] +
               ".png"
             }
+            floated="right"
             size="tiny"
             circular
           />
-          <h2> {statements[0]}</h2>
+          <h2
+            style={{
+              fontWeight: "bold",
+              textTransform: "Capitalize"
+            }}
+          >
+            {statements[0]}
+          </h2>
           <div class="customCard-body">
             <div className="targetDrop" id={statements[0] + "statement_target"}>
               <p class="targetDropDefinition">Definition:</p>
