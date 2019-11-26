@@ -18,7 +18,6 @@ export default class DragdropViewFormular extends React.Component {
   constructor(props) {
     super(props);
     this.view = null;
-    console.log(props);
     this.state = {
       statements: props.activeTask.statements,
       images: props.activeTask.images,
@@ -42,7 +41,9 @@ export default class DragdropViewFormular extends React.Component {
       i < this.state.currentIndex + 2;
       i++
     ) {
-      currentStatements.push(this.state.statements[i]);
+      if (!currentStatements.includes(this.state.statements[i])) {
+        currentStatements.push(this.state.statements[i]);
+      }
     }
     this.setState({ currentStatements });
   }
@@ -53,7 +54,9 @@ export default class DragdropViewFormular extends React.Component {
       i < this.state.currentIndex + 2;
       i++
     ) {
-      currentImages.push(this.state.images[i]);
+      if (!currentImages.includes(this.state.statements[i])) {
+        currentImages.push(this.state.images[i]);
+      }
     }
     this.setState({ currentImages });
   }
@@ -88,7 +91,9 @@ export default class DragdropViewFormular extends React.Component {
       i < this.state.currentIndex + 2;
       i++
     ) {
-      currentExamples.push(this.state.examples[i]);
+      if (!currentExamples.includes(this.state.statements[i])) {
+        currentExamples.push(this.state.examples[i]);
+      }
     }
     this.setState({ currentExamples: currentExamples });
   }
@@ -111,7 +116,6 @@ export default class DragdropViewFormular extends React.Component {
     this.getExamples();
     this.getImages();
     if (this.state.activeTask == null) {
-      console.log(this.props);
       this.setState({ statements: this.props.activeTask.statements });
     }
     window.addEventListener("load", this.handleLoad());
@@ -149,10 +153,8 @@ export default class DragdropViewFormular extends React.Component {
   componentWillUnmount() {
     window.removeEventListener("load", this.handleLoad());
   }
-  updateDrags(containerId) {
-    //TODO
-  }
-  rerenderItems(that, containerId) {
+
+  rerenderItems(that, compContext, containerId) {
     let targetId = containerId.split("_")[0] + "_target";
     let boundsBefore, boundsAfter;
     boundsBefore = that.target.getBoundingClientRect();
@@ -162,24 +164,44 @@ export default class DragdropViewFormular extends React.Component {
       that.target,
       0.3,
       {
-        x: "+=" + (boundsBefore.left - boundsAfter.left),
-        y: "+=" + (boundsBefore.top - boundsAfter.top)
+        x: "+=" + (boundsBefore.left - boundsAfter.left - 1),
+        y: "+=" + (boundsBefore.top - boundsAfter.top + 6)
       },
       {
         x: 0,
         y: 0
       }
     );
-    this.updateDrags(containerId);
+    compContext.props.externDragUpdate(containerId);
   }
-
+  checkSolutions(solvedArr, targetStr) {
+    return solvedArr.filter(elem => {
+      return elem[0] === targetStr;
+    });
+  }
   dropItem(event) {
     let that = this.vars.that;
     let index = that.state.currentIndex;
-    const { currentStatements, currentExamples } = that.state;
+    const {
+      currentStatements,
+      currentExamples,
+      solvedStatements,
+      solvedExamples
+    } = that.state;
     if (that.mouseHitTest(event.clientX, event.clientY, this.target.id)) {
-      that.rerenderItems(this, this.target.id);
-      that.props.externDragUpdate(this.target.id);
+      if (this.target.id.includes("statement")) {
+        let targetStr = this.target.id.split("statement")[0];
+        if (that.checkSolutions(solvedStatements, targetStr).length == 0) {
+          that.rerenderItems(this, that, this.target.id);
+          this.target.classList.remove("dragItem");
+        }
+      }
+    } else if (this.target.id.includes("example")) {
+      let targetStr = this.target.id.split("example")[0];
+      if (that.checkSolutions(solvedExamples, targetStr).length == 0) {
+        that.rerenderItems(this, that, this.target.id);
+        this.target.classList.remove("dragItem");
+      }
     } else {
       TweenMax.to(this.target, 0.5, { x: 0, y: 0 });
     }
@@ -189,34 +211,6 @@ export default class DragdropViewFormular extends React.Component {
     return currentStatements.map((statements, index) => {
       // return statements.map(statement => {
       return (
-        // <div class="customCard">
-        //   <img
-        //     src={
-        //       "/tasks/Drag/" +
-        //       this.props.activeTask.taskId +
-        //       "/" +
-        //       statements[0] +
-        //       ".png"
-        //     }
-        //     alt="Avatar"
-        //     style={{ width: "100%" }}
-        //   />
-        //   <div class="customContainer">
-        //     <h4>
-        //       <b>{statements[0]}</b>
-        //     </h4>
-        //     <div className="targetDrop" id={statements[0] + "statement_target"}>
-        //       <p>Definition:</p>
-        //       {/* <p>{statements[1]}</p> */}
-        //     </div>
-        //     <div
-        //       className="targetDrop"
-        //       id={currentExamples[index][0] + "example_target"}
-        //     >
-        //       <p>Beispiel:</p>
-        //     </div>
-        //   </div>
-        // </div>
         <div class="customCard">
           <Image
             src={

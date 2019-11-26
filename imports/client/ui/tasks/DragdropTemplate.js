@@ -88,7 +88,6 @@ export default class DragdropTemplate extends Component {
   }
   render() {
     if (this.props.activeTask.formular) {
-      console.log(this.props);
       return (
         <DragdropViewFormular
           activeTask={this.props.activeTask}

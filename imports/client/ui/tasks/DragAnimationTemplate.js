@@ -21,9 +21,7 @@ export default class DragAnimationTemplate extends React.Component {
   componentDidMount() {
     this.setState({ viewScene: this.viewScene });
   }
-  componentDidUpdate() {
-    console.log("UUPDATE");
-  }
+  componentDidUpdate() {}
   shouldComponentUpdate(nextProps) {
     if (this.props.activeTask.taskId !== nextProps.activeTask.taskId) {
       this.model = DragDropModel.getNewModel();
@@ -35,32 +33,25 @@ export default class DragAnimationTemplate extends React.Component {
   }
 
   learnCardPrepare() {
-    if (this.viewScene) console.log(this.viewScene);
-    if (this.state.viewScene) console.log(this.state.viewScene);
     const viewScene = this.viewScene.current.view.current.state;
 
-    // Meteor.call(
-    //   "solutionHandler.submitCard",
-    //   this.props.student._id,
-    //   this.props.activeTask,
-    //   (err, res) => {
-    //     if (!res) {
-    //       Swal.fire({
-    //         position: "top-end",
-    //         type: "warning",
-    //         title: "Die Lernkarten scheinen noch nicht komplett zu sein.",
-    //         timer: 1500
-    //       });
-    //     } else {
-    //       Swal.fire({
-    //         position: "top-end",
-    //         type: "success",
-    //         title: "Geschafft! Die Lernkarten werden in deinem Büro abgelegt.",
-    //         timer: 1500
-    //       });
-    //     }
-    //   }
-    // );
+    if (viewScene.currentIndex == 4) {
+      Meteor.call(
+        "solutionHandler.submitCard",
+        this.props.student._id,
+        this.props.activeTask,
+        (err, res) => {
+          Swal.fire({
+            position: "top-end",
+            type: "success",
+            title: "Geschafft! Die Lernkarten werden in deinem Büro abgelegt.",
+            timer: 1500
+          });
+        }
+      );
+    } else {
+      alert("Noch nicht");
+    }
   }
 
   solutionPrepare() {
@@ -158,6 +149,8 @@ export default class DragAnimationTemplate extends React.Component {
   externDragUpdate(target) {
     const dragState = this.viewScene.current.view.current.state;
     const dragView = this.viewScene.current.view.current;
+    const statements = dragState.statements;
+    const examples = dragState.examples;
     let currentStatements = dragState.currentStatements;
     let currentExamples = dragState.currentExamples;
     let currentIndex = dragState.currentIndex;
@@ -190,18 +183,10 @@ export default class DragAnimationTemplate extends React.Component {
       solvedExamples,
       currentIndex: ++dragState.currentIndex
     });
-    console.log(solvedStatements.length);
-    console.log(dragState);
-    if (
-      (solvedStatements.length && solvedExamples.length) ==
-      dragState.currentIndex / 2
-    ) {
-      console.log("yes");
+    if (currentStatements.length && currentExamples.length == 0) {
       dragView.getStatements();
       dragView.getExamples();
     }
-
-    console.log(dragState.currentIndex);
   }
   renderLearnCardBtn() {
     let viewScene = null;
