@@ -15,10 +15,13 @@ export default class DragAnimationTemplate extends React.Component {
     this.view = null;
     this.model = DragdropModel.getNewModel();
     this.model.init(props.student, props.activeTask);
-    this.state = { showSolution: false, childKeyIteration: 0 };
+    this.state = { showSolution: false, childKeyIteration: 0, viewScene: null };
     this.viewScene = React.createRef();
   }
-
+  componentDidMount() {
+    this.setState({ viewScene: this.viewScene });
+  }
+  componentDidUpdate() {}
   shouldComponentUpdate(nextProps) {
     if (this.props.activeTask.taskId !== nextProps.activeTask.taskId) {
       this.model = DragDropModel.getNewModel();
@@ -28,7 +31,32 @@ export default class DragAnimationTemplate extends React.Component {
       return false;
     }
   }
+
+  learnCardPrepare() {
+    const viewScene = this.viewScene.current.view.current.state;
+
+    if (viewScene.currentIndex == 4) {
+      Meteor.call(
+        "solutionHandler.submitCard",
+        this.props.student._id,
+        this.props.activeTask,
+        (err, res) => {
+          Swal.fire({
+            position: "top-end",
+            type: "success",
+            title: "Geschafft! Die Lernkarten werden in deinem Büro abgelegt.",
+            timer: 1500
+          });
+        }
+      );
+    } else {
+      alert("Noch nicht");
+    }
+  }
+
   solutionPrepare() {
+    if (this.props.activeTask.formular) return this.learnCardPrepare();
+
     const userSol = this.viewScene.current.state.scene.children;
 
     if (this.state.showSolution) {
@@ -118,6 +146,73 @@ export default class DragAnimationTemplate extends React.Component {
       }
     );
   }
+  externDragUpdate(target) {
+    const dragState = this.viewScene.current.view.current.state;
+    const dragView = this.viewScene.current.view.current;
+    const statements = dragState.statements;
+    const examples = dragState.examples;
+    let currentStatements = dragState.currentStatements;
+    let currentExamples = dragState.currentExamples;
+    let currentIndex = dragState.currentIndex;
+
+    let solvedStatements = dragState.solvedStatements;
+    let solvedExamples = dragState.solvedExamples;
+    let targetStr;
+    if (target.includes("statement")) {
+      targetStr = target.split("statement")[0];
+      for (var i in currentStatements) {
+        if (currentStatements[i][0] === targetStr) {
+          solvedStatements.push(currentStatements[i]);
+          // currentStatements.splice(i, 1);
+        }
+      }
+    } else {
+      targetStr = target.split("example")[0];
+      for (var i in currentStatements) {
+        if (currentStatements[i][0] === targetStr) {
+          solvedExamples.push(currentExamples[i]);
+          // currentExamples.splice(i, 1);
+        }
+      }
+    }
+
+    dragView.setState({
+      currentStatements,
+      currentExamples,
+      solvedStatements,
+      solvedExamples,
+      currentIndex: ++dragState.currentIndex
+    });
+    if (currentStatements.length && currentExamples.length == 0) {
+      dragView.getStatements();
+      dragView.getExamples();
+    }
+  }
+  renderLearnCardBtn() {
+    let viewScene = null;
+    if (!this.viewScene.current) {
+      if (this.state.viewScene) viewScene = this.state.viewScene;
+    } else {
+      viewScene = this.viewScene.current.view.current.state;
+    }
+
+    if (this.props.activeTask.formular && viewScene) {
+      const currentStatements = viewScene.currentStatements.length;
+      const statements = viewScene.statements.length;
+      const solvedStatements = viewScene.statements.length;
+      const currentIndex = viewScene.currentIndex;
+
+      return solvedStatements < statements &&
+        currentIndex > currentStatements ? (
+        <Button
+          style={{ marginTop: "10px", marginRight: "10px", float: "left" }}
+          onClick={() => this.renderNextCards()}
+        >
+          {"Weiter"}
+        </Button>
+      ) : null;
+    } else return null;
+  }
 
   render() {
     let taskProps = {
@@ -141,10 +236,12 @@ export default class DragAnimationTemplate extends React.Component {
             showSolution={this.state.showSolution}
             model={this.model}
             ref={this.viewScene}
+            externDragUpdate={this.externDragUpdate.bind(this)}
             scale={null}
             key={"draganimationcomponentMotive" + this.state.childKeyIteration}
           />{" "}
         </div>
+        {this.renderLearnCardBtn()}
         <Button
           style={{ marginTop: "10px", marginRight: "10px", float: "right" }}
           onClick={() => this.solutionPrepare()}

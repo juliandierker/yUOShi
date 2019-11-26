@@ -1,6 +1,7 @@
 import { Meteor } from "meteor/meteor";
 import equals from "fast-deep-equal";
 
+import { saveCard } from "./solutionHandling/cardSaver";
 import { solveTask } from "./solutionHandling/taskSolver";
 import { checkMulti } from "./solutionHandling/multiSolver";
 
@@ -9,12 +10,18 @@ import { Students } from "../imports/api/students";
 var Solutions = JSON.parse(Assets.getText("solutions.json"));
 
 Meteor.methods({
+  "solutionHandler.submitCard"(studentId, task) {
+    saveCard(studentId, task.taskId);
+    solveTask(studentId, task.taskId, 100);
+  },
   "solutionHandler.submitDrag"(
     studentSolution,
     studentId,
     task,
     solvedPercentage
   ) {
+    console.log("enteredd");
+    console.log(studentSolution);
     if (solvedPercentage !== undefined) {
       solveTask(studentId, task.taskId, solvedPercentage);
     }
