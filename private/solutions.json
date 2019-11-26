@@ -13,39 +13,26 @@
     "Motiv",
     "Bedürfnis",
     "Ziel",
-    "IST-Zustand",
-    "SOLL-Zustand",
     "Interesse"
   ],
   "Zielsetzungstheorie_Theorie": ["Motivationsstrategien"],
   "Maslow_Theorie": [
-    "menschlichen Bedürfnisse",
-    "Grundbedürfnisse",
-    "Sicherheitsbedürfnisse",
-    "Sozialbedürfnisse",
-    "Individualbedürfnisse",
-    "Mangelbedürfnisse",
-    "Selbstverwirklichungsbedürfnis"
+    "Maslows Bedürfnispyramide",
+    "Mangelbedürfnisse"
   ],
 
   "Motivation_IntrExtr": [
     "intrinsische Motivation",
-    "Tätigkeit selbst",
     "Extrinsische Motivation",
-    "Mittel zum Zweck",
-    "Zusammenspiel",
-    "Korrumpierungseffekt",
-    "getrennte Skalen"
+    "Korrumpierungseffekt"
   ],
   "Selbstbestimmungs_Theorie": [
-    "Deci und Ryan",
-    "humanistischen Ansätzen",
-    "intrinsische Motivation",
-    "Bedürfnis nach Autonomie",
-    "Bedürfnis nach sozialer Eingebundenheit",
-    "Bedürfnis des Kompetenzerlebens"
+    "Selbstbestimmungstheorie nach Deci und Ryan",
+    "Autonomie",
+    "soziale Eingebundenheit",
+    "Kompetenzerleben"
   ],
-  "Xwert_Theorie": ["Erwartungs-X-Wert", "Situation", "Ergebnis"],
+  "Xwert_Theorie": ["Erwartungs-X-Wert Modell", "Erwartung an das Ergebnis", "Wert des Ergebnisses"],
   "Ziele": ["Zielsetzungstheorie", "Locke", "Moderatoren"],
   "ZieleCloze": ["Zielsetzungstheorie", "Locke", "Moderatoren"],
   "XwertCloze": ["5", "0", "0", "3", "3,75", "-0,875"],
