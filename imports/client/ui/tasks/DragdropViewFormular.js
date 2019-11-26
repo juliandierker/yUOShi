@@ -232,11 +232,11 @@ export default class DragdropViewFormular extends React.Component {
           <h2> {statements[0]}</h2>
           <div class="customCard-body">
             <div className="targetDrop" id={statements[0] + "statement_target"}>
-              <p>Definition:</p>
+              <p class="targetDropDefinition">Definition:</p>
               {/* <p>{statements[1]}</p> */}
             </div>
             <div className="targetDrop" id={statements[0] + "example_target"}>
-              <p>Beispiel:</p>
+              <p class="targetDropExample">Beispiel:</p>
               {/* <p>{statements[1]}</p> */}
             </div>
           </div>
