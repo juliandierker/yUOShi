@@ -132,8 +132,9 @@ export default class DragAnimationTemplate extends React.Component {
     return (
       <div>
         <div
-          style={{ overflowY: "auto", maxHeight: "80vh" }}
+          style={{ overflowY: "auto", maxHeight: "55vh" }}
           className="dragAnimation__"
+          id="dragAnimation__"
         >
           <DragdropTemplate
             {...taskProps}

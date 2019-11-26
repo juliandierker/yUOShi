@@ -26,9 +26,13 @@ export default class MultiChoiceView extends Component {
       let result = this.state.result;
       let solvedPercentage = null;
       if (this.state.totalAnswerCount > 0) {
-        solvedPercentage = this.state.falseCount / this.state.totalAnswerCount;
+        solvedPercentage =
+          (this.state.totalAnswerCount - this.state.falseCount) /
+          this.state.totalAnswerCount;
       } else {
-        solvedPercentage = result.falseCount / result.totalAnswerCount;
+        solvedPercentage =
+          (result.totalAnswerCount - result.falseCount) /
+          result.totalAnswerCount;
       }
       const { currentTraining } = this.props.student;
       Meteor.call(
@@ -218,20 +222,25 @@ export default class MultiChoiceView extends Component {
         return element.id.toString() === questionId.toString();
       });
       if (falseQuestion) {
-        correctAnswers = falseQuestion.sol;
+        correctAnswers = falseQuestion.correct;
       }
     }
 
     return set.map((answer, index) => {
       let color = "";
       if (this.state.showSolution && correctAnswers.length > 0) {
-        color = correctAnswers.includes(answer) ? "green" : "red";
+        if (
+          this.state.result.neutralAnswers !== undefined &&
+          this.state.result.neutralAnswers.includes(answer)
+        ) {
+          color = "yellow";
+        } else {
+          color = correctAnswers.includes(answer) ? "green" : "red";
+        }
       }
       return (
         <Checkbox
           style={{
-            width: "100%",
-            marginBottom: "2rem",
             backgroundColor: color
           }}
           key={"Checkbox_" + questionId + "_" + index}
@@ -267,7 +276,7 @@ export default class MultiChoiceView extends Component {
           style={{ width: "100%" }}
         >
           <Card.Content>
-            <Card.Header style={{ marginBottom: "2rem" }}>
+            <Card.Header style={{ marginBottom: "2rem", textAlign: "left" }}>
               <br />
 
               {question.Question}
@@ -290,13 +299,7 @@ export default class MultiChoiceView extends Component {
       <React.Fragment>
         {this.renderQuestions()}
         <Button
-          style={{
-            marginTop: "10px",
-            marginBottom: "10px",
-            marginRight: "18.4%",
-            backgroundColor: "rgb(143, 176, 232)",
-            color: "white"
-          }}
+          id="solveTask"
           floated="right"
           onClick={() => this.solutionPrepare()}
         >

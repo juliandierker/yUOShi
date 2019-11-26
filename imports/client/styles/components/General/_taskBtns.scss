@@ -1,5 +1,13 @@
 // Smartphone
 @media screen and (max-width: 767px) {
+  .ui[class*="right labeled"].icon.button {
+    padding-right: 3rem !important;
+    padding-left: 0.5rem !important;
+  }
+  .ui[class*="left labeled"].icon.button {
+    padding-right: 0.5rem !important;
+    padding-left: 2rem !important;
+  }
 }
 
 // Tablet

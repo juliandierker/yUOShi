@@ -1,3 +1,22 @@
+@media screen and (max-width: 767px) {
+  .ui[class*="right labeled"].icon.button {
+    padding-right: 3rem !important;
+    padding-left: 0.5rem !important;
+  }
+  .ui[class*="left labeled"].icon.button {
+    padding-right: 0.5rem !important;
+    padding-left: 2rem !important;
+  }
+}
+
+@media screen and (min-width: 1025px) {
+  #prevTaskBtn {
+    background: #6a96e2;
+    color: white;
+    margin-right: 4rem;
+  }
+}
+
 #prevTaskBtn {
   background: #6a96e2;
   color: white;
@@ -33,11 +52,6 @@
 #positivBtn {
   border-radius: 5px;
 }
-
-@media screen and (min-width: 1025px) {
-  #prevTaskBtn {
-    background: #6a96e2;
-    color: white;
-    margin-right: 4rem;
-  }
+#posiBtn {
+  border-radius: 5px !important;
 }

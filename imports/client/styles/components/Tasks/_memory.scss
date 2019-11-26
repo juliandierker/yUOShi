@@ -1,3 +1,33 @@
+// Smartphone
+@media screen and (max-width: 767px) {
+  .playground {
+    .card {
+      width: 45% !important;
+    }
+  }
+  .playground .card .back img {
+    width: 100%;
+  }
+}
+// Tablet
+@media screen and (min-width: 768px) and (max-width: 1024px) {
+  .playground .card .back {
+    font-size: 17px;
+  }
+  .playground .card .back img {
+    width: 100%;
+  }
+}
+// Desktop
+@media screen and (min-width: 1025px) {
+  .playground .card {
+    height: 18rem;
+  }
+  .playground .card .back img {
+    width: 50%;
+  }
+}
+
 .playground {
   display: flex;
   flex-wrap: wrap;
@@ -45,13 +75,6 @@
       padding: 2rem;
       img {
         vertical-align: middle;
-        width: 70%;
-      }
-      // Desktop
-      @media screen and (min-width: 1025px) {
-        img {
-          width: 50%;
-        }
       }
     }
     &.opened {
@@ -66,18 +89,6 @@
         opacity: 0.2;
       }
     }
-  }
-}
-// Desktop
-@media screen and (min-width: 1025px) {
-  .playground .card {
-    height: 18rem;
-  }
-}
-// Tablet
-@media screen and (min-width: 768px) and (max-width: 1024px) {
-  .playground .card .back {
-    font-size: 17px;
   }
 }
 

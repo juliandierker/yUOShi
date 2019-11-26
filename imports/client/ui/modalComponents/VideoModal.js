@@ -39,7 +39,7 @@ export default class VideoModal extends Component {
     return (
       <Modal
         basic
-        size="tiny"
+        size="large"
         open={this.state.videoOpen}
         onClose={() => {
           this.props.videoClose;
@@ -59,6 +59,7 @@ export default class VideoModal extends Component {
         <Modal.Content>
           <ReactPlayer
             ref={this.playerRef}
+            width="100%"
             style={{ margin: "auto" }}
             url={this.props.video}
             playing

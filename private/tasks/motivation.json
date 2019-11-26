@@ -216,7 +216,7 @@
       "filePrefix": "Multi",
       "content": [
         {
-          "QuestionId": 2,
+          "QuestionId": 1,
           "Question": "Markiere alle richtigen Aussagen",
           "AnswerSet": [
             "Intrinsische Motivation bedeutet, dass die Motivation von innen heraus kommt, zum Beispiel durch Interesse",
@@ -398,7 +398,7 @@
       "categories": ["Sozial eingebunden", "Autonomie", "Kompetenz"],
       "solArray": ["soz_eing", "autonomie", "kompetenz"],
       "scale": false,
-      "orientation": ["vertical", "vertical"],
+      "orientation": ["horizontal", "vertical"],
       "nested": false,
       "statements": [
         ["soz_eing", "Ich fühle mich in meiner sozialen Gruppe angekommen."],

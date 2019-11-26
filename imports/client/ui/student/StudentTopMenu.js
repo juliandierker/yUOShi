@@ -116,8 +116,15 @@ export default class StudentTopMenu extends React.Component {
       courses: null,
       teacher: null,
       activeItem: false,
+      dropDown: false,
       student: null
     };
+  }
+  handleDropdownClick() {
+    const { dropDown } = this.state;
+    if (dropDown) {
+    }
+    this.setState({ dropDown: !dropDown });
   }
   componentDidUpdate(prevProps, prevState) {
     if (prevState.student == null && this.props.student != null) {
@@ -232,14 +239,23 @@ export default class StudentTopMenu extends React.Component {
               height: "5%"
             }}
           >
-            <Dropdown item icon="bars" simple>
+            <Dropdown
+              onClick={() => this.handleDropdownClick()}
+              open={this.state.dropDown}
+              fluid
+              item
+              icon={this.state.dropDown ? "close" : "bars"}
+            >
               <Dropdown.Menu
+                fluid
                 style={{
-                  backgroundColor: "#6A96E2",
-                  Color: "white!important"
+                  backgroundColor: "rgba(106, 150, 226, 0.9)",
+                  Color: "white!important",
+                  height: "100vH"
                 }}
               >
                 <Dropdown.Item
+                  fluid
                   active={activeItem === "freegame"}
                   onClick={this.handleMenuItemClick}
                   onMouseEnter={() => this.hoverOnClass("classroom")}
@@ -248,12 +264,14 @@ export default class StudentTopMenu extends React.Component {
                   Klassenzimmer
                 </Dropdown.Item>
                 <Dropdown.Item
+                  fluid
                   active={activeItem === "overview"}
                   onClick={this.handleMenuItemClick}
                 >
                   Lehrendenzimmer
                 </Dropdown.Item>
                 <Dropdown.Item
+                  fluid
                   active={activeItem === "overview"}
                   onClick={this.handleMenuItemClick}
                 >
@@ -265,27 +283,89 @@ export default class StudentTopMenu extends React.Component {
                   name={" " + this.getCredits()}
                 />
                 <Dropdown.Item icon="play" name={"" + this.getLevel()} />
-                <Dropdown.Item>
-                  <Icon name="dropdown" />
-                  User0
-                  <Dropdown.Menu
-                    style={{
-                      backgroundColor: "#6A96E2",
-                      Color: "white!important"
-                    }}
-                  >
-                    <Dropdown.Item>
-                      <Icon name="user" />
-                      Profil
-                    </Dropdown.Item>
-                    <Dropdown.Item
-                      active={activeItem === "overview"}
-                      onClick={() => Meteor.logout(() => {})}
-                    >
-                      <Icon name="power off" />
-                      Ausloggen
-                    </Dropdown.Item>
-                  </Dropdown.Menu>
+
+                <Dropdown.Item fluid>
+                  <Icon name="user" />
+                  Profil
+                </Dropdown.Item>
+                <Dropdown.Item
+                  fluid
+                  active={activeItem === "overview"}
+                  onClick={() => Meteor.logout(() => {})}
+                >
+                  <Icon name="power off" />
+                  Ausloggen
+                </Dropdown.Item>
+              </Dropdown.Menu>
+            </Dropdown>
+          </Menu>
+        </Responsive>
+        <Responsive {...Responsive.onlyTablet}>
+          <Menu
+            attached="top"
+            style={{
+              backgroundColor: "#6A96E2",
+              width: "100%",
+              height: "5%"
+            }}
+          >
+            <Dropdown
+              onClick={() => this.handleDropdownClick()}
+              open={this.state.dropDown}
+              fluid
+              item
+              icon={this.state.dropDown ? "close" : "bars"}
+            >
+              <Dropdown.Menu
+                fluid
+                style={{
+                  backgroundColor: "rgba(106, 150, 226, 0.9)",
+                  Color: "white!important",
+                  height: "100vH",
+                  paddingTop: "2rem"
+                }}
+              >
+                <Dropdown.Item
+                  fluid
+                  active={activeItem === "freegame"}
+                  onClick={this.handleMenuItemClick}
+                  onMouseEnter={() => this.hoverOnClass("classroom")}
+                  onMouseLeave={() => this.hoverOffClass("classroom")}
+                >
+                  Klassenzimmer
+                </Dropdown.Item>
+                <Dropdown.Item
+                  fluid
+                  active={activeItem === "overview"}
+                  onClick={this.handleMenuItemClick}
+                >
+                  Lehrendenzimmer
+                </Dropdown.Item>
+                <Dropdown.Item
+                  fluid
+                  active={activeItem === "overview"}
+                  onClick={this.handleMenuItemClick}
+                >
+                  Mein Büro
+                </Dropdown.Item>
+                <Dropdown.Item icon="certificate" />
+                <Dropdown.Item
+                  icon="euro sign"
+                  name={" " + this.getCredits()}
+                />
+                <Dropdown.Item icon="play" name={"" + this.getLevel()} />
+
+                <Dropdown.Item fluid>
+                  <Icon name="user" />
+                  Profil
+                </Dropdown.Item>
+                <Dropdown.Item
+                  fluid
+                  active={activeItem === "overview"}
+                  onClick={() => Meteor.logout(() => {})}
+                >
+                  <Icon name="power off" />
+                  Ausloggen
                 </Dropdown.Item>
               </Dropdown.Menu>
             </Dropdown>
