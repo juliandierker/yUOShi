@@ -8,18 +8,15 @@
   ],
 
   "Motive": ["intr", "extr"],
-  "Motivation_Intro": [
-    "Motivation",
-    "Motiv",
-    "Bedürfnis",
-    "Ziel",
-    "Interesse"
+  "Motivation_Intro": ["Motivation", "Motiv", "Bedürfnis", "Ziel", "Interesse"],
+  "Zielsetzungstheorie_Theorie": [
+    "Zielsetzungstheorie nach Locke und Latham",
+    "Zielbindung",
+    "Selbstwirksamkeit",
+    "Rückmeldung",
+    "Komplexität der Aufgabe"
   ],
-  "Zielsetzungstheorie_Theorie": ["Motivationsstrategien"],
-  "Maslow_Theorie": [
-    "Maslows Bedürfnispyramide",
-    "Mangelbedürfnisse"
-  ],
+  "Maslow_Theorie": ["Maslows Bedürfnispyramide", "Mangelbedürfnisse"],
 
   "Motivation_IntrExtr": [
     "intrinsische Motivation",
@@ -32,11 +29,37 @@
     "soziale Eingebundenheit",
     "Kompetenzerleben"
   ],
-  "Xwert_Theorie": ["Erwartungs-X-Wert Modell", "Erwartung an das Ergebnis", "Wert des Ergebnisses"],
+  "Xwert_Theorie": [
+    "Erwartungs-X-Wert Modell",
+    "Erwartung an das Ergebnis",
+    "Wert des Ergebnisses"
+  ],
   "Ziele": ["Zielsetzungstheorie", "Locke", "Moderatoren"],
-  "ZieleCloze": ["Zielsetzungstheorie", "Locke", "Moderatoren"],
+  "ZieleCloze": [
+    "Zielsetzungstheorie",
+    "Locke & Latham",
+    "Moderatoren",
+    "Ziele",
+    "Handelns",
+    "schwierigere",
+    "allgemeine Ziele",
+    "Wirkungsmechanismen"
+  ],
   "XwertCloze": ["5", "0", "0", "3", "3,75", "-0,875"],
   "XWertMulti": [{ "id": 1, "correct": ["Lisa (M = 5)"] }],
+  "isSmart": [
+    { "id": 1, "correct": ["Akzeptiert", "Realistisch"] },
+    {
+      "id": 2,
+      "correct": [
+        "Spezifisch",
+        "Messbar",
+        "Akzeptiert",
+        "Realistisch",
+        "Terminiert"
+      ]
+    }
+  ],
   "MultiWhy": [{ "id": 1, "correct": ["free"] }],
   "MultiExtrIntr": [
     {

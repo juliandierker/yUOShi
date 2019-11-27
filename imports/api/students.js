@@ -37,6 +37,7 @@ Meteor.methods({
       currentSequenceId: 0,
       currentTraining: [],
       solvedTraining: [],
+      learnCards: [],
       solvedTasks: [],
       currentPackage: []
     });
