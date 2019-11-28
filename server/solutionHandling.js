@@ -83,17 +83,6 @@ Meteor.methods({
     }
     return correct;
   },
-  "solutionHandler.taskReadFinish"(studentId, task) {
-    let student = Students.find({
-      _id: studentId,
-      "tasks.taskId": task.taskId
-    }).fetch()[0];
-    let tasks = student.tasks;
-    tasks[0].taskState.readFinished = true;
-
-    Students.update({ _id: studentId }, { $set: { tasks } });
-    return;
-  },
   "solutionHandler.submitMemory"(studentSolution, studentId, task) {
     var correct = studentSolution.length == task.content[0].keywords.length * 2;
     if (correct) {
