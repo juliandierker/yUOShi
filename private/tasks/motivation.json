@@ -105,6 +105,18 @@
             "Terminiert"
           ],
           "multi": true
+        },
+        {
+          "QuestionId": 2,
+          "Question": "Ich werde am Montag beim Gehaltsgespräch folgende Argumente vortragen (…), eine Erhöhung um 10% vorschlagen, um mich dann auf maximal 6,5% herunterhandeln zu lassen..",
+          "AnswerSet": [
+            "Spezifisch",
+            "Messbar",
+            "Akzeptiert",
+            "Realistisch",
+            "Terminiert"
+          ],
+          "multi": true
         }
       ]
     },

@@ -6,8 +6,12 @@ import Swal from "sweetalert2";
 export default class MultiChoiceView extends Component {
   constructor(props) {
     super(props);
-
+    console.log("PROPS:", props);
     this.state = {
+      questionIndex: 1,
+      questionCount: props.activeTask.content
+        ? props.activeTask.content.length
+        : 1,
       checkedAnswers: [],
       showSolution: false,
       childKeyIteration: 0,
@@ -17,6 +21,80 @@ export default class MultiChoiceView extends Component {
       fails: 0,
       totalAnswerCount: 0
     };
+    console.log(this.state);
+  }
+
+  checkSolution() {
+    const meteorMethod =
+      "solutionHandler.check" + this.props.activeTask.filePrefix;
+
+    if (this.state.showSolution) {
+      this.setState({
+        questionIndex: this.state.questionIndex + 1,
+        showSolution: false,
+        checkedAnswers: [],
+        result: null,
+        next: false
+      });
+      return;
+    }
+    console.log(
+      this.state.checkedAnswers,
+      this.props.activeTask,
+      this.state.questionIndex - 1
+    );
+    Meteor.call(
+      meteorMethod,
+      this.state.checkedAnswers,
+      this.props.activeTask,
+      this.state.questionIndex - 1,
+      (err, res) => {
+        console.log(res);
+
+        if (res.falseCount > 0) {
+          var tmp = this.state.fails > 0;
+
+          Swal.fire({
+            position: "top-end",
+            type: "warning",
+            title: "Nicht ganz...",
+            text:
+              "Es sind nicht alle Fragen richtig beantwortet. Willst du es nochmal versuchen, oder möchtest du dir die Lösung anschauen?",
+            confirmButtonText: "Lösung zeigen",
+            cancelButtonText: "Nochmal versuchen",
+            cancelButtonColor: "#3085d6",
+            showCancelButton: true
+          }).then(result => {
+            if (result.value) {
+              this.setState({
+                showSolution: true,
+                final: tmp,
+                result: res,
+                next: true,
+                fails: this.state.fails + res.falseCount,
+                totalAnswerCount:
+                  this.state.totalAnswerCount + res.totalAnswerCount
+              });
+              this.forceUpdate();
+            } else {
+              this.setState({
+                showSolution: false,
+                final: tmp,
+                checkedAnswers: [],
+                childKeyIteration: this.state.childKeyIteration === 0 ? 1 : 0
+              });
+            }
+          });
+        } else {
+          this.setState({
+            questionIndex: this.state.questionIndex + 1,
+            checkedAnswers: [],
+            result: null,
+            next: false
+          });
+        }
+      }
+    );
   }
 
   solutionPrepare() {
@@ -35,11 +113,13 @@ export default class MultiChoiceView extends Component {
           result.totalAnswerCount;
       }
       const { currentTraining } = this.props.student;
+      // Solve this task
       Meteor.call(
         meteorMethod,
         this.state.checkedAnswers,
         this.props.student._id,
         this.props.activeTask,
+        this.state.questionIndex - 1,
         solvedPercentage,
         (err, res) => {
           if (!err) {
@@ -63,6 +143,7 @@ export default class MultiChoiceView extends Component {
         this.state.checkedAnswers,
         this.props.student._id,
         this.props.activeTask,
+        this.state.questionIndex - 1,
         (err, res) => {
           if (err) console.log(err);
           if ((res.next || this.state.fails > 0) && res.falseCount > 0) {
@@ -259,7 +340,9 @@ export default class MultiChoiceView extends Component {
     return (
       <Card.Group>
         {this.props.activeTask.content
-          ? this.renderQuestion(this.props.activeTask.content[0])
+          ? this.renderQuestion(
+              this.props.activeTask.content[this.state.questionIndex - 1]
+            )
           : this.renderQuestion(this.props.activeTask)}
       </Card.Group>
     );
@@ -298,13 +381,24 @@ export default class MultiChoiceView extends Component {
     return (
       <React.Fragment>
         {this.renderQuestions()}
-        <Button
-          id="solveTask"
-          floated="right"
-          onClick={() => this.solutionPrepare()}
-        >
-          Aufgabe lösen
-        </Button>
+        {this.state.questionCount === 1 ||
+        this.state.questionIndex === this.state.questionCount ? (
+          <Button
+            id="solveTask"
+            floated="right"
+            onClick={() => this.solutionPrepare()}
+          >
+            Aufgabe lösen
+          </Button>
+        ) : (
+          <Button
+            id="solveTask"
+            floated="right"
+            onClick={() => this.checkSolution()}
+          >
+            Nächste Frage
+          </Button>
+        )}
       </React.Fragment>
     );
   }

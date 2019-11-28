@@ -98,6 +98,7 @@ Meteor.methods({
     studentSolution,
     studentId,
     task,
+    questionIndex,
     solvedPercentage
   ) {
     if (solvedPercentage !== undefined) {
@@ -109,7 +110,10 @@ Meteor.methods({
 
     const currentSolution = solution.find(element => {
       if (task.content) {
-        return element.id.toString() === task.content[0].QuestionId.toString();
+        return (
+          element.id.toString() ===
+          task.content[questionIndex].QuestionId.toString()
+        );
       } else {
         return element.id.toString() === task.QuestionId.toString();
       }
@@ -121,7 +125,7 @@ Meteor.methods({
     }
 
     let retval = checkMulti(
-      task.content ? task.content[0] : task,
+      task.content ? task.content[questionIndex] : task,
       studentSolution,
       currentSolution
     );
@@ -132,6 +136,38 @@ Meteor.methods({
 
     if (retval.falseCount === 0) {
       solveTask(studentId, task.taskId);
+    }
+
+    return retval;
+  },
+  "solutionHandler.checkMulti"(studentSolution, task, questionIndex) {
+    let solution = Solutions[task.taskId];
+    if (!solution) return null;
+
+    const currentSolution = solution.find(element => {
+      if (task.content) {
+        return (
+          element.id.toString() ===
+          task.content[questionIndex].QuestionId.toString()
+        );
+      } else {
+        return element.id.toString() === task.QuestionId.toString();
+      }
+    });
+
+    // question has no "correct" answer
+    if (currentSolution.correct[0] === "free") {
+      return currentSolution.correct.concat(studentSolution);
+    }
+
+    let retval = checkMulti(
+      task.content ? task.content[questionIndex] : task,
+      studentSolution,
+      currentSolution
+    );
+
+    if (task.hasNext) {
+      return Object.assign(retval, { next: true });
     }
 
     return retval;
