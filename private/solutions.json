@@ -76,6 +76,36 @@
         "Realistisch",
         "Terminiert"
       ]
+    },
+    {
+      "id": 3,
+      "correct": ["Messbar", "Akzeptiert"],
+      "neutral": ["Realistisch"]
+    },
+    {
+      "id": 4,
+      "correct": ["Spezifisch", "Messbar", "Akzeptiert"]
+    },
+    {
+      "id": 5,
+      "correct": [
+        "Spezifisch",
+        "Messbar",
+        "Akzeptiert",
+        "Realistisch",
+        "Terminiert"
+      ],
+      "neutral": ["Realistisch"]
+    },
+    {
+      "id": 6,
+      "correct": [
+        "Spezifisch",
+        "Messbar",
+        "Akzeptiert",
+        "Realistisch",
+        "Terminiert"
+      ]
     }
   ],
   "MultiOutro": [

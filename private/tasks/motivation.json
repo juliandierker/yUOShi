@@ -86,42 +86,6 @@
     },
     {
       "parentId": "Motivation1",
-      "package": "Motivation",
-
-      "title": "Fehlersuche - soll das SMART sein?",
-      "description": "Lies die angegebenen Zielformulierungen und entscheide, ob diese SMART sind. \n Tipp: Bei manchen Zielen kann aufgrund des geringen Hintergrundwissens nicht genau festgesetzt werden, ob alle Kriterien erfüllt sind. Hier sind beide Antworten richtig.",
-      "taskId": "MultiSMART",
-      "filePrefix": "Multi",
-      "credits": 1,
-      "content": [
-        {
-          "QuestionId": 1,
-          "Question": "Ich möchte mehr Geld verdienen.",
-          "AnswerSet": [
-            "Spezifisch",
-            "Messbar",
-            "Akzeptiert",
-            "Realistisch",
-            "Terminiert"
-          ],
-          "multi": true
-        },
-        {
-          "QuestionId": 2,
-          "Question": "Ich werde am Montag beim Gehaltsgespräch folgende Argumente vortragen (…), eine Erhöhung um 10% vorschlagen, um mich dann auf maximal 6,5% herunterhandeln zu lassen..",
-          "AnswerSet": [
-            "Spezifisch",
-            "Messbar",
-            "Akzeptiert",
-            "Realistisch",
-            "Terminiert"
-          ],
-          "multi": true
-        }
-      ]
-    },
-    {
-      "parentId": "Motivation1",
       "title": "Begriffe der Motivation",
       "description": "Ordne die Statements über Schüler*innen der intrinsischen oder extrinsischen Motivation zu. Welche Quelle der Motivation wird in der jeweiligen Aussage eher abgebildet? ",
       "taskId": "Motivationsbegriffe",
@@ -534,6 +498,90 @@
 
       "package": "Motivation",
       "credits": 2
+    },
+    {
+      "parentId": "Motivation1",
+      "package": "Motivation",
+
+      "title": "Fehlersuche - soll das SMART sein?",
+      "description": "Lies die angegebenen Zielformulierungen und entscheide, ob diese SMART sind. \n Tipp: Bei manchen Zielen kann aufgrund des geringen Hintergrundwissens nicht genau festgesetzt werden, ob alle Kriterien erfüllt sind. Hier sind beide Antworten richtig.",
+      "taskId": "MultiSMART",
+      "filePrefix": "Multi",
+      "credits": 1,
+      "content": [
+        {
+          "QuestionId": 1,
+          "Question": "Ich möchte mehr Geld verdienen.",
+          "AnswerSet": [
+            "Spezifisch",
+            "Messbar",
+            "Akzeptiert",
+            "Realistisch",
+            "Terminiert"
+          ],
+          "multi": true
+        },
+        {
+          "QuestionId": 2,
+          "Question": "Ich werde am Montag beim Gehaltsgespräch folgende Argumente vortragen (…), eine Erhöhung um 10% vorschlagen, um mich dann auf maximal 6,5% herunterhandeln zu lassen.",
+          "AnswerSet": [
+            "Spezifisch",
+            "Messbar",
+            "Akzeptiert",
+            "Realistisch",
+            "Terminiert"
+          ],
+          "multi": true
+        },
+        {
+          "QuestionId": 3,
+          "Question": "Ich will in Mathe keine 4 mehr im Zeugnis.",
+          "AnswerSet": [
+            "Spezifisch",
+            "Messbar",
+            "Akzeptiert",
+            "Realistisch",
+            "Terminiert"
+          ],
+          "multi": true
+        },
+        {
+          "QuestionId": 4,
+          "Question": "Ich möchte jeden Tag mit meiner Mutter 3 Stunden direkt nach der Schule den Unterricht nachbereiten, um so  ein 3 für das Fach Mathe im Zeugnis zu erreichen.",
+          "AnswerSet": [
+            "Spezifisch",
+            "Messbar",
+            "Akzeptiert",
+            "Realistisch",
+            "Terminiert"
+          ],
+          "multi": true
+        },
+        {
+          "QuestionId": 5,
+          "Question": "Bis Freitag Abend werde ich die ersten drei Kapitel des Buches „ABC“ für den Deutschunterricht gelesen haben.",
+          "AnswerSet": [
+            "Spezifisch",
+            "Messbar",
+            "Akzeptiert",
+            "Realistisch",
+            "Terminiert"
+          ],
+          "multi": true
+        },
+        {
+          "QuestionId": 6,
+          "Question": "Indem ich bis zur Klausur am 6.2 jeden Tag 30 Minuten lang die Inhalte wiederhole und an jeder Seminarsitzung teilnehme, möchte ich mindestens eine 2,3 erreichen.",
+          "AnswerSet": [
+            "Spezifisch",
+            "Messbar",
+            "Akzeptiert",
+            "Realistisch",
+            "Terminiert"
+          ],
+          "multi": true
+        }
+      ]
     },
     {
       "parentId": "Motivation4",
