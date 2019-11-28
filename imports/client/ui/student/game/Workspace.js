@@ -18,7 +18,6 @@ import { Segment, Button, Grid, Icon } from "semantic-ui-react";
 
 import Hyphenated from "react-hyphen";
 import de from "hyphenated-de";
-import Countdown from "../../Countdown";
 
 /**
  * This component should control the progress of a student in a task-package
