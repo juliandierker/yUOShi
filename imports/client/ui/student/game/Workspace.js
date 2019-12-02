@@ -18,7 +18,6 @@ import { Segment, Button, Grid, Icon } from "semantic-ui-react";
 
 import Hyphenated from "react-hyphen";
 import de from "hyphenated-de";
-import Countdown from "../../Countdown";
 
 /**
  * This component should control the progress of a student in a task-package
@@ -332,24 +331,6 @@ export default class Workspace extends React.Component {
 
   renderKeywordList() {
     if (this.state.activeTask && this.state.activeTask.type === "tag") {
-      if (!this.state.readFinished) {
-        return (
-          <div id="KeywordList">
-            <Countdown
-              seconds={1}
-              color="#6a96e2"
-              width="10px"
-              onComplete={() => {
-                Meteor.call(
-                  "solutionHandler.taskReadFinish",
-                  this.props.student._id,
-                  this.state.activeTask
-                );
-              }}
-            />
-          </div>
-        );
-      }
       return (
         <KeywordList
           handleClick={this.handleKWContinue.bind(this)}
