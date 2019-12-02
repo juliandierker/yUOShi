@@ -35,9 +35,6 @@ export default class TagView extends React.Component {
     return <Image src={"/tasks" + match} size="small" floated="left" />;
   }
   handleClickTag(match, key) {
-    if (!this.props.student.tasks[0].taskState.readFinished) {
-      return;
-    }
     var el = document.getElementsByClassName(match);
     var highlighted = document.getElementById(match + key);
 
