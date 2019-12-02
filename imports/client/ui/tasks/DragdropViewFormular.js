@@ -64,8 +64,8 @@ export default class DragdropViewFormular extends React.Component {
   //TODO auslagern
 
   mouseHitTest(mouseX, mouseY, containerId) {
-    console.log(containerId);
     let targetId = containerId.split("_")[0] + "_target";
+    console.log(targetId);
     let boundingRect = document
       .getElementById(targetId)
       .getBoundingClientRect();
@@ -197,6 +197,7 @@ export default class DragdropViewFormular extends React.Component {
         }
       }
     } else if (this.target.id.includes("example")) {
+      console.log("YEEES");
       let targetStr = this.target.id.split("example")[0];
       if (that.checkSolutions(solvedExamples, targetStr).length == 0) {
         that.rerenderItems(this, that, this.target.id);
