@@ -46,7 +46,7 @@
     "Wirkungsmechanismen"
   ],
   "XwertCloze": ["5", "0", "3", "-0,875"],
-  "XWertMulti": [{ "id": 1, "correct": ["Lisa (M = 5)"] }],
+  "XWertMulti": [{ "id": 1, "correct": ["Lisa"] }],
   "isSmart": [
     { "id": 1, "correct": ["Akzeptiert", "Realistisch"] },
     {

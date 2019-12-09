@@ -460,18 +460,12 @@
       "title": "X-Wert",
       "description": "Wählen Sie aus, welcher Schüler den höchsten X-Wert hat.",
       "taskId": "XWertMulti",
-      "requires": ["XwertCloze"],
       "filePrefix": "Multi",
       "content": [
         {
           "QuestionId": 1,
-          "Question": "Welcher Schüler ist am motiviertesten?",
-          "AnswerSet": [
-            "Lisa (M = 5)",
-            "Phillip (M = 0)",
-            "Sarah (M = 3)",
-            "Sebastian (M = -0,875)"
-          ],
+          "Question": "Welcher Schüler aus der verherigen Aufgabe ist am motiviertesten?",
+          "AnswerSet": ["Lisa", "Phillip", "Sarah", "Sebastian"],
           "multi": false
         }
       ],
