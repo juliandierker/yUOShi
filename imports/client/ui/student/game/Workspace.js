@@ -2,12 +2,12 @@ import React from "react";
 import PropTypes from "prop-types";
 import { Meteor } from "meteor/meteor";
 import Swal from "sweetalert2";
-import DragAnimationTemplate from "../../tasks/DragAnimationTemplate";
-import TrainingAnimationTemplate from "../../tasks/TrainingAnimationTemplate";
-import TagAnimationTemplate from "../../tasks/TagAnimationTemplate";
-import ClozeAnimationTemplate from "../../tasks/ClozeAnimationTemplate";
-import MemoryAnimationTemplate from "../../tasks/MemoryAnimationTemplate";
-import MultiChoiceAnimationTemplate from "../../tasks/MultiChoiceAnimationTemplate";
+import DragAnimationTemplate from "../../tasks/DragDrop/DragAnimationTemplate";
+import TrainingAnimationTemplate from "../../tasks/Training/TrainingAnimationTemplate";
+import TagAnimationTemplate from "../../tasks/Tag/TagAnimationTemplate";
+import ClozeAnimationTemplate from "../../tasks/Cloze/ClozeAnimationTemplate";
+import MemoryAnimationTemplate from "../../tasks/Memory/MemoryAnimationTemplate";
+import MultiChoiceAnimationTemplate from "../../tasks/MultiChoice/MultiChoiceAnimationTemplate";
 import KeywordList from "../../tasks/KeywordList";
 
 import equals from "fast-deep-equal";
