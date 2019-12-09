@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 
-import { MultiChoiceModel } from "../../../models/MultiChoiceModel";
+import { MultiChoiceModel } from "../../../../models/MultiChoiceModel";
 
 import MultiChoiceView from "./MultiChoiceView";
 
