@@ -201,11 +201,11 @@ export default class StudentTopMenu extends React.Component {
         }, 1500);
       }
     }
-    if (name === "Kursübersicht") {
-      this.props.history.push("/student/overview");
+    if (name === "Lehrendenzimmer") {
+      this.props.history.push("/student/teacherRoom");
     }
-    if (name === "Arbeitsfläche") {
-      this.props.history.push("/student/workspace");
+    if (name === "Mein Büro") {
+      this.props.history.push("/student/office");
     }
   };
   getCredits() {

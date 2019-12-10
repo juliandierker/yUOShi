@@ -17,6 +17,7 @@ export default class Gameoverview extends React.Component {
     super(props);
     this.state = {
       tasks: null,
+
       trainings: null,
       packages: null,
       currentSubPackageIndex: 0
