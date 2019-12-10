@@ -297,6 +297,7 @@ export default class Workspace extends React.Component {
     return (
       <Segment id="workspaceDescription">
         <Hyphenated language={de}>{task.description}</Hyphenated>
+        {task.hint ? <p style={{ fontWeight: "bold" }}>{task.hint}</p> : null}
       </Segment>
     );
   }

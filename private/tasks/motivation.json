@@ -434,7 +434,8 @@
     {
       "parentId": "Motivation3",
       "title": "Motivation anhand der X-Wert-Theorie berechnen",
-      "description": "Berechnen Sie mit der Formel für die X-Wert Theorie (M = E * W), wie motiviert die jeweiligen Schüler sind. Wer wird sein Ziel erreichen? Der Wert für W ergibt sich manchmal aus mehreren Einzelwerten, die zusammengezählt werden müssen.",
+      "description": "Berechnen Sie mit der Formel für die X-Wert Theorie, wie motiviert die jeweiligen Schüler sind. Wer wird sein Ziel erreichen? Der Wert für W ergibt sich manchmal aus mehreren Einzelwerten, die zusammengezählt werden müssen.",
+      "hint": "Tipp: Die zu nutzende Formel ist: M = E * W",
       "taskId": "XwertCloze",
       "filePrefix": "Cloze",
       "content": [
