@@ -15,14 +15,26 @@ export default class DragAnimationTemplate extends React.Component {
     this.view = null;
     this.model = DragdropModel.getNewModel();
     this.model.init(props.student, props.activeTask);
-    this.state = { showSolution: false, childKeyIteration: 0, viewScene: null };
+    this.state = {
+      showSolution: false,
+      childKeyIteration: 0,
+      viewScene: null,
+      renderNextCard: false,
+      finish: false
+    };
     this.viewScene = React.createRef();
   }
   componentDidMount() {
     this.setState({ viewScene: this.viewScene });
   }
-  componentDidUpdate() {}
-  shouldComponentUpdate(nextProps) {
+  shouldComponentUpdate(nextProps, nextState) {
+    return this.state.finish == false && nextState.renderNextCard == true;
+    return (
+      this.state.renderNextCard == false && nextState.renderNextCard == true
+    );
+    return (
+      this.state.renderNextCard == true && nextState.renderNextCard == false
+    );
     if (this.props.activeTask.taskId !== nextProps.activeTask.taskId) {
       this.model = DragDropModel.getNewModel();
       this.model.init(nextProps.student._id, nextProps.activeTask);
@@ -158,34 +170,75 @@ export default class DragAnimationTemplate extends React.Component {
     let solvedStatements = dragState.solvedStatements;
     let solvedExamples = dragState.solvedExamples;
     let targetStr;
+    let renderNextCard = false;
+    let stateObj;
     if (target.includes("statement")) {
       targetStr = target.split("statement")[0];
       for (var i in currentStatements) {
         if (currentStatements[i][0] === targetStr) {
           solvedStatements.push(currentStatements[i]);
-          // currentStatements.splice(i, 1);
         }
       }
     } else {
       targetStr = target.split("example")[0];
-      for (var i in currentStatements) {
-        if (currentStatements[i][0] === targetStr) {
+      for (var i in currentExamples) {
+        if (currentExamples[i][0] === targetStr) {
           solvedExamples.push(currentExamples[i]);
-          // currentExamples.splice(i, 1);
         }
       }
     }
+    let solveLength = solvedStatements.length + solvedExamples.length;
 
-    dragView.setState({
-      currentStatements,
-      currentExamples,
-      solvedStatements,
-      solvedExamples,
-      currentIndex: ++dragState.currentIndex
-    });
-    if (currentStatements.length && currentExamples.length == 0) {
-      dragView.getStatements();
-      dragView.getExamples();
+    if (currentIndex + 1 == solveLength && solveLength % 2 == 0) {
+      renderNextCard = true;
+    } else {
+      stateObj = {
+        // currentStatements,
+        // currentExamples,
+        solvedStatements,
+        solvedExamples,
+        currentIndex: ++currentIndex
+      };
+      dragView.setState(stateObj);
+    }
+    if (renderNextCard) this.setState({ renderNextCard });
+  }
+  setDragIndex() {
+    const dragState = this.viewScene.current.view.current.state;
+    const dragView = this.viewScene.current.view.current;
+    const statements = dragState.statements;
+    const examples = dragState.examples;
+    let currentStatements = dragState.currentStatements;
+    let currentExamples = dragState.currentExamples;
+    let currentIndex = dragState.currentIndex;
+    let solvedStatements = dragState.solvedStatements;
+    let solvedExamples = dragState.solvedExamples;
+    let stateObj;
+    let nextIndex;
+    let finish = this.state.finish;
+
+    currentStatements = [];
+    currentExamples = [];
+    currentStatements.push(dragState.statements[currentIndex]);
+    currentExamples.push(dragState.examples[currentIndex]);
+    if (dragState.currentIndex + 1 < dragState.statements.length) {
+      nextIndex = ++dragState.currentIndex;
+      stateObj = {
+        finish,
+        currentStatements,
+        currentExamples,
+        solvedStatements,
+        solvedExamples,
+        currentIndex: nextIndex
+      };
+      dragView.setState(stateObj);
+      if (this.state.renderNextCard) {
+        this.setState({ renderNextCard: false });
+        dragView.initView();
+      }
+    } else {
+      finish = false;
+      this.setState({ finish });
     }
   }
   renderLearnCardBtn() {
@@ -202,18 +255,28 @@ export default class DragAnimationTemplate extends React.Component {
       const solvedStatements = viewScene.statements.length;
       const currentIndex = viewScene.currentIndex;
 
-      return solvedStatements < statements &&
-        currentIndex > currentStatements ? (
+      return this.state.renderNextCard && !this.state.finish ? (
         <Button
           style={{ marginTop: "10px", marginRight: "10px", float: "left" }}
-          onClick={() => this.renderNextCards()}
+          onClick={() => this.setDragIndex()}
         >
-          {"Weiter"}
+          {"Lernkarte abschicken"}
         </Button>
       ) : null;
     } else return null;
   }
-
+  renderSolBtn(buttonText) {
+    if (!this.props.activeTask.isCard) {
+      return (
+        <Button
+          style={{ marginTop: "10px", marginRight: "10px", float: "right" }}
+          onClick={() => this.solutionPrepare()}
+        >
+          {buttonText}
+        </Button>
+      );
+    }
+  }
   render() {
     let taskProps = {
       student: this.props.student,
@@ -242,12 +305,7 @@ export default class DragAnimationTemplate extends React.Component {
           />{" "}
         </div>
         {this.renderLearnCardBtn()}
-        <Button
-          style={{ marginTop: "10px", marginRight: "10px", float: "right" }}
-          onClick={() => this.solutionPrepare()}
-        >
-          {buttonText}
-        </Button>
+        {this.renderSolBtn(buttonText)}
       </div>
     );
   }

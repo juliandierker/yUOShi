@@ -83,7 +83,7 @@
       "taskId": "Motivationsbegriffe",
       "filePrefix": "Drag",
       "multipleColumns": true,
-
+      "isCard": true,
       "package": "Motivation",
       "credits": 12,
       "categories": ["Titel", "Bild", "Beispiel"],

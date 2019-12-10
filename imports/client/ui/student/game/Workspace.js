@@ -304,28 +304,31 @@ export default class Workspace extends React.Component {
     let activesubpackage = this.getActiveSubpackage();
 
     return (
-      <Grid id="workspaceGrid">
-        <Grid.Column
-          id="workspaceGridMobile"
-          width={4}
-          style={{
-            padding: "0rem"
-          }}
-        >
-          {this.renderDescription()}
-          {this.renderKeywordList()}
-        </Grid.Column>
-        <Grid.Column width={8} id="workspaceGridMobile">
-          <div className="workspace__container">{this.taskSwitch()}</div>
-        </Grid.Column>
-        <TaskProgress
-          currentTask={this.state.activeTask}
-          student={this.props.student}
-          currentPackage={this.props.student.currentPackage[0]}
-          trainings={this.props.trainings}
-          activeSubpackage={activesubpackage}
-        />
-      </Grid>
+      <React.Fragment>
+        <Grid id="workspaceGrid">
+          <Grid.Column
+            id="workspaceGridMobile"
+            width={4}
+            style={{
+              padding: "0rem"
+            }}
+          >
+            {this.renderDescription()}
+            {this.renderKeywordList()}
+          </Grid.Column>
+          <Grid.Column width={8} id="workspaceGridMobile">
+            <div className="workspace__container">{this.taskSwitch()}</div>
+          </Grid.Column>
+          <TaskProgress
+            currentTask={this.state.activeTask}
+            student={this.props.student}
+            currentPackage={this.props.student.currentPackage[0]}
+            trainings={this.props.trainings}
+            activeSubpackage={activesubpackage}
+          />
+        </Grid>
+        {this.renderNavigationButtons()}
+      </React.Fragment>
     );
   }
 
@@ -348,7 +351,6 @@ export default class Workspace extends React.Component {
         }}
       >
         {this.renderWorkspaceGrid()}
-        {this.renderNavigationButtons()}
       </div>
     );
   }

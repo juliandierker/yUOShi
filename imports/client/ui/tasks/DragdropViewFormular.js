@@ -38,7 +38,7 @@ export default class DragdropViewFormular extends React.Component {
     let currentStatements = [];
     for (
       let i = this.state.currentIndex;
-      i < this.state.currentIndex + 2;
+      i < this.state.currentIndex + 1;
       i++
     ) {
       if (!currentStatements.includes(this.state.statements[i])) {
@@ -51,7 +51,7 @@ export default class DragdropViewFormular extends React.Component {
     let currentImages = [];
     for (
       let i = this.state.currentIndex;
-      i < this.state.currentIndex + 2;
+      i < this.state.currentIndex + 1;
       i++
     ) {
       if (!currentImages.includes(this.state.statements[i])) {
@@ -60,12 +60,23 @@ export default class DragdropViewFormular extends React.Component {
     }
     this.setState({ currentImages });
   }
-
-  //TODO auslagern
+  getExamples() {
+    let currentExamples = [];
+    for (
+      let i = this.state.currentIndex;
+      i < this.state.currentIndex + 1;
+      i++
+    ) {
+      if (!currentExamples.includes(this.state.statements[i])) {
+        currentExamples.push(this.state.examples[i]);
+      }
+    }
+    console.log(currentExamples);
+    this.setState({ currentExamples: currentExamples });
+  }
 
   mouseHitTest(mouseX, mouseY, containerId) {
     let targetId = containerId.split("_")[0] + "_target";
-    console.log(targetId);
     let boundingRect = document
       .getElementById(targetId)
       .getBoundingClientRect();
@@ -85,19 +96,6 @@ export default class DragdropViewFormular extends React.Component {
     return false;
   }
 
-  getExamples() {
-    let currentExamples = [];
-    for (
-      let i = this.state.currentIndex;
-      i < this.state.currentIndex + 2;
-      i++
-    ) {
-      if (!currentExamples.includes(this.state.statements[i])) {
-        currentExamples.push(this.state.examples[i]);
-      }
-    }
-    this.setState({ currentExamples: currentExamples });
-  }
   handleLoad() {
     this.initDragDrop();
   }
@@ -121,8 +119,8 @@ export default class DragdropViewFormular extends React.Component {
     }
     window.addEventListener("load", this.handleLoad());
   }
-
   componentDidUpdate() {
+    console.log("DID Update");
     this.initDragDrop();
     if (this.props.showSolution) {
       let intrNodes = document.getElementById("intr_target").childNodes;
@@ -183,6 +181,7 @@ export default class DragdropViewFormular extends React.Component {
   dropItem(event) {
     let that = this.vars.that;
     let index = that.state.currentIndex;
+
     const {
       currentStatements,
       currentExamples,
@@ -195,19 +194,27 @@ export default class DragdropViewFormular extends React.Component {
         if (that.checkSolutions(solvedStatements, targetStr).length == 0) {
           that.rerenderItems(this, that, this.target.id);
         }
-      }
-    } else if (this.target.id.includes("example")) {
-      console.log("YEEES");
-      let targetStr = this.target.id.split("example")[0];
-      if (that.checkSolutions(solvedExamples, targetStr).length == 0) {
-        that.rerenderItems(this, that, this.target.id);
+      } else if (this.target.id.includes("example")) {
+        let targetStr = this.target.id.split("example")[0];
+        if (that.checkSolutions(solvedExamples, targetStr).length == 0) {
+          that.rerenderItems(this, that, this.target.id);
+        }
       }
     } else {
       TweenMax.to(this.target, 0.5, { x: 0, y: 0 });
     }
   }
+  initView() {
+    var targets = document.getElementsByClassName("dragItem");
+    console.log(targets);
+    for (var i = 0; i < targets.length; i++) {
+      console.log(targets[i]);
+      targets[i].style.transform = "translate3d(0px, 0px, 0px)";
+    }
+  }
   renderTargetCards() {
     const { currentStatements, currentExamples, currentImages } = this.state;
+    console.log(currentStatements, currentExamples, currentImages);
     return currentStatements.map((statements, index) => {
       // return statements.map(statement => {
       return (
@@ -290,6 +297,7 @@ export default class DragdropViewFormular extends React.Component {
   }
 
   render() {
+    console.log("rEEENDER");
     return (
       <div id="svgDiv" style={{ width: "100%" }}>
         <div className="motiveWrapper">
