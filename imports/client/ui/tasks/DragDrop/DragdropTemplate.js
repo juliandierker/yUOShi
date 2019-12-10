@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { Container, Draggable } from "react-smooth-dnd";
-import { applyDrag, generateItems } from "./utils";
+import { applyDrag, generateItems } from "../utils";
 import DragdropViewNormal from "./DragdropViewNormal";
 import DragdropViewNested from "./DragdropViewNested";
 import DragdropViewFormular from "./DragdropViewFormular";

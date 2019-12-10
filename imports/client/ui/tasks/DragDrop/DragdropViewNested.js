@@ -1,12 +1,11 @@
 import React, { Component } from "react";
 import { Container, Draggable } from "react-smooth-dnd";
-import { applyDrag, generateItems } from "./utils";
+import { applyDrag, generateItems } from "../utils";
 
-export default class DragdropViewNormal extends Component {
+export default class DragdropViewNested extends Component {
   constructor(props) {
     super(props);
   }
-
   renderSolutionState() {
     const that = this.props.that;
     const solutions = this.props.scene.children;
@@ -27,6 +26,7 @@ export default class DragdropViewNormal extends Component {
   }
   render() {
     const that = this.props.that;
+
     return (
       <div className="card-scene">
         <Container
@@ -42,14 +42,12 @@ export default class DragdropViewNormal extends Component {
           {this.props.scene.children.map(column => {
             return (
               <Draggable key={column.id}>
-                {/*  TODO: fix vertical view without that hack*/}
                 <div className={column.props.className}>
                   <div className="card-column-header">{column.name}</div>
                   <Container
                     {...column.props}
                     groupName="col"
                     onDragStart={e => {}}
-                    onDragEnd={e => {}}
                     onDrop={e => that.onCardDrop(column.id, e)}
                     getChildPayload={index =>
                       that.getCardPayload(column.id, index)
