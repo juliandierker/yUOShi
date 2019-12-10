@@ -10,7 +10,7 @@ import {
   Image
 } from "semantic-ui-react";
 
-import MultiChoiceAnimationTemplate from "./MultiChoiceAnimationTemplate.js";
+import MultiChoiceAnimationTemplate from "../MultiChoice/MultiChoiceAnimationTemplate";
 
 export default class TrainingAnimationTemplate extends React.Component {
   constructor(props) {

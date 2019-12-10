@@ -4,7 +4,7 @@ import { Meteor } from "meteor/meteor";
 import PropTypes, { elementType } from "prop-types";
 import reactStringReplace from "react-string-replace";
 
-import VideoModal from "../modalComponents/VideoModal";
+import VideoModal from "../../modalComponents/VideoModal";
 
 import Hyphenated from "react-hyphen";
 import de from "hyphenated-de";
