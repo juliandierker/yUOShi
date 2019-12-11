@@ -6,7 +6,7 @@ import Swal from "sweetalert2";
 import { Container, Draggable } from "react-smooth-dnd";
 import { Button } from "semantic-ui-react";
 
-import { DragdropModel } from "../../../models/DragdropModel";
+import { DragdropModel } from "../../../../models/DragdropModel";
 import DragdropTemplate from "./DragdropTemplate";
 
 export default class DragAnimationTemplate extends React.Component {

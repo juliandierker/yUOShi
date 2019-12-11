@@ -4,10 +4,10 @@ import { Meteor } from "meteor/meteor";
 import PropTypes from "prop-types";
 import reactStringReplace from "react-string-replace";
 import ReactPlayer from "react-player";
-import Card from "./Cards";
+import Card from "../Cards";
 import Swal from "sweetalert2";
 
-import { DragdropModel } from "../../../models/DragdropModel";
+import { DragdropModel } from "../../../../models/DragdropModel";
 import {
   Button,
   Header,

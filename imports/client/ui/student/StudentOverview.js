@@ -21,6 +21,9 @@ import StudentCourses from "./StudentCourses";
 import StudentTopMenu from "./StudentTopMenu";
 import GameOverview from "./game/Gameoverview";
 import ClassRoom from "./game/ClassRoom";
+import TeacherRoom from "./game/TeacherRoom";
+import Office from "./game/Office";
+
 import Workspace from "./game/Workspace";
 import Loading from "../Loading";
 
@@ -170,6 +173,32 @@ export default class StudentOverview extends React.Component {
             path="/student/classroom"
             render={props => (
               <ClassRoom
+                courses={this.state.courses}
+                student={this.state.student}
+                tasks={this.state.tasks}
+                trainings={this.state.trainings}
+                packages={this.state.packages}
+                {...props}
+              />
+            )}
+          />
+          <Route
+            path="/student/office"
+            render={props => (
+              <Office
+                courses={this.state.courses}
+                student={this.state.student}
+                tasks={this.state.tasks}
+                trainings={this.state.trainings}
+                packages={this.state.packages}
+                {...props}
+              />
+            )}
+          />
+          <Route
+            path="/student/teacherRoom"
+            render={props => (
+              <TeacherRoom
                 courses={this.state.courses}
                 student={this.state.student}
                 tasks={this.state.tasks}

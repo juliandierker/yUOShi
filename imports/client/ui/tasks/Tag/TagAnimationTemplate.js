@@ -1,7 +1,7 @@
 import React from "react";
 import { Meteor } from "meteor/meteor";
 import PropTypes from "prop-types";
-import { TagModel } from "../../../models/TagModel";
+import { TagModel } from "../../../../models/TagModel";
 
 import Swal from "sweetalert2";
 import TagView from "./TagView";
