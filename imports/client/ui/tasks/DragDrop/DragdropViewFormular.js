@@ -207,10 +207,12 @@ export default class DragdropViewFormular extends React.Component {
   initView() {
     var targets = document.getElementsByClassName("dragItem");
     console.log(targets);
-    for (var i = 0; i < targets.length; i++) {
-      console.log(targets[i]);
-      targets[i].style.transform = "translate3d(0px, 0px, 0px)";
-    }
+    let elem = document.getElementById("dragElements").getBoundingClientRect();
+    let targetElem;
+    console.log(elem);
+    let node = document.getElementById("dragElements");
+    node.appendChild(targets[1]);
+    node.appendChild(targets[0]);
   }
   renderTargetCards() {
     const { currentStatements, currentExamples, currentImages } = this.state;
@@ -302,8 +304,10 @@ export default class DragdropViewFormular extends React.Component {
       <div id="svgDiv" style={{ width: "100%" }}>
         <div className="motiveWrapper">
           {this.renderCardGrid()}
-          {this.renderDragStatements()}
-          {this.renderDragExamples()}
+          <div id="dragElements">
+            {this.renderDragStatements()}
+            {this.renderDragExamples()}
+          </div>
         </div>
       </div>
     );
