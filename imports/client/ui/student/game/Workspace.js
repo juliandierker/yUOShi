@@ -8,6 +8,7 @@ import TagAnimationTemplate from "../../tasks/Tag/TagAnimationTemplate";
 import ClozeAnimationTemplate from "../../tasks/Cloze/ClozeAnimationTemplate";
 import MemoryAnimationTemplate from "../../tasks/Memory/MemoryAnimationTemplate";
 import MultiChoiceAnimationTemplate from "../../tasks/MultiChoice/MultiChoiceAnimationTemplate";
+import SurveyAnimationTemplate from "../../tasks/Survey/SurveyAnimationTemplate";
 import KeywordList from "../../tasks/KeywordList";
 
 import equals from "fast-deep-equal";
@@ -190,6 +191,8 @@ export default class Workspace extends React.Component {
             return <ClozeAnimationTemplate {...taskProps} />;
           case "memory":
             return <MemoryAnimationTemplate {...taskProps} />;
+          case "survey":
+            return <SurveyAnimationTemplate {...taskProps} />;
           case "multiChoice":
             return (
               <MultiChoiceAnimationTemplate
