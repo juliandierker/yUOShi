@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Checkbox, Loader } from "semantic-ui-react";
+import { Checkbox, TextArea, Form, Button } from "semantic-ui-react";
 
 export default class SurveyView extends Component {
   constructor(props) {
@@ -7,7 +7,7 @@ export default class SurveyView extends Component {
 
     this.state = { textboxValue: "", checkedAnswers: [] };
   }
-  handleChange(e) {
+  handleCheckboxChange(e) {
     let newCheckedAnswers = this.state.checkedAnswers;
 
     let cbId = e.target.id.split("_")[1];
@@ -18,30 +18,56 @@ export default class SurveyView extends Component {
     }
     this.setState({ checkedAnswers: newCheckedAnswers });
   }
+
+  handleTextAreaChange(e, data) {
+    this.setState({ textboxValue: data.value });
+  }
+
+  handleSubmit() {
+    console.log(this.state);
+    console.log("TODO: Save data!");
+  }
+
   renderCheckboxes() {
     return this.props.activeTask.keywords.map((keyword, index) => {
       return (
         <Checkbox
+          key={"key_cb_" + index}
           id={"cb_" + index}
           radio={false}
           label={keyword}
           value={keyword}
-          onChange={this.handleChange.bind(this)}
+          onChange={this.handleCheckboxChange.bind(this)}
         />
       );
     });
   }
 
-  renderTextbox() {
-    return;
+  renderMiscellaneousTextbox() {
+    return (
+      <React.Fragment>
+        Sonstiges:
+        <TextArea
+          style={{ minHeight: "100px", marginBottom: "10px" }}
+          onChange={this.handleTextAreaChange.bind(this)}
+        />
+      </React.Fragment>
+    );
   }
 
   render() {
     return (
-      <React.Fragment>
-        <h1>{this.props.activeTask.question}</h1>
+      <Form
+        style={{ padding: "10px", paddingBottom: "40px" }}
+        onSubmit={this.handleSubmit.bind(this)}
+      >
+        <h2>{this.props.activeTask.question}</h2>
         {this.renderCheckboxes()}
-      </React.Fragment>
+        {this.renderMiscellaneousTextbox()}
+        <Button floated="right" style={{ marginBottom: "10px" }}>
+          Absenden
+        </Button>
+      </Form>
     );
   }
 }
