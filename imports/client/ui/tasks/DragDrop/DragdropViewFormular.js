@@ -71,7 +71,6 @@ export default class DragdropViewFormular extends React.Component {
         currentExamples.push(this.state.examples[i]);
       }
     }
-    console.log(currentExamples);
     this.setState({ currentExamples: currentExamples });
   }
 
@@ -120,7 +119,6 @@ export default class DragdropViewFormular extends React.Component {
     window.addEventListener("load", this.handleLoad());
   }
   componentDidUpdate() {
-    console.log("DID Update");
     this.initDragDrop();
     if (this.props.showSolution) {
       let intrNodes = document.getElementById("intr_target").childNodes;
@@ -206,17 +204,16 @@ export default class DragdropViewFormular extends React.Component {
   }
   initView() {
     var targets = document.getElementsByClassName("dragItem");
-    console.log(targets);
     let elem = document.getElementById("dragElements").getBoundingClientRect();
-    let targetElem;
-    console.log(elem);
     let node = document.getElementById("dragElements");
     node.appendChild(targets[1]);
+    TweenMax.to(targets[1], 0.5, { x: 0, y: 0 });
+
     node.appendChild(targets[0]);
+    TweenMax.to(targets[0], 0.5, { x: 0, y: 0 });
   }
   renderTargetCards() {
     const { currentStatements, currentExamples, currentImages } = this.state;
-    console.log(currentStatements, currentExamples, currentImages);
     return currentStatements.map((statements, index) => {
       // return statements.map(statement => {
       return (
@@ -299,7 +296,6 @@ export default class DragdropViewFormular extends React.Component {
   }
 
   render() {
-    console.log("rEEENDER");
     return (
       <div id="svgDiv" style={{ width: "100%" }}>
         <div className="motiveWrapper">

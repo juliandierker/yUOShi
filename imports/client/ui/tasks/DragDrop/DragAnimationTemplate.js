@@ -28,13 +28,14 @@ export default class DragAnimationTemplate extends React.Component {
     this.setState({ viewScene: this.viewScene });
   }
   shouldComponentUpdate(nextProps, nextState) {
-    return this.state.finish == false && nextState.renderNextCard == true;
-    return (
-      this.state.renderNextCard == false && nextState.renderNextCard == true
-    );
-    return (
-      this.state.renderNextCard == true && nextState.renderNextCard == false
-    );
+    let finishAfter =
+      this.state.finish == false && nextState.renderNextCard == true;
+    let finishBefore =
+      this.state.renderNextCard == true && nextState.renderNextCard == false;
+
+    if (finishAfter) return finishAfter;
+
+    if (finishBefore) return finishBefore;
     if (this.props.activeTask.taskId !== nextProps.activeTask.taskId) {
       this.model = DragDropModel.getNewModel();
       this.model.init(nextProps.student._id, nextProps.activeTask);
@@ -211,6 +212,10 @@ export default class DragAnimationTemplate extends React.Component {
     let currentStatements = dragState.currentStatements;
     let currentExamples = dragState.currentExamples;
     let currentIndex = dragState.currentIndex;
+    let currentImages = dragState.currentImages;
+    const imgs = currentImages[0];
+    const stmts = currentStatements[0];
+    const exps = currentExamples[0];
     let solvedStatements = dragState.solvedStatements;
     let solvedExamples = dragState.solvedExamples;
     let stateObj;
@@ -240,6 +245,36 @@ export default class DragAnimationTemplate extends React.Component {
       finish = false;
       this.setState({ finish });
     }
+
+    this.saveLearncard(stmts, exps, imgs);
+    if (!finish) this.setState({ renderNextCard: false });
+  }
+  saveLearncard(currentStatements, currentExamples, currentImages) {
+    const student = this.props.student;
+    const Toast = Swal.mixin({
+      toast: true,
+      position: "top-end",
+      showConfirmButton: false,
+      timer: 3000
+    });
+
+    Meteor.call(
+      "student.saveLearncard",
+      this.props.student._id,
+      currentStatements[0],
+      currentStatements[1],
+      currentExamples[1],
+      currentImages[1],
+      (err, res) => {
+        if (err) {
+        } else {
+          Toast.fire({
+            type: "success",
+            title: "Lernkarte gespeichert"
+          });
+        }
+      }
+    );
   }
   renderLearnCardBtn() {
     let viewScene = null;
@@ -260,7 +295,7 @@ export default class DragAnimationTemplate extends React.Component {
           style={{ marginTop: "10px", marginRight: "10px", float: "left" }}
           onClick={() => this.setDragIndex()}
         >
-          {"Lernkarte abschicken"}
+          {"Lernkarte speichern"}
         </Button>
       ) : null;
     } else return null;

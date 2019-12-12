@@ -128,6 +128,8 @@ function setupStudents() {
         courses: [],
         tasks: [task],
         solvedTasks: [],
+        learnCards: [],
+
         currentSequenceId: 0,
         currentPackage: [],
         currentTraining: [],
@@ -145,6 +147,8 @@ function setupStudents() {
         courses: [],
         tasks: [],
         solvedTasks: [],
+        learnCards: [],
+
         currentSequenceId: 0,
         currentPackage: [],
         currentTraining: [],
