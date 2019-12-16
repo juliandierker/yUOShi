@@ -24,8 +24,8 @@ buildapp:
 	@rm -rf ./bundle
 	@echo "Builded successfully!"
 	@echo "(the build output tarball is ./deploy/bundle.tar.gz)".
-PHONY: deploy
-deploy:
+PHONY: deployapp
+deployapp:
 	@echo "-------------------------------------------------------"
 	@echo "Uploading and running app in a docker container"
 	@echo "-------------------------------------------------------"
