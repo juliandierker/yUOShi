@@ -1,14 +1,14 @@
 # Makefile
 # Replace <server-ip> with your server's IP address
 
-APP_NAME:=<yuoshi>
-TARGET_DIRECTORY:=<yuoshi>
-SERVER_IP:=<vm621.rz.uni-osnabrueck.de>
-IMAGE_NAME:=<image-yuoshi>
-CONTAINER_NAME:=<container-yuoshi>
+APP_NAME:=yuoshi
+TARGET_DIRECTORY:=yUOShi
+SERVER_IP:=vm621.rz.uni-osnabrueck.de
+IMAGE_NAME:=image-yuoshi
+CONTAINER_NAME:=container-yuoshi
 TARBALL_NAME:=bundle.tar.gz.
-URL:=<vm621.rz.uni-osnabrueck.de>
-PORT:=<80>
+URL:=vm621.rz.uni-osnabrueck.de
+PORT:=80
 PHONY: build
 build:
 	@echo "-------------------------------------------------------"
