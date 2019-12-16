@@ -3,7 +3,7 @@
 
 FROM node:0.10
 MAINTAINER jdierker
-RUN apt-get install -y curl
+RUN apt-get install -y curl g++ build-essential
 RUN curl https://install.meteor.com/ | /bin/sh
 ADD . /opt/yuoshi/app
 # Install NPM packages
