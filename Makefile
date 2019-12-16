@@ -18,7 +18,7 @@ buildapp:
 	# Remove previous build
 	@rm -rf ./bundle ./deploy/$(TARBALL_NAME)
 	@meteor build . --server="$(URL)" --directory
-	@cp ./deploy/Dockerfile ./bundle
+	@cp ./Dockerfile ./bundle
 	@tar -zcf ./$(TARBALL_NAME) ./bundle
 	@mv ./$(TARBALL_NAME) ./deploy
 	@rm -rf ./bundle
