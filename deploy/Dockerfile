@@ -2,10 +2,9 @@
 # Dockerfile for your app.
 
 FROM node:0.10
-MAINTAINER Levente Balogh <balogh.levente.hu@gmail.com>
-RUN apt-get install -y curl
+MAINTAINER Julian Dierker jdierker@uos.de
+RUN apt-get install -y curl g++ build-essential
 RUN curl https://install.meteor.com/ | /bin/sh
-# Change "yuoshi" to your app's name
 ADD . /opt/yuoshi/app
 # Install NPM packages
 WORKDIR /opt/yuoshi/app/programs/server

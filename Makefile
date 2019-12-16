@@ -8,7 +8,7 @@ IMAGE_NAME:=image-yuoshi
 CONTAINER_NAME:=container-yuoshi
 TARBALL_NAME:=bundle.tar.gz.
 URL:=vm621.rz.uni-osnabrueck.de
-PORT:=80
+PORT:=8084
 PHONY: build
 build:
 	@echo "-------------------------------------------------------"
@@ -37,6 +37,6 @@ deploy:
 	    docker stop $(CONTAINER_NAME) ; \
 	    docker rm $(CONTAINER_NAME) ; \
 	    docker build --tag $(IMAGE_NAME) . ; \
-	    docker run -p $(PORT):80 --name $(CONTAINER_NAME) -d $(IMAGE_NAME) ; \
+	    docker run -p $(PORT) --name $(CONTAINER_NAME) -d $(IMAGE_NAME) ; \
 	    " \
    < ./deploy/$(TARBALL_NAME)
