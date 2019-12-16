@@ -9,8 +9,8 @@ CONTAINER_NAME:=container-yuoshi
 TARBALL_NAME:=bundle.tar.gz.
 URL:=vm621.rz.uni-osnabrueck.de
 PORT:=8084
-PHONY: build
-build:
+PHONY: buildapp
+buildapp:
 	@echo "-------------------------------------------------------"
 	@echo "Creates a tarball under ./deploy"
 	@echo "-------------------------------------------------------"
@@ -36,6 +36,7 @@ deploy:
 	    cd ./bundle ; \
 	    docker stop $(CONTAINER_NAME) ; \
 	    docker rm $(CONTAINER_NAME) ; \
+			cat Dockerfile ; \
 	    docker build --tag $(IMAGE_NAME) . ; \
 	    docker run -p $(PORT) --name $(CONTAINER_NAME) -d $(IMAGE_NAME) ; \
 	    " \
