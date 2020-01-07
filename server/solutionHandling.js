@@ -136,6 +136,23 @@ Meteor.methods({
 
     return retval;
   },
+  "solutionHandler.submitSurvey"(surveyData, studentId, task) {
+    // Mark surveyTask as Solved and move it into solvedTaskArray
+    solveTask(studentId, task.taskId);
+    //Get updated SolvedTasks from Student
+    let currentStudentData = Students.findOne({ _id: studentId });
+    let currentSurveyTask = currentStudentData.solvedTasks.find(
+      elem => elem.taskId === task.taskId
+    );
+    // Set surveyData in SolvedTask (Survey)
+    currentSurveyTask.surveyData = surveyData;
+    // Add new surveyData to Meteor
+    Students.update(
+      { _id: studentId },
+      { $set: { solvedTasks: currentStudentData.solvedTasks } }
+    );
+    return true;
+  },
   "solutionHandler.checkMulti"(studentSolution, task, questionIndex) {
     let solution = Solutions[task.taskId];
     if (!solution) return null;
