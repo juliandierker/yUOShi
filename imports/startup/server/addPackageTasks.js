@@ -63,6 +63,18 @@ function createMultiChoice(taskSpecs) {
   return taskSpecs;
 }
 
+function createSurveyTask(taskSpecs) {
+  taskSpecs["isTask"] = true;
+  taskSpecs["taskId"] = taskSpecs["taskId"];
+  taskSpecs["type"] = "survey";
+  taskSpecs["package"] = taskSpecs["package"];
+  taskSpecs["autoGrading"] = true;
+  taskSpecs["filePrefix"] = taskSpecs["filePrefix"];
+  taskSpecs["taskState"] = { save: true, help: false };
+
+  return taskSpecs;
+}
+
 function addTasks(packageName, path) {
   let tasks = JSON.parse(Assets.getText(path))["tasks"];
   let trainings = [];
@@ -88,6 +100,9 @@ function addTasks(packageName, path) {
           break;
         case "Cloze":
           newtask = createClozeTask(tasks[i]);
+          break;
+        case "Survey":
+          newtask = createSurveyTask(tasks[i]);
           break;
       }
       Meteor.call("tasks.insert", newtask);
