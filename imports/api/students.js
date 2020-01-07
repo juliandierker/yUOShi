@@ -42,12 +42,20 @@ Meteor.methods({
       currentPackage: []
     });
   },
-  "student.saveLearncard": function(_id, subject, statement, example, image) {
+  "student.saveLearncard": function(
+    _id,
+    subject,
+    statement,
+    example,
+    image,
+    content
+  ) {
     let learnCardObj = {
       subject,
       statement,
       example,
-      image
+      image,
+      content
     };
 
     Students.update(_id, { $addToSet: { learnCards: learnCardObj } });
