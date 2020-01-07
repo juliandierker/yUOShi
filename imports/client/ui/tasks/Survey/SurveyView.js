@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { Checkbox, TextArea, Form, Button } from "semantic-ui-react";
+import Swal from "sweetalert2";
 
 export default class SurveyView extends Component {
   constructor(props) {
@@ -24,8 +25,13 @@ export default class SurveyView extends Component {
   }
 
   handleSubmit() {
-    console.log(this.state);
-    console.log("TODO: Save data!");
+    this.props.handleSubmit(this.state, () => {
+      Swal.fire(
+        "Vielen Dank!",
+        "Danke dass du an der Umfrage teilgenommen hast!",
+        "success"
+      );
+    });
   }
 
   renderCheckboxes() {
