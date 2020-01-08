@@ -2,10 +2,11 @@ import React, { Component } from "react";
 import { Meteor } from "meteor/meteor";
 import { Card, Checkbox, Button } from "semantic-ui-react";
 import Swal from "sweetalert2";
-import FullEditor from "../../texteditor/FullEditor.js";
+
 export default class MultiChoiceView extends Component {
   constructor(props) {
     super(props);
+    console.log("PROPS:", props);
     this.state = {
       questionIndex: 1,
       questionCount: props.activeTask.content

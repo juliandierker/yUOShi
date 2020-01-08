@@ -11,7 +11,7 @@ import {
 } from "semantic-ui-react";
 
 import MultiChoiceAnimationTemplate from "../MultiChoice/MultiChoiceAnimationTemplate";
-
+import SurveyAnimationTemplate from "../Survey/SurveyAnimationTemplate.js";
 export default class TrainingAnimationTemplate extends React.Component {
   constructor(props) {
     super(props);
@@ -19,7 +19,7 @@ export default class TrainingAnimationTemplate extends React.Component {
       currentTraining: null,
       open: false,
       introIndex: 0,
-      finalIndex: props.student.currentTraining[0].content[0].quests.length + 1,
+      finalIndex: props.student.currentTraining[0].content[0].quests.length,
       stepContent: [],
       stepName: [],
       stepIcon: [],
@@ -89,17 +89,16 @@ export default class TrainingAnimationTemplate extends React.Component {
     }
   }
   nextAction() {
-    const { introIndex, finalIndex } = this.state;
-    if (this.state.currentTraining.finalTraining) {
-      if (introIndex < finalIndex - 2) {
+    const { introIndex, finalIndex, currentTraining } = this.state;
+    console.log(currentTraining);
+    if (currentTraining.finalTraining) {
+      if (introIndex <= finalIndex) {
         this.setState({ introIndex: introIndex + 1 });
-      } else if (introIndex == finalIndex - 2) {
+      } else {
         this.solveTraining();
       }
     } else {
-      if (introIndex < finalIndex) {
-        this.setState({ introIndex: introIndex + 1 });
-      }
+      this.setState({ introIndex: introIndex + 1 });
     }
   }
   renderBtns() {
@@ -141,9 +140,9 @@ export default class TrainingAnimationTemplate extends React.Component {
           <Button
             id="nextBtn"
             content={
-              this.state.introIndex === this.state.finalIndex - 2
-                ? "Kapitel abschließen"
-                : "Nächster Fall"
+              this.state.introIndex <= this.state.finalIndex - 1
+                ? "Nächster Fall"
+                : "Kapitel abschließen"
             }
             onClick={this.nextAction.bind(this)}
           />
@@ -158,7 +157,7 @@ export default class TrainingAnimationTemplate extends React.Component {
     if (
       content[this.state.introIndex] &&
       currentTraining.finalTraining &&
-      this.state.introIndex < this.state.finalIndex
+      this.state.introIndex < this.state.finalIndex - 1
     ) {
       const multiObj = {
         AnswerSet: content[this.state.introIndex].AnswerSet,
@@ -177,7 +176,28 @@ export default class TrainingAnimationTemplate extends React.Component {
         trainings: this.props.trainings,
         renderNextStep: this.renderNextStep.bind(this)
       };
-      return <MultiChoiceAnimationTemplate {...taskProps} />;
+
+      if (
+        this.props.activeTask.content[0].quests[this.state.introIndex]
+          .filePrefix === "Survey"
+      )
+        taskProps = {
+          student: this.props.student,
+          tasks: this.props.tasks,
+          activeTask: this.props.activeTask.content[0].quests[
+            this.state.introIndex
+          ],
+          courses: this.props.courses,
+          trainings: this.props.trainings,
+          renderNextStep: this.renderNextStep.bind(this)
+        };
+
+      return this.props.activeTask.content[0].quests[this.state.introIndex]
+        .filePrefix === "Multi" ? (
+        <MultiChoiceAnimationTemplate {...taskProps} />
+      ) : (
+        <SurveyAnimationTemplate {...taskProps} />
+      );
     }
   }
   render() {

@@ -37,7 +37,6 @@ export default class DragdropViewFormular extends React.Component {
     this.handleLoad = this.handleLoad.bind(this);
   }
   handleEditorChange = (event, editor) => {
-    console.log(editor);
     var change = JSON.parse(JSON.stringify(this.state["content"]));
     const content = editor.getData();
     this.setState({ content });

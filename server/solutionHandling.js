@@ -146,11 +146,18 @@ Meteor.methods({
     );
     // Set surveyData in SolvedTask (Survey)
     currentSurveyTask.surveyData = surveyData;
+    currentSurveyTask.content = surveyData.content;
     // Add new surveyData to Meteor
-    Students.update(
-      { _id: studentId },
-      { $set: { solvedTasks: currentStudentData.solvedTasks } }
-    );
+    const surveyObj = {
+      surveyId: task.taskId,
+      title: task.title,
+      package: task.package,
+      question: task.question,
+      answers: task.keywords,
+      solution: surveyData.checkedAnswers,
+      comment: surveyData.content
+    };
+    Students.update({ _id: studentId }, { $set: { solvedSurveys: surveyObj } });
     return true;
   },
   "solutionHandler.checkMulti"(studentSolution, task, questionIndex) {

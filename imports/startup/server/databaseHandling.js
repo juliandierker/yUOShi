@@ -129,7 +129,7 @@ function setupStudents() {
         tasks: [task],
         solvedTasks: [],
         learnCards: [],
-
+        solvedSurveys: [],
         currentSequenceId: 0,
         currentPackage: [],
         currentTraining: [],

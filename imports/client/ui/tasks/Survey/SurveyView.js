@@ -1,13 +1,18 @@
 import React, { Component } from "react";
-import { Checkbox, TextArea, Form, Button } from "semantic-ui-react";
+import { Checkbox, Form, Button } from "semantic-ui-react";
 import Swal from "sweetalert2";
-
+import FullEditor from "../../texteditor/FullEditor.js";
 export default class SurveyView extends Component {
   constructor(props) {
     super(props);
 
-    this.state = { textboxValue: "", checkedAnswers: [] };
+    this.state = { textboxValue: "", checkedAnswers: [], content: null };
   }
+  handleEditorChange = (event, editor) => {
+    var change = JSON.parse(JSON.stringify(this.state["content"]));
+    const content = editor.getData();
+    this.setState({ content });
+  };
   handleCheckboxChange(e) {
     let newCheckedAnswers = this.state.checkedAnswers;
 
@@ -35,6 +40,7 @@ export default class SurveyView extends Component {
   }
 
   renderCheckboxes() {
+    console.log(this.props.activeTask);
     return this.props.activeTask.keywords.map((keyword, index) => {
       return (
         <Checkbox
@@ -50,12 +56,15 @@ export default class SurveyView extends Component {
   }
 
   renderMiscellaneousTextbox() {
+    let { content } = this.state;
+    content ? null : (content = "Bemerkungen hier eingeben...");
     return (
       <React.Fragment>
         Sonstiges:
-        <TextArea
-          style={{ minHeight: "100px", marginBottom: "10px" }}
-          onChange={this.handleTextAreaChange.bind(this)}
+        <FullEditor
+          name="instruction"
+          onChange={this.handleEditorChange.bind(this)}
+          value={content}
         />
       </React.Fragment>
     );

@@ -34,6 +34,7 @@ Meteor.methods({
       lastActiveTaskId: null,
       courses: [],
       tasks: [],
+      solvedSurveys: [],
       currentSequenceId: 0,
       currentTraining: [],
       solvedTraining: [],
