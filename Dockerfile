@@ -1,28 +1,15 @@
-
-
 # deploy/Dockerfile
+# Dockerfile for your app.
+# Change "budgeter" in the Dockerfile to your app's name
 FROM node:0.10
-MAINTAINER jdierker
-
-# install system dependencies
-USER root
-RUN  apt-get -y update
-RUN  apt-get install -y curl build-essential  g++
-RUN apt-get install sudo -y
-
-RUN export METEOR_NO_RELEASE_CHECK=true
+MAINTAINER Julian Dierker <jdierker@uos.de>
+RUN apt-get install -y curl
 RUN curl https://install.meteor.com/ | /bin/sh
-
-
+# Change "budgeter" to your app's name
 ADD . /opt/yuoshi/app
 # Install NPM packages
 WORKDIR /opt/yuoshi/app/programs/server
-RUN meteor npm install
-
-
-# create user with custom uid/gid
-
-
+RUN npm install
 # Set environment variables
 WORKDIR /opt/yuoshi/app
 ENV PORT 80
@@ -31,6 +18,4 @@ ENV MONGO_URL mongodb://mongo_instance:27017/yuoshi
 # Expose port 80
 EXPOSE 80
 # Start the app
-# USER root
-ENV NODE_OPTIONS="--max-old-space-size=4096"
-RUN meteor build --headless --server-only --allow-superuser /output
+CMD node ./main.js

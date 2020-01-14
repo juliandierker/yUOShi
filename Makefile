@@ -8,7 +8,7 @@ IMAGE_NAME:=image-yuoshi
 CONTAINER_NAME:=container-yuoshi
 TARBALL_NAME:=bundle.tar.gz.
 URL:=vm621.rz.uni-osnabrueck.de
-PORT:=80
+PORT:=8085
 PHONY: buildapp
 buildapp:
 	@echo "-------------------------------------------------------"
