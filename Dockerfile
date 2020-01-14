@@ -3,7 +3,8 @@
 # Change "budgeter" in the Dockerfile to your app's name
 FROM node:0.10
 MAINTAINER Julian Dierker <jdierker@uos.de>
-RUN apt-get install -y curl
+RUN  apt-get -y update
+RUN  apt-get install -y curl build-essential  g++
 RUN curl https://install.meteor.com/ | /bin/sh
 # Change "budgeter" to your app's name
 ADD . /opt/yuoshi/app
