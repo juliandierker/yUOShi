@@ -11,7 +11,7 @@ import { Tasks } from "../../api/tasks";
 import { Package } from "../../api/package";
 import { addPackages } from "./addPackages";
 import { addPackageTasks } from "./addPackageTasks";
-import { addGameData, addSurveyData } from "./addGameData";
+import { addGameData } from "./addGameData";
 
 export function resetDatabase() {
   clearDatabase();
@@ -129,7 +129,7 @@ function setupStudents() {
         tasks: [task],
         solvedTasks: [],
         learnCards: [],
-
+        solvedSurveys: [],
         currentSequenceId: 0,
         currentPackage: [],
         currentTraining: [],

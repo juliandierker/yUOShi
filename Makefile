@@ -8,7 +8,7 @@ IMAGE_NAME:=image-yuoshi
 CONTAINER_NAME:=container-yuoshi
 TARBALL_NAME:=bundle.tar.gz.
 URL:=vm621.rz.uni-osnabrueck.de
-PORT:=8084
+PORT:=8085
 PHONY: buildapp
 buildapp:
 	@echo "-------------------------------------------------------"
@@ -24,8 +24,8 @@ buildapp:
 	@rm -rf ./bundle
 	@echo "Builded successfully!"
 	@echo "(the build output tarball is ./deploy/bundle.tar.gz)".
-PHONY: deployapp
-deployapp:
+PHONY: deploytest
+deploytest:
 	@echo "-------------------------------------------------------"
 	@echo "Uploading and running app in a docker container"
 	@echo "-------------------------------------------------------"

@@ -21,7 +21,6 @@ export default class MultiChoiceView extends Component {
       fails: 0,
       totalAnswerCount: 0
     };
-    console.log(this.state);
   }
 
   checkSolution() {
@@ -38,11 +37,7 @@ export default class MultiChoiceView extends Component {
       });
       return;
     }
-    console.log(
-      this.state.checkedAnswers,
-      this.props.activeTask,
-      this.state.questionIndex - 1
-    );
+
     Meteor.call(
       meteorMethod,
       this.state.checkedAnswers,

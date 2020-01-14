@@ -3,6 +3,7 @@ import { Meteor } from "meteor/meteor";
 import PropTypes from "prop-types";
 import { Button } from "semantic-ui-react";
 import { TweenMax } from "gsap";
+import FullEditor from "../../texteditor/FullEditor";
 import {
   Header,
   Table,
@@ -23,6 +24,7 @@ export default class DragdropViewFormular extends React.Component {
       images: props.activeTask.images,
       examples: props.activeTask.examples,
       currentIndex: 0,
+      content: null,
       currentStatements: [],
       currentImages: [],
       currentExamples: [],
@@ -34,6 +36,11 @@ export default class DragdropViewFormular extends React.Component {
 
     this.handleLoad = this.handleLoad.bind(this);
   }
+  handleEditorChange = (event, editor) => {
+    var change = JSON.parse(JSON.stringify(this.state["content"]));
+    const content = editor.getData();
+    this.setState({ content });
+  };
   getStatements() {
     let currentStatements = [];
     for (
@@ -214,6 +221,8 @@ export default class DragdropViewFormular extends React.Component {
   }
   renderTargetCards() {
     const { currentStatements, currentExamples, currentImages } = this.state;
+    let { content } = this.state;
+    content ? null : (content = "Bemerkungen hier eingeben...");
     return currentStatements.map((statements, index) => {
       // return statements.map(statement => {
       return (
@@ -246,6 +255,14 @@ export default class DragdropViewFormular extends React.Component {
             <div className="targetDrop" id={statements[0] + "example_target"}>
               <p class="targetDropExample">Beispiel:</p>
               {/* <p>{statements[1]}</p> */}
+            </div>
+            <div>
+              <p class="targetDropComment">Bemerkungen:</p>
+              <FullEditor
+                name="instruction"
+                onChange={this.handleEditorChange.bind(this)}
+                value={content}
+              />
             </div>
           </div>
           <div class="customCard-footer" />

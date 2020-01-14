@@ -221,6 +221,7 @@ export default class DragAnimationTemplate extends React.Component {
     let stateObj;
     let nextIndex;
     let finish = this.state.finish;
+    const editorValue = dragState.content;
 
     currentStatements = [];
     currentExamples = [];
@@ -246,10 +247,15 @@ export default class DragAnimationTemplate extends React.Component {
       this.setState({ finish });
     }
 
-    this.saveLearncard(stmts, exps, imgs);
+    this.saveLearncard(stmts, exps, imgs, editorValue);
     if (!finish) this.setState({ renderNextCard: false });
   }
-  saveLearncard(currentStatements, currentExamples, currentImages) {
+  saveLearncard(
+    currentStatements,
+    currentExamples,
+    currentImages,
+    editorValue
+  ) {
     const student = this.props.student;
     const Toast = Swal.mixin({
       toast: true,
@@ -265,6 +271,7 @@ export default class DragAnimationTemplate extends React.Component {
       currentStatements[1],
       currentExamples[1],
       currentImages[1],
+      editorValue,
       (err, res) => {
         if (err) {
         } else {
