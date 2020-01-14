@@ -28,9 +28,12 @@ export default class TrainingAnimationTemplate extends React.Component {
     this.view = null;
   }
   show = dimmer => () => this.setState({ dimmer, open: true });
-  close = () => this.solveTraining();
+  close = () => {
+    this.solveTraining();
+  };
 
   renderNextStep() {
+    console.log("RenderNExtStep");
     this.setState({ introIndex: this.state.introIndex + 1 });
   }
   initIntroSteps() {
@@ -73,6 +76,7 @@ export default class TrainingAnimationTemplate extends React.Component {
   }
 
   solveTraining() {
+    console.log("TEEEEEEEEEST");
     Meteor.call(
       "students.solveTraining",
       this.props.student,
@@ -90,11 +94,11 @@ export default class TrainingAnimationTemplate extends React.Component {
   }
   nextAction() {
     const { introIndex, finalIndex, currentTraining } = this.state;
-    console.log(currentTraining);
     if (currentTraining.finalTraining) {
-      if (introIndex <= finalIndex) {
+      if (introIndex < finalIndex) {
         this.setState({ introIndex: introIndex + 1 });
-      } else {
+      } else if (introIndex == finalIndex) {
+        console.log("testy");
         this.solveTraining();
       }
     } else {
@@ -140,7 +144,7 @@ export default class TrainingAnimationTemplate extends React.Component {
           <Button
             id="nextBtn"
             content={
-              this.state.introIndex <= this.state.finalIndex - 1
+              this.state.introIndex < this.state.finalIndex - 1
                 ? "Nächster Fall"
                 : "Kapitel abschließen"
             }
@@ -151,13 +155,14 @@ export default class TrainingAnimationTemplate extends React.Component {
     }
   }
   renderOutro() {
+    console.log("Renderoutro");
     const { currentTraining } = this.state;
     const content = this.props.student.currentTraining[0].content[0].quests;
 
     if (
       content[this.state.introIndex] &&
       currentTraining.finalTraining &&
-      this.state.introIndex < this.state.finalIndex - 1
+      this.state.introIndex <= this.state.finalIndex - 1
     ) {
       const multiObj = {
         AnswerSet: content[this.state.introIndex].AnswerSet,

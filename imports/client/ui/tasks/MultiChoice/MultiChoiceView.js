@@ -6,7 +6,6 @@ import Swal from "sweetalert2";
 export default class MultiChoiceView extends Component {
   constructor(props) {
     super(props);
-    console.log("PROPS:", props);
     this.state = {
       questionIndex: 1,
       questionCount: props.activeTask.content
@@ -109,23 +108,24 @@ export default class MultiChoiceView extends Component {
       }
       const { currentTraining } = this.props.student;
       // Solve this task
-      Meteor.call(
-        meteorMethod,
-        this.state.checkedAnswers,
-        this.props.student._id,
-        this.props.activeTask,
-        this.state.questionIndex - 1,
-        solvedPercentage,
-        (err, res) => {
-          if (!err) {
-            Meteor.call(
-              "students.solveTraining",
-              this.props.student,
-              currentTraining[currentTraining.length - 1]
-            );
-          }
-        }
-      );
+      // Meteor.call(
+      //   meteorMethod,
+      //   this.state.checkedAnswers,
+      //   this.props.student._id,
+      //   this.props.activeTask,
+      //   this.state.questionIndex - 1,
+      //   solvedPercentage,
+      //   (err, res) => {
+      //     if (!err) {
+      //       Meteor.call(
+      //         "students.solveTraining",
+      //         this.props.student,
+      //         currentTraining[currentTraining.length - 1]
+      //       );
+      //     }
+      //   }
+      // );
+      this.props.renderNextStep();
     } else if (this.state.next) {
       this.props.renderNextStep();
       this.state.checkedAnswers,
