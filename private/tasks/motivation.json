@@ -78,24 +78,6 @@
     },
     {
       "parentId": "Motivation1",
-      "title": "Meinungs Umfrage",
-      "package": "Motivation",
-      "description": "Bitte beantworte kurz diese Umfrage. Die Ergebnisse können später im Lehrendenzimmer angezeigt werden.",
-      "question": "Was ist mit dir? Was motiviert dich eigentlich Lehrer oder Lehrerin werden zu wollen?",
-      "taskId": "Survey_Why_Lehrer",
-      "filePrefix": "Survey",
-      "keywords": [
-        "Sicheres Einkommen",
-        "Verbeamtet werden",
-        "Regelmäßige Ferien",
-        "Pädagogisch handeln",
-        "Schüler*innen motivieren",
-        "Spannende Themen behandeln"
-      ],
-      "credits": 0
-    },
-    {
-      "parentId": "Motivation1",
       "title": "Begriffe der Motivation",
       "description": "Ordne die Statements über Schüler*innen der intrinsischen oder extrinsischen Motivation zu. Welche Quelle der Motivation wird in der jeweiligen Aussage eher abgebildet? ",
       "taskId": "Motivationsbegriffe",
@@ -307,27 +289,7 @@
       "package": "Motivation",
       "credits": 7
     },
-    {
-      "parentId": "Motivation3",
-      "title": "Motivationsbegriffe",
-      "description": "Ein Memory zur Verinnerlichung: Ordne in diesem Memory den Bedürfnissen die entsprechenden Bilder oder Icons zu.",
-      "taskId": "Motivation_Memory",
-      "filePrefix": "Memory",
-      "package": "Motivation",
-      "credits": 3,
-      "content": [
-        {
-          "title": "Motivation Begriffsklärung",
-          "subtitle": "",
-          "conten": "",
-          "keywords": [
-            "Selbstverwirklichung",
-            "Soziale Bedürfnisse",
-            "Körperliche Bedürfnisse"
-          ]
-        }
-      ]
-    },
+
     {
       "parentId": "Motivation3",
       "title": "Maslow-Pyramide",
@@ -455,6 +417,7 @@
       "description": "Berechnen Sie mit der Formel für die X-Wert Theorie, wie motiviert die jeweiligen Schüler sind. Wer wird sein Ziel erreichen? Der Wert für W ergibt sich manchmal aus mehreren Einzelwerten, die zusammengezählt werden müssen.",
       "hint": "Tipp: Die zu nutzende Formel ist: M = E * W",
       "taskId": "XwertCloze",
+      "keywords": ["Zielbindung", "Selbstwirksamkeit", "Rückmeldung"],
       "filePrefix": "Cloze",
       "content": [
         {
