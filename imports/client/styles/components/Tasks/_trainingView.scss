@@ -1,0 +1,9 @@
+#introModal {
+    overflow-y: scroll;
+    height: fit-content;
+    height: -moz-fit-content;
+    height: -webkit-fit-content;
+  }
+  .modals.dimmer .ui.scrolling.modal {
+    margin: auto auto !important;
+  }

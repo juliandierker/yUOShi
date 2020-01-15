@@ -232,7 +232,7 @@ export default class TrainingAnimationTemplate extends React.Component {
       return (
         <div>
           <Modal
-            style={{ overflowY: "scroll", height: "fit-content" }}
+            id="introModal"
             className="scrolling"
             that={this}
             dimmer={dimmer}
