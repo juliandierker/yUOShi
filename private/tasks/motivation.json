@@ -17,7 +17,7 @@
             {
               "filePrefix": "Multi",
 
-              "questId": 4,
+              "questId": 1,
               "questName": "Magda",
               "Magda": "Magda ist normalerweise sehr engagiert und begeisterungsfähig. In der Klasse übernimmt sie gerne freiwillig Aufgaben. Allerdings hat sie sich nicht gemeldet als es um die Position der Klassensprecherin ging, was dich sehr wundert. Im letzten Schuljahr hat sie das so gut gemacht und dieses Jahr würdest du die Klassensprecherinnen auch besser unterstützen und entlohnen können. Was ist los mit ihr, warum will sie nicht?",
               "image": "Magda.png",
@@ -34,7 +34,41 @@
               "multi": true
             },
             {
-              "questId": 5,
+              "questId": 2,
+              "filePrefix": "Multi",
+              "questName": "Otto",
+              "Otto": "Otto ist in der Klasse immer schon aufgefallen. Nur mit Mühe schafft er die Klassenarbeiten und auch sonst bringt er sich nicht im Unterricht ein. Bei ihm wird es deshalb dieses Schuljahr noch einmal sehr eng. Bei einem Gespräch zwischen ihm und seinen Mitschülern, das du zufällig mitgehört hast, hast du ihn sagen hören, dass er eh davon ausgeht, das Schuljahr nicht zu schaffen. Warum also noch anstrengen? Wie kannst du Otto helfen?",
+              "image": "Otto.png",
+              "prePhrase": "Als du Otto zum Gespräch bittest, zeigt er sich zunächst unbeeindruckt und cool. Er nimmt eine Null-Bock- Haltung ein und versucht zu demonstrieren, dass ihn das Sitzenbleiben nicht interessiert. Schnell merkst du jedoch, dass diese Einstellung bloß Fassade ist und Otto in Wirklichkeit sehr getroffen davon scheint. Im weiteren Verlauf des Gesprächs gesteht er dir, dass er selbst gar nicht genau weiß, wieso er so schlechte Leistungen erbringt. Dir fällt auf, dass Otto Probleme damit hat, an seine eigenen Fähigkeiten zu glauben und seine Kompetenzen einzusetzen.",
+              "Question": "Weshalb hat Otto keine Motivation, seine Leistungen abzurufen und die Versetzung zu schaffen? Welcher Grund ist deiner Meinung nach und mit Blick auf dein Wissen über Motivation der wahrscheinlichste?",
+              "AnswerSet": [
+                "Im Gegensatz zu seinem Kompetenzerleben ist Ottos Bedürfnis nach Autonomie sehr hoch. Er möchte möglichst alles alleine bewältigen und selbst wenn er nicht weiterkommt, möchte er nicht nach Hilfe fragen. Obwohl er keinen genauen Plan für sein Ziel hat, kann er keine Hilfe annehmen.",
+                "Ottos Oma hat ihm in den letzten Jahren für jede Versetzung eine kleine Belohnung versprochen. Auch wenn Otto Probleme im Unterricht hatte, hat er die letzten Jahre trotzdem genügend Motivation aufbringen können, in die nächste Klasse zu gelangen. Nun ist Ottos Oma leider verstorben und Otto hat keinen Antrieb mehr, die Versetzung zu schaffen.",
+                "Otto glaubt selbst nicht mehr daran, dass er mit seinen Leistungen die Versetzung schaffen kann. Obwohl ihm die Versetzung sehr wichtig ist, damit er in seinem Klassenverband bleiben kann und später eine gute Ausbildung bekommt, geht der Erwartungswert, sein Ziel zu erreichen, gegen Null. Dies beeinflusst seine Motivation negativ.",
+                "Otto hat ein niedriges Bedürfnis des Kompetenzerlebens. Er hat keinen Anspruch danach, sich selbst als „wirksam“ wahrzunehmen und Aufgaben selbstständig zu bewältigen, bzw. die nötigen Fähigkeiten dafür zu erwerben. Deswegen ist er nicht motiviert die Versetzung zu schaffen.",
+                "Ottos aufgabenspezifisches Selbstvertrauen ist nicht sehr hoch. Er traut sich auch die leichtesten Aufgaben nicht zu und anstatt es zu versuchen, scheut er dann davor zurück. Aus diesem Grund fühlt er sich nicht zu seinem Ziel, die Versetzung zu schaffen, hingezogen und seine Motivation sinkt."
+              ],
+              "multi": true
+            },
+            {
+              "questId": 3,
+              "filePrefix": "Multi",
+              "questName": "Yennefer",
+              "Yennefer": "Yennefer möchte an einem Austauschprogramm teilnehmen, obwohl sie sehr große Schwierigkeiten mit der Fremdsprache hat. Schon oft hast du mit ihr darüber gesprochen und vor jedem Test nimmt sie sich vor, mehr zu lernen. Trotzdem hat es auch beim letzten Test wieder nicht gereicht. In allen anderen Fächern sieht es gut aus und du willst ihr helfen, damit sie den Aufnahmetest für den Austausch in einigen Wochen schafft. Was kannst du tun?",
+              "image": "Yennefer.png",
+              "prePhrase": "Yennefer ist sehr froh darüber, dass du sie zum Gespräch bittest. Direkt zu Anfang sagt sie dir, dass sie keine Ahnung hat, wieso sie trotz des Lernens für das Fach immer so schlecht abschneidet. Du merkst, dass ihr die Note und vor allem das Austauschprogramm sehr am Herzen liegt und versprichst ihr, gemeinsam an einer Lösung zu arbeiten.",
+              "Question": "Wieso werden Yennefers Noten in der Fremdsprache trotz offensichtlichem Lernaufwand nicht besser? Welcher Grund ist deiner Meinung nach und mit Blick auf dein Wissen über Motivation der wahrscheinlichste?",
+              "AnswerSet": [
+                "Yennefers Motivation wird sehr durch den externen Anreiz des Austauschprogramms gesteuert. Dadurch entsteht ein Korrumpierungseffekt, der ihre intrinsische Motivation hemmt.",
+                "Yennefers subjektive Erwartungen für ihren Erfolg in der Fremdsprache ist sehr gering, deswegen geht sie davon aus, es nicht zu schaffen: Ihre Motivation als Produkt aus Erwartung und Wert gen Null.",
+                "Yennefer fühlt sich in ihrer Fremdsprachenklasse nicht wohl. Sie ist die einzige aus ihrem Freundeskreis, die diese Klasse besucht und jedes Mal wenn sie dort etwas sagt, hat sie ein ungutes Gefühl und nicht den Eindruck, dass man ihre Meinung dort schätzt. Ihre Motivation sinkt.",
+                "Von ihrer Fremdsprachenlehrerin bekommt Yennefer nach der Stunde und nach den Klausuren immer eine Rückmeldung zu ihren Leistungen. Leider kann sie diese nicht richtig umsetzen und somit bringen sie die Rückmeldungen nicht weiter. Yennefers Leistung wird nicht verstärkt.",
+                "Yennefer nimmt sich oftmals zu allgemeine Ziele vor. Ihre Zielsetzung ist zu schwammig.  Dies führt dazu, dass Ziele mit geringerer Wahrscheinlichkeit erreicht werden und die Motivation auf Dauer sinkt."
+              ],
+              "multi": true
+            },
+            {
+              "questId": 4,
               "filePrefix": "Multi",
               "questName": "Tino",
               "Tino": "Tinos Familie ist vor kurzem erst hergezogen. Trotzdem konnte er sich schnell in die Klasse integrieren und ist vor allem in den kreativeren Fächern ein guter Schüler. Du hast vor einiger Zeit mit einem Ausbildungsbetrieb zusammen ein Kunstprojekt gestartet. Dabei geht es genau um die Themen, für die sich Tino sehr interessiert. Du hoffst, dass Tino sich dort ganz entfalten kann. Er hat sich auch gefreut und zu Anfang sehr gut mitgemacht. Nun hat sich der Ausbildungsbetrieb bei dir gemeldet und berichtet, dass Tino in letzter Zeit weniger aufgeschlossen ist und in sich gekehrt scheint. Woran kann das liegen?",
@@ -683,7 +717,7 @@
           "intro": "Sie sind gut in das Schuljahr gestartet und persönlich äußerst motiviert. Insgesamt haben Sie auch ein gutes Gefühl und eine nette Klasse. Jetzt kann es richtig losgehen! Doch nach und nach fällt Ihnen auf, dass einige Schüler*innen immer öfter zu spät kommen. Die Intensität der Diskussionen wird weniger, fast scheint es so, als ob andere Dinge interessanter geworden sind. Schüler*innen, die vorher sehr aktiv waren, scheinen nur noch das nötigste zu machen. Sie sind verwundert… Warum ist die Klasse so unmotiviert? Ihre Arbeit fällt Ihnen dadurch auch schwerer und am liebsten würden Sie die Schüler*innen wach schütteln. Sie merken, dass Sie selbst immer weniger Lust haben, zu unterrichten. Was können Sie also tun? Wie lässt sich die Klasse motivieren? Finden Sie es heraus und lernen Sie alles über Motivation!",
           "quests": [
             {
-              "questId": 4,
+              "questId": 1,
               "questName": "Magda",
               "hasNext": true,
               "Magda": "Magda ist normalerweise sehr engagiert und begeisterungsfähig. In der Klasse übernimmt sie gerne freiwillig Aufgaben. Allerdings hat sie sich nicht gemeldet als es um die Position der Klassensprecherin ging, was dich sehr wundert. Im letzten Schuljahr hat sie das so gut gemacht und dieses Jahr würdest du die Klassensprecherinnen auch besser unterstützen und entlohnen können. Was ist los mit ihr, warum will sie nicht?",
@@ -702,7 +736,41 @@
               "multi": true
             },
             {
-              "questId": 5,
+              "questId": 2,
+              "filePrefix": "Multi",
+              "questName": "Otto",
+              "Otto": "Otto ist in der Klasse immer schon aufgefallen. Nur mit Mühe schafft er die Klassenarbeiten und auch sonst bringt er sich nicht im Unterricht ein. Bei ihm wird es deshalb dieses Schuljahr noch einmal sehr eng. Bei einem Gespräch zwischen ihm und seinen Mitschülern, das du zufällig mitgehört hast, hast du ihn sagen hören, dass er eh davon ausgeht, das Schuljahr nicht zu schaffen. Warum also noch anstrengen? Wie kannst du Otto helfen?",
+              "image": "Otto.png",
+              "prePhrase": "Als du Otto zum Gespräch bittest, zeigt er sich zunächst unbeeindruckt und cool. Er nimmt eine Null-Bock- Haltung ein und versucht zu demonstrieren, dass ihn das Sitzenbleiben nicht interessiert. Schnell merkst du jedoch, dass diese Einstellung bloß Fassade ist und Otto in Wirklichkeit sehr getroffen davon scheint. Im weiteren Verlauf des Gesprächs gesteht er dir, dass er selbst gar nicht genau weiß, wieso er so schlechte Leistungen erbringt. Dir fällt auf, dass Otto Probleme damit hat, an seine eigenen Fähigkeiten zu glauben und seine Kompetenzen einzusetzen.",
+              "Question": "Weshalb hat Otto keine Motivation, seine Leistungen abzurufen und die Versetzung zu schaffen? Welcher Grund ist deiner Meinung nach und mit Blick auf dein Wissen über Motivation der wahrscheinlichste?",
+              "AnswerSet": [
+                "Im Gegensatz zu seinem Kompetenzerleben ist Ottos Bedürfnis nach Autonomie sehr hoch. Er möchte möglichst alles alleine bewältigen und selbst wenn er nicht weiterkommt, möchte er nicht nach Hilfe fragen. Obwohl er keinen genauen Plan für sein Ziel hat, kann er keine Hilfe annehmen.",
+                "Ottos Oma hat ihm in den letzten Jahren für jede Versetzung eine kleine Belohnung versprochen. Auch wenn Otto Probleme im Unterricht hatte, hat er die letzten Jahre trotzdem genügend Motivation aufbringen können, in die nächste Klasse zu gelangen. Nun ist Ottos Oma leider verstorben und Otto hat keinen Antrieb mehr, die Versetzung zu schaffen.",
+                "Otto glaubt selbst nicht mehr daran, dass er mit seinen Leistungen die Versetzung schaffen kann. Obwohl ihm die Versetzung sehr wichtig ist, damit er in seinem Klassenverband bleiben kann und später eine gute Ausbildung bekommt, geht der Erwartungswert, sein Ziel zu erreichen, gegen Null. Dies beeinflusst seine Motivation negativ.",
+                "Otto hat ein niedriges Bedürfnis des Kompetenzerlebens. Er hat keinen Anspruch danach, sich selbst als „wirksam“ wahrzunehmen und Aufgaben selbstständig zu bewältigen, bzw. die nötigen Fähigkeiten dafür zu erwerben. Deswegen ist er nicht motiviert die Versetzung zu schaffen.",
+                "Ottos aufgabenspezifisches Selbstvertrauen ist nicht sehr hoch. Er traut sich auch die leichtesten Aufgaben nicht zu und anstatt es zu versuchen, scheut er dann davor zurück. Aus diesem Grund fühlt er sich nicht zu seinem Ziel, die Versetzung zu schaffen, hingezogen und seine Motivation sinkt."
+              ],
+              "multi": true
+            },
+            {
+              "questId": 3,
+              "filePrefix": "Multi",
+              "questName": "Yennefer",
+              "Yennefer": "Yennefer möchte an einem Austauschprogramm teilnehmen, obwohl sie sehr große Schwierigkeiten mit der Fremdsprache hat. Schon oft hast du mit ihr darüber gesprochen und vor jedem Test nimmt sie sich vor, mehr zu lernen. Trotzdem hat es auch beim letzten Test wieder nicht gereicht. In allen anderen Fächern sieht es gut aus und du willst ihr helfen, damit sie den Aufnahmetest für den Austausch in einigen Wochen schafft. Was kannst du tun?",
+              "image": "Yennefer.png",
+              "prePhrase": "Yennefer ist sehr froh darüber, dass du sie zum Gespräch bittest. Direkt zu Anfang sagt sie dir, dass sie keine Ahnung hat, wieso sie trotz des Lernens für das Fach immer so schlecht abschneidet. Du merkst, dass ihr die Note und vor allem das Austauschprogramm sehr am Herzen liegt und versprichst ihr, gemeinsam an einer Lösung zu arbeiten.",
+              "Question": "Wieso werden Yennefers Noten in der Fremdsprache trotz offensichtlichem Lernaufwand nicht besser? Welcher Grund ist deiner Meinung nach und mit Blick auf dein Wissen über Motivation der wahrscheinlichste?",
+              "AnswerSet": [
+                "Yennefers Motivation wird sehr durch den externen Anreiz des Austauschprogramms gesteuert. Dadurch entsteht ein Korrumpierungseffekt, der ihre intrinsische Motivation hemmt.",
+                "Yennefers subjektive Erwartungen für ihren Erfolg in der Fremdsprache ist sehr gering, deswegen geht sie davon aus, es nicht zu schaffen: Ihre Motivation als Produkt aus Erwartung und Wert gen Null.",
+                "Yennefer fühlt sich in ihrer Fremdsprachenklasse nicht wohl. Sie ist die einzige aus ihrem Freundeskreis, die diese Klasse besucht und jedes Mal wenn sie dort etwas sagt, hat sie ein ungutes Gefühl und nicht den Eindruck, dass man ihre Meinung dort schätzt. Ihre Motivation sinkt.",
+                "Von ihrer Fremdsprachenlehrerin bekommt Yennefer nach der Stunde und nach den Klausuren immer eine Rückmeldung zu ihren Leistungen. Leider kann sie diese nicht richtig umsetzen und somit bringen sie die Rückmeldungen nicht weiter. Yennefers Leistung wird nicht verstärkt.",
+                "Yennefer nimmt sich oftmals zu allgemeine Ziele vor. Ihre Zielsetzung ist zu schwammig.  Dies führt dazu, dass Ziele mit geringerer Wahrscheinlichkeit erreicht werden und die Motivation auf Dauer sinkt."
+              ],
+              "multi": true
+            },
+            {
+              "questId": 4,
               "questName": "Tino",
               "Tino": "Tinos Familie ist vor kurzem erst hergezogen. Trotzdem konnte er sich schnell in die Klasse integrieren und ist vor allem in den kreativeren Fächern ein guter Schüler. Du hast vor einiger Zeit mit einem Ausbildungsbetrieb zusammen ein Kunstprojekt gestartet. Dabei geht es genau um die Themen, für die sich Tino sehr interessiert. Du hoffst, dass Tino sich dort ganz entfalten kann. Er hat sich auch gefreut und zu Anfang sehr gut mitgemacht. Nun hat sich der Ausbildungsbetrieb bei dir gemeldet und berichtet, dass Tino in letzter Zeit weniger aufgeschlossen ist und in sich gekehrt scheint. Woran kann das liegen?",
               "image": "Tino.png",
@@ -720,7 +788,7 @@
               "multi": true
             },
             {
-              "questId": 6,
+              "questId": 5,
               "questName": "Evaluation",
 
               "image": "",
