@@ -4,12 +4,15 @@
 FROM node:0.10
 MAINTAINER Julian Dierker <jdierker@uos.de>
 RUN  apt-get -y update
-RUN  apt-get install -y curl build-essential  g++
+RUN  apt-get install -y curl build-dsadsadsad  g++
+
 RUN curl https://install.meteor.com/ | /bin/sh
 # Change "budgeter" to your app's name
 ADD . /opt/yuoshi/app
 # Install NPM packages
 WORKDIR /opt/yuoshi/app/programs/server
+RUN rm package-lock.json && rm -rf node_modules && rm -rf ~/.node-gyp
+
 RUN npm install
 # Set environment variables
 WORKDIR /opt/yuoshi/app

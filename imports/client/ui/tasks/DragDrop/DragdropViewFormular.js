@@ -258,6 +258,7 @@ export default class DragdropViewFormular extends React.Component {
             </div>
             <div>
               <p class="targetDropComment">Bemerkungen:</p>
+
               <FullEditor
                 name="instruction"
                 onChange={this.handleEditorChange.bind(this)}
