@@ -107,24 +107,24 @@ export default class MultiChoiceView extends Component {
           result.totalAnswerCount;
       }
       const { currentTraining } = this.props.student;
-      // Solve this task
-      // Meteor.call(
-      //   meteorMethod,
-      //   this.state.checkedAnswers,
-      //   this.props.student._id,
-      //   this.props.activeTask,
-      //   this.state.questionIndex - 1,
-      //   solvedPercentage,
-      //   (err, res) => {
-      //     if (!err) {
-      //       Meteor.call(
-      //         "students.solveTraining",
-      //         this.props.student,
-      //         currentTraining[currentTraining.length - 1]
-      //       );
-      //     }
-      //   }
-      // );
+      console.log("TESTY");
+      Meteor.call(
+        meteorMethod,
+        this.state.checkedAnswers,
+        this.props.student._id,
+        this.props.activeTask,
+        this.state.questionIndex - 1,
+        solvedPercentage,
+        (err, res) => {
+          if (!err) {
+            Meteor.call(
+              "students.solveTraining",
+              this.props.student,
+              currentTraining[currentTraining.length - 1]
+            );
+          }
+        }
+      );
       this.props.renderNextStep();
     } else if (this.state.next) {
       this.props.renderNextStep();

@@ -33,7 +33,6 @@ export default class TrainingAnimationTemplate extends React.Component {
   };
 
   renderNextStep() {
-    console.log("RenderNExtStep");
     this.setState({ introIndex: this.state.introIndex + 1 });
   }
   initIntroSteps() {
@@ -76,7 +75,6 @@ export default class TrainingAnimationTemplate extends React.Component {
   }
 
   solveTraining() {
-    console.log("TEEEEEEEEEST");
     Meteor.call(
       "students.solveTraining",
       this.props.student,
@@ -98,7 +96,6 @@ export default class TrainingAnimationTemplate extends React.Component {
       if (introIndex < finalIndex) {
         this.setState({ introIndex: introIndex + 1 });
       } else if (introIndex == finalIndex) {
-        console.log("testy");
         this.solveTraining();
       }
     } else {
@@ -155,7 +152,6 @@ export default class TrainingAnimationTemplate extends React.Component {
     }
   }
   renderOutro() {
-    console.log("Renderoutro");
     const { currentTraining } = this.state;
     const content = this.props.student.currentTraining[0].content[0].quests;
 
