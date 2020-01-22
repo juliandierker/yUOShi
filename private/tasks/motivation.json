@@ -268,32 +268,47 @@
       "orientation": ["horizontal", "vertical"],
       "nested": false,
       "statements": [
-        ["intr", "Die SuS arbeiten gerne mit, weil sie dadurch mehr lernen."],
-        ["extr", "Die Lehrkraft vergibt Sternchen für gute Mitarbeit"],
+        [
+          "intr",
+          "Mindy arbeitet in Bio gerne mit, weil sie Forscherin werden will."
+        ],
+        [
+          "extr",
+          "Die Lehrkraft vergibt Sternchen für gute mündliche Mitarbeit"
+        ],
         [
           "intr",
           "Gülcan hat Spaß an deutscher Geschichte, deswegen meldet sie sich oft."
         ],
-        ["extr", "Laura wird ermahnt, wenn sie im Unterricht nicht mitmacht."],
+        ["extr", "Leni macht im Unterrichtmit, weil sie sonst ermahnt wird."],
         [
           "intr",
           "Anastasia liest gerne Bücher und beschäftigt sich deshalb mit dem Thema für die Deutschklausur."
         ],
         [
           "extr",
-          "Mara bekommt von ihrer Oma 5 Euro, wenn sie in Deutsch eine gute Note schreibt."
+          "Vahid bekommt von seiner Oma 5 Euro, wenn er in Deutsch eine gute Note schreibt."
         ],
-        ["intr", "Tiffany ist traurig, wenn sie eine schlechte Note bekommt."],
+        [
+          "intr",
+          "Tiffany ist traurig, wenn sie nicht ihr Wunschthema bearbeiten darf."
+        ],
         [
           "extr",
-          "Richards Mutter ist enttäuscht, wenn er eine schlechte Note bekommt"
+          "Richards Mutter ist über schlechte Noten enttäuscht, weil er später die Praxis übernehmen soll."
         ],
-        ["intr", "Alexander ist eine ordentliche Mappenführung wichtig."],
+        [
+          "intr",
+          "Alexander ist eine ordentliche Mappenführung wichtig, weil sie Struktur mag."
+        ],
         [
           "extr",
-          "Clara führt ihre Mappe ordentlich, um dadurch ein Sternchen zu bekommen."
+          "Clara führt ihre Mappe sauber, um dadurch ein Sternchen zu bekommen."
         ],
-        ["intr", "Miguel passt in Biologie auf, weil er Arzt werden möchte."],
+        [
+          "intr",
+          "Miguel passt in Physik auf, weil er Ingenieur werden möchte."
+        ],
         [
           "extr",
           "Dennis bekommt eine gute Note von der Lehrerin, wenn er in Biologie aufpasst."
