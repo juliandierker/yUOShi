@@ -40,7 +40,7 @@ export default class Workspace extends React.Component {
       hasActiveTaskOrTraining: false,
       finishedKeywords: [],
       readFinished: false,
-      descriptionModalOpen: true
+      descriptionModalOpen: false
     };
     this.tagInstance = React.createRef();
     this.handler = ev => {
@@ -74,7 +74,7 @@ export default class Workspace extends React.Component {
   }
 
   componentDidUpdate(prevProps, prevState) {
-    this.openDescriptionModal(prevState);
+    this.openDescriptionModal();
     this.checkReadFinish();
   }
   componentWillUnmount() {
@@ -88,18 +88,28 @@ export default class Workspace extends React.Component {
     window.removeEventListener("beforeunload", this.handler);
   }
 
-  openDescriptionModal(prevState) {
+  openDescriptionModal() {
     let currentStudentTask = this.props.student.tasks.find(elem => {
       return elem._id === this.state.activeTask._id;
     });
 
     if (
       currentStudentTask &&
+      currentStudentTask.taskState &&
       !currentStudentTask.taskState.viewed &&
-      this.state.descriptionModalOpen === false &&
-      prevState.descriptionModalOpen === false
+      !this.state.descriptionModalOpen
     ) {
       this.setState({ descriptionModalOpen: true });
+
+      Swal.fire({
+        position: "top-start",
+        type: "info",
+        title: this.state.activeTask.description,
+        onClose: () => {
+          this.setState({ descriptionModalOpen: false });
+        }
+      });
+
       Meteor.call(
         "solutionHandler.viewTask",
         this.props.student._id,
@@ -325,19 +335,6 @@ export default class Workspace extends React.Component {
         {task.hint ? <p style={{ fontWeight: "bold" }}>{task.hint}</p> : null}
       </Segment>
     );
-  }
-
-  renderDescriptionModal() {
-    return this.state.activeTask ? (
-      <Modal
-        open={this.state.descriptionModalOpen}
-        onClose={() => {
-          this.setState({ descriptionModalOpen: false });
-        }}
-      >
-        {this.state.activeTask.description}
-      </Modal>
-    ) : null;
   }
 
   renderWorkspaceGrid() {
