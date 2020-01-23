@@ -1,7 +1,11 @@
+* {
+  max-height: 100vh;
+}
+
 html,
 body,
 body > div {
-  //height: 100vh;
+  height: 100vh;
   margin: 0;
   font-size: 85%;
   font-family: "Ubuntu", Helvetica, sans-serif;

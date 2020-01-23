@@ -77,7 +77,7 @@ export default class schoolFloor extends React.Component {
 
   render() {
     return (
-      <div>
+      <React.Fragment>
         <svg
           id="Ebene_0"
           version="1.1"
@@ -11856,7 +11856,7 @@ export default class schoolFloor extends React.Component {
             </text>
           </g>
         </svg>
-      </div>
+      </React.Fragment>
     );
   }
 }

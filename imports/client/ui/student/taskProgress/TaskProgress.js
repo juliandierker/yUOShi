@@ -196,7 +196,7 @@ class TaskProgress extends Component {
       );
     let cnt = 0;
     return (
-      <div>
+      <React.Fragment>
         <Step.Content>
           <div
             style={{
@@ -231,7 +231,7 @@ class TaskProgress extends Component {
             })}
           </Step.Description>
         </Step.Content>
-      </div>
+      </React.Fragment>
     );
   }
 
@@ -260,7 +260,7 @@ class TaskProgress extends Component {
 
   render() {
     return (
-      <div>
+      <React.Fragment>
         <Responsive {...Responsive.onlyMobile}>
           <Modal
             closeOnDocumentClick={true}
@@ -280,7 +280,7 @@ class TaskProgress extends Component {
         <Responsive {...Responsive.onlyComputer}>
           {this.renderStepper()}
         </Responsive>
-      </div>
+      </React.Fragment>
     );
   }
 }

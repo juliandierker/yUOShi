@@ -230,7 +230,7 @@ export default class TrainingAnimationTemplate extends React.Component {
       );
 
       return (
-        <div>
+        <React.Fragment>
           <Modal
             id="introModal"
             className="scrolling"
@@ -270,7 +270,7 @@ export default class TrainingAnimationTemplate extends React.Component {
 
             <Modal.Actions id="ModalActions">{this.renderBtns()}</Modal.Actions>
           </Modal>
-        </div>
+        </React.Fragment>
       );
     } else {
       return <div />;

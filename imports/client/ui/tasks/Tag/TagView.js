@@ -154,10 +154,10 @@ export default class TagView extends React.Component {
 
   render() {
     return (
-      <div>
+      <React.Fragment>
         {this.renderText()}
         {this.renderVideo()}
-      </div>
+      </React.Fragment>
     );
   }
 }

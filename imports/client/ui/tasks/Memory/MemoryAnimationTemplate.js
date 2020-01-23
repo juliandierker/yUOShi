@@ -37,7 +37,7 @@ export default class MemoryAnimationTemplate extends React.Component {
     );
   }
   render() {
-    return <div>{this.renderView()}</div>;
+    return <React.Fragment>{this.renderView()}</React.Fragment>;
   }
 }
 

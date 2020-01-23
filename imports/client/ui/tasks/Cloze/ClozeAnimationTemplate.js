@@ -29,7 +29,7 @@ export default class ClozeAnimationTemplate extends Component {
   }
 
   render() {
-    return <div>{this.renderView()}</div>;
+    return <React.Fragment>{this.renderView()}</React.Fragment>;
   }
 }
 

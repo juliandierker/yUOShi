@@ -239,7 +239,7 @@ export default class StudentOverview extends React.Component {
 
   render() {
     return (
-      <div>
+      <React.Fragment>
         <StudentTopMenu
           history={this.props.history}
           courses={this.state.courses}
@@ -250,7 +250,7 @@ export default class StudentOverview extends React.Component {
           courses={this.state.courses}
           student={this.state.student}
         /> */}
-      </div>
+      </React.Fragment>
     );
   }
 }

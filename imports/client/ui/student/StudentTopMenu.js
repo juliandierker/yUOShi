@@ -78,7 +78,7 @@ class NavBar extends Component {
     const { visible } = this.state;
 
     return (
-      <div>
+      <React.Fragment>
         <Responsive {...Responsive.onlyMobile}>
           <NavBarMobile
             leftItems={leftItems}
@@ -93,7 +93,7 @@ class NavBar extends Component {
           <NavBarDesktop leftItems={leftItems} />
           <NavBarChildren>{children}</NavBarChildren>
         </Responsive>
-      </div>
+      </React.Fragment>
     );
   }
 }

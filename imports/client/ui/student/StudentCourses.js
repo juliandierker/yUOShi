@@ -40,7 +40,7 @@ export default class StudentCourses extends React.Component {
             <Card.Description />
           </Card.Content>
           <Card.Content extra>
-            <div>
+            <React.Fragment>
               {course.started ? (
                 <Button onClick={() => this.handleCourseClick(course)} animated>
                   <Button.Content visible>{"Weiterspielen"}</Button.Content>
@@ -61,14 +61,16 @@ export default class StudentCourses extends React.Component {
                   </Button.Content>
                 </Button>
               )}
-            </div>
+            </React.Fragment>
           </Card.Content>
         </Card>
       );
   }
 
   render() {
-    return <div>{this.renderCourses(this.props.courses)}</div>;
+    return (
+      <React.Fragment>{this.renderCourses(this.props.courses)}</React.Fragment>
+    );
   }
 }
 

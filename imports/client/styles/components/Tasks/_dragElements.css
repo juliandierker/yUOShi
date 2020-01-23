@@ -174,7 +174,7 @@ input:last-child {
 }
 
 .card-scene {
-  /* background-color: #fff; */
+  max-height: 80rem;
 }
 
 .card-container {

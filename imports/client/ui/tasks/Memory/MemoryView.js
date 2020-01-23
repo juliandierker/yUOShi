@@ -211,7 +211,7 @@ export default class MemoryView extends React.Component {
     const buttonColor = this.state.finished ? "green" : "grey";
 
     return (
-      <div>
+      <React.Fragment>
         <div className="playground">
           {this.state.finalizedFrameworks.map((framework, index) => {
             return (
@@ -242,7 +242,7 @@ export default class MemoryView extends React.Component {
         >
           Aufgabe lösen
         </Button>
-      </div>
+      </React.Fragment>
     );
   }
 }

@@ -330,7 +330,7 @@ export default class DragAnimationTemplate extends React.Component {
     let buttonText = this.state.showSolution ? "Weiter" : "Aufgabe lösen";
 
     return (
-      <div>
+      <React.Fragment>
         <div
           style={{ overflowY: "auto" }}
           className="dragAnimation__"
@@ -348,7 +348,7 @@ export default class DragAnimationTemplate extends React.Component {
         </div>
         {this.renderLearnCardBtn()}
         {this.renderSolBtn(buttonText)}
-      </div>
+      </React.Fragment>
     );
   }
 }
