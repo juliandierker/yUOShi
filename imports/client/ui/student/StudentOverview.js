@@ -209,6 +209,7 @@ export default class StudentOverview extends React.Component {
             )}
           />
           <Route
+            // TODO: Is that even used?
             path="/student/studentoverview"
             render={props => (
               <StudentCourses
@@ -246,10 +247,6 @@ export default class StudentOverview extends React.Component {
           student={this.state.student}
         />
         {this.renderRoutes()}
-        {/* <StudentCourses
-          courses={this.state.courses}
-          student={this.state.student}
-        /> */}
       </React.Fragment>
     );
   }

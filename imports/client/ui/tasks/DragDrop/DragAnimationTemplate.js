@@ -345,9 +345,9 @@ export default class DragAnimationTemplate extends React.Component {
             scale={null}
             key={"draganimationcomponentMotive" + this.state.childKeyIteration}
           />{" "}
+          {this.renderLearnCardBtn()}
+          {this.renderSolBtn(buttonText)}
         </div>
-        {this.renderLearnCardBtn()}
-        {this.renderSolBtn(buttonText)}
       </React.Fragment>
     );
   }

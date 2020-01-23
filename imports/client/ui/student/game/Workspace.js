@@ -348,15 +348,7 @@ export default class Workspace extends React.Component {
     }
   }
   render() {
-    return (
-      <div
-        style={{
-          justfyContent: "center"
-        }}
-      >
-        {this.renderWorkspaceGrid()}
-      </div>
-    );
+    return <div id="workspace_div">{this.renderWorkspaceGrid()}</div>;
   }
 }
 

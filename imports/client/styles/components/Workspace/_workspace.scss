@@ -3,8 +3,19 @@
   margin: 0 auto;
   margin-top: 0rem;
 }
+
+#workspace_div {
+  justify-content: "center";
+  height: 100%;
+}
+
 #workspaceGrid {
   justify-content: center;
+  height: 100%;
+}
+
+#workspaceGridMobile {
+  height: 90%;
 }
 
 #defTextReader {
@@ -131,7 +142,7 @@
     width: 60%;
     width: 100%;
     margin-top: 3rem;
-    height: 100vh;
+    height: 100%;
   }
   #workspaceDescription {
     margin-top: 4rem;
@@ -197,7 +208,7 @@
   .workspace__container {
     width: 100%;
     margin-top: 0rem;
-    height: 100vh;
+    height: 100%;
   }
   #NavigationButtonContainer {
     margin-top: 0.5rem;
