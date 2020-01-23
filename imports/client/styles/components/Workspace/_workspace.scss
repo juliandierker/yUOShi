@@ -1,13 +1,7 @@
-#gameOverView {
-  margin-top: 4rem;
-}
-#Ebene_1 {
-  margin-top: 4rem;
-}
 .workspace__container {
   height: 85vh;
   margin: 0 auto;
-  margin-top: 66px;
+  margin-top: 0rem;
 }
 #workspaceGrid {
   justify-content: center;
@@ -121,18 +115,10 @@
   #Ebene_0 {
     transform: scale(1, 1);
     transition: 1s;
-
-    &:hover {
-      // transform: scale(1.5, 1.5);
-    }
   }
   #Ebene_1 {
     transform: scale(1, 1);
     transition: 1s;
-
-    &:hover {
-      // transform: scale(1.5, 1.5);
-    }
   }
 }
 
@@ -186,18 +172,10 @@
   #Ebene_0 {
     transform: scale(1, 1);
     transition: 1s;
-
-    &:hover {
-      // transform: scale(1.5, 1.5);
-    }
   }
   #Ebene_1 {
     transform: scale(1, 1);
     transition: 1s;
-
-    &:hover {
-      // transform: scale(1.5, 1.5);
-    }
   }
   #countdown-svg {
     margin-top: 18rem;
@@ -218,7 +196,7 @@
 @media screen and (min-width: 1025px) {
   .workspace__container {
     width: 100%;
-    margin-top: 60px;
+    margin-top: 0rem;
     height: 100vh;
   }
   #NavigationButtonContainer {
@@ -226,19 +204,15 @@
     width: 40% !important;
     margin: 0 auto;
   }
-  #prevButton {
-  }
-
-  #nextButton {
-  }
 
   #workspaceStepper {
     margin-top: 60px;
   }
   #workspaceDescription {
-    width: 10%;
+    width: 14rem;
     margin-top: 60px;
     margin-left: 5%;
+
     max-height: 700px;
     position: fixed;
   }
@@ -252,10 +226,8 @@
   }
   #renderNavigationButtons {
     position: absolute;
-    bottom: 15px;
+    bottom: 0px;
     text-align: center;
-  }
-  #prevTaskBtn {
   }
   #solveTask {
     margin-top: 10px;
@@ -267,9 +239,5 @@
   #Ebene_1 {
     transform: scale(1, 1);
     transition: 1s;
-
-    &:hover {
-      // transform: scale(1.5, 1.5);
-    }
   }
 }
