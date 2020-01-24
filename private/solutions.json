@@ -16,15 +16,19 @@
     "Rückmeldung",
     "Komplexität der Aufgabe"
   ],
-  "Maslow_Theorie": ["Maslows Bedürfnispyramide", "Mangelbedürfnisse"],
+  "Maslow_Theorie": [
+    "Maslows Bedürfnispyramide",
+    "Mangelbedürfnisse",
+    "Daseinsbedürnisse"
+  ],
 
   "Motivation_IntrExtr": [
     "intrinsische Motivation",
-    "Extrinsische Motivation",
+    "extrinsische Motivation",
     "Korrumpierungseffekt"
   ],
   "Selbstbestimmungs_Theorie": [
-    "Selbstbestimmungstheorie nach Deci und Ryan",
+    "Selbstbestimmungstheorie",
     "Autonomie",
     "sozialer Eingebundenheit",
     "Kompetenzerlebens"
