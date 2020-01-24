@@ -403,7 +403,7 @@ export default class StudentTopMenu extends React.Component {
               onClick={this.handleMenuItemClick}
             />
             <Menu.Item
-              name="Mein Büro"
+              content="Mein Büro"
               style={{
                 color: "white"
               }}
