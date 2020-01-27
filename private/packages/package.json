@@ -2,6 +2,7 @@
   "packages": [
     {
       "name": "Motivation",
+      "marker": "motivation_marker",
       "description": "Hier lernt ihr etwas über Motivation",
       "content": [
         {
@@ -32,6 +33,7 @@
     },
     {
       "name": "Identität",
+      "marker": "identity_marker",
       "sequenceId": 0,
       "description": "Hier lernt ihr etwas über Identität",
       "content": [

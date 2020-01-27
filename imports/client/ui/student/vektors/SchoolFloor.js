@@ -19,6 +19,12 @@ export default class schoolFloor extends React.Component {
     class_elem.addEventListener("click", function() {
       that.props.history.push("/student/classroom");
     });
+    teacher_elem.addEventListener("click", function() {
+      that.props.history.push("/student/teacherRoom");
+    });
+    office_elem.addEventListener("click", function() {
+      that.props.history.push("/student/office");
+    });
   }
 
   handleClassroomClick(id) {

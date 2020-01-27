@@ -177,11 +177,12 @@ export default class StudentTopMenu extends React.Component {
     }
   }
   handleMenuItemClick = (e, { name }) => {
+    console.log(name);
     this.updateMenuButton();
     this.setState({ visible: !this.state.visible });
-    this.props.history.push("/student/classroom");
 
     if (name === "Klassenzimmer") {
+      console.log("tetet");
       var id = "classroom";
       if (document.getElementsByClassName("classroomMarker").length > 0) {
         var markers = document.getElementsByClassName(id + "Marker");
@@ -195,17 +196,20 @@ export default class StudentTopMenu extends React.Component {
 
         text.style.visibility = "visible";
         box.style.visibility = "visible";
+        console.log(this);
         var that = this;
-        setTimeout(function() {
-          that.props.history.push("/student/classroom");
-        }, 1500);
       }
+      this.props.history.push("/student/classroom");
     }
     if (name === "Lehrendenzimmer") {
       this.props.history.push("/student/teacherRoom");
     }
     if (name === "Mein Büro") {
       this.props.history.push("/student/office");
+    }
+    if (name === "Schulübersicht") {
+      console.log("HERER");
+      this.props.history.push("/student/game");
     }
   };
   getCredits() {
@@ -383,6 +387,15 @@ export default class StudentTopMenu extends React.Component {
               height: "5%"
             }}
           >
+            <Menu.Item
+              id="classMenuItem"
+              style={{
+                color: "white"
+              }}
+              name="Schulübersicht"
+              active={activeItem === "schoolview"}
+              onClick={this.handleMenuItemClick}
+            />
             <Menu.Item
               id="classMenuItem"
               style={{

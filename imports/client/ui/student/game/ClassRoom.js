@@ -30,6 +30,9 @@ export default class ClassRoom extends React.Component {
     const motivation_elem = document.getElementById("motivation_marker");
     const teacher_elem = document.getElementById("Marker_Lehrerzimmer");
     const office_elem = document.getElementById("Marker_Büro");
+    const marker_elems = document.getElementsByClassName("marker_elem");
+    console.log(marker_elems);
+    for (var i = 0; i < marker_elems.length; i++) {}
     var that = this;
     let student = that.props.student;
     motivation_elem.addEventListener("click", function() {
@@ -3252,7 +3255,7 @@ export default class ClassRoom extends React.Component {
           />
           <path className="st141" d="M1086.8,689.6c1.2-0.9,4.2-1.6,6.7-1.5" />
         </g>
-        <g id="motivation_marker">
+        <g id="motivation_marker" className="marker_elem">
           <path
             className="st142"
             d="M1058.1,779H967c-3.1,0-5.7-2.6-5.7-5.7v-36.5c0-3.1,2.6-5.7,5.7-5.7h91.1c3.1,0,5.7,2.6,5.7,5.7v36.5
@@ -3261,6 +3264,7 @@ export default class ClassRoom extends React.Component {
           <text
             transform="matrix(1 0 0 1 984.7275 766.9551)"
             className="st90 st143"
+            id="motivation_text"
           >
             Motivation
           </text>
@@ -3288,13 +3292,16 @@ export default class ClassRoom extends React.Component {
             />
           </g>
         </g>
-        <g>
+        <g id="intelligence_marker" className="marker_elem">
           <path
             className="st142"
             d="M871.7,396.3h-89.9c-3.5,0-6.3-2.8-6.3-6.3v-45.8c0-3.5,2.8-6.3,6.3-6.3h89.9c3.5,0,6.3,2.8,6.3,6.3V390
   		C878,393.4,875.2,396.3,871.7,396.3z"
           />
-          <text transform="matrix(1 0 0 1 800.3345 374.4199)">
+          <text
+            transform="matrix(1 0 0 1 800.3345 374.4199)"
+            id="intelligence_text"
+          >
             <tspan x={0} y={0} className="st90 st143">
               Intelligenz
             </tspan>
@@ -3320,7 +3327,7 @@ export default class ClassRoom extends React.Component {
             <circle className="st8" cx="826.1" cy="301.2" r="16.5" />
           </g>
         </g>
-        <g>
+        <g id="learn_marker" className="marker_elem">
           <path
             className="st142"
             d="M1373.8,469.2h-91.1c-3.1,0-5.7-2.6-5.7-5.7v-36.5c0-3.1,2.6-5.7,5.7-5.7h91.1c3.1,0,5.7,2.6,5.7,5.7v36.5
@@ -3329,6 +3336,7 @@ export default class ClassRoom extends React.Component {
           <text
             transform="matrix(1 0 0 1 1311.7021 457.1616)"
             className="st90 st143"
+            id="lernen_text"
           >
             Lernen
           </text>
@@ -3350,7 +3358,7 @@ export default class ClassRoom extends React.Component {
             <circle className="st8" cx="1327.5" cy="384.6" r="16.5" />
           </g>
         </g>
-        <g>
+        <g id="identity_marker" className="marker_elem">
           <path
             className="st142"
             d="M1036.6,234.6h-91.1c-3.1,0-5.7-2.6-5.7-5.7v-36.5c0-3.1,2.6-5.7,5.7-5.7h91.1c3.1,0,5.7,2.6,5.7,5.7v36.5
@@ -3359,6 +3367,7 @@ export default class ClassRoom extends React.Component {
           <text
             transform="matrix(1 0 0 1 969.8809 222.5908)"
             className="st90 st143"
+            id="identity_text"
           >
             Identität
           </text>
@@ -3534,7 +3543,7 @@ export default class ClassRoom extends React.Component {
           d="M1055.7,516.3h-90c-3.4,0-6.2-2.8-6.2-6.2v-45.2c0-3.4,2.8-6.2,6.2-6.2h90c3.4,0,6.2,2.8,6.2,6.2V510
   	C1061.9,513.5,1059.1,516.3,1055.7,516.3z"
         />
-        <text transform="matrix(1 0 0 1 993.707 494.0483)">
+        <text transform="matrix(1 0 0 1 993.707 494.0483)" id="social_text">
           <tspan x={0} y={0} className="st90 st143">
             Soziale
           </tspan>
@@ -3542,7 +3551,7 @@ export default class ClassRoom extends React.Component {
             Wahrnehmung
           </tspan>
         </text>
-        <g>
+        <g id="social_marker" className="marker_elem">
           <path
             className="st144"
             d="M1034.4,421.1c0,13.7-24.8,48.5-24.8,48.5s-24.9-34.8-24.9-48.5c0-13.7,11.1-24.8,24.8-24.8
