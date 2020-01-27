@@ -11,7 +11,7 @@
       "image": "Teacher.png",
       "content": [
         {
-          "intro": "Du bist gut in das Schuljahr gestartet und persönlich äußerst motiviert. Insgesamt hast du auch ein gutes Gefühl und eine nette Klasse. Du hast das Gefühl, zu den meisten Schüler*innen ein gutes Verhältnis aufbauen zu können. Im Laufe des Schuljahrs bemerkst du aber bei einigen Schüler*innen Veränderungen im Verhalten, die du selbstverständlich protokollierst. Sie wirken insgesamt unmotivierter und strengen sich weniger an als vorher. Folgende Schüler*innen fallen dir dabei besonders auf",
+          "intro": "Du bist gut in das Schuljahr gestartet und äußerst motiviert. Insgesamt hast du auch ein gutes Gefühl und eine nette Klasse. Zu den meisten Schüler*innen kannst du ein sehr gutes Verhältnis aufbauen. Im Laufe des Schuljahrs bemerkst du aber bei einigen Schüler*innen Veränderungen im Verhalten, die du selbstverständlich protokollierst. Sie wirken insgesamt unmotivierter und strengen sich weniger an als vorher. Folgende Schüler*innen fallen dir dabei besonders auf...",
           "outro": "Bevor du den Schüler*innen helfen kannst, kannst du dich genauer mit dem Thema Motivation befassen.",
           "quests": [
             {
@@ -19,13 +19,13 @@
 
               "questId": 1,
               "questName": "Magda",
-              "Magda": "Magda ist normalerweise sehr engagiert und begeisterungsfähig. In der Klasse übernimmt sie gerne freiwillig Aufgaben. Allerdings hat sie sich nicht gemeldet als es um die Position der Klassensprecherin ging, was dich sehr wundert. Im letzten Schuljahr hat sie das so gut gemacht und dieses Jahr würdest du die Klassensprecherinnen auch besser unterstützen und entlohnen können. Was ist los mit ihr, warum will sie nicht?",
+              "Magda": "Magda ist normalerweise sehr engagiert und begeisterungsfähig. In der Klasse übernimmt sie gerne freiwillig Aufgaben und war im letzten Jahr eine super Klassensprecherin. Allerdings hat sie sich bei der Klassensprecherwahl in diesem Jahr nicht einmal mehr nominieren lassen, was dich sehr wundert. Im letzten Schuljahr hat sie das so gut gemacht und dieses Jahr würdest du sie auch besser unterstützen und sogar entlohnen können.",
               "image": "Magda.png",
               "prePhrase": "Magda freut sich über dein Interesse und das Gespräch mit dir. Sie scheint selbst gar nicht recht zu wissen, warum sie sich dieses Jahr nicht freiwillig gemeldet hat und verspricht, sich nächstes Jahr wieder mehr zu engagieren.",
 
               "Question": "Warum konnte Magda sich nicht dazu motivieren, sich für das Amt als Klassensprecherin zu melden? Welcher Grund ist deiner Meinung nach und mit Blick auf dein Wissen über Motivation der wahrscheinlichste?",
               "AnswerSet": [
-                "dadurch, dass du einen neuen Anreiz geschaffen hast ( Entlohnung für das Amt), ist ein Korrumpierungseffekt aufgetreten, indem Magdas intrinsische Motivation von dem externen Anreiz überlagert wurde",
+                "Dadurch, dass du einen neuen Anreiz geschaffen hast (Entlohnung für das Amt), ist ein Korrumpierungseffekt aufgetreten, indem Magdas intrinsische Motivation von dem externen Anreiz überlagert wurde",
                 "Durch die Unterstützung, die du außerdem angeboten hast, fühlte sich Magda in ihrem Autonomieerleben eingeschränkt und war deswegen weniger intrinsisch motiviert",
                 "Durch ihr Amt hat Magda sich ihren Klassenkameraden überlegen gefühlt, sodass ihr Bedürfnis nach sozialer Eingebundenheit nicht erfüllt war, dies wollte sie nun ändern",
                 "Magda hat nicht genügend Aufmerksamkeit für ihre Tätigkeit bekommen und war daher unmotiviert; durch dein Interesse kann sie aber wieder motiviert werden",
@@ -36,17 +36,17 @@
             {
               "questId": 2,
               "filePrefix": "Multi",
-              "questName": "Otto",
-              "Otto": "Otto ist in der Klasse immer schon aufgefallen. Nur mit Mühe schafft er die Klassenarbeiten und auch sonst bringt er sich nicht im Unterricht ein. Bei ihm wird es deshalb dieses Schuljahr noch einmal sehr eng. Bei einem Gespräch zwischen ihm und seinen Mitschülern, das du zufällig mitgehört hast, hast du ihn sagen hören, dass er eh davon ausgeht, das Schuljahr nicht zu schaffen. Warum also noch anstrengen? Wie kannst du Otto helfen?",
+              "questName": "Gerrit",
+              "Gerrit": "Gerrit ist in der Klasse immer schon aufgrund seines Leistungsniveaus aufgefallen. Nur mit Mühe schafft er die Klassenarbeiten und auch sonst bringt er sich nicht im Unterricht ein. Bei ihm wird es deshalb dieses Schuljahr noch einmal sehr eng. Bei einem Gespräch zwischen ihm und seinen Mitschüler*innen, das du zufällig mitgehört hast, hast du ihn sagen hören, dass er eh davon ausgeht, das Schuljahr nicht zu schaffen. Warum also noch anstrengen? ",
               "image": "Otto.png",
-              "prePhrase": "Als du Otto zum Gespräch bittest, zeigt er sich zunächst unbeeindruckt und cool. Er nimmt eine Null-Bock- Haltung ein und versucht zu demonstrieren, dass ihn das Sitzenbleiben nicht interessiert. Schnell merkst du jedoch, dass diese Einstellung bloß Fassade ist und Otto in Wirklichkeit sehr getroffen davon scheint. Im weiteren Verlauf des Gesprächs gesteht er dir, dass er selbst gar nicht genau weiß, wieso er so schlechte Leistungen erbringt. Dir fällt auf, dass Otto Probleme damit hat, an seine eigenen Fähigkeiten zu glauben und seine Kompetenzen einzusetzen.",
-              "Question": "Weshalb hat Otto keine Motivation, seine Leistungen abzurufen und die Versetzung zu schaffen? Welcher Grund ist deiner Meinung nach und mit Blick auf dein Wissen über Motivation der wahrscheinlichste?",
+              "prePhrase": "Als du Gerrit zum Gespräch bittest, zeigt er sich zunächst unbeeindruckt und cool. Er nimmt eine Null-Bock- Haltung ein und versucht zu demonstrieren, dass ihn das Sitzenbleiben nicht interessiert. Schnell merkst du jedoch, dass diese Einstellung bloß Fassade ist und Gerrit in Wirklichkeit sehr getroffen davon scheint. Im weiteren Verlauf des Gesprächs gesteht er dir, dass er selbst gar nicht genau weiß, wieso er so schlechte Leistungen erbringt. Dir fällt auf, dass Gerrit Probleme damit hat, an seine eigenen Fähigkeiten zu glauben und seine Kompetenzen einzusetzen.",
+              "Question": "Weshalb hat Gerrit keine Motivation, seine Leistungen abzurufen und die Versetzung zu schaffen? Welcher Grund ist deiner Meinung nach und mit Blick auf dein Wissen über Motivation der wahrscheinlichste?",
               "AnswerSet": [
-                "Im Gegensatz zu seinem Kompetenzerleben ist Ottos Bedürfnis nach Autonomie sehr hoch. Er möchte möglichst alles alleine bewältigen und selbst wenn er nicht weiterkommt, möchte er nicht nach Hilfe fragen. Obwohl er keinen genauen Plan für sein Ziel hat, kann er keine Hilfe annehmen.",
-                "Ottos Oma hat ihm in den letzten Jahren für jede Versetzung eine kleine Belohnung versprochen. Auch wenn Otto Probleme im Unterricht hatte, hat er die letzten Jahre trotzdem genügend Motivation aufbringen können, in die nächste Klasse zu gelangen. Nun ist Ottos Oma leider verstorben und Otto hat keinen Antrieb mehr, die Versetzung zu schaffen.",
-                "Otto glaubt selbst nicht mehr daran, dass er mit seinen Leistungen die Versetzung schaffen kann. Obwohl ihm die Versetzung sehr wichtig ist, damit er in seinem Klassenverband bleiben kann und später eine gute Ausbildung bekommt, geht der Erwartungswert, sein Ziel zu erreichen, gegen Null. Dies beeinflusst seine Motivation negativ.",
-                "Otto hat ein niedriges Bedürfnis des Kompetenzerlebens. Er hat keinen Anspruch danach, sich selbst als „wirksam“ wahrzunehmen und Aufgaben selbstständig zu bewältigen, bzw. die nötigen Fähigkeiten dafür zu erwerben. Deswegen ist er nicht motiviert die Versetzung zu schaffen.",
-                "Ottos aufgabenspezifisches Selbstvertrauen ist nicht sehr hoch. Er traut sich auch die leichtesten Aufgaben nicht zu und anstatt es zu versuchen, scheut er dann davor zurück. Aus diesem Grund fühlt er sich nicht zu seinem Ziel, die Versetzung zu schaffen, hingezogen und seine Motivation sinkt."
+                "Gerrits Bedürfnis nach Autonomie ist sehr hoch. Er möchte möglichst alles alleine bewältigen nicht nach Hilfe fragen. Obwohl er keinen genauen Plan für sein Ziel hat, kann er keine Hilfe annehmen.",
+                "Gerrits Oma hat ihm in den letzten Jahren für jede Versetzung eine kleine Belohnung versprochen, was ihn motiviert hat. Nun ist Gerrits Oma leider verstorben und Gerrit hat keinen extrinsischen Antrieb mehr, die Versetzung zu schaffen.",
+                "Gerrit glaubt selbst nicht daran, dass er mit seinen Leistungen die Versetzung schaffen kann. Sein Erwartungswert, das Ziel zu erreichen, geht gegen Null, demzufolge auch seine Motivation.",
+                "Gerrit hat ein niedriges Bedürfnis des Kompetenzerlebens. Er hat keinen Anspruch danach, Aufgaben selbstständig zu bewältigen. Deswegen ist er nicht motiviert die Versetzung zu schaffen.",
+                "Gerrits aufgabenspezifisches Selbstvertrauen ist nicht sehr hoch. Er traut sich auch die leichtesten Aufgaben nicht zu. Aus diesem Grund fühlt er sich nicht zu seinem Ziel, die Versetzung zu schaffen, hingezogen und seine Motivation sinkt."
               ],
               "multi": true
             },
@@ -54,15 +54,15 @@
               "questId": 3,
               "filePrefix": "Multi",
               "questName": "Yennefer",
-              "Yennefer": "Yennefer möchte an einem Austauschprogramm teilnehmen, obwohl sie sehr große Schwierigkeiten mit der Fremdsprache hat. Schon oft hast du mit ihr darüber gesprochen und vor jedem Test nimmt sie sich vor, mehr zu lernen. Trotzdem hat es auch beim letzten Test wieder nicht gereicht. In allen anderen Fächern sieht es gut aus und du willst ihr helfen, damit sie den Aufnahmetest für den Austausch in einigen Wochen schafft. Was kannst du tun?",
+              "Yennefer": "Yennefer möchte an einem Austauschprogramm teilnehmen, obwohl sie sehr große Schwierigkeiten mit der Fremdsprache hat. Schon oft hast du mit ihr darüber gesprochen und vor jedem Test nimmt sie sich vor, mehr zu lernen. Trotzdem hat es auch beim letzten Test wieder nicht gereicht. In allen anderen Fächern sieht es gut aus und du willst ihr helfen, damit sie den Aufnahmetest für den Austausch in einigen Wochen schafft.",
               "image": "Yennefer.png",
               "prePhrase": "Yennefer ist sehr froh darüber, dass du sie zum Gespräch bittest. Direkt zu Anfang sagt sie dir, dass sie keine Ahnung hat, wieso sie trotz des Lernens für das Fach immer so schlecht abschneidet. Du merkst, dass ihr die Note und vor allem das Austauschprogramm sehr am Herzen liegt und versprichst ihr, gemeinsam an einer Lösung zu arbeiten.",
               "Question": "Wieso werden Yennefers Noten in der Fremdsprache trotz offensichtlichem Lernaufwand nicht besser? Welcher Grund ist deiner Meinung nach und mit Blick auf dein Wissen über Motivation der wahrscheinlichste?",
               "AnswerSet": [
                 "Yennefers Motivation wird sehr durch den externen Anreiz des Austauschprogramms gesteuert. Dadurch entsteht ein Korrumpierungseffekt, der ihre intrinsische Motivation hemmt.",
-                "Yennefers subjektive Erwartungen für ihren Erfolg in der Fremdsprache ist sehr gering, deswegen geht sie davon aus, es nicht zu schaffen: Ihre Motivation als Produkt aus Erwartung und Wert gen Null.",
-                "Yennefer fühlt sich in ihrer Fremdsprachenklasse nicht wohl. Sie ist die einzige aus ihrem Freundeskreis, die diese Klasse besucht und jedes Mal wenn sie dort etwas sagt, hat sie ein ungutes Gefühl und nicht den Eindruck, dass man ihre Meinung dort schätzt. Ihre Motivation sinkt.",
-                "Von ihrer Fremdsprachenlehrerin bekommt Yennefer nach der Stunde und nach den Klausuren immer eine Rückmeldung zu ihren Leistungen. Leider kann sie diese nicht richtig umsetzen und somit bringen sie die Rückmeldungen nicht weiter. Yennefers Leistung wird nicht verstärkt.",
+                "Yennefers subjektive Erwartungen für ihren Erfolg in der Fremdsprache ist gering, deswegen geht sie davon aus, es nicht zu schaffen: Ihre Motivation als Produkt aus Erwartung und Wert geht gen Null.",
+                "Yennefer fühlt sich in ihrer Fremdsprachenklasse nicht wohl, weil sie keine Freunde hat. Ihre Motivation sinkt.",
+                "Yennefer hat sich ihr Ziel viel zu präzise gesteckt. Es wäre hilfreicher, ein generelles Ziel zu verfolgen, damit sie mehr Auswahlmöglichkeiten beibehält.",
                 "Yennefer nimmt sich oftmals zu allgemeine Ziele vor. Ihre Zielsetzung ist zu schwammig.  Dies führt dazu, dass Ziele mit geringerer Wahrscheinlichkeit erreicht werden und die Motivation auf Dauer sinkt."
               ],
               "multi": true
@@ -71,15 +71,15 @@
               "questId": 4,
               "filePrefix": "Multi",
               "questName": "Tino",
-              "Tino": "Tinos Familie ist vor kurzem erst hergezogen. Trotzdem konnte er sich schnell in die Klasse integrieren und ist vor allem in den kreativeren Fächern ein guter Schüler. Du hast vor einiger Zeit mit einem Ausbildungsbetrieb zusammen ein Kunstprojekt gestartet. Dabei geht es genau um die Themen, für die sich Tino sehr interessiert. Du hoffst, dass Tino sich dort ganz entfalten kann. Er hat sich auch gefreut und zu Anfang sehr gut mitgemacht. Nun hat sich der Ausbildungsbetrieb bei dir gemeldet und berichtet, dass Tino in letzter Zeit weniger aufgeschlossen ist und in sich gekehrt scheint. Woran kann das liegen?",
+              "Tino": "Tinos Familie ist vor kurzem erst hergezogen. Trotzdem konnte er sich schnell in die Klasse integrieren und ist vor allem in den kreativeren Fächern ein guter Schüler. Du hast vor einiger Zeit mit einem Ausbildungsbetrieb zusammen ein Kunstprojekt gestartet. Dabei geht es genau um die Themen, für die sich Tino sehr interessiert. Du hoffst, dass Tino sich dort ganz entfalten kann. Er hat sich auch gefreut und zu Anfang sehr gut mitgemacht. Nun hat sich der Ausbildungsbetrieb bei dir gemeldet und berichtet, dass Tino in letzter Zeit weniger aufgeschlossen ist und in sich gekehrt scheint. ",
               "image": "Tino.png",
-              "prePhrase": "Warum hatte Tino zuletzt Probleme, sich in dem Kunstprojekt  zu motivieren? Welcher Grund ist deiner Meinung nach und mit Blick auf dein Wissen über Motivation der wahrscheinlichste?",
-              "Question": "Warum konnte Magda sich nicht dazu motivieren, sich für das Amt als Klassensprecherin zu melden? Welcher Grund ist deiner Meinung nach und mit Blick auf dein Wissen über Motivation der wahrscheinlichste?",
+              "prePhrase": "Auch Tino bittest du zum Gespräch. Als du ihn fragst, wie es ihm geht, bricht er in Tränen aus und erzählt dir, dass seine Eltern sich scheiden lassen wollen.",
+              "Question": "Warum hatte Tino zuletzt Probleme, sich in dem Kunstprojekt  zu motivieren? Welcher Grund ist deiner Meinung nach und mit Blick auf dein Wissen über Motivation der wahrscheinlichste?",
               "AnswerSet": [
-                "Durch die Angst (mögliche Scheidung der Eltern /  möglicher Umzug) wurde Kreativität und Motivation gehemmt",
+                "Durch die Angst (mögliche Scheidung der Eltern/möglicher Umzug) wurde Kreativität und Motivation gehemmt",
                 "Durch die Angst vor der Scheidung seiner Eltern und den möglichen Umzug ist das Sicherheitsbedürfnis und evtl. das Sozialbedürfnis von Tino nicht erfüllt gewesen und somit konnte er auch keine Motivation aufbringen, sich in dem Kunstprojekt selbst zu „verwirklichen“",
                 "Das Kunstprojekt hat Tino nicht die Freiheit gegeben, sich künstlerisch auszuleben. Durch die starke Verschulung fühlt er sich in seiner Autonomie eingeschränkt und war deswegen weniger motiviert",
-                "Tino hat im Laufe des Projekts das Interesse verloren: Sein künstlerisches Interesse war nur situationsbedingt, weil ein Mädchen in dem gleichen Kurs, an dem er interessiert war und dann nicht mehr",
+                "Tino hat im Laufe des Projekts das Interesse verloren: Sein künstlerisches Interesse war nur situationsbedingt, vermutlich weil ein Mädchen, das er sehr mochte, in dem gleichen Kurs war un dann den Kurs gewechselt hat.",
                 "Tinos Mutter ist Kunsthistorikerin und dewegen wollte er sie mit dem Projekt beeindrucken. Der subjektive Wert, den er deswegen dem Projekt gegeben hat, war sehr hoch. Nachdem sich Tinos Eltern nur noch auf die mögliche Scheidung konzentrieren, ist für ihn die Wichtigkeit und der Nutzen für die Motivation gesunken"
               ],
               "multi": true
@@ -91,14 +91,14 @@
     {
       "parentId": "Motivation1",
       "title": "Was ist Motivation?",
-      "description": "Lies den Text und markiere die unten stehenden Schlüsselbegriffe, indem ihr sie im Text findet und anklickt.",
+      "description": "Lies den Text und markiere die unten stehenden Schlüsselbegriffe, indem du sie im Text findest und anklickst.",
       "taskId": "Motivation_Intro",
       "filePrefix": "Tag",
       "content": [
         {
           "title": "Motivation Begriffsklärung",
           "subtitle": "Definitionen und Abgrenzungen",
-          "text": "Der Begriff Motivation stammt ursprünglich von dem lateinischen Wort „movere“ ab, was übersetzt soviel bedeutet wie „bewegen“. Es existieren viele verschiedene Begriffserklärungen und Ansätze über Motivation.\n Je nach Bezugswissenschaft können unterschiedliche Betrachtungen herangezogen werden. Von Pädagogen wird Motivation als die „generelle Frage nach dem ‚Warum’ oder ‚Wozu’ des menschlichen Verhaltens“ beschrieben und  „als   eine   aktivierende   Ausrichtung   des momentanen Lebensvollzugs auf einen positiv bewerteten Zielzustand“. Eine weitere gängige Definition versteht Motivation als eine Art internen Zustand, welcher für die Aktivierung des menschlichen Verhaltens zuständig ist, die Richtung des Verhaltens festlegt und es aufrecht hält. \n\nHäufig kommt es vor, dass der Motivationsbegriff mit dem Motiv gleichgesetzt wird. Um dies zu differenzieren, bedarf es einer klaren Abgrenzung. Das Motiv beschreibt die Veranlagung einer Person, nach einem wertgeladenen Zielzustand zu streben, also kurzgesagt die überdauernde Handlungsbereitschaft eines Individuums. Dies kann zum Beispiel ein inneres Motiv nach Leistung, Macht oder Beziehungen sein. Dadurch kann das Motiv als Auslöser für stattfindende Motivationsprozesse fungieren. Zum Beispiel kannst du ein großes Leistungsmotiv haben und bist deswegen nicht mit schlechten Noten zufrieden. Demzufolge ist deine Motivation umso höher, fleißig für die nächste Klausur zu lernen. \n\n Eine weitere Abgrenzung muss zwischen den Begriffen Motivation und Bedürfnis stattfinden. Das Bedürfnis bezeichnet den Wunsch bzw. das Verlangen danach, einem Mangel entgegenzuwirken, egal ob dieser tatsächlich vorhanden oder eingebildet ist. Besteht ein Bedürfnis über längere Zeit, kann es mit dem Begriff des Motivs gleichgesetzt werden. Es beschreibt dann die überdauernde Neigung des Menschens, eine bestimmte Klasse von Zielen zu erreichen. \n \n Auch das Ziel sollte von Motivation abgegrenzt werden. Der Zielbegriff definiert ein Ergebnis oder einen Zustand, den sich ein Individuum zu erreichen vorgenommen hat. Hierbei ist die konkrete Zielsetzung ausschlaggebend dafür, dass ein Individuum die Diskrepanz zwischen dem IST-Zustand und dem SOLL-Zustand wahrnimmt und motiviert ist, diese zu verkleinern. Eine Zielsetzung hat die Funktion, die Aufmerksamkeit des Individuums auf eine Aufgabe zu lenken, Energie für die Bewältigung der Aufgabe zu liefern, die Ausdauer bis zur Erfüllung der Aufgabe zu erhalten und den Erwerb neuen Wissens zufördern. Dein Ziel kann zum Beispiel sein, Lehrer oder Lehrerin werden zu wollen. Deswegen richtest du deine Motivation und deine Energie dahin aus.\n\nEin weiteres Konzept, welches zur Motivationsforschung gehört, ist das Interesse. Interesse ist eine mehr oder weniger starke Wertschätzung eines Gegenstandes oder Bereichs, die in der Auseinandersetzung mit diesem zustande kommt. Dabei kann zwischen zwei Arten von Interesse unterschieden werden. Zum einen das individuelle, oder auch persönliche Interesse, welches einen überdauernden Aspekt der Persönlichkeit darstellt und sich z.B.in einer langfristigen Vorliebe für bestimmte Fächer oder Aktivitäten äußert. Zum anderen das situationsspezifische Interesse, welches sich eher kurzlebig präsentiert und z.B. die Begeisterung für ein bestimmtes Material im Unterricht darstellt. Dies kann zum Beispiel dieses Thema in der Aufgabe sein.",
+          "text": "Der Begriff Motivation stammt ursprünglich von dem lateinischen Wort „movere“ ab, was übersetzt soviel bedeutet wie „bewegen“. Es existieren viele verschiedene Begriffserklärungen und Ansätze über Motivation.\n Je nach Bezugswissenschaft können unterschiedliche Betrachtungen herangezogen werden: Von Pädagogen wird Motivation z.B. als die „generelle Frage nach dem ‚Warum’ oder ‚Wozu’ des menschlichen Verhaltens“ beschrieben und „als   eine   aktivierende   Ausrichtung   des momentanen Lebensvollzugs auf einen positiv bewerteten Zielzustand“. Eine weitere gängige Definition versteht Motivation als eine Art internen Zustand, welcher für die Aktivierung des menschlichen Verhaltens zuständig ist, die Richtung des Verhaltens festlegt und aufrecht hält. \n\n Häufig werden die Begriffe Motivation und Motiv gleichgesetzt. Tatsächlich lässt sich beides voneinander abgrenzen: Das Motiv beschreibt die Veranlagung einer Person, nach einem wertgeladenen Zielzustand zu streben, kurzgesagt die überdauernde Handlungsbereitschaft eines Individuums. Dies kann zum Beispiel ein inneres Motiv nach Leistung, Macht oder Beziehungen sein. Diese Motive können als Auslöser für stattfindende Motivationsprozesse fungieren. Zum Beispiel kannst du ein großes Leistungsmotiv haben und bist deswegen nicht mit schlechten Noten zufrieden. Demzufolge ist deine Motivation umso höher, fleißig für die nächste Klausur zu lernen. \n\n Ebenfalls voneinander abgegrenzt werden müssen die Begriffe Bedürfnis und Motivation: Das Bedürfnis bezeichnet den akuten / temporären Wunsch bzw. das Verlangen danach, einem Mangel entgegenzuwirken (egal ob dieser tatsächlich vorhanden oder eingebildet ist). Erst, wenn ein Bedürfnis über längere Zeit besteht, kann es mit dem Begriff des Motivs gleichgesetzt werden. Es beschreibt dann die überdauernde Neigung des Menschen, eine bestimmte Klasse von Zielen zu erreichen. \n \n Als nächstes zu unterscheiden, sind Ziel und Motivation. Der Begriff Ziel definiert ein Ergebnis oder einen Zustand, den sich ein Individuum zu erreichen vorgenommen hat. Hierbei ist die konkrete Zielsetzung ausschlaggebend dafür, dass ein Individuum die Diskrepanz zwischen dem IST-Zustand und dem SOLL-Zustand wahrnimmt und motiviert ist, diese zu verkleinern. Eine Zielsetzung hat die Funktion, die Aufmerksamkeit des Individuums auf eine Aufgabe zu lenken, Energie für die Bewältigung der Aufgabe zu liefern, die Ausdauer bis zur Erfüllung der Aufgabe zu erhalten und den Erwerb neuen Wissens zu fördern. Dein Ziel kann zum Beispiel sein, Lehrer oder Lehrerin werden zu wollen. Deswegen richtest du deine Motivation und deine Energie dahin aus.\n\n Ein weiteres Konzept, welches zur Motivationsforschung gehört, ist das Interesse. Interesse ist eine mehr oder weniger starke Wertschätzung eines Gegenstandes oder Bereichs, die in der Auseinandersetzung mit diesem zustande kommt. Dabei kann zwischen zwei Arten von Interesse unterschieden werden. Zum einen das individuelle, oder auch persönliche Interesse, welches einen überdauernden Aspekt der Persönlichkeit darstellt und sich z.B.in einer langfristigen Vorliebe für bestimmte Fächer oder Aktivitäten äußert. Zum anderen das situationsspezifische Interesse, welches sich eher kurzlebig präsentiert und z.B. die Begeisterung für ein bestimmtes Material im Unterricht darstellt. Dies kann zum Beispiel dieses Thema in der Aufgabe sein",
           "keywords": ["Motivation", "Motiv", "Bedürfnis", "Ziel", "Interesse"],
           "images": {
             "Motivation": "/Tag/Motivation0/Motivation.svg",
@@ -113,7 +113,7 @@
     {
       "parentId": "Motivation1",
       "title": "Begriffe der Motivation",
-      "description": "Ordne die Statements über Schüler*innen der intrinsischen oder extrinsischen Motivation zu. Welche Quelle der Motivation wird in der jeweiligen Aussage eher abgebildet? ",
+      "description": "Erstelle deine Lernkarten, indem du die wichtigsten Begriffe definierst und deine Notizen ergänzt.",
       "taskId": "Motivationsbegriffe",
       "filePrefix": "Drag",
       "multipleColumns": true,
@@ -162,7 +162,7 @@
         ],
         [
           "motiv",
-          "Anton ist nur zufrieden mit guten Noten, er möchte Leistung bringen/zeigen"
+          "Anton ist nur zufrieden mit guten Noten, er möchte Leistung zeigen."
         ],
         [
           "bedürfnis",
@@ -213,10 +213,10 @@
         {
           "title": "Motivation Begriffsklärung",
           "subtitle": "Definitionen und Abgrenzungen",
-          "text": "Die wohl bekannteste und auch klassischste Unterteilung in der Motivationsforschung ist die von intrinsischer und extrinsischer Motivation. Grundlegend geht es bei dieser handlungstheoretischen Unterscheidung darum, ob sich der angestrebte Zielzustand innerhalb oder außerhalb einer Handlung befindet. \n Die intrinsische Motivation kennzeichnet eine Tätigkeit, die dem Individuum Freude und Interessensbefriedigung bei der Ausübung bereitet, also  von innen herausmotiviert ist. Intrinsisch motiviert sein, bedeutet keine Belohnungen oder Anreize zu benötigen, da die Tätigkeit selbst als Belohnung fungiert. Wenn ein Kind zum Beispiel gerne malt, ohne, dass es dazu aufgefordert wird, passiert dies höchstwahrscheinlich aus einer intrinsischen Motivation heraus.   \n\n Extrinsische Motivation hingegen kennzeichnet eine Handlung, die durch das Outcome, das erwartete Ergebnis, motiviert ist. Die Handlung an sich ist somit Mittel zum Zweck und hat keine direkte Bedeutung für das Individuum. Vielmehr geht es zum Beispiel um Belohnungen, Anreize oder auch Bestrafungen, welche potentielle Konsequenzen dieser Handlungen darstellen. Ein Kind wird öfter malen, wenn es für jedes Bild von seiner Großmutter Bonbons bekommt. Dabei geht es ihm vor allem um die Bonbons und weniger um das eigentliche Malen. \n\n Generell schließen sich die beiden Quellen der Motivation aber nicht gegenseitig aus, denn oft ist die Handlung ein Zusammenspiel innerer und äußerer Motivation, wie z.B. beim Lernen. Ein/e Schüler*in beschäftigt sich mit einem Lerngegenstand, weil er/sie ein persönliches Interesse daran hat und gleichzeitig gute Noten anstrebt. \n\n Ein Effekt, der allerdings auftreten kann, ist der sogenannte „Korrumpierungseffekt“ oder „Undermining Effekt“. Hier wird eine ursprüngliche intrinsische Motivation durch das Zutun externer Anreize abgeschwächt. Das Kind, das eigentlich aus Eigeninteresse sehr gerne malt und plötzlich im Kindergarten für jedes gemalte Bild 5 Euro bekommt, wird von sich aus zuhause weniger malen. Die intrinsische Motivation wurde als von der extrinischen überlagert. \n\n Gelegentlich werden intrinsische und extrinsische Motivation als die zwei Enden einer Skala vermutet, sodass man entweder intrinsisch oder extrinsisch motiviert ist. Mittlerweile geht die Forschung aber eher davon aus, dass es sich um zwei getrennte Skalen handelt und man gleichzeitig hoch intrinsisch und hoch extrinsisch motiviert sein kann. ",
+          "text": "Die wohl bekannteste Unterteilung in der Motivationsforschung ist die in intrinsische und extrinsische Motivation. Grundlegend geht es bei dieser handlungstheoretischen Unterscheidung darum, ob sich der angestrebte Zielzustand innerhalb oder außerhalb einer Handlung befindet. \n Die intrinsische Motivation kennzeichnet eine Tätigkeit, die dem Individuum Freude und Interessensbefriedigung bei der Ausübung bereitet, also von innen kommt. Wer intrinsisch motiviert ist, benötigt keine Belohnungen oder Anreize, da die Tätigkeit selbst als Belohnung fungiert. Wenn ein Kind zum Beispiel gerne malt, ohne, dass es dazu aufgefordert wird, passiert dies höchstwahrscheinlich aus einer intrinsischen Motivation heraus.   \n\n Extrinsische Motivation hingegen kennzeichnet das Outcome einer Handlung, das erwartete Ergebnis. Die Handlung an sich ist somit Mittel zum Zweck und hat keine direkte Bedeutung für das Individuum. Vielmehr geht es zum Beispiel um Belohnungen und Anreize oder aber Bestrafungen, welche potentielle Konsequenzen dieser Handlungen darstellen. Ein Kind wird öfter malen, wenn es für jedes Bild von seiner Großmutter Bonbons bekommt. Dabei geht es ihm vor allem um die Bonbons und weniger um das eigentliche Malen. \n\n Generell schließen sich die beiden Quellen der Motivation aber nicht gegenseitig aus, denn oft ist das Handeln ein Zusammenspiel innerer und äußerer Motivation, z.B. beim Lernen. Ein/e Schüler*in beschäftigt sich mit einem Lerngegenstand, weil er/sie a) ein persönliches Interesse daran hat und b) gleichzeitig gute Noten anstrebt. \n\n Ein Effekt, der in diesem Fall allerdings auftreten kann, ist der sogenannte Korrumpierungseffekt. Er wird auch „Undermining effect“ genannt. Hier wird eine ursprüngliche intrinsische Motivation durch zwischenzeitliche externe Anreize abgeschwächt. Das Kind, das eigentlich aus Eigeninteresse sehr gerne malt und plötzlich im Kindergarten für jedes gemalte Bild 5 Euro bekommt, wird von sich aus zuhause weniger malen. Die intrinsische Motivation wurde also von der extrinsischen überlagert. \n\n Gelegentlich werden intrinsische und extrinsische Motivation als die zwei Enden einer Skala vermutet, sodass man entweder intrinsisch oder extrinsisch motiviert ist. Es ist aber eher davon auszugehen, dass es sich um zwei getrennte Skalen handelt und man gleichzeitig hoch intrinsisch und hoch extrinsisch motiviert sein kann.",
           "keywords": [
             "intrinsische Motivation",
-            "Extrinsische Motivation",
+            "extrinsische Motivation",
             "Korrumpierungseffekt"
           ],
           "images": {
@@ -268,32 +268,47 @@
       "orientation": ["horizontal", "vertical"],
       "nested": false,
       "statements": [
-        ["intr", "Die SuS arbeiten gerne mit, weil sie dadurch mehr lernen."],
-        ["extr", "Die Lehrkraft vergibt Sternchen für gute Mitarbeit"],
+        [
+          "intr",
+          "Mindy arbeitet in Bio gerne mit, weil sie Forscherin werden will."
+        ],
+        [
+          "extr",
+          "Die Lehrkraft vergibt Sternchen für gute mündliche Mitarbeit"
+        ],
         [
           "intr",
           "Gülcan hat Spaß an deutscher Geschichte, deswegen meldet sie sich oft."
         ],
-        ["extr", "Laura wird ermahnt, wenn sie im Unterricht nicht mitmacht."],
+        ["extr", "Leni macht im Unterrichtmit, weil sie sonst ermahnt wird."],
         [
           "intr",
           "Anastasia liest gerne Bücher und beschäftigt sich deshalb mit dem Thema für die Deutschklausur."
         ],
         [
           "extr",
-          "Mara bekommt von ihrer Oma 5 Euro, wenn sie in Deutsch eine gute Note schreibt."
+          "Vahid bekommt von seiner Oma 5 Euro, wenn er in Deutsch eine gute Note schreibt."
         ],
-        ["intr", "Tiffany ist traurig, wenn sie eine schlechte Note bekommt."],
+        [
+          "intr",
+          "Tiffany ist traurig, wenn sie nicht ihr Wunschthema bearbeiten darf."
+        ],
         [
           "extr",
-          "Richards Mutter ist enttäuscht, wenn er eine schlechte Note bekommt"
+          "Richards Mutter ist über schlechte Noten enttäuscht, weil er später die Praxis übernehmen soll."
         ],
-        ["intr", "Alexander ist eine ordentliche Mappenführung wichtig."],
+        [
+          "intr",
+          "Alexander ist eine ordentliche Mappenführung wichtig, weil er Struktur mag."
+        ],
         [
           "extr",
-          "Clara führt ihre Mappe ordentlich, um dadurch ein Sternchen zu bekommen."
+          "Clara führt ihre Mappe sauber, um dadurch ein Sternchen zu bekommen."
         ],
-        ["intr", "Miguel passt in Biologie auf, weil er Arzt werden möchte."],
+        [
+          "intr",
+          "Miguel passt in Physik auf, weil er Ingenieur werden möchte."
+        ],
         [
           "extr",
           "Dennis bekommt eine gute Note von der Lehrerin, wenn er in Biologie aufpasst."
@@ -311,8 +326,12 @@
         {
           "title": "Motivation Begriffsklärung",
           "subtitle": "Maslows Bedürfnistheorie",
-          "text": "Eine der bekanntesten Theorien stellt Abraham Maslows Bedürfnispyramide (1970) dar. Maslow geht davon aus, dass sich die menschlichen Bedürfnisse in einer Art Pyramide darstellen und aufeinander aufbauen. Nur wenn die Bedürfnisse auf den unteren Ebenen befriedigt seien, könnten die oberen angegangen werden.\n Auf der untersten Ebene der Pyramide befinden sich die sogenannten Grundbedürfnisse oder Physiologische Bedürfnisse, welche z.B. Nahrung, Wärme und Sauerstoff beinhalten. Sind diese Bedürfnisse gedeckt, wird die nächste Stufe der Pyramide erreicht. \n Hier befinden sich die Sicherheitsbedürfnisse, also z.B. die Bedürfnisse nach einer bezahlbaren Wohnung, einem sicheren Job oder Gesetzen, welche die Ordnung erhalten. \n Wenn die Sicherheit gegeben ist, haben die Sozialbedürfnisse die nächste Priorität. Diese beinhalten vor allem den Wunsch nach Familie, Freunden, Zugehörigkeit, Intimität und Kommunikation. \n Auf der vierten Stufe der Pyramide befinden sich die Individualbedürfnisse. Diese beziehen sich auf den eigenen Status in der Gesellschaft, Wertschätzung, Unabhängigkeitund Erfolg. Die vier genannten Bedürfnisse sind laut Maslow als Mangelbedürfnisse einzustufen. Wenn der mit dem Bedürfnis einhergehende Mangel gedeckt ist, ist das Bedürfnis (zeitweise) befriedigt. Nach diesen Mangelbedürfnissen folgen die Daseinsbedürfnisse, zu welchen das Selbstverwirklichungsbedürfnis gehört. Diesem Bedürfnis liegt zugrunde, dass ein Individuum sein eigenes Potential ausschöpfen möchte, eine moralische Entwicklung vollzieht, Verantwortung übernimmt und kreativ ist. Bei Bedürfnissen aus diesem Bereich hört die Motivation nach Befriedigung nicht auf, sondern steigt, um neue Befriedigung zu erlangen. \n\n Sowohl Mangelbedürfnisse, als auch Daseinsbedürfnisse können nie vollständig befriedigt sein. \n\n Diese Theorie wird heutzutage oft kritisiert und nicht vollständig verifiziert werden. So weiß man mittlerweile, dass es auch Ausnahmen gibt und höhere Bedürfnisse angestrebt werden können, auch wenn die niederen noch nicht erfüllt sind. Dennoch gilt Maslows Theorie als Grundlage für viele Modelle und Prozesse und gibt Orientierung. ",
-          "keywords": ["Maslows Bedürfnispyramide", "Mangelbedürfnisse"],
+          "text": "Eine der bekanntesten Theorien stellt Abraham Maslows Bedürfnispyramide (1970) dar. Maslow geht davon aus, dass sich die menschlichen Bedürfnisse in einer Art Pyramide darstellen lassen und stufenweise aufeinander aufbauen. Nur wenn die Bedürfnisse auf den unteren Ebenen befriedigt seien, könnten die oberen angegangen werden.\n Auf der untersten Ebene der Pyramide befinden sich die physiologischen bzw. körperlichen Bedürfnisse. Sind diese Grundbedürfnisse gedeckt, z.B. nach Nahrung, Wärme, Schlaf und Sex, wird die nächste Stufe der Pyramide erreicht. \n Hier befinden sich die Sicherheitsbedürfnisse, z.B. nach einer bezahlbaren Wohnung, einem sicheren Job oder nach Gesetzen, die die Ordnung wahren. Sie beziehen sich auf den Schutz der Person und sind bereits zukunftsgerichtet. \n Ist die Sicherheit gegeben, folgen auf der nächsten Ebene die Sozialbedürfnisse. Diese beinhalten vor allem den Wunsch nach Partnerschaft, Familie und Freunden, insgesamt also nach Zugehörigkeit, Intimität und Kommunikation. \n Auf der vierten Stufe der Pyramide befinden sich die Individualbedürfnisse. Diese beziehen sich auf Wertschätzung, Anerkennung/Geltung, Status und Unabhängigkeit. \n Laut Maslow sind die Bedürfnisebenen der Pyramide in zwei Gruppen einteilbar: Die vier bisher genannten Bedürfnisse sind als Mangelbedürfnisse einzustufen. Wenn der mit dem Bedürfnis einhergehende Mangel gedeckt ist, ist das Bedürfnis (zeitweise) befriedigt. Nach diesen Mangelbedürfnissen folgen die Daseinsbedürfnisse, zu welchen das Selbstverwirklichungsbedürfnis gehört. Diesem Bedürfnis liegt zugrunde, dass ein Individuum sein eigenes Potential ausschöpfen möchte, eine moralische Entwicklung vollzieht, Verantwortung übernimmt und kreativ ist. Bei Bedürfnissen aus diesem Bereich hört die Motivation nach Befriedigung nicht auf, sondern steigt, um neue Befriedigung zu erlangen. \n\n Sowohl Mangelbedürfnisse, als auch Daseinsbedürfnisse können nie vollständig befriedigt sein. \n\n Diese Theorie wird heutzutage oft kritisiert, ist aber dennoch eines der bekanntesten sozialpsychologischen Modelle. Es beschreibt auf vereinfachende Weise menschliche Bedürfnisse und Motivationen. Selbstverständlich sind die einzelnen Ebenen in Stufenmodellen generell nicht als trennscharf zu verstehen. So weiß man mittlerweile, dass es auch Ausnahmen gibt und höhere Bedürfnisse angestrebt werden können, auch wenn die niederen noch nicht erfüllt sind. Dennoch gilt Maslows Theorie als Grundlage für viele Modelle und Prozesse und gibt Orientierung.",
+          "keywords": [
+            "Maslows Bedürfnispyramide",
+            "Mangelbedürfnisse",
+            "Daseinsbedürfnisse"
+          ],
           "images": {
             "Maslowtheorie": "/Tag/Motivation2/Maslowtheorie.svg",
             "Mangelbedürfnisse": "/Tag/Motivation2/Selbstverwirklichung.svg"
@@ -355,7 +374,7 @@
 
     {
       "parentId": "Motivation3",
-      "title": "Selbstbestimmungstheorie",
+      "title": "Selbstbestimmungstheorie nach Deci und Ryan",
       "description": "Lies den Text und markiere die unten stehenden Schlüsselbegriffe, indem du sie im Text findest und anklickst.",
       "taskId": "Selbstbestimmungs_Theorie",
       "filePrefix": "Tag",
@@ -363,12 +382,12 @@
         {
           "title": "Selbstbestimmungs-Theorie",
           "subtitle": "Selbstbestimmungs-Theorie",
-          "text": "Auch die Selbstbestimmungstheorie nach Deci und Ryan (1993 auch SDT -Self-Determination-Theory ) spielt in der Motivations-Forschung eine zentrale Rolle. Sie zählt zu den humanistischen Ansätzen unter den Motivationstheorien und wurde in den 80er Jahren entwickelt. Aus Sicht dieser Theorie stellt die veranlagte Komponente der menschlichen Motivation einen entscheidenden Aspekt für die individuelle Persönlichkeitsorganisation dar.Im Mittelpunkt der Theorie wird das Individuum als selbstbestimmtes Wesen gesehen. Demnach fühlt er sich im Umgang mit anderen Menschen kompetent und fähig, sowie in der Lage, Beziehungen aufzubauen und aufrecht zu erhalten. Weitergehend besitzt der selbstbestimmte Mensch einen Entscheidungsspielraum und die Kontrolle über das eigene Leben. Persönliche Interessen, Ziele und Wünsche sind stark mit der eigenen Persönlichkeit verknüpft. \n\n Die Theorie geht davon aus, dass Menschen in der Lage sind, sich einer Gruppe zugehörig zu fühlen. Ähnlich der Bedürfnishierarchie steht das Bedürfnis der Selbstbestimmung im Mittelpunkt des Handelns. Ein selbstbestimmtes Individuum strebt nach Erfüllung der eigenen Wünsche, ohne dabei dem Druck und Belohnungen von außen nachzugeben. Ähnlich wie bei anderen Theorien wird auch hier eine Unterscheidung zwischen extrinsischer und intrinsischer Motivation vorgenommen. Deci und Ryan klassifizieren eine Handlung, die nur um ihrer selbst willen unternommen wird, als intrinsisch motiviert, somit gilt die intrinsische Motivation als „Prototyp“ der Selbstbestimmung. Alle anderen Handlungen, die einem übergeordneten Ziel folgen, sind extrinsisch motiviert. \n\nEine Grundvoraussetzung für selbstbestimmtes Handeln ist nach Deci und Ryan die Integration bzw. Internalisierung von externen Zielen in das individuelle Selbstsystem. Dabei spielen die sogenannten grundlegenden psychologischen Bedürfnisse eine wichtige Rolle.\nNach Deci und Ryan existiert neben den biologischen Antriebsfaktoren (Hunger, Durst, Schlaf) auch ein emotionsbasiertes Steuerungssystem des menschlichen Verhaltens, welches angeboren ist. Hiermit sind die grundlegenden psychologischen Bedürfnisse (Basic Needs) gemeint, welche sich aus dem Erleben von Autonomie, sozialer Eingebundenheit und das Erleben von Kompetenz zusammensetzen. Die Befriedigung dieser Bedürfnisse ist obligatorisch und durch sie werden motivationale Handlungen ausgelöst.\n\nWie oben beschrieben, beinhaltet das Bedürfnis nach Autonomie (Selbstbestimmung) das Bestreben, Ziele und Vorgehensweisen der eigenen Handlung selbst zu bestimmten. Dieses Bedürfnis steht in engem Zusammenhang mit dem Kompetenzbedürfnis.\n\nDas Bedürfnis nach sozialer Eingebundenheit impliziert das Bestreben nach befriedigenden Sozialkontakten des Menschen. Das Individuum möchte ein Gefühl von Akzeptanz und Anerkennung in einer Gruppe erfahren. \n\nDas Bedürfnis des Kompetenzerlebens umfasst den Wunsch des Individuums, sich selbst als „wirksam“ zu sehen, Anforderungen aus eigener Kraft zu bewältigen und fehlende Kompetenzen erwerben zu können",
+          "text": "Die Selbstbestimmungstheorie (engl. Self-Determination Theory, SDT) zählt, genau wie bereits Maslows Bedürfnishierarchie / -pyramide, zu den humanistischen Ansätzen unter den Motivationstheorien. Sie wurde in den 80er Jahren entwickelt. Während behavioristische Motivations-Theorien von externen Quellen der Motivation ausgehen, stehen bei humanistischen Ansätzen interne Quellen im Fokus. Das Bedürfnis nach Selbstbestimmung wird von Deci und Ryan als zentral für das eigene Handeln betrachtet, Menschen würden danach streben, sich ihr Leben selbst einrichten zu können. Insofern ist ihr Handeln zu allererst durch das Streben nach eigenen Wünschen motiviert und hängt nicht von externen Belohnungen oder von Sanktionen ab, wie z.B. von äußerlichem Druck. Nach Deci und Ryan existiert neben den biologischen Antriebsfaktoren (Hunger, Durst, Schlaf) auch ein emotionsbasiertes Steuerungssystem für menschliches Verhalten, welches angeboren ist. Hiermit sind die grundlegenden psychologischen Bedürfnisse (Basic Needs) gemeint, welche sich aus dem Erleben von Autonomie, Kompetenz und sozialer Eingebundenheit (Zugehörigkeit, Beziehung zu anderen Menschen) zusammensetzen. Die Befriedigung dieser Bedürfnisse sei obligatorisch, d.h. zwingende Voraussetzung, damit motivationale Handlungen ausgelöst werden können.\n\n Die veranlagte Komponente der menschlichen Motivation stellt demzufolge also einen entscheidenden Aspekt für die individuelle Persönlichkeitsorganisation dar. Der selbstbestimmte Mensch hat zunächst einmal einen Entscheidungsspielraum und die Kontrolle über das eigene Leben. Darüber hinaus fühlt er sich im Umgang mit anderen Menschen zweitens kompetent und drittens in der Lage, Beziehungen aufzubauen und aufrecht zu erhalten. Persönliche Interessen, Ziele und Wünsche sind stark mit der eigenen Persönlichkeit verknüpft. \n\n Ähnlich wie bei anderen Theorien wird auch hier eine Unterscheidung zwischen extrinsischer und intrinsischer Motivation vorgenommen. Deci und Ryan klassifizieren eine Handlung, die nur um ihrer selbst willen unternommen wird, als intrinsisch motiviert, somit gilt die intrinsische Motivation als „Prototyp“ der Selbstbestimmung. Eine Grundvoraussetzung für selbstbestimmtes Handeln ist nach Deci und Ryan die Integration bzw. Internalisierung von externen Zielen in das individuelle Selbstsystem: Intrinsische Motivation liegt dann vor, wenn man sich Herausforderungen sucht und meistern will, während man den eigenen Interessen und Fähigkeiten nachgeht. Dabei spielen die genannten 3 grundlegenden psychologischen Bedürfnisse eine wichtige Rolle: \n\n Das Bedürfnis nach Autonomie (Selbstbestimmung) bezeichnet das Bestreben, Ziele und Vorgehensweisen der eigenen Handlung selbst zu bestimmten. Dieses Bedürfnis steht in engem Zusammenhang mit dem Kompetenzbedürfnis.\n Das Bedürfnis des Kompetenzerlebens umfasst den Wunsch des Individuums, sich selbst als „wirksam“ zu sehen, Anforderungen aus eigener Kraft zu bewältigen und fehlende Kompetenzen erwerben zu können. Das Bedürfnis nach sozialer Eingebundenheit impliziert das Bestreben nach befriedigenden Sozialkontakten des Menschen. Das Individuum möchte ein Gefühl von Akzeptanz und Anerkennung in einer Gruppe erfahren. ",
           "keywords": [
-            "Selbstbestimmungstheorie nach Deci und Ryan",
+            "Selbstbestimmungstheorie",
             "Autonomie",
-            "soziale Eingebundenheit",
-            "Kompetenzerleben"
+            "sozialer Eingebundenheit",
+            "Kompetenzerlebens"
           ],
           "images": {
             "Selbstbestimmung": "/Tag/Motivation3/Selbstbestimmung.svg",
@@ -382,37 +401,42 @@
     },
     {
       "parentId": "Motivation3",
-      "title": "Die Selbstbestimmungstheorie",
+      "title": "Die Selbstbestimmungstheorie nach Deci und Ryan",
       "description": "Ordne die Statements über Schüler*innen der sozialen Eingebundenheit, Autonomie oder Kompentenz zu. Welche Art der Selbstbestimmung liegt vor?",
       "taskId": "Selbstestimmung",
       "filePrefix": "Drag",
       "multipleColumns": true,
-      "categories": ["Sozial eingebunden", "Autonomie", "Kompetenz"],
+      "categories": [
+        "Soziale Eingebundenheit",
+        "Autonomie",
+        "Kompetenzerleben"
+      ],
       "solArray": ["soz_eing", "autonomie", "kompetenz"],
       "scale": false,
       "orientation": ["horizontal", "vertical"],
       "nested": false,
       "statements": [
-        ["soz_eing", "Ich fühle mich in meiner sozialen Gruppe angekommen."],
         [
           "soz_eing",
-          "Meine Meinung und Einstellung wird geschätzt und akzeptiert."
+          "Ich fühle mich in meiner meiner neuen Klasse angekommen."
         ],
-
-        ["autonomie", "Ich kann das alleine schaffen."],
-        ["autonomie", "Ich brauche erst Hilfe, wenn ich nicht weiterkomme."],
+        ["soz_eing", "Wenn ich mich melde, hören die anderen mir zu."],
         [
           "autonomie",
-          "Ich mache das, weil ich es für den richtigen Weg zum Ziel halte."
+          "Ich möchte erst einmal selbst über eine Aufgabe nachdenken."
         ],
-
+        ["autonomie", "Ich frage erst nach Hilfe, wenn ich nicht weiterkomme."],
+        [
+          "autonomie",
+          "Ich mache das so, weil ich glaube, dass ich so zum Ziel komme."
+        ],
         [
           "kompetenz",
-          "Ich habe die nötigen Fähigkeiten, diese Aufgabe zu bewältigen."
+          "Wenn ich für eine Klausur richtig lerne, dann schaffe ich sie auch."
         ],
         [
           "kompetenz",
-          "Ich bin in der Lage, mir die nötigen Kompetenzen anzueignen, die ich für die Aufgabe benötige."
+          "Das, was ich jetzt noch nicht verstehe, werde ich später verstehen lernen."
         ]
       ],
 
@@ -429,9 +453,9 @@
         {
           "title": "Xwert-Theorie",
           "subtitle": "Xwert_Theorie",
-          "text": "Erwartungs-X-Wert Modelle sind psychologische Modelle zur Erklärung von Handlungsabsicht. Alle dazugehörigen Theorien haben die Gemeinsamkeit sowohl die Erwartung an die Folgen als auch den Wert dieser Folgen zu betrachten.\n\n Ein Modellvorschlag von Heckhausen beschreibt vier verschiedene Stufen im kognitiven Prozess der Motivationsentwicklung, denen sich bei unterschiedlicher Handlung differenzierte Erwartungen zuordnen lassen. Die erste Stufe betrifft eine Vermutung über die Situation-Ergebnis-Erwartung, das heißt, was passieren würde, wenn das Individuum nicht handelt. \n In Stufe zwei des Modells werden verschiedene Handlungschancen in der gegebenen Situation betrachtet und das dazu erwartete Ergebnis bewertet.\n Stufe drei beschäftigt sich dann mit den möglicherweise resultierenden Folgen des Ergebnisses.\n Grundsätzlich spielt der Nutzen der Handlungsergebnisse eine zentrale Rolle für den tatsächlichen Motivationsprozess. Genau wie in der beschriebenen Formel ist Motivation nach dieser Theorie demnach ein Produkt aus der Erwartung an das Ergebnis und ein bestimmtes Ziel zu erreichen und dem Wert des Ergebnisses für das Individuum. Um das zu verdeutlichen, wird die Motivation oftmals vereinfacht als Formel dargestellt. Geht einer der beiden Werte gegen 0, hat das Ziel beispielsweise keinen emotionalen Wert für den Betroffenen, ergibt auch das Produkt 0 und es entsteht keine Motivation, das Ziel zu erreichen. So beschäftigt sich ein Schüler oder eine Schülerin beispielsweise erst mit einem Fach, wenn es für seinen späteren Berufswunsch relevant ist. \n\n Natürlich stellt die Formel hier keine wirkliche Mathematik dar, menschliches Verhalten ist zu komplex, um es so abbilden zu können.",
+          "text": " Erwartungs-X-Wert Modelle sind psychologische Modelle zur Erklärung von Handlungsabsichten. Alle dazugehörigen Theorien haben die Gemeinsamkeit sowohl die Erwartung an die Folgen als auch den Wert dieser Folgen zu betrachten.\n\n Ein Modellvorschlag von Heckhausen beschreibt vier verschiedene Stufen im kognitiven Prozess der Motivationsentwicklung, denen sich bei unterschiedlicher Handlung differenzierte Erwartungen zuordnen lassen. Die erste Stufe betrifft eine Vermutung über die Situation-Ergebnis-Erwartung, das heißt, was passieren würde, wenn das Individuum nicht handelt. \n In Stufe zwei des Modells werden verschiedene Handlungschancen in der gegebenen Situation betrachtet und das dazu erwartete Ergebnis bewertet.\n Stufe drei beschäftigt sich dann mit den möglicherweise resultierenden Folgen des Ergebnisses.\n Grundsätzlich spielt der Nutzen der Handlungsergebnisse eine zentrale Rolle für den tatsächlichen Motivationsprozess. Genau wie in der beschriebenen Formel ist Motivation nach dieser Theorie demnach ein Produkt aus der Erwartung an das Ergebnis und ein bestimmtes Ziel zu erreichen und dem Wert des Ergebnisses für das Individuum. Um das zu verdeutlichen, wird die Motivation oftmals vereinfacht als Formel dargestellt. Geht einer der beiden Werte gegen 0, hat das Ziel beispielsweise keinen emotionalen Wert für den Betroffenen, ergibt auch das Produkt 0 und es entsteht keine Motivation, das Ziel zu erreichen. So beschäftigt sich ein Schüler oder eine Schülerin beispielsweise erst mit einem Fach, wenn es für seinen späteren Berufswunsch relevant ist. \n\n Natürlich stellt die Formel hier keine wirkliche Mathematik dar, menschliches Verhalten ist zu komplex, um es so abbilden zu können.",
           "keywords": [
-            "Erwartungs-X-Wert Modell",
+            "Erwartungs-X-Wert Modelle",
             "Erwartung an das Ergebnis",
             "Wert des Ergebnisses"
           ],
@@ -465,7 +489,7 @@
             "/avatars/Schülerin.png",
             "/avatars/Schüler.png"
           ],
-          "text": "--0-- Lisa möchte gerne in der nächsten Klassenarbeit eine gute Note schreiben. Sie weiß, dass sie dafür am Wochenende noch einmal alle Unterlagen durchgehen muss (E=2). Da Lisa gerne im nächsten Jahr eine Ausbildung als Tierarzthelferin anfangen möchte, ist diese Klassenarbeit besonders wichtig für sie (W=2,5). \n\n M = ##0## \n\n\n --1-- Phillip soll in drei Wochen eine Projektarbeit abgeben. Hierfür hat er noch keine Materialienzusammengesucht und sich noch nicht über das eigentliche Thema informiert (E=0). Er weiß jedoch, dass diese Projektarbeit über seine Note in dem Fach entscheidet (W=2,5) und dass ihm die Arbeit mit seiner Projektgruppe Spaß machen wird (W=1). \n\n M = ##1## \n\n\n --2-- Sarah soll ihr Zimmer aufräumen. Sie ist extrem genervt von ihrer Mutter, da diese das Anliegen schon seit mehreren Tagen vorbringt. Außerdem stört sie die Unordnung im Zimmer nur bedingt (E=0,5). Sarah findet Aufräumen grundsätzlich ziemlich anstrengend (W=0), allerdings weiß sie auch, dass es ihrer Mutter wirklich wichtig ist (W=2,5) und Sarah möchte deswegen keinen Streit provozieren (W=2,5). Ein weiterer Pluspunkt ist die Party, auf die sie gehen darf, wenn sie aufgeräumt hat (W=1). \n\n M = ##2## \n\n\n --5-- Sebastian besucht momentan die 12 Klasse der Gesamtschule Grabenfurt mit dem Schwerpunkt Gesundheit. Nächstes Halbjahr stehen die Praktika an, die die Schüler*innen für ihrenAbschluss benötigen und Sebastian muss sich dringen für ein Praktikum bewerben. Leider interessiert Sebastian sich überhaupt nicht für den Gesundheitsbereich (W= -2,5) und hat auch keine Unterstützung innerhalb der Familie, die ihn dazu animiert, Bewerbungen zu schreiben (W= -1). Zudem kommt hinzu, dass an den folgenden Wochenenden immer Sportveranstaltungen stattfinden, die ihm wichtiger sind (E= 0,25). \n\n M = ##3##"
+          "text": "--0-- Lisa möchte gerne in der nächsten Klassenarbeit eine gute Note schreiben und sie weiß, dass sie das schaffen kann, wenn sie am Wochenende noch einmal alle Unterlagen durchgeht (E=2). Da sie im nächsten Jahr eine Ausbildung als Tierarzthelferin anfangen möchte, ist diese Klassenarbeit wichtig für sie (W=2,5). \n\n M = ##0## \n\n\n --1-- Phillip soll in drei Wochen eine Projektarbeit abgeben. Hierfür hat er noch keine Materialien zusammengesucht und sich noch nicht über das eigentliche Thema informiert, weil es ihn einfach nicht interessiert (E=0). Er weiß jedoch, dass diese Projektarbeit über seine Note in dem Fach entscheidet (W=2,5) und dass ihm die Arbeit mit seiner Projektgruppe Spaß machen wird (W=1). \n\n M = ##1## \n\n\n --2-- Caspar soll sein Zimmer aufräumen und hat deswegen Ärger mit seinem Vater. Er findet Aufräumen grundsätzlich ziemlich anstrengend und macht es sehr selten (E=0,5). Allerdings weiß er auch, dass es seinem Vater wirklich wichtig ist (W=2,5) und dass Streit nur Stress nach sich zieht (W=2,5). Ein Lichtblick ist die Party, auf die er gehen darf, wenn er aufgeräumt hat (W=1). \n\n M = ##2## \n\n\n --5-- Sebastian geht auf eine Gesamtschule mit Schwerpunkt Gesundheit. Er muss sich zeitnah für ein Praktikum bewerben, das er für seinen Abschluss benötigt. Leider hat Sebastian keine gute Meinung über die Arbeit im Gesundheitsbereich (W= -2,5) und auch seine Familie versucht ihn zu überreden, doch etwas anderes zu machen (W= -1). Hinzu kommt, dass er noch nie bei einer Bewerbung genommen wurde (E= 0,25). \n\n M = ##3##"
         }
       ],
       "package": "Motivation",
@@ -489,11 +513,10 @@
       "package": "Motivation",
       "credits": 2
     },
-
     {
       "parentId": "Motivation4",
       "title": "Motivationsbegriffe",
-      "description": "In diesem Memory müsst ihr zu Begriffen die entsprechenden Bilder zuweisen.",
+      "description": "Super! Du hast die wichtigsten Motivationstheorien kennengelernt. In diesem Memory kannst du dein Wissen noch einmal auffrischen und die Grundbegriffe mit Bildern oder Autor*innen verknüpfen.",
       "taskId": "Motivation_Memory",
       "filePrefix": "Memory",
       "package": "Motivation",
@@ -525,7 +548,7 @@
         {
           "title": "Zielsetzungstheorie",
           "subtitle": "Zielsetzungstheorie_sub",
-          "text": "Die Zielsetzungstheorie nach Locke und Latham wird grundsätzlich in die Kategorie der Motivationsstrategien eingeordnet. Dennoch zeigt sie wesentliche Bestandteile einer Theorie, um den Motivationsprozess besser zu verstehen. Die zentrale Annahme dieser Theorie ist, dass Motivation maßgeblich über die gesetzten Ziele und die Rückmeldung über das Erreichen ebendieser gesteuert wird. Somit gilt sie als Auslöser des menschlichen Handelns. Zunächst  muss jedoch ein Spannungszustand zwischen dem IST- und dem SOLL-Zustand hergestellt werden. Je herausfordernder und präziser ein Ziel dabei gestaltet wird, desto höher ist auch die Motivation, dieses zu erreichen. In diesem Prozess der Zielsetzung spielen verschiedene Moderatoren und Wirkungsmechanismen eine Rolle, wie z.B. das Feedback zu erbrachten Leistungen oder die Selbstwirksamkeit, also die Einschätzung einer Person über ihr Können. Grundsätzlich kann die Annahme über das Zusammenspiel von Ziel und Leistung in zwei Hypothesen gefasst werden. Zum einen führen demnach schwierigere Ziele zu besseren Leistungen, als mittlere oder leicht zu erreichende Ziele. Zum anderen führen spezifische und herausfordernde Ziele zu besseren Leistungen als unpräzise formulierte, allgemeine Ziele.Wie in der Abbildung 1 dargestellt, beeinflussen verschiedene Größen den Zusammenhang zwischen Zielsetzung und der tatsächlichen Leistung. Die Wirkungsmechanismen werden durch eine spezifische und schwierige Zielsetzung ausgelöst und bestimmen demnach die Handlungsrichtung, -intensität und –ausdauer. Das heißt, dass eine präzise Zielsetzung die Aufmerksamkeit hingehend der Handlung beeinflusst, die Ausdauer der Handlung auch über einen längeren Zeitraum aufrechterhält und außerdem auch die Regulation der Anstrengung für besagte Handlung übernimmt.Ziele wirken demnach durch aufgabenspezifische Strategien und Pläne auf die Leistung.Die tatsächliche Leistung hängt aber nicht nur von Wirkungsmechanismen, sondern auch von Moderatoren ab. Sie entscheiden, wie eng die Verbindung zweier Größen miteinander ist. Zentral hierbei sind die Zielbindung, die Selbstwirksamkeit, die Rückmeldung sowie die Aufgabenkomplexität.Die Zielbindung legt fest, wie verpflichtet ein Individuum sich gegenüber einem Ziel fühlt. Je stärker sich ein Mensch einem Ziel verbunden fühlt, desto enger ist auch der Zusammenhang zwischen Ziel und Leistung.Der Moderator Selbstwirksamkeit umfasst das aufgabenspezifische Selbstvertrauen einer Person. Je höher dieses angesetzt ist, desto eher fühlt sich die Person zu fordernden Zielen hingezogen und desto motivierter geht sie an die Aufgabe.Die Rückmeldung kann als Moderator die Wirkung auf Leistung bei schweren und spezifischen Zielen deutlich verstärken. Hierbei spielt jedoch auch die Umsetzung der Rückmeldung eine wichtige Rolle.Zu guter Letzt hat auch die Komplexität der Aufgabe eine Auswirkung auf die Leistung von Zielsetzungen. Bei komplexeren Aufgaben hängt die tatsächliche Leistung sehr stark von Struktur und Organisation der Aufgabe ab, während bei einfachen Aufgaben meistens schon der Wille eine bessere Leistung erzeugt.",
+          "text": "Die Zielsetzungstheorie nach Locke und Latham wird grundsätzlich in die Kategorie der Motivationsstrategien eingeordnet. Dennoch zeigt sie wesentliche Bestandteile einer Theorie, um den Motivationsprozess besser zu verstehen. Die zentrale Annahme dieser Theorie ist, dass Motivation maßgeblich über die gesetzten Ziele und die Rückmeldung über das Erreichen ebendieser gesteuert wird. Somit gilt sie als Auslöser des menschlichen Handelns. Zunächst  muss jedoch ein Spannungszustand zwischen dem IST- und dem SOLL-Zustand hergestellt werden. Je herausfordernder und präziser ein Ziel dabei gestaltet wird, desto höher ist auch die Motivation, dieses zu erreichen. In diesem Prozess der Zielsetzung spielen verschiedene Moderatoren und Wirkungsmechanismen eine Rolle, wie z.B. das Feedback zu erbrachten Leistungen oder die Selbstwirksamkeit, also die Einschätzung einer Person über ihr Können. Grundsätzlich kann die Annahme über das Zusammenspiel von Ziel und Leistung in zwei Hypothesen gefasst werden. Zum einen führen demnach schwierigere Ziele zu besseren Leistungen, als mittlere oder leicht zu erreichende Ziele. Zum anderen führen spezifische und herausfordernde Ziele zu besseren Leistungen als unpräzise formulierte, allgemeine Ziele. Wie in der Abbildung dargestellt, beeinflussen verschiedene Größen den Zusammenhang zwischen Zielsetzung und der tatsächlichen Leistung. Die Wirkungsmechanismen werden durch eine spezifische und schwierige Zielsetzung ausgelöst und bestimmen demnach die Handlungsrichtung, -intensität und –ausdauer. Das heißt, dass eine präzise Zielsetzung die Aufmerksamkeit hingehend der Handlung beeinflusst, die Ausdauer der Handlung auch über einen längeren Zeitraum aufrechterhält und außerdem auch die Regulation der Anstrengung für besagte Handlung übernimmt. Ziele wirken demnach durch aufgabenspezifische Strategien und Pläne auf die Leistung. Die tatsächliche Leistung hängt aber nicht nur von Wirkungsmechanismen, sondern auch von Moderatoren ab. Sie entscheiden, wie eng die Verbindung zweier Größen miteinander ist. Zentral hierbei sind die Zielbindung, die Selbstwirksamkeit, die Rückmeldung sowie die Aufgabenkomplexität. Die Zielbindung legt fest, wie verpflichtet ein Individuum sich gegenüber einem Ziel fühlt. Je stärker sich ein Mensch einem Ziel verbunden fühlt, desto enger ist auch der Zusammenhang zwischen Ziel und Leistung. Der Moderator Selbstwirksamkeit umfasst das aufgabenspezifische Selbstvertrauen einer Person. Je höher dieses angesetzt ist, desto eher fühlt sich die Person zu fordernden Zielen hingezogen und desto motivierter geht sie an die Aufgabe. Die Rückmeldung kann als Moderator die Wirkung auf Leistung bei schweren und spezifischen Zielen deutlich verstärken. Hierbei spielt jedoch auch die Umsetzung der Rückmeldung eine wichtige Rolle.Zu guter Letzt hat auch die Komplexität der Aufgabe eine Auswirkung auf die Leistung von Zielsetzungen. Bei komplexeren Aufgaben hängt die tatsächliche Leistung sehr stark von Struktur und Organisation der Aufgabe ab, während bei einfachen Aufgaben meistens schon der Wille eine bessere Leistung erzeugt.",
           "keywords": [
             "Zielsetzungstheorie nach Locke und Latham",
             "Zielbindung",
@@ -571,7 +594,7 @@
     },
     {
       "parentId": "Motivation5",
-      "title": "SMART",
+      "title": "Die richtige Zielsetzung (SMART)",
       "description": "Lies den Text zum Thema Zielsetzung durch SMART durch.",
       "taskId": "SMART",
       "filePrefix": "Tag",
@@ -579,7 +602,7 @@
         {
           "title": "SMART",
           "subtitle": "Smart",
-          "text": "Durch Ziele kann der Sinn einer Handlung besser erkannt und der Weg zur Erreichung dieses Ziels   geplant   und   durchgeführt   werden.   Ziele   führen   dem   Menschen   das   „Warum“   derHandlung   vor   Augen.   Dabei   beschreibt   das   Ziel,   wie   eingangs   bereits   aufgeführt,   dieDiskrepanz zwischen dem IST-Zustand und dem SOLL-Zustand.\nWie in der Zielsetzungstheorie beschrieben, können Ziele dazu dienen, die Motivation zulenken und aufrechtzuhalten. Im Alltag werden Ziele allerdings oftmals allgemein formuliertz.B.   „Ich   werde   abnehmen“,   „Ich   werde   dieses   Semester   die   Klausuren   bestehen“,   waslangfristig dazu führt, dass Ziele mit geringerer Wahrscheinlichkeit erreicht werden und dieMotivation sinkt. \n\nUm dem entgegen zu wirken und Ziele erreichbarer zu gestalten, kann die SMART-Formelangewendet werden. Hierbei werden Ziele konkret operationalisiert und es werden klareKriterien   für   die   Zielerreichung   erstellt.   Außerdem   können   anhand   der   Zielsetzung   mit SMART wesentliche Vereinbarungen über die zeitliche Datierung und die Rückmeldung zubesagtem   Ziel   getroffen   werden.   Daher   kommt   diese   Methodik   vor   allem   imProjektmanagement, im Coaching, in der Karriereplanung und in Trainings zum Einsatz. \n\n SMART steht (aus dem Englischen übersetzt) für: \n     Spezifisch\n     Messbar\n     Akzeptiert (auch attraktiv / anziehend / angemessen)\n     Realistisch\n     Terminiert\n\nSpezifisch  meint in diesem Zusammenhang, dass gesetzte Ziele klar und deutlich definiertwerden sollten, um so möglichst wenig Spielraum für Interpretationen zu schaffen: „Was willich genau erreichen“.\nBeispiel: „Ich will die Mathe Klausur „Algebra 1“ dieses Semester bestehen“. \n\nMessbar meint, dass das Ziel kontrollierbar sein muss. Dies bedeutet, es muss klar sein, abwann das Ziel erreicht ist und wie man das Ziel messen kann: „Wie viel genau muss ichwovon tun“.\nBeispiel: „Die Endnote soll 4,0 oder besser sein.“\n\nAkzeptiert steht in der Formel für die Akzeptanz des Ziels durch alle beteiligten Personen.Jeder   sollte   mit   der   Zielformulierung   einverstanden   sein   und   die   Ziel-Vereinbarung„unterzeichnen“. Außerdem sollte das Ziel durch das Verhalten der Beteiligten beeinflussbarsein. Das A kann auch für „attraktiv“ stehen, was bedeutet, dass das Ziel für einen selbstpositiv sein soll. Ein Ansatz, um mehr Akzeptanz oder Attraktivität zu schaffen, wäre es zumBeispiel   eine   gemeinsame   Zielsetzung,   sodass   andere   auch   beteiligt   werden   und   denFortschritt kontrollieren können\nBeispiel:   „Ich   werde   eine   Lerngruppe   mit   Martina   und   Leon   machen,   in   der   wir   unsgegenseitig motivieren“.\n\nRealistisch steht für die Realisierbarkeit/Erreichbarkeit des Ziels. Zu hoch angesetzte Zielewirken   eher   demotivierend   auf   Menschen.   Optimal   angesetzte   Ziele   wirken   im   erstenMoment frustrierend, da sie nicht sofort zu erreichen sind. Durch eine gewisse Anstrengungkann das Ziel jedoch erreicht werden, was wiederum motiviert. Oft sind gut gesteckte Zieleautomatisch realistisch, da man sich diese sonst nicht setzen würde.\n\nTerminiert beschreibt den festzulegenden Zeitraum einer Zielsetzung, der unbedingt präzisefestgelegt   werden   sollte.   Ratsam   sind   hierbei   auch   Zwischenprüfungen,   um   eventuelleAbweichungen bei der Zielerreichung festzustellen und schnell korrigieren zu können.Beispiel: „dafür treffen wir uns immer Montags, Mittwochs und jeden zweiten Freitag um 16Uhr für zwei Stunden in der Lernlandschaft der Universität.\n\nDes Weiteren ist es ratsam, Zielsetzungen immer positiv zu formulieren da negative Aussagendemotivierend wirken. Formulierungen, die UN- oder NICHT- enthalten, sollten ebenfallsvermieden werden.\nBeispiel: „Ich werde nicht durchfallen“ (Negativ)  „Ich werde bestehen“\n\nDie Wahl der Zielsetzung ist dabei entscheidend. So sollten immer Ziele gewählt werden, die(persönlich) sinnvoll scheinen, sowie eine Entwicklung des Individuums hervorrufen. Hierbeikann an Stärken, Schwächen oder Kompetenzen des Individuums angeknüpft werden.",
+          "text": "Durch Ziele kann der Sinn einer Handlung besser erkannt und der Weg zur Erreichung dieses Ziels   geplant   und   durchgeführt   werden.   Ziele   führen   dem   Menschen   das   „Warum“   der Handlung   vor   Augen.   Dabei   beschreibt   das   Ziel,   wie   eingangs   bereits   aufgeführt,   die Diskrepanz zwischen dem IST-Zustand und dem SOLL-Zustand.\n\nWie in der Zielsetzungstheorie beschrieben, können Ziele dazu dienen, die Motivation zu lenken und aufrechtzuhalten. Im Alltag werden Ziele allerdings oftmals allgemein formuliert z.B.   „Ich   werde   abnehmen“,   „Ich   werde   dieses   Semester   die   Klausuren   bestehen“,   was langfristig dazu führt, dass Ziele mit geringerer Wahrscheinlichkeit erreicht werden und die Motivation sinkt. \n\nUm dem entgegen zu wirken und Ziele erreichbarer zu gestalten, kann die SMART-Formel angewendet werden. Hierbei werden Ziele konkret operationalisiert und es werden klare Kriterien   für   die   Zielerreichung   erstellt.   Außerdem   können   anhand   der   Zielsetzung   mit SMART wesentliche Vereinbarungen über die zeitliche Datierung und die Rückmeldung zubesagtem   Ziel   getroffen   werden.   Daher   kommt   diese   Methodik   vor   allem   im Projektmanagement, im Coaching, in der Karriereplanung und in Trainings zum Einsatz. \n\n SMART steht (aus dem Englischen übersetzt) für: \n     Spezifisch\n     Messbar\n     Akzeptiert (auch attraktiv / anziehend / angemessen)\n     Realistisch\n     Terminiert\n\nSpezifisch  bedeutet in diesem Zusammenhang, dass gesetzte Ziele klar und deutlich definiert werden sollten, um so möglichst wenig Spielraum für Interpretationen zu schaffen: „Was will ich genau erreichen“.\nBeispiel: „Ich will die Mathe Klausur „Algebra 1“ dieses Semester bestehen“. \n\nMessbar bedeutet, dass das Ziel kontrollierbar sein muss. Dies heißt, dass es klar sein muss, ab wann das Ziel erreicht ist und wie man das Ziel messen kann: „Wie viel genau muss ichwovon tun“.\nBeispiel: „Die Endnote soll 4,0 oder besser sein.“\n\nAkzeptiert steht in der Formel für die Akzeptanz des Ziels durch alle beteiligten Personen.Jeder   sollte   mit   der   Zielformulierung   einverstanden   sein   und   die   Ziel-Vereinbarung„unterzeichnen“. Außerdem sollte das Ziel durch das Verhalten der Beteiligten beeinflussbarsein. Das A kann auch für „attraktiv“ stehen, was bedeutet, dass das Ziel für einen selbstpositiv sein soll. Ein Ansatz, um mehr Akzeptanz oder Attraktivität zu schaffen, wäre es zum Beispiel eine gemeinsame Zielsetzung,   sodass   andere   auch   beteiligt   werden   und   den Fortschritt kontrollieren können\nBeispiel:   „Ich   werde   eine   Lerngruppe   mit   Martina   und   Leon   machen,   in   der   wir   unsgegenseitig motivieren“.\n\nRealistisch steht für die Realisierbarkeit/Erreichbarkeit des Ziels. Zu hoch angesetzte Zielewirken   eher   demotivierend   auf   Menschen.   Optimal   angesetzte   Ziele   wirken   im   erstenMoment frustrierend, da sie nicht sofort zu erreichen sind. Durch eine gewisse Anstrengung kann das Ziel jedoch erreicht werden, was wiederum motiviert. Oft sind gut gesteckte Zieleautomatisch realistisch, da man sich diese sonst nicht setzen würde.\n\nTerminiert beschreibt den festzulegenden Zeitraum einer Zielsetzung, der unbedingt präzisefestgelegt   werden   sollte.   Ratsam   sind   hierbei   auch   Zwischenprüfungen,   um   eventuelle Abweichungen bei der Zielerreichung festzustellen und schnell korrigieren zu können. Beispiel: „dafür treffen wir uns immer Montags, Mittwochs und jeden zweiten Freitag um 16Uhr für zwei Stunden in der Lernlandschaft der Universität.\n\nDes Weiteren ist es ratsam, Zielsetzungen immer positiv zu formulieren, da negative Aussagen demotivierend wirken. Formulierungen, die UN- oder NICHT- enthalten, sollten ebenfalls vermieden werden.\nBeispiel: „Ich werde nicht durchfallen“ (Negativ)  „Ich werde bestehen“\n\nDie Wahl der Zielsetzung ist dabei entscheidend. So sollten immer Ziele gewählt werden, die (persönlich) sinnvoll scheinen, sowie eine Entwicklung des Individuums hervorrufen. Hierbei kann an Stärken, Schwächen oder Kompetenzen des Individuums angeknüpft werden.",
           "keywords": ["Handlung", "Akzeptanz", "Zeitraum einer Zielsetzung"],
           "images": {
             "Selbstbestimmung": "/Tag/Motivation5/Smart.png"
@@ -590,9 +613,8 @@
       "package": "Motivation",
       "credits": 2
     },
-
     {
-      "parentId": "Motivation1",
+      "parentId": "Motivation5",
       "package": "Motivation",
 
       "title": "Fehlersuche - soll das SMART sein?",
@@ -692,17 +714,16 @@
           "intro": "Sie sind gut in das Schuljahr gestartet und persönlich äußerst motiviert. Insgesamt haben Sie auch ein gutes Gefühl und eine nette Klasse. Jetzt kann es richtig losgehen! Doch nach und nach fällt Ihnen auf, dass einige Schüler*innen immer öfter zu spät kommen. Die Intensität der Diskussionen wird weniger, fast scheint es so, als ob andere Dinge interessanter geworden sind. Schüler*innen, die vorher sehr aktiv waren, scheinen nur noch das nötigste zu machen. Sie sind verwundert… Warum ist die Klasse so unmotiviert? Ihre Arbeit fällt Ihnen dadurch auch schwerer und am liebsten würden Sie die Schüler*innen wach schütteln. Sie merken, dass Sie selbst immer weniger Lust haben, zu unterrichten. Was können Sie also tun? Wie lässt sich die Klasse motivieren? Finden Sie es heraus und lernen Sie alles über Motivation!",
           "quests": [
             {
-              "questId": 1,
-              "questName": "Magda",
-              "hasNext": true,
-              "Magda": "Magda ist normalerweise sehr engagiert und begeisterungsfähig. In der Klasse übernimmt sie gerne freiwillig Aufgaben. Allerdings hat sie sich nicht gemeldet als es um die Position der Klassensprecherin ging, was dich sehr wundert. Im letzten Schuljahr hat sie das so gut gemacht und dieses Jahr würdest du die Klassensprecherinnen auch besser unterstützen und entlohnen können. Was ist los mit ihr, warum will sie nicht?",
-              "image": "Magda.png",
-              "prePhrase": "Magda freut sich über dein Interesse und das Gespräch mit dir. Sie scheint selbst gar nicht recht zu wissen, warum sie sich dieses Jahr nicht freiwillig gemeldet hat und verspricht, sich nächstes Jahr wieder mehr zu engagieren.",
               "filePrefix": "Multi",
 
+              "questId": 1,
+              "questName": "Magda",
+              "Magda": "Magda ist normalerweise sehr engagiert und begeisterungsfähig. In der Klasse übernimmt sie gerne freiwillig Aufgaben und war im letzten Jahr eine super Klassensprecherin. Allerdings hat sie sich bei der Klassensprecherwahl in diesem Jahr nicht einmal mehr nominieren lassen, was dich sehr wundert. Im letzten Schuljahr hat sie das so gut gemacht und dieses Jahr würdest du sie auch besser unterstützen und sogar entlohnen können. \n\n Magda freut sich über dein Interesse und das Gespräch mit dir. Sie scheint selbst gar nicht recht zu wissen, warum sie sich dieses Jahr nicht freiwillig gemeldet hat und verspricht, sich nächstes Jahr wieder mehr zu engagieren.",
+              "image": "Magda.png",
+              "prePhrase": "Magda freut sich über dein Interesse und das Gespräch mit dir. Sie scheint selbst gar nicht recht zu wissen, warum sie sich dieses Jahr nicht freiwillig gemeldet hat und verspricht, sich nächstes Jahr wieder mehr zu engagieren.",
               "Question": "Warum konnte Magda sich nicht dazu motivieren, sich für das Amt als Klassensprecherin zu melden? Welcher Grund ist deiner Meinung nach und mit Blick auf dein Wissen über Motivation der wahrscheinlichste?",
               "AnswerSet": [
-                "dadurch, dass du einen neuen Anreiz geschaffen hast ( Entlohnung für das Amt), ist ein Korrumpierungseffekt aufgetreten, indem Magdas intrinsische Motivation von dem externen Anreiz überlagert wurde",
+                "Dadurch, dass du einen neuen Anreiz geschaffen hast (Entlohnung für das Amt), ist ein Korrumpierungseffekt aufgetreten, indem Magdas intrinsische Motivation von dem externen Anreiz überlagert wurde",
                 "Durch die Unterstützung, die du außerdem angeboten hast, fühlte sich Magda in ihrem Autonomieerleben eingeschränkt und war deswegen weniger intrinsisch motiviert",
                 "Durch ihr Amt hat Magda sich ihren Klassenkameraden überlegen gefühlt, sodass ihr Bedürfnis nach sozialer Eingebundenheit nicht erfüllt war, dies wollte sie nun ändern",
                 "Magda hat nicht genügend Aufmerksamkeit für ihre Tätigkeit bekommen und war daher unmotiviert; durch dein Interesse kann sie aber wieder motiviert werden",
@@ -713,17 +734,17 @@
             {
               "questId": 2,
               "filePrefix": "Multi",
-              "questName": "Otto",
-              "Otto": "Otto ist in der Klasse immer schon aufgefallen. Nur mit Mühe schafft er die Klassenarbeiten und auch sonst bringt er sich nicht im Unterricht ein. Bei ihm wird es deshalb dieses Schuljahr noch einmal sehr eng. Bei einem Gespräch zwischen ihm und seinen Mitschülern, das du zufällig mitgehört hast, hast du ihn sagen hören, dass er eh davon ausgeht, das Schuljahr nicht zu schaffen. Warum also noch anstrengen? Wie kannst du Otto helfen?",
+              "questName": "Gerrit",
+              "Gerrit": "Gerrit ist in der Klasse immer schon aufgrund seines Leistungsniveaus aufgefallen. Nur mit Mühe schafft er die Klassenarbeiten und auch sonst bringt er sich nicht im Unterricht ein. Bei ihm wird es deshalb dieses Schuljahr noch einmal sehr eng. Bei einem Gespräch zwischen ihm und seinen Mitschüler*innen, das du zufällig mitgehört hast, hast du ihn sagen hören, dass er eh davon ausgeht, das Schuljahr nicht zu schaffen. Warum also noch anstrengen? \n\nAls du Gerrit zum Gespräch bittest, zeigt er sich zunächst unbeeindruckt und cool. Er nimmt eine Null-Bock- Haltung ein und versucht zu demonstrieren, dass ihn das Sitzenbleiben nicht interessiert. Schnell merkst du jedoch, dass diese Einstellung bloß Fassade ist und Gerrit in Wirklichkeit sehr getroffen davon scheint. Im weiteren Verlauf des Gesprächs gesteht er dir, dass er selbst gar nicht genau weiß, wieso er so schlechte Leistungen erbringt. Dir fällt auf, dass Gerrit Probleme damit hat, an seine eigenen Fähigkeiten zu glauben und seine Kompetenzen einzusetzen.",
               "image": "Otto.png",
-              "prePhrase": "Als du Otto zum Gespräch bittest, zeigt er sich zunächst unbeeindruckt und cool. Er nimmt eine Null-Bock- Haltung ein und versucht zu demonstrieren, dass ihn das Sitzenbleiben nicht interessiert. Schnell merkst du jedoch, dass diese Einstellung bloß Fassade ist und Otto in Wirklichkeit sehr getroffen davon scheint. Im weiteren Verlauf des Gesprächs gesteht er dir, dass er selbst gar nicht genau weiß, wieso er so schlechte Leistungen erbringt. Dir fällt auf, dass Otto Probleme damit hat, an seine eigenen Fähigkeiten zu glauben und seine Kompetenzen einzusetzen.",
-              "Question": "Weshalb hat Otto keine Motivation, seine Leistungen abzurufen und die Versetzung zu schaffen? Welcher Grund ist deiner Meinung nach und mit Blick auf dein Wissen über Motivation der wahrscheinlichste?",
+              "prePhrase": "Als du Gerrit zum Gespräch bittest, zeigt er sich zunächst unbeeindruckt und cool. Er nimmt eine Null-Bock- Haltung ein und versucht zu demonstrieren, dass ihn das Sitzenbleiben nicht interessiert. Schnell merkst du jedoch, dass diese Einstellung bloß Fassade ist und Gerrit in Wirklichkeit sehr getroffen davon scheint. Im weiteren Verlauf des Gesprächs gesteht er dir, dass er selbst gar nicht genau weiß, wieso er so schlechte Leistungen erbringt. Dir fällt auf, dass Gerrit Probleme damit hat, an seine eigenen Fähigkeiten zu glauben und seine Kompetenzen einzusetzen.",
+              "Question": "Weshalb hat Gerrit keine Motivation, seine Leistungen abzurufen und die Versetzung zu schaffen? Welcher Grund ist deiner Meinung nach und mit Blick auf dein Wissen über Motivation der wahrscheinlichste?",
               "AnswerSet": [
-                "Im Gegensatz zu seinem Kompetenzerleben ist Ottos Bedürfnis nach Autonomie sehr hoch. Er möchte möglichst alles alleine bewältigen und selbst wenn er nicht weiterkommt, möchte er nicht nach Hilfe fragen. Obwohl er keinen genauen Plan für sein Ziel hat, kann er keine Hilfe annehmen.",
-                "Ottos Oma hat ihm in den letzten Jahren für jede Versetzung eine kleine Belohnung versprochen. Auch wenn Otto Probleme im Unterricht hatte, hat er die letzten Jahre trotzdem genügend Motivation aufbringen können, in die nächste Klasse zu gelangen. Nun ist Ottos Oma leider verstorben und Otto hat keinen Antrieb mehr, die Versetzung zu schaffen.",
-                "Otto glaubt selbst nicht mehr daran, dass er mit seinen Leistungen die Versetzung schaffen kann. Obwohl ihm die Versetzung sehr wichtig ist, damit er in seinem Klassenverband bleiben kann und später eine gute Ausbildung bekommt, geht der Erwartungswert, sein Ziel zu erreichen, gegen Null. Dies beeinflusst seine Motivation negativ.",
-                "Otto hat ein niedriges Bedürfnis des Kompetenzerlebens. Er hat keinen Anspruch danach, sich selbst als „wirksam“ wahrzunehmen und Aufgaben selbstständig zu bewältigen, bzw. die nötigen Fähigkeiten dafür zu erwerben. Deswegen ist er nicht motiviert die Versetzung zu schaffen.",
-                "Ottos aufgabenspezifisches Selbstvertrauen ist nicht sehr hoch. Er traut sich auch die leichtesten Aufgaben nicht zu und anstatt es zu versuchen, scheut er dann davor zurück. Aus diesem Grund fühlt er sich nicht zu seinem Ziel, die Versetzung zu schaffen, hingezogen und seine Motivation sinkt."
+                "Gerrits Bedürfnis nach Autonomie ist sehr hoch. Er möchte möglichst alles alleine bewältigen nicht nach Hilfe fragen. Obwohl er keinen genauen Plan für sein Ziel hat, kann er keine Hilfe annehmen.",
+                "Gerrits Oma hat ihm in den letzten Jahren für jede Versetzung eine kleine Belohnung versprochen, was ihn motiviert hat. Nun ist Gerrits Oma leider verstorben und Gerrit hat keinen extrinsischen Antrieb mehr, die Versetzung zu schaffen.",
+                "Gerrit glaubt selbst nicht daran, dass er mit seinen Leistungen die Versetzung schaffen kann. Sein Erwartungswert, das Ziel zu erreichen, geht gegen Null, demzufolge auch seine Motivation.",
+                "Gerrit hat ein niedriges Bedürfnis des Kompetenzerlebens. Er hat keinen Anspruch danach, Aufgaben selbstständig zu bewältigen. Deswegen ist er nicht motiviert die Versetzung zu schaffen.",
+                "Gerrits aufgabenspezifisches Selbstvertrauen ist nicht sehr hoch. Er traut sich auch die leichtesten Aufgaben nicht zu. Aus diesem Grund fühlt er sich nicht zu seinem Ziel, die Versetzung zu schaffen, hingezogen und seine Motivation sinkt."
               ],
               "multi": true
             },
@@ -731,74 +752,38 @@
               "questId": 3,
               "filePrefix": "Multi",
               "questName": "Yennefer",
-              "Yennefer": "Yennefer möchte an einem Austauschprogramm teilnehmen, obwohl sie sehr große Schwierigkeiten mit der Fremdsprache hat. Schon oft hast du mit ihr darüber gesprochen und vor jedem Test nimmt sie sich vor, mehr zu lernen. Trotzdem hat es auch beim letzten Test wieder nicht gereicht. In allen anderen Fächern sieht es gut aus und du willst ihr helfen, damit sie den Aufnahmetest für den Austausch in einigen Wochen schafft. Was kannst du tun?",
+              "Yennefer": "Yennefer möchte an einem Austauschprogramm teilnehmen, obwohl sie sehr große Schwierigkeiten mit der Fremdsprache hat. Schon oft hast du mit ihr darüber gesprochen und vor jedem Test nimmt sie sich vor, mehr zu lernen. Trotzdem hat es auch beim letzten Test wieder nicht gereicht. In allen anderen Fächern sieht es gut aus und du willst ihr helfen, damit sie den Aufnahmetest für den Austausch in einigen Wochen schafft. \n\nYennefer ist sehr froh darüber, dass du sie zum Gespräch bittest. Direkt zu Anfang sagt sie dir, dass sie keine Ahnung hat, wieso sie trotz des Lernens für das Fach immer so schlecht abschneidet. Du merkst, dass ihr die Note und vor allem das Austauschprogramm sehr am Herzen liegt und versprichst ihr, gemeinsam an einer Lösung zu arbeiten.",
               "image": "Yennefer.png",
               "prePhrase": "Yennefer ist sehr froh darüber, dass du sie zum Gespräch bittest. Direkt zu Anfang sagt sie dir, dass sie keine Ahnung hat, wieso sie trotz des Lernens für das Fach immer so schlecht abschneidet. Du merkst, dass ihr die Note und vor allem das Austauschprogramm sehr am Herzen liegt und versprichst ihr, gemeinsam an einer Lösung zu arbeiten.",
               "Question": "Wieso werden Yennefers Noten in der Fremdsprache trotz offensichtlichem Lernaufwand nicht besser? Welcher Grund ist deiner Meinung nach und mit Blick auf dein Wissen über Motivation der wahrscheinlichste?",
               "AnswerSet": [
                 "Yennefers Motivation wird sehr durch den externen Anreiz des Austauschprogramms gesteuert. Dadurch entsteht ein Korrumpierungseffekt, der ihre intrinsische Motivation hemmt.",
-                "Yennefers subjektive Erwartungen für ihren Erfolg in der Fremdsprache ist sehr gering, deswegen geht sie davon aus, es nicht zu schaffen: Ihre Motivation als Produkt aus Erwartung und Wert gen Null.",
-                "Yennefer fühlt sich in ihrer Fremdsprachenklasse nicht wohl. Sie ist die einzige aus ihrem Freundeskreis, die diese Klasse besucht und jedes Mal wenn sie dort etwas sagt, hat sie ein ungutes Gefühl und nicht den Eindruck, dass man ihre Meinung dort schätzt. Ihre Motivation sinkt.",
-                "Von ihrer Fremdsprachenlehrerin bekommt Yennefer nach der Stunde und nach den Klausuren immer eine Rückmeldung zu ihren Leistungen. Leider kann sie diese nicht richtig umsetzen und somit bringen sie die Rückmeldungen nicht weiter. Yennefers Leistung wird nicht verstärkt.",
+                "Yennefers subjektive Erwartungen für ihren Erfolg in der Fremdsprache ist gering, deswegen geht sie davon aus, es nicht zu schaffen: Ihre Motivation als Produkt aus Erwartung und Wert geht gen Null.",
+                "Yennefer fühlt sich in ihrer Fremdsprachenklasse nicht wohl, weil sie keine Freunde hat. Ihre Motivation sinkt.",
+                "Yennefer hat sich ihr Ziel viel zu präzise gesteckt. Es wäre hilfreicher, ein generelles Ziel zu verfolgen, damit sie mehr Auswahlmöglichkeiten beibehält.",
                 "Yennefer nimmt sich oftmals zu allgemeine Ziele vor. Ihre Zielsetzung ist zu schwammig.  Dies führt dazu, dass Ziele mit geringerer Wahrscheinlichkeit erreicht werden und die Motivation auf Dauer sinkt."
               ],
               "multi": true
             },
             {
               "questId": 4,
-              "questName": "Tino",
-              "Tino": "Tinos Familie ist vor kurzem erst hergezogen. Trotzdem konnte er sich schnell in die Klasse integrieren und ist vor allem in den kreativeren Fächern ein guter Schüler. Du hast vor einiger Zeit mit einem Ausbildungsbetrieb zusammen ein Kunstprojekt gestartet. Dabei geht es genau um die Themen, für die sich Tino sehr interessiert. Du hoffst, dass Tino sich dort ganz entfalten kann. Er hat sich auch gefreut und zu Anfang sehr gut mitgemacht. Nun hat sich der Ausbildungsbetrieb bei dir gemeldet und berichtet, dass Tino in letzter Zeit weniger aufgeschlossen ist und in sich gekehrt scheint. Woran kann das liegen?",
-              "image": "Tino.png",
               "filePrefix": "Multi",
-              "hasNext": true,
-              "prePhrase": "Warum hatte Tino zuletzt Probleme, sich in dem Kunstprojekt  zu motivieren? Welcher Grund ist deiner Meinung nach und mit Blick auf dein Wissen über Motivation der wahrscheinlichste?",
+              "questName": "Tino",
+              "Tino": "Tinos Familie ist vor kurzem erst hergezogen. Trotzdem konnte er sich schnell in die Klasse integrieren und ist vor allem in den kreativeren Fächern ein guter Schüler. Du hast vor einiger Zeit mit einem Ausbildungsbetrieb zusammen ein Kunstprojekt gestartet. Dabei geht es genau um die Themen, für die sich Tino sehr interessiert. Du hoffst, dass Tino sich dort ganz entfalten kann. Er hat sich auch gefreut und zu Anfang sehr gut mitgemacht. Nun hat sich der Ausbildungsbetrieb bei dir gemeldet und berichtet, dass Tino in letzter Zeit weniger aufgeschlossen ist und in sich gekehrt scheint. \n\n Auch Tino bittest du zum Gespräch. Als du ihn fragst, wie es ihm geht, bricht er in Tränen aus und erzählt dir, dass seine Eltern sich scheiden lassen wollen.",
+              "image": "Tino.png",
+              "prePhrase": "Auch Tino bittest du zum Gespräch. Als du ihn fragst, wie es ihm geht, bricht er in Tränen aus und erzählt dir, dass seine Eltern sich scheiden lassen wollen.",
               "Question": "Warum hatte Tino zuletzt Probleme, sich in dem Kunstprojekt  zu motivieren? Welcher Grund ist deiner Meinung nach und mit Blick auf dein Wissen über Motivation der wahrscheinlichste?",
               "AnswerSet": [
-                "Durch die Angst (mögliche Scheidung der Eltern /  möglicher Umzug) wurde Kreativität und Motivation gehemmt",
+                "Durch die Angst (mögliche Scheidung der Eltern/möglicher Umzug) wurde Kreativität und Motivation gehemmt",
                 "Durch die Angst vor der Scheidung seiner Eltern und den möglichen Umzug ist das Sicherheitsbedürfnis und evtl. das Sozialbedürfnis von Tino nicht erfüllt gewesen und somit konnte er auch keine Motivation aufbringen, sich in dem Kunstprojekt selbst zu „verwirklichen“",
                 "Das Kunstprojekt hat Tino nicht die Freiheit gegeben, sich künstlerisch auszuleben. Durch die starke Verschulung fühlt er sich in seiner Autonomie eingeschränkt und war deswegen weniger motiviert",
-                "Tino hat im Laufe des Projekts das Interesse verloren: Sein künstlerisches Interesse war nur situationsbedingt, weil ein Mädchen in dem gleichen Kurs, an dem er interessiert war und dann nicht mehr",
+                "Tino hat im Laufe des Projekts das Interesse verloren: Sein künstlerisches Interesse war nur situationsbedingt, vermutlich weil ein Mädchen, das er sehr mochte, in dem gleichen Kurs war un dann den Kurs gewechselt hat.",
                 "Tinos Mutter ist Kunsthistorikerin und dewegen wollte er sie mit dem Projekt beeindrucken. Der subjektive Wert, den er deswegen dem Projekt gegeben hat, war sehr hoch. Nachdem sich Tinos Eltern nur noch auf die mögliche Scheidung konzentrieren, ist für ihn die Wichtigkeit und der Nutzen für die Motivation gesunken"
               ],
               "multi": true
             },
             {
-              "questId": 6,
-              "filePrefix": "Multi",
-              "questName": "Otto",
-              "Otto": "Otto ist in der Klasse immer schon aufgefallen. Nur mit Mühe schafft er die Klassenarbeiten und auch sonst bringt er sich nicht im Unterricht ein. Bei ihm wird es deshalb dieses Schuljahr noch einmal sehr eng. Bei einem Gespräch zwischen ihm und seinen Mitschülern, das du zufällig mitgehört hast, hast du ihn sagen hören, dass er eh davon ausgeht, das Schuljahr nicht zu schaffen. Warum also noch anstrengen? Wie kannst du Otto helfen?",
-              "image": "Tino.png",
-              "prePhrase": "Als du Otto zum Gespräch bittest, zeigt er sich zunächst unbeeindruckt und cool. Er nimmt eine Null-Bock- Haltung ein und versucht zu demonstrieren, dass ihn das Sitzenbleiben nicht interessiert. Schnell merkst du jedoch, dass diese Einstellung bloß Fassade ist und Otto in Wirklichkeit sehr getroffen davon scheint. Im weiteren Verlauf des Gesprächs gesteht er dir, dass er selbst gar nicht genau weiß, wieso er so schlechte Leistungen erbringt. Dir fällt auf, dass Otto Probleme damit hat, an seine eigenen Fähigkeiten zu glauben und seine Kompetenzen einzusetzen.",
-              "Question": "Weshalb hat Otto keine Motivation, seine Leistungen abzurufen und die Versetzung zu schaffen? Welcher Grund ist deiner Meinung nach und mit Blick auf dein Wissen über Motivation der wahrscheinlichste?",
-              "AnswerSet": [
-                "Im Gegensatz zu seinem Kompetenzerleben ist Ottos Bedürfnis nach Autonomie sehr hoch. Er möchte möglichst alles alleine bewältigen und selbst wenn er nicht weiterkommt, möchte er nicht nach Hilfe fragen. Obwohl er keinen genauen Plan für sein Ziel hat, kann er keine Hilfe annehmen.",
-                "Ottos Oma hat ihm in den letzten Jahren für jede Versetzung eine kleine Belohnung versprochen. Auch wenn Otto Probleme im Unterricht hatte, hat er die letzten Jahre trotzdem genügend Motivation aufbringen können, in die nächste Klasse zu gelangen. Nun ist Ottos Oma leider verstorben und Otto hat keinen Antrieb mehr, die Versetzung zu schaffen.",
-                "Otto glaubt selbst nicht mehr daran, dass er mit seinen Leistungen die Versetzung schaffen kann. Obwohl ihm die Versetzung sehr wichtig ist, damit er in seinem Klassenverband bleiben kann und später eine gute Ausbildung bekommt, geht der Erwartungswert, sein Ziel zu erreichen, gegen Null. Dies beeinflusst seine Motivation negativ.",
-                "Otto hat ein niedriges Bedürfnis des Kompetenzerlebens. Er hat keinen Anspruch danach, sich selbst als wirksam wahrzunehmen und Aufgaben selbstständig zu bewältigen, bzw. die nötigen Fähigkeiten dafür zu erwerben. Deswegen ist er nicht motiviert die Versetzung zu schaffen.",
-                "Ottos aufgabenspezifisches Selbstvertrauen ist nicht sehr hoch. Er traut sich auch die leichtesten Aufgaben nicht zu und anstatt es zu versuchen, scheut er dann davor zurück. Aus diesem Grund fühlt er sich nicht zu seinem Ziel, die Versetzung zu schaffen, hingezogen und seine Motivation sinkt."
-              ],
-              "multi": true
-            },
-            {
-              "questId": 7,
-              "filePrefix": "Multi",
-              "questName": "Yennefer",
-              "Yennefer": "Yennefer möchte an einem Austauschprogramm teilnehmen, obwohl sie sehr große Schwierigkeiten mit der Fremdsprache hat. Schon oft hast du mit ihr darüber gesprochen und vor jedem Test nimmt sie sich vor, mehr zu lernen. Trotzdem hat es auch beim letzten Test wieder nicht gereicht. In allen anderen Fächern sieht es gut aus und du willst ihr helfen, damit sie den Aufnahmetest für den Austausch in einigen Wochen schafft. Was kannst du tun?",
-              "image": "Tino.png",
-              "prePhrase": "Yennefer ist sehr froh darüber, dass du sie zum Gespräch bittest. Direkt zu Anfang sagt sie dir, dass sie keine Ahnung hat, wieso sie trotz des Lernens für das Fach immer so schlecht abschneidet. Du merkst, dass ihr die Note und vor allem das Austauschprogramm sehr am Herzen liegt und versprichst ihr, gemeinsam an einer Lösung zu arbeiten.",
-              "Question": "Wieso werden Yennefers Noten in der Fremdsprache trotz offensichtlichem Lernaufwand nicht besser? Welcher Grund ist deiner Meinung nach und mit Blick auf dein Wissen über Motivation der wahrscheinlichste?",
-              "AnswerSet": [
-                "Yennefers Motivation wird sehr durch den externen Anreiz des Austauschprogramms gesteuert. Dadurch entsteht ein Korrumpierungseffekt, der ihre intrinsische Motivation hemmt.",
-                "Yennefers subjektive Erwartungen für ihren Erfolg in der Fremdsprache ist sehr gering, deswegen geht sie davon aus, es nicht zu schaffen: Ihre Motivation als Produkt aus Erwartung und Wert gen Null.",
-                "Yennefer fühlt sich in ihrer Fremdsprachenklasse nicht wohl. Sie ist die einzige aus ihrem Freundeskreis, die diese Klasse besucht und jedes Mal wenn sie dort etwas sagt, hat sie ein ungutes Gefühl und nicht den Eindruck, dass man ihre Meinung dort schätzt. Ihre Motivation sinkt.",
-                "Von ihrer Fremdsprachenlehrerin bekommt Yennefer nach der Stunde und nach den Klausuren immer eine Rückmeldung zu ihren Leistungen. Leider kann sie diese nicht richtig umsetzen und somit bringen sie die Rückmeldungen nicht weiter. Yennefers Leistung wird nicht verstärkt.",
-                "Yennefer nimmt sich oftmals zu allgemeine Ziele vor. Ihre Zielsetzung ist zu schwammig.  Dies führt dazu, dass Ziele mit geringerer Wahrscheinlichkeit erreicht werden und die Motivation auf Dauer sinkt."
-              ],
-              "multi": true
-            },
-
-            {
-              "questId": 8,
+              "questId": 5,
               "questName": "Evaluation",
 
               "image": "",
