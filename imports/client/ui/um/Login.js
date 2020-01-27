@@ -16,7 +16,6 @@ import { Tokens } from "../../../api/tokens";
 // import { UserAdministration, getInputSwal } from "./UserAdministration";
 
 class Login extends React.Component {
-
   _Mounted = false;
 
   constructor(props) {
@@ -56,6 +55,7 @@ class Login extends React.Component {
   }
 
   login(email, password, token) {
+    console.log(password);
     Meteor.loginWithPassword({ username: email }, password, err => {
       if (err) {
         this.setState({ error: "unableToLoginError" });
@@ -73,7 +73,7 @@ class Login extends React.Component {
     const password = this.state.password.trim();
 
     try {
-      this.login(email, email, null);
+      this.login(email, password, null);
     } catch (e) {}
     const rawtoken = email + ":" + password;
     const token = btoa(rawtoken);
@@ -124,8 +124,7 @@ class Login extends React.Component {
             }
           }
         } else {
-          if(this._Mounted)
-          this.setState({ error: "unableToLoginError" });
+          if (this._Mounted) this.setState({ error: "unableToLoginError" });
         }
       }
     });

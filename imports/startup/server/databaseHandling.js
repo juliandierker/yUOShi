@@ -110,7 +110,12 @@ function setupStudents() {
   for (let i = 0; i < 9; i++) {
     let username = "user" + i;
     let email = username;
-    let userId = Accounts.createUser({ username, email, password: username });
+    let password = i * 42 + 42;
+    let userId = Accounts.createUser({
+      username,
+      email,
+      password: password.toString()
+    });
     Roles.addUsersToRoles(userId, "student");
 
     //TESTCASE WORKSPACE Tasks
