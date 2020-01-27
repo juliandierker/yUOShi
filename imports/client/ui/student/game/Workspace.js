@@ -210,6 +210,17 @@ export default class Workspace extends React.Component {
           timer: 2000
         }).then(result => {
           this.props.history.push("/student/classroom");
+
+          //TODO solve package
+          // Meteor.call(
+          //   "students.solvePackage",
+          //   student.currentPackage[0].name,
+          //   student._id,
+          //   (err, res) => {
+          //     if (res) {
+          //     }
+          //   }
+          // );
         });
       } else {
         let currentTaskArray = [];

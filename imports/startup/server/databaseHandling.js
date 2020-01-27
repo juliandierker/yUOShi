@@ -119,7 +119,9 @@ function setupStudents() {
     Roles.addUsersToRoles(userId, "student");
 
     //TESTCASE WORKSPACE Tasks
+    let startPackage = [];
 
+    startPackage.push(Package.findOne({ name: "Motivation" }));
     if (i == 2) {
       var task = Tasks.findOne({ package: "Motivation", sequenceId: 1 });
       Students.insert({
@@ -136,7 +138,7 @@ function setupStudents() {
         learnCards: [],
         solvedSurveys: [],
         currentSequenceId: 0,
-        currentPackage: [],
+        currentPackage: startPackage,
         currentTraining: [],
         solvedTraining: []
       });
@@ -155,7 +157,7 @@ function setupStudents() {
         learnCards: [],
 
         currentSequenceId: 0,
-        currentPackage: [],
+        currentPackage: startPackage,
         currentTraining: [],
         solvedTraining: []
       });

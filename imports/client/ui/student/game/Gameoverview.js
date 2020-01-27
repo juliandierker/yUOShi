@@ -41,7 +41,6 @@ export default class Gameoverview extends React.Component {
   componentDidUpdate(prevProps, prevState) {
     if (this.props.tasks && !prevProps.tasks && !this.state.tasks) {
       var tasks = this.props.tasks;
-      console.log("tetetet");
       this.setState({ tasks });
     }
   }
@@ -76,7 +75,6 @@ export default class Gameoverview extends React.Component {
     if (student.currentPackage.length > 0) {
       this.props.history.push("/student/workspace");
     } else {
-      console.log("else");
       Meteor.call("students.getPackage", pack, student._id, (err, res) => {
         if (res) {
           this.props.history.push("/student/workspace");

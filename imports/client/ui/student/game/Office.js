@@ -26,6 +26,7 @@ export default class Office extends React.Component {
   componentDidMount() {}
 
   render() {
+    const student = this.props.student;
     return (
       <svg
         version="1.1"
@@ -10598,9 +10599,11 @@ ypj27O3duP8A2psV/vLvlWfktrc/uR8v29isWr1fi/8AEFXhf/I/4869/Z/+kft/8Wf9vy5/yF2R
           />
         </g>
         <path
+          id="learnCards"
           className="st119"
           d="M607,592.5h-99.5c-3.1,0-5.7-2.6-5.7-5.7v-33.3c0-3.1,2.6-5.7,5.7-5.7H607c3.1,0,5.7,2.6,5.7,5.7v33.3
 	C612.7,589.9,610.1,592.5,607,592.5z"
+          onClick={this.openLearnCardModal(student)}
         />
         <g>
           <path

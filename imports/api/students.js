@@ -50,7 +50,6 @@ Meteor.methods({
       example: content,
       image
     };
-    console.log(learnCardObj);
     Students.update(_id, { $addToSet: { learnCards: learnCardObj } });
   },
   "students.addCourse": function(courseId, _id) {
@@ -78,6 +77,15 @@ Meteor.methods({
     var packageObj = Package.findOne({ name: packageName });
     try {
       Students.update(_id, { $addToSet: { currentPackage: packageObj } });
+      return true;
+    } catch (e) {
+      console.log(e);
+    }
+  },
+  "students.solvePackage": function(packageName, _id) {
+    var packageObj = Package.findOne({ name: packageName });
+    try {
+      Students.update(_id, { $pull: { currentPackage: packageObj } });
       return true;
     } catch (e) {
       console.log(e);

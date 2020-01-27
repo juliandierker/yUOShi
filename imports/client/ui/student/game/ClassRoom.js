@@ -31,8 +31,18 @@ export default class ClassRoom extends React.Component {
     const teacher_elem = document.getElementById("Marker_Lehrerzimmer");
     const office_elem = document.getElementById("Marker_Büro");
     const marker_elems = document.getElementsByClassName("marker_elem");
-    console.log(marker_elems);
-    for (var i = 0; i < marker_elems.length; i++) {}
+
+    for (var i = 0; i < marker_elems.length; i++) {
+      if (this.props.student.currentPackage[0].length == 0) {
+        marker_elems[i].style.visibility = "visible";
+      } else if (
+        this.props.student.currentPackage[0].marker === marker_elems[i].id
+      ) {
+        marker_elems[i].style.visibility = "visible";
+      } else {
+        marker_elems[i].style.visibility = "hidden";
+      }
+    }
     var that = this;
     let student = that.props.student;
     motivation_elem.addEventListener("click", function() {
@@ -3538,19 +3548,7 @@ export default class ClassRoom extends React.Component {
             />
           </g>
         </g>
-        <path
-          className="st142"
-          d="M1055.7,516.3h-90c-3.4,0-6.2-2.8-6.2-6.2v-45.2c0-3.4,2.8-6.2,6.2-6.2h90c3.4,0,6.2,2.8,6.2,6.2V510
-  	C1061.9,513.5,1059.1,516.3,1055.7,516.3z"
-        />
-        <text transform="matrix(1 0 0 1 993.707 494.0483)" id="social_text">
-          <tspan x={0} y={0} className="st90 st143">
-            Soziale
-          </tspan>
-          <tspan x="-19.7" y="13.9" className="st90 st143">
-            Wahrnehmung
-          </tspan>
-        </text>
+
         <g id="social_marker" className="marker_elem">
           <path
             className="st144"
@@ -3566,6 +3564,19 @@ export default class ClassRoom extends React.Component {
             d="M1018.3,465.1c11.3,0.9,19.5,3.5,19.5,6.5c0,3.8-12.6,6.8-28.2,6.8s-28.2-3.1-28.2-6.8c0-3,8.1-5.6,19.4-6.5
   		"
           />
+          <path
+            className="st142"
+            d="M1055.7,516.3h-90c-3.4,0-6.2-2.8-6.2-6.2v-45.2c0-3.4,2.8-6.2,6.2-6.2h90c3.4,0,6.2,2.8,6.2,6.2V510
+    	C1061.9,513.5,1059.1,516.3,1055.7,516.3z"
+          />
+          <text transform="matrix(1 0 0 1 993.707 494.0483)" id="social_text">
+            <tspan x={0} y={0} className="st90 st143">
+              Soziale
+            </tspan>
+            <tspan x="-19.7" y="13.9" className="st90 st143">
+              Wahrnehmung
+            </tspan>
+          </text>
           <circle className="st8" cx={1010} cy={422} r="16.5" />
         </g>
         <g id="XMLID_7549_">

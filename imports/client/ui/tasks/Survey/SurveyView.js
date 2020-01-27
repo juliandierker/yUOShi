@@ -74,7 +74,7 @@ export default class SurveyView extends Component {
         style={{ padding: "10px", paddingBottom: "40px" }}
         onSubmit={this.handleSubmit.bind(this)}
       >
-        <h2>{this.props.activeTask.question}</h2>
+        <h2>{this.props.activeTask.Question}</h2>
         {this.renderCheckboxes()}
         {this.renderMiscellaneousTextbox()}
         <Button floated="right" style={{ marginBottom: "10px" }}>
