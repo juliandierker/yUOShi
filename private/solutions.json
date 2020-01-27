@@ -33,11 +33,7 @@
     "sozialer Eingebundenheit",
     "Kompetenzerlebens"
   ],
-  "Xwert_Theorie": [
-    "Erwartungs-X-Wert Modell",
-    "Erwartung an das Ergebnis",
-    "Wert des Ergebnisses"
-  ],
+  "Xwert_Theorie": ["kognitive Theorien", "Erwartung-X-Wert Modelle"],
   "Ziele": ["Zielsetzungstheorie", "Locke", "Moderatoren"],
   "ZieleCloze": [
     "Zielsetzungstheorie",
