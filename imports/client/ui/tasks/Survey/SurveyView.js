@@ -40,7 +40,6 @@ export default class SurveyView extends Component {
   }
 
   renderCheckboxes() {
-    console.log(this.props.activeTask);
     return this.props.activeTask.keywords.map((keyword, index) => {
       return (
         <Checkbox
@@ -57,10 +56,9 @@ export default class SurveyView extends Component {
 
   renderMiscellaneousTextbox() {
     let { content } = this.state;
-    content ? null : (content = "Bemerkungen hier eingeben...");
+    content ? null : (content = "Sonstiges hier eingeben...");
     return (
       <React.Fragment>
-        Sonstiges:
         <FullEditor
           name="instruction"
           onChange={this.handleEditorChange.bind(this)}

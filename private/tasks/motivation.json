@@ -182,12 +182,24 @@
       "title": "Markiere drei Antworten, die auf dich zutreffen. Eure Antworten werden anonym im Lehrerzimmer ausgestellt und können im Seminar diskutiert werden.",
       "description": "Entscheide dich für drei Antwort(en), die am ehesten auf dich zutreffen. ",
       "taskId": "MultiWhy",
-      "filePrefix": "Multi",
+      "filePrefix": "Survey",
+      "image": false,
+      "hasNext": false,
       "credits": 1,
+      "keywords": [
+        "Sicheres Einkommen",
+        "Verbeamtet werden",
+        "Regelmäßige Ferien",
+        "Pädagogisch handeln",
+        "Schüler*innen motivieren",
+        "Spannende Themen behandeln"
+      ],
+      "Question": "Was ist mit dir? Was motiviert dich eigentlich Lehrer oder Lehrerin werden zu wollen?",
+
       "content": [
         {
           "QuestionId": 1,
-          "Question": "Was ist mit dir? Was motiviert dich eigentlich Lehrer oder Lehrerin werden zu wollen?",
+          "Question": "",
           "AnswerSet": [
             "Sicheres Einkommen",
             "Verbeamtet werden",

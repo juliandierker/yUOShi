@@ -107,6 +107,7 @@ export default class KeywordList extends React.Component {
     );
   }
   render() {
+    console.log(this.props.keywords);
     const finished =
       this.props.keywords.length === this.props.finishedKeywords.length;
     const buttonDisabled = finished ? false : true;
