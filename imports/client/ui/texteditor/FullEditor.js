@@ -4,31 +4,31 @@ import React from "react";
 
 export default (FullEditor = props => {
   return (
-    <div style={{ height: "100%", fontSize: "180%" }}>
-      <CKEditor
-        editor={CustomEditor}
-        name={props.name}
-        config={{
-          toolbar: {
-            items: [
-              "heading",
-              "|",
-              "highlight",
-              "bold",
-              "italic",
-              "link",
-              "bulletedList",
-              "numberedList",
-              "insertTable",
-              "blockQuote",
-              "undo",
-              "redo"
-            ]
-          }
-        }}
-        data={props["value"]}
-        onChange={props["onChange"]}
-      />
-    </div>
+    <CKEditor
+      style={{ maxHeight: "200px", fontSize: "180%" }}
+      editor={CustomEditor}
+      name={props.name}
+      config={{
+        height: "80px",
+        toolbar: {
+          items: [
+            "heading",
+            "|",
+            "highlight",
+            "bold",
+            "italic",
+            "link",
+            "bulletedList",
+            "numberedList",
+            "insertTable",
+            "blockQuote",
+            "undo",
+            "redo"
+          ]
+        }
+      }}
+      data={props["value"]}
+      onChange={props["onChange"]}
+    />
   );
 });
