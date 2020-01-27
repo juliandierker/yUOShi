@@ -24,7 +24,7 @@ export default class DragdropViewFormular extends React.Component {
       statements: props.activeTask.statements,
       images: props.activeTask.images,
       currentIndex: 0,
-      commentContent: null,
+      exampleContent: null,
       currentStatements: [],
       currentImages: [],
       evItem: [],
@@ -147,6 +147,7 @@ export default class DragdropViewFormular extends React.Component {
   }
 
   rerenderItems(that, compContext, containerId) {
+    console.log("rerender");
     let targetId = containerId.split("_")[0] + "_target";
     let boundsBefore, boundsAfter;
     boundsBefore = that.target.getBoundingClientRect();
@@ -191,7 +192,6 @@ export default class DragdropViewFormular extends React.Component {
     var targets = document.getElementsByClassName("dragItem");
     let elem = document.getElementById("dragElements").getBoundingClientRect();
     let node = document.getElementById("dragElements");
-    console.log(targets);
     node.appendChild(targets[0]);
     TweenMax.to(targets[0], 0.5, { x: 0, y: 0 });
   }

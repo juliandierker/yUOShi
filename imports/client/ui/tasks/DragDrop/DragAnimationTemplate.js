@@ -63,7 +63,7 @@ export default class DragAnimationTemplate extends React.Component {
         }
       );
     } else {
-      alert("Noch nicht test");
+      alert("Noch nicht");
     }
   }
 
@@ -197,7 +197,7 @@ export default class DragAnimationTemplate extends React.Component {
   setDragIndex() {
     const dragState = this.viewScene.current.view.current.state;
     const dragView = this.viewScene.current.view.current;
-    let editorValue = dragState.commentContent;
+    let editorValue = dragState.content;
     const statements = dragState.statements;
     let currentStatements = dragState.currentStatements;
     let currentIndex = dragState.currentIndex;
@@ -210,7 +210,7 @@ export default class DragAnimationTemplate extends React.Component {
     let finish = this.state.finish;
 
     const editorExampleValue = dragState.exampleContent;
-    currentStatements.push(dragState.statements[currentIndex]);
+    currentStatements = [dragState.statements[currentIndex + 1]];
     if (dragState.currentIndex + 1 < dragState.statements.length) {
       nextIndex = ++dragState.currentIndex;
       stateObj = {
@@ -248,8 +248,9 @@ export default class DragAnimationTemplate extends React.Component {
       this.props.student._id,
       currentStatements[0],
       currentStatements[1],
-      currentImages[1],
       editorValue,
+      currentImages[1],
+
       (err, res) => {
         if (err) {
         } else {
