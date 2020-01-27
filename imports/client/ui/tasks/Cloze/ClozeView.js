@@ -152,7 +152,9 @@ export default class ClozeView extends Component {
         {this.renderText()}
         <div style={{ float: "right" }}>
           <Button color="green" onClick={() => this.solutionPrepare()}>
-            Lösung überprüfen
+            {this.state.correctAnswers
+              ? "Lösung abschicken"
+              : "Lösung überprüfen"}
           </Button>
         </div>
       </React.Fragment>

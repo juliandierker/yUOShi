@@ -10,18 +10,6 @@ import { Students } from "../imports/api/students";
 var Solutions = JSON.parse(Assets.getText("solutions.json"));
 
 Meteor.methods({
-  "solutionHandler.viewTask"(studentId, taskId) {
-    let tasks = Students.findOne({ _id: studentId }).tasks;
-
-    let newTasks = tasks.map(elem => {
-      elem.taskState.viewed = true;
-      return elem;
-    });
-    let taskObj = newTasks.find(elem => {
-      return elem._id === taskId;
-    });
-    Students.update({ _id: studentId }, { $set: { tasks: newTasks } });
-  },
   "solutionHandler.submitCard"(studentId, task) {
     saveCard(studentId, task.taskId);
     solveTask(studentId, task.taskId, 100);

@@ -63,7 +63,7 @@ export default class DragAnimationTemplate extends React.Component {
         }
       );
     } else {
-      alert("Noch nicht");
+      alert("Noch nicht test");
     }
   }
 
@@ -163,13 +163,10 @@ export default class DragAnimationTemplate extends React.Component {
     const dragState = this.viewScene.current.view.current.state;
     const dragView = this.viewScene.current.view.current;
     const statements = dragState.statements;
-    const examples = dragState.examples;
     let currentStatements = dragState.currentStatements;
-    let currentExamples = dragState.currentExamples;
     let currentIndex = dragState.currentIndex;
 
     let solvedStatements = dragState.solvedStatements;
-    let solvedExamples = dragState.solvedExamples;
     let targetStr;
     let renderNextCard = false;
     let stateObj;
@@ -181,23 +178,16 @@ export default class DragAnimationTemplate extends React.Component {
         }
       }
     } else {
-      targetStr = target.split("example")[0];
-      for (var i in currentExamples) {
-        if (currentExamples[i][0] === targetStr) {
-          solvedExamples.push(currentExamples[i]);
-        }
-      }
     }
-    let solveLength = solvedStatements.length + solvedExamples.length;
+    let solveLength = solvedStatements.length;
 
-    if (currentIndex + 1 == solveLength && solveLength % 2 == 0) {
+    if (currentIndex + 1 == solveLength) {
       renderNextCard = true;
     } else {
       stateObj = {
         // currentStatements,
-        // currentExamples,
+        //
         solvedStatements,
-        solvedExamples,
         currentIndex: ++currentIndex
       };
       dragView.setState(stateObj);
@@ -207,34 +197,28 @@ export default class DragAnimationTemplate extends React.Component {
   setDragIndex() {
     const dragState = this.viewScene.current.view.current.state;
     const dragView = this.viewScene.current.view.current;
+    let editorValue = dragState.commentContent;
     const statements = dragState.statements;
-    const examples = dragState.examples;
     let currentStatements = dragState.currentStatements;
-    let currentExamples = dragState.currentExamples;
     let currentIndex = dragState.currentIndex;
     let currentImages = dragState.currentImages;
     const imgs = currentImages[0];
     const stmts = currentStatements[0];
-    const exps = currentExamples[0];
     let solvedStatements = dragState.solvedStatements;
-    let solvedExamples = dragState.solvedExamples;
     let stateObj;
     let nextIndex;
     let finish = this.state.finish;
-    const editorValue = dragState.content;
 
-    currentStatements = [];
-    currentExamples = [];
+    const editorExampleValue = dragState.exampleContent;
     currentStatements.push(dragState.statements[currentIndex]);
-    currentExamples.push(dragState.examples[currentIndex]);
     if (dragState.currentIndex + 1 < dragState.statements.length) {
       nextIndex = ++dragState.currentIndex;
       stateObj = {
         finish,
         currentStatements,
-        currentExamples,
+
         solvedStatements,
-        solvedExamples,
+
         currentIndex: nextIndex
       };
       dragView.setState(stateObj);
@@ -247,15 +231,10 @@ export default class DragAnimationTemplate extends React.Component {
       this.setState({ finish });
     }
 
-    this.saveLearncard(stmts, exps, imgs, editorValue);
+    this.saveLearncard(stmts, imgs, editorValue);
     if (!finish) this.setState({ renderNextCard: false });
   }
-  saveLearncard(
-    currentStatements,
-    currentExamples,
-    currentImages,
-    editorValue
-  ) {
+  saveLearncard(currentStatements, currentImages, editorValue) {
     const student = this.props.student;
     const Toast = Swal.mixin({
       toast: true,
@@ -263,13 +242,12 @@ export default class DragAnimationTemplate extends React.Component {
       showConfirmButton: false,
       timer: 3000
     });
-
+    //TODO EXAMPLE SAVE
     Meteor.call(
       "student.saveLearncard",
       this.props.student._id,
       currentStatements[0],
       currentStatements[1],
-      currentExamples[1],
       currentImages[1],
       editorValue,
       (err, res) => {

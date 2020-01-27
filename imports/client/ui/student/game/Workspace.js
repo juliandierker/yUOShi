@@ -15,7 +15,7 @@ import equals from "fast-deep-equal";
 import { Tasks } from "../../../../api/tasks";
 
 import TaskProgress from "../taskProgress/TaskProgress";
-import { Segment, Button, Grid, Modal } from "semantic-ui-react";
+import { Segment, Button, Grid, Icon } from "semantic-ui-react";
 
 import Hyphenated from "react-hyphen";
 import de from "hyphenated-de";
@@ -39,8 +39,7 @@ export default class Workspace extends React.Component {
       currentSequenceId: 0,
       hasActiveTaskOrTraining: false,
       finishedKeywords: [],
-      readFinished: false,
-      descriptionModalOpen: false
+      readFinished: false
     };
     this.tagInstance = React.createRef();
     this.handler = ev => {
@@ -74,7 +73,6 @@ export default class Workspace extends React.Component {
   }
 
   componentDidUpdate(prevProps, prevState) {
-    this.openDescriptionModal();
     this.checkReadFinish();
   }
   componentWillUnmount() {
@@ -86,36 +84,6 @@ export default class Workspace extends React.Component {
       );
     }
     window.removeEventListener("beforeunload", this.handler);
-  }
-
-  openDescriptionModal() {
-    let currentStudentTask = this.props.student.tasks.find(elem => {
-      return elem._id === this.state.activeTask._id;
-    });
-
-    if (
-      currentStudentTask &&
-      currentStudentTask.taskState &&
-      !currentStudentTask.taskState.viewed &&
-      !this.state.descriptionModalOpen
-    ) {
-      this.setState({ descriptionModalOpen: true });
-
-      Swal.fire({
-        position: "top-start",
-        type: "info",
-        title: this.state.activeTask.description,
-        onClose: () => {
-          this.setState({ descriptionModalOpen: false });
-        }
-      });
-
-      Meteor.call(
-        "solutionHandler.viewTask",
-        this.props.student._id,
-        this.state.activeTask._id
-      );
-    }
   }
 
   checkReadFinish() {
@@ -336,7 +304,6 @@ export default class Workspace extends React.Component {
       </Segment>
     );
   }
-
   renderWorkspaceGrid() {
     let activesubpackage = this.getActiveSubpackage();
 
@@ -351,7 +318,6 @@ export default class Workspace extends React.Component {
             }}
           >
             {this.renderDescription()}
-            {this.renderDescriptionModal()}
             {this.renderKeywordList()}
           </Grid.Column>
           <Grid.Column width={8} id="workspaceGridMobile">

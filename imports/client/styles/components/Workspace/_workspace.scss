@@ -11,6 +11,8 @@
 }
 #workspaceGrid {
   justify-content: center;
+  overflow-x: auto;
+  width: 100%;
 }
 
 #defTextReader {
@@ -40,12 +42,11 @@
 #stepperModalCloseIcon {
   top: -18vh !important;
 }
-
+#app {
+  height: 100% !important;
+}
 // Smartphone
 @media screen and (max-width: 767px) {
-  #app {
-    height: 100% !important;
-  }
   #workspaceGridMobile {
     width: 87.5% !important;
   }
@@ -142,7 +143,7 @@
     height: 100% !important;
   }
   .workspace__container {
-    width: 60%;
+    // width: 60%;
     width: 100%;
     margin-top: 3rem;
     height: 100vh;

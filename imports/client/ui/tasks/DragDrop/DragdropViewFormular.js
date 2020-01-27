@@ -4,6 +4,7 @@ import PropTypes from "prop-types";
 import { Button } from "semantic-ui-react";
 import { TweenMax } from "gsap";
 import FullEditor from "../../texteditor/FullEditor";
+
 import {
   Header,
   Table,
@@ -22,22 +23,23 @@ export default class DragdropViewFormular extends React.Component {
     this.state = {
       statements: props.activeTask.statements,
       images: props.activeTask.images,
-      examples: props.activeTask.examples,
       currentIndex: 0,
-      content: null,
+      commentContent: null,
       currentStatements: [],
       currentImages: [],
-      currentExamples: [],
       evItem: [],
-      solvedStatements: [],
-      solvedImages: [],
-      solvedExamples: []
+      solvedStatements: []
     };
 
     this.handleLoad = this.handleLoad.bind(this);
   }
-  handleEditorChange = (event, editor) => {
-    var change = JSON.parse(JSON.stringify(this.state["content"]));
+  handleEditorExample = (event, editor) => {
+    var change = JSON.parse(JSON.stringify(this.state["exampleContent"]));
+    const content = editor.getData();
+    this.setState({ content });
+  };
+  handleEditorContent = (event, editor) => {
+    var change = JSON.parse(JSON.stringify(this.state["commentContent"]));
     const content = editor.getData();
     this.setState({ content });
   };
@@ -67,19 +69,6 @@ export default class DragdropViewFormular extends React.Component {
     }
     this.setState({ currentImages });
   }
-  getExamples() {
-    let currentExamples = [];
-    for (
-      let i = this.state.currentIndex;
-      i < this.state.currentIndex + 1;
-      i++
-    ) {
-      if (!currentExamples.includes(this.state.statements[i])) {
-        currentExamples.push(this.state.examples[i]);
-      }
-    }
-    this.setState({ currentExamples: currentExamples });
-  }
 
   mouseHitTest(mouseX, mouseY, containerId) {
     let targetId = containerId.split("_")[0] + "_target";
@@ -106,7 +95,7 @@ export default class DragdropViewFormular extends React.Component {
     this.initDragDrop();
   }
   setCurrents() {
-    const { statements, images, examples } = this.state;
+    const { statements, images } = this.state;
   }
 
   initDragDrop() {
@@ -118,7 +107,6 @@ export default class DragdropViewFormular extends React.Component {
   }
   componentDidMount() {
     this.getStatements();
-    this.getExamples();
     this.getImages();
     if (this.state.activeTask == null) {
       this.setState({ statements: this.props.activeTask.statements });
@@ -131,7 +119,7 @@ export default class DragdropViewFormular extends React.Component {
       let intrNodes = document.getElementById("intr_target").childNodes;
       let extrNodes = document.getElementById("extr_target").childNodes;
       const correctArr = this.props.model.correctArr;
-      if (correctArr.length >= 2) {
+      if (correctArr.length >= 1) {
         for (let i = 0; i < correctArr[0].length; i++) {
           if (intrNodes[i]) {
             if (correctArr[0][i] === true) {
@@ -169,7 +157,7 @@ export default class DragdropViewFormular extends React.Component {
       0.3,
       {
         x: "+=" + (boundsBefore.left - boundsAfter.left - 1),
-        y: "+=" + (boundsBefore.top - boundsAfter.top + 10)
+        y: "+=" + (boundsBefore.top - boundsAfter.top - 10)
       },
       {
         x: 0,
@@ -187,21 +175,11 @@ export default class DragdropViewFormular extends React.Component {
     let that = this.vars.that;
     let index = that.state.currentIndex;
 
-    const {
-      currentStatements,
-      currentExamples,
-      solvedStatements,
-      solvedExamples
-    } = that.state;
+    const { currentStatements, solvedStatements } = that.state;
     if (that.mouseHitTest(event.clientX, event.clientY, this.target.id)) {
       if (this.target.id.includes("statement")) {
         let targetStr = this.target.id.split("statement")[0];
         if (that.checkSolutions(solvedStatements, targetStr).length == 0) {
-          that.rerenderItems(this, that, this.target.id);
-        }
-      } else if (this.target.id.includes("example")) {
-        let targetStr = this.target.id.split("example")[0];
-        if (that.checkSolutions(solvedExamples, targetStr).length == 0) {
           that.rerenderItems(this, that, this.target.id);
         }
       }
@@ -213,16 +191,15 @@ export default class DragdropViewFormular extends React.Component {
     var targets = document.getElementsByClassName("dragItem");
     let elem = document.getElementById("dragElements").getBoundingClientRect();
     let node = document.getElementById("dragElements");
-    node.appendChild(targets[1]);
-    TweenMax.to(targets[1], 0.5, { x: 0, y: 0 });
-
+    console.log(targets);
     node.appendChild(targets[0]);
     TweenMax.to(targets[0], 0.5, { x: 0, y: 0 });
   }
+
   renderTargetCards() {
-    const { currentStatements, currentExamples, currentImages } = this.state;
-    let { content } = this.state;
-    content ? null : (content = "Bemerkungen hier eingeben...");
+    const { currentStatements, currentImages } = this.state;
+    let { commentContent, exampleContent } = this.state;
+    exampleContent ? null : (exampleContent = "Beispiel hier eingeben...");
     return currentStatements.map((statements, index) => {
       // return statements.map(statement => {
       return (
@@ -250,19 +227,12 @@ export default class DragdropViewFormular extends React.Component {
           <div class="customCard-body">
             <div className="targetDrop" id={statements[0] + "statement_target"}>
               <p class="targetDropDefinition">Definition:</p>
-              {/* <p>{statements[1]}</p> */}
             </div>
-            <div className="targetDrop" id={statements[0] + "example_target"}>
-              <p class="targetDropExample">Beispiel:</p>
-              {/* <p>{statements[1]}</p> */}
-            </div>
-            <div>
-              <p class="targetDropComment">Bemerkungen:</p>
-
+            <div className="fulleditor">
               <FullEditor
-                name="instruction"
-                onChange={this.handleEditorChange.bind(this)}
-                value={content}
+                name="example"
+                onChange={this.handleEditorExample.bind(this)}
+                value={exampleContent}
               />
             </div>
           </div>
@@ -271,21 +241,7 @@ export default class DragdropViewFormular extends React.Component {
       );
     });
   }
-  renderSolutionState() {
-    solutions.map(solution => {
-      solution.children.map(child => {
-        let elem = document.getElementById(child.id);
-        elem.style.backgroundColor = "green";
-        if (
-          this.props.model.visQueue.find(elem => {
-            return elem.id === child.id;
-          }) !== undefined
-        ) {
-          elem.style.backgroundColor = "red";
-        }
-      });
-    });
-  }
+
   renderCardGrid() {
     return this.renderTargetCards();
   }
@@ -301,27 +257,12 @@ export default class DragdropViewFormular extends React.Component {
     });
   }
 
-  renderDragExamples() {
-    const { currentExamples } = this.state;
-
-    return currentExamples.map((example, index) => {
-      return (
-        <div id={example[0] + "example_start"} className="dragItem">
-          {example[1]}
-        </div>
-      );
-    });
-  }
-
   render() {
     return (
       <div id="svgDiv" style={{ width: "100%" }}>
         <div className="motiveWrapper">
+          <div id="dragElements">{this.renderDragStatements()}</div>
           {this.renderCardGrid()}
-          <div id="dragElements">
-            {this.renderDragStatements()}
-            {this.renderDragExamples()}
-          </div>
         </div>
       </div>
     );

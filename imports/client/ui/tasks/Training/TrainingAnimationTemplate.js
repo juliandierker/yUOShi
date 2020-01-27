@@ -90,7 +90,6 @@ export default class TrainingAnimationTemplate extends React.Component {
   }
   nextAction() {
     const { introIndex, finalIndex, currentTraining } = this.state;
-    console.log(currentTraining);
     if (currentTraining.finalTraining) {
       if (introIndex <= finalIndex) {
         this.setState({ introIndex: introIndex + 1 });
