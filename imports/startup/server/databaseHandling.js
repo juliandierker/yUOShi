@@ -107,7 +107,7 @@ function setupTeacher() {
 }
 function setupStudents() {
   const courses = Courses.find({}).fetch();
-  for (let i = 0; i < 9; i++) {
+  for (let i = 0; i < 40; i++) {
     let username = "user" + i;
     let email = username;
     let password = i * 42 + 42;
