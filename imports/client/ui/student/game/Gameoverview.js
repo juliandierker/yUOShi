@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { Tracker } from "meteor/tracker";
 import Loading from "../../Loading";
-import { Button, Card, Image } from "semantic-ui-react";
+import { Button, Card, Image, Modal } from "semantic-ui-react";
 import { Dropdown, Icon, Menu, Segment, Grid } from "semantic-ui-react";
 
 import StudentTopMenu from "../StudentTopMenu";
@@ -87,43 +87,7 @@ export default class Gameoverview extends React.Component {
   renderSchoolFloor() {
     return <SchoolFloor history={this.props.history} />;
   }
-  // renderTracks() {
-  //   if (this.state.tasks) {
-  //     return this.state.tasks.map((task, index) => {
-  //       return (
-  //         <Card.Group>
-  //           <Card>
-  //             <Image
-  //               src={"/tasks/" + task.filePrefix + "/" + task.taskId + ".jpg"}
-  //               wrapped
-  //               ui={false}
-  //             />
-  //             <Card.Content>
-  //               <Card.Header>{task.taskId}</Card.Header>
-  //               <Card.Meta>
-  //                 <span className="date">Zuweisung</span>
-  //               </Card.Meta>
-  //               <Card.Description>{task.description}</Card.Description>
-  //             </Card.Content>
-  //             <Button
-  //               onClick={() => this.handleGetTask(task)}
-  //               basic
-  //               color="green"
-  //             >
-  //               Bearbeiten
-  //             </Button>
-  //             <Card.Content extra>
-  //               <Icon name="expand arrows alternate" />
-  //               {task.credits}
-  //             </Card.Content>
-  //           </Card>
-  //         </Card.Group>
-  //       );
-  //     });
-  //   } else {
-  //     return <Loading />;
-  //   }
-  // }
+
   renderTracks() {
     if (this.state.packages) {
       return (
@@ -172,7 +136,16 @@ export default class Gameoverview extends React.Component {
     }
   }
   render() {
-    return <div id="gameOverView">{this.renderSchoolFloor()}</div>;
+    console.log(this.props);
+    if (this.props.student.solvedTasks.length === 0) {
+      var greetingModal = <Modal defaultOpen={true}>TEST</Modal>;
+    }
+    return (
+      <div id="gameOverView">
+        {this.renderSchoolFloor()}
+        {greetingModal}
+      </div>
+    );
   }
 }
 
