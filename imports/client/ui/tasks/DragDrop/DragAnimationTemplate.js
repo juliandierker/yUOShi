@@ -24,8 +24,6 @@ export default class DragAnimationTemplate extends React.Component {
       statements: this.shuffleStatements()
     };
 
-    console.log(this.props);
-
     this.viewScene = React.createRef();
   }
 
@@ -90,21 +88,21 @@ export default class DragAnimationTemplate extends React.Component {
     const userSol = this.viewScene.current.state.scene.children;
 
     if (this.state.showSolution) {
-      let correctAnswers = 0;
-      for (let i = 0; i < this.model.correctArr.length; i++) {
-        for (let j = 0; j < this.model.correctArr[i].length; j++) {
-          if (this.model.correctArr[i][j]) {
-            correctAnswers++;
-          }
+      let falseAnswers = 0;
+      let totalAnswerCount = 0;
+
+      for (let i = 0; i < this.props.activeTask.statements.length; i++) {
+        totalAnswerCount++;
+      }
+
+      for (let i = 0; i < this.model.visQueue.length; i++) {
+        if (this.model.visQueue[i] === "fail") {
+          falseAnswers++;
         }
       }
-      let solvedPercentage = 1;
-      if (this.props.activeTask.taskId == "Motive") {
-        solvedPercentage =
-          correctAnswers / this.props.activeTask.statements[0].length;
-      } else if (this.props.activeTask.taskId == "Maslow") {
-        solvedPercentage = correctAnswers / 5;
-      }
+
+      let solvedPercentage =
+        (totalAnswerCount - falseAnswers) / totalAnswerCount;
 
       var meteorMethod =
         "solutionHandler.submit" + this.props.activeTask.filePrefix;

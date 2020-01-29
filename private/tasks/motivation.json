@@ -445,15 +445,11 @@
         [
           "kompetenz",
           "Wenn ich für eine Klausur richtig lerne, dann schaffe ich sie auch."
-        ],
-        [
-          "kompetenz",
-          "Das, was ich jetzt noch nicht verstehe, werde ich später verstehen lernen."
         ]
       ],
 
       "package": "Motivation",
-      "credits": 9
+      "credits": 6
     },
     {
       "parentId": "Motivation3",
