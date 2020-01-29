@@ -108,7 +108,7 @@
       ],
 
       "package": "Motivation",
-      "credits": 7
+      "credits": 5
     },
     {
       "parentId": "Motivation1",
@@ -119,7 +119,7 @@
       "multipleColumns": true,
       "isCard": true,
       "package": "Lernkarte Motivation",
-      "credits": 12,
+      "credits": 0,
       "categories": ["Titel", "Bild", "Beispiel"],
       "solArray": ["intr", "extr"],
       "scale": false,
@@ -239,7 +239,7 @@
       ],
 
       "package": "Motivation",
-      "credits": 7
+      "credits": 3
     },
 
     {
@@ -263,7 +263,7 @@
       ],
 
       "package": "Motivation",
-      "credits": 4
+      "credits": 1
     },
     {
       "parentId": "Motivation2",
@@ -352,7 +352,7 @@
       ],
 
       "package": "Motivation",
-      "credits": 7
+      "credits": 3
     },
 
     {
@@ -409,7 +409,7 @@
       ],
 
       "package": "Motivation",
-      "credits": 6
+      "credits": 4
     },
     {
       "parentId": "Motivation3",
@@ -453,7 +453,7 @@
       ],
 
       "package": "Motivation",
-      "credits": 9
+      "credits": 6
     },
     {
       "parentId": "Motivation3",
@@ -501,7 +501,7 @@
         }
       ],
       "package": "Motivation",
-      "credits": 6
+      "credits": 4
     },
     {
       "parentId": "Motivation3",
@@ -519,7 +519,7 @@
       ],
 
       "package": "Motivation",
-      "credits": 2
+      "credits": 1
     },
     {
       "parentId": "Motivation3",
@@ -528,7 +528,7 @@
       "taskId": "Motivation_Memory",
       "filePrefix": "Memory",
       "package": "Motivation",
-      "credits": 3,
+      "credits": 6,
       "content": [
         {
           "title": "Motivation Begriffsklärung",
@@ -597,7 +597,7 @@
         }
       ],
       "package": "Motivation",
-      "credits": 3
+      "credits": 7
     },
     {
       "parentId": "Motivation4",
@@ -624,7 +624,7 @@
       ],
 
       "package": "Motivation",
-      "credits": 2
+      "credits": 3
     },
     {
       "parentId": "Motivation4",
@@ -634,7 +634,7 @@
       "description": "Lies die angegebenen Zielformulierungen und entscheide, ob diese SMART sind. \n Tipp: Bei manchen Zielen kann aufgrund des geringen Hintergrundwissens nicht genau festgesetzt werden, ob alle Kriterien erfüllt sind, dann können Antworten sowohl richtig als auch falsch sein und werden hinterher gelb markiert.",
       "taskId": "MultiSMART",
       "filePrefix": "Multi",
-      "credits": 1,
+      "credits": 2,
       "content": [
         {
           "QuestionId": 1,
