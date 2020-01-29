@@ -20,10 +20,25 @@ export default class DragAnimationTemplate extends React.Component {
       childKeyIteration: 0,
       viewScene: null,
       renderNextCard: false,
-      finish: false
+      finish: false,
+      statements: this.shuffleStatements()
     };
+
     this.viewScene = React.createRef();
   }
+
+  shuffleStatements() {
+    function shuffle(a) {
+      for (let i = a.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [a[i], a[j]] = [a[j], a[i]];
+      }
+      return a;
+    }
+
+    return shuffle(this.props.activeTask.statements);
+  }
+
   componentDidMount() {
     this.setState({ viewScene: this.viewScene });
   }
@@ -73,21 +88,21 @@ export default class DragAnimationTemplate extends React.Component {
     const userSol = this.viewScene.current.state.scene.children;
 
     if (this.state.showSolution) {
-      let correctAnswers = 0;
-      for (let i = 0; i < this.model.correctArr.length; i++) {
-        for (let j = 0; j < this.model.correctArr[i].length; j++) {
-          if (this.model.correctArr[i][j]) {
-            correctAnswers++;
-          }
+      let falseAnswers = 0;
+      let totalAnswerCount = 0;
+
+      for (let i = 0; i < this.props.activeTask.statements.length; i++) {
+        totalAnswerCount++;
+      }
+
+      for (let i = 0; i < this.model.visQueue.length; i++) {
+        if (this.model.visQueue[i] === "fail") {
+          falseAnswers++;
         }
       }
-      let solvedPercentage = 1;
-      if (this.props.activeTask.taskId == "Motive") {
-        solvedPercentage =
-          correctAnswers / this.props.activeTask.statements[0].length;
-      } else if (this.props.activeTask.taskId == "Maslow") {
-        solvedPercentage = correctAnswers / 5;
-      }
+
+      let solvedPercentage =
+        (totalAnswerCount - falseAnswers) / totalAnswerCount;
 
       var meteorMethod =
         "solutionHandler.submit" + this.props.activeTask.filePrefix;
@@ -119,8 +134,7 @@ export default class DragAnimationTemplate extends React.Component {
           this.forceUpdate();
         } else {
           this.setState({
-            showSolution: false,
-            childKeyIteration: this.state.childKeyIteration === 0 ? 1 : 0
+            showSolution: false
           });
           this.forceUpdate();
         }

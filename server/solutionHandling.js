@@ -42,6 +42,7 @@ Meteor.methods({
   ) {
     if (solvedPercentage !== undefined) {
       solveTask(studentId, task.taskId, solvedPercentage);
+      return;
     }
 
     // var correct = equals(studentSolution, Solutions[task.taskId]);
