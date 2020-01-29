@@ -90,7 +90,9 @@ export default class Workspace extends React.Component {
 
   openDescriptionModal() {
     let currentStudentTask = this.props.student.tasks.find(elem => {
-      return elem && elem._id === this.state.activeTask._id;
+      return (
+        elem && this.state.activeTask && elem._id === this.state.activeTask._id
+      );
     });
 
     if (
