@@ -63,16 +63,13 @@ export default class TagView extends React.Component {
       }
     }
   }
-  renderText() {
-    var plainText = this.props.activeTask.content[0].text;
-    var keyArr = this.props.activeTask.content[0].keywords;
-    let tmpKey = 0;
 
-    //adding images
+  replaceKeywords(plainText, keyArr) {
     const images = this.props.activeTask.content[0].images;
     const entries = Object.entries(images);
     const imgKeys = Object.keys(images);
 
+    let tmpKey = 0;
     //preparing text for tags
     var count = 0;
     for (var i in keyArr) {
@@ -109,19 +106,50 @@ export default class TagView extends React.Component {
     }
 
     // Add hyphens to text
-    for (let i = 0; i < plainText.length; i++) {
-      if (typeof plainText[i] == "string") {
-        plainText[i] = (
-          <Hyphenated language={de} key={"hyphenText-" + i}>
-            {plainText[i]}
-          </Hyphenated>
-        );
+    if (typeof plainText === "string") {
+      plainText = (
+        <Hyphenated language={de} key={"hyphenText-" + count}>
+          {plainText}
+        </Hyphenated>
+      );
+    } else {
+      for (let i = 0; i < plainText.length; i++) {
+        if (typeof plainText[i] == "string") {
+          plainText[i] = (
+            <Hyphenated language={de} key={"hyphenText-" + i}>
+              {plainText[i]}
+            </Hyphenated>
+          );
+        }
       }
     }
 
+    return plainText;
+  }
+
+  renderText() {
+    var plainText = this.props.activeTask.content[0].text;
+    var keyArr = this.props.activeTask.content[0].keywords;
+
+    //adding images
+    const images = this.props.activeTask.content[0].images;
+    const entries = Object.entries(images);
+    const imgKeys = Object.keys(images);
+
     var middle = Math.floor(plainText.length / 2);
+    // go to end of the current word
+    while (plainText[middle] !== " ") {
+      console.log(plainText[middle]);
+      middle++;
+    }
+    // slice text
     var partOne = plainText.slice(0, middle + 1);
     var partTwo = plainText.slice(middle + 1, plainText.length);
+
+    // add keywords to text
+    partOne = this.replaceKeywords(partOne, keyArr);
+    partTwo = this.replaceKeywords(partTwo, keyArr);
+
     return (
       <Segment id="defTextReader">
         <Header as="h1"> {this.props.activeTask.title}</Header>
