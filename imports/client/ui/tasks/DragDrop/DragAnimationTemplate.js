@@ -20,10 +20,27 @@ export default class DragAnimationTemplate extends React.Component {
       childKeyIteration: 0,
       viewScene: null,
       renderNextCard: false,
-      finish: false
+      finish: false,
+      statements: this.shuffleStatements()
     };
+
+    console.log(this.props);
+
     this.viewScene = React.createRef();
   }
+
+  shuffleStatements() {
+    function shuffle(a) {
+      for (let i = a.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [a[i], a[j]] = [a[j], a[i]];
+      }
+      return a;
+    }
+
+    return shuffle(this.props.activeTask.statements);
+  }
+
   componentDidMount() {
     this.setState({ viewScene: this.viewScene });
   }
