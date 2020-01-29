@@ -108,7 +108,7 @@
       ],
 
       "package": "Motivation",
-      "credits": 7
+      "credits": 5
     },
     {
       "parentId": "Motivation1",
@@ -119,7 +119,7 @@
       "multipleColumns": true,
       "isCard": true,
       "package": "Lernkarte Motivation",
-      "credits": 12,
+      "credits": 0,
       "categories": ["Titel", "Bild", "Beispiel"],
       "solArray": ["intr", "extr"],
       "scale": false,
@@ -239,7 +239,7 @@
       ],
 
       "package": "Motivation",
-      "credits": 7
+      "credits": 3
     },
 
     {
@@ -263,7 +263,7 @@
       ],
 
       "package": "Motivation",
-      "credits": 4
+      "credits": 1
     },
     {
       "parentId": "Motivation2",
@@ -352,7 +352,7 @@
       ],
 
       "package": "Motivation",
-      "credits": 7
+      "credits": 3
     },
 
     {
@@ -409,7 +409,7 @@
       ],
 
       "package": "Motivation",
-      "credits": 6
+      "credits": 4
     },
     {
       "parentId": "Motivation3",
@@ -453,7 +453,7 @@
       ],
 
       "package": "Motivation",
-      "credits": 9
+      "credits": 6
     },
     {
       "parentId": "Motivation3",
@@ -501,7 +501,7 @@
         }
       ],
       "package": "Motivation",
-      "credits": 6
+      "credits": 4
     },
     {
       "parentId": "Motivation3",
@@ -519,7 +519,7 @@
       ],
 
       "package": "Motivation",
-      "credits": 2
+      "credits": 1
     },
     {
       "parentId": "Motivation3",
@@ -528,7 +528,7 @@
       "taskId": "Motivation_Memory",
       "filePrefix": "Memory",
       "package": "Motivation",
-      "credits": 3,
+      "credits": 6,
       "content": [
         {
           "title": "Motivation Begriffsklärung",
@@ -597,7 +597,7 @@
         }
       ],
       "package": "Motivation",
-      "credits": 3
+      "credits": 7
     },
     {
       "parentId": "Motivation4",
@@ -610,7 +610,7 @@
           "title": "SMART",
           "subtitle": "Smart",
           "text": "Wie in der Zielsetzungstheorie deutlich geworden ist, kann der Sinn einer Handlung über die Zielsetzung besser erkannt und der Weg zur Erreichung dieses Ziels durchgeführt werden.\n\n Ziele können dazu dienen, die Motivation zu lenken und aufrechtzuhalten. Im Alltag werden Ziele allerdings oftmals allgemein formuliert, ein klassisches Beispiel sind Neujahrziele: z.B.„Ich   werde   abnehmen“, „Ich   werde   dieses   Semester   die   Klausuren   bestehen“,   was langfristig dazu führt, dass Ziele mit geringerer Wahrscheinlichkeit erreicht werden und die Motivation sinkt. \n\nUm dem entgegen zu wirken und Ziele erreichbarer zu gestalten, kann die SMART-Formel angewendet werden, die u.a. auf Basis der Zielsetzungstheorie entstanden ist. Hierbei werden Ziele konkret operationalisiert und es werden klare Kriterien   für   die   Zielerreichung   erstellt.   Außerdem   können   anhand   der   Zielsetzung   mit SMART wesentliche Vereinbarungen über die zeitliche Datierung und die Rückmeldung zubesagtem   Ziel   getroffen   werden.   Daher   kommt   diese   Methodik   vor   allem   im Projektmanagement, im Coaching, in der Karriereplanung und in Trainings zum Einsatz. \n\n SMART steht (aus dem Englischen übersetzt) für: \n     Spezifisch\n     Messbar\n     Akzeptiert (auch attraktiv / anziehend / angemessen)\n     Realistisch\n     Terminiert\n\nSpezifisch  bedeutet in diesem Zusammenhang, dass gesetzte Ziele klar und deutlich definiert werden sollten, um so möglichst wenig Spielraum für Interpretationen zu schaffen: „Was will ich genau erreichen“.\nBeispiel: „Ich will die Mathe Klausur „Algebra 1“ dieses Semester bestehen“. \n\nMessbar bedeutet, dass das Ziel kontrollierbar sein muss. Dies heißt, dass es klar sein muss, ab wann das Ziel erreicht ist und wie man das Ziel messen kann: „Wie viel genau muss ichwovon tun“.\nBeispiel: „Die Endnote soll 4,0 oder besser sein.“\n\nAkzeptiert steht in der Formel für die Akzeptanz des Ziels durch alle beteiligten Personen.Jeder   sollte   mit   der   Zielformulierung   einverstanden   sein   und   die   Ziel-Vereinbarung „unterzeichnen“. Außerdem sollte das Ziel durch das Verhalten der Beteiligten beeinflussbar sein. Ein Ansatz, um mehr Akzeptanz oder Attraktivität für das Ziel zu schaffen, wäre zum Beispiel eine gemeinsame Zielsetzung. \nBeispiel:   „Ich   werde   eine   Lerngruppe   mit   Martina   und   Leon   machen“.\n\nRealistisch steht für die Realisierbarkeit/Erreichbarkeit des Ziels. Zu hoch gesteckte Ziele wirken   eher   demotivierend   auf   Menschen.   Herausfordernde  Ziele   können  im   ersten Moment frustrierend wirken, da sie nicht sofort zu erreichen sind. Durch eine gewisse Anstrengung kann das Ziel jedoch erreicht werden, was wiederum motiviert. Oft sind gut gesteckte Ziele automatisch realistisch, da man sich diese sonst nicht setzen würde.\n\nTerminiert beschreibt den festzulegenden Zeitraum einer Zielsetzung, der unbedingt präzise festgelegt   werden   sollte.   Ratsam   sind   hierbei   auch   Zwischenprüfungen,   um   eventuelle Abweichungen bei der Zielerreichung festzustellen und schnell korrigieren zu können. Beispiel: „dafür treffen wir uns immer Montags, Mittwochs und jeden zweiten Freitag um 16 Uhr für zwei Stunden in der Lernlandschaft der Universität“.\n\nDes Weiteren ist es ratsam, Zielsetzungen immer positiv zu formulieren, da negative Aussagen demotivierend wirken. Formulierungen, die UN- oder NICHT- enthalten, sollten ebenfalls vermieden werden.\nBeispiel: „Ich werde nicht durchfallen“ (Negativ) besser: „Ich werde bestehen“\n\n Ziele sollten immer so gewählt werden, dass sie (persönlich) sinnvoll erscheinen, sowie eine Entwicklung des Individuums hervorrufen. Hierbei kann an Stärken, Schwächen oder Kompetenzen des Individuums angeknüpft werden.",
-          "keywords": ["Handlung", "Akzeptanz", "Zeitraum einer Zielsetzung"],
+          "keywords": ["Handlung", "Akzeptanz", "Wie"],
           "images": {
             "Selbstbestimmung": "/Tag/Motivation5/Smart.png"
           }
@@ -618,7 +618,7 @@
       ],
 
       "package": "Motivation",
-      "credits": 2
+      "credits": 3
     },
     {
       "parentId": "Motivation4",
@@ -628,7 +628,7 @@
       "description": "Lies die angegebenen Zielformulierungen und entscheide, ob diese SMART sind. \n Tipp: Bei manchen Zielen kann aufgrund des geringen Hintergrundwissens nicht genau festgesetzt werden, ob alle Kriterien erfüllt sind, dann können Antworten sowohl richtig als auch falsch sein und werden hinterher gelb markiert.",
       "taskId": "MultiSMART",
       "filePrefix": "Multi",
-      "credits": 1,
+      "credits": 2,
       "content": [
         {
           "QuestionId": 1,
