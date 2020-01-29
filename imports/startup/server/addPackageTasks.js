@@ -7,7 +7,7 @@ function createDragTask(taskSpecs) {
   taskSpecs["package"] = taskSpecs["package"];
   taskSpecs["autoGrading"] = true;
   taskSpecs["filePrefix"] = taskSpecs["filePrefix"];
-  taskSpecs["taskState"] = { save: false, help: false };
+  taskSpecs["taskState"] = { save: false, help: false, viewed: false };
 
   return taskSpecs;
 }
@@ -19,7 +19,7 @@ function createTagTask(taskSpecs) {
   taskSpecs["package"] = taskSpecs["package"];
   taskSpecs["autoGrading"] = true;
   taskSpecs["filePrefix"] = taskSpecs["filePrefix"];
-  taskSpecs["taskState"] = { save: false, help: false, readFinished: false };
+  taskSpecs["taskState"] = { save: false, help: false, viewed: false };
 
   return taskSpecs;
 }
@@ -32,7 +32,7 @@ function createClozeTask(taskSpecs) {
   taskSpecs["package"] = taskSpecs["package"];
   taskSpecs["autoGrading"] = true;
   taskSpecs["filePrefix"] = taskSpecs["filePrefix"];
-  taskSpecs["taskState"] = { save: false, help: false };
+  taskSpecs["taskState"] = { save: false, help: false, viewed: false };
 
   return taskSpecs;
 }
@@ -45,7 +45,7 @@ function createMemory(taskSpecs) {
   taskSpecs["package"] = taskSpecs["package"];
   taskSpecs["autoGrading"] = true;
   taskSpecs["filePrefix"] = taskSpecs["filePrefix"];
-  taskSpecs["taskState"] = { save: false, help: false };
+  taskSpecs["taskState"] = { save: false, help: false, viewed: false };
 
   return taskSpecs;
 }
@@ -58,7 +58,7 @@ function createMultiChoice(taskSpecs) {
   taskSpecs["package"] = taskSpecs["package"];
   taskSpecs["autoGrading"] = true;
   taskSpecs["filePrefix"] = taskSpecs["filePrefix"];
-  taskSpecs["taskState"] = { save: false, help: false };
+  taskSpecs["taskState"] = { save: false, help: false, viewed: false };
 
   return taskSpecs;
 }
@@ -70,7 +70,7 @@ function createSurveyTask(taskSpecs) {
   taskSpecs["package"] = taskSpecs["package"];
   taskSpecs["autoGrading"] = true;
   taskSpecs["filePrefix"] = taskSpecs["filePrefix"];
-  taskSpecs["taskState"] = { save: true, help: false };
+  taskSpecs["taskState"] = { save: true, help: false, viewed: false };
 
   return taskSpecs;
 }
