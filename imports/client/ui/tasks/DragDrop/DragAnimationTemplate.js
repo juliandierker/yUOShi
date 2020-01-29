@@ -136,8 +136,7 @@ export default class DragAnimationTemplate extends React.Component {
           this.forceUpdate();
         } else {
           this.setState({
-            showSolution: false,
-            childKeyIteration: this.state.childKeyIteration === 0 ? 1 : 0
+            showSolution: false
           });
           this.forceUpdate();
         }
