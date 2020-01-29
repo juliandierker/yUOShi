@@ -37,13 +37,12 @@
   "Ziele": ["Zielsetzungstheorie", "Locke", "Moderatoren"],
   "ZieleCloze": [
     "Zielsetzungstheorie",
-    "Locke & Latham",
-    "Moderatoren",
-    "Ziele",
-    "Handelns",
-    "schwierigere",
-    "allgemeine Ziele",
-    "Wirkungsmechanismen"
+            "Locke und Latham",
+            "Ziele",
+            "Handelns",
+            "schwierigere",
+            "allgemeine",
+            "Mediatoren"
   ],
   "XwertCloze": ["5", "0", "3", "-0,875"],
   "XWertMulti": [{ "id": 1, "correct": ["Lisa"] }],

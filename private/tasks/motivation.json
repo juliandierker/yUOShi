@@ -522,7 +522,7 @@
       "credits": 2
     },
     {
-      "parentId": "Motivation4",
+      "parentId": "Motivation3",
       "title": "Motivationsbegriffe",
       "description": "Super! Du hast die wichtigsten Motivationstheorien kennengelernt. In diesem Memory kannst du dein Wissen noch einmal auffrischen und die Grundbegriffe mit Bildern oder Autor*innen verknüpfen.",
       "taskId": "Motivation_Memory",
@@ -547,7 +547,7 @@
     },
 
     {
-      "parentId": "Motivation5",
+      "parentId": "Motivation4",
       "title": "Die Zielsetzungstheorie nach Locke & Latham",
       "description": "Lies den Text zur Zielsetzungstheorie und markiere die Schlüsselbegriffe.",
       "taskId": "Zielsetzungstheorie_Theorie",
@@ -574,7 +574,7 @@
       "credits": 5
     },
     {
-      "parentId": "Motivation5",
+      "parentId": "Motivation4",
       "title": "Ziele Lückentext",
       "description": "Löse den Lückentext",
 
@@ -586,13 +586,12 @@
           "subtitle": "Langer Text",
           "keywords": [
             "Zielsetzungstheorie",
-            "Locke & Latham",
-            "Moderatoren",
+            "Locke und Latham",
             "Ziele",
             "Handelns",
             "schwierigere",
-            "allgemeine Ziele",
-            "Wirkungsmechanismen"
+            "allgemeine",
+            "Mediatoren"
           ],
           "text": "Die zentrale Annahme der ##0## nach ##1## ist, dass Motivation maßgeblich über die gesetzten ##2## gesteuert wird. Somit gilt Motivation als Auslöser des menschlichen ##3##.  ##4## Ziele führen zu besseren Leistungen, als leichte. Spezifische und herausfordernde Ziele führen zu besseren Leistungen als ##4##. \nDer Zusammenhang zwischen der Zielsetzung und der tatsächlichen Leistung wird des Weiteren durch verschiedene Moderatoren (zum Beispiel:Zielbindung, Selbstwirksamkeit, Rückmeldung, Aufgabenkomplexität) beeinflusst sowie über ##5## (Handlungsrichtung, Handlungsintensität, Handlungsausdauer. etc.)."
         }
@@ -601,7 +600,7 @@
       "credits": 3
     },
     {
-      "parentId": "Motivation5",
+      "parentId": "Motivation4",
       "title": "Die richtige Zielsetzung (SMART)",
       "description": "Lies den Text zum Thema Zielsetzung durch SMART durch.",
       "taskId": "SMART",
@@ -622,7 +621,7 @@
       "credits": 2
     },
     {
-      "parentId": "Motivation5",
+      "parentId": "Motivation4",
       "package": "Motivation",
 
       "title": "Fehlersuche - soll das SMART sein?",
