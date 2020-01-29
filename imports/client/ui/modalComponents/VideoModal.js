@@ -34,6 +34,15 @@ export default class VideoModal extends Component {
     }
   }
 
+  onVideoModalClose() {
+    this.setState({ videoOpen: false });
+    Meteor.call(
+      "solutionHandler.viewVideo",
+      this.props.studentId,
+      this.props.taskId
+    );
+  }
+
   render() {
     if (!this.props.video) return null;
     return (
@@ -69,7 +78,9 @@ export default class VideoModal extends Component {
           <Button
             style={{ marginLeft: "70%", marginTop: "10px" }}
             color={this.state.buttonColor}
-            onClick={() => this.setState({ videoOpen: false })}
+            onClick={() => {
+              this.onVideoModalClose();
+            }}
             inverted
           >
             {this.state.buttonText}

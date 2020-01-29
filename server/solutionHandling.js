@@ -17,8 +17,16 @@ Meteor.methods({
       elem.taskState.viewed = true;
       return elem;
     });
-    let taskObj = newTasks.find(elem => {
-      return elem._id === taskId;
+    Students.update({ _id: studentId }, { $set: { tasks: newTasks } });
+  },
+  "solutionHandler.viewVideo"(studentId, taskId) {
+    let tasks = Students.findOne({ _id: studentId }).tasks;
+
+    let newTasks = tasks.map(elem => {
+      if (elem._id === taskId) {
+        elem.taskState.videoWatched = true;
+      }
+      return elem;
     });
     Students.update({ _id: studentId }, { $set: { tasks: newTasks } });
   },
@@ -32,8 +40,6 @@ Meteor.methods({
     task,
     solvedPercentage
   ) {
-    console.log("enteredd");
-    console.log(studentSolution);
     if (solvedPercentage !== undefined) {
       solveTask(studentId, task.taskId, solvedPercentage);
     }
