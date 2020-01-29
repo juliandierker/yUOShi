@@ -668,7 +668,7 @@
         },
         {
           "QuestionId": 4,
-          "Question": "Ich möchte jeden Tag mit meiner Mutter 3 Stunden direkt nach der Schule den Unterricht nachbereiten, um so  ein 3 für das Fach Mathe im Zeugnis zu erreichen.",
+          "Question": "Ich möchte jeden Tag mit meiner Mutter 5 Stunden direkt nach der Schule den Unterricht nachbereiten, um so  eine 3 für das Fach Mathe im Zeugnis zu erreichen.",
           "AnswerSet": [
             "Spezifisch",
             "Messbar",
@@ -680,7 +680,7 @@
         },
         {
           "QuestionId": 5,
-          "Question": "Bis Freitag Abend werde ich die ersten drei Kapitel des Buches „ABC“ für den Deutschunterricht gelesen haben.",
+          "Question": "Ich werde die ersten drei Kapitel des Buches „ABC“ für den Deutschunterricht lesen.",
           "AnswerSet": [
             "Spezifisch",
             "Messbar",
@@ -692,7 +692,7 @@
         },
         {
           "QuestionId": 6,
-          "Question": "Indem ich bis zur Klausur am 6.2 jeden Tag 30 Minuten lang die Inhalte wiederhole und an jeder Seminarsitzung teilnehme, möchte ich mindestens eine 2,3 erreichen.",
+          "Question": "Indem ich bis zur Klausur am 6.2 jeden Tag 30 Minuten lang die Inhalte wiederhole und an midestens jeder zweiten Seminarsitzung teilnehme, möchte ich mindestens eine 2,3 erreichen.",
           "AnswerSet": [
             "Spezifisch",
             "Messbar",

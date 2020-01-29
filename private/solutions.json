@@ -73,18 +73,13 @@
   "MultiSMART": [
     {
       "id": 1,
-      "correct": [],
-      "neutral": ["Akzeptiert", "Realistisch"]
+      "correct": ["Akzeptiert"],
+      "neutral": ["Realistisch", "Messbar"]
     },
     {
       "id": 2,
-      "correct": [
-        "Spezifisch",
-        "Messbar",
-        "Akzeptiert",
-        "Realistisch",
-        "Terminiert"
-      ]
+      "correct": ["Spezifisch", "Messbar", "Akzeptiert", "Terminiert"],
+      "neutral": ["Realistisch"]
     },
     {
       "id": 3,
@@ -93,18 +88,12 @@
     },
     {
       "id": 4,
-      "correct": ["Spezifisch", "Messbar", "Akzeptiert"]
+      "correct": ["Spezifisch", "Messbar", "Akzeptiert"],
+      "neutral": ["Terminiert"]
     },
     {
       "id": 5,
-      "correct": [
-        "Spezifisch",
-        "Messbar",
-        "Akzeptiert",
-        "Realistisch",
-        "Terminiert"
-      ],
-      "neutral": ["Realistisch"]
+      "correct": ["Spezifisch", "Messbar", "Akzeptiert", "Realistisch"]
     },
     {
       "id": 6,
