@@ -19,7 +19,12 @@ function createTagTask(taskSpecs) {
   taskSpecs["package"] = taskSpecs["package"];
   taskSpecs["autoGrading"] = true;
   taskSpecs["filePrefix"] = taskSpecs["filePrefix"];
-  taskSpecs["taskState"] = { save: false, help: false, viewed: false };
+  taskSpecs["taskState"] = {
+    save: false,
+    help: false,
+    viewed: false,
+    videoWatched: false
+  };
 
   return taskSpecs;
 }

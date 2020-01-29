@@ -148,6 +148,8 @@ export default class TagView extends React.Component {
         videoOpen={this.state.videoOpen}
         onVideoClose={this.closeVideo}
         video={this.props.activeTask.video}
+        studentId={this.props.student._id}
+        taskId={this.props.activeTask._id}
       />
     );
   }
