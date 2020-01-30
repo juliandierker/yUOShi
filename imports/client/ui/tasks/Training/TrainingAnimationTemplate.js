@@ -19,13 +19,13 @@ export default class TrainingAnimationTemplate extends React.Component {
       currentTraining: null,
       open: false,
       introIndex: 0,
-      finalIndex: props.student.currentTraining[0].content[0].quests.length,
+      finalIndex: props.student.currentTraining[0].content[0].quests.length + 1,
       stepContent: [],
       stepName: [],
       stepIcon: [],
       outro: false
     };
-    this.view = null;
+    this.view = React.createRef();
   }
   show = dimmer => () => this.setState({ dimmer, open: true });
   close = () => this.solveTraining();
@@ -89,6 +89,13 @@ export default class TrainingAnimationTemplate extends React.Component {
     }
   }
   nextAction() {
+    if (this.view.current) {
+      let mcView = this.view.current.view.current;
+      if (mcView && mcView.state.showSolution) {
+        mcView.setState({ showSolution: false });
+      }
+    }
+
     const { introIndex, finalIndex, currentTraining } = this.state;
     if (currentTraining.finalTraining) {
       if (introIndex <= finalIndex) {
@@ -110,11 +117,14 @@ export default class TrainingAnimationTemplate extends React.Component {
             content="Zurück"
             onClick={this.backAction.bind(this)}
           />
-          <Button
-            id="nextBtn"
-            content="Weiter"
-            onClick={this.nextAction.bind(this)}
-          />
+          {introIndex != finalIndex ? (
+            <Button
+              id="nextBtn"
+              content="Weiter"
+              onClick={this.nextAction.bind(this)}
+            />
+          ) : null}
+
           {introIndex == finalIndex ? (
             <Button
               positive
@@ -193,7 +203,7 @@ export default class TrainingAnimationTemplate extends React.Component {
 
       return this.props.activeTask.content[0].quests[this.state.introIndex]
         .filePrefix === "Multi" ? (
-        <MultiChoiceAnimationTemplate {...taskProps} />
+        <MultiChoiceAnimationTemplate {...taskProps} ref={this.view} />
       ) : (
         <SurveyAnimationTemplate {...taskProps} />
       );

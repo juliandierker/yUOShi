@@ -11,7 +11,7 @@ export default class MultiChoiceAnimationTemplate extends Component {
     this.state = {
       activeTask: null
     };
-    this.view = null;
+    this.view = React.createRef();
     this.model = MultiChoiceModel.getNewModel();
     this.model.init(props.student, props.activeTask);
   }
@@ -24,6 +24,7 @@ export default class MultiChoiceAnimationTemplate extends Component {
         model={this.model}
         activeTask={this.props.activeTask}
         renderNextStep={this.props.renderNextStep}
+        ref={this.view}
       />
     );
   }
