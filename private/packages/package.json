@@ -3,6 +3,7 @@
     {
       "name": "Motivation",
       "marker": "motivation_marker",
+      "sequenceId": 0,
       "description": "Hier lernt ihr etwas über Motivation",
       "content": [
         {
@@ -34,7 +35,7 @@
     {
       "name": "Identität",
       "marker": "identity_marker",
-      "sequenceId": 0,
+      "sequenceId": 1,
       "description": "Hier lernt ihr etwas über Identität",
       "content": [
         {}

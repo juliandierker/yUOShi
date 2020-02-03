@@ -118,7 +118,7 @@
       "filePrefix": "Drag",
       "multipleColumns": true,
       "isCard": true,
-      "package": "Lernkarte Motivation",
+      "package": "Motivation",
       "credits": 0,
       "categories": ["Titel", "Bild", "Beispiel"],
       "solArray": ["intr", "extr"],
