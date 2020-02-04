@@ -25,23 +25,7 @@ export default class Gameoverview extends React.Component {
       currentSubPackageIndex: 0
     };
   }
-  tutorialCheck() {
-    const { activeTutorial } = this.state;
-    if (
-      !activeTutorial ||
-      (activeTutorial && this.props.student.tutorials.includes(activeTutorial))
-    ) {
-      var tutorial = TutorialHandler.checkForStudentTutorial(
-        this.props.student
-      );
-      if (tutorial != this.state.activeTutorial)
-        this.setState({
-          activeTutorial: TutorialHandler.checkForStudentTutorial(
-            this.props.student
-          )
-        });
-    }
-  }
+
   componentDidMount() {
     console.log("mount");
     var tasks = this.props.tasks;
@@ -53,14 +37,12 @@ export default class Gameoverview extends React.Component {
       let currentSubPackageIndex = currentTask.parentId.match(regex);
       this.setState({ currentSubPackageIndex: currentSubPackageIndex });
     }
-    this.tutorialCheck();
   }
   componentDidUpdate(prevProps, prevState) {
     if (this.props.tasks && !prevProps.tasks && !this.state.tasks) {
       var tasks = this.props.tasks;
       this.setState({ tasks });
     }
-    this.tutorialCheck();
   }
   handleGetTask(task) {
     if (this.props.student.tasks.length == 0) {

@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { Tracker } from "meteor/tracker";
 import { Route, Switch } from "react-router-dom";
-
 import { Tokens } from "../../../api/tokens";
 import { Courses } from "../../../api/courses";
 import { Students } from "../../../api/students";
@@ -23,10 +22,10 @@ import GameOverview from "./game/Gameoverview";
 import ClassRoom from "./game/ClassRoom";
 import TeacherRoom from "./game/TeacherRoom";
 import Office from "./game/Office";
-
+import { TutorialHandler } from "../tutorials/TutorialHandler";
 import Workspace from "./game/Workspace";
 import Loading from "../Loading";
-
+import TutorialComponent from "../tutorials/TutorialComponent";
 export default class StudentOverview extends React.Component {
   constructor(props) {
     super(props);
@@ -39,18 +38,19 @@ export default class StudentOverview extends React.Component {
     this.activeTutorial = React.createRef();
   }
   tutorialCheck() {
-    const { activeTutorial } = this.state;
+    console.log("testy");
+    const { activeTutorial, student } = this.state;
     if (
-      !activeTutorial ||
-      (activeTutorial && this.props.student.tutorials.includes(activeTutorial))
+      (student && !activeTutorial) ||
+      (student && activeTutorial && student.tutorials.includes(activeTutorial))
     ) {
       var tutorial = TutorialHandler.checkForStudentTutorial(
-        this.props.student
+        this.state.student
       );
       if (tutorial != this.state.activeTutorial)
         this.setState({
           activeTutorial: TutorialHandler.checkForStudentTutorial(
-            this.props.student
+            this.state.student
           )
         });
     }
@@ -119,7 +119,11 @@ export default class StudentOverview extends React.Component {
 
     this.props.history.push("/student/game");
   }
-  componentDidUpdate(prevProps, prevState) {}
+  componentDidUpdate(prevProps, prevState) {
+    this.tutorialCheck();
+
+    console.log("update");
+  }
   componentWillUnmount() {
     this.studentTracker.stop();
   }
