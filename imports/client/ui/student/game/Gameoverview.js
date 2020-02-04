@@ -4,9 +4,11 @@ import { Tracker } from "meteor/tracker";
 import Loading from "../../Loading";
 import { Button, Card, Image } from "semantic-ui-react";
 import { Dropdown, Icon, Menu, Segment, Grid } from "semantic-ui-react";
+import { TutorialHandler } from "../../tutorials/TutorialHandler.js";
 
 import StudentTopMenu from "../StudentTopMenu";
 import SchoolFloor from "../vektors/SchoolFloor";
+import TutorialComponent from "../../tutorials/TutorialComponent.js";
 import Swal from "sweetalert2";
 import withReactContent from "sweetalert2-react-content";
 
@@ -17,13 +19,31 @@ export default class Gameoverview extends React.Component {
     super(props);
     this.state = {
       tasks: null,
-
+      activeTutorial: null,
       trainings: null,
       packages: null,
       currentSubPackageIndex: 0
     };
   }
+  tutorialCheck() {
+    const { activeTutorial } = this.state;
+    if (
+      !activeTutorial ||
+      (activeTutorial && this.props.student.tutorials.includes(activeTutorial))
+    ) {
+      var tutorial = TutorialHandler.checkForStudentTutorial(
+        this.props.student
+      );
+      if (tutorial != this.state.activeTutorial)
+        this.setState({
+          activeTutorial: TutorialHandler.checkForStudentTutorial(
+            this.props.student
+          )
+        });
+    }
+  }
   componentDidMount() {
+    console.log("mount");
     var tasks = this.props.tasks;
     var packages = this.props.packages;
 
@@ -33,16 +53,14 @@ export default class Gameoverview extends React.Component {
       let currentSubPackageIndex = currentTask.parentId.match(regex);
       this.setState({ currentSubPackageIndex: currentSubPackageIndex });
     }
-
-    if (!this.state.tasks) {
-      this.setState({ tasks, trainings: this.props.trainings, packages });
-    }
+    this.tutorialCheck();
   }
   componentDidUpdate(prevProps, prevState) {
     if (this.props.tasks && !prevProps.tasks && !this.state.tasks) {
       var tasks = this.props.tasks;
       this.setState({ tasks });
     }
+    this.tutorialCheck();
   }
   handleGetTask(task) {
     if (this.props.student.tasks.length == 0) {
@@ -85,43 +103,7 @@ export default class Gameoverview extends React.Component {
   renderSchoolFloor() {
     return <SchoolFloor history={this.props.history} />;
   }
-  // renderTracks() {
-  //   if (this.state.tasks) {
-  //     return this.state.tasks.map((task, index) => {
-  //       return (
-  //         <Card.Group>
-  //           <Card>
-  //             <Image
-  //               src={"/tasks/" + task.filePrefix + "/" + task.taskId + ".jpg"}
-  //               wrapped
-  //               ui={false}
-  //             />
-  //             <Card.Content>
-  //               <Card.Header>{task.taskId}</Card.Header>
-  //               <Card.Meta>
-  //                 <span className="date">Zuweisung</span>
-  //               </Card.Meta>
-  //               <Card.Description>{task.description}</Card.Description>
-  //             </Card.Content>
-  //             <Button
-  //               onClick={() => this.handleGetTask(task)}
-  //               basic
-  //               color="green"
-  //             >
-  //               Bearbeiten
-  //             </Button>
-  //             <Card.Content extra>
-  //               <Icon name="expand arrows alternate" />
-  //               {task.credits}
-  //             </Card.Content>
-  //           </Card>
-  //         </Card.Group>
-  //       );
-  //     });
-  //   } else {
-  //     return <Loading />;
-  //   }
-  // }
+
   renderTracks() {
     if (this.state.packages) {
       return (
@@ -170,6 +152,7 @@ export default class Gameoverview extends React.Component {
     }
   }
   render() {
+    const { activeTutorial } = this.state;
     return <div id="gameOverView">{this.renderSchoolFloor()}</div>;
   }
 }

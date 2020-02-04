@@ -32,11 +32,31 @@ export default class StudentOverview extends React.Component {
     super(props);
     this.state = {
       courses: null,
+      activeTutorial: null,
       token: null,
       student: null
     };
+    this.activeTutorial = React.createRef();
+  }
+  tutorialCheck() {
+    const { activeTutorial } = this.state;
+    if (
+      !activeTutorial ||
+      (activeTutorial && this.props.student.tutorials.includes(activeTutorial))
+    ) {
+      var tutorial = TutorialHandler.checkForStudentTutorial(
+        this.props.student
+      );
+      if (tutorial != this.state.activeTutorial)
+        this.setState({
+          activeTutorial: TutorialHandler.checkForStudentTutorial(
+            this.props.student
+          )
+        });
+    }
   }
   componentDidMount() {
+    this.tutorialCheck();
     //Check responsive viewport
 
     <Responsive {...Responsive.onlyMobile} />;
@@ -166,6 +186,7 @@ export default class StudentOverview extends React.Component {
                 trainings={this.state.trainings}
                 packages={this.state.packages}
                 {...props}
+                ref={this.activeTutorial}
               />
             )}
           />
@@ -239,14 +260,24 @@ export default class StudentOverview extends React.Component {
   }
 
   render() {
+    const { activeTutorial } = this.state;
     return (
       <React.Fragment>
         <StudentTopMenu
           history={this.props.history}
           courses={this.state.courses}
           student={this.state.student}
+          activeTutorial={this.activeTutorial}
         />
         {this.renderRoutes()}
+        {activeTutorial && (
+          <TutorialComponent
+            activeTutorial={activeTutorial}
+            stopTutorial={() => {
+              this.setState({ activeTutorial: null });
+            }}
+          />
+        )}
       </React.Fragment>
     );
   }

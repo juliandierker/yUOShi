@@ -4,6 +4,8 @@ import { Tracker } from "meteor/tracker";
 import Loading from "../Loading";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faMailBulk } from "@fortawesome/free-solid-svg-icons";
+import { Button } from "semantic-ui-react";
+
 import _ from "lodash";
 import {
   Dropdown,
@@ -37,7 +39,7 @@ const NavBarMobile = ({
       onClick={onPusherClick}
       style={{ minHeight: "100vh" }}
     >
-      <Menu fixed="top" inverted>
+      <Menu id="page__header" fixed="top" inverted>
         <Menu.Item onClick={onToggle}>
           <Icon name="sidebar" />
         </Menu.Item>
@@ -48,7 +50,7 @@ const NavBarMobile = ({
 );
 
 const NavBarDesktop = ({ leftItems }) => (
-  <Menu fixed="top">
+  <Menu id="page__header" fixed="top">
     <Menu.Item />
     {_.map(leftItems, item => (
       <Menu.Item {...item} />
@@ -113,12 +115,19 @@ export default class StudentTopMenu extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      activeTutorial: null,
       courses: null,
       teacher: null,
       activeItem: false,
       dropDown: false,
       student: null
     };
+  }
+  componentDidMount() {
+    const { activeTutorial } = this.state;
+    if (!activeTutorial) {
+      this.setState({ activeTutorial: this.props.activeTutorial });
+    }
   }
   handleDropdownClick() {
     const { dropDown } = this.state;
@@ -127,6 +136,14 @@ export default class StudentTopMenu extends React.Component {
     this.setState({ dropDown: !dropDown });
   }
   componentDidUpdate(prevProps, prevState) {
+    if (
+      prevProps.student &&
+      prevProps.student.tutorials.length < this.props.student.tutorials.lengt
+    ) {
+      if (this.state.activeTutorial) {
+        this.setState({ activeTutorial: false });
+      }
+    }
     if (prevState.student == null && this.props.student != null) {
       this.setState({ student: this.props.student });
     }
@@ -236,6 +253,7 @@ export default class StudentTopMenu extends React.Component {
       <React.Fragment>
         <Responsive {...Responsive.onlyMobile}>
           <Menu
+            id="page__header"
             attached="top"
             style={{
               backgroundColor: "#6A96E2",
@@ -297,6 +315,24 @@ export default class StudentTopMenu extends React.Component {
                   active={activeItem === "overview"}
                   onClick={() => Meteor.logout(() => {})}
                 >
+                  {this.state.activeTutorial &&
+                    this.state.activeTutorial.current && (
+                      <Dropdown.Item className="border__left__menu__item">
+                        <Button
+                          id="skipTutorial"
+                          icon
+                          className="current__blue__color help__button__overwrite"
+                          onClick={() =>
+                            Meteor.call(
+                              "students.completeTutorial",
+                              this.state.activeTutorial
+                            )
+                          }
+                        >
+                          {"Überspringen"}
+                        </Button>
+                      </Dropdown.Item>
+                    )}
                   <Icon name="power off" />
                   Ausloggen
                 </Dropdown.Item>
@@ -306,6 +342,7 @@ export default class StudentTopMenu extends React.Component {
         </Responsive>
         <Responsive {...Responsive.onlyTablet}>
           <Menu
+            id="page__header"
             attached="top"
             style={{
               backgroundColor: "#6A96E2",
@@ -363,6 +400,25 @@ export default class StudentTopMenu extends React.Component {
                   <Icon name="user" />
                   Profil
                 </Dropdown.Item>
+                {this.state.activeTutorial &&
+                  this.state.activeTutorial.current && (
+                    <Dropdown.Item className="border__left__menu__item">
+                      <Button
+                        id="skipTutorial"
+                        icon
+                        className="current__blue__color help__button__overwrite"
+                        disabled={this.state.pause}
+                        onClick={() =>
+                          Meteor.call(
+                            "pupils.completeTutorial",
+                            this.state.activeTutorial
+                          )
+                        }
+                      >
+                        {"Überspringen"}
+                      </Button>
+                    </Dropdown.Item>
+                  )}
                 <Dropdown.Item
                   fluid
                   active={activeItem === "overview"}
@@ -376,8 +432,9 @@ export default class StudentTopMenu extends React.Component {
           </Menu>
         </Responsive>
         <Responsive as={Segment} {...Responsive.onlyComputer}>
-          Computer
+          {/* desktop */}
           <Menu
+            id="page__header"
             secondary
             fixed="top"
             style={{
@@ -445,6 +502,23 @@ export default class StudentTopMenu extends React.Component {
                 icon="euro sign"
                 name={" " + this.getCredits()}
               />
+              {this.state.activeTutorial && this.state.activeTutorial.current && (
+                <Menu.Item className="border__left__menu__item">
+                  <Button
+                    id="skipTutorial"
+                    icon
+                    className="current__blue__color help__button__overwrite"
+                    onClick={() =>
+                      Meteor.call(
+                        "students.completeTutorial",
+                        this.state.activeTutorial
+                      )
+                    }
+                  >
+                    {"Überspringen"}
+                  </Button>
+                </Menu.Item>
+              )}
               <Menu.Item
                 style={{
                   color: "white"

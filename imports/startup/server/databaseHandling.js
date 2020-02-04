@@ -135,6 +135,7 @@ function setupStudents() {
         courses: [],
         tasks: [task],
         solvedTasks: [],
+        tutorials: [],
         learnCards: [],
         solvedSurveys: [],
         currentSequenceId: 0,
@@ -155,7 +156,7 @@ function setupStudents() {
         tasks: [],
         solvedTasks: [],
         learnCards: [],
-
+        tutorials: [],
         currentSequenceId: 0,
         currentPackage: startPackage,
         currentTraining: [],

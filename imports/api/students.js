@@ -37,6 +37,7 @@ Meteor.methods({
       solvedSurveys: [],
       currentSequenceId: 0,
       currentTraining: [],
+      tutorials: [],
       solvedTraining: [],
       learnCards: [],
       solvedTasks: [],
@@ -64,6 +65,17 @@ Meteor.methods({
   },
   "students.getTasks": function(tasks, _id) {
     Students.update(_id, { $addToSet: { tasks } });
+  },
+  "students.completeTutorial"(tutorial) {
+    console.log(tutorial);
+    if (Meteor.userId() && Roles.userIsInRole(Meteor.user(), ["student"])) {
+      Students.update(
+        { userId: Meteor.userId() },
+        { $push: { tutorials: tutorial } }
+      );
+    } else {
+      throw new Meteor.Error("Access denied!");
+    }
   },
   "students.getNextTask": function(packageName, sequenceId, _id) {
     let tasks = Tasks.find({
