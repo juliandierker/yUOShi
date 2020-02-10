@@ -9,10 +9,7 @@ export const Courses = new Mongo.Collection("courses");
 
 if (Meteor.isServer) {
   // courseNames of one teacher are unique
-  Courses.rawCollection().ensureIndex(
-    { teacherId: 1, courseName: 1 },
-    { unique: true }
-  );
+  Courses.rawCollection().ensureIndex({ teacherId: 1, courseName: 1 }, { unique: true });
   //Students
   Meteor.publish("coursesByStudent", () => {
     if (Meteor.userId() && Roles.userIsInRole(Meteor.user(), ["student"])) {
@@ -29,7 +26,7 @@ if (Meteor.isServer) {
     throw new Meteor.Error("Access denied!");
   });
   // teacher
-  Meteor.publish("coursesByTeacher", courseId => {
+  Meteor.publish("coursesByTeacher", (courseId) => {
     if (Meteor.userId() && Roles.userIsInRole(Meteor.user(), ["teacher"])) {
       var teacherId = Teachers.findOne({ userId: Meteor.userId() })._id;
       Courses.findOne();
@@ -92,9 +89,7 @@ Meteor.methods({
       try {
         var courseRawData = HTTP.call(
           "GET",
-          "http://localhost/studip/plugins.php/argonautsplugin/users/" +
-            studipUserId +
-            "/courses",
+          "http://localhost/studip/plugins.php/argonautsplugin/users/" + studipUserId + "/courses",
           {
             headers: { Authorization: "Basic " + token }
           }
@@ -146,9 +141,7 @@ Meteor.methods({
       try {
         var courseRawData = HTTP.call(
           "GET",
-          "http://localhost/studip/plugins.php/argonautsplugin/users/" +
-            studipUserId +
-            "/courses",
+          "http://localhost/studip/plugins.php/argonautsplugin/users/" + studipUserId + "/courses",
           {
             headers: { Authorization: "Basic " + token }
           }

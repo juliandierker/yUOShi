@@ -8,6 +8,7 @@ const trainingSchema = new SimpleSchema({
   name: {
     type: String
   },
+
   tasks: {
     type: Array
   },

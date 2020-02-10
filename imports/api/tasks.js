@@ -117,14 +117,14 @@ if (Meteor.isServer) {
   Meteor.publish("tasks", () => {
     return Tasks.find({});
   });
-  Meteor.publish("tasksByIds", taskIds => {
+  Meteor.publish("tasksByIds", (taskIds) => {
     return Tasks.find({ taskId: { $in: taskIds } });
   });
   Meteor.publish("taskById", function(taskId) {
     return Tasks.find({ taskId: taskId });
   });
 
-  Meteor.publish("tasksByPackage", name => {
+  Meteor.publish("tasksByPackage", (name) => {
     return Tasks.find({ taskPackage: name });
   });
 }
