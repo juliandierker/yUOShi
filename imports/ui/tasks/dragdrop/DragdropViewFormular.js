@@ -3,17 +3,9 @@ import { Meteor } from "meteor/meteor";
 import PropTypes from "prop-types";
 import { Button } from "semantic-ui-react";
 import { TweenMax } from "gsap";
-import FullEditor from "../../texteditor/FullEditor";
+import FullEditor from "../texteditor/FullEditor";
 
-import {
-  Header,
-  Table,
-  Divider,
-  Grid,
-  Segment,
-  Image,
-  Card
-} from "semantic-ui-react";
+import { Header, Table, Divider, Grid, Segment, Image, Card } from "semantic-ui-react";
 import Swal from "sweetalert2";
 
 export default class DragdropViewFormular extends React.Component {
@@ -45,11 +37,7 @@ export default class DragdropViewFormular extends React.Component {
   };
   getStatements() {
     let currentStatements = [];
-    for (
-      let i = this.state.currentIndex;
-      i < this.state.currentIndex + 1;
-      i++
-    ) {
+    for (let i = this.state.currentIndex; i < this.state.currentIndex + 1; i++) {
       if (!currentStatements.includes(this.state.statements[i])) {
         currentStatements.push(this.state.statements[i]);
       }
@@ -58,11 +46,7 @@ export default class DragdropViewFormular extends React.Component {
   }
   getImages() {
     let currentImages = [];
-    for (
-      let i = this.state.currentIndex;
-      i < this.state.currentIndex + 1;
-      i++
-    ) {
+    for (let i = this.state.currentIndex; i < this.state.currentIndex + 1; i++) {
       if (!currentImages.includes(this.state.statements[i])) {
         currentImages.push(this.state.images[i]);
       }
@@ -72,20 +56,13 @@ export default class DragdropViewFormular extends React.Component {
 
   mouseHitTest(mouseX, mouseY, containerId) {
     let targetId = containerId.split("_")[0] + "_target";
-    let boundingRect = document
-      .getElementById(targetId)
-      .getBoundingClientRect();
+    let boundingRect = document.getElementById(targetId).getBoundingClientRect();
     // Rectangle bounds
     let top = boundingRect.top;
     let bottom = boundingRect.top + boundingRect.height;
     let left = boundingRect.left;
     let right = boundingRect.left + boundingRect.width;
-    if (
-      mouseX >= left &&
-      mouseX <= right &&
-      mouseY >= top &&
-      mouseY <= bottom
-    ) {
+    if (mouseX >= left && mouseX <= right && mouseY >= top && mouseY <= bottom) {
       return true;
     }
     return false;
@@ -167,7 +144,7 @@ export default class DragdropViewFormular extends React.Component {
     compContext.props.externDragUpdate(containerId);
   }
   checkSolutions(solvedArr, targetStr) {
-    return solvedArr.filter(elem => {
+    return solvedArr.filter((elem) => {
       return elem[0] === targetStr;
     });
   }
@@ -204,13 +181,7 @@ export default class DragdropViewFormular extends React.Component {
       return (
         <div class="customCard">
           <Image
-            src={
-              "/tasks/Drag/" +
-              this.props.activeTask.taskId +
-              "/" +
-              statements[0] +
-              ".png"
-            }
+            src={"/tasks/Drag/" + this.props.activeTask.taskId + "/" + statements[0] + ".png"}
             floated="right"
             size="tiny"
             circular
@@ -219,8 +190,7 @@ export default class DragdropViewFormular extends React.Component {
             style={{
               fontWeight: "bold",
               textTransform: "Capitalize"
-            }}
-          >
+            }}>
             {statements[0]}
           </h2>
           <div class="customCard-body">

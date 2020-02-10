@@ -1,17 +1,12 @@
 import { Meteor } from "meteor/meteor";
 import ReactDOM from "react-dom";
 import { Tracker } from "meteor/tracker";
-import { Session } from "meteor/session";
 import React from "react";
-import Routes, { onAuthChange } from "../imports/client/routes/routes";
+import Routes, { onAuthChange } from "../imports/routes/Routes";
 import "../imports/startup/simple-schema-configuration.js";
-import "../imports/client/ui/um/UserAdministration";
+import "../imports/ui/um/UserAdministration.js";
 
 // LOGIN FOR DEV
-import i18n from "meteor/universe:i18n";
-
-const getTrans = i18n.createTranslator("UserValidation");
-i18n.setLocale("de");
 
 window.setCookie = function(name, value, sec) {
   if (sec) {
@@ -44,7 +39,6 @@ Tracker.autorun(() => {
 
   Meteor.startup(() => {
     ReactDOM.render(<Routes />, document.getElementById("app"));
-    Session.set("showVisible", true);
     // setCookie("resume", "true", false);
     // if (!getCookie("resume")) {
     // localStorage.clear("Meteor.loginToken");

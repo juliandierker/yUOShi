@@ -1,7 +1,5 @@
 import { Meteor } from "meteor/meteor";
 import { Mongo } from "meteor/mongo";
-import SimpleSchema from "simpl-schema";
-import { Accounts } from "meteor/accounts-base";
 
 export const Tokens = new Mongo.Collection("tokens");
 

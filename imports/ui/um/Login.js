@@ -7,9 +7,9 @@ import { Roles } from "meteor/alanning:roles";
 import { HTTP } from "meteor/http";
 import Swal from "sweetalert2";
 
-import { Teachers } from "../../../api/teachers";
-import { Students } from "../../../api/students";
-import { Tokens } from "../../../api/tokens";
+import { Teachers } from "../../api/teachers";
+import { Students } from "../../api/students";
+import { Tokens } from "../../api/tokens";
 
 // import SignUp from "./SignUp";
 
@@ -37,7 +37,7 @@ class Login extends React.Component {
     this._Mounted = false;
   }
 
-  handleChange = e => {
+  handleChange = (e) => {
     const change = {};
     change[e.target.name] = e.target.value;
     if (this.state.error) {
@@ -56,7 +56,7 @@ class Login extends React.Component {
 
   login(email, password, token) {
     console.log(password);
-    Meteor.loginWithPassword({ username: email }, password, err => {
+    Meteor.loginWithPassword({ username: email }, password, (err) => {
       if (err) {
         this.setState({ error: "unableToLoginError" });
       } else {
@@ -91,36 +91,26 @@ class Login extends React.Component {
             if (Teachers.findOne({ studipUserId: output.data.id })) {
               this.login(email, password, token);
             } else {
-              Meteor.call(
-                "users.teachersInsert",
-                email,
-                output.data.id,
-                (err, res) => {
-                  if (!err) {
-                    this.login(email, password, token);
-                  } else {
-                    console.log(err);
-                  }
+              Meteor.call("users.teachersInsert", email, output.data.id, (err, res) => {
+                if (!err) {
+                  this.login(email, password, token);
+                } else {
+                  console.log(err);
                 }
-              );
+              });
             }
           } else if (userRole == "autor") {
             Meteor.subscribe("student", output.data.id);
             if (Students.findOne({ studipUserId: output.data.id })) {
               this.login(email, password, token);
             } else {
-              Meteor.call(
-                "users.studentInsert",
-                email,
-                output.data.id,
-                (err, res) => {
-                  if (!err) {
-                    this.login(email, password, token);
-                  } else {
-                    console.log(err);
-                  }
+              Meteor.call("users.studentInsert", email, output.data.id, (err, res) => {
+                if (!err) {
+                  this.login(email, password, token);
+                } else {
+                  console.log(err);
                 }
-              );
+              });
             }
           }
         } else {
@@ -142,21 +132,15 @@ class Login extends React.Component {
               color: "white",
               fontSize: 72
             }}
-            textAlign="center"
-          >
+            textAlign="center">
             <Image size="medium" src="/landingpage/yuoshi.png" />
           </Header>
-          {this.state.error ? (
-            <p className="error">{this.state.error}</p>
-          ) : (
-            undefined
-          )}
+          {this.state.error ? <p className="error">{this.state.error}</p> : undefined}
           <Form
             onSubmit={this.onSubmit.bind(this)}
             noValidate
             className="boxed-view__form"
-            inverted
-          >
+            inverted>
             <Form.Field>
               <Form.Input
                 id="email"
@@ -182,11 +166,7 @@ class Login extends React.Component {
             </Form.Field>
             <Button fluid type="submit" id="loginButton" color="yellow">
               Login
-              <Icon
-                name="arrow right"
-                id="arrow"
-                style={{ marginRight: "-2em" }}
-              />
+              <Icon name="arrow right" id="arrow" style={{ marginRight: "-2em" }} />
             </Button>
           </Form>
         </div>

@@ -2,13 +2,13 @@ import React from "react";
 import PropTypes from "prop-types";
 import { Meteor } from "meteor/meteor";
 import Swal from "sweetalert2";
-import DragAnimationTemplate from "../../tasks/DragDrop/DragAnimationTemplate";
-import TrainingAnimationTemplate from "../../tasks/Training/TrainingAnimationTemplate";
-import TagAnimationTemplate from "../../tasks/Tag/TagAnimationTemplate";
-import ClozeAnimationTemplate from "../../tasks/Cloze/ClozeAnimationTemplate";
-import MemoryAnimationTemplate from "../../tasks/Memory/MemoryAnimationTemplate";
-import MultiChoiceAnimationTemplate from "../../tasks/MultiChoice/MultiChoiceAnimationTemplate";
-import SurveyAnimationTemplate from "../../tasks/Survey/SurveyAnimationTemplate";
+import DragAnimationTemplate from "../../tasks/dragdrop/DragAnimationTemplate";
+import TrainingAnimationTemplate from "../../tasks/training/TrainingAnimationTemplate";
+import TagAnimationTemplate from "../../tasks/tag/TagAnimationTemplate";
+import ClozeAnimationTemplate from "../../tasks/cloze/ClozeAnimationTemplate";
+import MemoryAnimationTemplate from "../../tasks/memory/MemoryAnimationTemplate";
+import MultiChoiceAnimationTemplate from "../../tasks/multiChoice/MultiChoiceAnimationTemplate";
+import SurveyAnimationTemplate from "../../tasks/survey/SurveyAnimationTemplate";
 import KeywordList from "../../tasks/KeywordList";
 
 import equals from "fast-deep-equal";
@@ -43,7 +43,7 @@ export default class Workspace extends React.Component {
       desciptionModalOpen: false
     };
     this.tagInstance = React.createRef();
-    this.handler = ev => {
+    this.handler = (ev) => {
       if (this.state.activeTask) {
         Meteor.call(
           "student.setLastActiveTaskId",
@@ -56,11 +56,9 @@ export default class Workspace extends React.Component {
     window.addEventListener("beforeunload", this.handler);
 
     this.handleNextTaskButtonClick = this.handleNextTaskButtonClick.bind(this);
-    this.handlePreviousTaskButtonClick = this.handlePreviousTaskButtonClick.bind(
-      this
-    );
+    this.handlePreviousTaskButtonClick = this.handlePreviousTaskButtonClick.bind(this);
   }
-  show = dimmer => () => this.setState({ dimmer, packageStarted: true });
+  show = (dimmer) => () => this.setState({ dimmer, packageStarted: true });
   close = () => this.setState({ packageStarted: false });
 
   // TODO: Check the clicked package and the progress in the package
@@ -89,18 +87,15 @@ export default class Workspace extends React.Component {
   }
 
   openDescriptionModal() {
-    let currentStudentTask = this.props.student.tasks.find(elem => {
-      return (
-        elem && this.state.activeTask && elem._id === this.state.activeTask._id
-      );
+    let currentStudentTask = this.props.student.tasks.find((elem) => {
+      return elem && this.state.activeTask && elem._id === this.state.activeTask._id;
     });
 
     if (
       currentStudentTask &&
       currentStudentTask.taskState &&
       !currentStudentTask.taskState.viewed &&
-      (!currentStudentTask.video ||
-        currentStudentTask.taskState.videoWatched) &&
+      (!currentStudentTask.video || currentStudentTask.taskState.videoWatched) &&
       !this.state.descriptionModalOpen
     ) {
       this.setState({ descriptionModalOpen: true });
@@ -114,19 +109,14 @@ export default class Workspace extends React.Component {
         }
       });
 
-      Meteor.call(
-        "solutionHandler.viewTask",
-        this.props.student._id,
-        this.state.activeTask._id
-      );
+      Meteor.call("solutionHandler.viewTask", this.props.student._id, this.state.activeTask._id);
     }
   }
 
   checkReadFinish() {
     if (
       this.props.student.tasks[0] &&
-      this.state.readFinished !==
-        this.props.student.tasks[0].taskState.readFinished
+      this.state.readFinished !== this.props.student.tasks[0].taskState.readFinished
     ) {
       this.setState({
         readFinished: this.props.student.tasks[0].taskState.readFinished
@@ -135,7 +125,7 @@ export default class Workspace extends React.Component {
   }
 
   checkPackageProgress() {
-    var check = this.props.student.solvedTraining.filter(elem => {
+    var check = this.props.student.solvedTraining.filter((elem) => {
       return elem.package == this.props.student.currentPackage[0].name;
     });
 
@@ -144,7 +134,7 @@ export default class Workspace extends React.Component {
 
   getCurrentTasksList() {
     if (this.props.student) {
-      var currentTaskIds = this.props.student.tasks.map(currentTask => {
+      var currentTaskIds = this.props.student.tasks.map((currentTask) => {
         return currentTask.taskId;
       });
       var taskList = Tasks.find({ taskId: { $in: currentTaskIds } }).fetch();
@@ -156,8 +146,7 @@ export default class Workspace extends React.Component {
 
     if (student && this.props.student.lastActiveTaskId) {
       for (var i in student.tasks) {
-        if (student.tasks[i]._id == student.lastActiveTaskId)
-          return student.tasks[i];
+        if (student.tasks[i]._id == student.lastActiveTaskId) return student.tasks[i];
       }
     } else {
       return student.tasks[student.tasks.length - 1];
@@ -174,7 +163,7 @@ export default class Workspace extends React.Component {
           cTask = this.props.tasks[i];
         }
       }
-      this.props.tasks.map(task => {
+      this.props.tasks.map((task) => {
         if (task.sequenceId == student.currentSequenceId) {
           var cTask = task;
         }
@@ -187,16 +176,14 @@ export default class Workspace extends React.Component {
       return;
     }
 
-    let packageTrainings = this.props.trainings[0][
-      student.currentPackage[0].name
-    ];
+    let packageTrainings = this.props.trainings[0][student.currentPackage[0].name];
     // Get current Training
-    let currentTask = packageTrainings.find(elem => {
+    let currentTask = packageTrainings.find((elem) => {
       return elem.sequenceId === student.currentSequenceId;
     });
     // Get current Task
     if (!currentTask) {
-      currentTask = this.props.tasks.find(elem => {
+      currentTask = this.props.tasks.find((elem) => {
         return elem.sequenceId === student.currentSequenceId;
       });
     }
@@ -244,7 +231,7 @@ export default class Workspace extends React.Component {
           title: "🎉 Du hast das Paket Motivation abgeschlossen. 🎉",
 
           timer: 2000
-        }).then(result => {
+        }).then((result) => {
           this.props.history.push("/student/classroom");
 
           //TODO solve package
@@ -289,9 +276,7 @@ export default class Workspace extends React.Component {
       return;
     }
     return this.props.student.currentPackage[0].content.filter(
-      subpackage =>
-        this.props.student.currentPackage[0].name + subpackage.sequenceId ===
-        pId
+      (subpackage) => this.props.student.currentPackage[0].name + subpackage.sequenceId === pId
     )[0];
   }
 
@@ -340,7 +325,7 @@ export default class Workspace extends React.Component {
     this.tagInstance.current.solutionPrepare();
   }
   renderDescription() {
-    let task = this.props.tasks.find(elem => {
+    let task = this.props.tasks.find((elem) => {
       return elem.sequenceId === this.props.student.currentSequenceId;
     });
     if (!task) return;
@@ -362,8 +347,7 @@ export default class Workspace extends React.Component {
             width={4}
             style={{
               padding: "0rem"
-            }}
-          >
+            }}>
             {this.renderDescription()}
             {this.renderKeywordList()}
           </Grid.Column>

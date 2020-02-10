@@ -6,7 +6,7 @@ import Swal from "sweetalert2";
 import { Container, Draggable } from "react-smooth-dnd";
 import { Button } from "semantic-ui-react";
 
-import { DragdropModel } from "../../../../models/DragdropModel";
+import { DragdropModel } from "../../../models/DragdropModel";
 import DragdropTemplate from "./DragdropTemplate";
 
 export default class DragAnimationTemplate extends React.Component {
@@ -43,10 +43,8 @@ export default class DragAnimationTemplate extends React.Component {
     this.setState({ viewScene: this.viewScene });
   }
   shouldComponentUpdate(nextProps, nextState) {
-    let finishAfter =
-      this.state.finish == false && nextState.renderNextCard == true;
-    let finishBefore =
-      this.state.renderNextCard == true && nextState.renderNextCard == false;
+    let finishAfter = this.state.finish == false && nextState.renderNextCard == true;
+    let finishBefore = this.state.renderNextCard == true && nextState.renderNextCard == false;
 
     if (finishAfter) return finishAfter;
 
@@ -101,11 +99,9 @@ export default class DragAnimationTemplate extends React.Component {
         }
       }
 
-      let solvedPercentage =
-        (totalAnswerCount - falseAnswers) / totalAnswerCount;
+      let solvedPercentage = (totalAnswerCount - falseAnswers) / totalAnswerCount;
 
-      var meteorMethod =
-        "solutionHandler.submit" + this.props.activeTask.filePrefix;
+      var meteorMethod = "solutionHandler.submit" + this.props.activeTask.filePrefix;
       Meteor.call(
         meteorMethod,
         null,
@@ -128,7 +124,7 @@ export default class DragAnimationTemplate extends React.Component {
         cancelButtonText: "Nochmal versuchen",
         cancelButtonColor: "#3085d6",
         showCancelButton: true
-      }).then(result => {
+      }).then((result) => {
         if (result.value) {
           this.setState({ showSolution: true });
           this.forceUpdate();
@@ -146,8 +142,7 @@ export default class DragAnimationTemplate extends React.Component {
 
   submit(userSol) {
     if (this.props.activeTask.type === "drag") {
-      var meteorMethod =
-        "solutionHandler.submit" + this.props.activeTask.filePrefix;
+      var meteorMethod = "solutionHandler.submit" + this.props.activeTask.filePrefix;
     }
     Meteor.call(
       meteorMethod,
@@ -293,8 +288,7 @@ export default class DragAnimationTemplate extends React.Component {
       return this.state.renderNextCard && !this.state.finish ? (
         <Button
           style={{ marginTop: "10px", marginRight: "10px", float: "left" }}
-          onClick={() => this.setDragIndex()}
-        >
+          onClick={() => this.setDragIndex()}>
           {"Lernkarte speichern"}
         </Button>
       ) : null;
@@ -305,8 +299,7 @@ export default class DragAnimationTemplate extends React.Component {
       return (
         <Button
           style={{ marginTop: "10px", marginRight: "10px", float: "right" }}
-          onClick={() => this.solutionPrepare()}
-        >
+          onClick={() => this.solutionPrepare()}>
           {buttonText}
         </Button>
       );
@@ -324,11 +317,7 @@ export default class DragAnimationTemplate extends React.Component {
 
     return (
       <React.Fragment>
-        <div
-          style={{ overflowY: "auto" }}
-          className="dragAnimation__"
-          id="dragAnimation__"
-        >
+        <div style={{ overflowY: "auto" }} className="dragAnimation__" id="dragAnimation__">
           <DragdropTemplate
             {...taskProps}
             showSolution={this.state.showSolution}

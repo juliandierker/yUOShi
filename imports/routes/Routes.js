@@ -35,7 +35,7 @@ function isAuthPage(pathname) {
   );
 }
 
-export const onAuthChange = currentUser => {
+export const onAuthChange = (currentUser) => {
   const { pathname } = location;
   if (Meteor.loggingIn()) {
     return;
@@ -46,9 +46,7 @@ export const onAuthChange = currentUser => {
       if (route && isAuthPage(route)) {
         browserHistory.push(route);
       } else {
-        browserHistory.push(
-          DefaultRoutes[Roles.getRolesForUser(Meteor.user())[0]]
-        );
+        browserHistory.push(DefaultRoutes[Roles.getRolesForUser(Meteor.user())[0]]);
       }
     } else {
       browserHistory.replace(pathname);

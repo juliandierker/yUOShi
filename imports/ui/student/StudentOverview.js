@@ -2,26 +2,19 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { Tracker } from "meteor/tracker";
 import { Route, Switch } from "react-router-dom";
-import { Tokens } from "../../../api/tokens";
-import { Courses } from "../../../api/courses";
-import { Students } from "../../../api/students";
-import { Tasks } from "../../../api/tasks";
-import { Training } from "../../../api/training";
-import { Package } from "../../../api/package";
-import {
-  Dropdown,
-  Icon,
-  Menu,
-  Segment,
-  Button,
-  Responsive
-} from "semantic-ui-react";
+import { Tokens } from "../../api/tokens.js";
+import { Courses } from "../../api/courses";
+import { Students } from "../../api/students.js";
+import { Tasks } from "../../api/tasks";
+import { Training } from "../../api/training";
+import { Package } from "../../api/package";
+import { Dropdown, Icon, Menu, Segment, Button, Responsive } from "semantic-ui-react";
 import StudentCourses from "./StudentCourses";
 import StudentTopMenu from "./StudentTopMenu";
 import GameOverview from "./game/Gameoverview";
-import ClassRoom from "./game/ClassRoom";
-import TeacherRoom from "./game/TeacherRoom";
-import Office from "./game/Office";
+import ClassRoom from "./vektors/ClassRoom";
+import TeacherRoom from "./vektors/TeacherRoom";
+import Office from "./vektors/Office";
 import { TutorialHandler } from "../tutorials/TutorialHandler";
 import Workspace from "./game/Workspace";
 import Loading from "../Loading";
@@ -38,20 +31,15 @@ export default class StudentOverview extends React.Component {
     this.activeTutorial = React.createRef();
   }
   tutorialCheck() {
-    console.log("testy");
     const { activeTutorial, student } = this.state;
     if (
       (student && !activeTutorial) ||
       (student && activeTutorial && student.tutorials.includes(activeTutorial))
     ) {
-      var tutorial = TutorialHandler.checkForStudentTutorial(
-        this.state.student
-      );
+      var tutorial = TutorialHandler.checkForStudentTutorial(this.state.student);
       if (tutorial != this.state.activeTutorial)
         this.setState({
-          activeTutorial: TutorialHandler.checkForStudentTutorial(
-            this.state.student
-          )
+          activeTutorial: TutorialHandler.checkForStudentTutorial(this.state.student)
         });
     }
   }
@@ -92,11 +80,7 @@ export default class StudentOverview extends React.Component {
               if (err) {
                 console.log(err);
               } else {
-                const courses = this.initCourses(
-                  res,
-                  student._id,
-                  student.studipUserId
-                );
+                const courses = this.initCourses(res, student._id, student.studipUserId);
               }
             }
           );
@@ -132,10 +116,8 @@ export default class StudentOverview extends React.Component {
     let student = this.state.student;
 
     if (
-      !student.solvedTasks.find(elem => {
-        return (
-          elem.sequenceId.toString() === student.currentSequenceId.toString()
-        );
+      !student.solvedTasks.find((elem) => {
+        return elem.sequenceId.toString() === student.currentSequenceId.toString();
       })
     ) {
       Meteor.call(
@@ -155,23 +137,19 @@ export default class StudentOverview extends React.Component {
   initCourses(courses, studentId) {
     var currentCourses = this.state.student.courses;
     for (var i = 0; i < courses.data.length; i++) {
-      if (currentCourses.find(checkId => checkId === courses.data[i].id)) {
+      if (currentCourses.find((checkId) => checkId === courses.data[i].id)) {
       } else {
         var change = true;
         Meteor.call("students.addCourse", courses.data[i].id, studentId);
       }
     }
-    Meteor.call(
-      "students.getStartedCourses",
-      this.state.student.courses,
-      (err, res) => {
-        if (res) {
-          if (!this.state.courses) {
-            this.setState({ courses: res });
-          }
+    Meteor.call("students.getStartedCourses", this.state.student.courses, (err, res) => {
+      if (res) {
+        if (!this.state.courses) {
+          this.setState({ courses: res });
         }
       }
-    );
+    });
   }
   startFreeGame() {
     this.props.history.push("/student/game");
@@ -182,7 +160,7 @@ export default class StudentOverview extends React.Component {
         <Switch>
           <Route
             path="/student/game"
-            render={props => (
+            render={(props) => (
               <GameOverview
                 courses={this.state.courses}
                 student={this.state.student}
@@ -196,7 +174,7 @@ export default class StudentOverview extends React.Component {
           />
           <Route
             path="/student/classroom"
-            render={props => (
+            render={(props) => (
               <ClassRoom
                 courses={this.state.courses}
                 student={this.state.student}
@@ -209,7 +187,7 @@ export default class StudentOverview extends React.Component {
           />
           <Route
             path="/student/office"
-            render={props => (
+            render={(props) => (
               <Office
                 courses={this.state.courses}
                 student={this.state.student}
@@ -222,7 +200,7 @@ export default class StudentOverview extends React.Component {
           />
           <Route
             path="/student/teacherRoom"
-            render={props => (
+            render={(props) => (
               <TeacherRoom
                 courses={this.state.courses}
                 student={this.state.student}
@@ -236,16 +214,13 @@ export default class StudentOverview extends React.Component {
           <Route
             // TODO: Is that even used?
             path="/student/studentoverview"
-            render={props => (
-              <StudentCourses
-                courses={this.state.courses}
-                tasks={this.state.tasks}
-              />
+            render={(props) => (
+              <StudentCourses courses={this.state.courses} tasks={this.state.tasks} />
             )}
           />
           <Route
             path="/student/workspace"
-            render={props => (
+            render={(props) => (
               <Workspace
                 history={this.props.history}
                 student={this.state.student}

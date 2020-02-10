@@ -1,16 +1,9 @@
 import React from "react";
 import { Meteor } from "meteor/meteor";
 import PropTypes from "prop-types";
-import {
-  Responsive,
-  Segment,
-  Button,
-  Header,
-  Modal,
-  Image
-} from "semantic-ui-react";
+import { Responsive, Segment, Button, Header, Modal, Image } from "semantic-ui-react";
 
-import MultiChoiceAnimationTemplate from "../MultiChoice/MultiChoiceAnimationTemplate";
+import MultiChoiceAnimationTemplate from "../multiChoice/MultiChoiceAnimationTemplate";
 import SurveyAnimationTemplate from "../Survey/SurveyAnimationTemplate.js";
 export default class TrainingAnimationTemplate extends React.Component {
   constructor(props) {
@@ -27,7 +20,7 @@ export default class TrainingAnimationTemplate extends React.Component {
     };
     this.view = React.createRef();
   }
-  show = dimmer => () => this.setState({ dimmer, open: true });
+  show = (dimmer) => () => this.setState({ dimmer, open: true });
   close = () => this.solveTraining();
 
   renderNextStep() {
@@ -73,11 +66,7 @@ export default class TrainingAnimationTemplate extends React.Component {
   }
 
   solveTraining() {
-    Meteor.call(
-      "students.solveTraining",
-      this.props.student,
-      this.state.currentTraining
-    );
+    Meteor.call("students.solveTraining", this.props.student, this.state.currentTraining);
     this.setState({ open: false });
   }
 
@@ -112,17 +101,9 @@ export default class TrainingAnimationTemplate extends React.Component {
     if (!currentTraining.finalTraining) {
       return (
         <Button.Group attached="top">
-          <Button
-            id="prevBtn"
-            content="Zurück"
-            onClick={this.backAction.bind(this)}
-          />
+          <Button id="prevBtn" content="Zurück" onClick={this.backAction.bind(this)} />
           {introIndex != finalIndex ? (
-            <Button
-              id="nextBtn"
-              content="Weiter"
-              onClick={this.nextAction.bind(this)}
-            />
+            <Button id="nextBtn" content="Weiter" onClick={this.nextAction.bind(this)} />
           ) : null}
 
           {introIndex == finalIndex ? (
@@ -186,23 +167,18 @@ export default class TrainingAnimationTemplate extends React.Component {
         renderNextStep: this.renderNextStep.bind(this)
       };
 
-      if (
-        this.props.activeTask.content[0].quests[this.state.introIndex]
-          .filePrefix === "Survey"
-      )
+      if (this.props.activeTask.content[0].quests[this.state.introIndex].filePrefix === "Survey")
         taskProps = {
           student: this.props.student,
           tasks: this.props.tasks,
-          activeTask: this.props.activeTask.content[0].quests[
-            this.state.introIndex
-          ],
+          activeTask: this.props.activeTask.content[0].quests[this.state.introIndex],
           courses: this.props.courses,
           trainings: this.props.trainings,
           renderNextStep: this.renderNextStep.bind(this)
         };
 
-      return this.props.activeTask.content[0].quests[this.state.introIndex]
-        .filePrefix === "Multi" ? (
+      return this.props.activeTask.content[0].quests[this.state.introIndex].filePrefix ===
+        "Multi" ? (
         <MultiChoiceAnimationTemplate {...taskProps} ref={this.view} />
       ) : (
         <SurveyAnimationTemplate {...taskProps} />
@@ -216,9 +192,7 @@ export default class TrainingAnimationTemplate extends React.Component {
       const modalContent = (
         <Modal.Content image id="ImageContent">
           <Modal.Description id="introDescription">
-            <Header id="IntroTrainingText">
-              {this.state.stepName[this.state.introIndex]}
-            </Header>
+            <Header id="IntroTrainingText">{this.state.stepName[this.state.introIndex]}</Header>
             {this.state.stepContent[this.state.introIndex]}
             {this.renderOutro()}
           </Modal.Description>
@@ -230,9 +204,7 @@ export default class TrainingAnimationTemplate extends React.Component {
           <Image
             wrapped
             size="small"
-            src={
-              "/training/quests/" + this.state.stepIcon[this.state.introIndex]
-            }
+            src={"/training/quests/" + this.state.stepIcon[this.state.introIndex]}
           />
           {modalContent}
         </React.Fragment>
@@ -248,8 +220,7 @@ export default class TrainingAnimationTemplate extends React.Component {
             closeOnDimmerClick={false}
             closeOnEscape={false}
             open={open}
-            onClose={this.close}
-          >
+            onClose={this.close}>
             <Segment.Group>
               <Responsive as={Segment} {...Responsive.onlyMobile}>
                 {modalContentContainer}
@@ -265,10 +236,7 @@ export default class TrainingAnimationTemplate extends React.Component {
                       <Image
                         wrapped
                         size="medium"
-                        src={
-                          "/training/quests/" +
-                          this.state.stepIcon[this.state.introIndex]
-                        }
+                        src={"/training/quests/" + this.state.stepIcon[this.state.introIndex]}
                       />
                     </div>
                     <div className="ten wide column">{modalContent}</div>
