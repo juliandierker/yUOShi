@@ -12,7 +12,7 @@ export const Students = new Mongo.Collection("students");
 function checkTaskRequirements(req, solvedTasks) {
   let allRequiredFound = true;
   for (let i in req) {
-    let found = solvedTasks.find(elem => {
+    let found = solvedTasks.find((elem) => {
       return elem.taskId === req[i];
     });
     if (found === undefined) {
@@ -21,6 +21,9 @@ function checkTaskRequirements(req, solvedTasks) {
   }
   return allRequiredFound;
 }
+
+let startPackage = [];
+startPackage.push(Package.findOne({ name: "Motivation" }));
 
 Meteor.methods({
   "students.insert": function(userId, studipUserId) {
@@ -41,7 +44,7 @@ Meteor.methods({
       solvedTraining: [],
       learnCards: [],
       solvedTasks: [],
-      currentPackage: []
+      currentPackage: startPackage
     });
   },
   "student.saveLearncard": function(_id, subject, statement, content, image) {
@@ -69,10 +72,7 @@ Meteor.methods({
   "students.completeTutorial"(tutorial) {
     console.log(tutorial);
     if (Meteor.userId() && Roles.userIsInRole(Meteor.user(), ["student"])) {
-      Students.update(
-        { userId: Meteor.userId() },
-        { $push: { tutorials: tutorial } }
-      );
+      Students.update({ userId: Meteor.userId() }, { $push: { tutorials: tutorial } });
     } else {
       throw new Meteor.Error("Access denied!");
     }
@@ -134,10 +134,7 @@ Meteor.methods({
     }).fetch()[0];
     if (task && task.requires) {
       if (!checkTaskRequirements(task.requires, student.solvedTasks)) {
-        Students.update(
-          { _id: student._id },
-          { $inc: { currentSequenceId: 2 } }
-        );
+        Students.update({ _id: student._id }, { $inc: { currentSequenceId: 2 } });
         return;
       }
     }
@@ -150,10 +147,7 @@ Meteor.methods({
     }).fetch()[0];
     if (task.requires) {
       if (!checkTaskRequirements(task.requires, student.solvedTasks)) {
-        Students.update(
-          { _id: student._id },
-          { $inc: { currentSequenceId: -2 } }
-        );
+        Students.update({ _id: student._id }, { $inc: { currentSequenceId: -2 } });
         return;
       }
     }
@@ -171,7 +165,7 @@ if (Meteor.isServer) {
     throw new Meteor.Error("Access denied!");
   });
   // teacher
-  Meteor.publish("pupilsByClassId", classId => {
+  Meteor.publish("pupilsByClassId", (classId) => {
     const teacher = Teachers.findOne({ userId: Meteor.userId() });
     if (teacher && teacher.classrooms.includes(classId)) {
       return Pupils.find({ classId });
