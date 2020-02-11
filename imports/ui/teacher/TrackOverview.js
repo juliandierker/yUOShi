@@ -1,10 +1,5 @@
-import React, { Component } from "react";
+import React from "react";
 import PropTypes from "prop-types";
-import { Tracker } from "meteor/tracker";
-import { Button, Card, Image, Label, Grid } from "semantic-ui-react";
-import { Dropdown, Icon, Menu, Segment } from "semantic-ui-react";
-
-import { Courses } from "../../../../api/courses";
 
 export default class TrackOverview extends React.Component {
   constructor(props) {
@@ -19,8 +14,8 @@ export default class TrackOverview extends React.Component {
     return (
       <div>
         <p> testytest </p>
-        Lernpfade LernpfadeLernpfadeLernpfadeLernpfadeLernpfadeLernpfade
-        Lernpfade Lernpfade Lernpfade Lernpfade Lernpfade Lernpfade
+        Lernpfade LernpfadeLernpfadeLernpfadeLernpfadeLernpfadeLernpfade Lernpfade Lernpfade
+        Lernpfade Lernpfade Lernpfade Lernpfade
       </div>
     );
   }

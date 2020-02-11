@@ -4,7 +4,7 @@ import PropTypes from "prop-types";
 import { Responsive, Segment, Button, Header, Modal, Image } from "semantic-ui-react";
 
 import MultiChoiceAnimationTemplate from "../multiChoice/MultiChoiceAnimationTemplate";
-import SurveyAnimationTemplate from "../Survey/SurveyAnimationTemplate.js";
+import SurveyAnimationTemplate from "../survey/SurveyAnimationTemplate.js";
 export default class TrainingAnimationTemplate extends React.Component {
   constructor(props) {
     super(props);

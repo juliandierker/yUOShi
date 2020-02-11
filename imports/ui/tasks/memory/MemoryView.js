@@ -1,23 +1,9 @@
 import React from "react";
-import ReactDOM from "react-dom";
 import { Meteor } from "meteor/meteor";
-import PropTypes from "prop-types";
-import reactStringReplace from "react-string-replace";
-import ReactPlayer from "react-player";
 import Card from "../Cards";
 import Swal from "sweetalert2";
 
-import { DragdropModel } from "../../../../models/DragdropModel";
-import {
-  Button,
-  Header,
-  List,
-  Image,
-  Grid,
-  Icon,
-  Segment,
-  Label
-} from "semantic-ui-react";
+import { Button, List, Icon } from "semantic-ui-react";
 export default class MemoryView extends React.Component {
   constructor(props) {
     super(props);
@@ -93,9 +79,7 @@ export default class MemoryView extends React.Component {
       });
     });
 
-    this.state.randomizedFrameworks = this.shuffle(
-      this.state.duplicatedFrameworks
-    );
+    this.state.randomizedFrameworks = this.shuffle(this.state.duplicatedFrameworks);
     this.state.randomizedFrameworks.map((name, index) => {
       finalizedFrameworks.push({
         name,
@@ -124,17 +108,12 @@ export default class MemoryView extends React.Component {
       this.state.openedFrameworks[checkIndex] &&
       this.state.openedFrameworks[checkIndex].name &&
       def === this.state.openedFrameworks[checkIndex].name.name &&
-      this.state.openedFrameworks[0].index !=
-        this.state.openedFrameworks[1].index
+      this.state.openedFrameworks[0].index != this.state.openedFrameworks[1].index
     ) {
       finalizedFrameworks[this.state.openedFrameworks[0].index].complete = true;
       finalizedFrameworks[this.state.openedFrameworks[1].index].complete = true;
-      sol.push(
-        finalizedFrameworks[this.state.openedFrameworks[0].index].complete
-      );
-      sol.push(
-        finalizedFrameworks[this.state.openedFrameworks[1].index].complete
-      );
+      sol.push(finalizedFrameworks[this.state.openedFrameworks[0].index].complete);
+      sol.push(finalizedFrameworks[this.state.openedFrameworks[1].index].complete);
     } else {
       finalizedFrameworks[this.state.openedFrameworks[0].index].close = true;
       finalizedFrameworks[this.state.openedFrameworks[1].index].close = true;
@@ -186,8 +165,7 @@ export default class MemoryView extends React.Component {
   }
 
   solutionPrepare() {
-    var meteorMethod =
-      "solutionHandler.submit" + this.props.activeTask.filePrefix;
+    var meteorMethod = "solutionHandler.submit" + this.props.activeTask.filePrefix;
     Meteor.call(
       meteorMethod,
       this.state.sol,
@@ -238,8 +216,7 @@ export default class MemoryView extends React.Component {
             marginRight: "18.4%"
           }}
           floated="right"
-          onClick={() => this.solutionPrepare()}
-        >
+          onClick={() => this.solutionPrepare()}>
           Aufgabe lösen
         </Button>
       </React.Fragment>

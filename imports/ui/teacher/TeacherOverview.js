@@ -1,17 +1,15 @@
-import React, { Component } from "react";
+import React from "react";
 import PropTypes from "prop-types";
 import { Tracker } from "meteor/tracker";
 
-import { Teachers } from "../../../../api/teachers";
-import { Tokens } from "../../../../api/tokens";
-import { Courses } from "../../../../api/courses";
+import { Teachers } from "../../api/teachers.js";
+import { Tokens } from "../../api/tokens";
+import { Courses } from "../../api/courses";
 import { Route, Switch } from "react-router-dom";
 
-import { Dropdown, Icon, Menu, Segment } from "semantic-ui-react";
 import TeacherCourses from "./TeacherCourses";
 import TeacherTopMenu from "./TeacherTopMenu";
-import Loading from "../../Loading";
-import TrackOverview from "../mentorsession/TrackOverview";
+import TrackOverview from "./TrackOverview.js";
 
 export default class TeacherOverview extends React.Component {
   constructor(props) {
@@ -28,35 +26,26 @@ export default class TeacherOverview extends React.Component {
     let coursesHandle = Meteor.subscribe("coursesByTeacher");
 
     this.teacherTracker = Tracker.autorun(() => {
-      if (
-        teacherHandle.ready() &&
-        tokenHandle.ready() &&
-        coursesHandle.ready()
-      ) {
+      if (teacherHandle.ready() && tokenHandle.ready() && coursesHandle.ready()) {
         const teacher = Teachers.findOne();
         const token = Tokens.findOne();
         const givenCourses = Courses.find({}).fetch();
-        Meteor.call(
-          "courses.getTeacherCourses",
-          token.token,
-          teacher.studipUserId,
-          (err, res) => {
-            if (err) {
-              console.log(err);
-            } else {
-              var studipCourses = res;
-              const teacher = Teachers.findOne();
-              const courses = this.loadCourses(res, teacher._id);
+        Meteor.call("courses.getTeacherCourses", token.token, teacher.studipUserId, (err, res) => {
+          if (err) {
+            console.log(err);
+          } else {
+            var studipCourses = res;
+            const teacher = Teachers.findOne();
+            const courses = this.loadCourses(res, teacher._id);
 
-              this.setState({
-                teacher,
-                token,
-                courses: givenCourses,
-                loading: false
-              });
-            }
+            this.setState({
+              teacher,
+              token,
+              courses: givenCourses,
+              loading: false
+            });
           }
-        );
+        });
       } else {
         if (!this.state.loading) {
           this.setState({ loading: true });
@@ -69,43 +58,29 @@ export default class TeacherOverview extends React.Component {
     this.teacherTracker.stop();
   }
   loadCourses(courses, teacherId) {
-    console.log(courses);
-
     for (var i in courses) {
       var targetCourse = courses[i].attributes;
       var exists = false;
       if (this.state.courses) {
         for (var j in this.state.courses) {
-          console.log(courses[i].id);
           if (this.state.courses[j].studipId == courses[i].id) {
             exists = true;
           }
           if (!exists) {
-            Meteor.call(
-              "courses.insert",
-              targetCourse.title,
-              courses[i].id,
-              teacherId
-            );
+            Meteor.call("courses.insert", targetCourse.title, courses[i].id, teacherId);
           }
         }
       } else {
-        Meteor.call(
-          "courses.insert",
-          targetCourse.title,
-          courses[i].id,
-          teacherId
-        );
+        Meteor.call("courses.insert", targetCourse.title, courses[i].id, teacherId);
       }
     }
   }
   renderRoutes() {
-    console.log("enter1");
     return (
       <Switch>
         <Route
           path="/teacher/:class/trackoverview"
-          render={props => (
+          render={(props) => (
             <TrackOverview
               classrooms={this.state.classrooms}
               teacher={this.state.teacher}
@@ -117,11 +92,8 @@ export default class TeacherOverview extends React.Component {
         />
         <Route
           path="/teacher/teacheroverview"
-          render={props => (
-            <TeacherCourses
-              courses={this.state.courses}
-              history={this.props.history}
-            />
+          render={(props) => (
+            <TeacherCourses courses={this.state.courses} history={this.props.history} />
           )}
         />
       </Switch>
@@ -131,10 +103,7 @@ export default class TeacherOverview extends React.Component {
   render() {
     return (
       <div>
-        <TeacherTopMenu
-          courses={this.state.courses}
-          teacher={this.state.teacher}
-        />
+        <TeacherTopMenu courses={this.state.courses} teacher={this.state.teacher} />
         {this.renderRoutes()}
       </div>
     );

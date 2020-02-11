@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { Checkbox, Form, Button } from "semantic-ui-react";
 import Swal from "sweetalert2";
-import FullEditor from "../../texteditor/FullEditor.js";
+import FullEditor from "../texteditor/FullEditor";
 export default class SurveyView extends Component {
   constructor(props) {
     super(props);
@@ -31,11 +31,7 @@ export default class SurveyView extends Component {
 
   handleSubmit() {
     this.props.handleSubmit(this.state, () => {
-      Swal.fire(
-        "Vielen Dank!",
-        "Danke dass du an der Umfrage teilgenommen hast!",
-        "success"
-      );
+      Swal.fire("Vielen Dank!", "Danke dass du an der Umfrage teilgenommen hast!", "success");
     });
   }
 
@@ -72,8 +68,7 @@ export default class SurveyView extends Component {
     return (
       <Form
         style={{ padding: "10px", paddingBottom: "40px" }}
-        onSubmit={this.handleSubmit.bind(this)}
-      >
+        onSubmit={this.handleSubmit.bind(this)}>
         <h2>{this.props.activeTask.Question}</h2>
         {this.renderCheckboxes()}
         {this.renderMiscellaneousTextbox()}

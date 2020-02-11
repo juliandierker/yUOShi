@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { Tracker } from "meteor/tracker";
-import Loading from "../../Loading";
+import Loading from "../Loading.js";
 import { Dropdown, Icon, Menu, Segment } from "semantic-ui-react";
 
 export default class TeacherTopMenu extends React.Component {

@@ -5,8 +5,7 @@ import { Accounts } from "meteor/accounts-base";
 import i18n from "meteor/universe:i18n";
 var getTrans = i18n.createTranslator("UserValidation");
 
-import { Form, Label } from "semantic-ui-react";
-import { browserHistory } from "../../routes/routes";
+import { Form } from "semantic-ui-react";
 
 import Swal from "sweetalert2";
 

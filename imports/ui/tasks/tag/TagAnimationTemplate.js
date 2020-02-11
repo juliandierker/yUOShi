@@ -1,7 +1,7 @@
 import React from "react";
 import { Meteor } from "meteor/meteor";
 import PropTypes from "prop-types";
-import { TagModel } from "../../../../models/TagModel";
+import { TagModel } from "../../../models/TagModel";
 
 import Swal from "sweetalert2";
 import TagView from "./TagView";
@@ -19,12 +19,8 @@ export default class TagAnimationTemplate extends React.Component {
 
   solutionPrepare() {
     var sol = this.model.run(this.props.finishedKeywords);
-    if (
-      (sol && sol[0].includes("won")) ||
-      this.props.activeTask.content[0].keywords.length === 0
-    ) {
-      var meteorMethod =
-        "solutionHandler.submit" + this.props.activeTask.filePrefix;
+    if ((sol && sol[0].includes("won")) || this.props.activeTask.content[0].keywords.length === 0) {
+      var meteorMethod = "solutionHandler.submit" + this.props.activeTask.filePrefix;
       Meteor.call(
         meteorMethod,
         this.props.finishedKeywords,

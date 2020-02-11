@@ -1,7 +1,6 @@
 import React from "react";
 import { Meteor } from "meteor/meteor";
 import PropTypes from "prop-types";
-import { DragdropModel } from "../../../../models/DragdropModel";
 import { Button, Header, Modal, Image, Icon, List } from "semantic-ui-react";
 
 import Swal from "sweetalert2";
@@ -18,13 +17,8 @@ export default class MemoryAnimationTemplate extends React.Component {
     this.view = null;
   }
 
-  componentDidMount() {}
   solveTask() {
-    Meteor.call(
-      "students.solveTask",
-      this.props.student,
-      this.state.currentTask
-    );
+    Meteor.call("students.solveTask", this.props.student, this.state.currentTask);
     this.setState({ open: false });
   }
   renderView() {

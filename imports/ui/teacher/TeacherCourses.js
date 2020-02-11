@@ -1,15 +1,13 @@
-import React, { Component } from "react";
+import React from "react";
 import PropTypes from "prop-types";
-import { Tracker } from "meteor/tracker";
-import Loading from "../../Loading";
+import Loading from "../Loading.js";
 import { Button, Card, Image, Label, Grid } from "semantic-ui-react";
-import { Dropdown, Icon, Menu, Segment } from "semantic-ui-react";
-import { Route, Switch } from "react-router-dom";
+import { Icon } from "semantic-ui-react";
 
-import TrackOverview from "../mentorsession/TrackOverview";
 import { createBrowserHistory } from "history";
 
-import { Courses } from "../../../../api/courses";
+// import { Courses } from "../../api/courses.js";
+
 export default class TeacherCourses extends React.Component {
   constructor(props) {
     super(props);
@@ -19,23 +17,16 @@ export default class TeacherCourses extends React.Component {
     };
   }
   handleCourseClick(course) {
-    const browserHistory = createBrowserHistory();
-
     if (course.started) {
-      this.props.history.push(
-        "/teacher/" + course.courseName + "/trackoverview"
-      );
+      this.props.history.push("/teacher/" + course.courseName + "/trackoverview");
     } else if (this.state.startMenuId != course._id) {
       this.setState({ startMenuId: course._id });
     } else {
       Meteor.call("courses.start", course._id);
 
-      this.props.history.push(
-        "/teacher/" + course.courseName + "/trackoverview"
-      );
+      this.props.history.push("/teacher/" + course.courseName + "/trackoverview");
     }
   }
-  handleChange(param) {}
 
   renderStartMenu(courseId) {
     if (courseId == this.state.startMenuId) {
@@ -44,7 +35,7 @@ export default class TeacherCourses extends React.Component {
   }
   renderCourses(courses) {
     if (courses) {
-      return courses.map(course => {
+      return courses.map((course) => {
         return <Card.Group>{this.renderCard(course)}</Card.Group>;
       });
     } else {
@@ -64,25 +55,16 @@ export default class TeacherCourses extends React.Component {
             <Grid.Column width={10}>
               <Card className="course_card">
                 <Card.Content>
-                  <Image
-                    floated="right"
-                    size="mini"
-                    src="/courses/studip_logo.png"
-                  />
+                  <Image floated="right" size="mini" src="/courses/studip_logo.png" />
                   <Card.Header>{course.courseName}</Card.Header>
-                  <Card.Meta>
-                    {"Teilnehmer: " + course.students.length}
-                  </Card.Meta>
+                  <Card.Meta>{"Teilnehmer: " + course.students.length}</Card.Meta>
                   <Card.Description>
                     {course.started ? "Spiel verwalten" : "Spiel starten"}
                   </Card.Description>
                 </Card.Content>
                 <Card.Content extra>
                   <div>
-                    <Button
-                      onClick={() => this.handleCourseClick(course)}
-                      animated
-                    >
+                    <Button onClick={() => this.handleCourseClick(course)} animated>
                       <Button.Content visible>
                         {course.started ? "Verwalten" : "Spiel starten"}
                       </Button.Content>
@@ -94,9 +76,7 @@ export default class TeacherCourses extends React.Component {
                 </Card.Content>
               </Card>
             </Grid.Column>
-            <Grid.Column width={5}>
-              {this.renderStartMenu(course._id)}
-            </Grid.Column>
+            <Grid.Column width={5}>{this.renderStartMenu(course._id)}</Grid.Column>
           </Grid.Row>
         </Grid>
       </div>

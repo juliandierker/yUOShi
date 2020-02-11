@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 
-import { ClozeModel } from "../../../../models/ClozeModel";
+import { ClozeModel } from "../../../models/ClozeModel";
 
 import ClozeView from "./ClozeView";
 

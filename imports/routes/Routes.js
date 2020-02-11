@@ -11,7 +11,7 @@ import NotFound from "../ui/NotFound";
 // Students
 import StudentOverview from "../ui/student/StudentOverview";
 // Teachers
-import TeacherOverview from "../ui/teacher/pregame/TeacherOverview";
+import TeacherOverview from "../ui/teacher/TeacherOverview";
 import Gameoverview from "../ui/student/game/Gameoverview";
 // import ClassRoom from "../ui/student/game/ClassRoom";
 // import TeacherRoom from "../ui/student/game/TeacherRoom";

@@ -12,7 +12,7 @@ import SurveyAnimationTemplate from "../../tasks/survey/SurveyAnimationTemplate"
 import KeywordList from "../../tasks/KeywordList";
 
 import equals from "fast-deep-equal";
-import { Tasks } from "../../../../api/tasks";
+import { Tasks } from "../../../api/tasks";
 
 import TaskProgress from "../taskProgress/TaskProgress";
 import { Segment, Button, Grid, Modal } from "semantic-ui-react";
