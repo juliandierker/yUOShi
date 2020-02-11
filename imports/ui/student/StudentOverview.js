@@ -44,6 +44,7 @@ export default class StudentOverview extends React.Component {
     }
   }
   componentDidMount() {
+    console.log(this.context);
     this.tutorialCheck();
     //Check responsive viewport
 

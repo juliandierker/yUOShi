@@ -18,7 +18,6 @@ window.setCookie = function(name, value, sec) {
   }
   document.cookie = `${name}=${value}${expires}, path=/PupilCompaniesOverview`;
 };
-// document.cookie = "username=John Doe; expires=Thu, 18 Dec 2013 12:00:00 UTC; path=/";
 
 window.getCookie = function(name) {
   const value = `, ${document.cookie}`;

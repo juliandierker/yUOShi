@@ -89,7 +89,7 @@ Meteor.methods({
       try {
         var courseRawData = HTTP.call(
           "GET",
-          "http://localhost/studip/plugins.php/argonautsplugin/users/" + studipUserId + "/courses",
+          "http://localhost:8123/plugins.php/argonautsplugin/users/" + studipUserId + "/courses",
           {
             headers: { Authorization: "Basic " + token }
           }
@@ -102,7 +102,7 @@ Meteor.methods({
           try {
             var membershipsRaw = HTTP.call(
               "GET",
-              "http://localhost/studip/plugins.php/argonautsplugin/courses/" +
+              "http://localhost:8123/plugins.php/argonautsplugin/courses/" +
                 tmpCourse.id +
                 "/memberships",
               {
@@ -141,7 +141,7 @@ Meteor.methods({
       try {
         var courseRawData = HTTP.call(
           "GET",
-          "http://localhost/studip/plugins.php/argonautsplugin/users/" + studipUserId + "/courses",
+          "http://localhost:8123/plugins.php/argonautsplugin/users/" + studipUserId + "/courses",
           {
             headers: { Authorization: "Basic " + token }
           }

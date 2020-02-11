@@ -32,7 +32,7 @@ export default class DragdropTemplate extends Component {
           orientation: props.activeTask.orientation[0],
           id: "dragdropContainer"
         },
-        children: generateItems(catLength, i => ({
+        children: generateItems(catLength, (i) => ({
           id: `column${i}`,
           solution: props.activeTask.solArray,
           categorie: props.activeTask.solArray[i],
@@ -45,7 +45,7 @@ export default class DragdropTemplate extends Component {
           },
           children: generateItems(
             Math.floor(props.activeTask.statements.length / catLength),
-            j => ({
+            (j) => ({
               type: "draggable",
               id: `${i}${j}`,
               props: {
@@ -73,10 +73,8 @@ export default class DragdropTemplate extends Component {
   }
   componentDidMount() {
     if (this.props.activeTask.orientation === "horizontal") {
-      let elems = [
-        ...document.getElementsByClassName("smooth-dnd-draggable-wrapper")
-      ];
-      elems.map(elem => {
+      let elems = [...document.getElementsByClassName("smooth-dnd-draggable-wrapper")];
+      elems.map((elem) => {
         if (elem.style.display === "table-cell") {
           elem.style.display = "auto";
         }
@@ -119,9 +117,7 @@ export default class DragdropTemplate extends Component {
   }
 
   getCardPayload(columnId, index) {
-    return this.state.scene.children.filter(p => p.id === columnId)[0].children[
-      index
-    ];
+    return this.state.scene.children.filter((p) => p.id === columnId)[0].children[index];
   }
 
   onColumnDrop(dropResult) {
@@ -142,7 +138,7 @@ export default class DragdropTemplate extends Component {
   onCardDrop(columnId, dropResult) {
     if (dropResult.removedIndex !== null || dropResult.addedIndex !== null) {
       const scene = Object.assign({}, this.state.scene);
-      const column = scene.children.filter(p => p.id === columnId)[0];
+      const column = scene.children.filter((p) => p.id === columnId)[0];
       const columnIndex = scene.children.indexOf(column);
 
       const newColumn = Object.assign({}, column);

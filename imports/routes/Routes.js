@@ -9,7 +9,8 @@ import Login from "../ui/um/Login";
 import NotFound from "../ui/NotFound";
 
 // Students
-import StudentOverview from "../ui/student/StudentOverview";
+// import StudentOverview from "../ui/student/StudentOverview";
+import StudentContextProvider from "../ui/student/StudentContext.js";
 // Teachers
 import TeacherOverview from "../ui/teacher/TeacherOverview";
 import Gameoverview from "../ui/student/game/Gameoverview";
@@ -63,8 +64,8 @@ class Routes extends React.Component {
       <Router history={browserHistory}>
         <Switch>
           <PublicRoute exact path="/" component={Login} />
-          <PrivateRoute path="/student" component={StudentOverview} />
-          <PrivateRoute path="/teacher" component={TeacherOverview} />
+          <PrivateRoute path="/student" component={StudentContextProvider} />
+          {/* <PrivateRoute path="/teacher" component={TeacherContextProvider} /> */}
           <Route path="/(.*)" component={NotFound} />
         </Switch>
       </Router>

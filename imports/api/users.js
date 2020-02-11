@@ -23,7 +23,7 @@ Meteor.methods({
     try {
       const result = HTTP.call(
         "GET",
-        "http://localhost/studip/plugins.php/argonautsplugin/users/me",
+        "http://localhost:8123/plugins.php/argonautsplugin/users/me",
         {
           headers: { Authorization: token }
         }

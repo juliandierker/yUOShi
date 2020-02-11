@@ -70,7 +70,6 @@ Meteor.methods({
     Students.update(_id, { $addToSet: { tasks } });
   },
   "students.completeTutorial"(tutorial) {
-    console.log(tutorial);
     if (Meteor.userId() && Roles.userIsInRole(Meteor.user(), ["student"])) {
       Students.update({ userId: Meteor.userId() }, { $push: { tutorials: tutorial } });
     } else {
@@ -164,6 +163,7 @@ if (Meteor.isServer) {
     }
     throw new Meteor.Error("Access denied!");
   });
+
   // teacher
   Meteor.publish("pupilsByClassId", (classId) => {
     const teacher = Teachers.findOne({ userId: Meteor.userId() });

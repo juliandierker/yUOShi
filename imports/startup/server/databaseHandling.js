@@ -52,9 +52,7 @@ function initPackages() {
     Package.update({ _id: packages[i]._id }, packageUpdates);
 
     for (var k in trainings[0][pname]) {
-      tmp2.push(
-        trainings[0][pname][k].trainingId + trainings[0][pname][k].sequenceId
-      );
+      tmp2.push(trainings[0][pname][k].trainingId + trainings[0][pname][k].sequenceId);
     }
 
     //TODO PUT THIS IN 1 QUERY
@@ -123,7 +121,7 @@ function setupStudents() {
 
     startPackage.push(Package.findOne({ name: "Motivation" }));
     if (i == 2) {
-      var task = Tasks.findOne({ package: "Motivation", sequenceId: 1 });
+      // var task = Tasks.findOne({ package: "Motivation", sequenceId: 1 });
       Students.insert({
         userId: userId,
         credits: 0,
@@ -133,7 +131,7 @@ function setupStudents() {
         studipUserId: "e7a0a84b161f3e8c09b4a0a2e8a58147",
         lastActiveTaskId: null,
         courses: [],
-        tasks: [task],
+        tasks: [],
         solvedTasks: [],
         tutorials: [],
         learnCards: [],
