@@ -10,7 +10,7 @@ import NotFound from "../ui/NotFound";
 
 // Students
 // import StudentOverview from "../ui/student/StudentOverview";
-import StudentContextProvider from "../ui/student/StudentContext.js";
+import StudentContextProvider from "../ui/student/StudentContextProvider.js";
 // Teachers
 import TeacherOverview from "../ui/teacher/TeacherOverview";
 import Gameoverview from "../ui/student/game/Gameoverview";

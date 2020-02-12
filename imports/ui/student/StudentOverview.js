@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { useContext } from "react";
 import PropTypes from "prop-types";
 import { Tracker } from "meteor/tracker";
 import { Route, Switch } from "react-router-dom";
@@ -19,16 +19,14 @@ import { TutorialHandler } from "../tutorials/TutorialHandler";
 import Workspace from "./game/Workspace";
 import Loading from "../Loading";
 import TutorialComponent from "../tutorials/TutorialComponent";
+import { GameContext, CourseContext } from "./StudentContextProvider";
+
 export default class StudentOverview extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      courses: null,
-      activeTutorial: null,
-      token: null,
-      student: null
+      activeTutorial: null
     };
-    this.activeTutorial = React.createRef();
   }
   tutorialCheck() {
     const { activeTutorial, student } = this.state;
@@ -44,73 +42,14 @@ export default class StudentOverview extends React.Component {
     }
   }
   componentDidMount() {
-    console.log(this.context);
+    this.activeTutorial = React.createRef();
     this.tutorialCheck();
     //Check responsive viewport
 
     <Responsive {...Responsive.onlyMobile} />;
-
-    let studentHandle = Meteor.subscribe("student");
-    let tokenHandle = Meteor.subscribe("tokenByUser");
-    let coursesHandle = Meteor.subscribe("coursesByStudent");
-    let taskHandle = Meteor.subscribe("tasks");
-    let trainingHandle = Meteor.subscribe("training");
-    let packageHandle = Meteor.subscribe("package");
-    this.studentTracker = Tracker.autorun(() => {
-      if (
-        studentHandle.ready() &&
-        tokenHandle.ready() &&
-        coursesHandle.ready() &&
-        taskHandle.ready() &&
-        trainingHandle.ready() &&
-        packageHandle.ready()
-      ) {
-        const student = Students.findOne();
-        const token = Tokens.findOne();
-        const givenCourses = Courses.find({}).fetch();
-        const tasks = Tasks.find({}).fetch();
-        const trainings = Training.find({}).fetch();
-        const packages = Package.find({}).fetch();
-
-        if (givenCourses.length == 0) {
-          Meteor.call(
-            "courses.getStudentCourses",
-            token.token,
-            student.studipUserId,
-            (err, res) => {
-              if (err) {
-                console.log(err);
-              } else {
-                const courses = this.initCourses(res, student._id, student.studipUserId);
-              }
-            }
-          );
-        }
-        this.setState({
-          student,
-          token,
-          courses: givenCourses,
-          tasks,
-          loading: false,
-          trainings,
-          packages
-        });
-      } else {
-        if (!this.state.loading) {
-          this.setState({ loading: true });
-        }
-      }
-    });
-
-    this.props.history.push("/student/game");
   }
   componentDidUpdate(prevProps, prevState) {
     this.tutorialCheck();
-
-    console.log("update");
-  }
-  componentWillUnmount() {
-    this.studentTracker.stop();
   }
 
   handleNextTask() {
@@ -242,26 +181,27 @@ export default class StudentOverview extends React.Component {
   render() {
     const { activeTutorial } = this.state;
     return (
-      <React.Fragment>
-        <StudentTopMenu
-          history={this.props.history}
-          courses={this.state.courses}
-          student={this.state.student}
-          activeTutorial={this.activeTutorial}
-        />
-        {this.renderRoutes()}
-        {activeTutorial && (
-          <TutorialComponent
-            activeTutorial={activeTutorial}
-            stopTutorial={() => {
-              this.setState({ activeTutorial: null });
-            }}
-          />
+      <GameContext.Consumer>
+        {(context) => (
+          <React.Fragment>
+            <StudentTopMenu />
+            {/* {this.renderRoutes()} */}
+            {activeTutorial && (
+              <TutorialComponent
+                activeTutorial={activeTutorial}
+                stopTutorial={() => {
+                  this.setState({ activeTutorial: null });
+                }}
+              />
+            )}
+          </React.Fragment>
         )}
-      </React.Fragment>
+      </GameContext.Consumer>
     );
   }
 }
+
+StudentOverview.contextType = { GameContext, CourseContext };
 
 StudentOverview.propTypes = {
   studipCourses: PropTypes.array
