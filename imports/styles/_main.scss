@@ -3,6 +3,7 @@
 // Desktop
 @media screen and (min-width: 1025px) {
     // General
+    @import "./desktop/general/login";
     @import "./desktop/general/workspace";
     @import "./desktop/general/keywordList";
     @import "./desktop/general/navButtons";
@@ -10,10 +11,12 @@
     @import "./desktop/general/workspaceStepper";
 
     // Tasks
+    @import "./desktop/tasks/trainingView";
     @import "./desktop/tasks/tagtask";
     @import "./desktop/tasks/multipleChoice";
     @import "./desktop/tasks/pyramid";
     @import "./desktop/tasks/dragElements";
+    @import "./desktop/tasks/cloze";
 }
 // Mobile
     // General

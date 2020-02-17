@@ -1,13 +1,5 @@
 import React, { Component } from "react";
-import {
-  Segment,
-  Input,
-  Button,
-  List,
-  Icon,
-  Grid,
-  Image
-} from "semantic-ui-react";
+import { Segment, Input, Button, List, Icon, Grid, Image } from "semantic-ui-react";
 import reactStringReplace from "react-string-replace";
 import { Meteor } from "meteor/meteor";
 
@@ -21,8 +13,7 @@ export default class ClozeView extends Component {
     };
   }
   solutionPrepare() {
-    const meteorMethod =
-      "solutionHandler.submit" + this.props.activeTask.filePrefix;
+    const meteorMethod = "solutionHandler.submit" + this.props.activeTask.filePrefix;
 
     if (this.state.correctAnswers) {
       let count = 0;
@@ -126,12 +117,12 @@ export default class ClozeView extends Component {
     });
     return (
       <Segment
+        id="clozeSegment"
         style={{
           whiteSpace: "pre-line",
           overflowY: "auto",
           height: "79vh"
-        }}
-      >
+        }}>
         {text}
       </Segment>
     );
@@ -152,9 +143,7 @@ export default class ClozeView extends Component {
         {this.renderText()}
         <div style={{ float: "right" }}>
           <Button color="green" onClick={() => this.solutionPrepare()}>
-            {this.state.correctAnswers
-              ? "Lösung abschicken"
-              : "Lösung überprüfen"}
+            {this.state.correctAnswers ? "Lösung abschicken" : "Lösung überprüfen"}
           </Button>
         </div>
       </React.Fragment>

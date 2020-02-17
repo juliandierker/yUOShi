@@ -2,10 +2,17 @@
  *   In this file all of our colors used in our scss are defined
  */
 
-// Button Background Color
-$buttonBgColor: rgb(143, 176, 232);
+//Button Backgound Color
+$buttonBgColor: #6a96e2;
+// Button Background Color Light
+$buttonBgColorLight: rgb(143, 176, 232);
 // Button Text Color
 $buttonTxColor: #ffffff;
 
 // Disabled Button Backgound Color
 $buttonBgColorDisabled: rgb(186, 219, 255);
+
+// Background
+$loginBackground: linear-gradient(rgba(255, 255, 255, 0), rgba(255, 255, 255, 0));
+
+$modalBgColor: white;
