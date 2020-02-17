@@ -1,65 +1,81 @@
 import { Meteor } from "meteor/meteor";
-import { Tracker } from "meteor/tracker";
-import React from "react";
+import { withTracker } from "meteor/react-meteor-data";
+import React, { useState } from "react";
 
 import { Students } from "../../api/students";
 import { Tasks } from "../../api/tasks";
 import { Package } from "../../api/package";
 import { Courses } from "../../api/courses";
 
+import Loading from "../Loading.js";
 import StudentOverview from "./StudentOverview";
 
 export const GameContext = React.createContext();
 export const CourseContext = React.createContext();
 
-export default class StudentContextProvider extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      page: "StudentOverview"
-    };
-  }
-  trackStudent() {
-    console.log("entered");
-    let student = null;
-    let course = null;
+const withStudent = withTracker(() => {
+  const handles = [
+    Meteor.subscribe("student"),
+    Meteor.subscribe("tasks"),
+    Meteor.subscribe("package"),
+    Meteor.subscribe("coursesByStudent")
+  ];
 
-    this.studentTracker = Tracker.autorun(() => {
-      let studentHandle = Meteor.subscribe("student");
-      let taskHandle = Meteor.subscribe("tasks");
-      let packageHandle = Meteor.subscribe("package");
-      let studentCoursesHandle = Meteor.subscribe("coursesByStudent");
+  const loading = handles.some((handle) => !handle.ready());
+  const student = Students.findOne({ userId: Meteor.userId() });
+  var gameInfo = {
+    loading,
+    student,
+    tasks: null,
+    packages: null,
+    otherStudents: null
+  };
+  var courseInfo = {
+    course: null,
+    otherStudents: null
+  };
+  if (student) {
+    gameInfo["tasks"] = Tasks.find({});
+    gameInfo["packages"] = Package.find({}).fetch();
+    // gameInfo["otherStudents"] = courses.filter((pupil) => pupil.userId != Meteor.userId());
+    courseInfo["course"] = Courses.findOne({});
+  }
+  return { gameInfo, courseInfo };
+});
 
-      if (
-        studentHandle.ready() &&
-        taskHandle.ready() &&
-        packageHandle.ready() &&
-        studentCoursesHandle.ready()
-      ) {
-        student = Students.findOne({ userId: Meteor.userId() });
-        course = Courses.findOne({});
-      }
-      if (student) {
-        console.log("ever?????");
-        this.setState({ student, tasks: null, package: null, course, otherStudents: null });
-      }
-    });
+function Provider(props) {
+  const [page, setPage] = useState("schoolOverview");
+  const gameInfo = { ...props.gameInfo, page, setPage };
+  const courseInfo = { ...props.courseInfo };
+
+  if (!gameInfo.student) {
+    return <Loading />;
   }
-  componentDidMount() {
-    this.trackStudent();
-  }
-  componentWillUnmount() {
-    this.studentTracker.stop();
-  }
-  render() {
-    return (
-      <GameContext.Provider value={this.state}>
-        <CourseContext.Provider value={this.state}>
-          <StudentOverview />
-        </CourseContext.Provider>
-      </GameContext.Provider>
-    );
-  }
+  return (
+    <GameContext.Provider value={(gameInfo, courseInfo)}>
+      <CourseContext.Provider value={courseInfo}>
+        <StudentOverview />
+      </CourseContext.Provider>
+    </GameContext.Provider>
+  );
 }
 
-// export default (StudentContextProvider = withStudent(Provider));
+// initCourses(courses, studentId) {
+//   var currentCourses = this.state.student.courses;
+//   for (var i = 0; i < courses.data.length; i++) {
+//     if (currentCourses.find((checkId) => checkId === courses.data[i].id)) {
+//     } else {
+//       var change = true;
+//       Meteor.call("students.addCourse", courses.data[i].id, studentId);
+//     }
+//   }
+//   Meteor.call("students.getStartedCourses", this.state.student.courses, (err, res) => {
+//     if (res) {
+//       if (!this.state.courses) {
+//         this.setState({ courses: res });
+//       }
+//     }
+//   });
+// }
+
+export default (StudentContextProvider = withStudent(Provider));
