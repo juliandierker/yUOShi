@@ -44,7 +44,7 @@ class TaskProgress extends Component {
     return stepArr;
   }
   renderStepper() {
-    var classes = makeStyles(theme => ({
+    var classes = makeStyles((theme) => ({
       root: {
         color: "white",
         width: "90%"
@@ -66,11 +66,11 @@ class TaskProgress extends Component {
     const activeStep = this.state.activeStep;
     const steps = this.getSteps();
     function handleNext() {
-      setActiveStep(prevActiveStep => prevActiveStep + 1);
+      setActiveStep((prevActiveStep) => prevActiveStep + 1);
     }
 
     function handleBack() {
-      setActiveStep(prevActiveStep => prevActiveStep - 1);
+      setActiveStep((prevActiveStep) => prevActiveStep - 1);
     }
 
     function handleReset() {
@@ -102,8 +102,7 @@ class TaskProgress extends Component {
     this.generateSubPackages();
   }
   componentDidUpdate(prevProps, prevState) {
-    if (prevProps.currentTask && this.props.currentTask)
-      this.checkProgress(prevProps);
+    if (prevProps.currentTask && this.props.currentTask) this.checkProgress(prevProps);
 
     if (!prevProps.currentTask && this.props.currentTask) this.getInitStep();
   }
@@ -130,7 +129,7 @@ class TaskProgress extends Component {
   }
   generateSubPackages() {
     let newSubPackages = [];
-    this.props.currentPackage.content.map(subPackage => {
+    this.props.currentPackage.content.map((subPackage) => {
       let sp = {
         title: subPackage.title,
         id: this.props.currentPackage.name + subPackage.sequenceId,
@@ -139,7 +138,7 @@ class TaskProgress extends Component {
       };
 
       // Add tasks to tasks array
-      subPackage.tasks.map(task => {
+      subPackage.tasks.map((task) => {
         sp.tasks.push({
           name: task.title,
           parentId: task.parentId,
@@ -149,8 +148,8 @@ class TaskProgress extends Component {
       });
 
       // Add trainings to tasks array
-      this.props.trainings.map(training => {
-        training.Motivation.map(mot => {
+      this.props.trainings.map((training) => {
+        training.Motivation.map((mot) => {
           if (mot.parentId == sp.id) {
             sp.tasks.push({
               name: mot.title,
@@ -160,7 +159,7 @@ class TaskProgress extends Component {
             });
           }
         });
-        training.Identität.map(ide => {
+        training.Identität.map((ide) => {
           if (ide.parentId == sp.id) {
             sp.tasks.push({
               name: ide.title,
@@ -188,8 +187,7 @@ class TaskProgress extends Component {
 
   renderSubPackage(sub, complete) {
     const icon =
-      this.props.activeSubpackage &&
-      sub.sequenceId < this.props.activeSubpackage.sequenceId ? (
+      this.props.activeSubpackage && sub.sequenceId < this.props.activeSubpackage.sequenceId ? (
         <Icon size="large" name={"check"} style={{ color: "green" }} />
       ) : (
         <Icon size="large" name={"student"} />
@@ -203,30 +201,20 @@ class TaskProgress extends Component {
               display: "flex",
               lineHeight: "normal",
               alignItems: "center"
-            }}
-          >
+            }}>
             {icon}
             <Step.Title>{sub.title}</Step.Title>
           </div>
           <Step.Description>
-            {sub.tasks.map(task => {
+            {sub.tasks.map((task) => {
               cnt++;
               if (
                 this.props.student.tasks[0] &&
-                (complete ||
-                  task.sequenceId < this.props.student.tasks[0].sequenceId)
+                (complete || task.sequenceId < this.props.student.tasks[0].sequenceId)
               ) {
-                return this.renderTask(
-                  task,
-                  "check",
-                  "taskProgress_task_" + cnt
-                );
+                return this.renderTask(task, "check", "taskProgress_task_" + cnt);
               } else {
-                return this.renderTask(
-                  task,
-                  "circle",
-                  "taskProgress_task_" + cnt
-                );
+                return this.renderTask(task, "circle", "taskProgress_task_" + cnt);
               }
             })}
           </Step.Description>
@@ -236,7 +224,7 @@ class TaskProgress extends Component {
   }
 
   renderSubPackages() {
-    return this.state.subPackages[0].map(p => {
+    return this.state.subPackages[0].map((p) => {
       if (this.props.activeSubpackage) {
         let completed = false;
         let active = false;
@@ -249,8 +237,7 @@ class TaskProgress extends Component {
           <Step
             completed={completed}
             active={active}
-            key={this.props.currentPackage._id + "" + p.sequenceId}
-          >
+            key={this.props.currentPackage._id + "" + p.sequenceId}>
             {this.renderSubPackage(p, completed)}
           </Step>
         );
@@ -270,16 +257,24 @@ class TaskProgress extends Component {
                 Fortschritt
               </Btn>
             }
-            basic
-          >
-            <Modal.Content id="stepperModal">
-              {this.renderStepper()}
-            </Modal.Content>
+            basic>
+            <Modal.Content id="stepperModal">{this.renderStepper()}</Modal.Content>
           </Modal>
         </Responsive>
-        <Responsive {...Responsive.onlyComputer}>
-          {this.renderStepper()}
+        <Responsive {...Responsive.onlyTablet}>
+          <Modal
+            closeOnDocumentClick={true}
+            closeIcon={<Icon id="stepperModalCloseIcon" name="close" />}
+            trigger={
+              <Btn id="stepperModalIcon" primary>
+                Fortschritt
+              </Btn>
+            }
+            basic>
+            <Modal.Content id="stepperModal">{this.renderStepper()}</Modal.Content>
+          </Modal>
         </Responsive>
+        <Responsive {...Responsive.onlyComputer}>{this.renderStepper()}</Responsive>
       </React.Fragment>
     );
   }

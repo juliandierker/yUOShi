@@ -1,0 +1,40 @@
+body {
+    overflow-x: hidden !important;
+}
+
+.ui.modal {
+    top: 20%;
+}
+
+.workspace__container {
+    width: 100%;
+    margin-top: 2rem;
+    height: 100%;
+}
+
+#workspaceStepper {
+    margin-top: 1rem;
+}
+
+#solveTask {
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    margin-right: -0.5rem;
+    background-color: $buttonBgColorLight;
+    color: $buttonTxColor;
+}
+
+#app {
+    height: 100% !important;
+}
+
+.text ~ .icon {
+    color: white;
+}
+
+#stepperModalIcon {
+    position: absolute;
+    top: 9vh;
+    right: 1vh;
+    font-size: 0.6rem;
+}

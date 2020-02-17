@@ -1,9 +1,12 @@
 @import "./colors";
 
+// Without media querys
+@import "./desktop/general/login";
+
+
 // Desktop
 @media screen and (min-width: 1025px) {
     // General
-    @import "./desktop/general/login";
     @import "./desktop/general/workspace";
     @import "./desktop/general/keywordList";
     @import "./desktop/general/navButtons";
@@ -27,6 +30,18 @@
 // Tablet
 @media screen and (min-width: 768px) and (max-width: 1024px) {   
     // General
-    
+    @import "./tablet/general/workspace";
+    @import "./tablet/general/keywordList";
+    @import "./tablet/general/navButtons";
+    @import "./tablet/general/workspaceDescription";
+    @import "./tablet/general/workspaceStepper";
+
     // Tasks
+    @import "./tablet/tasks/trainingView";
+    @import "./tablet/tasks/tagtask";
+    @import "./tablet/tasks/multipleChoice";
+    @import "./tablet/tasks/pyramid";
+    @import "./tablet/tasks/dragElements";
+    @import "./tablet/tasks/cloze";
+    @import "./tablet/tasks/memory";
 }
