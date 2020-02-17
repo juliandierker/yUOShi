@@ -2,7 +2,7 @@
   height: 85vh;
   margin: 0 auto;
   margin-top: 0rem;
-}
+}//DONE
 
 #workspace_div {
   justify-content: "center";
@@ -23,7 +23,8 @@
   max-width: 100%;
   white-space: pre-line;
   overflow-y: auto;
-}
+} // DONE
+
 #dragDrop {
   margin: 0 auto;
   color: white;
@@ -33,7 +34,7 @@
 
 .keyword-grid {
   display: flex;
-}
+} // DONE
 
 #stepperModalIcon {
   position: absolute;
@@ -125,11 +126,11 @@
   #Ebene_0 {
     transform: scale(1, 1);
     transition: 1s;
-  }
+  } // NOT GETTING IMPLEMENTED
   #Ebene_1 {
     transform: scale(1, 1);
     transition: 1s;
-  }
+  } // NOT GETTING IMPLEMENTED
 }
 
 // Tablet
@@ -182,11 +183,11 @@
   #Ebene_0 {
     transform: scale(1, 1);
     transition: 1s;
-  }
+  } // NOT GETTING IMPLEMENTED
   #Ebene_1 {
     transform: scale(1, 1);
     transition: 1s;
-  }
+  } // NOT GETTING IMPLEMENTED
   #countdown-svg {
     margin-top: 18rem;
   }
@@ -208,16 +209,19 @@
     width: 100%;
     margin-top: 0rem;
     height: 100%;
-  }
+  } // DONE
+
   #NavigationButtonContainer {
     margin-top: 0.5rem;
     width: 40% !important;
     margin: 0 auto;
-  }
+  } // DONE
 
   #workspaceStepper {
     margin-top: 60px;
-  }
+  } // DONE
+
+
   #workspaceDescription {
     width: 14rem;
     margin-top: 60px;
@@ -225,29 +229,33 @@
 
     max-height: 700px;
     position: fixed;
-  }
+  } // DONE
+
   #KeywordList {
     position: fixed;
     margin: 20% 0 0 5%;
-  }
+  } // DONE
   #KeywordListBtn {
     margin-top: 10px;
     max-width: 230px;
-  }
+  } // DONE
+
+
   #renderNavigationButtons {
     position: absolute;
     bottom: 0px;
     text-align: center;
-  }
+  } // DONE
+
   #solveTask {
     margin-top: 10px;
     margin-bottom: 10px;
     margin-right: 18.4%;
     background-color: rgb(143, 176, 232);
     color: white;
-  }
+  } // DONE
   #Ebene_1 {
     transform: scale(1, 1);
     transition: 1s;
-  }
+  } // NOT GETTING IMPLEMENTED
 }

@@ -294,7 +294,7 @@ export default class Workspace extends React.Component {
     var that = this;
     return (
       <Grid id="workspaceGrid" columns={2}>
-        <Grid.Row id="renderNavigationButtons">
+        <Grid.Row id="navButtons">
           <Grid.Column>
             <Button
               id="prevTaskBtn"

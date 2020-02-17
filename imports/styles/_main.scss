@@ -1,44 +1,26 @@
-@import "./variables";
-@import "./base";
+@import "./colors";
 
-//General
-@import "./components/General/ourPadding";
-@import "./components/General/inProgress";
-@import "./components/General/gradients";
-@import "./components/General/ueberbleibsel";
-@import "./components/General/footer";
-@import "./components/General/flexStuff";
-@import "./components/General/zIndex";
-@import "./components/General/segmentStyle";
-@import "./components/General/swal-overlay";
-@import "./components/General/swal-button";
-@import "./components/General/text";
-@import "./components/General/divHeight";
-@import "./components/General/login";
-@import "./components/General/boxed-view";
-@import "./components/General/icons";
-@import "./components/General/mbutton";
-@import "./components/General/mycards";
-@import "./components/General/error";
-@import "./components/General/hamburger";
-@import "./components/General/margins";
-@import "./components/General/richTextEditor";
-@import "./components/General/userAdministration";
-@import "./components/General/courseCards";
-@import "./components/General/topMenu";
-@import "./components/Tasks/tagColumn";
-@import "./components/Tasks/pyramid";
-@import "./components/Tasks/motive";
-@import "./components/Tasks/dragElements";
-@import "./components/Tasks/clozeInputs";
-@import "./components/Tasks/memory";
-@import "./components/Workspace/dragWorkspaceLayout";
-@import "./components/General/schoolFloorAnimations";
-@import "./components/General/schoolVektor";
-@import "./components/Workspace/workspace";
-@import "./components/General/classroom";
-@import "./components/General/taskBtns";
-@import "./components/General/IntroTrainingText";
-@import "./components/General/countdown";
-@import "./components/Tasks/trainingView";
-@import "./components/Tasks/textEditor";
+// Desktop
+@media screen and (min-width: 1025px) {
+    // General
+    @import "./desktop/general/workspace";
+    @import "./desktop/general/keywordList";
+    @import "./desktop/general/navButtons";
+    @import "./desktop/general/workspaceDescription";
+    @import "./desktop/general/workspaceStepper";
+
+    // Tasks
+    @import "./desktop/tasks/tagtask";
+    @import "./desktop/tasks/multipleChoice";
+    @import "./desktop/tasks/pyramid";
+    @import "./desktop/tasks/dragElements";
+}
+// Mobile
+    // General
+
+    // Tasks
+
+// Tablet
+    // General
+
+    // Tasks

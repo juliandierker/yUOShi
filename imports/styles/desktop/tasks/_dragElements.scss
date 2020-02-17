@@ -1,0 +1,49 @@
+.smooth-dnd-container.horizontal > .smooth-dnd-draggable-wrapper {
+    padding-right: 1rem;
+}
+  
+.card-container {
+    padding: 10px;
+    background-color: rgb(106, 150, 226);
+    border-radius: 10px;
+}
+  
+.card {
+    margin: 5px;
+    background-color: white;
+    padding: 5px;
+    border-radius: 10px;
+    text-align: center;
+}
+  
+.card-column-header {
+    font-size: 18px;
+    color: white;
+    font-weight: bold;
+    margin-bottom: 1rem;
+    margin-left: 1rem;
+}
+  
+.card-ghost {
+    transition: transform 0.18s ease;
+    transform: rotateZ(5deg);
+}
+  
+.card-ghost-drop {
+    transition: transform 0.18s ease-in-out;
+    transform: rotateZ(0deg);
+}
+  
+.drop-preview {
+    background-color: rgba(150, 150, 200, 0.1);
+    border: 1px dashed #abc;
+    border-radius: 10px;
+    margin: 5px;
+}
+  
+.cards-drop-preview {
+    background-color: rgba(150, 150, 200, 0.1);
+    border: 1px dashed #abc;
+    border-radius: 10px;
+    margin: 5px 45px 5px 5px;
+}

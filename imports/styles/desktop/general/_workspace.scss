@@ -1,0 +1,25 @@
+body {
+    overflow-x: hidden !important;
+}
+
+.ui.segment {
+    margin: rem;
+}
+
+.workspace__container {
+    width: 100%;
+    margin-top: 2rem;
+    height: 100%;
+}
+
+#workspaceStepper {
+    margin-top: 1rem;
+}
+
+#solveTask {
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    margin-right: -0.5rem;
+    background-color: $buttonBgColor;
+    color: $buttonTxColor;
+  }

@@ -1,13 +1,6 @@
 import React from "react";
 
-import {
-  Segment,
-  List,
-  Button,
-  Icon,
-  Grid,
-  Responsive
-} from "semantic-ui-react";
+import { Segment, List, Button, Icon, Grid, Responsive } from "semantic-ui-react";
 
 import Hyphenated from "react-hyphen";
 import de from "hyphenated-de";
@@ -41,8 +34,7 @@ export default class KeywordList extends React.Component {
           width={4}
           style={{
             padding: "0rem"
-          }}
-        >
+          }}>
           {this.props.finishedKeywords.includes(keyword) ? (
             <Icon key={"icon" + index} color="green" name="check" />
           ) : (
@@ -59,15 +51,11 @@ export default class KeywordList extends React.Component {
     for (let i = 0; i < this.props.keywords.length; i += 3) {
       let rowArr = [];
       rowArr.push(this.props.keywords[i] ? this.props.keywords[i] : null);
-      rowArr.push(
-        this.props.keywords[i + 1] ? this.props.keywords[i + 1] : null
-      );
-      rowArr.push(
-        this.props.keywords[i + 2] ? this.props.keywords[i + 2] : null
-      );
+      rowArr.push(this.props.keywords[i + 1] ? this.props.keywords[i + 1] : null);
+      rowArr.push(this.props.keywords[i + 2] ? this.props.keywords[i + 2] : null);
       rows.push(rowArr);
     }
-    let retval = rows.map(row => {
+    let retval = rows.map((row) => {
       return <div className="keyword-grid-col">{this.renderColumns(row)}</div>;
     });
 
@@ -108,22 +96,20 @@ export default class KeywordList extends React.Component {
   }
   render() {
     console.log(this.props.keywords);
-    const finished =
-      this.props.keywords.length === this.props.finishedKeywords.length;
+    const finished = this.props.keywords.length === this.props.finishedKeywords.length;
     const buttonDisabled = finished ? false : true;
     const buttonColor = finished ? "green" : "grey";
 
     return (
       <Hyphenated language={de}>
-        <Segment id="KeywordList">
+        <Segment id="keywordList">
           {this.renderGrid()}
           <Button
-            id="KeywordListBtn"
+            id="keywordListBtn"
             color={buttonColor}
             disabled={buttonDisabled}
             floated="right"
-            onClick={() => this.props.handleClick()}
-          >
+            onClick={() => this.props.handleClick()}>
             Aufgabe lösen
           </Button>
         </Segment>
