@@ -1,21 +1,14 @@
-.playground .card {
-    height: 18rem;
-  }
-  
-.playground .card .back img {
-    width: 50%;
-}
-
-
-  .playground {
+.playground {
+    max-height: 78vh;
+    overflow-y: auto;
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
     perspective: 1000px;
-    margin-bottom: -15px;
-  }
+}
   
-  .playground .card {
+.playground .card {
+    height: 18rem;
     width: 30%;
     user-select: none;
     height: 10rem;
@@ -26,9 +19,9 @@
     transition: 0.6s;
     transform-style: preserve-3d;
     position: relative;
-  }
+}
   
-  .playground .card div {
+.playground .card div {
     backface-visibility: hidden;
     position: absolute;
     top: 0;
@@ -38,9 +31,9 @@
     border-radius: 10px;
     transition: 0.6s;
     background: #f4f5f7;
-  }
+}
   
-  .playground .card .front {
+.playground .card .front {
     font-size: 50px;
     line-height: 120px;
     cursor: pointer;
@@ -48,36 +41,37 @@
     display: flex;
     align-items: center;
     justify-content: center;
-  }
+}
   
-  .playground .card .back {
+.playground .card .back {
     transform: rotateY(180deg);
     line-height: normal;
     margin-bottom: 1rem;
     font-size: 20px;
     padding: 2rem;
-  }
+}
   
-  .playground .card .back img {
+.playground .card .back img {
+    width: 50%;
     vertical-align: middle;
-  }
-  
-  .playground .card.opened {
+}
+
+.playground .card.opened {
     transform: rotateY(180deg);
-  }
+}
   
-  .playground .card.matched {
+.playground .card.matched {
     transform: rotateY(180deg);
-  }
+}
   
-  .playground .card.matched .back {
+.playground .card.matched .back {
     box-shadow: 0 0 0 2px rgba(0, 0, 0, 0.05) inset;
     animation: selected 0.8s 0s ease 1;
     animation-fill-mode: both;
     opacity: 0.2;
-  }
+}
   
-  @keyframes selected {
+@keyframes selected {
     0% {
       opacity: 0.2;
     }
@@ -93,5 +87,5 @@
     100% {
       opacity: 0.3;
     }
-  }
+}
   
