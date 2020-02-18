@@ -351,7 +351,7 @@ export default class Workspace extends React.Component {
             {this.renderDescription()}
             {this.renderKeywordList()}
           </Grid.Column>
-          <Grid.Column width={8} id="workspaceGridMobile">
+          <Grid.Column width={8} id="workspaceGridMobileContent">
             <div className="workspace__container">{this.taskSwitch()}</div>
           </Grid.Column>
           <TaskProgress

@@ -3,17 +3,17 @@
 }
 
 .smooth-dnd-container.horizontal > .smooth-dnd-draggable-wrapper {
-    padding-right: 1rem;
+    padding-right: 0.3rem;
 }
   
 .card-container {
-    padding: 10px;
+    padding: 5px;
     background-color: rgb(106, 150, 226);
     border-radius: 10px;
 }
   
 .card {
-    margin: 5px;
+    margin: 7px;
     background-color: white;
     padding: 5px;
     border-radius: 10px;
@@ -24,8 +24,7 @@
     font-size: 18px;
     color: white;
     font-weight: bold;
-    margin-bottom: 1rem;
-    margin-left: 1rem;
+    margin-bottom: 0.2rem;
 }
   
 .card-ghost {
