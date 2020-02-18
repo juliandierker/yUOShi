@@ -27,8 +27,7 @@ const withStudent = withTracker(() => {
     loading,
     student,
     tasks: null,
-    packages: null,
-    otherStudents: null
+    packages: null
   };
   var courseInfo = {
     course: null,
@@ -52,7 +51,7 @@ function Provider(props) {
     return <Loading />;
   }
   return (
-    <GameContext.Provider value={(gameInfo, courseInfo)}>
+    <GameContext.Provider value={gameInfo}>
       <CourseContext.Provider value={courseInfo}>
         <StudentOverview />
       </CourseContext.Provider>

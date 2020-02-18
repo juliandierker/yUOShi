@@ -3,7 +3,7 @@ import { Dropdown, Icon, Menu, Segment, Button, Responsive } from "semantic-ui-r
 
 import StudentCourses from "./StudentCourses";
 import StudentTopMenu from "./StudentTopMenu";
-import GameOverview from "./game/Gameoverview";
+import SchoolOverview from "./game/SchoolOverview";
 import ClassRoom from "./vektors/ClassRoom";
 import TeacherRoom from "./vektors/TeacherRoom";
 import Office from "./vektors/Office";
@@ -19,8 +19,8 @@ import { usePrevious } from "../../shared/customHooks";
 import LoggingOut from "../LogginOut.js";
 
 export default function StudentOverview() {
-  const { loading, student, course, tasks, page, setPage } = useContext(GameContext);
-
+  const { loading, student, tasks, page, setPage } = useContext(GameContext);
+  const { course, otherStudents } = useContext(CourseContext);
   const [loggingOut, setLoggingOut] = useState(false);
   // const [showInfoBox, setShowInfoBox] = useState(false);
   const prevStudent = usePrevious(student);
@@ -44,7 +44,7 @@ export default function StudentOverview() {
     if (loggingOut) {
       return <LoggingOut />;
     } else if (page === "schoolOverview") {
-      return <GameOverview />;
+      return <SchoolOverview />;
     } else if (page === "workspace") {
       return <Workspace />;
     } else if (page === "teacherRoom") {
@@ -53,15 +53,14 @@ export default function StudentOverview() {
       return <Office />;
     }
   }
+
   if (loading) {
     return <Loading loadingText={"Seite lädt..."} />;
   } else {
     return (
-      <div className="tv__body">
+      <div className="student__body">
         <StudentTopMenu setLoggingOut={setLoggingOut} activeTutorial={tutorial} />
-
         {renderRoutes()}
-
         {tutorial && <TutorialComponent activeTutorial={tutorial} />}
       </div>
     );

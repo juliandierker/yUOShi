@@ -14,7 +14,7 @@ import withReactContent from "sweetalert2-react-content";
 
 const MySwal = withReactContent(Swal);
 
-export default class Gameoverview extends React.Component {
+export default class SchoolOverview extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -27,16 +27,16 @@ export default class Gameoverview extends React.Component {
   }
 
   componentDidMount() {
-    console.log("mount");
-    var tasks = this.props.tasks;
-    var packages = this.props.packages;
-
-    let currentTask = this.props.student.tasks;
-    let regex = "\\d+";
-    if (currentTask && currentTask.parentId) {
-      let currentSubPackageIndex = currentTask.parentId.match(regex);
-      this.setState({ currentSubPackageIndex: currentSubPackageIndex });
-    }
+    console.log("MOUNT");
+    // var tasks = this.props.tasks;
+    // var packages = this.props.packages;
+    //
+    // let currentTask = this.props.student.tasks;
+    // let regex = "\\d+";
+    // if (currentTask && currentTask.parentId) {
+    //   let currentSubPackageIndex = currentTask.parentId.match(regex);
+    //   this.setState({ currentSubPackageIndex: currentSubPackageIndex });
+    // }
   }
   componentDidUpdate(prevProps, prevState) {
     if (this.props.tasks && !prevProps.tasks && !this.state.tasks) {
@@ -51,19 +51,14 @@ export default class Gameoverview extends React.Component {
     } else {
       // open popup
       MySwal.fire({
-        title: (
-          <p style={{ color: "#000000" }}>
-            Du hast bereits eine aktive Aufgabe
-          </p>
-        ),
-        text:
-          "Deine zur Zeit aktive aufgabe findest du unter dem Reiter Arbeitsfläche",
+        title: <p style={{ color: "#000000" }}>Du hast bereits eine aktive Aufgabe</p>,
+        text: "Deine zur Zeit aktive aufgabe findest du unter dem Reiter Arbeitsfläche",
         type: "info",
         showCancelButton: true,
         cancelButtonColor: "#3085D6",
         cancelButtonText: "Okay",
         confirmButtonText: "Gehe zu Arbeitsfläche"
-      }).then(result => {
+      }).then((result) => {
         if (result.value) {
           this.props.history.push("/student/workspace");
         }
@@ -103,21 +98,13 @@ export default class Gameoverview extends React.Component {
                   <Card.Header>{pack.name}</Card.Header>
                   <Card.Meta>
                     <span className="date">
-                      {"Aufgaben " +
-                        pack.content[this.state.currentSubPackageIndex].tasks
-                          .length}
+                      {"Aufgaben " + pack.content[this.state.currentSubPackageIndex].tasks.length}
                     </span>
-                    <span className="date">
-                      {"Inhalte " + pack.trainings.length}
-                    </span>
+                    <span className="date">{"Inhalte " + pack.trainings.length}</span>
                   </Card.Meta>
                   <Card.Description>{pack.description}</Card.Description>
                 </Card.Content>
-                <Button
-                  onClick={() => this.handleGetPackage(pack)}
-                  basic
-                  color="green"
-                >
+                <Button onClick={() => this.handleGetPackage(pack)} basic color="green">
                   Bearbeiten
                 </Button>
                 <Card.Content extra>
@@ -135,10 +122,10 @@ export default class Gameoverview extends React.Component {
   }
   render() {
     const { activeTutorial } = this.state;
-    return <div id="gameOverView">{this.renderSchoolFloor()}</div>;
+    return <div id="SchoolOverview">{this.renderSchoolFloor()}</div>;
   }
 }
 
-Gameoverview.propTypes = {
+SchoolOverview.propTypes = {
   tasks: PropTypes.array
 };
