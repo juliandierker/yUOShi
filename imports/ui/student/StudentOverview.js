@@ -22,9 +22,15 @@ export default function StudentOverview() {
   const { loading, student, tasks, page, setPage } = useContext(GameContext);
   const { course, otherStudents } = useContext(CourseContext);
   const [loggingOut, setLoggingOut] = useState(false);
-  // const [showInfoBox, setShowInfoBox] = useState(false);
+  const [activeTutorial, setActiveTutoiral] = useState(false);
   const prevStudent = usePrevious(student);
-  let tutorial = null;
+  let tutorial = tutorialCheck();
+
+  useEffect(() => {
+    if (prevStudent && prevStudent.tutorials.length < student.tutorials.length) {
+      setActiveTutoiral(true);
+    }
+  }, [prevStudent, student]);
 
   function tutorialCheck() {
     const { activeTutorial, student } = this.state;
@@ -34,9 +40,7 @@ export default function StudentOverview() {
     ) {
       var tutorial = TutorialHandler.checkForStudentTutorial(this.state.student);
       if (tutorial != this.state.activeTutorial)
-        this.setState({
-          activeTutorial: TutorialHandler.checkForStudentTutorial(this.state.student)
-        });
+        return TutorialHandler.checkForStudentTutorial(this.state.student);
     }
   }
 
@@ -59,7 +63,7 @@ export default function StudentOverview() {
   } else {
     return (
       <div className="student__body">
-        <StudentTopMenu setLoggingOut={setLoggingOut} activeTutorial={tutorial} />
+        <StudentTopMenu student={student} setLoggingOut={setLoggingOut} activeTutorial={tutorial} />
         {renderRoutes()}
         {tutorial && <TutorialComponent activeTutorial={tutorial} />}
       </div>
