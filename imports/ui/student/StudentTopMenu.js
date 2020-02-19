@@ -1,15 +1,12 @@
 import React, { useContext, useState, useEffect, useRef } from "react";
 
 import PropTypes from "prop-types";
-import { Tracker } from "meteor/tracker";
-import Loading from "../Loading";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faMailBulk } from "@fortawesome/free-solid-svg-icons";
 import { Button } from "semantic-ui-react";
 
-import { Navbar } from "./menus/Navbar.js";
+import { GameContext } from "./StudentContextProvider";
 
-import _ from "lodash";
 import {
   Dropdown,
   Icon,
@@ -31,48 +28,26 @@ const leftItems = [
   { as: "a", content: "Level 1", key: "level" },
   { as: "a", icon: "user", text: "profile", key: "user" }
 ];
-const App = () => <Navbar leftItems={leftItems} />;
 
-export default function StudentTopMenu({ student }) {
+export default function StudentTopMenu({ student, activeTutorial }) {
+  const { page, setPage } = useContext(GameContext);
+  const [activeItem, setActiveItem] = useState(null);
+  const [classHover, setClassHover] = useState(null);
+  const [dropdownActive, setdropDownActive] = useState(false);
+  const [visible, setVisible] = useState(false);
+  // setState({ dropDown: !dropDown });
+  // useEffect(() => {
+  //   if (prevProps.student.credits != student.credits) {
+  //   }
+  // }, [prevStudent, student]);
 
-  const [dropDownActive, setDropDownActive] = useState(false);
-
-  // this.setState({ dropDown: !dropDown });
-  const prevStudent = usePrevious(student);
-
-  useEffect({
-    if (!student) {
-      return
-    }
-
-    if (student.tutorials.length < )
-  }, [student])
-
-  function componentDidUpdate(prevProps, prevState) {
-    if (
-      prevProps.student &&
-      prevProps.student.tutorials.length < this.props.student.tutorials.length
-    ) {
-      if (this.state.activeTutorial) {
-        this.setState({ activeTutorial: false });
-      }
-    }
-    if (prevState.student == null && this.props.student != null) {
-      this.setState({ student: this.props.student });
-    }
-    if (prevProps.student != null) {
-      if (prevProps.student.credits != this.props.student.credits) {
-        this.setState({ student: this.props.student });
-      }
-    }
-  }
   function hoverOnClass(id) {
     if (document.getElementsByClassName(id + "Marker").length > 0) {
       var markers = document.getElementsByClassName(id + "Marker");
       var text = document.getElementById(id + "Text");
       var box = document.getElementById(id + "Rect");
-      if (!this.state.classHover) {
-        this.setState({ classHover: true });
+      if (!classHover) {
+        setClassHover(true);
         var menu = document.getElementById("classMenuItem");
         for (var i in markers) {
           if (markers[i].style) {
@@ -90,8 +65,8 @@ export default function StudentTopMenu({ student }) {
       var markers = document.getElementsByClassName(id + "Marker");
       var text = document.getElementById(id + "Text");
       var box = document.getElementById(id + "Rect");
-      if (this.state.classHover) {
-        this.setState({ classHover: false });
+      if (classHover) {
+        setClassHover(false);
         for (var i in markers) {
           if (markers[i].style) {
             markers[i].style.fill = "#5BA23A";
@@ -105,9 +80,8 @@ export default function StudentTopMenu({ student }) {
       }
     }
   }
-  handleMenuItemClick = (e, { name }) => {
-    this.updateMenuButton();
-    this.setState({ visible: !this.state.visible });
+  function handleMenuItemClick(e, { name }) {
+    setVisible(!visible);
 
     if (name === "Klassenzimmer") {
       var id = "classroom";
@@ -123,25 +97,25 @@ export default function StudentTopMenu({ student }) {
 
         text.style.visibility = "visible";
         box.style.visibility = "visible";
-        var that = this;
       }
-      this.props.history.push("/student/classroom");
+      setPage("classroom");
     }
+    setActiveItem(name);
     if (name === "Lehrendenzimmer") {
-      this.props.history.push("/student/teacherRoom");
+      setPage("teacherRoom");
     }
     if (name === "Mein Büro") {
-      this.props.history.push("/student/office");
+      setPage("office");
     }
     if (name === "Schulübersicht") {
-      this.props.history.push("/student/game");
+      setPage("schoolOverview");
     }
-  };
+  }
   function getCredits() {
-    return this.state.student ? this.state.student.credits : 0;
+    return student ? student.credits : 0;
   }
   function getLevel() {
-    return this.state.student ? this.state.student.level : 0;
+    return student ? student.level : 0;
   }
   function returnUser() {
     return Meteor.user() ? Meteor.user().username : "";
@@ -150,89 +124,14 @@ export default function StudentTopMenu({ student }) {
   const dropdownTrigger = (
     <span>
       <Image avatar src={"https://via.placeholder.com/50"} />
-      {this.returnUser()}
+      {returnUser()}
     </span>
   );
 
-  const { activeItem } = this.state;
   const element = <FontAwesomeIcon icon={faMailBulk} />;
 
   return (
     <React.Fragment>
-      <Responsive {...Responsive.onlyMobile}>
-        <Menu
-          id="page__header"
-          attached="top"
-          style={{
-            backgroundColor: "#6A96E2",
-            width: "100%",
-            height: "5%"
-          }}>
-          <Dropdown
-            onClick={() => this.handleDropdownClick()}
-            open={this.state.dropDown}
-            fluid
-            item
-            icon={this.state.dropDown ? "close" : "bars"}>
-            <Dropdown.Menu
-              fluid
-              style={{
-                backgroundColor: "rgba(106, 150, 226, 0.9)",
-                Color: "white!important",
-                height: "100vH"
-              }}>
-              <Dropdown.Item
-                fluid
-                active={activeItem === "freegame"}
-                onClick={this.handleMenuItemClick}
-                onMouseEnter={() => this.hoverOnClass("classroom")}
-                onMouseLeave={() => this.hoverOffClass("classroom")}>
-                Klassenzimmer
-              </Dropdown.Item>
-              <Dropdown.Item
-                fluid
-                active={activeItem === "overview"}
-                onClick={this.handleMenuItemClick}>
-                Lehrendenzimmer
-              </Dropdown.Item>
-              <Dropdown.Item
-                fluid
-                active={activeItem === "overview"}
-                onClick={this.handleMenuItemClick}>
-                Mein Büro
-              </Dropdown.Item>
-              <Dropdown.Item icon="certificate" />
-              <Dropdown.Item icon="euro sign" name={" " + this.getCredits()} />
-              <Dropdown.Item icon="play" name={"" + this.getLevel()} />
-
-              <Dropdown.Item fluid>
-                <Icon name="user" />
-                Profil
-              </Dropdown.Item>
-              <Dropdown.Item
-                fluid
-                active={activeItem === "overview"}
-                onClick={() => Meteor.logout(() => {})}>
-                {this.state.activeTutorial && this.state.activeTutorial.current && (
-                  <Dropdown.Item className="border__left__menu__item">
-                    <Button
-                      id="skipTutorial"
-                      icon
-                      className="current__blue__color help__button__overwrite"
-                      onClick={() =>
-                        Meteor.call("students.completeTutorial", this.state.activeTutorial)
-                      }>
-                      {"Überspringen"}
-                    </Button>
-                  </Dropdown.Item>
-                )}
-                <Icon name="power off" />
-                Ausloggen
-              </Dropdown.Item>
-            </Dropdown.Menu>
-          </Dropdown>
-        </Menu>
-      </Responsive>
       <Responsive {...Responsive.onlyTablet}>
         <Menu
           id="page__header"
@@ -243,11 +142,11 @@ export default function StudentTopMenu({ student }) {
             height: "5%"
           }}>
           <Dropdown
-            onClick={() => this.handleDropdownClick()}
-            open={this.state.dropDown}
+            onClick={() => setdropDownActive(!dropdownActive)}
+            open={dropdownActive}
             fluid
             item
-            icon={this.state.dropDown ? "close" : "bars"}>
+            icon={dropdownActive ? "close" : "bars"}>
             <Dropdown.Menu
               fluid
               style={{
@@ -259,41 +158,34 @@ export default function StudentTopMenu({ student }) {
               <Dropdown.Item
                 fluid
                 active={activeItem === "freegame"}
-                onClick={this.handleMenuItemClick}
-                onMouseEnter={() => this.hoverOnClass("classroom")}
-                onMouseLeave={() => this.hoverOffClass("classroom")}>
+                onClick={handleMenuItemClick}
+                onMouseEnter={() => hoverOnClass("classroom")}
+                onMouseLeave={() => hoverOffClass("classroom")}>
                 Klassenzimmer
               </Dropdown.Item>
-              <Dropdown.Item
-                fluid
-                active={activeItem === "overview"}
-                onClick={this.handleMenuItemClick}>
+              <Dropdown.Item fluid active={activeItem === "overview"} onClick={handleMenuItemClick}>
                 Lehrendenzimmer
               </Dropdown.Item>
-              <Dropdown.Item
-                fluid
-                active={activeItem === "overview"}
-                onClick={this.handleMenuItemClick}>
+
+              <Dropdown.Item fluid active={activeItem === "overview"} onClick={handleMenuItemClick}>
                 Mein Büro
               </Dropdown.Item>
               <Dropdown.Item icon="certificate" />
-              <Dropdown.Item icon="euro sign" name={" " + this.getCredits()} />
-              <Dropdown.Item icon="play" name={"" + this.getLevel()} />
+              <Dropdown.Item icon="euro sign" name={" " + getCredits()} />
+              <Dropdown.Item icon="play" name={"" + getLevel()} />
 
               <Dropdown.Item fluid>
                 <Icon name="user" />
                 Profil
               </Dropdown.Item>
-              {this.state.activeTutorial && this.state.activeTutorial.current && (
+              {activeTutorial && activeTutorial.current && (
                 <Dropdown.Item className="border__left__menu__item">
                   <Button
                     id="skipTutorial"
                     icon
                     className="current__blue__color help__button__overwrite"
-                    disabled={this.state.pause}
-                    onClick={() =>
-                      Meteor.call("pupils.completeTutorial", this.state.activeTutorial)
-                    }>
+                    disabled={state.pause}
+                    onClick={() => Meteor.call("pupils.completeTutorial", state.activeTutorial)}>
                     {"Überspringen"}
                   </Button>
                 </Dropdown.Item>
@@ -328,7 +220,7 @@ export default function StudentTopMenu({ student }) {
             }}
             name="Schulübersicht"
             active={activeItem === "schoolview"}
-            onClick={this.handleMenuItemClick}
+            onClick={handleMenuItemClick}
           />
           <Menu.Item
             id="classMenuItem"
@@ -337,9 +229,9 @@ export default function StudentTopMenu({ student }) {
             }}
             name="Klassenzimmer"
             active={activeItem === "freegame"}
-            onClick={this.handleMenuItemClick}
-            onMouseEnter={() => this.hoverOnClass("classroom")}
-            onMouseLeave={() => this.hoverOffClass("classroom")}
+            onClick={handleMenuItemClick}
+            onMouseEnter={() => hoverOnClass("classroom")}
+            onMouseLeave={() => hoverOffClass("classroom")}
           />
           <Menu.Item
             name="Lehrendenzimmer"
@@ -347,7 +239,7 @@ export default function StudentTopMenu({ student }) {
               color: "white"
             }}
             active={activeItem === "overview"}
-            onClick={this.handleMenuItemClick}
+            onClick={handleMenuItemClick}
           />
           <Menu.Item
             name="Mein Büro"
@@ -355,7 +247,7 @@ export default function StudentTopMenu({ student }) {
               color: "white"
             }}
             active={activeItem === "overview"}
-            onClick={this.handleMenuItemClick}
+            onClick={handleMenuItemClick}
           />
           {/* Start Badges*/}
           <Menu.Item
@@ -376,17 +268,15 @@ export default function StudentTopMenu({ student }) {
                 color: "white"
               }}
               icon="euro sign"
-              name={" " + this.getCredits()}
+              name={" " + getCredits()}
             />
-            {this.state.activeTutorial && this.state.activeTutorial.current && (
+            {activeTutorial && activeTutorial.current && (
               <Menu.Item className="border__left__menu__item">
                 <Button
                   id="skipTutorial"
                   icon
                   className="current__blue__color help__button__overwrite"
-                  onClick={() =>
-                    Meteor.call("students.completeTutorial", this.state.activeTutorial)
-                  }>
+                  onClick={() => Meteor.call("students.completeTutorial", activeTutorial)}>
                   {"Überspringen"}
                 </Button>
               </Menu.Item>
@@ -396,7 +286,7 @@ export default function StudentTopMenu({ student }) {
                 color: "white"
               }}
               icon="play"
-              name={"" + this.getLevel()}
+              name={"" + getLevel()}
             />{" "}
             {/* Level */}
             <Dropdown
