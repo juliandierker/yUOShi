@@ -4,9 +4,9 @@ import { Dropdown, Icon, Menu, Segment, Button, Responsive } from "semantic-ui-r
 import StudentCourses from "./StudentCourses";
 import StudentTopMenu from "./StudentTopMenu";
 import SchoolOverview from "./game/SchoolOverview";
-import ClassRoom from "./vektors/ClassRoom";
-import TeacherRoom from "./vektors/TeacherRoom";
-import Office from "./vektors/Office";
+import ClassRoom from "./game/ClassRoom";
+import TeacherRoom from "./game/TeacherRoom";
+import Office from "./game/Office";
 
 import { TutorialHandler } from "../tutorials/TutorialHandler";
 
@@ -19,7 +19,7 @@ import { usePrevious } from "../../shared/customHooks";
 import LoggingOut from "../LogginOut.js";
 
 export default function StudentOverview() {
-  const { loading, student, tasks, page, setPage } = useContext(GameContext);
+  const { loading, student, tasks, page } = useContext(GameContext);
   const { course, otherStudents } = useContext(CourseContext);
   const [loggingOut, setLoggingOut] = useState(false);
   const [activeTutorial, setActiveTutorial] = useState(false);
@@ -44,6 +44,7 @@ export default function StudentOverview() {
   }
 
   function renderRoutes() {
+    console.log("page");
     if (loggingOut) {
       return <LoggingOut />;
     } else if (page === "schoolOverview") {

@@ -1,4 +1,4 @@
-import React, { useContext, useState, useEffect, useRef } from "react";
+import React, { useContext, useState } from "react";
 
 import PropTypes from "prop-types";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -30,16 +30,11 @@ const leftItems = [
 ];
 
 export default function StudentTopMenu({ student, activeTutorial }) {
-  const { page, setPage } = useContext(GameContext);
+  const { setPage } = useContext(GameContext);
   const [activeItem, setActiveItem] = useState(null);
   const [classHover, setClassHover] = useState(null);
   const [dropdownActive, setdropDownActive] = useState(false);
   const [visible, setVisible] = useState(false);
-  // setState({ dropDown: !dropDown });
-  // useEffect(() => {
-  //   if (prevProps.student.credits != student.credits) {
-  //   }
-  // }, [prevStudent, student]);
 
   function hoverOnClass(id) {
     if (document.getElementsByClassName(id + "Marker").length > 0) {
@@ -80,7 +75,7 @@ export default function StudentTopMenu({ student, activeTutorial }) {
       }
     }
   }
-  function handleMenuItemClick(e, { name }) {
+  function handleMenuItemClick(e, { name, content }) {
     setVisible(!visible);
 
     if (name === "Klassenzimmer") {
@@ -100,15 +95,19 @@ export default function StudentTopMenu({ student, activeTutorial }) {
       }
       setPage("classroom");
     }
-    setActiveItem(name);
-    if (name === "Lehrendenzimmer") {
+    setActiveItem(content);
+    console.log(content);
+    if (content === "Lehrendenzimmer") {
       setPage("teacherRoom");
     }
-    if (name === "Mein Büro") {
+    if (content === "Mein Büro") {
       setPage("office");
     }
-    if (name === "Schulübersicht") {
+    if (content === "Schulübersicht") {
       setPage("schoolOverview");
+    }
+    if (content === "Klassenzimmer") {
+      setPage("classroom");
     }
   }
   function getCredits() {
@@ -218,7 +217,7 @@ export default function StudentTopMenu({ student, activeTutorial }) {
             style={{
               color: "white"
             }}
-            name="Schulübersicht"
+            content="Schulübersicht"
             active={activeItem === "schoolview"}
             onClick={handleMenuItemClick}
           />
@@ -227,14 +226,14 @@ export default function StudentTopMenu({ student, activeTutorial }) {
             style={{
               color: "white"
             }}
-            name="Klassenzimmer"
+            content="Klassenzimmer"
             active={activeItem === "freegame"}
             onClick={handleMenuItemClick}
             onMouseEnter={() => hoverOnClass("classroom")}
             onMouseLeave={() => hoverOffClass("classroom")}
           />
           <Menu.Item
-            name="Lehrendenzimmer"
+            content="Lehrendenzimmer"
             style={{
               color: "white"
             }}
@@ -242,7 +241,7 @@ export default function StudentTopMenu({ student, activeTutorial }) {
             onClick={handleMenuItemClick}
           />
           <Menu.Item
-            name="Mein Büro"
+            content="Mein Büro"
             style={{
               color: "white"
             }}
@@ -268,7 +267,7 @@ export default function StudentTopMenu({ student, activeTutorial }) {
                 color: "white"
               }}
               icon="euro sign"
-              name={" " + getCredits()}
+              content={" " + getCredits()}
             />
             {activeTutorial && activeTutorial.current && (
               <Menu.Item className="border__left__menu__item">
