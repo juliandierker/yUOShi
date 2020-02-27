@@ -1,9 +1,10 @@
-import React, { Component } from "react";
+import React, { useContext } from "react";
 import PropTypes from "prop-types";
 import { Tracker } from "meteor/tracker";
 import Loading from "../../Loading";
 import { Button, Card, Image } from "semantic-ui-react";
 import { Dropdown, Icon, Menu, Segment, Grid } from "semantic-ui-react";
+import { GameContext } from "../StudentContextProvider";
 
 import StudentTopMenu from "../StudentTopMenu";
 import { OfficeVektor } from "../vektors/OfficeVektor";
@@ -13,6 +14,9 @@ import withReactContent from "sweetalert2-react-content";
 const MySwal = withReactContent(Swal);
 
 export default function Office() {
+  const { student } = useContext(GameContext);
+  //TODO         onClick={this.openLearnCardModal(student)}
+
   function initVektorElements() {
     const motivation_elem = document.getElementById("motivation_marker");
     const teacher_elem = document.getElementById("Marker_Lehrerzimmer");

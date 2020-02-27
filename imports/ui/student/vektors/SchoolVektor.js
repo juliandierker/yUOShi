@@ -1,89 +1,9 @@
-import React, { Component } from "react";
-import PropTypes from "prop-types";
-import { Meteor } from "meteor/meteor";
-export default class schoolFloor extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      classHover: false
-    };
-  }
-  componentDidMount() {
-    this.initVektorElements();
-  }
-  initVektorElements() {
-    const class_elem = document.getElementById("Marker_Klassenzimmer");
-    const teacher_elem = document.getElementById("Marker_Lehrerzimmer");
-    const office_elem = document.getElementById("Marker_Büro");
-    var that = this;
-    class_elem.addEventListener("click", function() {
-      that.props.history.push("/student/classroom");
-    });
-    teacher_elem.addEventListener("click", function() {
-      that.props.history.push("/student/teacherRoom");
-    });
-    office_elem.addEventListener("click", function() {
-      that.props.history.push("/student/office");
-    });
-  }
+import React from "react";
+export default function SchoolVektor() {
+  return (
+    // prettier-ignore
 
-  handleClassroomClick(id) {
-    var markers = document.getElementsByClassName(id + "Marker");
-    var text = document.getElementById(id + "Text");
-    var box = document.getElementById(id + "Rect");
-    for (var i in markers) {
-      console.log(markers[i]);
-      if (markers[i].style) {
-        markers[i].style.fill = "rgb(4, 216, 76)";
-      }
-    }
-
-    text.style.visibility = "visible";
-    box.style.visibility = "visible";
-    var that = this;
-    setTimeout(function() {
-      that.props.history.push("/student/" + id);
-    }, 1500);
-  }
-
-  hoverOnClass(id) {
-    var markers = document.getElementsByClassName(id + "Marker");
-    var text = document.getElementById(id + "Text");
-    var box = document.getElementById(id + "Rect");
-    if (!this.state.classHover) {
-      this.setState({ classHover: true });
-      var menu = document.getElementById("classMenuItem");
-      for (var i in markers) {
-        if (markers[i].style) {
-          markers[i].style.fill = "rgb(4, 216, 76)";
-        }
-      }
-      menu.className = "active left item";
-      text.style.visibility = "visible";
-      box.style.visibility = "visible";
-    }
-  }
-  hoverOffClass(id) {
-    var markers = document.getElementsByClassName(id + "Marker");
-    var text = document.getElementById(id + "Text");
-    var box = document.getElementById(id + "Rect");
-    if (this.state.classHover) {
-      this.setState({ classHover: false });
-      for (var i in markers) {
-        if (markers[i].style) {
-          markers[i].style.fill = "#5BA23A";
-        }
-      }
-      var menu = document.getElementById("classMenuItem");
-      menu.className = "left item";
-      text.style.visibility = "hidden";
-      box.style.visibildity = "hidden";
-    }
-  }
-
-  render() {
-    return (
-      <React.Fragment>
+    <React.Fragment>
         <svg
           id="Ebene_0"
           version="1.1"
@@ -11863,6 +11783,5 @@ export default class schoolFloor extends React.Component {
           </g>
         </svg>
       </React.Fragment>
-    );
-  }
+  );
 }

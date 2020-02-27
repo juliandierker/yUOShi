@@ -14,23 +14,8 @@ export default function ClassRoom() {
   useEffect(() => {
     initVektorElements();
   });
-
-  function initVektorElements() {
-    const motivation_elem = document.getElementById("motivation_marker");
-    const teacher_elem = document.getElementById("Marker_Lehrerzimmer");
-    const office_elem = document.getElementById("Marker_Büro");
-    const marker_elems = document.getElementsByClassName("marker_elem");
-
-    for (var i = 0; i < marker_elems.length; i++) {
-      if (student.currentPackage[0].length == 0) {
-        marker_elems[i].style.visibility = "visible";
-      } else if (student.currentPackage[0].marker === marker_elems[i].id) {
-        marker_elems[i].style.visibility = "visible";
-      } else {
-        marker_elems[i].style.visibility = "hidden";
-      }
-    }
-    motivation_elem.addEventListener("click", function() {
+  function addEvent(elem) {
+    elem.addEventListener("click", function() {
       if (student.currentPackage.length > 0) {
         setPage("workspace");
       } else {
@@ -42,19 +27,21 @@ export default function ClassRoom() {
       }
     });
   }
+  function initVektorElements() {
+    const marker_elems = document.getElementsByClassName("marker_elem");
 
-  function handleGetPackage(packageName) {
-    const student = student;
-    if (student.currentPackage.length > 0) {
-      setPage("workspace");
-    } else {
-      Meteor.call("students.getPackage", packageName, student._id, (err, res) => {
-        if (res) {
-          setPage("workspace");
-        }
-      });
+    for (var i = 0; i < marker_elems.length; i++) {
+      if (student.currentPackage[0].length == 0) {
+        marker_elems[i].style.visibility = "visible";
+      } else if (student.currentPackage[0].marker === marker_elems[i].id) {
+        marker_elems[i].style.visibility = "visible";
+        addEvent(marker_elems[i]);
+      } else {
+        marker_elems[i].style.visibility = "hidden";
+      }
     }
   }
+
   function hoverOnClass(context) {
     var elRect = this[context + "_rect"];
     var elText = this[context + "_text"];

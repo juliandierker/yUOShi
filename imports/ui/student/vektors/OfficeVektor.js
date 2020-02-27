@@ -2,6 +2,8 @@ import React from "react";
 
 export function OfficeVektor() {
   return (
+    // prettier-ignore
+
     <svg
       version="1.1"
       id="Ebene_1"

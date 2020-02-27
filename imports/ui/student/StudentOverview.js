@@ -48,7 +48,7 @@ export default function StudentOverview() {
     if (loggingOut) {
       return <LoggingOut />;
     } else if (page === "schoolOverview") {
-      return <SchoolOverview />;
+      return <SchoolOverview tutorial={tutorial} />;
     } else if (page === "workspace") {
       return <Workspace />;
     } else if (page === "teacherRoom") {

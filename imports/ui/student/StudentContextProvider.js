@@ -11,6 +11,7 @@ import Loading from "../Loading.js";
 import StudentOverview from "./StudentOverview";
 
 export const GameContext = React.createContext();
+export const TaskContext = React.create;
 export const CourseContext = React.createContext();
 
 const withStudent = withTracker(() => {
