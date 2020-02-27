@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useContext, useRef, useEffect } from "react";
 import PropTypes from "prop-types";
 import { Meteor } from "meteor/meteor";
 import Swal from "sweetalert2";
@@ -10,6 +10,7 @@ import MemoryAnimationTemplate from "../../tasks/memory/MemoryAnimationTemplate"
 import MultiChoiceAnimationTemplate from "../../tasks/multiChoice/MultiChoiceAnimationTemplate";
 import SurveyAnimationTemplate from "../../tasks/survey/SurveyAnimationTemplate";
 import KeywordList from "../../tasks/KeywordList";
+import { GameContext } from "./StudentContextProvider";
 
 import equals from "fast-deep-equal";
 import { Tasks } from "../../../api/tasks";
@@ -20,44 +21,36 @@ import { Segment, Button, Grid, Modal } from "semantic-ui-react";
 import Hyphenated from "react-hyphen";
 import de from "hyphenated-de";
 
-/**
- * This component should control the progress of a student in a task-package
- * Workspace -> renders Package-values -> renders tasks or trainings
- */
-export default class Workspace extends React.Component {
-  constructor(props) {
-    super(props);
-    this.getCurrentTasksList();
+export default function Workspace () {
 
-    var activeTask = this.getActiveTask();
-    this.state = {
-      activeTask,
-      showSolution: false,
-      showCurrentTasks: true,
-      packageStarted: null,
-      currentSubPackageIndex: 0,
-      currentSequenceId: 0,
-      hasActiveTaskOrTraining: false,
-      finishedKeywords: [],
-      readFinished: false,
-      desciptionModalOpen: false
-    };
-    this.tagInstance = React.createRef();
-    this.handler = (ev) => {
-      if (this.state.activeTask) {
-        Meteor.call(
-          "student.setLastActiveTaskId",
-          this.state.activeTask._id,
-          this.props.student._id
-        );
-      }
-    };
+  const {tasks, student, packages } = useContext(GameContext);
 
-    window.addEventListener("beforeunload", this.handler);
+  const [showSolution, setShowSolution] = useState(false);
+  const [showCurrentTasks, setShowCurrentTasks] = useState(false);
+  const [currentSequenceId, setCurrentSequenceId] = useState(false);
+  const [packageStarted, setPackageStarted] = useState(false);
+  const [descriptionModalOpen, setDescriptionModalOpen] = useState(false);
+  const [hasActiveTaskOrTraining, setHasActiveTaskOrTraining] = useState(false);
+  const [readFinished, setReadFinished] = useState(false);
 
-    this.handleNextTaskButtonClick = this.handleNextTaskButtonClick.bind(this);
-    this.handlePreviousTaskButtonClick = this.handlePreviousTaskButtonClick.bind(this);
-  }
+  const [currentSubPackageIndex, setCurrentSubPackageIndex] = useState(0);
+  const [currentSequenceId, setCurrentSequenceId] = useState(0);
+
+  const [finishedKeywords, setFinishedKeywords] = useState([]);
+
+  const tagInstanceRef = useRef();
+
+
+        //
+
+
+
+  window.addEventListener("beforeunload", Meteor.call(
+    "student.setLastActiveTaskId",
+    this.state.activeTask._id,
+    this.props.student._id));
+
+
   show = (dimmer) => () => this.setState({ dimmer, packageStarted: true });
   close = () => this.setState({ packageStarted: false });
 
@@ -132,15 +125,7 @@ export default class Workspace extends React.Component {
     return check.length >= 2;
   }
 
-  getCurrentTasksList() {
-    if (this.props.student) {
-      var currentTaskIds = this.props.student.tasks.map((currentTask) => {
-        return currentTask.taskId;
-      });
-      var taskList = Tasks.find({ taskId: { $in: currentTaskIds } }).fetch();
-      this.currentTasks = taskList;
-    }
-  }
+
   getActiveTask() {
     var student = this.props.student;
 
