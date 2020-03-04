@@ -162,8 +162,8 @@ export default class TagView extends React.Component {
         />
         <Grid divided="vertically">
           <Grid.Row columns={2}>
-            <Grid.Column>{partOne}</Grid.Column>
-            <Grid.Column>{partTwo}</Grid.Column>
+            <Grid.Column id="textRight">{partOne}</Grid.Column>
+            <Grid.Column id="textLeft">{partTwo}</Grid.Column>
           </Grid.Row>
         </Grid>
       </Segment>
