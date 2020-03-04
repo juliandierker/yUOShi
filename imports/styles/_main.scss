@@ -23,9 +23,23 @@
     @import "./desktop/tasks/memory";
 }
 // Mobile
-    // General
-
-    // Tasks
+@media screen and (max-width: 767px) {
+        // General
+        @import "./mobile/general/workspace";
+        @import "./mobile/general/keywordList";
+        @import "./mobile/general/navButtons";
+        @import "./mobile/general/workspaceDescription";
+        @import "./mobile/general/workspaceStepper";
+    
+        // Tasks
+        @import "./mobile/tasks/trainingView";
+        @import "./mobile/tasks/tagtask";
+        @import "./mobile/tasks/multipleChoice";
+        @import "./mobile/tasks/pyramid";
+        @import "./mobile/tasks/dragElements";
+        @import "./mobile/tasks/cloze";
+        @import "./mobile/tasks/memory";
+}
 
 // Tablet
 @media screen and (min-width: 768px) and (max-width: 1024px) {   

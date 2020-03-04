@@ -1,0 +1,19 @@
+.keyword-grid {
+    display: flex;
+}
+
+
+#keywordList {
+    width: 95vw;
+    margin-left: 1.75rem;
+    margin-top: -0.5rem;
+}
+
+#keywordListBtn {
+    margin-top: -3rem;
+    max-width: 14rem;
+}
+// TODO: KEYWORD COMPONENT COULD BE OBSOLETE BY NOW
+#keywordList {
+    display:none;
+}

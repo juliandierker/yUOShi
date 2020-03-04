@@ -293,28 +293,22 @@ export default class Workspace extends React.Component {
   renderNavigationButtons() {
     var that = this;
     return (
-      <Grid id="workspaceGrid" columns={2}>
-        <Grid.Row id="navButtons">
-          <Grid.Column>
-            <Button
-              id="prevTaskBtn"
-              content="Vorherige Aufgabe"
-              icon="left arrow"
-              labelPosition="left"
-              onClick={this.handlePreviousTaskButtonClick}
-            />
-          </Grid.Column>
-          <Grid.Column>
-            <Button
-              id="nextTaskBtn"
-              content="Nächste Aufgabe"
-              icon="right arrow"
-              labelPosition="right"
-              onClick={this.handleNextTaskButtonClick}
-            />
-          </Grid.Column>
-        </Grid.Row>
-      </Grid>
+      <React.Fragment>
+        <Button
+          id="prevTaskBtn"
+          circular
+          content={<div id="taskBtnContent">Vorherige Aufgabe</div>}
+          icon="left arrow"
+          onClick={this.handlePreviousTaskButtonClick}
+        />
+        <Button
+          id="nextTaskBtn"
+          circular
+          content={<div id="taskBtnContent">Nächste Aufgabe</div>}
+          icon="right arrow"
+          onClick={this.handleNextTaskButtonClick}
+        />
+      </React.Fragment>
     );
   }
   externUpdate(tagState) {

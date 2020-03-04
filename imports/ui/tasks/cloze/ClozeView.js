@@ -115,17 +115,7 @@ export default class ClozeView extends Component {
         />
       );
     });
-    return (
-      <Segment
-        id="clozeSegment"
-        style={{
-          whiteSpace: "pre-line",
-          overflowY: "auto",
-          height: "79vh"
-        }}>
-        {text}
-      </Segment>
-    );
+    return <Segment id="clozeSegment">{text}</Segment>;
   }
 
   renderKeywordList() {

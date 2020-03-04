@@ -2,13 +2,12 @@ body {
     overflow-x: hidden !important;
 }
 
-.ui.modal {
-    top: 20%;
+#workspace_div {
+    height: 90vh;
 }
-
 .workspace__container {
     width: 100%;
-    margin-top: 2rem;
+    margin-top: 1.5rem;
     height: 100%;
 }
 
@@ -35,14 +34,22 @@ body {
 #stepperModalIcon {
     position: absolute;
     top: 9vh;
-    right: 1vh;
+    right: 0vw;
     font-size: 0.6rem;
 }
 
 #workspaceGrid {
     margin-right: 0rem;
+    display: flex;
+    height:inherit;
 }
 
-#workspaceGridMobileContent {
-    width: 75% !important;
+#workspaceGridMobile {
+    max-height: 30%;
 }
+#workspaceGridMobileContent {
+    width: 100% !important;
+    margin-left: 1rem;
+    flex-grow: 1;
+}
+

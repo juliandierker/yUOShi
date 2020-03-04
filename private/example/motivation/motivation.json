@@ -1,0 +1,29 @@
+{
+    "name": "Motivation",
+    "subpackages": [
+      {
+        "id": "Motivation1",
+        "title": "Einleitung"
+      },
+      {
+        "id": "Motivation2",
+        "title": "Was ist Motivation?"
+      },
+      {
+        "id": "Motivation3",
+        "title": "Quellen der Motivation"
+      },
+      {
+        "id": "Motivation4",
+        "title": "Motivationtheorien"
+      },
+      {
+        "id": "Motivation5",
+        "title": "Ziele"
+      },
+      {
+        "id": "Motivation6",
+        "title": "Fallbearbeitung"
+      }
+    ]
+  }

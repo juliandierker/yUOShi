@@ -248,7 +248,7 @@ class TaskProgress extends Component {
   render() {
     return (
       <React.Fragment>
-        <Responsive {...Responsive.onlyMobile}>
+        {/* <Responsive {...Responsive.onlyMobile}>
           <Modal
             closeOnDocumentClick={true}
             closeIcon={<Icon id="stepperModalCloseIcon" name="close" />}
@@ -273,7 +273,7 @@ class TaskProgress extends Component {
             basic>
             <Modal.Content id="stepperModal">{this.renderStepper()}</Modal.Content>
           </Modal>
-        </Responsive>
+        </Responsive> */}
         <Responsive {...Responsive.onlyComputer}>{this.renderStepper()}</Responsive>
       </React.Fragment>
     );

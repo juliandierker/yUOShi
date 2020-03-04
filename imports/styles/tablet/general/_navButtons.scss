@@ -1,5 +1,11 @@
-#navButtons {
+#nextTaskBtn {
     position: absolute;
-    bottom: 0px;
-    text-align: center;
+    bottom: 1vw;
+    right: 1vw;
+}
+
+#prevTaskBtn {
+    position: absolute;
+    bottom: 1vw;
+    left: 1vw;
 }

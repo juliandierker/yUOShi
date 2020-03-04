@@ -1,0 +1,9 @@
+{
+    "name": "Identität",
+    "subpackages": [
+      {
+        "id": "Identity1",
+        "name": "Was ist Identität"
+      }
+    ]
+  }
