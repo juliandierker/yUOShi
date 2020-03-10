@@ -4,7 +4,7 @@ Studip.retrieveCredential = (credentialToken, credentialSecret) => {
     return OAuth.retrieveCredential(credentialToken, credentialSecret);
 };
 
-const studipUrl = "http://localhost:8123"
+const studipUrl = Meteor.settings.private.studip.url
 
 const urls = {
     requestToken: `${studipUrl}/dispatch.php/api/oauth/request_token`,

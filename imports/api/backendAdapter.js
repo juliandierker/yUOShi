@@ -5,7 +5,7 @@ if (!Meteor.isServer) {
     return
 }
 
-const baseUrl = "http://localhost:8123"
+const baseUrl = Meteor.settings.private.studip.url
 
 export const OAuthHandler = new StudipOauthAuthenticationHandler(
     {
