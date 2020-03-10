@@ -1,5 +1,5 @@
-import { BackendAdapter, StudipOauthAuthenticationHandler } from "@xyng/backend-adapter-argonauts"
-import RequestAdapter from "@xyng/request-adapter-axios"
+import { BackendAdapter, StudipOauthAuthenticationHandler } from "@xyng/yuoshi-backend-adapter-argonauts"
+import RequestAdapter from "@xyng/yuoshi-request-adapter-axios"
 
 if (!Meteor.isServer) {
     return
