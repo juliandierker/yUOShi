@@ -5,7 +5,7 @@
       "title": "Einleitung",
       "package": "Motivation",
       "taskId": "MultiIntro",
-      "isTraining": true,
+      "filePrefix": "Training",
       "trainingId": "Motivation Problem",
       "parentId": "Motivation0",
       "image": "Teacher.png",
@@ -160,19 +160,13 @@
           "motivation",
           "Für ein gutes Ergebnis in der nächsten Klausur strengt Anton sich beim Lernen an."
         ],
-        [
-          "motiv",
-          "Anton ist nur zufrieden mit guten Noten, er möchte Leistung zeigen."
-        ],
+        ["motiv", "Anton ist nur zufrieden mit guten Noten, er möchte Leistung zeigen."],
         [
           "bedürfnis",
           "Anton ist heute Morgen müde und demotiviert und hätte grade einfach nur gerne einen Menschen, der ihn mal kurz in den Arm nimmt. "
         ],
         ["ziel", "Anton möchte Lehrer werden."],
-        [
-          "interesse",
-          "Dani arbeitet nach einer kurzen Einführung jetzt jeden Tag mit Holz."
-        ]
+        ["interesse", "Dani arbeitet nach einer kurzen Einführung jetzt jeden Tag mit Holz."]
       ]
     },
     {
@@ -280,18 +274,9 @@
       "orientation": ["horizontal", "vertical"],
       "nested": false,
       "statements": [
-        [
-          "intr",
-          "Mindy arbeitet in Bio gerne mit, weil sie Forscherin werden will."
-        ],
-        [
-          "extr",
-          "Die Lehrkraft vergibt Sternchen für gute mündliche Mitarbeit"
-        ],
-        [
-          "intr",
-          "Gülcan hat Spaß an deutscher Geschichte, deswegen meldet sie sich oft."
-        ],
+        ["intr", "Mindy arbeitet in Bio gerne mit, weil sie Forscherin werden will."],
+        ["extr", "Die Lehrkraft vergibt Sternchen für gute mündliche Mitarbeit"],
+        ["intr", "Gülcan hat Spaß an deutscher Geschichte, deswegen meldet sie sich oft."],
         ["extr", "Leni macht im Unterrichtmit, weil sie sonst ermahnt wird."],
         [
           "intr",
@@ -301,30 +286,15 @@
           "extr",
           "Vahid bekommt von seiner Oma 5 Euro, wenn er in Deutsch eine gute Note schreibt."
         ],
-        [
-          "intr",
-          "Tiffany ist traurig, wenn sie nicht ihr Wunschthema bearbeiten darf."
-        ],
+        ["intr", "Tiffany ist traurig, wenn sie nicht ihr Wunschthema bearbeiten darf."],
         [
           "extr",
           "Richards Mutter ist über schlechte Noten enttäuscht, weil er später die Praxis übernehmen soll."
         ],
-        [
-          "intr",
-          "Alexander ist eine ordentliche Mappenführung wichtig, weil er Struktur mag."
-        ],
-        [
-          "extr",
-          "Clara führt ihre Mappe sauber, um dadurch ein Sternchen zu bekommen."
-        ],
-        [
-          "intr",
-          "Miguel passt in Physik auf, weil er Ingenieur werden möchte."
-        ],
-        [
-          "extr",
-          "Dennis bekommt eine gute Note von der Lehrerin, wenn er in Biologie aufpasst."
-        ]
+        ["intr", "Alexander ist eine ordentliche Mappenführung wichtig, weil er Struktur mag."],
+        ["extr", "Clara führt ihre Mappe sauber, um dadurch ein Sternchen zu bekommen."],
+        ["intr", "Miguel passt in Physik auf, weil er Ingenieur werden möchte."],
+        ["extr", "Dennis bekommt eine gute Note von der Lehrerin, wenn er in Biologie aufpasst."]
       ]
     },
     {
@@ -339,11 +309,7 @@
           "title": "Motivation Begriffsklärung",
           "subtitle": "Maslows Bedürfnistheorie",
           "text": "Eine der bekanntesten Theorien stellt Abraham Maslows Bedürfnispyramide (1970) dar. Maslow geht davon aus, dass sich die menschlichen Bedürfnisse in einer Art Pyramide darstellen lassen und stufenweise aufeinander aufbauen. Nur wenn die Bedürfnisse auf den unteren Ebenen befriedigt seien, könnten die oberen angegangen werden.\n Auf der untersten Ebene der Pyramide befinden sich die physiologischen bzw. körperlichen Bedürfnisse. Sind diese Grundbedürfnisse gedeckt, z.B. nach Nahrung, Wärme, Schlaf und Sex, wird die nächste Stufe der Pyramide erreicht. \n Hier befinden sich die Sicherheitsbedürfnisse, z.B. nach einer bezahlbaren Wohnung, einem sicheren Job oder nach Gesetzen, die die Ordnung wahren. Sie beziehen sich auf den Schutz der Person und sind bereits zukunftsgerichtet. \n Ist die Sicherheit gegeben, folgen auf der nächsten Ebene die Sozialbedürfnisse. Diese beinhalten vor allem den Wunsch nach Partnerschaft, Familie und Freunden, insgesamt also nach Zugehörigkeit, Intimität und Kommunikation. \n Auf der vierten Stufe der Pyramide befinden sich die Individualbedürfnisse. Diese beziehen sich auf Wertschätzung, Anerkennung/Geltung, Status und Unabhängigkeit. \n Laut Maslow sind die Bedürfnisebenen der Pyramide in zwei Gruppen einteilbar: Die vier bisher genannten Bedürfnisse sind als Mangelbedürfnisse einzustufen. Wenn der mit dem Bedürfnis einhergehende Mangel gedeckt ist, ist das Bedürfnis (zeitweise) befriedigt. Nach diesen Mangelbedürfnissen folgen die Daseinsbedürfnisse, zu welchen das Selbstverwirklichungsbedürfnis gehört. Diesem Bedürfnis liegt zugrunde, dass ein Individuum sein eigenes Potential ausschöpfen möchte, eine moralische Entwicklung vollzieht, Verantwortung übernimmt und kreativ ist. Bei Bedürfnissen aus diesem Bereich hört die Motivation nach Befriedigung nicht auf, sondern steigt, um neue Befriedigung zu erlangen. \n\n Sowohl Mangelbedürfnisse, als auch Daseinsbedürfnisse können nie vollständig befriedigt sein. \n\n Diese Theorie wird heutzutage oft kritisiert, ist aber dennoch eines der bekanntesten sozialpsychologischen Modelle. Es beschreibt auf vereinfachende Weise menschliche Bedürfnisse und Motivationen. Selbstverständlich sind die einzelnen Ebenen in Stufenmodellen generell nicht als trennscharf zu verstehen. So weiß man mittlerweile, dass es auch Ausnahmen gibt und höhere Bedürfnisse angestrebt werden können, auch wenn die niederen noch nicht erfüllt sind. Dennoch gilt Maslows Theorie als Grundlage für viele Modelle und Prozesse und gibt Orientierung.",
-          "keywords": [
-            "Maslows Bedürfnispyramide",
-            "Mangelbedürfnisse",
-            "Daseinsbedürfnisse"
-          ],
+          "keywords": ["Maslows Bedürfnispyramide", "Mangelbedürfnisse", "Daseinsbedürfnisse"],
           "images": {
             "Maslowtheorie": "/Tag/Motivation2/Maslowtheorie.svg",
             "Mangelbedürfnisse": "/Tag/Motivation2/Selbstverwirklichung.svg"
@@ -365,13 +331,7 @@
       "package": "Motivation",
       "scale": 10,
       "categories": ["Maslow-Pyramide"],
-      "solArray": [
-        "selfActualization",
-        "esteem",
-        "socialneeds",
-        "safety",
-        "physological"
-      ],
+      "solArray": ["selfActualization", "esteem", "socialneeds", "safety", "physological"],
       "statements": [
         ["selfActualization", "Selbstverwirklichung"],
         ["esteem", "Individualbedürfnisse"],
@@ -418,34 +378,18 @@
       "taskId": "Selbstestimmung",
       "filePrefix": "Drag",
       "multipleColumns": true,
-      "categories": [
-        "Soziale Eingebundenheit",
-        "Autonomie",
-        "Kompetenzerleben"
-      ],
+      "categories": ["Soziale Eingebundenheit", "Autonomie", "Kompetenzerleben"],
       "solArray": ["soz_eing", "autonomie", "kompetenz"],
       "scale": false,
       "orientation": ["horizontal", "vertical"],
       "nested": false,
       "statements": [
-        [
-          "soz_eing",
-          "Ich fühle mich in meiner meiner neuen Klasse angekommen."
-        ],
+        ["soz_eing", "Ich fühle mich in meiner meiner neuen Klasse angekommen."],
         ["soz_eing", "Wenn ich mich melde, hören die anderen mir zu."],
-        [
-          "autonomie",
-          "Ich möchte erst einmal selbst über eine Aufgabe nachdenken."
-        ],
+        ["autonomie", "Ich möchte erst einmal selbst über eine Aufgabe nachdenken."],
         ["autonomie", "Ich frage erst nach Hilfe, wenn ich nicht weiterkomme."],
-        [
-          "autonomie",
-          "Ich mache das so, weil ich glaube, dass ich so zum Ziel komme."
-        ],
-        [
-          "kompetenz",
-          "Wenn ich für eine Klausur richtig lerne, dann schaffe ich sie auch."
-        ]
+        ["autonomie", "Ich mache das so, weil ich glaube, dass ich so zum Ziel komme."],
+        ["kompetenz", "Wenn ich für eine Klausur richtig lerne, dann schaffe ich sie auch."]
       ],
 
       "package": "Motivation",
@@ -543,7 +487,7 @@
     },
 
     {
-      "parentId": "Motivation4",
+      "parentId": "Motivation3",
       "title": "Die Zielsetzungstheorie nach Locke & Latham",
       "description": "Von der Motivation geht es direkt weiter mit dem Thema „Ziele“. Lies den Text zur Zielsetzungstheorie und markiere die Schlüsselbegriffe, indem du sie im Text findest und anklickst.",
       "taskId": "Zielsetzungstheorie_Theorie",
@@ -570,7 +514,7 @@
       "credits": 5
     },
     {
-      "parentId": "Motivation4",
+      "parentId": "Motivation3",
       "title": "Ziele Lückentext",
       "description": "Wie sorgfältig hast du den Text gelesen? Löse den Lückentext! Achte darauf, dass sich deine Bearbeitungen löschen, wenn du zum Text zurückkehrst.",
 
@@ -596,7 +540,7 @@
       "credits": 7
     },
     {
-      "parentId": "Motivation4",
+      "parentId": "Motivation3",
       "title": "Die richtige Zielsetzung (SMART)",
       "description": "Lies den Text zum Thema Zielsetzung durch SMART und markiere die Schlüsselbegriffe, indem du sie im Text findest und anklickst.",
       "taskId": "SMART",
@@ -606,13 +550,7 @@
           "title": "SMART",
           "subtitle": "Smart",
           "text": "Wie in der Zielsetzungstheorie deutlich geworden ist, kann der Sinn einer Handlung über die Zielsetzung besser erkannt und der Weg zur Erreichung dieses Ziels durchgeführt werden.\n\n Ziele können dazu dienen, die Motivation zu lenken und aufrechtzuhalten. Im Alltag werden Ziele allerdings oftmals allgemein formuliert, ein klassisches Beispiel sind Neujahrziele: z.B.„Ich   werde   abnehmen“, „Ich   werde   dieses   Semester   die   Klausuren   bestehen“,   was langfristig dazu führt, dass Ziele mit geringerer Wahrscheinlichkeit erreicht werden und die Motivation sinkt. \n\nUm dem entgegen zu wirken und Ziele erreichbarer zu gestalten, kann die SMART-Formel angewendet werden, die u.a. auf Basis der Zielsetzungstheorie entstanden ist. Hierbei werden Ziele konkret operationalisiert und es werden klare Kriterien   für   die   Zielerreichung   erstellt.   Außerdem   können   anhand   der   Zielsetzung   mit SMART wesentliche Vereinbarungen über die zeitliche Datierung und die Rückmeldung zubesagtem   Ziel   getroffen   werden.   Daher   kommt   diese   Methodik   vor   allem   im Projektmanagement, im Coaching, in der Karriereplanung und in Trainings zum Einsatz. \n\n SMART steht (aus dem Englischen übersetzt) für: \n     Spezifisch\n     Messbar\n     Akzeptiert (auch attraktiv / anziehend / angemessen)\n     Realistisch\n     Terminiert\n\nSpezifisch  bedeutet in diesem Zusammenhang, dass gesetzte Ziele klar und deutlich definiert werden sollten, um so möglichst wenig Spielraum für Interpretationen zu schaffen: „Was will ich genau erreichen“.\nBeispiel: „Ich will die Mathe Klausur „Algebra 1“ dieses Semester bestehen“. \n\nMessbar bedeutet, dass das Ziel kontrollierbar sein muss. Dies heißt, dass es klar sein muss, ab wann das Ziel erreicht ist und wie man das Ziel messen kann: „Wie viel genau muss ichwovon tun“.\nBeispiel: „Die Endnote soll 4,0 oder besser sein.“\n\nAkzeptiert steht in der Formel für die Akzeptanz des Ziels durch alle beteiligten Personen.Jeder   sollte   mit   der   Zielformulierung   einverstanden   sein   und   die   Ziel-Vereinbarung „unterzeichnen“. Außerdem sollte das Ziel durch das Verhalten der Beteiligten beeinflussbar sein. Ein Ansatz, um mehr Akzeptanz oder Attraktivität für das Ziel zu schaffen, wäre zum Beispiel eine gemeinsame Zielsetzung. \nBeispiel:   „Ich   werde   eine   Lerngruppe   mit   Martina   und   Leon   machen“.\n\nRealistisch steht für die Realisierbarkeit/Erreichbarkeit des Ziels. Zu hoch gesteckte Ziele wirken   eher   demotivierend   auf   Menschen.   Herausfordernde  Ziele   können  im   ersten Moment frustrierend wirken, da sie nicht sofort zu erreichen sind. Durch eine gewisse Anstrengung kann das Ziel jedoch erreicht werden, was wiederum motiviert. Oft sind gut gesteckte Ziele automatisch realistisch, da man sich diese sonst nicht setzen würde.\n\nTerminiert beschreibt den festzulegenden Zeitraum einer Zielsetzung, der unbedingt präzise festgelegt   werden   sollte.   Ratsam   sind   hierbei   auch   Zwischenprüfungen,   um   eventuelle Abweichungen bei der Zielerreichung festzustellen und schnell korrigieren zu können. Beispiel: „dafür treffen wir uns immer Montags, Mittwochs und jeden zweiten Freitag um 16 Uhr für zwei Stunden in der Lernlandschaft der Universität“.\n\nDes Weiteren ist es ratsam, Zielsetzungen immer positiv zu formulieren, da negative Aussagen demotivierend wirken. Formulierungen, die UN- oder NICHT- enthalten, sollten ebenfalls vermieden werden.\nBeispiel: „Ich werde nicht durchfallen“ (Negativ) besser: „Ich werde bestehen“\n\n Ziele sollten immer so gewählt werden, dass sie (persönlich) sinnvoll erscheinen, sowie eine Entwicklung des Individuums hervorrufen. Hierbei kann an Stärken, Schwächen oder Kompetenzen des Individuums angeknüpft werden.",
-          "keywords": [
-            "spezifisch",
-            "messbar",
-            "akzeptiert",
-            "realistisch",
-            "terminiert"
-          ],
+          "keywords": ["spezifisch", "messbar", "akzeptiert", "realistisch", "terminiert"],
           "images": {
             "Selbstbestimmung": "/Tag/Motivation5/Smart.png"
           }
@@ -623,7 +561,7 @@
       "credits": 3
     },
     {
-      "parentId": "Motivation4",
+      "parentId": "Motivation3",
       "package": "Motivation",
 
       "title": "Fehlersuche - soll das SMART sein?",
@@ -635,73 +573,37 @@
         {
           "QuestionId": 1,
           "Question": "Ich möchte mehr Geld verdienen.",
-          "AnswerSet": [
-            "Spezifisch",
-            "Messbar",
-            "Akzeptiert",
-            "Realistisch",
-            "Terminiert"
-          ],
+          "AnswerSet": ["Spezifisch", "Messbar", "Akzeptiert", "Realistisch", "Terminiert"],
           "multi": true
         },
         {
           "QuestionId": 2,
           "Question": "Ich werde am Montag beim Gehaltsgespräch folgende Argumente vortragen (…), eine Erhöhung um 10% vorschlagen, um mich dann auf maximal 6,5% herunterhandeln zu lassen.",
-          "AnswerSet": [
-            "Spezifisch",
-            "Messbar",
-            "Akzeptiert",
-            "Realistisch",
-            "Terminiert"
-          ],
+          "AnswerSet": ["Spezifisch", "Messbar", "Akzeptiert", "Realistisch", "Terminiert"],
           "multi": true
         },
         {
           "QuestionId": 3,
           "Question": "Ich will in Mathe keine 4 mehr im Zeugnis.",
-          "AnswerSet": [
-            "Spezifisch",
-            "Messbar",
-            "Akzeptiert",
-            "Realistisch",
-            "Terminiert"
-          ],
+          "AnswerSet": ["Spezifisch", "Messbar", "Akzeptiert", "Realistisch", "Terminiert"],
           "multi": true
         },
         {
           "QuestionId": 4,
           "Question": "Ich möchte jeden Tag mit meiner Mutter 5 Stunden direkt nach der Schule den Unterricht nachbereiten, um so  eine 3 für das Fach Mathe im Zeugnis zu erreichen.",
-          "AnswerSet": [
-            "Spezifisch",
-            "Messbar",
-            "Akzeptiert",
-            "Realistisch",
-            "Terminiert"
-          ],
+          "AnswerSet": ["Spezifisch", "Messbar", "Akzeptiert", "Realistisch", "Terminiert"],
           "multi": true
         },
         {
           "QuestionId": 5,
           "Question": "Ich werde die ersten drei Kapitel des Buches „ABC“ für den Deutschunterricht lesen.",
-          "AnswerSet": [
-            "Spezifisch",
-            "Messbar",
-            "Akzeptiert",
-            "Realistisch",
-            "Terminiert"
-          ],
+          "AnswerSet": ["Spezifisch", "Messbar", "Akzeptiert", "Realistisch", "Terminiert"],
           "multi": true
         },
         {
           "QuestionId": 6,
           "Question": "Indem ich bis zur Klausur am 6.2 jeden Tag 30 Minuten lang die Inhalte wiederhole und an midestens jeder zweiten Seminarsitzung teilnehme, möchte ich mindestens eine 2,3 erreichen.",
-          "AnswerSet": [
-            "Spezifisch",
-            "Messbar",
-            "Akzeptiert",
-            "Realistisch",
-            "Terminiert"
-          ],
+          "AnswerSet": ["Spezifisch", "Messbar", "Akzeptiert", "Realistisch", "Terminiert"],
           "multi": true
         }
       ]
@@ -712,11 +614,12 @@
       "taskId": "MultiOutro",
       "title": "Fallbearbeitung",
       "package": "Motivation",
-      "isTraining": true,
+      "filePrefix": "Training",
       "finalTraining": true,
       "trainingId": "Motivation Problem",
       "parentId": "Motivation0",
       "image": "Teacher.png",
+      "parentId": "Motivation3",
 
       "content": [
         {

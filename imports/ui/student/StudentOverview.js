@@ -44,7 +44,6 @@ export default function StudentOverview() {
   }
 
   function renderRoutes() {
-    console.log("page");
     if (loggingOut) {
       return <LoggingOut />;
     } else if (page === "schoolOverview") {
@@ -76,24 +75,3 @@ export default function StudentOverview() {
     );
   }
 }
-// handleNextTask() {
-//   let student = this.state.student;
-//
-//   if (
-//     !student.solvedTasks.find((elem) => {
-//       return elem.sequenceId.toString() === student.currentSequenceId.toString();
-//     })
-//   ) {
-//     Meteor.call(
-//       "students.getNextTask",
-//       student.currentPackage[0].name,
-//       student.currentSequenceId,
-//       student._id,
-//       (err, res) => {
-//         if (res) {
-//           this.props.history.push("/student/workspace");
-//         }
-//       }
-//     );
-//   }
-// }

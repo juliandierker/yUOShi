@@ -2,23 +2,16 @@ import { Meteor } from "meteor/meteor";
 
 function createDragTask(taskSpecs) {
   taskSpecs["isTask"] = true;
-  taskSpecs["taskId"] = taskSpecs["taskId"];
   taskSpecs["type"] = "drag";
-  taskSpecs["package"] = taskSpecs["package"];
   taskSpecs["autoGrading"] = true;
-  taskSpecs["filePrefix"] = taskSpecs["filePrefix"];
   taskSpecs["taskState"] = { save: false, help: false, viewed: false };
 
   return taskSpecs;
 }
 function createTagTask(taskSpecs) {
   taskSpecs["isTask"] = true;
-  taskSpecs["taskId"] = taskSpecs["taskId"];
   taskSpecs["type"] = "tag";
-  taskSpecs["content"] = taskSpecs["content"];
-  taskSpecs["package"] = taskSpecs["package"];
   taskSpecs["autoGrading"] = true;
-  taskSpecs["filePrefix"] = taskSpecs["filePrefix"];
   taskSpecs["taskState"] = {
     save: false,
     help: false,
@@ -31,12 +24,8 @@ function createTagTask(taskSpecs) {
 
 function createClozeTask(taskSpecs) {
   taskSpecs["isTask"] = true;
-  taskSpecs["taskId"] = taskSpecs["taskId"];
   taskSpecs["type"] = "cloze";
-  taskSpecs["content"] = taskSpecs["content"];
-  taskSpecs["package"] = taskSpecs["package"];
   taskSpecs["autoGrading"] = true;
-  taskSpecs["filePrefix"] = taskSpecs["filePrefix"];
   taskSpecs["taskState"] = { save: false, help: false, viewed: false };
 
   return taskSpecs;
@@ -44,12 +33,8 @@ function createClozeTask(taskSpecs) {
 
 function createMemory(taskSpecs) {
   taskSpecs["isTask"] = true;
-  taskSpecs["taskId"] = taskSpecs["taskId"];
   taskSpecs["type"] = "memory";
-  taskSpecs["content"] = taskSpecs["content"];
-  taskSpecs["package"] = taskSpecs["package"];
   taskSpecs["autoGrading"] = true;
-  taskSpecs["filePrefix"] = taskSpecs["filePrefix"];
   taskSpecs["taskState"] = { save: false, help: false, viewed: false };
 
   return taskSpecs;
@@ -57,12 +42,16 @@ function createMemory(taskSpecs) {
 
 function createMultiChoice(taskSpecs) {
   taskSpecs["isTask"] = true;
-  taskSpecs["taskId"] = taskSpecs["taskId"];
   taskSpecs["type"] = "multiChoice";
-  taskSpecs["content"] = taskSpecs["content"];
-  taskSpecs["package"] = taskSpecs["package"];
   taskSpecs["autoGrading"] = true;
-  taskSpecs["filePrefix"] = taskSpecs["filePrefix"];
+  taskSpecs["taskState"] = { save: false, help: false, viewed: false };
+
+  return taskSpecs;
+}
+function createTrainingTask(taskSpecs) {
+  taskSpecs["isTraining"] = true;
+  taskSpecs["type"] = "multiChoice";
+  taskSpecs["autoGrading"] = true;
   taskSpecs["taskState"] = { save: false, help: false, viewed: false };
 
   return taskSpecs;
@@ -70,17 +59,14 @@ function createMultiChoice(taskSpecs) {
 
 function createSurveyTask(taskSpecs) {
   taskSpecs["isTask"] = true;
-  taskSpecs["taskId"] = taskSpecs["taskId"];
   taskSpecs["type"] = "survey";
-  taskSpecs["package"] = taskSpecs["package"];
   taskSpecs["autoGrading"] = true;
-  taskSpecs["filePrefix"] = taskSpecs["filePrefix"];
   taskSpecs["taskState"] = { save: true, help: false, viewed: false };
 
   return taskSpecs;
 }
 
-function addTasks(packageName, path) {
+export function addTasks(path) {
   let tasks = JSON.parse(Assets.getText(path))["tasks"];
   let trainings = [];
 
@@ -109,17 +95,11 @@ function addTasks(packageName, path) {
         case "Survey":
           newtask = createSurveyTask(tasks[i]);
           break;
+        case "Training":
+          newtask = createTrainingTask(tasks[i]);
+          break;
       }
       Meteor.call("tasks.insert", newtask);
     }
   }
-  return trainings;
-}
-
-export function addPackageTasks() {
-  let trainings = {};
-  trainings["Motivation"] = addTasks("Motivation", "tasks/motivation.json");
-  trainings["Identität"] = addTasks("Identität", "tasks/identity.json");
-
-  Meteor.call("training.insert", trainings);
 }

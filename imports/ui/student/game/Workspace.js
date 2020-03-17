@@ -10,7 +10,7 @@ import MemoryAnimationTemplate from "../../tasks/memory/MemoryAnimationTemplate"
 import MultiChoiceAnimationTemplate from "../../tasks/multiChoice/MultiChoiceAnimationTemplate";
 import SurveyAnimationTemplate from "../../tasks/survey/SurveyAnimationTemplate";
 import KeywordList from "../../tasks/KeywordList";
-import { GameContext } from "./StudentContextProvider";
+import { GameContext } from "../StudentContextProvider";
 
 import equals from "fast-deep-equal";
 import { Tasks } from "../../../api/tasks";
@@ -21,67 +21,61 @@ import { Segment, Button, Grid, Modal } from "semantic-ui-react";
 import Hyphenated from "react-hyphen";
 import de from "hyphenated-de";
 
-export default function Workspace () {
-
-  const {tasks, student, packages } = useContext(GameContext);
-
+export default function Workspace() {
+  const { tasks, student, packages } = useContext(GameContext);
   const [showSolution, setShowSolution] = useState(false);
-  const [showCurrentTasks, setShowCurrentTasks] = useState(false);
-  const [currentSequenceId, setCurrentSequenceId] = useState(false);
+  const [showactiveTasks, setShowactiveTasks] = useState(false);
   const [packageStarted, setPackageStarted] = useState(false);
+  const [dimmer, setDimmer] = useState(false);
   const [descriptionModalOpen, setDescriptionModalOpen] = useState(false);
-  const [hasActiveTaskOrTraining, setHasActiveTaskOrTraining] = useState(false);
+  const [activeTask, setActiveTask] = useState(false);
   const [readFinished, setReadFinished] = useState(false);
-
   const [currentSubPackageIndex, setCurrentSubPackageIndex] = useState(0);
   const [currentSequenceId, setCurrentSequenceId] = useState(0);
-
   const [finishedKeywords, setFinishedKeywords] = useState([]);
-
   const tagInstanceRef = useRef();
 
+  const regex = "\\d+";
 
-        //
+  //Effect to check which tasks or training is ment to be in workspace
+  useEffect(() => {
+    if (student.setLastActiveTaskId) {
+      setActiveTask(tasks.find((task) => task._id == student.setLastActiveTaskId));
+    } else if (student.tasks.length > 0) {
+      setActiveTask(student.tasks[tasks.length - 1]);
+    } else if (student.solvedTasks > 0) {
+      setActiveTask(student.currentPackage.trainings[1]);
+    } else {
+      setActiveTask(student.currentPackage.trainings[0]);
+    }
+    window.addEventListener(
+      "beforeunload",
+      Meteor.call("student.setLastActiveTaskId", activeTask._id, student._id)
+    );
+  }, [
+    student.setLastActiveTaskId,
+    student.tasks,
+    student.solvedTasks,
+    student.currentPackage.trainings,
+    tasks,
+    activeTask._id
+  ]);
 
+  // show = (dimmer) => () => setState({ dimmer, packageStarted: true });
+  // close = () => setState({ packageStarted: false });
 
-
-  window.addEventListener("beforeunload", Meteor.call(
-    "student.setLastActiveTaskId",
-    this.state.activeTask._id,
-    this.props.student._id));
-
-
-  show = (dimmer) => () => this.setState({ dimmer, packageStarted: true });
-  close = () => this.setState({ packageStarted: false });
-
+  useEffect(() => {
+    if (!currentSubPackageIndex) setCurrentSubPackageIndex(student.tasks.parentId.match(regex));
+  });
+  useEffect(() => {
+    openDescriptionModal();
+    checkReadFinish();
+  });
   // TODO: Check the clicked package and the progress in the package
-  componentDidMount() {
-    let currentTask = this.props.student.tasks;
-    let regex = "\\d+";
-    if (currentTask && currentTask.parentId) {
-      let currentSubPackageIndex = currentTask.parentId.match(regex);
-      this.setState({ currentSubPackageIndex: currentSubPackageIndex });
-    }
-  }
 
-  componentDidUpdate(prevProps, prevState) {
-    this.openDescriptionModal();
-    this.checkReadFinish();
-  }
-  componentWillUnmount() {
-    if (this.state.activeTask) {
-      Meteor.call(
-        "students.setLastActiveTaskId",
-        this.state.activeTask._id,
-        this.props.student._id
-      );
-    }
-    window.removeEventListener("beforeunload", this.handler);
-  }
-
-  openDescriptionModal() {
-    let currentStudentTask = this.props.student.tasks.find((elem) => {
-      return elem && this.state.activeTask && elem._id === this.state.activeTask._id;
+  function openDescriptionModal() {
+    let currentStudentTask = student.tasks.find((elem) => {
+      return elem && activeTask && elem._id === activeTask._id;
     });
 
     if (
@@ -89,47 +83,41 @@ export default function Workspace () {
       currentStudentTask.taskState &&
       !currentStudentTask.taskState.viewed &&
       (!currentStudentTask.video || currentStudentTask.taskState.videoWatched) &&
-      !this.state.descriptionModalOpen
+      !descriptionModalOpen
     ) {
-      this.setState({ descriptionModalOpen: true });
+      setState({ descriptionModalOpen: true });
 
       Swal.fire({
         position: "top-start",
         type: "info",
-        title: this.state.activeTask.description,
+        title: activeTask.description,
         onClose: () => {
-          this.setState({ descriptionModalOpen: false });
+          setState({ descriptionModalOpen: false });
         }
       });
 
-      Meteor.call("solutionHandler.viewTask", this.props.student._id, this.state.activeTask._id);
+      Meteor.call("solutionHandler.viewTask", student._id, activeTask._id);
     }
   }
 
-  checkReadFinish() {
-    if (
-      this.props.student.tasks[0] &&
-      this.state.readFinished !== this.props.student.tasks[0].taskState.readFinished
-    ) {
-      this.setState({
-        readFinished: this.props.student.tasks[0].taskState.readFinished
+  function checkReadFinish() {
+    if (student.tasks[0] && readFinished !== student.tasks[0].taskState.readFinished) {
+      setState({
+        readFinished: student.tasks[0].taskState.readFinished
       });
     }
   }
 
-  checkPackageProgress() {
-    var check = this.props.student.solvedTraining.filter((elem) => {
-      return elem.package == this.props.student.currentPackage[0].name;
+  function checkPackageProgress() {
+    var check = student.solvedTraining.filter((elem) => {
+      return elem.package == student.currentPackage[0].name;
     });
 
     return check.length >= 2;
   }
 
-
-  getActiveTask() {
-    var student = this.props.student;
-
-    if (student && this.props.student.lastActiveTaskId) {
+  function getActiveTask() {
+    if (student && student.lastActiveTaskId) {
       for (var i in student.tasks) {
         if (student.tasks[i]._id == student.lastActiveTaskId) return student.tasks[i];
       }
@@ -138,144 +126,77 @@ export default function Workspace () {
     }
   }
 
-  taskSwitch() {
-    let student = this.props.student;
-    var cTask = null;
-    if (this.state.currentSequenceId !== student.currentSequenceId) {
-      this.props.handleNextTask();
-      for (var i in this.props.tasks) {
-        if (this.props.tasks[i].sequenceId == student.currentSequenceId) {
-          cTask = this.props.tasks[i];
-        }
-      }
-      this.props.tasks.map((task) => {
-        if (task.sequenceId == student.currentSequenceId) {
-          var cTask = task;
-        }
-      });
-      this.setState({
-        currentSequenceId: student.currentSequenceId,
-        activeTask: cTask
-      });
-
-      return;
+  function taskSwitch() {
+    switch (activeTask.type) {
+      case "drag":
+        return <DragAnimationTemplate {...taskProps} />;
+      case "tag":
+        return (
+          <TagAnimationTemplate
+            externUpdate={externUpdate.bind(this)}
+            finishedKeywords={finishedKeywords}
+            ref={tagInstance}
+          />
+        );
+      case "cloze":
+        return <ClozeAnimationTemplate />;
+      case "memory":
+        return <MemoryAnimationTemplate />;
+      case "survey":
+        return <SurveyAnimationTemplate />;
+      case "multiChoice":
+        return <MultiChoiceAnimationTemplate handleNextTask={handleNextTask} />;
+      case "intro":
+        return <TrainingAnimationTemplate />;
+      case "outro":
+        return <TrainingAnimationTemplate />;
     }
+    Swal.fire({
+      position: "top-end",
+      type: "success",
+      title: "🎉 Du hast das Paket Motivation abgeschlossen. 🎉",
 
-    let packageTrainings = this.props.trainings[0][student.currentPackage[0].name];
-    // Get current Training
-    let currentTask = packageTrainings.find((elem) => {
-      return elem.sequenceId === student.currentSequenceId;
+      timer: 2000
     });
-    // Get current Task
-    if (!currentTask) {
-      currentTask = this.props.tasks.find((elem) => {
-        return elem.sequenceId === student.currentSequenceId;
-      });
-    }
-
-    if (currentTask || this.props.student.currentTraining.length == 0) {
-      if (currentTask && currentTask.isTask) {
-        let taskProps = {
-          student: this.props.student,
-          tasks: this.props.tasks,
-          activeTask: currentTask,
-          courses: this.props.courses,
-          trainings: this.props.trainings
-        };
-
-        switch (currentTask.type) {
-          case "drag":
-            return <DragAnimationTemplate {...taskProps} />;
-          case "tag":
-            return (
-              <TagAnimationTemplate
-                {...taskProps}
-                externUpdate={this.externUpdate.bind(this)}
-                finishedKeywords={this.state.finishedKeywords}
-                ref={this.tagInstance}
-              />
-            );
-          case "cloze":
-            return <ClozeAnimationTemplate {...taskProps} />;
-          case "memory":
-            return <MemoryAnimationTemplate {...taskProps} />;
-          case "survey":
-            return <SurveyAnimationTemplate {...taskProps} />;
-          case "multiChoice":
-            return (
-              <MultiChoiceAnimationTemplate
-                {...taskProps}
-                handleNextTask={this.props.handleNextTask}
-              />
-            );
-        }
-      } else if (this.checkPackageProgress()) {
-        Swal.fire({
-          position: "top-end",
-          type: "success",
-          title: "🎉 Du hast das Paket Motivation abgeschlossen. 🎉",
-
-          timer: 2000
-        }).then((result) => {
-          this.props.history.push("/student/classroom");
-
-          //TODO solve package
-          // Meteor.call(
-          //   "students.solvePackage",
-          //   student.currentPackage[0].name,
-          //   student._id,
-          //   (err, res) => {
-          //     if (res) {
-          //     }
-          //   }
-          // );
-        });
-      } else {
-        let currentTaskArray = [];
-        currentTaskArray.push(currentTask);
-        Meteor.call("students.initTraining", currentTaskArray, student._id);
-
-        student.currentTraining = currentTaskArray;
-
-        let taskProps = {
-          student: this.props.student,
-          tasks: this.props.tasks,
-          activeTask: currentTask,
-          courses: this.props.courses,
-          trainings: this.props.trainings,
-          loadPrevTask: this.handlePreviousTaskButtonClick.bind(this)
-        };
-
-        return <TrainingAnimationTemplate {...taskProps} />;
-      }
-    }
   }
 
-  getActiveSubpackage() {
+  //TODO solve package
+  // Meteor.call(
+  //   "students.solvePackage",
+  //   student.currentPackage[0].name,
+  //   student._id,
+  //   (err, res) => {
+  //     if (res) {
+  //     }
+  //   }
+  // );
+  // });
+
+  function getActiveSubpackage() {
     let pId;
-    if (this.props.student.tasks[0]) {
-      pId = this.props.student.tasks[0].parentId;
-    } else if (this.props.student.currentTraining[0]) {
-      pId = this.props.student.currentTraining[0].parentId;
+    if (student.tasks[0]) {
+      pId = student.tasks[0].parentId;
+    } else if (student.currentTraining[0]) {
+      pId = student.currentTraining[0].parentId;
     } else {
       return;
     }
-    return this.props.student.currentPackage[0].content.filter(
-      (subpackage) => this.props.student.currentPackage[0].name + subpackage.sequenceId === pId
+    return student.currentPackage[0].content.filter(
+      (subpackage) => student.currentPackage[0].name + subpackage.sequenceId === pId
     )[0];
   }
 
-  handleNextTaskButtonClick() {
-    Meteor.call("students.showNextTask", this.props.student);
+  function handleNextTaskButtonClick() {
+    Meteor.call("students.showNextTask", student);
   }
 
-  handlePreviousTaskButtonClick() {
-    if (this.props.student && this.props.student.currentSequenceId > 1) {
-      Meteor.call("students.showPreviousTask", this.props.student);
+  function handlePreviousTaskButtonClick() {
+    if (student && student.currentSequenceId > 1) {
+      Meteor.call("students.showPreviousTask", student);
     }
   }
 
-  renderNavigationButtons() {
+  function renderNavigationButtons() {
     var that = this;
     return (
       <Grid id="workspaceGrid" columns={2}>
@@ -286,7 +207,7 @@ export default function Workspace () {
               content="Vorherige Aufgabe"
               icon="left arrow"
               labelPosition="left"
-              onClick={this.handlePreviousTaskButtonClick}
+              onClick={handlePreviousTaskButtonClick}
             />
           </Grid.Column>
           <Grid.Column>
@@ -295,23 +216,20 @@ export default function Workspace () {
               content="Nächste Aufgabe"
               icon="right arrow"
               labelPosition="right"
-              onClick={this.handleNextTaskButtonClick}
+              onClick={handleNextTaskButtonClick}
             />
           </Grid.Column>
         </Grid.Row>
       </Grid>
     );
   }
-  externUpdate(tagState) {
-    this.setState({ finishedKeywords: tagState });
-  }
 
-  handleKWContinue() {
-    this.tagInstance.current.solutionPrepare();
+  function handleKWContinue() {
+    tagInstance.current.solutionPrepare();
   }
-  renderDescription() {
-    let task = this.props.tasks.find((elem) => {
-      return elem.sequenceId === this.props.student.currentSequenceId;
+  function renderDescription() {
+    let task = tasks.find((elem) => {
+      return elem.sequenceId === student.currentSequenceId;
     });
     if (!task) return;
     return (
@@ -321,8 +239,8 @@ export default function Workspace () {
       </Segment>
     );
   }
-  renderWorkspaceGrid() {
-    let activesubpackage = this.getActiveSubpackage();
+  function renderWorkspaceGrid() {
+    let activesubpackage = getActiveSubpackage();
 
     return (
       <React.Fragment>
@@ -333,39 +251,36 @@ export default function Workspace () {
             style={{
               padding: "0rem"
             }}>
-            {this.renderDescription()}
-            {this.renderKeywordList()}
+            {renderDescription()}
+            {renderKeywordList()}
           </Grid.Column>
           <Grid.Column width={8} id="workspaceGridMobile">
-            <div className="workspace__container">{this.taskSwitch()}</div>
+            <div className="workspace__container">{taskSwitch()}</div>
           </Grid.Column>
-          <TaskProgress
-            currentTask={this.state.activeTask}
-            student={this.props.student}
-            currentPackage={this.props.student.currentPackage[0]}
-            trainings={this.props.trainings}
+          {/* <TaskProgress
+            activeTask={activeTask}
+            student={student}
+            currentPackage={student.currentPackage[0]}
             activeSubpackage={activesubpackage}
-          />
+          /> */}
         </Grid>
-        {this.renderNavigationButtons()}
+        {renderNavigationButtons()}
       </React.Fragment>
     );
   }
 
-  renderKeywordList() {
-    if (this.state.activeTask && this.state.activeTask.type === "tag") {
+  function renderKeywordList() {
+    if (activeTask && activeTask.type === "tag") {
       return (
         <KeywordList
-          handleClick={this.handleKWContinue.bind(this)}
-          keywords={this.state.activeTask.content[0].keywords}
-          finishedKeywords={this.state.finishedKeywords}
+          handleClick={handleKWContinue.bind(this)}
+          keywords={activeTask.content[0].keywords}
+          finishedKeywords={finishedKeywords}
         />
       );
     }
   }
-  render() {
-    return <div id="workspace_div">{this.renderWorkspaceGrid()}</div>;
-  }
+  return <div id="workspace_div">{renderWorkspaceGrid()}</div>;
 }
 
 Workspace.propTypes = {

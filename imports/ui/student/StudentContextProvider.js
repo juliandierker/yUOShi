@@ -24,9 +24,31 @@ const withStudent = withTracker(() => {
 
   const loading = handles.some((handle) => !handle.ready());
   const student = Students.findOne({ userId: Meteor.userId() });
+
+  function handleNextTask() {
+    if (
+      !student.solvedTasks.find((elem) => {
+        return elem.sequenceId.toString() === student.currentSequenceId.toString();
+      })
+    ) {
+      Meteor.call(
+        "students.getNextTask",
+        student.currentPackage[0].name,
+        student.currentSequenceId,
+        student._id,
+        (err, res) => {
+          if (res) {
+            this.props.history.push("/student/workspace");
+          }
+        }
+      );
+    }
+  }
+
   var gameInfo = {
     loading,
     student,
+    handleNextTask,
     tasks: null,
     packages: null
   };
@@ -35,7 +57,7 @@ const withStudent = withTracker(() => {
     otherStudents: null
   };
   if (student) {
-    gameInfo["tasks"] = Tasks.find({});
+    gameInfo["tasks"] = Tasks.find({}).fetch();
     gameInfo["packages"] = Package.find({}).fetch();
     // gameInfo["otherStudents"] = courses.filter((pupil) => pupil.userId != Meteor.userId());
     courseInfo["course"] = Courses.findOne({});
@@ -47,7 +69,6 @@ function Provider(props) {
   const [page, setPage] = useState("schoolOverview");
   const gameInfo = { ...props.gameInfo, page, setPage };
   const courseInfo = { ...props.courseInfo };
-
   if (!gameInfo.student) {
     return <Loading />;
   }
