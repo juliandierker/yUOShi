@@ -25,30 +25,9 @@ const withStudent = withTracker(() => {
   const loading = handles.some((handle) => !handle.ready());
   const student = Students.findOne({ userId: Meteor.userId() });
 
-  function handleNextTask() {
-    if (
-      !student.solvedTasks.find((elem) => {
-        return elem.sequenceId.toString() === student.currentSequenceId.toString();
-      })
-    ) {
-      Meteor.call(
-        "students.getNextTask",
-        student.currentPackage[0].name,
-        student.currentSequenceId,
-        student._id,
-        (err, res) => {
-          if (res) {
-            this.props.history.push("/student/workspace");
-          }
-        }
-      );
-    }
-  }
-
   var gameInfo = {
     loading,
     student,
-    handleNextTask,
     tasks: null,
     packages: null
   };

@@ -13,13 +13,13 @@ import KeywordList from "../../tasks/KeywordList";
 import { GameContext } from "../StudentContextProvider";
 
 import equals from "fast-deep-equal";
-import { Tasks } from "../../../api/tasks";
 
 import TaskProgress from "../taskProgress/TaskProgress";
 import { Segment, Button, Grid, Modal } from "semantic-ui-react";
 
 import Hyphenated from "react-hyphen";
 import de from "hyphenated-de";
+import { workspaceHelper } from "../../../shared/WorkspaceHelper";
 
 export default function Workspace() {
   const { tasks, student, packages } = useContext(GameContext);
@@ -33,10 +33,18 @@ export default function Workspace() {
   const [currentSubPackageIndex, setCurrentSubPackageIndex] = useState(0);
   const [currentSequenceId, setCurrentSequenceId] = useState(0);
   const [finishedKeywords, setFinishedKeywords] = useState([]);
-  const tagInstanceRef = useRef();
-
   const regex = "\\d+";
-
+  //Effect event listener with callback
+  useEffect(() => {
+    window.addEventListener(
+      "beforeunload",
+      Meteor.call("student.setLastActiveTaskId", activeTask._id, student._id)
+    );
+    // return () => {
+    //   window.addEventListener("beforeunload"),
+    //     Meteor.call("student.setLastActiveTaskId", activeTask._id, student._id);
+    // };
+  });
   //Effect to check which tasks or training is ment to be in workspace
   useEffect(() => {
     if (student.setLastActiveTaskId) {
@@ -44,14 +52,19 @@ export default function Workspace() {
     } else if (student.tasks.length > 0) {
       setActiveTask(student.tasks[tasks.length - 1]);
     } else if (student.solvedTasks > 0) {
-      setActiveTask(student.currentPackage.trainings[1]);
+      // setActiveTask(student.currentPackage.content[student.currentPackage.content.length - 1]);
+      Meteor.call(
+        "students.initTraining",
+        student.currentPackage.content[student.currentPackage.content.length - 1],
+        student._id
+      );
+      setActiveTask(student.currentPackage.content[student.currentPackage.content.length - 1]);
     } else {
-      setActiveTask(student.currentPackage.trainings[0]);
+      console.log("BB");
+      console.log(student.currentPackage.content[0].tasks[0]);
+      Meteor.call("students.initTraining", student.currentPackage.content[0].tasks[0], student._id);
+      setActiveTask(student.currentPackage.content[0].tasks[0]);
     }
-    window.addEventListener(
-      "beforeunload",
-      Meteor.call("student.setLastActiveTaskId", activeTask._id, student._id)
-    );
   }, [
     student.setLastActiveTaskId,
     student.tasks,
@@ -65,16 +78,20 @@ export default function Workspace() {
   // close = () => setState({ packageStarted: false });
 
   useEffect(() => {
-    if (!currentSubPackageIndex) setCurrentSubPackageIndex(student.tasks.parentId.match(regex));
-  });
-  useEffect(() => {
     openDescriptionModal();
     checkReadFinish();
   });
   // TODO: Check the clicked package and the progress in the package
 
   function openDescriptionModal() {
-    let currentStudentTask = student.tasks.find((elem) => {
+    console.log(activeTask);
+    if (student.filePrefix === "Training") {
+      var tasks = student.content[0].quests.tasks;
+      console.log(tasks);
+    } else {
+      var tasks = student.tasks;
+    }
+    let currentStudentTask = tasks.find((elem) => {
       return elem && activeTask && elem._id === activeTask._id;
     });
 
@@ -116,88 +133,36 @@ export default function Workspace() {
     return check.length >= 2;
   }
 
-  function getActiveTask() {
-    if (student && student.lastActiveTaskId) {
-      for (var i in student.tasks) {
-        if (student.tasks[i]._id == student.lastActiveTaskId) return student.tasks[i];
+  function taskSwitch() {
+    if (activeTask) {
+      switch (activeTask.filePrefix) {
+        case "Drag":
+          return <DragAnimationTemplate {...taskProps} />;
+        case "Tag":
+          return <TagAnimationTemplate finishedKeywords={finishedKeywords} />;
+        case "Cloze":
+          return <ClozeAnimationTemplate />;
+        case "Memory":
+          return <MemoryAnimationTemplate />;
+        case "Survey":
+          return <SurveyAnimationTemplate />;
+        case "MultiChoice":
+          return <MultiChoiceAnimationTemplate />;
+        case "Training":
+          return <TrainingAnimationTemplate activeTask={activeTask} />;
       }
     } else {
-      return student.tasks[student.tasks.length - 1];
-    }
-  }
+      Swal.fire({
+        position: "top-end",
+        type: "success",
+        title: "🎉 Du hast das Paket Motivation abgeschlossen. 🎉",
 
-  function taskSwitch() {
-    switch (activeTask.type) {
-      case "drag":
-        return <DragAnimationTemplate {...taskProps} />;
-      case "tag":
-        return (
-          <TagAnimationTemplate
-            externUpdate={externUpdate.bind(this)}
-            finishedKeywords={finishedKeywords}
-            ref={tagInstance}
-          />
-        );
-      case "cloze":
-        return <ClozeAnimationTemplate />;
-      case "memory":
-        return <MemoryAnimationTemplate />;
-      case "survey":
-        return <SurveyAnimationTemplate />;
-      case "multiChoice":
-        return <MultiChoiceAnimationTemplate handleNextTask={handleNextTask} />;
-      case "intro":
-        return <TrainingAnimationTemplate />;
-      case "outro":
-        return <TrainingAnimationTemplate />;
-    }
-    Swal.fire({
-      position: "top-end",
-      type: "success",
-      title: "🎉 Du hast das Paket Motivation abgeschlossen. 🎉",
-
-      timer: 2000
-    });
-  }
-
-  //TODO solve package
-  // Meteor.call(
-  //   "students.solvePackage",
-  //   student.currentPackage[0].name,
-  //   student._id,
-  //   (err, res) => {
-  //     if (res) {
-  //     }
-  //   }
-  // );
-  // });
-
-  function getActiveSubpackage() {
-    let pId;
-    if (student.tasks[0]) {
-      pId = student.tasks[0].parentId;
-    } else if (student.currentTraining[0]) {
-      pId = student.currentTraining[0].parentId;
-    } else {
-      return;
-    }
-    return student.currentPackage[0].content.filter(
-      (subpackage) => student.currentPackage[0].name + subpackage.sequenceId === pId
-    )[0];
-  }
-
-  function handleNextTaskButtonClick() {
-    Meteor.call("students.showNextTask", student);
-  }
-
-  function handlePreviousTaskButtonClick() {
-    if (student && student.currentSequenceId > 1) {
-      Meteor.call("students.showPreviousTask", student);
+        timer: 2000
+      });
     }
   }
 
   function renderNavigationButtons() {
-    var that = this;
     return (
       <Grid id="workspaceGrid" columns={2}>
         <Grid.Row id="renderNavigationButtons">
@@ -207,7 +172,7 @@ export default function Workspace() {
               content="Vorherige Aufgabe"
               icon="left arrow"
               labelPosition="left"
-              onClick={handlePreviousTaskButtonClick}
+              onClick={workspaceHelper.handlePreviousTaskButtonClick(student)}
             />
           </Grid.Column>
           <Grid.Column>
@@ -216,7 +181,7 @@ export default function Workspace() {
               content="Nächste Aufgabe"
               icon="right arrow"
               labelPosition="right"
-              onClick={handleNextTaskButtonClick}
+              onClick={workspaceHelper.handleNextTaskButtonClick(student)}
             />
           </Grid.Column>
         </Grid.Row>
@@ -224,13 +189,12 @@ export default function Workspace() {
     );
   }
 
-  function handleKWContinue() {
-    tagInstance.current.solutionPrepare();
-  }
   function renderDescription() {
     let task = tasks.find((elem) => {
       return elem.sequenceId === student.currentSequenceId;
     });
+    console.log(task);
+
     if (!task) return;
     return (
       <Segment id="workspaceDescription">
@@ -240,7 +204,7 @@ export default function Workspace() {
     );
   }
   function renderWorkspaceGrid() {
-    let activesubpackage = getActiveSubpackage();
+    let activesubpackage = workspaceHelper.getActiveSubpackage(student);
 
     return (
       <React.Fragment>

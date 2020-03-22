@@ -6,6 +6,8 @@
       "package": "Motivation",
       "taskId": "MultiIntro",
       "filePrefix": "Training",
+      "description": "Schaue dir die Fallbeispiele zunächst an.",
+
       "trainingId": "Motivation Problem",
       "parentId": "Motivation0",
       "image": "Teacher.png",

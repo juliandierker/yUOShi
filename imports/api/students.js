@@ -85,9 +85,9 @@ Meteor.methods({
   },
   //Gets a package and it's first training
   "students.getPackage": function(packageName, _id) {
-    var packageObj = Package.findOne({ name: packageName });
+    var currentPackage = Package.findOne({ name: packageName });
     try {
-      Students.update(_id, { $addToSet: { currentPackage: packageObj } });
+      Students.update(_id, { $set: { currentPackage } });
       return true;
     } catch (e) {
       console.log(e);
@@ -104,7 +104,7 @@ Meteor.methods({
   },
   "students.initTraining": function(training, _id) {
     try {
-      Students.update(_id, { $set: { currentTraining: training } });
+      Students.update(_id, { $set: { tasks: training } });
       return Students.find({ _id: _id }).fetch()[0];
     } catch (e) {
       console.log(e);
@@ -117,7 +117,7 @@ Meteor.methods({
     var studentUpdates = {
       $addToSet: { solvedTraining: training },
       $pull: {
-        currentTraining: {
+        tasks: {
           name: training.name,
           sequenceId: training.sequenceId
         }

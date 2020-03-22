@@ -96,9 +96,8 @@ function setupStudents() {
     Roles.addUsersToRoles(userId, "student");
 
     //TESTCASE WORKSPACE Tasks
-    let startPackage = [];
 
-    startPackage.push(Package.findOne({ name: "Motivation" }));
+    const startPackage = Package.findOne({ name: "Motivation" });
     if (i == 2) {
       // var task = Tasks.findOne({ package: "Motivation", sequenceId: 1 });
       Students.insert({
@@ -106,7 +105,6 @@ function setupStudents() {
         credits: 0,
         exp: 0,
         level: 1,
-        earning: [1],
         studipUserId: "e7a0a84b161f3e8c09b4a0a2e8a58147",
         lastActiveTaskId: null,
         courses: [],
@@ -117,7 +115,6 @@ function setupStudents() {
         solvedSurveys: [],
         currentSequenceId: 0,
         currentPackage: startPackage,
-        currentTraining: [],
         solvedTraining: []
       });
     } else {
