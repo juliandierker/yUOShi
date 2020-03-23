@@ -10,7 +10,7 @@ import Office from "./game/Office";
 
 import { TutorialHandler } from "../tutorials/TutorialHandler";
 
-import Workspace from "./game/Workspace";
+import WorkspaceContextProvider from "./WorkspaceContext";
 import Loading from "../Loading.js";
 import TutorialComponent from "../tutorials/TutorialComponent";
 
@@ -49,7 +49,7 @@ export default function StudentOverview() {
     } else if (page === "schoolOverview") {
       return <SchoolOverview tutorial={tutorial} />;
     } else if (page === "workspace") {
-      return <Workspace />;
+      return <WorkspaceContextProvider />;
     } else if (page === "teacherRoom") {
       return <TeacherRoom />;
     } else if (page === "office") {

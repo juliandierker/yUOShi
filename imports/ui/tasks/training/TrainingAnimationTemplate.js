@@ -8,9 +8,7 @@ import SurveyAnimationTemplate from "../survey/SurveyAnimationTemplate.js";
 import { GameContext } from "../../student/StudentContextProvider";
 
 export default function TrainingAnimationTemplate(activeTask) {
-  console.log("TRAININGANI");
   const { student } = useContext(GameContext);
-  console.log(student);
   const [currentTraining, setCurrentTraining] = useState(null);
   const [open, setOpen] = useState(true);
   const [outro, setOutro] = useState(false);

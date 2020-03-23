@@ -104,14 +104,14 @@ Meteor.methods({
   },
   "students.initTraining": function(training, _id) {
     try {
-      Students.update(_id, { $set: { tasks: training } });
+      Students.update(_id, { $addToSet: { tasks: training } });
       return Students.find({ _id: _id }).fetch()[0];
     } catch (e) {
       console.log(e);
     }
   },
   "students.setLastActiveTaskId": function(taskId, _id) {
-    Students.update(_id, { $addToSet: { lastActiveTaskId: taskId } });
+    if (taskId) Students.update(_id, { $set: { lastActiveTaskId: taskId } });
   },
   "students.solveTraining": function(student, training) {
     var studentUpdates = {
@@ -128,7 +128,7 @@ Meteor.methods({
   },
   "students.showNextTask": function(student) {
     let task = Tasks.find({
-      package: student.currentPackage[0].name,
+      package: student.currentPackage.name,
       sequenceId: student.currentSequenceId + 1
     }).fetch()[0];
     if (task && task.requires) {
@@ -141,7 +141,7 @@ Meteor.methods({
   },
   "students.showPreviousTask": function(student) {
     let task = Tasks.find({
-      package: student.currentPackage[0].name,
+      package: student.currentPackage.name,
       sequenceId: student.currentSequenceId - 1
     }).fetch()[0];
     if (task.requires) {
