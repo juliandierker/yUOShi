@@ -15,7 +15,7 @@ Gamification-Plugin for e-learning-seminars in context of psychological aspects 
 
 `meteor npm install`
 
-`meteor`
+`npm start`
 
 ## Deployment
 TODO
