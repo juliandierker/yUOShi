@@ -3,12 +3,12 @@ import PropTypes from "prop-types";
 import { Tracker } from "meteor/tracker";
 
 import { Teachers } from "../../api/teachers.js";
-import { Tokens } from "../../api/tokens";
 import { Courses } from "../../api/courses";
 import { Route, Switch } from "react-router-dom";
 
 import TeacherCourses from "./TeacherCourses";
 import TeacherTopMenu from "./TeacherTopMenu";
+import PromisifiedMeteor from "../../api/promisified";
 import TrackOverview from "./TrackOverview.js";
 
 export default class TeacherOverview extends React.Component {
@@ -22,29 +22,24 @@ export default class TeacherOverview extends React.Component {
   }
   componentDidMount() {
     let teacherHandle = Meteor.subscribe("teacherByUserId");
-    let tokenHandle = Meteor.subscribe("tokenByUser");
     let coursesHandle = Meteor.subscribe("coursesByTeacher");
 
-    this.teacherTracker = Tracker.autorun(() => {
-      if (teacherHandle.ready() && tokenHandle.ready() && coursesHandle.ready()) {
-        const teacher = Teachers.findOne();
-        const token = Tokens.findOne();
+    this.teacherTracker = Tracker.autorun(async () => {
+      if (teacherHandle.ready() && coursesHandle.ready()) {
+        // const token = Tokens.findOne();
         const givenCourses = Courses.find({}).fetch();
-        Meteor.call("courses.getTeacherCourses", token.token, teacher.studipUserId, (err, res) => {
-          if (err) {
-            console.log(err);
-          } else {
-            var studipCourses = res;
-            const teacher = Teachers.findOne();
-            const courses = this.loadCourses(res, teacher._id);
 
-            this.setState({
-              teacher,
-              token,
-              courses: givenCourses,
-              loading: false
-            });
-          }
+        const res = await PromisifiedMeteor.call("courses.getTeacherCourses")
+
+        const teacher = Teachers.findOne();
+
+        this.setState({
+          teacher,
+          courses: givenCourses,
+          loading: false
+        }, () => {
+          // TODO: this may also be done on server side!
+          this.loadCourses(res, teacher._id);
         });
       } else {
         if (!this.state.loading) {
@@ -58,22 +53,20 @@ export default class TeacherOverview extends React.Component {
     this.teacherTracker.stop();
   }
   loadCourses(courses, teacherId) {
-    for (var i in courses) {
-      var targetCourse = courses[i].attributes;
-      var exists = false;
-      if (this.state.courses) {
-        for (var j in this.state.courses) {
-          if (this.state.courses[j].studipId == courses[i].id) {
-            exists = true;
-          }
-          if (!exists) {
-            Meteor.call("courses.insert", targetCourse.title, courses[i].id, teacherId);
-          }
-        }
-      } else {
-        Meteor.call("courses.insert", targetCourse.title, courses[i].id, teacherId);
+    courses.filter(course => {
+      if (!this.state.courses) {
+        return true
       }
-    }
+
+      return !this.state.courses.find(item => item.studipId === course.id)
+    }).forEach(course => {
+      Meteor.call(
+          "courses.insert",
+          course.title,
+          course.id,
+          teacherId
+      );
+    })
   }
   renderRoutes() {
     return (
