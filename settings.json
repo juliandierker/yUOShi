@@ -1,14 +1,14 @@
 {
-    "public": { },
-    "private": {
-        "studip": {
-            "url": ""
-        },
-        "oAuth": {
-            "studip": {
-                "key": "",
-                "secret": ""
-            }
-        }
+  "public": {},
+  "private": {
+    "studip": {
+      "url": ""
+    },
+    "oAuth": {
+      "studip": {
+        "key": "",
+        "secret": ""
+      }
     }
+  }
 }

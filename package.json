@@ -20,11 +20,7 @@
     "@xyng/yuoshi-backend-adapter-argonauts": "^0.0.1",
     "@xyng/yuoshi-request-adapter-axios": "^1.0.0",
     "array-move": "^2.2.0",
-<<<<<<< HEAD
-    "bcrypt": "^4.0.1",
-=======
     "axios": "^0.19.2",
->>>>>>> aeefd2deefda8620889915812a5d55716bf3c5d6
     "fast-deep-equal": "^2.0.1",
     "gsap": "^2.0.2",
     "hyphenated-de": "^1.2.0",
