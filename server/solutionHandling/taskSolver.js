@@ -22,7 +22,7 @@ export function solveTask(studentId, taskId, solvedPercentage) {
 function getTask(studentId, taskId) {
   try {
     var currentTask = Students.find(
-      { _id: studentId, "tasks.taskId": taskId },
+      { _id: studentId, "tasks._id": taskId },
       { fields: { "tasks.$": 1, _id: 0 } }
     ).fetch()[0];
     if (!currentTask) return null;

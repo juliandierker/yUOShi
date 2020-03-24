@@ -11,7 +11,7 @@ import Loading from "../Loading.js";
 import StudentOverview from "./StudentOverview";
 
 export const GameContext = React.createContext();
-export const TaskContext = React.create;
+export const TaskContext = React.createContext();
 export const CourseContext = React.createContext();
 
 const withStudent = withTracker(() => {
@@ -24,6 +24,7 @@ const withStudent = withTracker(() => {
 
   const loading = handles.some((handle) => !handle.ready());
   const student = Students.findOne({ userId: Meteor.userId() });
+
   var gameInfo = {
     loading,
     student,
@@ -35,7 +36,7 @@ const withStudent = withTracker(() => {
     otherStudents: null
   };
   if (student) {
-    gameInfo["tasks"] = Tasks.find({});
+    gameInfo["tasks"] = Tasks.find({}).fetch();
     gameInfo["packages"] = Package.find({}).fetch();
     // gameInfo["otherStudents"] = courses.filter((pupil) => pupil.userId != Meteor.userId());
     courseInfo["course"] = Courses.findOne({});
@@ -47,7 +48,6 @@ function Provider(props) {
   const [page, setPage] = useState("schoolOverview");
   const gameInfo = { ...props.gameInfo, page, setPage };
   const courseInfo = { ...props.courseInfo };
-
   if (!gameInfo.student) {
     return <Loading />;
   }

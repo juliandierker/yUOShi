@@ -10,7 +10,7 @@ import Office from "./game/Office";
 
 import { TutorialHandler } from "../tutorials/TutorialHandler";
 
-import Workspace from "./game/Workspace";
+import WorkspaceContextProvider from "./WorkspaceContext";
 import Loading from "../Loading.js";
 import TutorialComponent from "../tutorials/TutorialComponent";
 
@@ -44,13 +44,12 @@ export default function StudentOverview() {
   }
 
   function renderRoutes() {
-    console.log("page");
     if (loggingOut) {
       return <LoggingOut />;
     } else if (page === "schoolOverview") {
       return <SchoolOverview tutorial={tutorial} />;
     } else if (page === "workspace") {
-      return <Workspace />;
+      return <WorkspaceContextProvider />;
     } else if (page === "teacherRoom") {
       return <TeacherRoom />;
     } else if (page === "office") {
@@ -76,24 +75,3 @@ export default function StudentOverview() {
     );
   }
 }
-// handleNextTask() {
-//   let student = this.state.student;
-//
-//   if (
-//     !student.solvedTasks.find((elem) => {
-//       return elem.sequenceId.toString() === student.currentSequenceId.toString();
-//     })
-//   ) {
-//     Meteor.call(
-//       "students.getNextTask",
-//       student.currentPackage[0].name,
-//       student.currentSequenceId,
-//       student._id,
-//       (err, res) => {
-//         if (res) {
-//           this.props.history.push("/student/workspace");
-//         }
-//       }
-//     );
-//   }
-// }

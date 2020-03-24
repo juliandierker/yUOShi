@@ -7,27 +7,7 @@ import { Button } from "semantic-ui-react";
 
 import { GameContext } from "./StudentContextProvider";
 
-import {
-  Dropdown,
-  Icon,
-  Menu,
-  Segment,
-  MenuItem,
-  Image,
-  Sidebar,
-  Responsive
-} from "semantic-ui-react";
-
-const leftItems = [
-  { as: "a", content: "Lehrendenzimmer", key: "lehrendenzimmer" },
-  { as: "a", content: "Klassenzimmer", key: "klassenzimmer" },
-  { as: "a", content: "Mein Büro", key: "mein büro" },
-  { as: "a", icon: "certificate", key: "certificate" },
-  { as: "a", icon: "euro sign", key: "euro sign" },
-  { as: "a", icon: "play", key: "play" },
-  { as: "a", content: "Level 1", key: "level" },
-  { as: "a", icon: "user", text: "profile", key: "user" }
-];
+import { Dropdown, Icon, Menu, Segment, Image, Responsive } from "semantic-ui-react";
 
 export default function StudentTopMenu({ student, activeTutorial }) {
   const { setPage } = useContext(GameContext);
@@ -96,7 +76,6 @@ export default function StudentTopMenu({ student, activeTutorial }) {
       setPage("classroom");
     }
     setActiveItem(content);
-    console.log(content);
     if (content === "Lehrendenzimmer") {
       setPage("teacherRoom");
     }
@@ -183,8 +162,7 @@ export default function StudentTopMenu({ student, activeTutorial }) {
                     id="skipTutorial"
                     icon
                     className="current__blue__color help__button__overwrite"
-                    disabled={state.pause}
-                    onClick={() => Meteor.call("pupils.completeTutorial", state.activeTutorial)}>
+                    onClick={() => Meteor.call("pupils.completeTutorial", activeTutorial)}>
                     {"Überspringen"}
                   </Button>
                 </Dropdown.Item>

@@ -31,9 +31,9 @@ export default function ClassRoom() {
     const marker_elems = document.getElementsByClassName("marker_elem");
 
     for (var i = 0; i < marker_elems.length; i++) {
-      if (student.currentPackage[0].length == 0) {
+      if (!student.currentPackage) {
         marker_elems[i].style.visibility = "visible";
-      } else if (student.currentPackage[0].marker === marker_elems[i].id) {
+      } else if (student.currentPackage.marker === marker_elems[i].id) {
         marker_elems[i].style.visibility = "visible";
         addEvent(marker_elems[i]);
       } else {
