@@ -15,8 +15,9 @@ export default React.memo(function WorkspaceContextProvider() {
 
   const [activeTask, setActiveTask] = useState(false);
   const prevTask = usePrevious(activeTask);
-
+  const prevStudent = usePrevious(student);
   const taskChanged = prevTask && prevTask.taskId != activeTask.taskId;
+  const solvedTask = prevTask && prevStudent.tasks.length > student.tasks.length;
 
   const [readFinished, setReadFinished] = useState(false);
   const [currentSubPackageIndex, setCurrentSubPackageIndex] = useState(0);
@@ -25,11 +26,15 @@ export default React.memo(function WorkspaceContextProvider() {
   const regex = "\\d+";
 
   useEffect(() => {
+    console.log(student);
     if (taskChanged) {
       window.addEventListener(
         "beforeunload",
         Meteor.call("students.setLastActiveTaskId", activeTask._id, student._id)
       );
+      if (solvedTask) {
+        handleNextTask(student);
+      }
     }
 
     // return () => {
