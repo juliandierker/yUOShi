@@ -3,7 +3,7 @@ import { GameContext } from "./StudentContextProvider";
 import PropTypes from "prop-types";
 import { usePrevious } from "../../shared/customHooks";
 import Workspace from "./game/Workspace";
-import { TaskContentProvider } from "../tasks/TaskContentProvider";
+import TaskContentProvider from "../tasks/TaskContentProvider";
 
 export const ActiveTaskContext = React.createContext();
 
@@ -78,14 +78,16 @@ export default React.memo(function WorkspaceContextProvider() {
       );
     }
   }
-
+  function solveIntroTraining(studentId, task) {
+    const meteorMethod = "solutionHandler.submit" + task.filePrefix;
+    Meteor.call(meteorMethod, studentId, task, 100);
+  }
   function handlePreviousTaskButtonClick(student) {
     if (student && student.currentSequenceId > 1) {
       Meteor.call("students.showPreviousTask", student);
     }
   }
-  function getActiveSubpackage() {
-    console.log("subPackage");
+  function getActiveSubpackage(student) {
     let pId;
     if (student.tasks[0]) {
       pId = student.tasks[0].parentId;
@@ -94,7 +96,6 @@ export default React.memo(function WorkspaceContextProvider() {
     } else {
       return;
     }
-    console.log(student.currentPackage);
     return student.currentPackage.content.filter(
       (subpackage) => student.currentPackage.name + subpackage.sequenceId === pId
     )[0];
@@ -104,33 +105,19 @@ export default React.memo(function WorkspaceContextProvider() {
       if (!err) return true;
     });
   }
-
-  var currentTask = null;
-  currentTask = student.tasks.find((currentTask) => currentTask.taskId == student.lastActiveTaskId);
-  if (!currentTask) {
-    currentTask = student.solvedTasks.find(
-      (currentTask) => currentTask.taskId == student.lastActiveTaskId
-    );
-  }
-  console.log(activeTask);
-  const task = useMemo(() => tasks.find((task) => task._id == student.lastActiveTaskId), [
-    student.lastActiveTaskId,
-    tasks
-  ]);
-
   return (
     <ActiveTaskContext.Provider
       value={{
-        currentTask,
-        task,
+        activeTask,
         setReadFinished,
         getActiveSubpackage,
         handlePreviousTaskButtonClick,
         handleNextTask,
-        handleNextTaskButtonClick
+        handleNextTaskButtonClick,
+        solveIntroTraining
       }}>
       {activeTask ? (
-        <TaskContentProvider currentTask={activeTask} task={task}>
+        <TaskContentProvider currentTask={activeTask}>
           <Workspace />
         </TaskContentProvider>
       ) : (

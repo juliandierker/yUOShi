@@ -5,35 +5,41 @@ import { Responsive, Segment, Button, Header, Modal, Image } from "semantic-ui-r
 
 import MultiChoiceAnimationTemplate from "../multiChoice/MultiChoiceAnimationTemplate";
 import SurveyAnimationTemplate from "../survey/SurveyAnimationTemplate.js";
+import { ActiveTaskContext } from "../../student/WorkspaceContext";
 import { GameContext } from "../../student/StudentContextProvider";
 
-export default function TrainingAnimationTemplate(activeTask) {
+export default function TrainingAnimationTemplate(props) {
+  const activeTask = props.activeTask;
   const { student } = useContext(GameContext);
-  const [currentTraining, setCurrentTraining] = useState(null);
+  const { solveIntroTraining } = useContext(ActiveTaskContext);
   const [open, setOpen] = useState(true);
   const [outro, setOutro] = useState(false);
 
   const [introIndex, setIntroIndex] = useState(0);
-  const [finalIndex, setFinalIndex] = useState(student.tasks.content[0].quests.length + 1);
+  const [finalIndex, setFinalIndex] = useState(activeTask.content[0].quests.length + 1);
   const [stepContent, setStepContent] = useState([]);
   const [stepName, setStepName] = useState([]);
   const [stepIcon, setStepIcon] = useState([]);
+  const [dimmer, setDimmer] = useState(false);
 
-  // this.view = React.createRef();
+  // view = React.createRef();
 
   function show(dimmer) {
     setDimmer(dimmer);
     setOpen(true);
   }
-  function close(dimmer) {
-    solveTraining();
+  function close() {
+    if (!activeTask.finalTraining) {
+      solveIntroTraining(student._id, activeTask);
+      setOpen(false);
+    } else {
+      alert("todo");
+    }
   }
-  function renderNextStep() {
-    setIntroIndex(introIndex + 1);
-  }
+
   function initIntroSteps() {
-    const isOutro = student.tasks[0].finalTraining;
-    const content = student.tasks[0].content[0];
+    const isOutro = activeTask.finalTraining;
+    const content = activeTask.content[0];
 
     let stepContent = [];
     let stepName = [];
@@ -41,8 +47,8 @@ export default function TrainingAnimationTemplate(activeTask) {
 
     if (!isOutro) {
       stepContent.push(content.intro);
-      stepName.push(student.tasks[0].name);
-      stepIcon.push(student.tasks[0].image);
+      stepName.push(activeTask.name);
+      stepIcon.push(activeTask.image);
     }
 
     for (var i in content.quests) {
@@ -53,58 +59,50 @@ export default function TrainingAnimationTemplate(activeTask) {
 
     if (!isOutro) {
       stepContent.push(content.outro);
-      stepName.push(student.tasks[0].name);
-      stepIcon.push(student.tasks[0].image);
+      stepName.push(activeTask.name);
+      stepIcon.push(activeTask.image);
     }
     setStepContent(stepContent);
     setStepName(stepName);
     setStepIcon(stepIcon);
   }
   useEffect(() => {
-    if (!introSteps) {
+    if (!stepName || stepName.length == 0) {
       initIntroSteps();
     }
   });
 
-  function solveTraining() {
-    Meteor.call("students.solveTraining", student, currentTraining);
-    this.setState({ open: false });
-  }
-
   function backAction() {
-    const { introIndex } = this.state;
-
     if (introIndex > 0) {
-      this.setState({ introIndex: introIndex - 1 });
+      setIntroIndex(introIndex - 1);
     }
   }
   function nextAction() {
-    if (this.view.current) {
-      let mcView = this.view.current.view.current;
-      if (mcView && mcView.state.showSolution) {
-        mcView.setState({ showSolution: false });
-      }
-    }
+    // if (view.current) {
+    //   let mcView = view.current.view.current;
+    //   if (mcView && mcView.state.showSolution) {
+    //     TODO setState of view
+    //     mcView.setState({ showSolution: false });
+    //   }
+    // }
 
-    const { introIndex, finalIndex, currentTraining } = this.state;
-    if (currentTraining.finalTraining) {
+    if (activeTask.finalTraining) {
       if (introIndex <= finalIndex) {
-        this.setState({ introIndex: introIndex + 1 });
+        setIntroIndex(introIndex + 1);
       } else {
-        this.solveTraining();
+        solveTraining();
       }
     } else {
-      this.setState({ introIndex: introIndex + 1 });
+      setIntroIndex(introIndex + 1);
     }
   }
   function renderBtns() {
-    const { introIndex, finalIndex, currentTraining } = this.state;
-    if (!currentTraining.finalTraining) {
+    if (!activeTask.finalTraining) {
       return (
         <Button.Group attached="top">
-          <Button id="prevBtn" content="Zurück" onClick={this.backAction.bind(this)} />
+          <Button id="prevBtn" content="Zurück" onClick={backAction} />
           {introIndex != finalIndex ? (
-            <Button id="nextBtn" content="Weiter" onClick={this.nextAction.bind(this)} />
+            <Button id="nextBtn" content="Weiter" onClick={nextAction} />
           ) : null}
 
           {introIndex == finalIndex ? (
@@ -114,7 +112,7 @@ export default function TrainingAnimationTemplate(activeTask) {
               icon="checkmark"
               labelPosition="right"
               content="Los gehts"
-              onClick={this.close}
+              onClick={close}
             />
           ) : null}
         </Button.Group>
@@ -131,19 +129,18 @@ export default function TrainingAnimationTemplate(activeTask) {
           <Button
             id="nextBtn"
             content={introIndex <= finalIndex - 1 ? "Nächster Fall" : "Kapitel abschließen"}
-            onClick={this.nextAction.bind(this)}
+            onClick={nextAction}
           />
         </React.Fragment>
       );
     }
   }
   function renderOutro() {
-    const content = student.tasks[0].content[0].quests;
-
+    const content = activeTask.content[0].quests;
     if (introIndex < finalIndex - 1) {
       const multiObj = {
         AnswerSet: content[introIndex].AnswerSet,
-        taskId: student.tasks[0].taskId,
+        taskId: activeTask.taskId,
         filePrefix: content[introIndex].filePrefix,
         QuestionId: content[introIndex].questId,
         Question: content[introIndex].Question,
@@ -152,86 +149,76 @@ export default function TrainingAnimationTemplate(activeTask) {
       };
       let taskProps = {
         student,
-        tasks,
-        activeTask: multiObj,
-        courses: courses,
-        trainings: trainings,
-        renderNextStep: setIntroIndex(introIndex + 1).bind(this)
+        activeTask: multiObj
       };
 
       if (activeTask.content[0].quests[introIndex].filePrefix === "Survey")
         taskProps = {
           student: student,
-          tasks: tasks,
-          activeTask: activeTask.content[0].quests[introIndex],
-          courses: courses,
-          trainings: trainings,
-          renderNextStep: this.renderNextStep.bind(this)
+          activeTask: activeTask.content[0].quests[introIndex]
         };
 
-      return activeTask.content[0].quests[introIndex].filePrefix === "Multi" ? (
-        <MultiChoiceAnimationTemplate {...taskProps} ref={this.view} />
-      ) : (
-        <SurveyAnimationTemplate {...taskProps} />
-      );
+      return activeTask.finalTraining &&
+        activeTask.content[0].quests[introIndex].filePrefix === "Multi" ? (
+        //TODO REF VIEW
+        <MultiChoiceAnimationTemplate {...taskProps} />
+      ) : null;
+      // <SurveyAnimationTemplate {...taskProps} />
     }
   }
-  if (currentTraining) {
-    const modalContent = (
-      <Modal.Content image id="ImageContent">
-        <Modal.Description id="introDescription">
-          <Header id="IntroTrainingText">{stepName[introIndex]}</Header>
-          {stepContent[introIndex]}
-          {this.renderOutro()}
-        </Modal.Description>
-      </Modal.Content>
-    );
 
-    const modalContentContainer = (
-      <React.Fragment>
-        <Image wrapped size="small" src={"/training/quests/" + stepIcon[introIndex]} />
-        {modalContent}
-      </React.Fragment>
-    );
+  const modalContent = (
+    <Modal.Content image id="ImageContent">
+      <Modal.Description id="introDescription">
+        <Header id="IntroTrainingText">{stepName[introIndex]}</Header>
+        {stepContent[introIndex]}
+        {renderOutro()}
+      </Modal.Description>
+    </Modal.Content>
+  );
 
-    return (
-      <React.Fragment>
-        <Modal
-          id="introModal"
-          className="scrolling"
-          that={this}
-          dimmer={dimmer}
-          closeOnDimmerClick={false}
-          closeOnEscape={false}
-          open={open}
-          onClose={this.close}>
-          <Segment.Group>
-            <Responsive as={Segment} {...Responsive.onlyMobile}>
-              {modalContentContainer}
-            </Responsive>
-            <Responsive as={Segment} {...Responsive.onlyTablet}>
-              {modalContentContainer}
-            </Responsive>
+  const modalContentContainer = (
+    <React.Fragment>
+      <Image wrapped size="small" src={"/training/quests/" + stepIcon[introIndex]} />
+      {modalContent}
+    </React.Fragment>
+  );
 
-            <Responsive as={Segment} {...Responsive.onlyComputer}>
-              <div className="ui grid">
-                <div className="row">
-                  <div className="four wide column">
-                    <Image wrapped size="medium" src={"/training/quests/" + stepIcon[introIndex]} />
-                  </div>
-                  <div className="ten wide column">{modalContent}</div>
+  return (
+    <React.Fragment>
+      <Modal
+        id="introModal"
+        className="scrolling"
+        that={this}
+        dimmer={dimmer}
+        closeOnDimmerClick={false}
+        closeOnEscape={false}
+        open={open}
+        onClose={close}>
+        <Segment.Group>
+          <Responsive as={Segment} {...Responsive.onlyMobile}>
+            {modalContentContainer}
+          </Responsive>
+          <Responsive as={Segment} {...Responsive.onlyTablet}>
+            {modalContentContainer}
+          </Responsive>
+
+          <Responsive as={Segment} {...Responsive.onlyComputer}>
+            <div className="ui grid">
+              <div className="row">
+                <div className="four wide column">
+                  <Image wrapped size="medium" src={"/training/quests/" + stepIcon[introIndex]} />
                 </div>
+                <div className="ten wide column">{modalContent}</div>
               </div>
-            </Responsive>
-          </Segment.Group>
+            </div>
+          </Responsive>
+        </Segment.Group>
 
-          <Modal.Actions id="ModalActions">{this.renderBtns()}</Modal.Actions>
-        </Modal>
-      </React.Fragment>
-    );
-  } else {
-    return <div />;
-  }
+        <Modal.Actions id="ModalActions">{renderBtns()}</Modal.Actions>
+      </Modal>
+    </React.Fragment>
+  );
 }
 
 TrainingAnimationTemplate.propTypes = {

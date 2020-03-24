@@ -7,6 +7,7 @@ import { Teachers } from "./teachers";
 import { Courses } from "./courses";
 import { Tasks } from "./tasks";
 import { Package } from "./package";
+
 export const Students = new Mongo.Collection("students");
 
 function checkTaskRequirements(req, solvedTasks) {
@@ -113,19 +114,9 @@ Meteor.methods({
   "students.setLastActiveTaskId": function(taskId, _id) {
     if (taskId) Students.update(_id, { $set: { lastActiveTaskId: taskId } });
   },
-  "students.solveTraining": function(student, training) {
-    var studentUpdates = {
-      $addToSet: { solvedTraining: training },
-      $pull: {
-        tasks: {
-          name: training.name,
-          sequenceId: training.sequenceId
-        }
-      }
-    };
-    Students.update({ _id: student._id }, studentUpdates);
-    Students.update({ _id: student._id }, { $inc: { currentSequenceId: 1 } });
-  },
+  // "students.solveTask": function(student, task) {
+  //   solveTask(student._id, task._id, 100);
+  // },
   "students.showNextTask": function(student) {
     let task = Tasks.find({
       package: student.currentPackage.name,

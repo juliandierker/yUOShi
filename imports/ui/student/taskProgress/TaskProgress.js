@@ -19,23 +19,49 @@ export default function TaskProgress() {
   const prevTask = usePrevious(currentTask);
 
   const currentPackage = student.currentPackage;
-  const subPackages = getActiveSubpackage();
-  console.log(getActiveSubpackage);
-  console.log(subPackages);
+
   const [activeStep, setActiveStep] = useState(getInitStep());
-  const [steps, setSteps] = useState([]);
-
-  console.log(currentTask);
-  useEffect(() => {
-    generateSubPackages();
-  });
+  const [subPackages, setSubPackages] = useState(generateSubPackages());
 
   useEffect(() => {
-    setSteps(getSteps());
-    if (currentTask) checkProgress();
+    if (prevTask && currentTask) checkProgress();
 
-    if (!prevTask && currentTask) getInitStep();
+    if (!prevTask && currentTask) this.getInitStep();
   });
+
+  function generateSubPackages() {
+    let newSubPackages = [];
+    currentPackage.content.map((subPackage) => {
+      let sp = {
+        title: subPackage.title,
+        id: currentPackage.name + subPackage.sequenceId,
+        sequenceId: subPackage.sequenceId,
+        tasks: []
+      };
+
+      // Add tasks to tasks array
+      subPackage.tasks.map((task) => {
+        sp.tasks.push({
+          name: task.title,
+          parentId: task.parentId,
+          sequenceId: task.sequenceId,
+          description: task.description
+        });
+      });
+
+      sp.tasks.sort((a, b) => {
+        if (a.sequenceId < b.sequenceId) {
+          return -1;
+        } else if (a.sequenceId > b.sequenceId) {
+          return 1;
+        } else {
+          return 0;
+        }
+      });
+      newSubPackages.push(sp);
+    });
+    return [...newSubPackages];
+  }
   function getInitStep() {
     if (currentTask) {
       return 1;
@@ -49,12 +75,12 @@ export default function TaskProgress() {
   }
   function getSteps() {
     var stepArr = [];
-    subPackages[0].map((subPackage, index) => {
+    subPackages.map((subPackage) => {
       stepArr.push(subPackage.title);
     });
-
     return stepArr;
   }
+
   function renderStepper() {
     var classes = makeStyles((theme) => ({
       root: {
@@ -75,6 +101,7 @@ export default function TaskProgress() {
         padding: theme.spacing(3)
       }
     }));
+    const steps = getSteps();
     function handleNext() {
       setActiveStep((prevActiveStep) => prevActiveStep + 1);
     }
@@ -86,7 +113,6 @@ export default function TaskProgress() {
     function handleReset() {
       setActiveStep(0);
     }
-
     return (
       <div id="workspaceStepper" className={classes.root}>
         <Stepper activeStep={activeStep} orientation="vertical">
@@ -126,62 +152,6 @@ export default function TaskProgress() {
         setActiveStep(activeStep - 1);
       }
     }
-  }
-  function generateSubPackages() {
-    let newSubPackages = [];
-    currentPackage.content.map((subPackage) => {
-      let sp = {
-        title: subPackage.title,
-        id: currentPackage.name + subPackage.sequenceId,
-        sequenceId: subPackage.sequenceId,
-        tasks: []
-      };
-
-      // Add tasks to tasks array
-      subPackage.tasks.map((task) => {
-        sp.tasks.push({
-          name: task.title,
-          parentId: task.parentId,
-          sequenceId: task.sequenceId,
-          description: task.description
-        });
-      });
-
-      // Add trainings to tasks array
-      // trainings.map((training) => {
-      //   training.Motivation.map((mot) => {
-      //     if (mot.parentId == sp.id) {
-      //       sp.tasks.push({
-      //         name: mot.title,
-      //         parentId: mot.parentId,
-      //         sequenceId: mot.sequenceId,
-      //         description: mot.content
-      //       });
-      //     }
-      //   });
-      //   training.Identität.map((ide) => {
-      //     if (ide.parentId == sp.id) {
-      //       sp.tasks.push({
-      //         name: ide.title,
-      //         parentId: ide.parentId,
-      //         sequenceId: ide.sequenceId,
-      //         description: ide.content
-      //       });
-      //     }
-      //   });
-      // });
-      // Sort tasks by sequenceId
-      sp.tasks.sort((a, b) => {
-        if (a.sequenceId < b.sequenceId) {
-          return -1;
-        } else if (a.sequenceId > b.sequenceId) {
-          return 1;
-        } else {
-          return 0;
-        }
-      });
-      newSubPackages.push(sp);
-    });
   }
 
   function renderSubPackage(sub, complete) {

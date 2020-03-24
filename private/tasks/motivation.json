@@ -7,6 +7,7 @@
       "taskId": "MultiIntro",
       "filePrefix": "Training",
       "description": "Schaue dir die Fallbeispiele zunächst an.",
+      "credits": 2,
 
       "trainingId": "Motivation Problem",
       "parentId": "Motivation0",

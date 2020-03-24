@@ -4,16 +4,10 @@ import arrayMove from "array-move";
 
 import { Grid, Card, Icon, Image, Button } from "semantic-ui-react";
 const SortableImage = SortableElement(({ value }) => (
-  <Image
-    src="https://react.semantic-ui.com/images/avatar/large/matthew.png"
-    wrapped
-    ui={false}
-  />
+  <Image src="https://react.semantic-ui.com/images/avatar/large/matthew.png" wrapped ui={false} />
 ));
 const SortableDescription = SortableElement(({ value }) => (
-  <Card.Description>
-    Matthew is a musician living in Nashville.
-  </Card.Description>
+  <Card.Description>Matthew is a musician living in Nashville.</Card.Description>
 ));
 const SortableExample = SortableElement(({ value }) => (
   <a>
@@ -83,13 +77,9 @@ export default class DragdropViewFormular extends Component {
     );
   }
   renderSortableContent() {
-    return (
-      <SortableCards cards={this.state.cards} onSortEnd={this.onSortEnd} />
-    );
+    return <SortableCards cards={this.state.cards} onSortEnd={this.onSortEnd} />;
   }
   generateCards(cards) {
-    return (
-      <SortableCards cards={this.state.cards} onSortEnd={this.onSortEnd} />
-    );
+    return <SortableCards cards={this.state.cards} onSortEnd={this.onSortEnd} />;
   }
 }

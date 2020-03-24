@@ -22,7 +22,7 @@ import de from "hyphenated-de";
 export default React.memo(function Workspace() {
   const {
     task,
-    currentTask,
+    activeTask,
     readFinished,
     setReadFinished,
     getActiveSubpackage,
@@ -30,10 +30,8 @@ export default React.memo(function Workspace() {
     handleNextTaskButtonClick
   } = useContext(ActiveTaskContext);
   const { student } = useContext(GameContext);
-  const [dimmer, setDimmer] = useState(false);
   const [descriptionModalOpen, setDescriptionModalOpen] = useState(false);
   useEffect(() => {
-    console.log("TETETE");
     openDescriptionModal();
     checkReadFinish();
   });
@@ -45,7 +43,7 @@ export default React.memo(function Workspace() {
       var tasks = student.tasks;
     }
     let currentStudentTask = tasks.find((elem) => {
-      return elem && currentTask && elem._id === currentTask._id;
+      return elem && activeTask && elem._id === activeTask._id;
     });
 
     if (
@@ -60,13 +58,13 @@ export default React.memo(function Workspace() {
       Swal.fire({
         position: "top-start",
         type: "info",
-        title: currentTask.description,
+        title: activeTask.description,
         onClose: () => {
           setDescriptionModalOpen(false);
         }
       });
 
-      Meteor.call("solutionHandler.viewTask", student._id, currentTask._id);
+      Meteor.call("solutionHandler.viewTask", student._id, activeTask._id);
     }
   }
 
@@ -85,9 +83,8 @@ export default React.memo(function Workspace() {
   }
 
   function taskSwitch() {
-    console.log(currentTask);
-    if (currentTask) {
-      switch (currentTask.filePrefix) {
+    if (activeTask) {
+      switch (activeTask.filePrefix) {
         case "Drag":
           return <DragAnimationTemplate {...taskProps} />;
         case "Tag":
@@ -101,7 +98,7 @@ export default React.memo(function Workspace() {
         case "MultiChoice":
           return <MultiChoiceAnimationTemplate />;
         case "Training":
-          return <TrainingAnimationTemplate currentTask={currentTask} />;
+          return <TrainingAnimationTemplate activeTask={activeTask} />;
       }
       // } else {
       //   Swal.fire({
@@ -165,7 +162,7 @@ export default React.memo(function Workspace() {
           <Grid.Column width={8} id="workspaceGridMobile">
             <div className="workspace__container">{taskSwitch()}</div>
           </Grid.Column>
-          {currentTask ? <TaskProgress /> : null}
+          {activeTask ? <TaskProgress /> : null}
         </Grid>
         {renderNavigationButtons()}
       </React.Fragment>
@@ -173,11 +170,11 @@ export default React.memo(function Workspace() {
   }
 
   function renderKeywordList() {
-    if (currentTask && currentTask.type === "tag") {
+    if (activeTask && activeTask.type === "tag") {
       return (
         <KeywordList
           handleClick={handleKWContinue.bind(this)}
-          keywords={currentTask.content[0].keywords}
+          keywords={activeTask.content[0].keywords}
           finishedKeywords={finishedKeywords}
         />
       );
@@ -190,5 +187,5 @@ export default React.memo(function Workspace() {
 //   student: PropTypes.object,
 //   course: PropTypes.object,
 //   tasks: PropTypes.array,
-//   currentTask: PropTypes.object
+//   activeTask: PropTypes.object
 // };

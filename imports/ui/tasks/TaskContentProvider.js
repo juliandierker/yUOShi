@@ -1,5 +1,6 @@
 import React, { useContext, useState, useRef, useEffect } from "react";
 import { usePrevious } from "../../shared/customHooks";
+export const TaskStateContext = React.createContext();
 
 export default function TaskContentProvider(props) {
   const { currentTask } = props;
