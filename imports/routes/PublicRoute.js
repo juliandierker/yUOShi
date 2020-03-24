@@ -8,9 +8,6 @@ const PublicRoute = ({ component: Component, path, ...rest }) => {
       path={path}
       {...rest}
       render={props => {
-        if (Meteor.user()) {
-          Meteor.logout();
-        }
         return <Component {...props} />;
       }}
     />

@@ -5,7 +5,7 @@ import { Router, Route, matchPath, Switch } from "react-router-dom";
 import createBrowserHistory from "history/createBrowserHistory";
 import PublicRoute from "./PublicRoute";
 import PrivateRoute from "./PrivateRoute";
-import Login from "../ui/um/Login";
+import LoginOAuth from "../ui/um/LoginOAuth";
 import NotFound from "../ui/NotFound";
 
 // Students
@@ -63,7 +63,7 @@ class Routes extends React.Component {
     return (
       <Router history={browserHistory}>
         <Switch>
-          <PublicRoute exact path="/" component={Login} />
+          <PublicRoute exact path="/" component={LoginOAuth} />
           <PrivateRoute path="/student" component={StudentContextProvider} />
           {/* <PrivateRoute path="/teacher" component={TeacherContextProvider} /> */}
           <Route path="/(.*)" component={NotFound} />
