@@ -13,7 +13,7 @@ Meteor.methods({
   "solutionHandler.viewTask"(studentId, taskId) {
     let tasks = Students.findOne({ _id: studentId }).tasks;
 
-    let newTasks = tasks.map(elem => {
+    let newTasks = tasks.map((elem) => {
       elem.taskState.viewed = true;
       return elem;
     });
@@ -22,7 +22,7 @@ Meteor.methods({
   "solutionHandler.viewVideo"(studentId, taskId) {
     let tasks = Students.findOne({ _id: studentId }).tasks;
 
-    let newTasks = tasks.map(elem => {
+    let newTasks = tasks.map((elem) => {
       if (elem._id === taskId) {
         elem.taskState.videoWatched = true;
       }
@@ -34,12 +34,7 @@ Meteor.methods({
     saveCard(studentId, task.taskId);
     solveTask(studentId, task.taskId, 100);
   },
-  "solutionHandler.submitDrag"(
-    studentSolution,
-    studentId,
-    task,
-    solvedPercentage
-  ) {
+  "solutionHandler.submitDrag"(studentSolution, studentId, task, solvedPercentage) {
     if (solvedPercentage !== undefined) {
       solveTask(studentId, task.taskId, solvedPercentage);
       return;
@@ -47,7 +42,7 @@ Meteor.methods({
 
     // var correct = equals(studentSolution, Solutions[task.taskId]);
     var correct = true;
-    studentSolution.map(solution => {
+    studentSolution.map((solution) => {
       solution.children.map((child, index) => {
         if (task.multipleColumns) {
           if (solution.categorie != child.solution) {
@@ -66,12 +61,7 @@ Meteor.methods({
     }
     return correct;
   },
-  "solutionHandler.submitCloze"(
-    studentSolution,
-    studentId,
-    task,
-    solvedPercentage
-  ) {
+  "solutionHandler.submitCloze"(studentSolution, studentId, task, solvedPercentage) {
     if (solvedPercentage !== undefined) {
       solveTask(studentId, task.taskId, solvedPercentage);
     }
@@ -95,8 +85,7 @@ Meteor.methods({
   },
   "solutionHandler.submitTag"(studentSolution, studentId, task) {
     var correct =
-      !Solutions[task.taskId] ||
-      studentSolution.length == Solutions[task.taskId].length;
+      !Solutions[task.taskId] || studentSolution.length == Solutions[task.taskId].length;
     if (correct) {
       solveTask(studentId, task.taskId);
     }
@@ -109,13 +98,7 @@ Meteor.methods({
     }
     return correct;
   },
-  "solutionHandler.submitMulti"(
-    studentSolution,
-    studentId,
-    task,
-    questionIndex,
-    solvedPercentage
-  ) {
+  "solutionHandler.submitMulti"(studentSolution, studentId, task, questionIndex, solvedPercentage) {
     if (solvedPercentage !== undefined) {
       solveTask(studentId, task.taskId, solvedPercentage);
       return null;
@@ -123,12 +106,9 @@ Meteor.methods({
     let solution = Solutions[task.taskId];
     if (!solution) return null;
 
-    const currentSolution = solution.find(element => {
+    const currentSolution = solution.find((element) => {
       if (task.content) {
-        return (
-          element.id.toString() ===
-          task.content[questionIndex].QuestionId.toString()
-        );
+        return element.id.toString() === task.content[questionIndex].QuestionId.toString();
       } else {
         return element.id.toString() === task.QuestionId.toString();
       }
@@ -155,13 +135,16 @@ Meteor.methods({
 
     return retval;
   },
+  "solutionHandler.submitTraining"(studentId, task) {
+    solveTask(studentId, task._id, 100);
+  },
   "solutionHandler.submitSurvey"(surveyData, studentId, task) {
     // Mark surveyTask as Solved and move it into solvedTaskArray
     solveTask(studentId, task.taskId);
     //Get updated SolvedTasks from Student
     let currentStudentData = Students.findOne({ _id: studentId });
     let currentSurveyTask = currentStudentData.solvedTasks.find(
-      elem => elem.taskId === task.taskId
+      (elem) => elem.taskId === task.taskId
     );
     // Set surveyData in SolvedTask (Survey)
     currentSurveyTask.surveyData = surveyData;
@@ -183,12 +166,9 @@ Meteor.methods({
     let solution = Solutions[task.taskId];
     if (!solution) return null;
 
-    const currentSolution = solution.find(element => {
+    const currentSolution = solution.find((element) => {
       if (task.content) {
-        return (
-          element.id.toString() ===
-          task.content[questionIndex].QuestionId.toString()
-        );
+        return element.id.toString() === task.content[questionIndex].QuestionId.toString();
       } else {
         return element.id.toString() === task.QuestionId.toString();
       }

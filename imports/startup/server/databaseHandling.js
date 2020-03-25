@@ -3,15 +3,13 @@ import { Accounts } from "meteor/accounts-base";
 import { Roles } from "meteor/alanning:roles";
 import shortid from "shortid";
 import { Teachers } from "../../api/teachers";
-import { Training } from "../../api/training";
 
 import { Courses } from "../../api/courses";
 import { Students } from "../../api/students";
 import { Tasks } from "../../api/tasks";
 import { Package } from "../../api/package";
 import { addPackages } from "./addPackages";
-import { addPackageTasks } from "./addPackageTasks";
-import { addGameData } from "./addGameData";
+import { addTasks } from "./addPackageTasks";
 
 export function resetDatabase() {
   clearDatabase();
@@ -20,7 +18,6 @@ export function resetDatabase() {
   if (Meteor.isDevelopment) {
     setupTestCourse(true);
   }
-  addPackageTasks();
   addPackages();
   initPackages();
   setupStudents();
@@ -30,41 +27,21 @@ export function resetDatabase() {
 //TODO SOURCE THIS OUT
 function initPackages() {
   var packages = Package.find({}).fetch();
-  for (var i in packages) {
+  for (var i = 0; i < packages.length; i++) {
     var content = packages[i].content;
-    var tmp1 = [];
-    var tmp2 = [];
-    var pname = packages[i].name;
-    //var tasks = Tasks.find({ package: pname }).fetch();
-    var trainings = Training.find({}).fetch();
+    addTasks("tasks/" + packages[i].name.toLowerCase() + ".json");
 
-    for (var j in content) {
+    for (var j = 0; j < content.length; j++) {
       var tasks = Tasks.find({
         parentId: packages[i].name + content[j].sequenceId
       }).fetch();
       content[j].tasks = tasks;
     }
-
     var packageUpdates = {
       $set: { content: content }
     };
 
     Package.update({ _id: packages[i]._id }, packageUpdates);
-
-    for (var k in trainings[0][pname]) {
-      tmp2.push(
-        trainings[0][pname][k].trainingId + trainings[0][pname][k].sequenceId
-      );
-    }
-
-    //TODO PUT THIS IN 1 QUERY
-    Package.update({ _id: packages[i]._id }, packageUpdates);
-
-    packageUpdates = {
-      $set: { trainings: tmp2 }
-    };
-    Package.update({ _id: packages[i]._id }, packageUpdates);
-    //TODO END
   }
 }
 function setupTestCourse(skipSetup) {
@@ -119,28 +96,25 @@ function setupStudents() {
     Roles.addUsersToRoles(userId, "student");
 
     //TESTCASE WORKSPACE Tasks
-    let startPackage = [];
 
-    startPackage.push(Package.findOne({ name: "Motivation" }));
+    const startPackage = Package.findOne({ name: "Motivation" });
     if (i == 2) {
-      var task = Tasks.findOne({ package: "Motivation", sequenceId: 1 });
+      // var task = Tasks.findOne({ package: "Motivation", sequenceId: 1 });
       Students.insert({
         userId: userId,
         credits: 0,
         exp: 0,
         level: 1,
-        earning: [1],
         studipUserId: "e7a0a84b161f3e8c09b4a0a2e8a58147",
         lastActiveTaskId: null,
         courses: [],
-        tasks: [task],
+        tasks: [],
         solvedTasks: [],
         tutorials: [],
         learnCards: [],
         solvedSurveys: [],
         currentSequenceId: 0,
         currentPackage: startPackage,
-        currentTraining: [],
         solvedTraining: []
       });
     } else {
@@ -185,6 +159,5 @@ function clearDatabase() {
   Meteor.users.remove({});
   Courses.remove({});
   Tasks.remove({});
-  Training.remove({});
   Package.remove({});
 }

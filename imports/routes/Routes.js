@@ -5,14 +5,16 @@ import { Router, Route, matchPath, Switch } from "react-router-dom";
 import createBrowserHistory from "history/createBrowserHistory";
 import PublicRoute from "./PublicRoute";
 import PrivateRoute from "./PrivateRoute";
-import Login from "../ui/um/Login";
+import LoginOAuth from "../ui/um/LoginOAuth";
 import NotFound from "../ui/NotFound";
+import Login from "../ui/um/Login";
 
 // Students
-import StudentOverview from "../ui/student/StudentOverview";
+// import StudentOverview from "../ui/student/StudentOverview";
+import StudentContextProvider from "../ui/student/StudentContextProvider.js";
 // Teachers
 import TeacherOverview from "../ui/teacher/TeacherOverview";
-import Gameoverview from "../ui/student/game/Gameoverview";
+import SchoolOverview from "../ui/student/game/SchoolOverview";
 // import ClassRoom from "../ui/student/game/ClassRoom";
 // import TeacherRoom from "../ui/student/game/TeacherRoom";
 // import Office from "../ui/student/game/Office";
@@ -62,9 +64,13 @@ class Routes extends React.Component {
     return (
       <Router history={browserHistory}>
         <Switch>
+          {/* TODO enable for Login with studip */}
+          {/* <PublicRoute exact path="/" component={LoginOAuth} /> */}
+
           <PublicRoute exact path="/" component={Login} />
-          <PrivateRoute path="/student" component={StudentOverview} />
-          <PrivateRoute path="/teacher" component={TeacherOverview} />
+          {/* and comment this out */}
+          <PrivateRoute path="/student" component={StudentContextProvider} />
+          {/* <PrivateRoute path="/teacher" component={TeacherContextProvider} /> */}
           <Route path="/(.*)" component={NotFound} />
         </Switch>
       </Router>

@@ -2,7 +2,7 @@
   "name": "yUOShi",
   "private": true,
   "scripts": {
-    "start": "meteor run",
+    "start": "meteor run --settings my-settings.json",
     "test": "meteor test --once --driver-package meteortesting:mocha",
     "test-app": "TEST_WATCH=1 meteor test --full-app --driver-package meteortesting:mocha",
     "visualize": "meteor --production --extra-packages bundle-visualizer",
@@ -10,14 +10,17 @@
     "lint:fix": "eslint app/ --fix"
   },
   "dependencies": {
-    "@babel/runtime": "^7.1.5",
+    "@babel/runtime": "^7.8.4",
     "@ckeditor/ckeditor5-build-classic": "^16.0.0",
     "@ckeditor/ckeditor5-react": "^2.0.0",
     "@fortawesome/fontawesome-svg-core": "^1.2.22",
     "@fortawesome/free-solid-svg-icons": "^5.10.2",
     "@fortawesome/react-fontawesome": "^0.1.4",
     "@material-ui/core": "^4.4.2",
+    "@xyng/yuoshi-backend-adapter-argonauts": "^0.0.1",
+    "@xyng/yuoshi-request-adapter-axios": "^1.0.0",
     "array-move": "^2.2.0",
+    "axios": "^0.19.2",
     "fast-deep-equal": "^2.0.1",
     "gsap": "^2.0.2",
     "hyphenated-de": "^1.2.0",
@@ -56,7 +59,7 @@
   "devDependencies": {
     "@babel/core": "^7.3.4",
     "babel-eslint": "^10.0.1",
-    "eslint": "^5.15.1",
+    "eslint": "^5.16.0",
     "eslint-config-airbnb": "^17.1.0",
     "eslint-config-prettier": "^4.1.0",
     "eslint-import-resolver-meteor": "^0.4.0",

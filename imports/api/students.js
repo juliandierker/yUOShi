@@ -7,6 +7,7 @@ import { Teachers } from "./teachers";
 import { Courses } from "./courses";
 import { Tasks } from "./tasks";
 import { Package } from "./package";
+
 export const Students = new Mongo.Collection("students");
 
 function checkTaskRequirements(req, solvedTasks) {
@@ -70,7 +71,6 @@ Meteor.methods({
     Students.update(_id, { $addToSet: { tasks } });
   },
   "students.completeTutorial"(tutorial) {
-    console.log(tutorial);
     if (Meteor.userId() && Roles.userIsInRole(Meteor.user(), ["student"])) {
       Students.update({ userId: Meteor.userId() }, { $push: { tutorials: tutorial } });
     } else {
@@ -86,9 +86,9 @@ Meteor.methods({
   },
   //Gets a package and it's first training
   "students.getPackage": function(packageName, _id) {
-    var packageObj = Package.findOne({ name: packageName });
+    var currentPackage = Package.findOne({ name: packageName });
     try {
-      Students.update(_id, { $addToSet: { currentPackage: packageObj } });
+      Students.update(_id, { $set: { currentPackage } });
       return true;
     } catch (e) {
       console.log(e);
@@ -105,31 +105,21 @@ Meteor.methods({
   },
   "students.initTraining": function(training, _id) {
     try {
-      Students.update(_id, { $set: { currentTraining: training } });
+      Students.update(_id, { $addToSet: { tasks: training } });
       return Students.find({ _id: _id }).fetch()[0];
     } catch (e) {
       console.log(e);
     }
   },
   "students.setLastActiveTaskId": function(taskId, _id) {
-    Students.update(_id, { $addToSet: { lastActiveTaskId: taskId } });
+    if (taskId) Students.update(_id, { $set: { lastActiveTaskId: taskId } });
   },
-  "students.solveTraining": function(student, training) {
-    var studentUpdates = {
-      $addToSet: { solvedTraining: training },
-      $pull: {
-        currentTraining: {
-          name: training.name,
-          sequenceId: training.sequenceId
-        }
-      }
-    };
-    Students.update({ _id: student._id }, studentUpdates);
-    Students.update({ _id: student._id }, { $inc: { currentSequenceId: 1 } });
-  },
+  // "students.solveTask": function(student, task) {
+  //   solveTask(student._id, task._id, 100);
+  // },
   "students.showNextTask": function(student) {
     let task = Tasks.find({
-      package: student.currentPackage[0].name,
+      package: student.currentPackage.name,
       sequenceId: student.currentSequenceId + 1
     }).fetch()[0];
     if (task && task.requires) {
@@ -142,7 +132,7 @@ Meteor.methods({
   },
   "students.showPreviousTask": function(student) {
     let task = Tasks.find({
-      package: student.currentPackage[0].name,
+      package: student.currentPackage.name,
       sequenceId: student.currentSequenceId - 1
     }).fetch()[0];
     if (task.requires) {
@@ -164,6 +154,7 @@ if (Meteor.isServer) {
     }
     throw new Meteor.Error("Access denied!");
   });
+
   // teacher
   Meteor.publish("pupilsByClassId", (classId) => {
     const teacher = Teachers.findOne({ userId: Meteor.userId() });

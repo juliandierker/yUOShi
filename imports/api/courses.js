@@ -4,6 +4,8 @@ import SimpleSchema from "simpl-schema";
 import shortid from "shortid";
 import { Students } from "./students";
 import { Teachers } from "./teachers";
+import studipAdapter from "./backendAdapter";
+import PromisifiedMeteor from "./promisified";
 
 export const Courses = new Mongo.Collection("courses");
 
@@ -76,82 +78,89 @@ Meteor.methods({
           tasks: [],
           paths: []
         });
-        Teachers.update({ $addToSet: { courses: courseId } });
+        Teachers.update(teacherId, { $addToSet: { courses: courseId } });
       } else {
         throw new Meteor.Error("Access denied!");
       }
     }
   },
   // after basic-auth get the user-courses where the teacher initialized yuoshi
-  "courses.getTeacherCourses": function(token, studipUserId) {
+  "courses.getTeacherCourses": async function() {
     //HTTP requests goes server-side only
-    if (Meteor.isServer) {
-      try {
-        var courseRawData = HTTP.call(
-          "GET",
-          "http://localhost/studip/plugins.php/argonautsplugin/users/" + studipUserId + "/courses",
-          {
-            headers: { Authorization: "Basic " + token }
-          }
-        );
-        var courseData = JSON.parse(courseRawData.content);
-        var memberships = [];
-        for (var i in courseData.data) {
-          var tmpCourse = courseData.data[i];
+    if (!Meteor.isServer) {
+      return false
+    }
 
-          try {
-            var membershipsRaw = HTTP.call(
-              "GET",
-              "http://localhost/studip/plugins.php/argonautsplugin/courses/" +
-                tmpCourse.id +
-                "/memberships",
-              {
-                headers: { Authorization: "Basic " + token }
-              }
-            );
-            var membershipData = JSON.parse(membershipsRaw.content);
+    const user = Meteor.user();
 
-            //Search for courses where current user is "dozent"
-            for (var k in membershipData.data) {
-              var memberStatus = membershipData.data[k].attributes.status;
-              var targetcourseId = membershipData.data[k].id.split("_")[1];
+    if (!user) {
+      return []
+    }
 
-              var validDozent = targetcourseId === studipUserId;
-              if (memberStatus == "dozent" && validDozent) {
-                memberships.push(tmpCourse);
-              }
-            }
-          } catch (e) {
-            console.log(e);
-            return false;
-          }
+    const studipUserId = user.services.studip.id;
+
+    if (!studipUserId) {
+      return []
+    }
+
+    const coursePaginator = studipAdapter.courseAdapter.getCourses(studipUserId);
+
+    try {
+      const memberships = [];
+
+      for await (let course of coursePaginator) {
+        if (await course.lecturers.contains((lecturer => lecturer.id === studipUserId))) {
+          memberships.push(course)
         }
-        return memberships;
-      } catch (e) {
-        console.log(e);
-        return false;
       }
+
+      return memberships
+    } catch (e) {
+      console.log(e)
+
+      return []
     }
   },
 
-  "courses.getStudentCourses": function(token, studipUserId) {
-    var user = Students.findOne({ studipUserId: studipUserId });
+  "courses.getStudentCourses": async function(currentCourses) {
+    if (!Meteor.isServer) {
+      return []
+    }
 
-    if (Meteor.isServer) {
-      try {
-        var courseRawData = HTTP.call(
-          "GET",
-          "http://localhost/studip/plugins.php/argonautsplugin/users/" + studipUserId + "/courses",
-          {
-            headers: { Authorization: "Basic " + token }
-          }
-        );
-        var courseData = JSON.parse(courseRawData.content);
-      } catch (e) {
-        console.log(e);
-        return false;
+    const user = Meteor.user()
+
+    if (!user) {
+      return []
+    }
+
+    const studipUserId = user.services.studip.id
+
+    if (!studipUserId) {
+      return []
+    }
+
+    try {
+      const courses = []
+      const paginator = studipAdapter.courseAdapter.getCourses(studipUserId)
+
+      for await (let course of paginator) {
+        if (currentCourses.find(checkId => checkId === course.id)) {
+          courses.push(course.id)
+        }
+
+        await PromisifiedMeteor.call("students.addCourse", course.id, studipUserId)
+
+        courses.push(course.id)
       }
-      return courseData;
+
+      return PromisifiedMeteor.call(
+        "students.getStartedCourses",
+        courses,
+      );
+    } catch (e) {
+      console.log(e);
+
+      return [];
     }
   },
 
