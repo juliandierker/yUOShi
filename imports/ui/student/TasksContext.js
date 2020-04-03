@@ -37,6 +37,7 @@ export const TasksContextProvider = ({ packageId, children }) => {
     const ctx = {
         currentTask,
         currentTaskLoading,
+        updateTask,
     }
 
     return <TasksContext.Provider value={ctx}>
