@@ -22,6 +22,15 @@ Meteor.methods({
 
         return backendAdapter.userTaskSolutionAdapter.saveCompleteTask(task_id, task.createAnswer(answers))
     },
+    "tasks.checkTag": async (task_id, answers) => {
+        const backendAdapter = createBackendAdapter()
+        const task = await backendAdapter.taskAdapter.getTask(task_id)
+        if (!task) {
+            return
+        }
+
+        return backendAdapter.userTaskSolutionAdapter.saveCompleteTask(task_id, task.createAnswer(answers))
+    },
     "tasks.getSolution": quest_solution_id => {
         const backendAdapter = createBackendAdapter()
         return backendAdapter.userTaskSolutionAdapter.getSampleSolution(quest_solution_id)

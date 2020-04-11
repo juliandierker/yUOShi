@@ -2,6 +2,7 @@ import React, { memo } from "react";
 import { TasksContextProvider, useTasksContext } from "./TasksContext";
 import RenderMulti from "../taskRenderers/RenderMulti";
 import RenderDrag from "../taskRenderers/RenderDrag";
+import RenderTag from "../taskRenderers/RenderTag";
 
 const RenderTask = memo(({ task, updateTask }) => {
     if (!task) {
@@ -15,7 +16,7 @@ const RenderTask = memo(({ task, updateTask }) => {
         case "drag":
             return <RenderDrag task={task} updateTask={updateTask} />;
         case "tag":
-            return null;
+            return <RenderTag task={task} updateTask={updateTask} />;
         case "cloze":
             return null;
         case "memory":
