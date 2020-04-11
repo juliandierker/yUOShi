@@ -470,9 +470,9 @@
       "integrity": "sha512-RLwrxCTDNiNev9hpr9rDq8NyeQ8Nn0X1we4Wu7Tlf368I8r+7hBj3uObhifhuLk74egaYaSX5nUsBlWz6kjj+A=="
     },
     "@xyng/yuoshi-backend-adapter": {
-      "version": "0.0.2-alpha.0",
-      "resolved": "https://registry.npmjs.org/@xyng/yuoshi-backend-adapter/-/yuoshi-backend-adapter-0.0.2-alpha.0.tgz",
-      "integrity": "sha512-6muuRIqO+1Ao6MOH4MnAMPl3fcpiV6Ps/0wOEbR6304q0rJS0/5DzE6Cy80xAIP/uw6QO9GAfAXIM6NxJQvRsw==",
+      "version": "0.0.2-alpha.1",
+      "resolved": "https://registry.npmjs.org/@xyng/yuoshi-backend-adapter/-/yuoshi-backend-adapter-0.0.2-alpha.1.tgz",
+      "integrity": "sha512-9+2EdxPyuPq9sJWlRH8zGr/6F2ahdBIE+Zog7xWmIKcEq3GXuPMHpP/bQAxaj6tPpvg7aG360BEKuuERzg7pag==",
       "requires": {
         "@types/ejson": "^2.1.2",
         "oauth-1.0a": "^2.2.6",
@@ -480,20 +480,20 @@
       }
     },
     "@xyng/yuoshi-backend-adapter-argonauts": {
-      "version": "0.0.2-alpha.0",
-      "resolved": "https://registry.npmjs.org/@xyng/yuoshi-backend-adapter-argonauts/-/yuoshi-backend-adapter-argonauts-0.0.2-alpha.0.tgz",
-      "integrity": "sha512-WYzzRBlsduLar06pdgTLePNx2T8z5HqoSPikIosWQKASo0LDZVMXUUkvxHqEoH4hYeDYV1DnNrindvmk579JYQ==",
+      "version": "0.0.2-alpha.1",
+      "resolved": "https://registry.npmjs.org/@xyng/yuoshi-backend-adapter-argonauts/-/yuoshi-backend-adapter-argonauts-0.0.2-alpha.1.tgz",
+      "integrity": "sha512-YnBY641La9hpdZjfEmCgegusY0KzY6UNJjx9yT/mx9qtfhRy6ddsAxL8McKBcpnq5iwU3iO8zHaimqc8uY/2KQ==",
       "requires": {
-        "@xyng/yuoshi-backend-adapter": "^0.0.2-alpha.0"
+        "@xyng/yuoshi-backend-adapter": "^0.0.2-alpha.1"
       }
     },
     "@xyng/yuoshi-request-adapter-axios": {
-      "version": "1.0.1-alpha.0",
-      "resolved": "https://registry.npmjs.org/@xyng/yuoshi-request-adapter-axios/-/yuoshi-request-adapter-axios-1.0.1-alpha.0.tgz",
-      "integrity": "sha512-corfPIIzEcQXgRrQD4k9Y9JEMgCtK0UfqlUhOBUa59Rncg8Tl25GU4ePmFMwhYZfjwu5/Jvwwd5mxR2ACy2VWA==",
+      "version": "1.0.1-alpha.1",
+      "resolved": "https://registry.npmjs.org/@xyng/yuoshi-request-adapter-axios/-/yuoshi-request-adapter-axios-1.0.1-alpha.1.tgz",
+      "integrity": "sha512-TghDh6EHcfVE9vjad8rTeigEKlveDt4WANhuLn/5Zo9/eBoWw71qxzEtuyPAGgbB/rIHZM/pa0Vcm4HZCg/Meg==",
       "requires": {
         "@ungap/url-search-params": "^0.1.4",
-        "@xyng/yuoshi-backend-adapter": "^0.0.2-alpha.0"
+        "@xyng/yuoshi-backend-adapter": "^0.0.2-alpha.1"
       }
     },
     "acorn": {
