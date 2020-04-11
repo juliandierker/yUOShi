@@ -115,6 +115,7 @@ const propTypes = {
  * @returns {*}
  */
 function RenderDrag(props) {
+    const [ done, setDone ] = useState(false)
     const [ userSolution, setUserSolution ] = useState([])
     const [ solutions, setSolutions ] = useState(undefined)
     // destructure here and not in function-params so we get type-hints
@@ -257,7 +258,7 @@ function RenderDrag(props) {
               title: "Geschafft!",
               timer: 2000
             }).then()
-            return true
+            setDone(true)
         }
 
         const { value: showSolution } = await Swal.fire({
@@ -281,8 +282,6 @@ function RenderDrag(props) {
         return false
     }, [task, userSolution])
 
-    const buttonText = solutions ? "Weiter" : "Aufgabe lösen"
-
     return <>
         <DragDropViewNormal
             scene={scene}
@@ -290,11 +289,16 @@ function RenderDrag(props) {
             onCardDrop={onCardDrop}
             onColumnDrop={onColumnDrop}
         />
-        <Button
+        {(!solutions && !done) && <Button
           style={{ marginTop: "10px", marginRight: "10px", float: "right" }}
           onClick={onSolve}>
-          {buttonText}
-        </Button>
+            Aufgabe lösen
+        </Button>}
+        {(solutions || done) && <Button
+          style={{ marginTop: "10px", marginRight: "10px", float: "right" }}
+          onClick={updateTask}>
+            Weiter
+        </Button>}
     </>
 }
 RenderDrag.propTypes = propTypes
