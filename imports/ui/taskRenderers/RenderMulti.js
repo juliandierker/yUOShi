@@ -7,7 +7,8 @@ import PromisifiedMeteor from "../../api/promisified";
 import Swal from "sweetalert2";
 
 const propTypes = {
-    task: PropTypes.instanceOf(StaticMulti).isRequired
+    task: PropTypes.instanceOf(StaticMulti).isRequired,
+    updateTask: PropTypes.func.isRequired,
 }
 
 /**
@@ -23,7 +24,10 @@ const propTypes = {
  * @returns {*}
  * @constructor
  */
-const RenderMulti = ({ task, updateTask }) => {
+const RenderMulti = (props) => {
+    // destructure here and not in function-params so we get type-hints
+    const { task, updateTask } = props
+
     const [ solution, setSolution ] = useState(undefined)
     const [ currentQuestId, setCurrentQuestId ] = useState("")
     const [ doneQuests, setDoneQuests ] = useState([])

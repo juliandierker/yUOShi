@@ -1,12 +1,7 @@
 import React, { memo } from "react";
 import { TasksContextProvider, useTasksContext } from "./TasksContext";
-import DragAnimationTemplate from "../tasks/dragdrop/DragAnimationTemplate";
-import TagAnimationTemplate from "../tasks/tag/TagAnimationTemplate";
-import ClozeAnimationTemplate from "../tasks/cloze/ClozeAnimationTemplate";
-import MemoryAnimationTemplate from "../tasks/memory/MemoryAnimationTemplate";
-import SurveyAnimationTemplate from "../tasks/survey/SurveyAnimationTemplate";
-import TrainingAnimationTemplate from "../tasks/training/TrainingAnimationTemplate";
 import RenderMulti from "../taskRenderers/RenderMulti";
+import RenderDrag from "../taskRenderers/RenderDrag";
 
 const RenderTask = memo(({ task, updateTask }) => {
     if (!task) {
@@ -18,7 +13,7 @@ const RenderTask = memo(({ task, updateTask }) => {
         case "multi":
             return <RenderMulti task={task} updateTask={updateTask} />;
         case "drag":
-            return null;
+            return <RenderDrag task={task} updateTask={updateTask} />;
         case "tag":
             return null;
         case "cloze":
