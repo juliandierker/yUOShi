@@ -251,7 +251,8 @@ function RenderDrag(props) {
             return true
         }
 
-        if (result.is_correct) {
+        const correct = result.quest_solutions.reduce((acc, value) => acc && value.is_correct, true)
+        if (correct) {
             Swal.fire({
               position: "top-end",
               type: "success",
@@ -259,6 +260,8 @@ function RenderDrag(props) {
               timer: 2000
             }).then()
             setDone(true)
+
+            return true
         }
 
         const { value: showSolution } = await Swal.fire({
