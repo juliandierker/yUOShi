@@ -22,6 +22,27 @@ const urls = {
 const onAuthDone = (oAuthBinding) => {
     const identity = oAuthBinding.get(`${studipUrl}/plugins.php/argonautsplugin/users/me`)
 
+    // something went wrong
+    if (identity.statusCode !== 200) {
+        throw new Error("could not fetch user data after auth. server responded with an error")
+    }
+
+    let data;
+    try {
+        const parsed = JSON.parse(identity.content)
+
+        if (!parsed) {
+            throw new Error()
+        }
+
+        data = parsed.data;
+        if (!data) {
+            throw new Error()
+        }
+    } catch(e) {
+        throw new Error("could not parse user data returned from server.")
+    }
+
     const {
         id,
         meta: {
@@ -37,7 +58,7 @@ const onAuthDone = (oAuthBinding) => {
             "name-prefix": prefix,
             "name-suffix": suffix,
         },
-    } = identity.data
+    } = data
 
     let role;
     switch (permission) {
