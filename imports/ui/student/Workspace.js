@@ -3,6 +3,7 @@ import { TasksContextProvider, useTasksContext } from "./TasksContext";
 import RenderMulti from "../taskRenderers/RenderMulti";
 import RenderDrag from "../taskRenderers/RenderDrag";
 import RenderTag from "../taskRenderers/RenderTag";
+import RenderCard from "../taskRenderers/RenderCard";
 
 const RenderTask = memo(({ task, updateTask }) => {
     if (!task) {
@@ -17,6 +18,8 @@ const RenderTask = memo(({ task, updateTask }) => {
             return <RenderDrag task={task} updateTask={updateTask} />;
         case "tag":
             return <RenderTag task={task} updateTask={updateTask} />;
+        case "card":
+            return <RenderCard task={task} updateTask={updateTask} />;
         case "cloze":
             return null;
         case "memory":

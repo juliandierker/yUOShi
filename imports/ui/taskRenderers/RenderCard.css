@@ -1,0 +1,7 @@
+/*
+    p-tags are applied an animation to color: white
+    in default css. we'll circumvent that for our scope.
+*/
+.render_card_wrapper p {
+    animation: none !important;
+}
