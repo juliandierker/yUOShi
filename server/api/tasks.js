@@ -9,7 +9,7 @@ Meteor.methods({
 
         return task.getStatic()
     },
-    "tasks.checkQuestMulti": async (quest_id, answers) => {
+    "tasks.checkQuest": async (quest_id, answers) => {
         const backendAdapter = createBackendAdapter()
         return backendAdapter.userTaskSolutionAdapter.saveQuestSolution(quest_id, answers)
     },

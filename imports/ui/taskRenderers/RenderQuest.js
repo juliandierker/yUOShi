@@ -1,38 +1,15 @@
 import React, { useCallback, useEffect, useMemo, useState } from "react"
-import PropTypes from "prop-types"
-
-import { StaticMulti } from "@xyng/yuoshi-backend-adapter"
-import { Button, Card, Checkbox } from "semantic-ui-react";
+import { Button, Card, Checkbox, Form, TextArea } from "semantic-ui-react";
 import PromisifiedMeteor from "../../api/promisified";
 import Swal from "sweetalert2";
 
-const propTypes = {
-    task: PropTypes.instanceOf(StaticMulti).isRequired,
-    updateTask: PropTypes.func.isRequired,
-}
-
-/**
- * @typedef RenderMultiProps
- * @property {StaticMulti} task
- * @property {Function} updateTask
- */
-
-/**
- * Render a MultiTask
- *
- * @param {RenderMultiProps} props
- * @returns {*}
- * @constructor
- */
-const RenderMulti = (props) => {
-    // destructure here and not in function-params so we get type-hints
-    const { task, updateTask } = props
-
+/** @type React.FC */
+const RenderQuest = ({ task, updateTask, question, isLastQuestion, onGetNextQuest }) => {
     const [ solution, setSolution ] = useState(undefined)
-    const [ currentQuestId, setCurrentQuestId ] = useState("")
-    const [ doneQuests, setDoneQuests ] = useState([])
     const [ selectedQuestionAnswers, setSelectedQuestionAnswers ] = useState({})
     const [ userSolutionId, setUserSolutionId ] = useState()
+    const [ customAnswer, setCustomAnswer ] = useState("")
+    const [ done, setDone ] = useState(false)
 
     const getNextQuest = useCallback(async () => {
         if (!task) {
@@ -46,33 +23,20 @@ const RenderMulti = (props) => {
             return
         }
 
-        const { id, current_quest, done_quests } = data
+        const { id, current_quest } = data
+        setDone(!current_quest)
+        onGetNextQuest(data)
 
         if (!current_quest) {
-            await updateTask()
             return
         }
 
         setUserSolutionId(id)
-        setCurrentQuestId(current_quest)
-        setDoneQuests(done_quests)
-    }, [task, updateTask, userSolutionId])
+    }, [task, userSolutionId, onGetNextQuest])
 
     useEffect(() => {
         getNextQuest()
     }, [getNextQuest])
-
-    const isLastQuestion = useMemo(() => {
-        return task.contents.length - doneQuests.length === 1
-    }, [task, doneQuests])
-
-    const question = useMemo(() => {
-        if (!task || task.contents.length <= doneQuests.length) {
-            return
-        }
-
-        return task.contents.find(quest => quest.id === currentQuestId)
-    }, [task, currentQuestId, doneQuests])
 
     const selectedAnswers = useMemo(() => {
         if (!question) {
@@ -87,16 +51,26 @@ const RenderMulti = (props) => {
             return
         }
 
-        const result = await PromisifiedMeteor.call(
-            "tasks.checkQuestMulti",
-            question.id,
-            selectedAnswers.map(answer => {
-                return {
-                    quest_id: question.id,
-                    content_id: question.content_id,
-                    answer_id: answer,
-                }
+        const givenAnswers = selectedAnswers.map(answer => {
+            return {
+                quest_id: question.id,
+                content_id: question.content_id,
+                answer_id: answer,
+            }
+        })
+
+        if (question.custom_answer) {
+            givenAnswers.push({
+                quest_id: question.id,
+                content_id: question.content_id,
+                custom: customAnswer
             })
+        }
+
+        const result = await PromisifiedMeteor.call(
+            "tasks.checkQuest",
+            question.id,
+            givenAnswers,
         )
 
         if (!result) {
@@ -132,10 +106,11 @@ const RenderMulti = (props) => {
 
         if (showSolution) {
             setSolution(await PromisifiedMeteor.call("tasks.getSolution", result.id))
+            setDone(true)
         }
 
         return false
-    }, [selectedAnswers, question])
+    }, [selectedAnswers, question, customAnswer])
 
     const onSubmit = useCallback(async () => {
         const result = await onSubmitQuest()
@@ -146,21 +121,7 @@ const RenderMulti = (props) => {
             return
         }
 
-        await updateTask()
-    }, [onSubmitQuest, updateTask])
-
-    const onNextQuestion = useCallback(async () => {
-        const result = await onSubmitQuest()
-
-        if (!result) {
-            // stay at current quest - user did not give correct answer
-            // and may see the sample solution or submit another one
-            return
-        }
-
-        setSolution(undefined)
-
-        await getNextQuest()
+        setDone(true)
     }, [onSubmitQuest, getNextQuest])
 
     const toggleAnswer = useCallback((question_id, answer_id) => () => {
@@ -183,7 +144,20 @@ const RenderMulti = (props) => {
         })
     }, [])
 
-    if (!task || !question) {
+    const onGetNextTask = useCallback(async () => {
+        if (!done || !updateTask) {
+            return
+        }
+
+        await updateTask()
+    }, [updateTask, done])
+
+    /** @type React.ChangeEventHandler<HTMLInputElement> */
+    const onChangeCustomAnswer = useCallback((event) => {
+        setCustomAnswer(event.currentTarget.value)
+    }, [])
+
+    if (!question) {
         return null
     }
 
@@ -221,36 +195,44 @@ const RenderMulti = (props) => {
                                     value={answer.id}
                                     checked={selectedAnswers.includes(answer.id)}
                                     onChange={toggleAnswer(question.id, answer.id)}
+                                    disabled={!question.multiple && selectedAnswers.length > 0}
                                 />
                             })}
+                            {question.custom_answer && <Form onSubmit={(event) => event.preventDefault()}>
+                                <TextArea
+                                    placeholder="Eigene Antwort:"
+                                    value={customAnswer}
+                                    onChange={onChangeCustomAnswer}
+                                    disabled={!question.multiple && selectedAnswers.length > 0}
+                                />
+                            </Form>}
                         </Card.Description>
                     </Card.Content>
                 </Card>
             </div>
         </Card.Group>
-        {solution && <Button
+        {(done && !isLastQuestion) && <Button
             id="solveTask"
             floated="right"
             onClick={getNextQuest}
         >
             Nächste Frage
         </Button>}
-        {(!solution && isLastQuestion) && <Button
+        {(done && isLastQuestion) && <Button
+            id="solveTask"
+            floated="right"
+            onClick={onGetNextTask}
+        >
+            Nächste Aufgabe
+        </Button>}
+        {!done && <Button
             id="solveTask"
             floated="right"
             onClick={onSubmit}
         >
             Aufgabe lösen
         </Button>}
-        {(!solution && !isLastQuestion) && <Button
-            id="solveTask"
-            floated="right"
-            onClick={onNextQuestion}
-        >
-            Nächste Frage
-        </Button>}
     </>
 }
-RenderMulti.propTypes = propTypes
 
-export default RenderMulti
+export default RenderQuest

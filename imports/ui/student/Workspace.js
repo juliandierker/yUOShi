@@ -1,10 +1,11 @@
 import React, { memo } from "react";
 import { TasksContextProvider, useTasksContext } from "./TasksContext";
-import RenderMulti from "../taskRenderers/RenderMulti";
+import RenderQuest from "../taskRenderers/RenderQuestTask";
 import RenderDrag from "../taskRenderers/RenderDrag";
 import RenderTag from "../taskRenderers/RenderTag";
 import RenderCard from "../taskRenderers/RenderCard";
 import RenderCloze from "../taskRenderers/RenderCloze";
+import RenderTraining from "../taskRenderers/RenderTraining";
 
 const RenderTask = memo(({ task, updateTask }) => {
     if (!task) {
@@ -14,7 +15,8 @@ const RenderTask = memo(({ task, updateTask }) => {
     switch (task.type) {
         // TODO: update the remaining views.
         case "multi":
-            return <RenderMulti task={task} updateTask={updateTask} />;
+        case "survey":
+            return <RenderQuest task={task} updateTask={updateTask} />;
         case "drag":
             return <RenderDrag task={task} updateTask={updateTask} />;
         case "tag":
@@ -25,10 +27,8 @@ const RenderTask = memo(({ task, updateTask }) => {
             return <RenderCloze task={task} updateTask={updateTask} />;
         case "memory":
             return null;
-        case "survey":
-            return null;
         case "training":
-            return null;
+            return <RenderTraining task={task} updateTask={updateTask} />;
         default:
             return null
     }
