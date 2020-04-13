@@ -14,7 +14,6 @@ const RenderTask = memo(({ task, updateTask }) => {
     }
 
     switch (task.type) {
-        // TODO: update the remaining views.
         case "multi":
         case "survey":
             return <RenderQuest task={task} updateTask={updateTask} />;
