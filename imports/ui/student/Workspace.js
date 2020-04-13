@@ -26,7 +26,7 @@ const RenderTask = memo(({ task, updateTask }) => {
         case "cloze":
             return <RenderCloze task={task} updateTask={updateTask} />;
         case "memory":
-            return null;
+            return <RenderMemory task={task} updateTask={updateTask} />;
         case "training":
             return <RenderTraining task={task} updateTask={updateTask} />;
         default:

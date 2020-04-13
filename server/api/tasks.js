@@ -7,6 +7,10 @@ Meteor.methods({
         const backendAdapter = createBackendAdapter()
         const task = await backendAdapter.taskAdapter.getNextTask(packageId)
 
+        if (!task) {
+            return
+        }
+
         return task.getStatic()
     },
     "tasks.checkQuest": async (quest_id, answers) => {
