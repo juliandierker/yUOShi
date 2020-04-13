@@ -6,6 +6,7 @@ import RenderTag from "../taskRenderers/RenderTag";
 import RenderCard from "../taskRenderers/RenderCard";
 import RenderCloze from "../taskRenderers/RenderCloze";
 import RenderTraining from "../taskRenderers/RenderTraining";
+import RenderMemory from "../taskRenderers/RenderMemory";
 
 const RenderTask = memo(({ task, updateTask }) => {
     if (!task) {
