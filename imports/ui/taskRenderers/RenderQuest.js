@@ -2,6 +2,7 @@ import React, { useCallback, useEffect, useMemo, useState } from "react"
 import { Button, Card, Checkbox, Form, TextArea } from "semantic-ui-react";
 import PromisifiedMeteor from "../../api/promisified";
 import Swal from "sweetalert2";
+import { StaticSurvey } from "@xyng/yuoshi-backend-adapter";
 
 /** @type React.FC */
 const RenderQuest = ({ task, updateTask, question, isLastQuestion, onGetNextQuest }) => {
@@ -82,7 +83,8 @@ const RenderQuest = ({ task, updateTask, question, isLastQuestion, onGetNextQues
             return true
         }
 
-        if (result.is_correct) {
+        // surveys cannot have incorrect solutions
+        if (result.is_correct || task instanceof StaticSurvey) {
             Swal.fire({
               position: "top-end",
               type: "success",
