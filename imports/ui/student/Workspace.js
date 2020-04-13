@@ -4,6 +4,7 @@ import RenderMulti from "../taskRenderers/RenderMulti";
 import RenderDrag from "../taskRenderers/RenderDrag";
 import RenderTag from "../taskRenderers/RenderTag";
 import RenderCard from "../taskRenderers/RenderCard";
+import RenderCloze from "../taskRenderers/RenderCloze";
 
 const RenderTask = memo(({ task, updateTask }) => {
     if (!task) {
@@ -21,7 +22,7 @@ const RenderTask = memo(({ task, updateTask }) => {
         case "card":
             return <RenderCard task={task} updateTask={updateTask} />;
         case "cloze":
-            return null;
+            return <RenderCloze task={task} updateTask={updateTask} />;
         case "memory":
             return null;
         case "survey":

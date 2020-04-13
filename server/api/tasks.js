@@ -31,6 +31,23 @@ Meteor.methods({
 
         return backendAdapter.userTaskSolutionAdapter.saveCompleteTask(task_id, task.createAnswer(answers))
     },
+    "tasks.checkCloze": async (task_id, answers) => {
+        const backendAdapter = createBackendAdapter()
+        const task = await backendAdapter.taskAdapter.getTask(task_id)
+        if (!task) {
+            return
+        }
+
+        // handle it this way - ejson can't handle Maps :(
+        answers = answers.map(answer => {
+            return {
+                id: answer.id,
+                inputs: new Map(Object.entries(answer.inputs)),
+            }
+        })
+
+        return backendAdapter.userTaskSolutionAdapter.saveCompleteTask(task_id, task.createAnswer(answers))
+    },
     "tasks.checkAnswer": async (task_id, answers) => {
         const backendAdapter = createBackendAdapter()
         const task = await backendAdapter.taskAdapter.getTask(task_id)
