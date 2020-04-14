@@ -5,6 +5,7 @@ import React from "react";
 import Routes, { onAuthChange } from "../imports/routes/Routes";
 import "../imports/startup/simple-schema-configuration.js";
 import "../imports/ui/um/UserAdministration.js";
+import "../imports/api/taskTypes"
 
 // LOGIN FOR DEV
 

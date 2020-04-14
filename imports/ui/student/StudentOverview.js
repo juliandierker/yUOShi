@@ -10,21 +10,23 @@ import Office from "./game/Office";
 
 import { TutorialHandler } from "../tutorials/TutorialHandler";
 
-import WorkspaceContextProvider from "./WorkspaceContext";
+import Workspace from "./Workspace";
 import Loading from "../Loading.js";
 import TutorialComponent from "../tutorials/TutorialComponent";
 
 import { GameContext, CourseContext } from "./StudentContextProvider";
 import { usePrevious } from "../../shared/customHooks";
 import LoggingOut from "../LogginOut.js";
+import { PackagesContextProvider, usePackagesContext } from "./PackagesContext";
 
-export default function StudentOverview() {
+function RenderStudentOverview() {
   const { loading, student, tasks, page } = useContext(GameContext);
   const { course, otherStudents } = useContext(CourseContext);
   const [loggingOut, setLoggingOut] = useState(false);
   const [activeTutorial, setActiveTutorial] = useState(false);
   const prevStudent = usePrevious(student);
   let tutorial = tutorialCheck();
+  const { currentPackage } = usePackagesContext();
 
   useEffect(() => {
     if (prevStudent && prevStudent.tutorials.length < student.tutorials.length) {
@@ -49,7 +51,7 @@ export default function StudentOverview() {
     } else if (page === "schoolOverview") {
       return <SchoolOverview tutorial={tutorial} />;
     } else if (page === "workspace") {
-      return <WorkspaceContextProvider />;
+      return <Workspace packageId={currentPackage.id} />;
     } else if (page === "teacherRoom") {
       return <TeacherRoom />;
     } else if (page === "office") {
@@ -75,3 +77,11 @@ export default function StudentOverview() {
     );
   }
 }
+
+const StudentOverview = (props) => {
+  return <PackagesContextProvider>
+    <RenderStudentOverview {...props} />
+  </PackagesContextProvider>
+}
+
+export default StudentOverview

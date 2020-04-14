@@ -4,7 +4,6 @@ import SimpleSchema from "simpl-schema";
 import shortid from "shortid";
 import { Students } from "./students";
 import { Teachers } from "./teachers";
-import studipAdapter from "./backendAdapter";
 import PromisifiedMeteor from "./promisified";
 
 export const Courses = new Mongo.Collection("courses");
@@ -84,86 +83,6 @@ Meteor.methods({
       }
     }
   },
-  // after basic-auth get the user-courses where the teacher initialized yuoshi
-  "courses.getTeacherCourses": async function() {
-    //HTTP requests goes server-side only
-    if (!Meteor.isServer) {
-      return false
-    }
-
-    const user = Meteor.user();
-
-    if (!user) {
-      return []
-    }
-
-    const studipUserId = user.services.studip.id;
-
-    if (!studipUserId) {
-      return []
-    }
-
-    const coursePaginator = studipAdapter.courseAdapter.getCourses(studipUserId);
-
-    try {
-      const memberships = [];
-
-      for await (let course of coursePaginator) {
-        if (await course.lecturers.contains((lecturer => lecturer.id === studipUserId))) {
-          memberships.push(course)
-        }
-      }
-
-      return memberships
-    } catch (e) {
-      console.log(e)
-
-      return []
-    }
-  },
-
-  "courses.getStudentCourses": async function(currentCourses) {
-    if (!Meteor.isServer) {
-      return []
-    }
-
-    const user = Meteor.user()
-
-    if (!user) {
-      return []
-    }
-
-    const studipUserId = user.services.studip.id
-
-    if (!studipUserId) {
-      return []
-    }
-
-    try {
-      const courses = []
-      const paginator = studipAdapter.courseAdapter.getCourses(studipUserId)
-
-      for await (let course of paginator) {
-        if (currentCourses.find(checkId => checkId === course.id)) {
-          courses.push(course.id)
-        }
-
-        await PromisifiedMeteor.call("students.addCourse", course.id, studipUserId)
-
-        courses.push(course.id)
-      }
-
-      return PromisifiedMeteor.call(
-        "students.getStartedCourses",
-        courses,
-      );
-    } catch (e) {
-      console.log(e);
-
-      return [];
-    }
-  },
-
   "courses.start": function(courseId) {
     Courses.update({ _id: courseId }, { $set: { started: true } });
   },

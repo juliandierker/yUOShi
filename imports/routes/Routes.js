@@ -67,7 +67,7 @@ class Routes extends React.Component {
           {/* TODO enable for Login with studip */}
           {/* <PublicRoute exact path="/" component={LoginOAuth} /> */}
 
-          <PublicRoute exact path="/" component={Login} />
+          <PublicRoute exact path="/" component={LoginOAuth} />
           {/* and comment this out */}
           <PrivateRoute path="/student" component={StudentContextProvider} />
           {/* <PrivateRoute path="/teacher" component={TeacherContextProvider} /> */}

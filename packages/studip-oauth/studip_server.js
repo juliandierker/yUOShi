@@ -20,12 +20,48 @@ const urls = {
 };
 
 const onAuthDone = (oAuthBinding) => {
-    const identity = oAuthBinding.get(`${studipUrl}/api.php/user`)
+    const identity = oAuthBinding.get(`${studipUrl}/plugins.php/argonautsplugin/users/me`)
 
-    const { user_id, avatar_original, email, perms, username, name: { formatted, given: first_name, family: last_name, prefix: title, suffix } } = identity.data
+    // something went wrong
+    if (identity.statusCode !== 200) {
+        throw new Error("could not fetch user data after auth. server responded with an error")
+    }
+
+    let data;
+    try {
+        const parsed = JSON.parse(identity.content)
+
+        if (!parsed) {
+            throw new Error()
+        }
+
+        data = parsed.data;
+        if (!data) {
+            throw new Error()
+        }
+    } catch(e) {
+        throw new Error("could not parse user data returned from server.")
+    }
+
+    const {
+        id,
+        meta: {
+            avatar: { original }
+        },
+        attributes: {
+            username,
+            email,
+            permission,
+            "formatted-name": formatted_name,
+            "given-name": first_name,
+            "family-name": last_name,
+            "name-prefix": prefix,
+            "name-suffix": suffix,
+        },
+    } = data
 
     let role;
-    switch (perms) {
+    switch (permission) {
         case "dozent":
         case "tutor":
             role = "teacher"
@@ -36,17 +72,17 @@ const onAuthDone = (oAuthBinding) => {
 
     return {
         serviceData: {
-            id: user_id,
+            id,
             username,
             profile: {
                 name_info: {
-                    title,
+                    prefix,
                     suffix,
                     first_name,
                     last_name,
                 },
-                name: formatted,
-                avatar_original,
+                name: formatted_name,
+                avatar_original: original,
             },
             role,
             email,

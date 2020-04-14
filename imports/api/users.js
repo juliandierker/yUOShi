@@ -5,7 +5,6 @@ import SimpleSchema from "simpl-schema";
 import { Pupils } from "./students";
 import { Teachers } from "./teachers";
 import { Courses } from "./courses";
-import studipAdapter from "./backendAdapter";
 
 Accounts.validateNewUser(user => {
   return true;
@@ -29,28 +28,6 @@ Meteor.methods({
   //   return OAuthHandler.getRequestToken(requestAdapter)
   // },
   // perform a basic auth user-request to verify a studip-user
-  "users.auth": async function(email, password) {
-    try {
-      const result = await studipAdapter.userAdapter.getInfo();
-
-      if (!result) {
-        return false;
-      }
-
-      if (!Meteor.users.findOne({ username: email })) {
-        Accounts.createUser({
-          username: email,
-          password: password
-        });
-      }
-
-      return [result, result.remoteId];
-    } catch (e) {
-      console.log(e);
-      // Got a network error, timeout, or HTTP error in the 400 or 500 range.
-      return false;
-    }
-  },
   "users.teachersInsert": function(username, studipUserId) {
     const teacherId = Meteor.users.findOne({ username: username })._id;
     Roles.addUsersToRoles(teacherId, "teacher");

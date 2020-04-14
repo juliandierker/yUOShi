@@ -12,6 +12,12 @@ import "../imports/api/students";
 import "../imports/api/courses";
 import "../imports/api/tokens";
 
+// server-only methods (can be called in client, but the client does not get their code)
+import "./api/courses"
+import "./api/users"
+import "./api/packages"
+import "./api/tasks"
+
 ServiceConfiguration.configurations.upsert(
     { service: 'studip' },
     {
