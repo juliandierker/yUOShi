@@ -9,45 +9,47 @@ import RenderTraining from "../taskRenderers/RenderTraining";
 import RenderMemory from "../taskRenderers/RenderMemory";
 
 const RenderTask = memo(({ task, updateTask }) => {
-    if (!task) {
-        return null
-    }
+  if (!task) {
+    return null;
+  }
 
-    switch (task.type) {
-        case "multi":
-        case "survey":
-            return <RenderQuest task={task} updateTask={updateTask} />;
-        case "drag":
-            return <RenderDrag task={task} updateTask={updateTask} />;
-        case "tag":
-            return <RenderTag task={task} updateTask={updateTask} />;
-        case "card":
-            return <RenderCard task={task} updateTask={updateTask} />;
-        case "cloze":
-            return <RenderCloze task={task} updateTask={updateTask} />;
-        case "memory":
-            return <RenderMemory task={task} updateTask={updateTask} />;
-        case "training":
-            return <RenderTraining task={task} updateTask={updateTask} />;
-        default:
-            return null
-    }
-})
+  switch (task.type) {
+    case "multi":
+    case "survey":
+      return <RenderQuest task={task} updateTask={updateTask} />;
+    case "drag":
+      return <RenderDrag task={task} updateTask={updateTask} />;
+    case "tag":
+      return <RenderTag task={task} updateTask={updateTask} />;
+    case "card":
+      return <RenderCard task={task} updateTask={updateTask} />;
+    case "cloze":
+      return <RenderCloze task={task} updateTask={updateTask} />;
+    case "memory":
+      return <RenderMemory task={task} updateTask={updateTask} />;
+    case "training":
+      return <RenderTraining task={task} updateTask={updateTask} />;
+    default:
+      return null;
+  }
+});
 
 const RenderWorkspace = (props) => {
-    const { currentTask, currentTaskLoading, updateTask } = useTasksContext()
+  const { currentTask, currentTaskLoading, updateTask } = useTasksContext();
 
-    if (currentTaskLoading) {
-        return <p>Loading Task...</p>
-    }
+  if (currentTaskLoading) {
+    return <p>Loading Task...</p>;
+  }
 
-    return <RenderTask task={currentTask} updateTask={updateTask} />
-}
+  return <RenderTask task={currentTask} updateTask={updateTask} />;
+};
 
 const Workspace = ({ packageId, ...props }) => {
-  return <TasksContextProvider packageId={packageId}>
-    <RenderWorkspace {...props} />
-  </TasksContextProvider>
-}
+  return (
+    <TasksContextProvider packageId={packageId}>
+      <RenderWorkspace {...props} />
+    </TasksContextProvider>
+  );
+};
 
-export default Workspace
+export default Workspace;
