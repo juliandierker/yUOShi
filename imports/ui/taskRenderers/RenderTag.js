@@ -111,7 +111,7 @@ function RenderTagKeyword({ content, tags, foundTags, onClick }) {
     const parts = useMemo(() => {
         return parseContent(
             content,
-            "\\s",
+            "\\b",
             `${tags.map(tag => tag.tag).join("|")}`
         ).map((part, index) => {
             let tag_id = part.id ? tags.find(tag => tag.tag === part.id.trim()) : undefined
