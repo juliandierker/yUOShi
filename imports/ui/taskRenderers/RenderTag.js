@@ -1,8 +1,6 @@
 import React, { useCallback, useMemo, useState } from "react"
 import { parseContent, StaticTag } from "@xyng/yuoshi-backend-adapter";
 import { Button, Grid, Header, Image, Label, Segment } from "semantic-ui-react";
-import Hyphenated from "react-hyphen";
-import de from "hyphenated-de";
 import PromisifiedMeteor from "../../api/promisified";
 import Swal from "sweetalert2";
 
@@ -128,19 +126,19 @@ function RenderTagKeyword({ content, tags, foundTags, onClick }) {
         })
     }, [content, tags, foundTags])
 
-    return <Hyphenated language={de}>
+    return <div>
         {parts.map((part, index) => {
             return <React.Fragment key={`part-${part.id}-${index}`}>
                 <span>{part.content}</span>
-                <RenderTagItem
+                {part.tag && <RenderTagItem
                     onClick={onClick(part.id)}
                     found={part.found}
                 >
                     {part.tag}
-                </RenderTagItem>
+                </RenderTagItem>}
             </React.Fragment>
         })}
-    </Hyphenated>
+    </div>
 }
 
 function RenderTagItem({ found, onClick, children }) {
