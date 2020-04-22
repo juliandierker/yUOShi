@@ -22,8 +22,8 @@ const OAuthHandler = new StudipOauthAuthenticationHandler(
     }
 )
 
-function getAuth() {
-    const user = Meteor.user()
+function getAuth(user) {
+    user = user ?? Meteor.user()
 
     if (!user) {
         return {
@@ -40,8 +40,14 @@ function getAuth() {
     }
 }
 
-function createBackendAdapter() {
-    const userConfig = getAuth()
+/**
+ * Create a BackendAdapter instance for the current user.
+ *
+ * @param user (Optional) Meteor User object to be used. This is only necessary for using this during the login process. If this is not provided, the current user will be fetched from the meteor connection
+ * @returns {BackendAdapter<AxiosRequestConfig>}
+ */
+function createBackendAdapter(user) {
+    const userConfig = getAuth(user)
 
     const OAuthHandler = new StudipOauthAuthenticationHandler(
         {
