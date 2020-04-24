@@ -1,4 +1,6 @@
 import { Meteor } from "meteor/meteor"
+import { RequestError } from "@xyng/yuoshi-backend-adapter";
+
 import createBackendAdapter from "./backendAdapter";
 
 Meteor.methods({
@@ -25,5 +27,20 @@ Meteor.methods({
             // Got a network error, timeout, or HTTP error in the 400 or 500 range.
             return false;
         }
+    },
+    "users.validate": async (user) => {
+        const backendAdapter = createBackendAdapter(user)
+
+        try {
+            await backendAdapter.userAdapter.getInfo("me")
+        } catch (e) {
+            if (!(e instanceof RequestError)) {
+                throw e;
+            }
+
+            return false;
+        }
+
+        return true;
     },
 })
