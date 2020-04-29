@@ -70,4 +70,16 @@ Meteor.startup(() => {
                 break;
         }
     })
+
+    Accounts.validateLoginAttempt(({ allowed, user }) => {
+        if (!allowed) {
+            return false
+        }
+
+        if (Meteor.call("users.validate", user)) {
+            return true
+        }
+
+        throw new Meteor.Error("Authentication Error", "Your Session could not be validated against the OAuth server.")
+    })
 });
