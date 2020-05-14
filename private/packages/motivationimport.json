@@ -1,0 +1,53 @@
+{
+  "tasks": [
+    {
+      "parentId": "Motivation1",
+      "package": "Motivation",
+      "title": "Gründe für das Lehramt",
+      "description": "Markiere drei Antworten, die auf dich zutreffen. Eure Antworten werden anonym im Lehrerzimmer ausgestellt und können im Seminar diskutiert werden.",
+      "taskId": "MultiWhy",
+      "kind": "multi",
+      "image": false,
+      "credits": 1,
+      "content": [
+        {
+          "questionId": 1,
+          "question": "Was ist mit dir? Was motiviert dich eigentlich Lehrer oder Lehrerin werden zu wollen?",
+          "answerSet": [
+            "Sicheres Einkommen",
+            "Verbeamtet werden",
+            "Regelmäßige Ferien",
+            "Pädagogisch handeln",
+            "Schüler*innen motivieren",
+            "Spannende Themen behandeln",
+            "sonstiges"
+          ],
+          "multi": true
+        }
+      ]
+    },
+    {
+      "parentId": "Motivation2",
+      "package": "Motivation",
+      "title": "Motivationsbegriffe",
+      "description": "Sehr gut! Du hast die wichtigsten Motivationstheorien kennengelernt. In diesem Memory kannst du dein Wissen über Motivation noch einmal auffrischen und die Grundbegriffe mit Bildern oder Autor*innen verknüpfen.",
+      "taskId": "Motivation_Memory",
+      "kind": "memory",
+      "credits": 6,
+      "content": [
+        {
+          "title": "Motivation Begriffsklärung",
+          "subtitle": "",
+          "keywords": [
+            "Extrinsische Motivation",
+            "Interesse",
+            "Intrinsische Motivation",
+            "Maslow",
+            "Selbstbestimmungstheorie",
+            "Erwartungs XWert Theorie"
+          ]
+        }
+      ]
+    }
+  ]
+}

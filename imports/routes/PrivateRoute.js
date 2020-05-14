@@ -10,11 +10,13 @@ const DefaultRoutes = {
   yadmin: "/yadmin"
 };
 const PrivateRoute = ({ component: Component, path, ...rest }) => {
+  console.log(Meteor.userId());
+
   return (
     <Route
       path={path}
       {...rest}
-      render={props => {
+      render={(props) => {
         let redirect = false;
         if (Meteor.userId()) {
           const role = Roles.getRolesForUser(Meteor.userId())[0];
@@ -54,7 +56,6 @@ const PrivateRoute = ({ component: Component, path, ...rest }) => {
             role === "yadmin" &&
             !matchPath(location.pathname, { path: "/teacher/TeacherOverview" });
           if (wrongPupil || wrongTeacher || wrongPPAdmin) {
-            console.log("faiiiiil");
             redirect = DefaultRoutes[role];
           }
         } else if (!Meteor.userId()) {
