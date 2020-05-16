@@ -27,7 +27,7 @@
       ]
     },
     {
-      "parentId": "Motivation2",
+      "parentId": "Motivation1",
       "package": "Motivation",
       "title": "Motivationsbegriffe",
       "description": "Sehr gut! Du hast die wichtigsten Motivationstheorien kennengelernt. In diesem Memory kannst du dein Wissen über Motivation noch einmal auffrischen und die Grundbegriffe mit Bildern oder Autor*innen verknüpfen.",
@@ -36,18 +36,183 @@
       "credits": 6,
       "content": [
         {
-          "title": "Motivation Begriffsklärung",
-          "subtitle": "",
-          "keywords": [
-            "Extrinsische Motivation",
-            "Interesse",
-            "Intrinsische Motivation",
-            "Maslow",
-            "Selbstbestimmungstheorie",
-            "Erwartungs XWert Theorie"
-          ]
+          "question": "Motivation Begriffsklärung",
+          "questionId": 1,
+          "answerSet": ["Test", "Testy"]
+        },
+        {
+          "question": "Motivation Erweiterung",
+          "questionId": 2,
+          "answerSet": ["Testa", "Testb"]
         }
       ]
+    },
+    {
+      "parentId": "Motivation1",
+      "package": "Motivation",
+      "title": "Begriffe der Motivation",
+      "description": "Ordne die Statements den jeweiligen Boxen zu.",
+      "taskId": "Motivationsbegriffe",
+      "kind": "drag",
+      "multipleColumns": true,
+      "package": "Motivation",
+      "credits": 3,
+      "categories": ["Titel", "Bild", "Beispiel"],
+      "scale": false,
+      "orientation": ["vertical", "vertical"],
+      "nested": false,
+      "formular": true,
+      "content": [
+        {
+          "question": "Motivation",
+          "questionId": 1,
+          "answerSet": [
+            "Die aktivierende Ausrichtung des momentanen Lebensvollzugs auf einen positiv bewerteten Zielzustand."
+          ]
+        },
+        {
+          "question": "Motiv",
+          "questionId": 2,
+          "answerSet": [
+            "Die Veranlagung einer Person, nach einem wertgeladenen Zielzustand zu streben, also kurzgesagt die überdauernde Handlungsbereitschaft eines Individuums"
+          ]
+        },
+        {
+          "question": "Bedürfnis",
+          "questionId": 3,
+          "answerSet": [
+            "Der Wunsch bzw. das Verlangen danach, einem Mangel entgegenzuwirken, egal ob dieser tatsächlich vorhanden oder eingebildet ist"
+          ]
+        },
+        {
+          "question": "Ziel",
+          "questionId": 4,
+          "answerSet": [
+            "Definiert ein Ergebnis oder einen Zustand, den sich ein Individuum zu erreichen vorgenommen hat."
+          ]
+        },
+
+        {
+          "question": "Interesse",
+          "questionId": 5,
+          "answerSet": [
+            "Kann einen überdauernden Aspekt der Persönlichkeit darstellen und sich z.B.in einer langfristigen Vorliebe für bestimmte Fächer oder Aktivitäten äußern"
+          ]
+        }
+      ],
+      "images": [
+        ["motivation", "Motivation.svg"],
+        ["motiv", "Motivation.svg"],
+        ["bedürfnis", "Motivation.svg"],
+        ["ziel", "Motivation.svg"],
+        ["interesse", "Motivation.svg"]
+      ]
+    },
+    {
+      "parentId": "Motivation1",
+      "package": "Motivation",
+      "title": "Beispiele der Motivation",
+      "description": "Ordne die Statements den jeweiligen Boxen zu.",
+      "taskId": "Motivationsbeispiele",
+      "kind": "drag",
+      "multipleColumns": true,
+      "package": "Motivation",
+      "credits": 3,
+      "categories": ["Titel", "Bild", "Beispiel"],
+      "scale": false,
+      "orientation": ["vertical", "vertical"],
+      "nested": false,
+      "formular": true,
+      "content": [
+        {
+          "question": "Motivation",
+          "questionId": 1,
+          "answerSet": [
+            "Für ein gutes Ergebnis in der nächsten Klausur strengt Anton sich beim Lernen an."
+          ]
+        },
+        {
+          "question": "Motiv",
+          "questionId": 2,
+          "answerSet": ["Anton ist nur zufrieden mit guten Noten, er möchte Leistung zeigen."]
+        },
+        {
+          "question": "Bedürfnis",
+          "questionId": 3,
+          "answerSet": [
+            "Anton ist heute Morgen müde und demotiviert und hätte grade einfach nur gerne einen Menschen, der ihn mal kurz in den Arm nimmt."
+          ]
+        },
+        {
+          "question": "Ziel",
+          "questionId": 4,
+          "answerSet": ["Anton möchte Lehrer werden."]
+        },
+
+        {
+          "question": "Interesse",
+          "questionId": 5,
+          "answerSet": ["Dani arbeitet nach einer kurzen Einführung jetzt jeden Tag mit Holz."]
+        }
+      ],
+      "images": [
+        ["motivation", "Motivation.svg"],
+        ["motiv", "Motivation.svg"],
+        ["bedürfnis", "Motivation.svg"],
+        ["ziel", "Motivation.svg"],
+        ["interesse", "Motivation.svg"]
+      ]
+    },
+    {
+      "parentId": "Motivation2",
+      "title": "Motivation anhand der X-Wert-Theorie berechnen",
+      "description": "Die zentrale Annahme der ##0## nach ##1## ist, dass Motivation maßgeblich über die gesetzten ##2## gesteuert wird. Somit gilt Motivation als Auslöser des menschlichen ##3##.  ##4## Ziele führen zu besseren Leistungen, als leichte. Spezifische und herausfordernde Ziele führen zu besseren Leistungen als ##4##. \nDer Zusammenhang zwischen der Zielsetzung und der tatsächlichen Leistung wird des Weiteren durch verschiedene Moderatoren (zum Beispiel:Zielbindung, Selbstwirksamkeit, Rückmeldung, Aufgabenkomplexität) beeinflusst sowie über ##5## (Handlungsrichtung, Handlungsintensität, Handlungsausdauer. etc.).",
+      "taskId": "ZieleCLoze",
+      "kind": "cloze",
+      "images": [
+        "/avatars/Magda.png",
+        "/avatars/Tino.png",
+        "/avatars/Schüler.png",
+        "/avatars/Schülerin.png",
+        "/avatars/Schülerin.png",
+        "/avatars/Schüler.png"
+      ],
+      "content": [
+        {
+          "question": "Die zentrale Annahme der ##0## nach ##1## ist, dass Motivation maßgeblich über die gesetzten ##2## gesteuert wird. Somit gilt Motivation als Auslöser des menschlichen ##3## .  ##4## Ziele führen zu besseren Leistungen, als leichte. Spezifische und herausfordernde Ziele führen zu besseren Leistungen als ##5##. \nDer Zusammenhang zwischen der Zielsetzung und der tatsächlichen Leistung wird des Weiteren durch verschiedene Moderatoren (zum Beispiel:Zielbindung, Selbstwirksamkeit, Rückmeldung, Aufgabenkomplexität) beeinflusst sowie über ##6## (Handlungsrichtung, Handlungsintensität, Handlungsausdauer. etc.).",
+          "questionId": 1,
+          "answerSet": [
+            "Zielsetzungstheorie",
+            "Locke und Latham",
+            "Ziele",
+            "Handelns",
+            "schwierigere",
+            "allgemeine",
+            "Mediatoren"
+          ]
+        }
+      ],
+      "package": "Motivation",
+      "credits": 4
+    },
+    {
+      "parentId": "Motivation3",
+      "title": "Die richtige Zielsetzung (SMART)",
+      "description": "Lies den Text zum Thema Zielsetzung durch SMART und markiere die Schlüsselbegriffe, indem du sie im Text findest und anklickst.",
+      "taskId": "SMART",
+      "kind": "tag",
+      "images": {
+        "Selbstbestimmung": "/Tag/Motivation5/Smart.png"
+      },
+      "content": [
+        {
+          "question": "Wie in der Zielsetzungstheorie deutlich geworden ist, kann der Sinn einer Handlung über die Zielsetzung besser erkannt und der Weg zur Erreichung dieses Ziels durchgeführt werden.\n\n Ziele können dazu dienen, die Motivation zu lenken und aufrechtzuhalten. Im Alltag werden Ziele allerdings oftmals allgemein formuliert, ein klassisches Beispiel sind Neujahrziele: z.B.„Ich   werde   abnehmen“, „Ich   werde   dieses   Semester   die   Klausuren   bestehen“,   was langfristig dazu führt, dass Ziele mit geringerer Wahrscheinlichkeit erreicht werden und die Motivation sinkt. \n\nUm dem entgegen zu wirken und Ziele erreichbarer zu gestalten, kann die SMART-Formel angewendet werden, die u.a. auf Basis der Zielsetzungstheorie entstanden ist. Hierbei werden Ziele konkret operationalisiert und es werden klare Kriterien   für   die   Zielerreichung   erstellt.   Außerdem   können   anhand   der   Zielsetzung   mit SMART wesentliche Vereinbarungen über die zeitliche Datierung und die Rückmeldung zubesagtem   Ziel   getroffen   werden.   Daher   kommt   diese   Methodik   vor   allem   im Projektmanagement, im Coaching, in der Karriereplanung und in Trainings zum Einsatz. \n\n SMART steht (aus dem Englischen übersetzt) für: \n     Spezifisch\n     Messbar\n     Akzeptiert (auch attraktiv / anziehend / angemessen)\n     Realistisch\n     Terminiert\n\nSpezifisch  bedeutet in diesem Zusammenhang, dass gesetzte Ziele klar und deutlich definiert werden sollten, um so möglichst wenig Spielraum für Interpretationen zu schaffen: „Was will ich genau erreichen“.\nBeispiel: „Ich will die Mathe Klausur „Algebra 1“ dieses Semester bestehen“. \n\nMessbar bedeutet, dass das Ziel kontrollierbar sein muss. Dies heißt, dass es klar sein muss, ab wann das Ziel erreicht ist und wie man das Ziel messen kann: „Wie viel genau muss ichwovon tun“.\nBeispiel: „Die Endnote soll 4,0 oder besser sein.“\n\nAkzeptiert steht in der Formel für die Akzeptanz des Ziels durch alle beteiligten Personen.Jeder   sollte   mit   der   Zielformulierung   einverstanden   sein   und   die   Ziel-Vereinbarung „unterzeichnen“. Außerdem sollte das Ziel durch das Verhalten der Beteiligten beeinflussbar sein. Ein Ansatz, um mehr Akzeptanz oder Attraktivität für das Ziel zu schaffen, wäre zum Beispiel eine gemeinsame Zielsetzung. \nBeispiel:   „Ich   werde   eine   Lerngruppe   mit   Martina   und   Leon   machen“.\n\nRealistisch steht für die Realisierbarkeit/Erreichbarkeit des Ziels. Zu hoch gesteckte Ziele wirken   eher   demotivierend   auf   Menschen.   Herausfordernde  Ziele   können  im   ersten Moment frustrierend wirken, da sie nicht sofort zu erreichen sind. Durch eine gewisse Anstrengung kann das Ziel jedoch erreicht werden, was wiederum motiviert. Oft sind gut gesteckte Ziele automatisch realistisch, da man sich diese sonst nicht setzen würde.\n\nTerminiert beschreibt den festzulegenden Zeitraum einer Zielsetzung, der unbedingt präzise festgelegt   werden   sollte.   Ratsam   sind   hierbei   auch   Zwischenprüfungen,   um   eventuelle Abweichungen bei der Zielerreichung festzustellen und schnell korrigieren zu können. Beispiel: „dafür treffen wir uns immer Montags, Mittwochs und jeden zweiten Freitag um 16 Uhr für zwei Stunden in der Lernlandschaft der Universität“.\n\nDes Weiteren ist es ratsam, Zielsetzungen immer positiv zu formulieren, da negative Aussagen demotivierend wirken. Formulierungen, die UN- oder NICHT- enthalten, sollten ebenfalls vermieden werden.\nBeispiel: „Ich werde nicht durchfallen“ (Negativ) besser: „Ich werde bestehen“\n\n Ziele sollten immer so gewählt werden, dass sie (persönlich) sinnvoll erscheinen, sowie eine Entwicklung des Individuums hervorrufen. Hierbei kann an Stärken, Schwächen oder Kompetenzen des Individuums angeknüpft werden.",
+          "answerSet": ["spezifisch", "messbar", "akzeptiert", "realistisch", "terminiert"]
+        }
+      ],
+
+      "package": "Motivation",
+      "credits": 3
     }
   ]
 }

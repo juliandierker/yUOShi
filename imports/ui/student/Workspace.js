@@ -1,5 +1,6 @@
 import React, { memo } from "react";
 import { TasksContextProvider, useTasksContext } from "./TasksContext";
+import { PackageContextProvider, usePackageContext } from "./PackagesContext";
 import RenderQuest from "../taskRenderers/RenderQuestTask";
 import RenderDrag from "../taskRenderers/RenderDrag";
 import RenderTag from "../taskRenderers/RenderTag";

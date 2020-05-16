@@ -11,6 +11,7 @@ export const TaskContext = React.createContext();
 function Provider(props) {
   const [page, setPage] = useState("schoolOverview");
   const gameInfo = { ...props.gameInfo, page, setPage };
+  console.log(gameInfo);
   if (!gameInfo.page) {
     return <Loading />;
   }
