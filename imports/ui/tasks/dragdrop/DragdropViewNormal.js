@@ -11,12 +11,12 @@ export default class DragdropViewNormal extends Component {
     const that = this.props.that;
     const solutions = this.props.scene.children;
 
-    solutions.map(solution => {
-      solution.children.map(child => {
+    solutions.map((solution) => {
+      solution.children.map((child) => {
         let elem = document.getElementById(child.id);
-        elem.style.backgroundColor = "green";
+        elem.style.backgroundColor = "white";
         if (
-          this.props.model.visQueue.find(elem => {
+          this.props.model.visQueue.find((elem) => {
             return elem.id === child.id;
           }) !== undefined
         ) {
@@ -37,9 +37,8 @@ export default class DragdropViewNormal extends Component {
             animationDuration: 150,
             showOnTop: true,
             className: "cards-drop-preview"
-          }}
-        >
-          {this.props.scene.children.map(column => {
+          }}>
+          {this.props.scene.children.map((column) => {
             return (
               <Draggable key={column.id}>
                 {/*  TODO: fix vertical view without that hack*/}
@@ -48,25 +47,22 @@ export default class DragdropViewNormal extends Component {
                   <Container
                     {...column.props}
                     groupName="col"
-                    onDragStart={e => {}}
-                    onDragEnd={e => {}}
-                    onDrop={e => that.onCardDrop(column.id, e)}
-                    getChildPayload={index =>
-                      that.getCardPayload(column.id, index)
-                    }
+                    onDragStart={(e) => {}}
+                    onDragEnd={(e) => {}}
+                    onDrop={(e) => that.onCardDrop(column.id, e)}
+                    getChildPayload={(index) => that.getCardPayload(column.id, index)}
                     dragClass="card-ghost"
                     dropClass="card-ghost-drop"
                     onDragEnter={() => {}}
                     onDragLeave={() => {}}
-                    onDropReady={p => {}}
+                    onDropReady={(p) => {}}
                     dropPlaceholder={{
                       animationDuration: 150,
                       showOnTop: true,
                       className: "drop-preview"
                     }}
-                    dropPlaceholderAnimationDuration={200}
-                  >
-                    {column.children.map(card => {
+                    dropPlaceholderAnimationDuration={200}>
+                    {column.children.map((card) => {
                       return (
                         <Draggable key={card.id}>
                           <div {...card.props}>

@@ -1,6 +1,9 @@
 import React, { memo } from "react";
+
+import { Responsive, Icon, Grid, Button as Btn } from "semantic-ui-react";
+
 import { TasksContextProvider, useTasksContext } from "./TasksContext";
-import { PackageContextProvider, usePackageContext } from "./PackagesContext";
+import { PackagesContextProvider, usePackagesContext } from "./PackagesContext";
 import RenderQuest from "../taskRenderers/RenderQuestTask";
 import RenderDrag from "../taskRenderers/RenderDrag";
 import RenderTag from "../taskRenderers/RenderTag";
@@ -8,6 +11,7 @@ import RenderCard from "../taskRenderers/RenderCard";
 import RenderCloze from "../taskRenderers/RenderCloze";
 import RenderTraining from "../taskRenderers/RenderTraining";
 import RenderMemory from "../taskRenderers/RenderMemory";
+import TaskProgress from "./taskProgress/TaskProgress";
 
 const RenderTask = memo(({ task, updateTask }) => {
   if (!task) {
@@ -37,20 +41,54 @@ const RenderTask = memo(({ task, updateTask }) => {
 
 const RenderWorkspace = (props) => {
   const { currentTask, currentTaskLoading, updateTask } = useTasksContext();
-
   if (currentTaskLoading) {
     return <p>Loading Task...</p>;
   }
 
   return <RenderTask task={currentTask} updateTask={updateTask} />;
 };
-
-const Workspace = ({ packageId, ...props }) => {
+const RenderProgressBar = (props) => {
+  const { currentTask, currentTaskLoading, updateTask } = useTasksContext();
+  const { currentPackage, packagesLoading, packageTasks } = usePackagesContext();
+  if (packagesLoading) {
+    return <p>Loading Packages...</p>;
+  }
   return (
-    <TasksContextProvider packageId={packageId}>
-      <RenderWorkspace {...props} />
-    </TasksContextProvider>
+    <TaskProgress
+      currentPackage={currentPackage}
+      packageTasks={packageTasks}
+      packageLoading={packagesLoading}
+      task={currentTask}
+    />
   );
 };
 
+const Workspace = ({ packageId, ...props }) => {
+  return (
+    <React.Fragment>
+      <Grid id="workspaceGrid">
+        <Grid.Column
+          width={3}
+          style={{
+            padding: "0rem"
+          }}
+        />
+        <Grid.Column width={10}>
+          <div className="workspace__container">
+            <TasksContextProvider packageId={packageId}>
+              <RenderWorkspace {...props} />
+            </TasksContextProvider>
+          </div>
+        </Grid.Column>
+        <Grid.Column width={3}>
+          <TasksContextProvider packageId={packageId}>
+            <PackagesContextProvider>
+              <RenderProgressBar {...props} />
+            </PackagesContextProvider>
+          </TasksContextProvider>
+        </Grid.Column>
+      </Grid>
+    </React.Fragment>
+  );
+};
 export default Workspace;

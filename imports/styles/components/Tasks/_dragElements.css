@@ -2,6 +2,11 @@
   height: 100%;
 }
 
+.smooth-dnd-draggable-wrapper {
+  max-width: 32vh;
+  padding-right: 2rem;
+}
+
 @media screen and (min-width: 1025px) {
   .smooth-dnd-container.horizontal > .smooth-dnd-draggable-wrapper {
     padding-right: 2rem;

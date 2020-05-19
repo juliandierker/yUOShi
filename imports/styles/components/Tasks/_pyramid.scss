@@ -46,19 +46,19 @@
   stroke-width: 1px;
 }
 
-h1,
-p {
-  color: rgba(255, 255, 255, 0);
-  animation: show 0.5s forwards;
-}
-
-h1 {
-  font-family: "Gabriela";
-  animation-delay: 2.5s;
-}
-p {
-  padding-top: 1em;
-}
+// h1,
+// p {
+//   color: rgba(255, 255, 255, 0);
+//   animation: show 0.5s forwards;
+// }
+//
+// h1 {
+//   font-family: "Gabriela";
+//   animation-delay: 2.5s;
+// }
+// p {
+//   padding-top: 1em;
+// }
 
 @supports not (shape-outside: polygon(310px 0, 130px 405px, 558px 405px)) {
   p:nth-of-type(n) {
