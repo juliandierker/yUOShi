@@ -36,6 +36,7 @@ export default function RenderTag(props) {
   );
 
   const onSubmit = useCallback(async () => {
+    console.log("ever??");
     const solutions = Object.entries(userSolution).map(([key, value]) => {
       return {
         topic_id: key,
@@ -62,7 +63,6 @@ export default function RenderTag(props) {
 
   return (
     <div className="render_card_wrapper">
-      <RenderButton done={done} onNext={updateTask} onSubmit={onSubmit} />
       <Grid>
         <GridRow>
           {task.topics.map((topic) => {

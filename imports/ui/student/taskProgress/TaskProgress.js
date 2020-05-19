@@ -7,10 +7,22 @@ import Button from "@material-ui/core/Button";
 import Paper from "@material-ui/core/Paper";
 import Typography from "@material-ui/core/Typography";
 import { Responsive, Modal, Icon, Button as Btn } from "semantic-ui-react";
-
+import { usePrevious } from "../../../shared/customHooks";
 export default function TaskProgress(props) {
   const { packagesLoading, task, packageTasks } = props;
-  const [activeStep, setActiveStep] = useState(false);
+  const [activeStep, setActiveStep] = useState(getActiveStep());
+  const prevTask = usePrevious(task);
+  useEffect(() => {
+    if (prevTask && prevTask.title != task.title) {
+      setActiveStep(getActiveStep());
+    }
+  }, []);
+
+  function getActiveStep() {
+    for (var i = 0; i < packageTasks.length; i++) {
+      if (task.title === packageTasks[i].title) return i;
+    }
+  }
 
   function renderStepper() {
     var classes = makeStyles((theme) => ({
@@ -45,6 +57,7 @@ export default function TaskProgress(props) {
     function handleReset() {
       setActiveStep(0);
     }
+    console.log(activeStep);
     return (
       <div id="workspaceStepper" className={classes.root}>
         <Stepper activeStep={activeStep} orientation="vertical">

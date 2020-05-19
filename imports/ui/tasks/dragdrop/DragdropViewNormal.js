@@ -14,7 +14,7 @@ export default class DragdropViewNormal extends Component {
     solutions.map((solution) => {
       solution.children.map((child) => {
         let elem = document.getElementById(child.id);
-        elem.style.backgroundColor = "white";
+        elem.style.backgroundColor = "green";
         if (
           this.props.model.visQueue.find((elem) => {
             return elem.id === child.id;

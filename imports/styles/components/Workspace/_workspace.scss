@@ -1,7 +1,7 @@
 .workspace__container {
+  margin-top: 2rem;
   height: 85vh;
   margin: 0 auto;
-  margin-top: 0rem;
 }
 
 #workspace_div {
@@ -54,6 +54,7 @@
     width: 87.5% !important;
   }
   .workspace__container {
+    margin-left: 10%;
     width: 100%;
     height: 40vh;
     margin: 0rem;
@@ -140,6 +141,8 @@
   .workspace__container {
     // width: 60%;
     width: 100%;
+    margin-left: 10%;
+
     margin-top: 3rem;
     height: 100%;
   }
@@ -206,7 +209,9 @@
 @media screen and (min-width: 1025px) {
   .workspace__container {
     width: 100%;
-    margin-top: 0rem;
+    margin-left: 10%;
+
+    margin-top: 2rem;
     height: 100%;
   }
   #NavigationButtonContainer {

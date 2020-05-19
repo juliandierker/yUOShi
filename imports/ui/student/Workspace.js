@@ -44,13 +44,13 @@ const RenderWorkspace = (props) => {
   if (currentTaskLoading) {
     return <p>Loading Task...</p>;
   }
-
+  console.log(currentTask);
   return <RenderTask task={currentTask} updateTask={updateTask} />;
 };
 const RenderProgressBar = (props) => {
   const { currentTask, currentTaskLoading, updateTask } = useTasksContext();
   const { currentPackage, packagesLoading, packageTasks } = usePackagesContext();
-  if (packagesLoading) {
+  if (packagesLoading || currentTaskLoading) {
     return <p>Loading Packages...</p>;
   }
   return (
@@ -67,20 +67,14 @@ const Workspace = ({ packageId, ...props }) => {
   return (
     <React.Fragment>
       <Grid id="workspaceGrid">
-        <Grid.Column
-          width={3}
-          style={{
-            padding: "0rem"
-          }}
-        />
-        <Grid.Column width={10}>
+        <Grid.Column width={13}>
           <div className="workspace__container">
             <TasksContextProvider packageId={packageId}>
               <RenderWorkspace {...props} />
             </TasksContextProvider>
           </div>
         </Grid.Column>
-        <Grid.Column width={3}>
+        <Grid.Column style={{ maxWidth: "40vh" }} width={3}>
           <TasksContextProvider packageId={packageId}>
             <PackagesContextProvider>
               <RenderProgressBar {...props} />

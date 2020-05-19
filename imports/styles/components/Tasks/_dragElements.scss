@@ -5,6 +5,13 @@
 // Desktop
 @media screen and (min-width: 1025px) {
   .smooth-dnd-container.horizontal > .smooth-dnd-draggable-wrapper {
+    max-width: 32vh;
+    padding-right: 2rem;
+  }
+}
+@media screen and (min-width: 1025px) {
+  .smooth-dnd-container.vertical > .smooth-dnd-draggable-wrapper {
+    max-width: 32vh;
     padding-right: 2rem;
   }
 }
@@ -436,7 +443,7 @@ input:last-child {
 }
 .customCard-img-top {
   position: absolute;
-  width: 20%;
+  width: 100%;
   border-bottom: 0;
   object-fit: cover;
   object-position: center;

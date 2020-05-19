@@ -196,7 +196,7 @@ export default function StudentTopMenu({ student, activeTutorial }) {
             width: "100%",
             height: "5%"
           }}>
-          <Menu.Item
+          {/* <Menu.Item
             id="classMenuItem"
             style={{
               color: "white"
@@ -204,7 +204,7 @@ export default function StudentTopMenu({ student, activeTutorial }) {
             content="TestWorkspace"
             active={activeItem === "schoolview"}
             onClick={handleMenuItemClick}
-          />
+          /> */}
           <Menu.Item
             id="classMenuItem"
             style={{
