@@ -2,7 +2,8 @@
   "public": {},
   "private": {
     "studip": {
-      "url": ""
+      "url": "",
+      "apiPath" : ""
     },
     "oAuth": {
       "studip": {
