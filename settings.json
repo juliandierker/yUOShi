@@ -7,8 +7,8 @@
     },
     "oAuth": {
       "studip": {
-        "key": "",
-        "secret": ""
+        "key": "a58245f3c75635fe4de91962e8e4357d05e9ea6b5",
+        "secret": "7ea74206e512caddd31737bc07a7c843"
       }
     }
   }

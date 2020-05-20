@@ -8,77 +8,20 @@ import Paper from "@material-ui/core/Paper";
 import Typography from "@material-ui/core/Typography";
 import { Responsive, Modal, Icon, Button as Btn } from "semantic-ui-react";
 import { usePrevious } from "../../../shared/customHooks";
-import { GameContext } from "../StudentContextProvider";
-import { ActiveTaskContext } from "../WorkspaceContext";
-
-// This component renders the overview of the progress of the current Trainingspackage.
-
-export default function TaskProgress() {
-  const { student } = useContext(GameContext);
-  const { getActiveSubpackage, currentTask } = useContext(ActiveTaskContext);
-  const prevTask = usePrevious(currentTask);
-
-  const currentPackage = student.currentPackage;
-
-  const [activeStep, setActiveStep] = useState(getInitStep());
-  const [subPackages, setSubPackages] = useState(generateSubPackages());
-
+export default function TaskProgress(props) {
+  const { packagesLoading, task, packageTasks } = props;
+  const [activeStep, setActiveStep] = useState(getActiveStep());
+  const prevTask = usePrevious(task);
   useEffect(() => {
-    if (prevTask && currentTask) checkProgress();
-
-    if (!prevTask && currentTask) this.getInitStep();
-  });
-
-  function generateSubPackages() {
-    let newSubPackages = [];
-    currentPackage.content.map((subPackage) => {
-      let sp = {
-        title: subPackage.title,
-        id: currentPackage.name + subPackage.sequenceId,
-        sequenceId: subPackage.sequenceId,
-        tasks: []
-      };
-
-      // Add tasks to tasks array
-      subPackage.tasks.map((task) => {
-        sp.tasks.push({
-          name: task.title,
-          parentId: task.parentId,
-          sequenceId: task.sequenceId,
-          description: task.description
-        });
-      });
-
-      sp.tasks.sort((a, b) => {
-        if (a.sequenceId < b.sequenceId) {
-          return -1;
-        } else if (a.sequenceId > b.sequenceId) {
-          return 1;
-        } else {
-          return 0;
-        }
-      });
-      newSubPackages.push(sp);
-    });
-    return [...newSubPackages];
-  }
-  function getInitStep() {
-    if (currentTask) {
-      return 1;
-    } else if (prevTask) {
-      var cStr = prevTask.parentId;
-      var stepId = cStr.slice(cStr.length - 1, cStr.length);
-      return parseInt(stepId);
-    } else {
-      return parseInt(0);
+    if (prevTask && prevTask.title != task.title) {
+      setActiveStep(getActiveStep());
     }
-  }
-  function getSteps() {
-    var stepArr = [];
-    subPackages.map((subPackage) => {
-      stepArr.push(subPackage.title);
-    });
-    return stepArr;
+  }, []);
+
+  function getActiveStep() {
+    for (var i = 0; i < packageTasks.length; i++) {
+      if (task.title === packageTasks[i].title) return i;
+    }
   }
 
   function renderStepper() {
@@ -101,7 +44,8 @@ export default function TaskProgress() {
         padding: theme.spacing(3)
       }
     }));
-    const steps = getSteps();
+    const steps = packageTasks;
+
     function handleNext() {
       setActiveStep((prevActiveStep) => prevActiveStep + 1);
     }
@@ -113,19 +57,20 @@ export default function TaskProgress() {
     function handleReset() {
       setActiveStep(0);
     }
+    console.log(activeStep);
     return (
       <div id="workspaceStepper" className={classes.root}>
         <Stepper activeStep={activeStep} orientation="vertical">
-          {steps.map((label, index) => (
-            <Step key={label}>
-              <StepLabel>{label}</StepLabel>
+          {steps.map((step, index) => (
+            <Step key={step.title}>
+              <StepLabel>{step.title}</StepLabel>
             </Step>
           ))}
         </Stepper>
         {activeStep === steps.length && (
           <Paper square elevation={0} className={classes.resetContainer}>
             <Typography />
-            <Button onClick={handleReset} className={classes.button}>
+            <Button onClick={() => handleReset()} className={classes.button}>
               Reset
             </Button>
           </Paper>
@@ -133,81 +78,6 @@ export default function TaskProgress() {
       </div>
     );
   }
-
-  function checkProgress() {
-    var stepId = null;
-    var prevId = null;
-    if (
-      currentTask.sequenceId != prevTask.sequenceId &&
-      currentTask.parentId &&
-      prevTask.parentId != currentTask.parentId
-    ) {
-      var cStr = currentTask.parentId;
-      var pStr = prevTask.parentId;
-      stepId = cStr.slice(cStr.length - 1, cStr.length);
-      prevId = pStr.slice(pStr.length - 1, pStr.length);
-      if (stepId > prevId) {
-        setActiveStep(activeStep + 1);
-      } else if (stepId < prevId && prevId != 0) {
-        setActiveStep(activeStep - 1);
-      }
-    }
-  }
-
-  function renderSubPackage(sub, complete) {
-    const icon =
-      activeSubpackage && sub.sequenceId < activeSubpackage.sequenceId ? (
-        <Icon size="large" name={"check"} style={{ color: "green" }} />
-      ) : (
-        <Icon size="large" name={"student"} />
-      );
-    let cnt = 0;
-    return (
-      <React.Fragment>
-        <Step.Content>
-          <div
-            style={{
-              display: "flex",
-              lineHeight: "normal",
-              alignItems: "center"
-            }}>
-            {icon}
-            <Step.Title>{sub.title}</Step.Title>
-          </div>
-          <Step.Description>
-            {sub.tasks.map((task) => {
-              cnt++;
-              if (student.tasks[0] && (complete || task.sequenceId < student.tasks[0].sequenceId)) {
-                return renderTask(task, "check", "taskProgress_task_" + cnt);
-              } else {
-                return renderTask(task, "circle", "taskProgress_task_" + cnt);
-              }
-            })}
-          </Step.Description>
-        </Step.Content>
-      </React.Fragment>
-    );
-  }
-
-  function renderSubPackages() {
-    return subPackages[0].map((p) => {
-      if (activeSubpackage) {
-        let completed = false;
-        let active = false;
-        if (p.sequenceId < activeSubpackage.sequenceId) {
-          completed = true;
-        } else if (p.sequenceId == activeSubpackage.sequenceId) {
-          active = true;
-        }
-        return (
-          <Step completed={completed} active={active} key={currentPackage._id + "" + p.sequenceId}>
-            {renderSubPackage(p, completed)}
-          </Step>
-        );
-      }
-    });
-  }
-
   return (
     <React.Fragment>
       <Responsive {...Responsive.onlyMobile}>

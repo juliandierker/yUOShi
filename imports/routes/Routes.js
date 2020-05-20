@@ -70,7 +70,7 @@ class Routes extends React.Component {
           <PublicRoute exact path="/" component={LoginOAuth} />
           {/* and comment this out */}
           <PrivateRoute path="/student" component={StudentContextProvider} />
-          {/* <PrivateRoute path="/teacher" component={TeacherContextProvider} /> */}
+          <PrivateRoute path="/teacher" component={StudentContextProvider} />
           <Route path="/(.*)" component={NotFound} />
         </Switch>
       </Router>

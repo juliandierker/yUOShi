@@ -76,6 +76,9 @@ export default function StudentTopMenu({ student, activeTutorial }) {
       setPage("classroom");
     }
     setActiveItem(content);
+    if (content === "TestWorkspace") {
+      setPage("testWorkspace");
+    }
     if (content === "Lehrendenzimmer") {
       setPage("teacherRoom");
     }
@@ -133,6 +136,9 @@ export default function StudentTopMenu({ student, activeTutorial }) {
                 height: "100vH",
                 paddingTop: "2rem"
               }}>
+              <Dropdown.Item fluid active={activeItem === "overview"} onClick={handleMenuItemClick}>
+                TestWorkspace
+              </Dropdown.Item>
               <Dropdown.Item
                 fluid
                 active={activeItem === "freegame"}
@@ -190,6 +196,15 @@ export default function StudentTopMenu({ student, activeTutorial }) {
             width: "100%",
             height: "5%"
           }}>
+          {/* <Menu.Item
+            id="classMenuItem"
+            style={{
+              color: "white"
+            }}
+            content="TestWorkspace"
+            active={activeItem === "schoolview"}
+            onClick={handleMenuItemClick}
+          /> */}
           <Menu.Item
             id="classMenuItem"
             style={{

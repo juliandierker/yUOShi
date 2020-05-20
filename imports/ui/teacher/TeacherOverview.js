@@ -2,8 +2,6 @@ import React from "react";
 import PropTypes from "prop-types";
 import { Tracker } from "meteor/tracker";
 
-import { Teachers } from "../../api/teachers.js";
-import { Courses } from "../../api/courses";
 import { Route, Switch } from "react-router-dom";
 
 import TeacherCourses from "./TeacherCourses";
@@ -21,31 +19,22 @@ export default class TeacherOverview extends React.Component {
     };
   }
   componentDidMount() {
-    let teacherHandle = Meteor.subscribe("teacherByUserId");
-    let coursesHandle = Meteor.subscribe("coursesByTeacher");
-
     this.teacherTracker = Tracker.autorun(async () => {
-      if (teacherHandle.ready() && coursesHandle.ready()) {
-        // const token = Tokens.findOne();
-        const givenCourses = Courses.find({}).fetch();
+      // const token = Tokens.findOne();
 
-        const res = await PromisifiedMeteor.call("courses.getTeacherCourses")
+      const res = await PromisifiedMeteor.call("courses.getTeacherCourses");
+      console.log(res);
 
-        const teacher = Teachers.findOne();
-
-        this.setState({
-          teacher,
-          courses: givenCourses,
+      this.setState(
+        {
+          courseData: res,
           loading: false
-        }, () => {
+        },
+        () => {
           // TODO: this may also be done on server side!
           this.loadCourses(res, teacher._id);
-        });
-      } else {
-        if (!this.state.loading) {
-          this.setState({ loading: true });
         }
-      }
+      );
     });
   }
 
@@ -53,20 +42,17 @@ export default class TeacherOverview extends React.Component {
     this.teacherTracker.stop();
   }
   loadCourses(courses, teacherId) {
-    courses.filter(course => {
-      if (!this.state.courses) {
-        return true
-      }
+    courses
+      .filter((course) => {
+        if (!this.state.courses) {
+          return true;
+        }
 
-      return !this.state.courses.find(item => item.studipId === course.id)
-    }).forEach(course => {
-      Meteor.call(
-          "courses.insert",
-          course.title,
-          course.id,
-          teacherId
-      );
-    })
+        return !this.state.courses.find((item) => item.studipId === course.id);
+      })
+      .forEach((course) => {
+        Meteor.call("courses.insert", course.title, course.id, teacherId);
+      });
   }
   renderRoutes() {
     return (

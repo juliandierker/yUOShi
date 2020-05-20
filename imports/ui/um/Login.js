@@ -7,10 +7,6 @@ import { Roles } from "meteor/alanning:roles";
 import { HTTP } from "meteor/http";
 import Swal from "sweetalert2";
 
-import { Teachers } from "../../api/teachers";
-import { Students } from "../../api/students";
-import { Tokens } from "../../api/tokens";
-
 // import SignUp from "./SignUp";
 
 // import { UserAdministration, getInputSwal } from "./UserAdministration";

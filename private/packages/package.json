@@ -2,6 +2,7 @@
   "packages": [
     {
       "name": "Motivation",
+      "slug": "motivation",
       "marker": "motivation_marker",
       "sequenceId": 0,
       "description": "Hier lernt ihr etwas über Motivation",

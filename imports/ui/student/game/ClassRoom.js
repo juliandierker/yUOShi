@@ -7,49 +7,54 @@ import Swal from "sweetalert2";
 import withReactContent from "sweetalert2-react-content";
 import { ClassroomVektor } from "../vektors/ClassroomVektor.js";
 import { usePackagesContext } from "../PackagesContext";
+import PromisifiedMeteor from "../../../api/promisified";
 
 export default function ClassRoom() {
   const { student, tasks, setPage } = useContext(GameContext);
   const [classHover, setClassHover] = useState(false);
   const { packages, setCurrentPackage } = usePackagesContext();
 
-  const addEvent = useCallback((elem, packageItem) => {
-    const handleClick = function() {
-      console.log("click!", packageItem)
-      setCurrentPackage(packageItem);
-      setPage("workspace");
-    };
+  const addEvent = useCallback(
+    (elem, packageItem) => {
+      const handleClick = function() {
+        setCurrentPackage(packageItem);
+        setPage("workspace");
+      };
 
-    elem.addEventListener("click", handleClick);
+      elem.addEventListener("click", handleClick);
 
-    return () => {
-      elem.removeEventListener("click", handleClick)
-    }
-  }, [setPage, setCurrentPackage, student])
+      return () => {
+        elem.removeEventListener("click", handleClick);
+      };
+    },
+    [setPage, setCurrentPackage, student]
+  );
 
   useEffect(() => {
     if (!packages) {
-      return
+      return;
     }
 
     const marker_elems = document.getElementsByClassName("marker_elem");
 
-    const unregisterCbs = Array.from(marker_elems).map((marker_elem) => {
-      const packageSlug = marker_elem.id.replace("_marker", "")
+    const unregisterCbs = Array.from(marker_elems)
+      .map((marker_elem) => {
+        const packageSlug = marker_elem.id.replace("_marker", "");
 
-      const packageItem = packages.find((elem) => elem.slug === packageSlug)
+        const packageItem = packages.find((elem) => elem.slug === packageSlug);
 
-      marker_elem.style.visibility = packageItem ? "visible" : "hidden";
+        marker_elem.style.visibility = packageItem ? "visible" : "hidden";
 
-      if (packageItem && packageItem.playable) {
-        addEvent(marker_elem, packageItem)
-      }
-    }).filter(Boolean)
+        if (packageItem && packageItem.playable) {
+          addEvent(marker_elem, packageItem);
+        }
+      })
+      .filter(Boolean);
 
     return () => {
-      unregisterCbs.forEach(cb => cb())
-    }
-  }, [addEvent, packages])
+      unregisterCbs.forEach((cb) => cb());
+    };
+  }, [addEvent, packages]);
 
   function hoverOnClass(context) {
     var elRect = this[context + "_rect"];

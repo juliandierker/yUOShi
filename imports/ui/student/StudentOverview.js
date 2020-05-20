@@ -7,21 +7,20 @@ import SchoolOverview from "./game/SchoolOverview";
 import ClassRoom from "./game/ClassRoom";
 import TeacherRoom from "./game/TeacherRoom";
 import Office from "./game/Office";
-
+import ReadingTaskTemplate from "../tasks/reading/ReadingTaskTemplate";
 import { TutorialHandler } from "../tutorials/TutorialHandler";
 
 import Workspace from "./Workspace";
 import Loading from "../Loading.js";
 import TutorialComponent from "../tutorials/TutorialComponent";
 
-import { GameContext, CourseContext } from "./StudentContextProvider";
+import { GameContext } from "./StudentContextProvider";
 import { usePrevious } from "../../shared/customHooks";
 import LoggingOut from "../LogginOut.js";
 import { PackagesContextProvider, usePackagesContext } from "./PackagesContext";
 
 function RenderStudentOverview() {
   const { loading, student, tasks, page } = useContext(GameContext);
-  const { course, otherStudents } = useContext(CourseContext);
   const [loggingOut, setLoggingOut] = useState(false);
   const [activeTutorial, setActiveTutorial] = useState(false);
   const prevStudent = usePrevious(student);
@@ -58,6 +57,8 @@ function RenderStudentOverview() {
       return <Office />;
     } else if (page === "classroom") {
       return <ClassRoom />;
+    } else if (page === "testWorkspace") {
+      return <ReadingTaskTemplate />;
     }
   }
 
@@ -79,9 +80,11 @@ function RenderStudentOverview() {
 }
 
 const StudentOverview = (props) => {
-  return <PackagesContextProvider>
-    <RenderStudentOverview {...props} />
-  </PackagesContextProvider>
-}
+  return (
+    <PackagesContextProvider>
+      <RenderStudentOverview {...props} />
+    </PackagesContextProvider>
+  );
+};
 
-export default StudentOverview
+export default StudentOverview;
