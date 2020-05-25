@@ -3,24 +3,7 @@ import { BackendAdapter, StudipOauthAuthenticationHandler } from "@xyng/yuoshi-b
 import RequestAdapter from "@xyng/yuoshi-request-adapter-axios"
 
 const baseUrl = Meteor.settings.private.studip.url
-
-const OAuthHandler = new StudipOauthAuthenticationHandler(
-    {
-        consumer: {
-            key: Meteor.settings.private.oAuth.studip.key,
-            secret: Meteor.settings.private.oAuth.studip.secret,
-        },
-        endpoints: {
-            request_token: `${baseUrl}/dispatch.php/api/oauth/request_token`,
-			access_token: `${baseUrl}/dispatch.php/api/oauth/access_token`,
-			authorize: `${baseUrl}/dispatch.php/api/oauth/authorize`,
-            callback: "",
-        }
-    },
-    () => {
-
-    }
-)
+const apiPath = Meteor.settings.private.studip.apiPath
 
 function getAuth(user) {
     user = user ?? Meteor.user()
@@ -68,7 +51,7 @@ function createBackendAdapter(user) {
     )
 
     const requestAdapter = new RequestAdapter(OAuthHandler, {
-        base: baseUrl,
+        base: `${baseUrl}${apiPath}`,
     })
 
     return new BackendAdapter(requestAdapter)
