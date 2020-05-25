@@ -229,7 +229,6 @@ function RenderDrag(props) {
   }, []);
 
   const onSolve = useCallback(async () => {
-    console.log("ever?????");
     const result = await PromisifiedMeteor.call(
       "tasks.checkDrag",
       task.id,

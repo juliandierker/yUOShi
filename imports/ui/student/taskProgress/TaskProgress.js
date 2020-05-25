@@ -57,7 +57,6 @@ export default function TaskProgress(props) {
     function handleReset() {
       setActiveStep(0);
     }
-    console.log(activeStep);
     return (
       <div id="workspaceStepper" className={classes.root}>
         <Stepper activeStep={activeStep} orientation="vertical">
