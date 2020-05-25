@@ -2,8 +2,8 @@
   "public": {},
   "private": {
     "studip": {
-      "url": "",
-      "apiPath" : ""
+      "url": "http://vm621.rz.uos.de:8123",
+      "apiPath": "/jsonapi.php/v1"
     },
     "oAuth": {
       "studip": {

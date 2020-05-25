@@ -17,7 +17,7 @@ ServiceConfiguration.configurations.upsert(
   {
     $set: {
       loginStyle: "popup",
-      studipUrl: "http://localhost:8123",
+      studipUrl: "http://vm621.rz.uos.de:8123",
       consumerKey: Meteor.settings.private.oAuth.studip.key,
       secret: Meteor.settings.private.oAuth.studip.secret
     }
