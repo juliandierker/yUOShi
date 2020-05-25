@@ -3,12 +3,12 @@
   "private": {
     "studip": {
       "url": "http://vm621.rz.uos.de:8123",
-      "apiPath": "/jsonapi.php/v1"
+            "apiPath": "/jsonapi.php/v1"
     },
     "oAuth": {
       "studip": {
-        "key": "28a6c343c1eaee21c50c5eebf74d3bd205ec4fb20",
-        "secret": "adeb4b6a5764785f716966f547163274"
+        "key": "1a1c6a1f70e17913ac34132debde53e205ec778a3",
+        "secret": "fa45126078cb510fd2ad37ebe5bf1b9b"
       }
     }
   }
