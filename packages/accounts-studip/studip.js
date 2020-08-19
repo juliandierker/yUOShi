@@ -1,7 +1,6 @@
 Accounts.oauth.registerService("studip");
 if (Meteor.isClient) {
   const loginWithStudip = (options, callback) => {
-    console.log("tetestyyy");
     // support a callback without options
     if (!callback && typeof options === "function") {
       callback = options;

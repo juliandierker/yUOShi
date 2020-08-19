@@ -5,6 +5,7 @@ Studip.retrieveCredential = (credentialToken, credentialSecret) => {
 };
 
 const studipUrl = Meteor.settings.private.studip.url;
+const apiPath = Meteor.settings.private.studip.apiPath;
 
 const urls = {
   requestToken: `${studipUrl}/dispatch.php/api/oauth/request_token`,
@@ -20,7 +21,7 @@ const urls = {
 };
 
 const onAuthDone = (oAuthBinding) => {
-  const identity = oAuthBinding.get(`${studipUrl}/plugins.php/argonautsplugin/users/me`);
+  const identity = oAuthBinding.get(`${studipUrl}${apiPath}/users/me`);
 
   // something went wrong
   if (identity.statusCode !== 200) {
