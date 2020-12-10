@@ -1,8 +1,8 @@
 import React, { useCallback, useState } from "react";
-import { StaticCard } from "@xyng/yuoshi-backend-adapter";
+// import { StaticCard } from "@xyng/yuoshi-backend-adapter";
 import PromisifiedMeteor from "../../api/promisified";
 import FullEditor from "../tasks/texteditor/FullEditor";
-import { Button, Card, Grid, GridColumn, GridRow } from "semantic-ui-react";
+import { Button, Grid, GridColumn, GridRow } from "semantic-ui-react";
 import "./RenderCard.css";
 import Swal from "sweetalert2";
 
@@ -36,7 +36,6 @@ export default function RenderTag(props) {
   );
 
   const onSubmit = useCallback(async () => {
-    console.log("ever??");
     const solutions = Object.entries(userSolution).map(([key, value]) => {
       return {
         topic_id: key,

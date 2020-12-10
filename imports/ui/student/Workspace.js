@@ -1,6 +1,7 @@
+/* eslint-disable react/prop-types */
 import React, { memo } from "react";
 
-import { Responsive, Icon, Grid, Button as Btn } from "semantic-ui-react";
+import { Grid } from "semantic-ui-react";
 
 import { TasksContextProvider, useTasksContext } from "./TasksContext";
 import { PackagesContextProvider, usePackagesContext } from "./PackagesContext";
@@ -11,8 +12,9 @@ import RenderCard from "../taskRenderers/RenderCard";
 import RenderCloze from "../taskRenderers/RenderCloze";
 import RenderTraining from "../taskRenderers/RenderTraining";
 import RenderMemory from "../taskRenderers/RenderMemory";
-import TaskProgress from "./taskProgress/TaskProgress";
+import ProgressBar from "../progressBar/progressBar";
 
+// eslint-disable-next-line react/display-name
 const RenderTask = memo(({ task, updateTask }) => {
   if (!task) {
     return null;
@@ -39,27 +41,27 @@ const RenderTask = memo(({ task, updateTask }) => {
   }
 });
 
-const RenderWorkspace = (props) => {
+const RenderWorkspace = () => {
   const { currentTask, currentTaskLoading, updateTask } = useTasksContext();
   if (currentTaskLoading) {
     return <p>Loading Task...</p>;
   }
-  console.log(currentTask);
   return <RenderTask task={currentTask} updateTask={updateTask} />;
 };
-const RenderProgressBar = (props) => {
-  const { currentTask, currentTaskLoading, updateTask } = useTasksContext();
+const RenderProgressBar = () => {
+  const { currentTask, currentTaskLoading } = useTasksContext();
   const { currentPackage, packagesLoading, packageTasks } = usePackagesContext();
   if (packagesLoading || currentTaskLoading) {
     return <p>Loading Packages...</p>;
   }
   return (
-    <TaskProgress
+    <ProgressBar
       currentPackage={currentPackage}
       packageTasks={packageTasks}
       packageLoading={packagesLoading}
-      task={currentTask}
-    />
+      task={currentTask}>
+
+    </ProgressBar>
   );
 };
 
@@ -67,14 +69,14 @@ const Workspace = ({ packageId, ...props }) => {
   return (
     <React.Fragment>
       <Grid id="workspaceGrid">
-        <Grid.Column width={13}>
+        <Grid.Column width={12}>
           <div className="workspace__container">
             <TasksContextProvider packageId={packageId}>
               <RenderWorkspace {...props} />
             </TasksContextProvider>
           </div>
         </Grid.Column>
-        <Grid.Column style={{ maxWidth: "40vh" }} width={3}>
+        <Grid.Column style={{ maxWidth: "60vh" }} width={4}>
           <TasksContextProvider packageId={packageId}>
             <PackagesContextProvider>
               <RenderProgressBar {...props} />

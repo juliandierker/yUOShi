@@ -1,0 +1,151 @@
+/* eslint-disable react/prop-types */
+import React from "react";
+
+import ProgressBarItem from "./progressBarItem";
+
+import "./progressBar.css"
+
+/**
+ * Render Progressbar
+ * 
+ * @returns {ReactElement | null}
+ */
+export default function ProgressBar() {
+  // temporary data !!! needs to be replaced with props data
+  // { data } = props
+  const data = {
+    "package": {
+      "name": "Motivation",
+      "subPackages": [
+        {
+          "name": "Intro"
+        },
+        {
+          "name": "Motivationsbegriff",
+          "tasks": [
+            {
+              "name": "Intrinsische und extrinsische Motivation",
+              "type": "Lückentext"
+            },
+            {
+              "name": "Intrinsische und extrinsische Motivation",
+              "type": "Lückentext"
+            }
+          ]
+        },
+        {
+          "name": "Humanistische Theorien",
+          "tasks": [
+            {
+              "name": "Maslow Bedürfnisspyramide",
+              "type": "Lückentext"
+            },
+            {
+              "name": "Maslow Bedürfnisspyramide",
+              "type": "Lückentext"
+            },
+            {
+              "name": "Maslow Bedürfnisspyramide",
+              "type": "Lückentext"
+            },
+            {
+              "name": "Maslow Bedürfnisspyramide",
+              "type": "Lückentext"
+            },
+            {
+              "name": "Maslow Bedürfnisspyramide",
+              "type": "Lückentext"
+            }
+
+          ]
+        },
+        {
+          "name": "Kognitive Theorien",
+          "tasks": [
+            {
+              "name": "Erwartungs-X-Wert Theorie",
+              "type": "Lückentext"
+            },
+            {
+              "name": "Erwartungs-X-Wert Theorie",
+              "type": "Lückentext"
+            },
+            {
+              "name": "Erwartungs-X-Wert Theorie",
+              "type": "Lückentext"
+            },
+            {
+              "name": "Erwartungs-X-Wert Theorie",
+              "type": "Lückentext"
+            }
+          ]
+        },
+        {
+          "name": "Ziele",
+          "tasks": [
+            {
+              "name": "Zielsetzungstheorie",
+              "type": "Lückentext"
+            },
+            {
+              "name": "Zielsetzungstheorie",
+              "type": "Lückentext"
+            },
+            {
+              "name": "Zielsetzungstheorie",
+              "type": "Lückentext"
+            },
+            {
+              "name": "Zielsetzungstheorie",
+              "type": "Lückentext"
+            }
+          ]
+        },
+        {
+          "name": "Quest",
+          "locked": true
+        }
+      ]
+    }
+  }
+
+  const RenderTitle = ({ title }) => {
+    return (
+      <div className="progressBar-header">
+        <span className="progressBar-header-name">{title}</span>
+      </div>)
+  }
+
+  const RenderScore = (() => {
+    return <div className="progressBar-score">
+      <p className="progressBar-score-number">50/100</p>
+      <p className="progressBar-score-label">Gesammelte Punkte</p>
+    </div>
+  })
+
+  const RenderSubPackages = () => {
+    return (
+      <div className="progressBar-content" >
+        {
+          data.package.subPackages.map((data, index) => {
+            return <ProgressBarItem key={"progressBarItem_" + index} data={data} index={index}></ProgressBarItem>
+          })
+        }
+        <RenderScore></RenderScore>
+      </div >
+    )
+  }
+
+
+  const RenderContainer = () => {
+    return <div className="progressBar-container">
+      <RenderTitle title={data.package.name}></RenderTitle>
+      <RenderSubPackages></RenderSubPackages>
+    </div>
+  }
+
+  return <React.Fragment>
+    <RenderContainer></RenderContainer>
+  </React.Fragment>
+
+}
