@@ -1,0 +1,73 @@
+.progressBar-item {
+  margin: 12px auto 0px 12px;
+  width: 208px;
+  height: 60px;
+
+  background: #FFFFFF;
+  box-shadow: 0px 2px 4px #00000029;
+  border-radius: 12px;
+  opacity: 1;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  transition: 0.2s;
+}
+
+.progressBar-item-hover{
+  margin: 12px auto 0px 12px;
+  width: 208px;
+  height: 60px;
+
+  box-shadow: 0px 2px 4px #00000029;
+  border-radius: 12px;
+  opacity: 1;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  background-color: #6A96E2;
+  color: #FFFFFF;
+}
+
+.progressBar-item-hover-tasks{
+  margin: 12px auto 0px 12px;
+  height: 60px;
+
+  box-shadow: 0px 2px 4px #00000029;
+  border-radius: 12px;
+  opacity: 1;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  background-color: #6A96E2;
+  color: #FFFFFF;
+  
+  width: 362px;
+  transition: width 0.2s ease-in; 
+}
+
+
+.progressBar-content :first-child {
+  margin-top: 0px;
+}
+
+.progressBar-item-name {
+  font-size: 18px;
+  font-weight: bold;
+
+  width:85%;
+}
+.progressBar-sub-items{
+  position: absolute;
+  float: right;
+
+  padding-top: 12px;
+  margin-left: 254px;
+
+  height: auto;
+}

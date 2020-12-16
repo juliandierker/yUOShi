@@ -1,0 +1,48 @@
+.progress-bar-sub-item:first-child() {
+  margin-top: 24px !important;
+}
+
+.progress-bar-sub-item {
+  margin-top: 12px;
+  width: 120px;
+  height: 80px;
+
+  background: #FFFFFF;
+  box-shadow: 0px 2px 4px #00000029;
+  border-radius: 12px;
+  opacity: 1;
+}
+
+.progress-bar-sub-item-header {
+  width: 100%;
+  height: 22px;
+  
+  margin-top: 8px;
+  text-align: center;
+
+  font-size: 12px/15px;
+  color: #FFFFFF;
+  
+  background-color: #6A96E2;
+  border-top-left-radius: 12px;
+  border-top-right-radius: 12px;
+}
+
+.progress-bar-sub-item-text {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  height: 58px;
+  width: 100%;
+
+  font-size: 12px/17px;
+
+  background-color: #F6F6F6;
+  hyphens: auto;
+}
+
+.progress-bar-sub-item-text {
+  hyphens: auto;
+  text-align: center;
+}
