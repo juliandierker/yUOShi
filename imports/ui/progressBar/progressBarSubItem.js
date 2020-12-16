@@ -4,7 +4,7 @@ import React from "react";
 import "./progressBarSubItem.css"
 
 export default function ProgressBarSubItem({ title, type }) {
-  return <React.Fragment>
+  return (
     <div className="progress-bar-sub-item">
       <div className="progress-bar-sub-item-header">
         {type}
@@ -13,5 +13,5 @@ export default function ProgressBarSubItem({ title, type }) {
         <span className="progress-bar-sub-item-text-span">{title}</span>
       </div>
     </div>
-  </React.Fragment>
+  )
 }

@@ -56,7 +56,6 @@ export default function ProgressBar() {
               "name": "Maslow Bedürfnisspyramide",
               "type": "Lückentext"
             }
-
           ]
         },
         {
@@ -128,24 +127,19 @@ export default function ProgressBar() {
       <div className="progressBar-content" >
         {
           data.package.subPackages.map((data, index) => {
-            return <ProgressBarItem key={"progressBarItem_" + index} data={data} index={index}></ProgressBarItem>
+            return <ProgressBarItem key={"progressBarItem_" + index} data={data} index={index} />
           })
         }
-        <RenderScore></RenderScore>
+        <RenderScore />
       </div >
     )
   }
 
-
-  const RenderContainer = () => {
-    return <div className="progressBar-container">
-      <RenderTitle title={data.package.name}></RenderTitle>
-      <RenderSubPackages></RenderSubPackages>
-    </div>
-  }
-
   return <React.Fragment>
-    <RenderContainer></RenderContainer>
+    <div className="progressBar-container">
+      <RenderTitle title={data.package.name} />
+      <RenderSubPackages />
+    </div>
   </React.Fragment>
 
 }
