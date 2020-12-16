@@ -1,0 +1,28 @@
+.workspace-container {
+  width: 1208px;
+  height: 738px;
+  margin-left: 240px;
+  margin-top: 70px;
+}
+
+.workspace-navigation {
+  display: flex;
+  justify-content: space-between;
+  margin-left: 240px;
+  margin-top: 38px;
+}
+
+.navigation-button {
+  width: 241px;
+  height: 47px;
+
+  background: #F6F6F5 0% 0% no-repeat padding-box;
+  box-shadow: 0px 1px 2px #00000029;
+  border-color: #FFFFFF00;
+  border-radius: 12px;
+}
+
+#navigation-button-submit {
+  width: 600px;
+  font: normal normal 900 28px/34px Arial;
+}
