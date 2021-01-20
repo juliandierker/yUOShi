@@ -1,6 +1,11 @@
+#workspaceGrid {
+  width: 1080px;
+  height: 800px;
+  padding-top: 0;
+  margin: auto
+}
+
 .workspace-container {
-  width: 1208px;
-  height: 738px;
   margin-left: 240px;
   margin-top: 70px;
 }

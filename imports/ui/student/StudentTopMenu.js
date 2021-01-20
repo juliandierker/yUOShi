@@ -1,19 +1,15 @@
 import React, { useContext, useState } from "react";
 
-import PropTypes from "prop-types";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faMailBulk } from "@fortawesome/free-solid-svg-icons";
 import { Button } from "semantic-ui-react";
 
 import { GameContext } from "./StudentContextProvider";
 
-import { Dropdown, Icon, Menu, Segment, Image, Responsive } from "semantic-ui-react";
+import { Dropdown, Menu, Image } from "semantic-ui-react";
 
-export default function StudentTopMenu({ student, activeTutorial }) {
+export default function StudentTopMenu({ activeTutorial }) {
   const { setPage } = useContext(GameContext);
   const [activeItem, setActiveItem] = useState(null);
   const [classHover, setClassHover] = useState(null);
-  const [dropdownActive, setdropDownActive] = useState(false);
   const [visible, setVisible] = useState(false);
 
   function hoverOnClass(id) {
@@ -92,12 +88,7 @@ export default function StudentTopMenu({ student, activeTutorial }) {
       setPage("classroom");
     }
   }
-  function getCredits() {
-    return student ? student.credits : 0;
-  }
-  function getLevel() {
-    return student ? student.level : 0;
-  }
+
   function returnUser() {
     return Meteor.user() ? Meteor.user().username : "";
   }
@@ -109,197 +100,90 @@ export default function StudentTopMenu({ student, activeTutorial }) {
     </span>
   );
 
-  const element = <FontAwesomeIcon icon={faMailBulk} />;
-
   return (
     <React.Fragment>
-      <Responsive {...Responsive.onlyTablet}>
-        <Menu
-          id="page__header"
-          attached="top"
+      <Menu
+        id="page__header"
+        secondary
+        fixed="top"
+        style={{
+          justifyContent: "center",
+          backgroundColor: "#6A96E2",
+          width: "100%",
+          height: "5%"
+        }}>
+        <Menu.Item
+          id="classMenuItem"
           style={{
-            backgroundColor: "#6A96E2",
-            width: "100%",
-            height: "5%"
+            color: "white"
+          }}
+          content="Schulübersicht"
+          active={activeItem === "schoolview"}
+          onClick={handleMenuItemClick}
+        />
+        <Menu.Item
+          id="classMenuItem"
+          style={{
+            color: "white"
+          }}
+          content="Klassenzimmer"
+          active={activeItem === "freegame"}
+          onClick={handleMenuItemClick}
+          onMouseEnter={() => hoverOnClass("classroom")}
+          onMouseLeave={() => hoverOffClass("classroom")}
+        />
+        <Menu.Item
+          content="Lehrendenzimmer"
+          style={{
+            color: "white"
+          }}
+          active={activeItem === "overview"}
+          onClick={handleMenuItemClick}
+        />
+        <Menu.Item
+          content="Mein Büro"
+          style={{
+            color: "white"
+          }}
+          active={activeItem === "overview"}
+          onClick={handleMenuItemClick}
+        />
+        {/* Start Badges*/}
+        <Menu.Item
+          style={{
+            paddingTop: "3px",
+            paddingBottom: "0px",
+            margin: "0px"
           }}>
+          {activeTutorial && activeTutorial.current && (
+            <Menu.Item className="border__left__menu__item">
+              <Button
+                id="skipTutorial"
+                icon
+                className="current__blue__color help__button__overwrite"
+                onClick={() => Meteor.call("students.completeTutorial", activeTutorial)}>
+                {"Überspringen"}
+              </Button>
+            </Menu.Item>
+          )}
           <Dropdown
-            onClick={() => setdropDownActive(!dropdownActive)}
-            open={dropdownActive}
-            fluid
+            color="white"
+            trigger={dropdownTrigger}
+            style={{ minWidth: "120px", color: "white" }}
             item
-            icon={dropdownActive ? "close" : "bars"}>
-            <Dropdown.Menu
-              fluid
-              style={{
-                backgroundColor: "rgba(106, 150, 226, 0.9)",
-                Color: "white!important",
-                height: "100vH",
-                paddingTop: "2rem"
-              }}>
-              <Dropdown.Item fluid active={activeItem === "overview"} onClick={handleMenuItemClick}>
-                TestWorkspace
-              </Dropdown.Item>
+            simple>
+            <Dropdown.Menu style={{ marginTop: "0px" }}>
+              <Dropdown.Item color="white" icon="user" text="Profil" />
               <Dropdown.Item
-                fluid
-                active={activeItem === "freegame"}
-                onClick={handleMenuItemClick}
-                onMouseEnter={() => hoverOnClass("classroom")}
-                onMouseLeave={() => hoverOffClass("classroom")}>
-                Klassenzimmer
-              </Dropdown.Item>
-              <Dropdown.Item fluid active={activeItem === "overview"} onClick={handleMenuItemClick}>
-                Lehrendenzimmer
-              </Dropdown.Item>
-
-              <Dropdown.Item fluid active={activeItem === "overview"} onClick={handleMenuItemClick}>
-                Mein Büro
-              </Dropdown.Item>
-              <Dropdown.Item icon="certificate" />
-              <Dropdown.Item icon="euro sign" name={" " + getCredits()} />
-              <Dropdown.Item icon="play" name={"" + getLevel()} />
-
-              <Dropdown.Item fluid>
-                <Icon name="user" />
-                Profil
-              </Dropdown.Item>
-              {activeTutorial && activeTutorial.current && (
-                <Dropdown.Item className="border__left__menu__item">
-                  <Button
-                    id="skipTutorial"
-                    icon
-                    className="current__blue__color help__button__overwrite"
-                    onClick={() => Meteor.call("pupils.completeTutorial", activeTutorial)}>
-                    {"Überspringen"}
-                  </Button>
-                </Dropdown.Item>
-              )}
-              <Dropdown.Item
-                fluid
+                icon="power off"
+                text="Ausloggen"
                 active={activeItem === "overview"}
-                onClick={() => Meteor.logout(() => {})}>
-                <Icon name="power off" />
-                Ausloggen
-              </Dropdown.Item>
+                onClick={() => Meteor.logout(() => { })}
+              />
             </Dropdown.Menu>
           </Dropdown>
-        </Menu>
-      </Responsive>
-      <Responsive as={Segment} {...Responsive.onlyComputer}>
-        {/* desktop */}
-        <Menu
-          id="page__header"
-          secondary
-          fixed="top"
-          style={{
-            justifyContent: "center",
-            backgroundColor: "#6A96E2",
-            width: "100%",
-            height: "5%"
-          }}>
-          {/* <Menu.Item
-            id="classMenuItem"
-            style={{
-              color: "white"
-            }}
-            content="TestWorkspace"
-            active={activeItem === "schoolview"}
-            onClick={handleMenuItemClick}
-          /> */}
-          <Menu.Item
-            id="classMenuItem"
-            style={{
-              color: "white"
-            }}
-            content="Schulübersicht"
-            active={activeItem === "schoolview"}
-            onClick={handleMenuItemClick}
-          />
-          <Menu.Item
-            id="classMenuItem"
-            style={{
-              color: "white"
-            }}
-            content="Klassenzimmer"
-            active={activeItem === "freegame"}
-            onClick={handleMenuItemClick}
-            onMouseEnter={() => hoverOnClass("classroom")}
-            onMouseLeave={() => hoverOffClass("classroom")}
-          />
-          <Menu.Item
-            content="Lehrendenzimmer"
-            style={{
-              color: "white"
-            }}
-            active={activeItem === "overview"}
-            onClick={handleMenuItemClick}
-          />
-          <Menu.Item
-            content="Mein Büro"
-            style={{
-              color: "white"
-            }}
-            active={activeItem === "overview"}
-            onClick={handleMenuItemClick}
-          />
-          {/* Start Badges*/}
-          <Menu.Item
-            style={{
-              paddingTop: "3px",
-              paddingBottom: "0px",
-              margin: "0px"
-            }}>
-            <Menu.Item
-              style={{
-                color: "white"
-              }}
-              icon="certificate"
-            />
-            {/* End Badges*/}
-            <Menu.Item
-              style={{
-                color: "white"
-              }}
-              icon="euro sign"
-              content={" " + getCredits()}
-            />
-            {activeTutorial && activeTutorial.current && (
-              <Menu.Item className="border__left__menu__item">
-                <Button
-                  id="skipTutorial"
-                  icon
-                  className="current__blue__color help__button__overwrite"
-                  onClick={() => Meteor.call("students.completeTutorial", activeTutorial)}>
-                  {"Überspringen"}
-                </Button>
-              </Menu.Item>
-            )}
-            <Menu.Item
-              style={{
-                color: "white"
-              }}
-              icon="play"
-              name={"" + getLevel()}
-            />{" "}
-            {/* Level */}
-            <Dropdown
-              color="white"
-              trigger={dropdownTrigger}
-              style={{ minWidth: "120px", color: "white" }}
-              item
-              simple>
-              <Dropdown.Menu style={{ marginTop: "0px" }}>
-                <Dropdown.Item color="white" icon="user" text="Profil" />
-                <Dropdown.Item
-                  icon="power off"
-                  text="Ausloggen"
-                  active={activeItem === "overview"}
-                  onClick={() => Meteor.logout(() => {})}
-                />
-              </Dropdown.Menu>
-            </Dropdown>
-          </Menu.Item>
-        </Menu>
-      </Responsive>
+        </Menu.Item>
+      </Menu>
     </React.Fragment>
   );
 }
