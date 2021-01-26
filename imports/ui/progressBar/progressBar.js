@@ -84,19 +84,19 @@ export default function ProgressBar() {
           "tasks": [
             {
               "name": "Zielsetzungstheorie",
-              "type": "Lückentext"
+              "type": "memory"
             },
             {
               "name": "Zielsetzungstheorie",
-              "type": "Lückentext"
+              "type": "tag"
             },
             {
               "name": "Zielsetzungstheorie",
-              "type": "Lückentext"
+              "type": "multi"
             },
             {
               "name": "Zielsetzungstheorie",
-              "type": "Lückentext"
+              "type": "cloze"
             }
           ]
         },

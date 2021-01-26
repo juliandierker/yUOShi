@@ -1,0 +1,32 @@
+#workspaceGrid {
+  width: 1080px !important;
+  height: 800px !important;
+  padding-top: 0;
+  margin: auto;
+}
+
+.workspace-container {
+  margin-top: 162px;
+  height: 533px;
+}
+
+.workspace-navigation {
+  display: flex;
+  justify-content: space-between;
+}
+
+.navigation-button {
+  width: 241px;
+  height: 47px;
+
+  background: #F6F6F5 0% 0% no-repeat padding-box;
+  box-shadow: 0px 1px 2px #00000029;
+  border-color: #FFFFFF00;
+  border-radius: 12px;
+  margin-bottom: 12px;
+}
+
+#navigation-button-submit {
+  width: 600px;
+  font: normal normal 900 20px/30px Arial;
+}

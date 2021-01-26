@@ -46,7 +46,7 @@ export default function ProgressBarItem({ data }) {
   return <React.Fragment>
     < div className={pbClassname} onMouseEnter={handleItemEnter} onMouseLeave={handleItemLeave} >
       <span className="progressBar-item-name">{name}</span>
-      {icon}
+      <div>{icon}</div>
     </div >
     {(hover || hoverSubArea) && tasks && <RenderSubItems />}
   </React.Fragment>
