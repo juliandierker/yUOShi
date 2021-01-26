@@ -1,0 +1,27 @@
+.pu.icon {
+  transition: 500ms;
+  &.-right {
+    margin-right: $sp-8;
+  }
+  &.-left {
+    margin-left: $sp-8;
+  }
+  &.-tiny {
+    width: 16px;
+  }
+  &.-small {
+    width: 24px;
+  }
+  &.-medium {
+    width: 32px;
+  }
+  &.-big {
+    width: 40px;
+  }
+  &.-massive {
+    width: 48px;
+  }
+  &.-clickable {
+    cursor: pointer;
+  }
+}
