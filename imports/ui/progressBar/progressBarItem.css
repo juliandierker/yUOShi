@@ -1,7 +1,7 @@
 .progressBar-item {
-  margin: 12px auto 0px 12px;
-  width: 208px;
-  height: 60px;
+  margin: 6px auto 0px 12px;
+  width: 140px;
+  height: 40px;
 
   background: #FFFFFF;
   box-shadow: 0px 2px 4px #00000029;
@@ -12,13 +12,15 @@
   justify-content: center;
   align-items: center;
 
+  z-index: 100;
+
   transition: 0.2s;
 }
 
 .progressBar-item-hover{
-  margin: 12px auto 0px 12px;
-  width: 208px;
-  height: 60px;
+  margin: 6px auto 0px 12px;
+  width: 140px;
+  height: 40px;
 
   box-shadow: 0px 2px 4px #00000029;
   border-radius: 12px;
@@ -27,14 +29,16 @@
   display: flex;
   justify-content: center;
   align-items: center;
+
+  z-index: 100;
 
   background-color: #6A96E2;
   color: #FFFFFF;
 }
 
 .progressBar-item-hover-tasks{
-  margin: 12px auto 0px 12px;
-  height: 60px;
+  margin: 6px auto 0px 12px;
+  height: 40px;
 
   box-shadow: 0px 2px 4px #00000029;
   border-radius: 12px;
@@ -46,8 +50,10 @@
 
   background-color: #6A96E2;
   color: #FFFFFF;
+
+  z-index: 100;
   
-  width: 362px;
+  width: 490px;
   transition: width 0.2s ease-in; 
 }
 
@@ -57,17 +63,24 @@
 }
 
 .progressBar-item-name {
-  font-size: 18px;
+  font-size: 12px;
   font-weight: bold;
+  margin-left: 6px;
 
-  width:85%;
+  width:90%;
 }
+
+.progressBar-content :first-child .progressBar-item-name {
+  margin-left: -4px;
+}
+
 .progressBar-sub-items{
   position: absolute;
   float: right;
 
   padding-top: 12px;
-  margin-left: 254px;
+  margin-left: 192px;
 
   height: auto;
+  z-index: 100;
 }
