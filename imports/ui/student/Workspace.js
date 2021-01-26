@@ -70,6 +70,13 @@ const Workspace = ({ packageId, ...props }) => {
   return (
     <React.Fragment>
       <Grid id="workspaceGrid">
+        <Grid.Column style={{ maxWidth: "22%" }} width={4}>
+          <TasksContextProvider packageId={packageId}>
+            <PackagesContextProvider>
+              <RenderProgressBar {...props} />
+            </PackagesContextProvider>
+          </TasksContextProvider>
+        </Grid.Column>
         <Grid.Column width={12}>
           <div className="workspace-container">
             <TasksContextProvider packageId={packageId}>
@@ -81,13 +88,6 @@ const Workspace = ({ packageId, ...props }) => {
             <button className="navigation-button" id="navigation-button-submit">AUSWERTEN</button>
             <button className="navigation-button" id="navigation-button-right"><Icon name="arrow right" size="large" /></button>
           </div>
-        </Grid.Column>
-        <Grid.Column style={{ maxWidth: "60vh" }} width={4}>
-          <TasksContextProvider packageId={packageId}>
-            <PackagesContextProvider>
-              <RenderProgressBar {...props} />
-            </PackagesContextProvider>
-          </TasksContextProvider>
         </Grid.Column>
       </Grid>
     </React.Fragment>
