@@ -1,10 +1,9 @@
 import React, { useCallback, useMemo, useState } from "react"
 import { parseContent, StaticTag } from "@xyng/yuoshi-backend-adapter";
-import { Button, Icon } from "semantic-ui-react";
 import PromisifiedMeteor from "../../api/promisified";
+import Icon from "../IconComponent/Icon"
 
 import "./RenderTag.css"
-import { max } from "moment";
 
 /**
  * @typedef RenderTagProps
@@ -74,9 +73,9 @@ export default function RenderTag(props) {
             </div>
         </div>
         <div className="task-text-navigation">
-            <button className="task-text-navigation-button" onClick={() => handlePrevPage()}><Icon name="angle left"></Icon></button>
+            <button className="task-text-navigation-button" onClick={() => handlePrevPage()}><Icon name="angle-left"></Icon></button>
             <span className="task-text-navigation-text">Seite {currentPage + 1} von {maxPage + 1}</span>
-            <button className="task-text-navigation-button" onClick={() => handleNextPage()}><Icon name="angle right"></Icon></button>
+            <button className="task-text-navigation-button" onClick={() => handleNextPage()}><Icon name="angle-right"></Icon></button>
         </div>
     </>
 }

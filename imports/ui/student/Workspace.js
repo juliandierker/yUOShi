@@ -1,6 +1,6 @@
 /* eslint-disable react/prop-types */
 import React, { memo } from "react";
-import { Grid, Icon } from "semantic-ui-react";
+import { Grid } from "semantic-ui-react";
 
 import { TasksContextProvider, useTasksContext } from "./TasksContext";
 import { PackagesContextProvider, usePackagesContext } from "./PackagesContext";
@@ -12,6 +12,8 @@ import RenderCloze from "../taskRenderers/RenderCloze";
 import RenderTraining from "../taskRenderers/RenderTraining";
 import RenderMemory from "../taskRenderers/RenderMemory";
 import ProgressBar from "../progressBar/progressBar";
+import Icon from "../IconComponent/Icon"
+
 
 import "./workspace.css"
 
@@ -95,9 +97,9 @@ const Workspace = ({ packageId, ...props }) => {
             </TasksContextProvider>
           </div>
           <div className="workspace-navigation">
-            <button className="navigation-button" id="navigation-button-left"><Icon name="arrow left" size="large" /></button>
+            <button className="navigation-button" id="navigation-button-left"><Icon name="arrow-left" size="large" /></button>
             <button className="navigation-button" id="navigation-button-submit">AUSWERTEN</button>
-            <button className="navigation-button" id="navigation-button-right"><Icon name="arrow right" size="large" /></button>
+            <button className="navigation-button" id="navigation-button-right"><Icon name="arrow-right" size="large" /></button>
           </div>
         </Grid.Column>
       </Grid>

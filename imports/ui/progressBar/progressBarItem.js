@@ -1,8 +1,7 @@
 /* eslint-disable react/prop-types */
 import React, { useState } from "react";
-import { Icon } from "semantic-ui-react"
-
 import ProgressBarSubItem from "./progressBarSubItem";
+import Icon from "../IconComponent/Icon"
 
 import "./progressBarItem.css";
 
@@ -37,7 +36,7 @@ export default function ProgressBarItem({ data }) {
 
   let icon = <div></div>
   icon = tasks ? <Icon name="bars" size="large" /> : icon
-  icon = locked ? <Icon name="lock" size="large" /> : icon
+  icon = locked ? <Icon name="lock-locked" size="large" /> : icon
   let pbClassname = "progressBar-item"
   if (hover || hoverSubArea) {
     pbClassname = tasks ? "progressBar-item-hover-tasks" : "progressBar-item-hover"
@@ -46,7 +45,7 @@ export default function ProgressBarItem({ data }) {
   return <React.Fragment>
     < div className={pbClassname} onMouseEnter={handleItemEnter} onMouseLeave={handleItemLeave} >
       <span className="progressBar-item-name">{name}</span>
-      <div>{icon}</div>
+      <div className="progressBar-item-icon">{icon}</div>
     </div >
     {(hover || hoverSubArea) && tasks && <RenderSubItems />}
   </React.Fragment>
