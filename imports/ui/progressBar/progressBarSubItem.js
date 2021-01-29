@@ -1,21 +1,15 @@
 /* eslint-disable react/prop-types */
 import React from "react";
 
-import { Icon } from "semantic-ui-react"
+import Icon from "../IconComponent/Icon"
 
 import "./progressBarSubItem.css"
 
 export default function ProgressBarSubItem({ title, type }) {
-  // TODO: Add own icons for taskTypes
-  let iconName = "file text"
-  iconName = type === "multi" ? "checkmark box" : iconName
-  iconName = type === "survey" ? "check circle" : iconName
-  iconName = type === "drag" ? "grab" : iconName
-  iconName = type === "card" ? "sticky note" : iconName
-  iconName = type === "cloze" ? "pen alternate" : iconName
-  iconName = type === "memory" ? "table" : iconName
-  iconName = type === "training" ? "train" : iconName
-
+  let iconName = "info"
+  if (type !== "text" && type !== "tag") {
+    iconName = "checkmark-alt"
+  }
 
   const icon = <Icon name={iconName} size="large"></Icon>
   return (

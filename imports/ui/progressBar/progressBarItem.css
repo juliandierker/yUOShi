@@ -66,8 +66,12 @@
   font-size: 12px;
   font-weight: bold;
   margin-left: 6px;
-
   width:90%;
+}
+
+.progressBar-item-icon {
+  margin-right: 5px;
+  
 }
 
 .progressBar-content :first-child .progressBar-item-name {

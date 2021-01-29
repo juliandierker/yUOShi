@@ -1,6 +1,6 @@
 /* eslint-disable react/prop-types */
 import React, { memo } from "react";
-import { Grid, Icon } from "semantic-ui-react";
+import { Grid } from "semantic-ui-react";
 
 import { TasksContextProvider, useTasksContext } from "./TasksContext";
 import { PackagesContextProvider, usePackagesContext } from "./PackagesContext";
@@ -12,6 +12,8 @@ import RenderCloze from "../taskRenderers/RenderCloze";
 import RenderTraining from "../taskRenderers/RenderTraining";
 import RenderMemory from "../taskRenderers/RenderMemory";
 import ProgressBar from "../progressBar/progressBar";
+import Icon from "../IconComponent/Icon"
+
 
 import "./workspace.css"
 
@@ -20,26 +22,37 @@ const RenderTask = memo(({ task, updateTask }) => {
   if (!task) {
     return null;
   }
-
+  let taskRenderer = null;
   switch (task.type) {
     case "multi":
     case "survey":
-      return <RenderQuest task={task} updateTask={updateTask} />;
+      taskRenderer = <RenderQuest task={task} updateTask={updateTask} />;
+      break;
     case "drag":
-      return <RenderDrag task={task} updateTask={updateTask} />;
+      taskRenderer = <RenderDrag task={task} updateTask={updateTask} />;
+      break;
     case "tag":
-      return <RenderTag task={task} updateTask={updateTask} />;
+      taskRenderer = <RenderTag task={task} updateTask={updateTask} />;
+      break;
     case "card":
-      return <RenderCard task={task} updateTask={updateTask} />;
+      taskRenderer = <RenderCard task={task} updateTask={updateTask} />;
+      break;
     case "cloze":
-      return <RenderCloze task={task} updateTask={updateTask} />;
+      taskRenderer = <RenderCloze task={task} updateTask={updateTask} />;
+      break;
     case "memory":
-      return <RenderMemory task={task} updateTask={updateTask} />;
+      taskRenderer = <RenderMemory task={task} updateTask={updateTask} />;
+      break;
     case "training":
-      return <RenderTraining task={task} updateTask={updateTask} />;
+      taskRenderer = <RenderTraining task={task} updateTask={updateTask} />;
+      break;
     default:
-      return null;
+      taskRenderer = null;
   }
+  return <div className="inner-workspace">
+    <div className="workspace-task-title">{task.title}</div>
+    {taskRenderer}
+  </div>
 });
 
 const RenderWorkspace = () => {
@@ -84,9 +97,9 @@ const Workspace = ({ packageId, ...props }) => {
             </TasksContextProvider>
           </div>
           <div className="workspace-navigation">
-            <button className="navigation-button" id="navigation-button-left"><Icon name="arrow left" size="large" /></button>
+            <button className="navigation-button" id="navigation-button-left"><Icon name="arrow-left" size="large" /></button>
             <button className="navigation-button" id="navigation-button-submit">AUSWERTEN</button>
-            <button className="navigation-button" id="navigation-button-right"><Icon name="arrow right" size="large" /></button>
+            <button className="navigation-button" id="navigation-button-right"><Icon name="arrow-right" size="large" /></button>
           </div>
         </Grid.Column>
       </Grid>

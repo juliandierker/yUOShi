@@ -17,13 +17,20 @@
 }
 
 .progress-bar-sub-item-icon {
-  width: 10%;
+  width: 30px;
+  height: 30px;
+  margin-left: 10px;
+  margin-top: 5px!important;
   
   text-align: center;
   font-size: 12px/15px;
   
   line-height: 40px;
   vertical-align: middle;
+  vertical-align: middle;
+
+  background-color: #6A96E2;
+  border-radius: 44px;
 }
 
 .progress-bar-sub-item-text {

@@ -1,8 +1,9 @@
 import React, { useCallback, useMemo, useState } from "react"
 import { parseContent, StaticTag } from "@xyng/yuoshi-backend-adapter";
-import { Button, Grid, Header, Image, Label, Segment } from "semantic-ui-react";
 import PromisifiedMeteor from "../../api/promisified";
-import Swal from "sweetalert2";
+import Icon from "../IconComponent/Icon"
+
+import "./RenderTag.css"
 
 /**
  * @typedef RenderTagProps
@@ -19,132 +20,62 @@ import Swal from "sweetalert2";
 export default function RenderTag(props) {
     // destructure here and not in function-params so we get type-hints
     const { task, updateTask } = props
-    const [ foundTags, setFoundTags ] = useState([])
-    const [ done, setDone ] = useState(false)
+    const [currentPage, setCurrentPage] = useState(0)
+    const content = task.contents[0].content
 
-    const onClick = useCallback((id) => () => {
-        setFoundTags(foundTags => {
-            if (foundTags.includes(id)) {
-                return foundTags
+    const pages = useMemo(() => {
+        let pages = []
+        let totalLetterCount = 0
+        let counter = 0
+        let linebreaksOnPage = 0
+
+        for (let i in content) {
+            // check for new page
+            if (content[i] === "\n") {
+                linebreaksOnPage++;
             }
-
-            return foundTags.concat([id])
-        })
-    }, [])
-
-    const onSubmit = useCallback(async () => {
-        if (task.tags.length !== foundTags.length) {
-            return
-        }
-
-        const foundTagObjects = task.tags.filter(tag => foundTags.includes(tag.id))
-        const result = await PromisifiedMeteor.call("tasks.checkTag", task.id, foundTagObjects)
-
-        if (!result) {
-            // TODO: handle error
-            // the error may be caused by the user submitting more than 3 solution-attempts.
-            // in that case we have to redirect to the next quest.
-
-            // return true for now so that the user is redirected to next quest
-            return true
-        }
-
-        const correct = result.quest_solutions.reduce((acc, value) => acc && value.is_correct, true)
-        if (correct) {
-            Swal.fire({
-              position: "top-end",
-              type: "success",
-              title: "Geschafft!",
-              timer: 2000
-            }).then()
-            setDone(true)
-
-            return true
-        }
-
-        const { value: showSolution } = await Swal.fire({
-            position: "top-end",
-            type: "warning",
-            title: "Nicht ganz...",
-            text:
-                "Es sind nicht alle Fragen richtig beantwortet. Versuch es nochmal.",
-            confirmButtonText: "Nochmal versuchen",
-            cancelButtonColor: "#3085d6",
-            showCancelButton: false
-        })
-
-        return false
-    }, [task, foundTags])
-
-    return <>
-        <Segment id="defTextReader">
-            <Header as="h1">{task.title}</Header>
-
-            {task.contents.map((content, index) => {
-                // using the array index for the key prop is okay in this case
-                // as neither the content array nor its contents can change
-                return <span key={`content-${index}`}>
-                <RenderTagKeyword
-                    content={content.content}
-                    tags={task.tags}
-                    foundTags={foundTags}
-                    onClick={onClick}
-                />
-            </span>
-            })}
-        </Segment>
-        {!done && <Button
-            disabled={task.tags.length !== foundTags.length}
-            onClick={onSubmit}
-        >
-            Aufgabe lösen
-        </Button>}
-        {done && <Button
-            onClick={updateTask}
-        >
-            Weiter
-        </Button>}
-    </>
-}
-
-function RenderTagKeyword({ content, tags, foundTags, onClick }) {
-    const parts = useMemo(() => {
-        return parseContent(
-            content,
-            "\\b",
-            `${tags.map(tag => tag.tag).join("|")}`
-        ).map((part, index) => {
-            let tag_id = part.id ? tags.find(tag => tag.tag === part.id.trim()) : undefined
-            tag_id = tag_id ? tag_id.id : undefined
-
-            return {
-                id: tag_id,
-                tag: part.id,
-                found: !!tag_id && foundTags.includes(tag_id),
-                content: `${index === 0 ? "" : " "}${(part.content || "").trim()} `
+            if (counter > 650 - (40 * linebreaksOnPage) && (content[i] === " " || content[i] === "\n")) {
+                pages.push(content.substring(totalLetterCount, parseInt(counter) + parseInt(totalLetterCount)))
+                totalLetterCount = i
+                linebreaksOnPage = 0
+                counter = 0
             }
-        })
-    }, [content, tags, foundTags])
+            counter++;
+        }
 
-    return <div>
-        {parts.map((part, index) => {
-            return <React.Fragment key={`part-${part.id}-${index}`}>
-                <span>{part.content}</span>
-                {part.tag && <RenderTagItem
-                    onClick={onClick(part.id)}
-                    found={part.found}
-                >
-                    {part.tag}
-                </RenderTagItem>}
-            </React.Fragment>
-        })}
-    </div>
-}
+        pages.push(content.substring(totalLetterCount, content.length))
 
-function RenderTagItem({ found, onClick, children }) {
-    if (found) {
-        return <Label>{children}</Label>
+        return pages
+    }, [content])
+
+    const maxPage = Math.ceil(pages.length / 2) - 1
+
+    const handlePrevPage = () => {
+        if (currentPage > 0) {
+            setCurrentPage(currentPage - 1)
+        }
     }
 
-    return <span onClick={onClick}>{children}</span>
+    const handleNextPage = () => {
+        if (currentPage < maxPage) {
+            setCurrentPage(currentPage + 1)
+        }
+    }
+
+    return <>
+        <div className="task-text">
+            <div className="page-left">
+                <span className="text">{pages[currentPage * 2]}</span>
+            </div>
+            <div className="page-middle-line"></div>
+            <div className="page-right">
+                <span className="text">{pages[currentPage * 2 + 1]}</span>
+            </div>
+        </div>
+        <div className="task-text-navigation">
+            <button className="task-text-navigation-button" onClick={() => handlePrevPage()}><Icon name="angle-left"></Icon></button>
+            <span className="task-text-navigation-text">Seite {currentPage + 1} von {maxPage + 1}</span>
+            <button className="task-text-navigation-button" onClick={() => handleNextPage()}><Icon name="angle-right"></Icon></button>
+        </div>
+    </>
 }
