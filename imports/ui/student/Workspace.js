@@ -49,10 +49,21 @@ const RenderTask = memo(({ task, updateTask }) => {
     default:
       taskRenderer = null;
   }
-  return <div className="inner-workspace">
-    <div className="workspace-task-title">{task.title}</div>
-    {taskRenderer}
-  </div>
+
+  // add title to workspace 
+  if (task.type === "tag" || task.type === "text") {
+    return <div className="text-workspace">
+      <div className="workspace-text-title">{task.title}</div>
+      {taskRenderer}
+    </div>
+  } else {
+    return (
+      <>
+        <div className="workspace-task-title-container"><div className="workspace-task-title">{task.title}</div></div>
+        <div className="workspace-task-container">{taskRenderer}</div>
+      </>)
+  }
+
 });
 
 const RenderWorkspace = () => {

@@ -1,3 +1,4 @@
+/* General workpace css */
 #workspaceGrid {
   width: 1080px !important;
   height: 800px !important;
@@ -11,12 +12,8 @@
   margin-bottom: 31px;
 }
 
-.workspace-navigation {
-  display: flex;
-  justify-content: space-between;
-}
-
-.inner-workspace {
+/* css for texts */
+.text-workspace {
   border: 6px solid #F6F6F5;
   border-radius: 44px;
   opacity: 1;
@@ -24,7 +21,7 @@
   height: 100%;
 }
 
-.workspace-task-title {
+.workspace-text-title {
   text-align: left;
   font: normal normal 900 20px/24px Arial;
   letter-spacing: 0px;
@@ -32,6 +29,47 @@
   opacity: 1;
   margin-top: 23px;
   margin-bottom: 26px;
+}
+
+/* css for tasks */
+.workspace-task-title-container {
+  height: 80px;
+  background: #F6F6F5 0% 0% no-repeat padding-box;
+  box-shadow: 0px 1px 2px #00000029;
+  border-radius: 44px;
+
+  display: flex;
+  align-items: center;
+
+}
+
+.workspace-task-title {
+  width: 100%;
+  text-align: left;
+  font: normal normal 900 20px/24px Arial;
+  letter-spacing: 0px;
+  color: #000000;
+  opacity: 1;
+  margin-left: 27px;
+
+  flex: 0 0 100%;
+}
+
+.workspace-task-container {
+  height: 400px;
+  margin-top:20px;
+
+  background: #F6F6F5 0% 0% no-repeat padding-box;
+  box-shadow: 0px 1px 2px #00000029;
+  border-radius: 44px;
+
+}
+
+
+/* css for navigation */
+.workspace-navigation {
+  display: flex;
+  justify-content: space-between;
 }
 
 .navigation-button {
