@@ -16,12 +16,6 @@ const propTypes = {
 }
 
 /**
- * @typedef RenderQuestTaskProps
- * @property {StaticMulti|StaticSurvey} task
- * @property {Function} updateTask
- */
-
-/**
  * Render a QuestTask
  *
  * @param {RenderQuestTaskProps} props
@@ -32,8 +26,8 @@ const RenderQuestTask = (props) => {
     // destructure here and not in function-params so we get type-hints
     const { task, updateTask } = props
 
-    const [ currentQuestId, setCurrentQuestId ] = useState("")
-    const [ doneQuests, setDoneQuests ] = useState([])
+    const [currentQuestId, setCurrentQuestId] = useState("")
+    const [doneQuests, setDoneQuests] = useState([])
 
     const onGetNextQuest = useCallback(async ({ current_quest, done_quests }) => {
         setCurrentQuestId(current_quest)
@@ -44,7 +38,6 @@ const RenderQuestTask = (props) => {
         if (!task) {
             return
         }
-
         return task.contents.find(quest => quest.id === currentQuestId)
     }, [task, currentQuestId])
 
