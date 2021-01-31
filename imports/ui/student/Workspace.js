@@ -56,11 +56,17 @@ const RenderTask = memo(({ task, updateTask }) => {
       <div className="workspace-text-title">{task.title}</div>
       {taskRenderer}
     </div>
-  } else {
+  } else if (task.type !== "drag") {
     return (
       <>
         <div className="workspace-task-title-container"><div className="workspace-task-title">{task.title}</div></div>
         <div className="workspace-task-container">{taskRenderer}</div>
+      </>)
+  } else {
+    return (
+      <>
+        <div className="workspace-task-title-container"><div className="workspace-task-title">{task.title}</div></div>
+        <div className="workspace-drag-container">{taskRenderer}</div>
       </>)
   }
 

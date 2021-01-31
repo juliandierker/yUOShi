@@ -65,6 +65,11 @@
 
 }
 
+.workspace-drag-container {
+  height: 400px;
+  margin-top:20px;
+}
+
 
 /* css for navigation */
 .workspace-navigation {
