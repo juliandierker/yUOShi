@@ -1,15 +1,9 @@
-import React, { useCallback, useEffect, useState } from "react"
+import React, { useCallback, useEffect, useMemo, useState } from "react"
 import { StaticMemory } from "@xyng/yuoshi-backend-adapter";
 import PromisifiedMeteor from "../../api/promisified";
-import { Button, Card, CardContent, Grid, GridColumn, Input } from "semantic-ui-react";
+import Icon from "../IconComponent/Icon"
 
-import Swal from "sweetalert2";
-
-
-/** @type React.CSSProperties */
-const memoryItemStyle = {
-    height: "100px",
-}
+import "./RenderMemory.css"
 
 /**
  * @typedef RenderMemoryProps
@@ -25,115 +19,96 @@ const memoryItemStyle = {
  */
 export default function RenderMemory(props) {
     const { task, updateTask } = props
-    const [ pairs, setPairs ] = useState([])
-    const [ item1, setItem1 ] = useState()
-    const [ item2, setItem2 ] = useState()
-    const [ submitted, setSubmitted ] = useState(false)
 
-    const done = pairs.length === task.items.length / 2
+    const { columns, cardSize } = useMemo(() => {
 
-    useEffect(() => {
-        if (!item1 || !item2) {
+        // setting some values needed for the calculation of the rows, columns, and the memory-card size
+        const width = 720; // TODO: is there a way to get that size of the current component????
+        const height = 348;
+        const itemCount = task.items.length
+        // calculating number of rows and columns of the memory game
+        const rows = Math.floor(Math.sqrt(itemCount))
+        const columns = Math.ceil(itemCount / rows);
+
+        // calculating size of the memory cards | applied to with and height of the cards
+        const cardHeight = (height - (12 * (rows - 1))) / rows
+        const cardWidth = (width - (12 * (columns - 1))) / columns
+        const cardSize = Math.min(cardHeight, cardWidth)
+        // returning all necessary data 
+        return {
+            columns: columns,
+            cardSize: cardSize
+        }
+    }, [task])
+
+    let currentTarget = null;
+    let correctCount = 0 // TODO: get credits when correctCount >= items.length/2
+    let locked = false // mutex lock, only allow one card pair to be selected at once
+
+    const onClick = (event) => {
+        // set correct target for validation
+        let target = event.target;
+        if (target.classList.contains("front") || target.classList.contains("back")) {
+            target = target.parentNode
+        }
+        if (target.classList.contains("picked") || locked) return
+        locked = true
+        // add className picked
+        target.classList.add("picked")
+        // check if another card has been clicked, if not only set the current card to picked
+        if (currentTarget === null) {
+            currentTarget = target;
+            locked = false
             return
         }
-
-        const a = task.items.find(i => i.id === item1)
-        const b = task.items.find(i => i.id === item2)
-
-        setItem1(undefined)
-        setItem2(undefined)
-
-        if (!a || !b) {
-            return
-        }
-
-        if (a.id === b.id) {
-            return
-        }
-
-        if (a.category_id !== b.category_id) {
-            return
-        }
-
-        setPairs(pairs => {
-            return [
-                ...pairs,
-                {
-                    a: a.id,
-                    b: b.id,
-                }
-            ]
-        })
-    }, [item1, item2, task])
-
-    const onClick = useCallback((id) => () => {
-        if (item1 && item2) {
-            return
-        }
-
-        if (item1 === id || item2 === id) {
-            // already selected
-            return
-        }
-
-        const item = task.items.find(i => i.id === id)
-
-        if (!item1) {
-            setItem1(item.id)
-            return
-        }
-
-        if (!item2) {
-            setItem2(item.id)
-        }
-    }, [task, item1, item2])
-
-    const onSubmit = useCallback(async () => {
-        if (!done || submitted) {
-            return
-        }
-
-        const result = await PromisifiedMeteor.call("tasks.checkAnswer", task.id, pairs.map((pair) => {
-            return {
-                a: task.items.find(i => i.id === pair.a),
-                b: task.items.find(i => i.id === pair.b),
+        // if another card has been picked already, check if they dont have the same category
+        setTimeout(() => {
+            if (target.id !== currentTarget.id) {
+                // remove the picked classname from the two picked cards
+                target.classList.remove("picked")
+                currentTarget.classList.remove("picked")
+            } else {
+                // if the two picked cards are the same, increase the correctCount and set the matched className 
+                correctCount++
             }
-        }))
+            currentTarget = null
+            locked = false
+        }, 1000)
+    }
 
-        if (!result) {
-            // TODO: handle error
-            return
+    const RenderMemoryCards = () => {
+
+        // Fisher--Yates shuffle Algorithm
+        const shuffle = (array) => {
+            let counter = array.length, temp, index;
+            // While there are elements in the array
+            while (counter > 0) {
+                // Pick a random index
+                index = Math.floor(Math.random() * counter);
+                // Decrease counter by 1
+                counter--;
+                // And swap the last element with it
+                temp = array[counter];
+                array[counter] = array[index];
+                array[index] = temp;
+            }
+            return array;
         }
 
-        await Swal.fire({
-          position: "top-end",
-          type: "success",
-          title: "Geschafft!",
-          timer: 2000
+        const shuffledItems = shuffle(task.items)
+
+        return shuffledItems.map((item, index) => {
+            return <div className="memory-card" id={"card" + item.category_id} key={"memcard-" + index} onClick={onClick} style={{ width: cardSize, height: cardSize, lineHeight: cardSize + "px" }}>
+                <div className="front">
+                    {item.text}
+                </div>
+                <Icon className="back" name="logo" />
+            </div>
         })
+    }
 
-        setSubmitted(true)
-    }, [submitted, done, pairs, task])
 
-    return <div>
-        <Grid>
-            {task.items.map((item) => {
-                const found = pairs.find(({ a, b }) => a === item.id || b === item.id)
-                const selected = item1 === item.id || item2 === item.id
-                return <GridColumn key={`item-${item.id}`} width="eight">
-                    <Card>
-                        <CardContent>
-                            {!found && !selected && <Button onClick={onClick(item.id)}>Aufdecken</Button>}
-                            {(found || selected) && <div style={memoryItemStyle}>
-                                {item.text}
-                                {item.image}
-                            </div>}
-                        </CardContent>
-                    </Card>
-                </GridColumn>
-            })}
-        </Grid>
-        {!submitted && <Button onClick={onSubmit} disabled={!done}>Aufgabe lösen</Button>}
-        {submitted && <Button onClick={updateTask}>Nächste Aufgabe</Button>}
+    return <div className="memory-container" style={{ width: (cardSize * columns + (12 * (columns))) }}>
+        <RenderMemoryCards></RenderMemoryCards>
     </div>
 }
