@@ -272,8 +272,8 @@ function RenderDrag(props) {
     return false;
   }, [task, userSolution]);
 
-  //TODO: check remove event listener
-  submitButton.current.addEventListener("click", onSolve)
+  submitButton.current.onclick = onSolve
+
 
   return (
     <>

@@ -47,17 +47,7 @@ const RenderQuestTask = (props) => {
         return task.contents.length - doneQuests.length <= 1
     }, [task, question, doneQuests])
 
-
-    const onSolve = useCallback(async () => {
-        const result = await PromisifiedMeteor.call(
-            "tasks.checkQuest",
-            task.id
-        )
-    })
-
-    submitButton.current.addEventListener("click", onSolve);
-
-    return <RenderQuest task={task} updateTask={updateTask} question={question} isLastQuestion={isLastQuestion} onGetNextQuest={onGetNextQuest} />
+    return <RenderQuest task={task} updateTask={updateTask} question={question} onGetNextQuest={onGetNextQuest} submitButton={submitButton} />
 }
 RenderQuestTask.propTypes = propTypes
 
