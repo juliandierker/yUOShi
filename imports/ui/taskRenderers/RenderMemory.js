@@ -45,6 +45,35 @@ export default function RenderMemory(props) {
     let correctCount = 0 // TODO: get credits when correctCount >= items.length/2
     let locked = false // mutex lock, only allow one card pair to be selected at once
 
+    const onSubmit = useCallback(async () => {
+        // generate pairs for the backend
+        const items = task.items;
+        let usedItems = []
+        let pairs = [];
+        for (let i in items) {
+            for (let j in items) {
+                if (i !== j && !usedItems.includes(i) && !usedItems.includes(j) && items[i].category_id === items[j].category_id) {
+                    pairs.push({
+                        a: items[i],
+                        b: items[j]
+                    })
+                    usedItems.push(i)
+                    usedItems.push(j)
+                }
+            }
+        }
+        console.log(pairs)
+
+        const result = await PromisifiedMeteor.call(
+            "tasks.checkAnswer",
+            task.id,
+            pairs
+        )
+        // TODO: alert user!
+        console.log(result)
+
+    }, [task])
+
     const onClick = (event) => {
         // set correct target for validation
         let target = event.target;
@@ -61,6 +90,7 @@ export default function RenderMemory(props) {
             locked = false
             return
         }
+
         // if another card has been picked already, check if they dont have the same category
         setTimeout(() => {
             if (target.id !== currentTarget.id) {
@@ -73,6 +103,12 @@ export default function RenderMemory(props) {
             }
             currentTarget = null
             locked = false
+
+            // check if memory is finished finished
+            const itemCount = task.items.length
+            if (correctCount >= itemCount / 2) {
+                onSubmit()
+            }
         }, 1000)
     }
 
