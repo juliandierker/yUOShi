@@ -108,7 +108,9 @@ export default function RenderMemory(props) {
     }
 
 
-    return <div className="memory-container" style={{ width: (cardSize * columns + (12 * (columns))) }}>
-        <RenderMemoryCards></RenderMemoryCards>
+    return <div className="workspace-memory-container">
+        <div className="memory-container" style={{ width: (cardSize * columns + (12 * (columns))) }}>
+            <RenderMemoryCards></RenderMemoryCards>
+        </div>
     </div>
 }

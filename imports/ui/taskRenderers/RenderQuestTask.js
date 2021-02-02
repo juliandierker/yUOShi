@@ -2,10 +2,8 @@ import React, { useCallback, useEffect, useMemo, useState } from "react"
 import PropTypes from "prop-types"
 
 import { StaticMulti, StaticSurvey, StaticTraining } from "@xyng/yuoshi-backend-adapter"
-import { Button, Card, Checkbox, Form, TextArea } from "semantic-ui-react";
-import PromisifiedMeteor from "../../api/promisified";
-import Swal from "sweetalert2";
 import RenderQuest from "./RenderQuest";
+import PromisifiedMeteor from "../../api/promisified";
 
 const propTypes = {
     task: PropTypes.oneOfType([
@@ -24,7 +22,7 @@ const propTypes = {
  */
 const RenderQuestTask = (props) => {
     // destructure here and not in function-params so we get type-hints
-    const { task, updateTask } = props
+    const { task, updateTask, submitButton } = props
 
     const [currentQuestId, setCurrentQuestId] = useState("")
     const [doneQuests, setDoneQuests] = useState([])
@@ -49,9 +47,17 @@ const RenderQuestTask = (props) => {
         return task.contents.length - doneQuests.length <= 1
     }, [task, question, doneQuests])
 
-    return <>
-        <RenderQuest task={task} updateTask={updateTask} question={question} isLastQuestion={isLastQuestion} onGetNextQuest={onGetNextQuest} />
-    </>
+
+    const onSolve = useCallback(async () => {
+        const result = await PromisifiedMeteor.call(
+            "tasks.checkQuest",
+            task.id
+        )
+    })
+
+    submitButton.current.addEventListener("click", onSolve);
+
+    return <RenderQuest task={task} updateTask={updateTask} question={question} isLastQuestion={isLastQuestion} onGetNextQuest={onGetNextQuest} />
 }
 RenderQuestTask.propTypes = propTypes
 

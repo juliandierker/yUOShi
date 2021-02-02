@@ -2,7 +2,6 @@ import React, { useCallback, useEffect, useMemo, useRef, useState } from "react"
 import PropTypes from "prop-types";
 import { StaticDrag } from "@xyng/yuoshi-backend-adapter";
 import DragDropViewNormal from "./DragDropView/DragDropViewNormal";
-import { Button } from "semantic-ui-react";
 import PromisifiedMeteor from "../../api/promisified";
 import Swal from "sweetalert2";
 
@@ -110,7 +109,7 @@ function RenderDrag(props) {
   const [userSolution, setUserSolution] = useState([]);
   const [solutions, setSolutions] = useState(undefined);
   // destructure here and not in function-params so we get type-hints
-  const { task, updateTask } = props;
+  const { task, updateTask, submitButton } = props;
 
   useEffect(() => {
     const statements = distributeEvenly(shuffle(task.statements), task.categories.length);
@@ -272,6 +271,9 @@ function RenderDrag(props) {
 
     return false;
   }, [task, userSolution]);
+
+  //TODO: check remove event listener
+  submitButton.current.addEventListener("click", onSolve)
 
   return (
     <>
