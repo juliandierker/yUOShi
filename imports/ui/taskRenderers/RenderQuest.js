@@ -7,10 +7,34 @@ import "./RenderMulti.css"
 const RenderQuest = ({ task, updateTask, question, onGetNextQuest, submitButton }) => {
     const [userSolutionId, setUserSolutionId] = useState()
 
-    const onSubmit = () => {
-        // What if this is a quest and not a task???
-        console.log("TODO: IMPLEMENT MC SOLVE!!")
-    }
+    const onSubmit = useCallback(async () => {
+        // get all needed parts to submit the answer
+        const contentId = question.content_id
+        const questId = question.id
+        let answersGiven = []
+
+        let answers = document.getElementsByClassName("answer-checkbox")
+        for (let i in answers) {
+            if (answers[i].checked) {
+                const answerId = answers[i].id.replace("checkbox_", "")
+                answersGiven.push({
+                    answer_id: answerId,
+                    content_id: contentId,
+                    quest_id: questId
+                })
+            }
+        }
+        const result = await PromisifiedMeteor.call(
+            "tasks.checkQuest",
+            question.id,
+            answersGiven
+        )
+
+        // if result.is_correct == true: feedback geben!
+        console.log(result)
+        return result
+
+    }, [question])
 
     submitButton.current.onclick = onSubmit
 
@@ -40,9 +64,10 @@ const RenderQuest = ({ task, updateTask, question, onGetNextQuest, submitButton 
     }
 
     const renderAnswers = () => {
+
         return question.answers.map((answer, index) => {
             return (<div className="answer-container" key={"answer-" + index} >
-                <input name={"checkbox_" + index} id={"checkbox_" + index} type="checkbox" className="answer-checkbox" />
+                <input name={"checkbox_" + index} id={"checkbox_" + answer.id} type="checkbox" className="answer-checkbox" />
                 <label htmlFor={"checkbox_" + index} className="answer">{answer.content}</label>
             </div>)
         })
