@@ -62,7 +62,6 @@ export default function RenderMemory(props) {
                 }
             }
         }
-        console.log(pairs)
 
         const result = await PromisifiedMeteor.call(
             "tasks.checkAnswer",
@@ -70,7 +69,6 @@ export default function RenderMemory(props) {
             pairs
         )
         // TODO: alert user!
-        console.log(result)
 
     }, [task])
 

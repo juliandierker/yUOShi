@@ -55,6 +55,7 @@ Meteor.methods({
     "tasks.checkAnswer": async (task_id, answers) => {
         const backendAdapter = createBackendAdapter()
         const task = await backendAdapter.taskAdapter.getTask(task_id)
+
         if (!task) {
             return
         }

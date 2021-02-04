@@ -11,6 +11,7 @@ import RenderCard from "../taskRenderers/RenderCard";
 import RenderCloze from "../taskRenderers/RenderCloze";
 import RenderTraining from "../taskRenderers/RenderTraining";
 import RenderMemory from "../taskRenderers/RenderMemory";
+import RenderIntro from "../taskRenderers/RenderIntro";
 import ProgressBar from "../progressBar/progressBar";
 import Icon from "../IconComponent/Icon"
 
@@ -25,6 +26,12 @@ const Workspace = ({ packageId, ...props }) => {
     if (!task) {
       return null;
     }
+
+    if (task.title.startsWith("_INTRO_")) {
+      return <RenderIntro task={task} updateTask={updateTask} />
+    }
+
+
     let taskRenderer = null;
     switch (task.type) {
       case "multi":
@@ -53,26 +60,34 @@ const Workspace = ({ packageId, ...props }) => {
         taskRenderer = null;
     }
 
-    // add title to workspace 
+    // add title to workspace
     if (task.type === "tag" || task.type === "text") {
       return <div className="text-workspace">
         <div className="workspace-text-title">{task.title}</div>
         {taskRenderer}
       </div>
-    } else if (task.type !== "drag") {
-      return (
-        <>
-          <div className="workspace-task-title-container"><div className="workspace-task-title">{task.title}</div></div>
-          <div className="workspace-task-container">{taskRenderer}</div>
-        </>)
-    } else {
-      return (
-        <>
-          <div className="workspace-task-title-container"><div className="workspace-task-title">{task.title}</div></div>
-          <div className="workspace-drag-container">{taskRenderer}</div>
-        </>)
     }
+    const taskClassName = task.type === "drag" ? "workspace-drag-container" : "workspace-task-container";
 
+    return (
+      <>
+        <div className="workspace-task-header">
+          <div className="workspace-task-title-container">
+            <div className="workspace-task-title">
+              {task.title}
+            </div>
+            <div className="workspace-task-description">
+              {task.description}
+            </div>
+          </div>
+          <div className="workspace-help-icon">
+            <Icon name="bars" />
+          </div>
+        </div>
+        <div className={taskClassName}>
+          {taskRenderer}
+        </div>
+      </>)
   });
 
   const RenderWorkspace = () => {
@@ -102,7 +117,7 @@ const Workspace = ({ packageId, ...props }) => {
     const { currentTask } = useTasksContext();
 
     // only show Submit Button, when the task is not a text or an auto-submitting task
-    const showSubmit = currentTask !== undefined && currentTask.type !== "text" && currentTask.type !== "tag" && currentTask.type !== "memory"
+    const showSubmit = currentTask !== undefined && currentTask.type !== "text" && currentTask.type !== "tag" && currentTask.type !== "memory" && !currentTask.title.startsWith("_INTRO_")
 
     return (<>
       <button className="navigation-button" id="navigation-button-left"><Icon name="arrow-left" size="large" /></button>
