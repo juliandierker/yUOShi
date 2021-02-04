@@ -12,6 +12,7 @@ import RenderCloze from "../taskRenderers/RenderCloze";
 import RenderTraining from "../taskRenderers/RenderTraining";
 import RenderMemory from "../taskRenderers/RenderMemory";
 import RenderIntro from "../taskRenderers/RenderIntro";
+import RenderOutro from "../taskRenderers/RenderOutro";
 import ProgressBar from "../progressBar/progressBar";
 import Icon from "../IconComponent/Icon"
 
@@ -29,6 +30,8 @@ const Workspace = ({ packageId, ...props }) => {
 
     if (task.title.startsWith("_INTRO_")) {
       return <RenderIntro task={task} updateTask={updateTask} />
+    } else if (task.title.startsWith("_QUEST_")) {
+      return <RenderOutro task={task} updateTask={updateTask} />
     }
 
 

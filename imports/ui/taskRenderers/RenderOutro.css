@@ -1,0 +1,100 @@
+.outro-container {
+  width: 100%;
+  height: 100%;
+}
+
+.outro-header {
+  width: 100%;
+  height: 81px;
+  background: #6A96E2 0% 0% no-repeat padding-box;
+  box-shadow: 0px 1px 2px #00000029;
+  border-radius: 44px;
+  opacity: 1;
+  padding-top: 28px;
+
+}
+
+.outro-title {
+  height: 100%;
+  line-height: 100%;
+  text-align: left;
+  font: normal normal 900 20px/24px Arial;
+  letter-spacing: 0px;
+  color: #FFFFFF;
+  opacity: 1;
+  margin-left: 28px;
+}
+
+.quest-container {
+  width: 802px;
+  height: 401px;
+  background: #6A96E2 0% 0% no-repeat padding-box;
+  box-shadow: 0px 1px 2px #00000029;
+  border-radius: 44px;
+  opacity: 1;
+  margin-top: 21px;
+}
+
+.quest-overview-container {
+  display: flex;
+  height: 100%;
+}
+
+.quest-overview-text-container {
+  width: 50%;
+  padding-left: 27px;
+}
+
+.quest-overview-text-title {
+  height: 24px;
+  text-align: left;
+  font: normal normal 900 20px/24px Arial;
+  letter-spacing: 0px;
+  color: #FFFFFF;
+  opacity: 1;
+  margin-top: 28px;
+}
+
+.quest-overview-text-subtitle {
+  height: 15px;
+  text-align: left;
+  font: italic normal normal 12px/15px Arial;
+  letter-spacing: 0px;
+  color: #FFFFFF;
+  opacity: 1;
+}
+
+.quest-overview-text {
+  margin-top: 11px;
+  height: 391px;
+  text-align: left;
+  font: normal normal normal 16px/19px Arial;
+  letter-spacing: 0px;
+  color: #FFFFFF;
+  opacity: 1;
+}
+
+.quest-overview-students-container {
+  width:50%;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+}
+
+.quest-overview-student-icon:hover {
+  transform: rotate(20deg);
+}
+
+.student-icon-name {
+  margin-top: -12px;
+  text-align: center;
+  font: normal normal bold 17px/21px Arial;
+  letter-spacing: 0px;
+  color: #FFFFFF;
+  opacity: 1;
+}
+
+.student-icon {
+  /* margin-right: 60px; */
+  margin-bottom: 30px;
+}
