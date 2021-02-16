@@ -1,5 +1,5 @@
-/* eslint-disable react/prop-types */
 import React, { memo } from "react";
+import PropTypes from "prop-types";
 import { Grid } from "semantic-ui-react";
 
 import { TasksContextProvider, useTasksContext } from "./TasksContext";
@@ -12,10 +12,9 @@ import RenderCloze from "../taskRenderers/RenderCloze";
 import RenderTraining from "../taskRenderers/RenderTraining";
 import RenderMemory from "../taskRenderers/RenderMemory";
 import ProgressBar from "../progressBar/progressBar";
-import Icon from "../IconComponent/Icon"
+import Icon from "../IconComponent/Icon";
 
-
-import "./workspace.css"
+import "./workspace.css";
 
 // eslint-disable-next-line react/display-name
 const RenderTask = memo(({ task, updateTask }) => {
@@ -49,10 +48,12 @@ const RenderTask = memo(({ task, updateTask }) => {
     default:
       taskRenderer = null;
   }
-  return <div className="inner-workspace">
-    <div className="workspace-task-title">{task.title}</div>
-    {taskRenderer}
-  </div>
+  return (
+    <div className="inner-workspace">
+      <div className="workspace-task-title">{task.title}</div>
+      {taskRenderer}
+    </div>
+  );
 });
 
 const RenderWorkspace = () => {
@@ -73,9 +74,8 @@ const RenderProgressBar = () => {
       currentPackage={currentPackage}
       packageTasks={packageTasks}
       packageLoading={packagesLoading}
-      task={currentTask}>
-
-    </ProgressBar>
+      task={currentTask}
+    />
   );
 };
 
@@ -97,9 +97,15 @@ const Workspace = ({ packageId, ...props }) => {
             </TasksContextProvider>
           </div>
           <div className="workspace-navigation">
-            <button className="navigation-button" id="navigation-button-left"><Icon name="arrow-left" size="large" /></button>
-            <button className="navigation-button" id="navigation-button-submit">AUSWERTEN</button>
-            <button className="navigation-button" id="navigation-button-right"><Icon name="arrow-right" size="large" /></button>
+            <button className="navigation-button" id="navigation-button-left">
+              <Icon name="arrow-left" size="large" />
+            </button>
+            <button className="navigation-button" id="navigation-button-submit">
+              AUSWERTEN
+            </button>
+            <button className="navigation-button" id="navigation-button-right">
+              <Icon name="arrow-right" size="large" />
+            </button>
           </div>
         </Grid.Column>
       </Grid>
@@ -107,3 +113,11 @@ const Workspace = ({ packageId, ...props }) => {
   );
 };
 export default Workspace;
+
+RenderTask.propTypes = {
+  task: PropTypes.object,
+  updateTask: PropTypes.func
+};
+Workspace.propTypes = {
+  packageId: PropTypes.string
+};

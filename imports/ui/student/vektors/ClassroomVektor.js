@@ -1,6 +1,8 @@
 import React from "react";
 
 export function ClassroomVektor() {
+  // TODO this visualisation is for limmited ammount of packages
+
   return (
     // prettier-ignore
     <svg

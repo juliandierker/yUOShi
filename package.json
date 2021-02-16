@@ -26,6 +26,7 @@
     "gsap": "^2.0.2",
     "hyphenated-de": "^1.2.0",
     "install": "^0.13.0",
+    "jquery": "^3.5.1",
     "julix89": "^11.2.0",
     "materialize-css": "^1.0.0",
     "meteor-node-stubs": "^0.4.1",

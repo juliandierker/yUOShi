@@ -14,6 +14,8 @@ export default function ClassRoom() {
   const [classHover, setClassHover] = useState(false);
   const { packages, setCurrentPackage } = usePackagesContext();
 
+  console.log(packages);
+
   const addEvent = useCallback(
     (elem, packageItem) => {
       const handleClick = function() {
@@ -27,7 +29,7 @@ export default function ClassRoom() {
         elem.removeEventListener("click", handleClick);
       };
     },
-    [setPage, setCurrentPackage, student]
+    [setPage, setCurrentPackage]
   );
 
   useEffect(() => {
