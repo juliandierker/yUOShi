@@ -4,6 +4,8 @@ import { Grid } from "semantic-ui-react";
 
 import { TasksContextProvider, useTasksContext } from "./TasksContext";
 import { PackagesContextProvider, usePackagesContext } from "./PackagesContext";
+import { StationsContextProvider, useStationsContext } from "./StationsContext";
+
 import RenderQuest from "../taskRenderers/RenderQuestTask";
 import RenderDrag from "../taskRenderers/RenderDrag";
 import RenderTag from "../taskRenderers/RenderTag";
@@ -66,6 +68,8 @@ const RenderWorkspace = () => {
 const RenderProgressBar = () => {
   const { currentTask, currentTaskLoading } = useTasksContext();
   const { currentPackage, packagesLoading, packageTasks } = usePackagesContext();
+  const { currentStation, stationLoading, stationTasks } = useStationsContext();
+
   if (packagesLoading || currentTaskLoading) {
     return <p>Loading Packages...</p>;
   }
@@ -80,15 +84,16 @@ const RenderProgressBar = () => {
 };
 
 const Workspace = ({ packageId, ...props }) => {
+  const { currentPackage } = usePackagesContext();
   return (
     <React.Fragment>
       <Grid id="workspaceGrid">
         <Grid.Column style={{ maxWidth: "22%" }} width={4}>
-          <TasksContextProvider packageId={packageId}>
-            <PackagesContextProvider>
+          <StationsContextProvider currentPackage={currentPackage}>
+            <TasksContextProvider packageId={packageId}>
               <RenderProgressBar {...props} />
-            </PackagesContextProvider>
-          </TasksContextProvider>
+            </TasksContextProvider>
+          </StationsContextProvider>
         </Grid.Column>
         <Grid.Column width={12}>
           <div className="workspace-container">

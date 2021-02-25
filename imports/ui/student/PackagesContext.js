@@ -16,24 +16,15 @@ export const usePackagesContext = () => {
 };
 
 export const PackagesContextProvider = ({ children }) => {
-  function filterTasks(tasks) {
-    for (var i = 0; i < tasks.length; i++) {
-      if (tasks[i].length > 0) {
-        setPackageTasks(tasks[i][0]);
-      }
-    }
-  }
-
   const [currentPackage, setCurrentPackage] = useState(undefined);
   const [packages, setPackages] = useState(undefined);
-  const [packageTasks, setPackageTasks] = useState(undefined);
 
   const [packagesLoading, setPackagesLoading] = useState(true);
   const updatePackages = useCallback(async () => {
     setPackagesLoading(true);
 
     const packages = await PromisifiedMeteor.call("package.getAll");
-    const tasks = filterTasks(await PromisifiedMeteor.call("package.getTasks", packages[0].slug));
+
     setPackages(packages);
     setPackagesLoading(false);
   }, []);
@@ -47,7 +38,6 @@ export const PackagesContextProvider = ({ children }) => {
     packagesLoading,
     updatePackages,
     currentPackage,
-    packageTasks,
     setCurrentPackage
   };
 
