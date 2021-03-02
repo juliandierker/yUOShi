@@ -10,7 +10,7 @@
     "lint:fix": "eslint app/ --fix"
   },
   "dependencies": {
-    "@babel/runtime": "^7.8.4",
+    "@babel/runtime": "^7.13.7",
     "@ckeditor/ckeditor5-build-classic": "^16.0.0",
     "@ckeditor/ckeditor5-react": "^2.0.0",
     "@fortawesome/fontawesome-svg-core": "^1.2.22",

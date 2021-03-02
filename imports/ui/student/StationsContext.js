@@ -15,31 +15,38 @@ export const useStationsContext = () => {
   return ctx;
 };
 
-export const StationsContextProvider = (props, { children }) => {
-  const { currentPackage } = props;
+export const StationsContextProvider = ({ currentPackageId, children }) => {
+  console.log(currentPackageId);
   const [stations, setStations] = useState(undefined);
   const [currentStation, setCurrentStation] = useState(undefined);
   const [stationLoading, setstationLoading] = useState(true);
-
+  const [stationTasks, setStationsTasks] = useState([]);
   const updateStations = useCallback(async () => {
     setstationLoading(true);
+    const currentStations = await PromisifiedMeteor.call("package.getStations", currentPackageId);
+    let tasks = [];
+    if (currentStation) {
+      tasks = await PromisifiedMeteor.call("stations.getTasks", currentStation.id);
+    } else {
+      tasks = await PromisifiedMeteor.call("stations.getTasks", currentStations[0].id);
+      setCurrentStation(currentStations[0]);
+    }
+    console.log(tasks);
 
-    const stations = await PromisifiedMeteor.call("package.getStations", currentPackage.id);
-    const tasks = filterTasks(
-      await PromisifiedMeteor.call("package.getStations", stations[0].slug)
-    );
-    setStations(stations);
+    setStations(currentStations);
+    setStationsTasks(tasks);
     setstationLoading(false);
-  }, [currentPackage.id]);
+  }, [currentPackageId, currentStation]);
 
   useEffect(() => {
     updateStations();
   }, [updateStations]);
-
   const ctx = {
-    stations,
     stationLoading,
     updateStations,
+    stations,
+    currentStation,
+    stationTasks,
     setCurrentStation
   };
 
