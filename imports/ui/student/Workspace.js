@@ -68,16 +68,16 @@ const RenderWorkspace = () => {
 };
 const RenderProgressBar = () => {
   const { currentTask, currentTaskLoading } = useTasksContext();
-  const { currentPackage, packagesLoading, packageTasks } = usePackagesContext();
-
-  if (packagesLoading || currentTaskLoading) {
-    return <p>Loading Packages...</p>;
+  const { stations, currentStation, stationTasks, stationLoading } = useStationsContext();
+  // || currentTaskLoading
+  if (stationLoading) {
+    return <p>Loading Stations...</p>;
   }
   return (
     <ProgressBar
-      currentPackage={currentPackage}
-      packageTasks={packageTasks}
-      packageLoading={packagesLoading}
+      currentStation={currentStation}
+      stationTasks={stationTasks}
+      stationLoading={stationLoading}
       task={currentTask}
     />
   );

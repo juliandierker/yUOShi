@@ -16,7 +16,6 @@ export const useStationsContext = () => {
 };
 
 export const StationsContextProvider = ({ currentPackageId, children }) => {
-  console.log(currentPackageId);
   const [stations, setStations] = useState(undefined);
   const [currentStation, setCurrentStation] = useState(undefined);
   const [stationLoading, setstationLoading] = useState(true);
@@ -31,7 +30,6 @@ export const StationsContextProvider = ({ currentPackageId, children }) => {
       tasks = await PromisifiedMeteor.call("stations.getTasks", currentStations[0].id);
       setCurrentStation(currentStations[0]);
     }
-    console.log(tasks);
 
     setStations(currentStations);
     setStationsTasks(tasks);
