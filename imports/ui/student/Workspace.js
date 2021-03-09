@@ -3,7 +3,9 @@ import PropTypes from "prop-types";
 import { Grid } from "semantic-ui-react";
 
 import { TasksContextProvider, useTasksContext } from "./TasksContext";
-import { PackagesContextProvider, usePackagesContext } from "./PackagesContext";
+import { usePackagesContext } from "./PackagesContext";
+import { useStationsContext } from "./StationsContext";
+
 import RenderQuest from "../taskRenderers/RenderQuestTask";
 import RenderDrag from "../taskRenderers/RenderDrag";
 import RenderTag from "../taskRenderers/RenderTag";
@@ -15,6 +17,7 @@ import ProgressBar from "../progressBar/progressBar";
 import Icon from "../IconComponent/Icon";
 
 import "./workspace.css";
+import LoggingOut from "../LogginOut";
 
 // eslint-disable-next-line react/display-name
 const RenderTask = memo(({ task, updateTask }) => {
@@ -65,35 +68,38 @@ const RenderWorkspace = () => {
 };
 const RenderProgressBar = () => {
   const { currentTask, currentTaskLoading } = useTasksContext();
-  const { currentPackage, packagesLoading, packageTasks } = usePackagesContext();
-  if (packagesLoading || currentTaskLoading) {
-    return <p>Loading Packages...</p>;
+  const { stations, currentStation, stationTasks, stationLoading } = useStationsContext();
+  // || currentTaskLoading
+  if (stationLoading) {
+    return <p>Loading Stations...</p>;
   }
   return (
     <ProgressBar
-      currentPackage={currentPackage}
-      packageTasks={packageTasks}
-      packageLoading={packagesLoading}
+      currentStation={currentStation}
+      stationTasks={stationTasks}
+      stationLoading={stationLoading}
       task={currentTask}
     />
   );
 };
 
-const Workspace = ({ packageId, ...props }) => {
+const Workspace = () => {
+  const { stations, currentStation, stationLoading } = useStationsContext();
+  console.log(stations);
   return (
     <React.Fragment>
       <Grid id="workspaceGrid">
         <Grid.Column style={{ maxWidth: "22%" }} width={4}>
-          <TasksContextProvider packageId={packageId}>
-            <PackagesContextProvider>
-              <RenderProgressBar {...props} />
-            </PackagesContextProvider>
-          </TasksContextProvider>
+          {stations && (
+            <TasksContextProvider>
+              <RenderProgressBar />
+            </TasksContextProvider>
+          )}
         </Grid.Column>
         <Grid.Column width={12}>
           <div className="workspace-container">
-            <TasksContextProvider packageId={packageId}>
-              <RenderWorkspace {...props} />
+            <TasksContextProvider>
+              <RenderWorkspace />
             </TasksContextProvider>
           </div>
           <div className="workspace-navigation">
@@ -119,5 +125,5 @@ RenderTask.propTypes = {
   updateTask: PropTypes.func
 };
 Workspace.propTypes = {
-  packageId: PropTypes.string
+  stationId: PropTypes.string
 };

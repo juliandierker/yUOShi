@@ -41,10 +41,7 @@ export default class TutorialComponent extends React.Component {
         return false;
       }
       if (removeBlocker) {
-        this.highlightElem.removeEventListener(
-          "click",
-          this.preventUnwantedBehavior
-        );
+        this.highlightElem.removeEventListener("click", this.preventUnwantedBehavior);
       }
       this.highlightElem = highlightElem;
       if ("trigger" in step) {
@@ -53,12 +50,10 @@ export default class TutorialComponent extends React.Component {
       }
       return true;
     } else if ("customEvent" in step) {
-      console.log("AA");
       var stepInfo = step["customEvent"];
       console.log(stepInfo);
       var highlightElem = document.querySelector(stepInfo["id"]);
 
-      console.log(highlightElem);
       if (!highlightElem) return false;
       this.highlightElem = highlightElem;
       return true;
@@ -72,10 +67,7 @@ export default class TutorialComponent extends React.Component {
     }
     if ("domEvent" in step) {
       if ("trigger" in step) {
-        this.highlightElem.addEventListener(
-          "click",
-          this.preventUnwantedBehavior
-        );
+        this.highlightElem.addEventListener("click", this.preventUnwantedBehavior);
       } else {
         this.highlightElem.addEventListener("click", this.handleStep);
       }
@@ -89,22 +81,15 @@ export default class TutorialComponent extends React.Component {
       if (!("trigger" in step)) {
         this.highlightElem.removeEventListener("click", this.handleStep);
       }
-    } else if (
-      "customEvent" in step &&
-      "removeListener" in step["customEvent"]
-    ) {
+    } else if ("customEvent" in step && "removeListener" in step["customEvent"]) {
       this.highlightElem.removeEventListener("click", this.handleStep);
       step["target"] = "#app";
     }
   }
 
-  preventUnwantedBehavior = event => {
+  preventUnwantedBehavior = (event) => {
     var target = event.target;
-    while (
-      target != this.triggerElem &&
-      target != this.highlightElem &&
-      target.parentNode
-    ) {
+    while (target != this.triggerElem && target != this.highlightElem && target.parentNode) {
       target = target.parentNode;
     }
     if (target == this.triggerElem) {
@@ -139,11 +124,7 @@ export default class TutorialComponent extends React.Component {
     this.removeStepListeners(step);
     if (stepIndex == this.steps.length - 1) {
       if (this.props.teacher) {
-        Meteor.call(
-          "teachers.solveTutorial",
-          this.props.teacher,
-          this.props.activeTutorial
-        );
+        Meteor.call("teachers.solveTutorial", this.props.teacher, this.props.activeTutorial);
       } else {
         Meteor.call("students.completeTutorial", this.props.activeTutorial);
       }
@@ -161,12 +142,8 @@ export default class TutorialComponent extends React.Component {
     }
   };
 
-  eventCallback = event => {
-    if (
-      "nextEvent" in event.step &&
-      event.action == "next" &&
-      event.lifecycle == "complete"
-    ) {
+  eventCallback = (event) => {
+    if ("nextEvent" in event.step && event.action == "next" && event.lifecycle == "complete") {
       this.handleStep();
     }
   };

@@ -12,6 +12,8 @@ import Login from "../ui/um/Login";
 // Students
 // import StudentOverview from "../ui/student/StudentOverview";
 import StudentContextProvider from "../ui/student/StudentContextProvider.js";
+import Workspace from "../ui/student/Workspace";
+
 // Teachers
 import TeacherOverview from "../ui/teacher/TeacherOverview";
 import SchoolOverview from "../ui/student/game/SchoolOverview";
@@ -64,11 +66,7 @@ class Routes extends React.Component {
     return (
       <Router history={browserHistory}>
         <Switch>
-          {/* TODO enable for Login with studip */}
-          {/* <PublicRoute exact path="/" component={LoginOAuth} /> */}
-
           <PublicRoute exact path="/" component={LoginOAuth} />
-          {/* and comment this out */}
           <PrivateRoute path="/student" component={StudentContextProvider} />
           <PrivateRoute path="/teacher" component={StudentContextProvider} />
           <Route path="/(.*)" component={NotFound} />

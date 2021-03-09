@@ -15,9 +15,11 @@ import Loading from "../Loading.js";
 import TutorialComponent from "../tutorials/TutorialComponent";
 
 import { GameContext } from "./StudentContextProvider";
+
 import { usePrevious } from "../../shared/customHooks";
 import LoggingOut from "../LogginOut.js";
 import { PackagesContextProvider, usePackagesContext } from "./PackagesContext";
+import { StationsContextProvider } from "./StationsContext";
 
 function RenderStudentOverview() {
   const { loading, student, tasks, page } = useContext(GameContext);
@@ -26,6 +28,7 @@ function RenderStudentOverview() {
   const prevStudent = usePrevious(student);
   let tutorial = tutorialCheck();
   const { currentPackage } = usePackagesContext();
+  currentPackage && console.log(currentPackage.stations);
 
   useEffect(() => {
     if (prevStudent && prevStudent.tutorials.length < student.tutorials.length) {
@@ -50,7 +53,11 @@ function RenderStudentOverview() {
     } else if (page === "schoolOverview") {
       return <SchoolOverview tutorial={tutorial} />;
     } else if (page === "workspace") {
-      return <Workspace packageId={currentPackage.id} />;
+      return (
+        <StationsContextProvider currentPackageId={currentPackage.id}>
+          <Workspace />
+        </StationsContextProvider>
+      );
     } else if (page === "teacherRoom") {
       return <TeacherRoom />;
     } else if (page === "office") {

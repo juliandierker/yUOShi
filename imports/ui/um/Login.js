@@ -51,7 +51,6 @@ class Login extends React.Component {
   }
 
   login(email, password, token) {
-    console.log(password);
     Meteor.loginWithPassword({ username: email }, password, (err) => {
       if (err) {
         this.setState({ error: "unableToLoginError" });

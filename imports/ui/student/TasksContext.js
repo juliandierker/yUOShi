@@ -2,7 +2,6 @@ import React, { createContext, useCallback, useContext, useEffect, useState } fr
 import PromisifiedMeteor from "../../api/promisified";
 
 const TasksContext = createContext(null);
-
 export const useTasksContext = () => {
   const ctx = useContext(TasksContext);
 
@@ -13,23 +12,23 @@ export const useTasksContext = () => {
   return ctx;
 };
 
-export const TasksContextProvider = ({ packageId, children }) => {
-  const [currentTask, setCurrentTask] = useState();
-  const [tasks, setTasks] = useState();
+export const TasksContextProvider = ({ stations, currentStation, children }) => {
+  const [currentTask, setCurrentTask] = useState(undefined);
+  const [tasks, setTasks] = useState(undefined);
   const [currentTaskLoading, setCurrentTaskLoading] = useState(true);
 
   const updateTask = useCallback(async () => {
-    if (!packageId) {
+    if (!currentStation) {
       return;
     }
 
     setCurrentTaskLoading(true);
 
-    const tasks = await PromisifiedMeteor.call("tasks.nextTaskForPackage", packageId);
+    const tasks = await PromisifiedMeteor.call("tasks.nextTaskForStation", currentStation.id);
     setCurrentTask(tasks);
 
     setCurrentTaskLoading(false);
-  }, [packageId]);
+  }, [currentStation]);
 
   useEffect(() => {
     updateTask();
