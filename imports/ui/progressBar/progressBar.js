@@ -11,7 +11,6 @@ import "./progressBar.css";
  * @returns {ReactElement | null}
  */
 export default function ProgressBar(props) {
-  console.log(props);
   // temporary data !!! needs to be replaced with props data
   const data = {
     package: {
