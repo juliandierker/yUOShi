@@ -31,7 +31,6 @@ const RenderQuest = ({ task, updateTask, question, onGetNextQuest, submitButton 
         )
 
         // if result.is_correct == true: feedback geben!
-        console.log(result)
         return result
 
     }, [question])
