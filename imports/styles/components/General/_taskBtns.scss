@@ -1,28 +1,3 @@
-// Smartphone
-@media screen and (max-width: 767px) {
-  .ui[class*="right labeled"].icon.button {
-    padding-right: 3rem !important;
-    padding-left: 0.5rem !important;
-  }
-  .ui[class*="left labeled"].icon.button {
-    padding-right: 0.5rem !important;
-    padding-left: 2rem !important;
-  }
-}
-
-// Tablet
-@media screen and (min-width: 768px) and (max-width: 1024px) {
-}
-#prevTaskBtn {
-  background: rgb(106, 150, 226);
-  color: white;
-}
-
-#nextTaskBtn {
-  background: rgb(106, 150, 226);
-  color: white;
-}
-
 #prevBtn {
   color: white;
   background-color: rgb(106, 150, 226) !important;
@@ -37,23 +12,4 @@
   margin-right: 2rem;
   padding: 1rem !important;
   border-radius: 5px;
-}
-
-#viewBtn {
-  background-color: rgb(143, 176, 232) !important;
-  color: white;
-  border-radius: 5px;
-}
-
-#positivBtn {
-  border-radius: 5px;
-}
-
-// Desktop
-@media screen and (min-width: 1025px) {
-  #prevTaskBtn {
-    background: rgb(106, 150, 226);
-    color: white;
-    margin-right: 4rem;
-  }
 }
