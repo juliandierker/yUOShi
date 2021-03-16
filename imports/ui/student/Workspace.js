@@ -17,7 +17,7 @@ import ProgressBar from "../progressBar/progressBar";
 import Icon from "../IconComponent/Icon";
 
 import "./workspace.css";
-import LoggingOut from "../LogginOut";
+import LoggingOut from "../LoggingOut";
 
 // eslint-disable-next-line react/display-name
 const RenderTask = memo(({ task, updateTask }) => {
@@ -69,7 +69,6 @@ const RenderWorkspace = () => {
 const RenderProgressBar = () => {
   const { currentTask, currentTaskLoading } = useTasksContext();
   const { stations, currentStation, stationTasks, stationLoading } = useStationsContext();
-  // || currentTaskLoading
   if (stationLoading) {
     return <p>Loading Stations...</p>;
   }
@@ -79,26 +78,26 @@ const RenderProgressBar = () => {
       stationTasks={stationTasks}
       stationLoading={stationLoading}
       task={currentTask}
+      stations={stations}
     />
   );
 };
 
 const Workspace = () => {
-  const { stations, currentStation, stationLoading } = useStationsContext();
-  console.log(stations);
+  const { stations, currentStation } = useStationsContext();
   return (
     <React.Fragment>
       <Grid id="workspaceGrid">
         <Grid.Column style={{ maxWidth: "22%" }} width={4}>
           {stations && (
-            <TasksContextProvider>
+            <TasksContextProvider stations={stations} currentStation={currentStation}>
               <RenderProgressBar />
             </TasksContextProvider>
           )}
         </Grid.Column>
         <Grid.Column width={12}>
           <div className="workspace-container">
-            <TasksContextProvider>
+            <TasksContextProvider stations={stations} currentStation={currentStation}>
               <RenderWorkspace />
             </TasksContextProvider>
           </div>

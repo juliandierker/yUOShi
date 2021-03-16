@@ -10,12 +10,16 @@ Meteor.methods({
       return packages.concat(await course.packages.toArray());
     }, []);
   },
-  "package.getStations": (packageId) => {
+  "package.getStations": async (packageId) => {
     const backendAdapter = createBackendAdapter();
-
-    return backendAdapter.stationAdapter
+    let stations = await backendAdapter.stationAdapter
       .getStationsForPackage(packageId)
       .getWrapped()
       .toArray();
+    for (let station of stations) {
+      await station.tasks.toArray();
+    }
+
+    return stations;
   }
 });

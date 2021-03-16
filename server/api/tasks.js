@@ -81,5 +81,11 @@ Meteor.methods({
   "tasks.getCurrentTaskPosition": (task_id, solutionId) => {
     const backendAdapter = createBackendAdapter();
     return backendAdapter.userTaskSolutionAdapter.getCurrentTaskPosition(task_id, solutionId);
-  }
+  },
+
+  "tasks.getContent": (taskId) => {},
+
+  "tasks.getQuestions": (questId) => {},
+
+  "tasks.getAnswers": (answerId) => {}
 });

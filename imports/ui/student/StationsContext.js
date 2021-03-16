@@ -20,9 +20,13 @@ export const StationsContextProvider = ({ currentPackageId, children }) => {
   const [currentStation, setCurrentStation] = useState(undefined);
   const [stationLoading, setstationLoading] = useState(true);
   const [stationTasks, setStationsTasks] = useState([]);
+
   const updateStations = useCallback(async () => {
     setstationLoading(true);
-    const currentStations = await PromisifiedMeteor.call("package.getStations", currentPackageId);
+    let currentStations = await PromisifiedMeteor.call("package.getStations", currentPackageId);
+    for (let station of currentStations) {
+      station.tasks = station.tasks.buffer;
+    }
     let tasks = [];
     if (currentStation) {
       tasks = await PromisifiedMeteor.call("stations.getTasks", currentStation.id);
@@ -35,7 +39,7 @@ export const StationsContextProvider = ({ currentPackageId, children }) => {
     setStationsTasks(tasks);
     setstationLoading(false);
   }, [currentPackageId, currentStation]);
-
+  // TODO : observe loads when we change stations
   useEffect(() => {
     updateStations();
   }, [updateStations]);
