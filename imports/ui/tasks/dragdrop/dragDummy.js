@@ -58,7 +58,6 @@ export default class DragdropViewFormular extends Component {
     };
   }
   onSortEnd = ({ oldIndex, newIndex }) => {
-    console.log(oldIndex, newIndex);
     this.setState(({ cards }) => ({
       cards: arrayMove(cards, oldIndex, newIndex)
     }));

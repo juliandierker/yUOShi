@@ -10,7 +10,6 @@ const DefaultRoutes = {
   yadmin: "/yadmin"
 };
 const PrivateRoute = ({ component: Component, path, ...rest }) => {
-  console.log(Meteor.userId());
 
   return (
     <Route

@@ -76,8 +76,6 @@ function RenderOutro(props) {
     const rows = Math.floor(Math.sqrt(studentCount + 1))
     const columns = Math.ceil(studentCount / rows);
 
-    console.log(rows, columns)
-
     const height = 400;
     const width = 400;
     const iconHeight = (height - (60 * (rows - 1))) / rows
@@ -87,13 +85,9 @@ function RenderOutro(props) {
     return { students, iconSize, columns, rows }
   }, [task])
 
-  console.log(students, iconSize)
 
 
   const RenderStudentIcons = () => {
-
-    console.log(iconSize)
-
     return students.map((student, index) => {
       return <div className="student-icon" key={"sicon-" + index} style={{ width: iconSize, height: iconSize }}>
         <Icon className="student-icon-i" name={student.name} />

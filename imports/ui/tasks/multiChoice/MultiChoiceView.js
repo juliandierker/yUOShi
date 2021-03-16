@@ -6,7 +6,6 @@ import Swal from "sweetalert2";
 export default class MultiChoiceView extends Component {
   constructor(props) {
     super(props);
-    console.log("PROPS:", props);
     this.state = {
       questionIndex: 1,
       questionCount: props.activeTask.content
@@ -44,7 +43,6 @@ export default class MultiChoiceView extends Component {
       this.props.activeTask,
       this.state.questionIndex - 1,
       (err, res) => {
-        console.log(res);
 
         if (res.falseCount > 0) {
           var tmp = this.state.fails > 0;
@@ -336,8 +334,8 @@ export default class MultiChoiceView extends Component {
       <Card.Group>
         {this.props.activeTask.content
           ? this.renderQuestion(
-              this.props.activeTask.content[this.state.questionIndex - 1]
-            )
+            this.props.activeTask.content[this.state.questionIndex - 1]
+          )
           : this.renderQuestion(this.props.activeTask)}
       </Card.Group>
     );
@@ -377,23 +375,23 @@ export default class MultiChoiceView extends Component {
       <React.Fragment>
         {this.renderQuestions()}
         {this.state.questionCount === 1 ||
-        this.state.questionIndex === this.state.questionCount ? (
-          <Button
-            id="solveTask"
-            floated="right"
-            onClick={() => this.solutionPrepare()}
-          >
-            Aufgabe lösen
-          </Button>
-        ) : (
-          <Button
-            id="solveTask"
-            floated="right"
-            onClick={() => this.checkSolution()}
-          >
-            Nächste Frage
-          </Button>
-        )}
+          this.state.questionIndex === this.state.questionCount ? (
+            <Button
+              id="solveTask"
+              floated="right"
+              onClick={() => this.solutionPrepare()}
+            >
+              Aufgabe lösen
+            </Button>
+          ) : (
+            <Button
+              id="solveTask"
+              floated="right"
+              onClick={() => this.checkSolution()}
+            >
+              Nächste Frage
+            </Button>
+          )}
       </React.Fragment>
     );
   }

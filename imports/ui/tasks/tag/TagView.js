@@ -139,7 +139,6 @@ export default class TagView extends React.Component {
     var middle = Math.floor(plainText.length / 2);
     // go to end of the current word
     while (plainText[middle] !== " ") {
-      console.log(plainText[middle]);
       middle++;
     }
     // slice text
