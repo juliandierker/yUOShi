@@ -81,10 +81,11 @@
 .progressBar-sub-items{
   position: absolute;
   float: right;
+  height: auto;
 
   padding-top: 12px;
-  margin-left: 192px;
+  margin-left: 172px;
 
-  height: auto;
+  background-color: #ffffff;
   z-index: 100;
 }
