@@ -48,17 +48,6 @@ Meteor.methods({
       return;
     }
 
-<<<<<<< HEAD
-        return backendAdapter.userTaskSolutionAdapter.saveCompleteTask(task_id, task.createAnswer(answers))
-    },
-    "tasks.checkAnswer": async (task_id, answers) => {
-        const backendAdapter = createBackendAdapter()
-        const task = await backendAdapter.taskAdapter.getTask(task_id)
-
-        if (!task) {
-            return
-        }
-=======
     // handle it this way - ejson can't handle Maps :(
     answers = answers.map((answer) => {
       return {
@@ -66,7 +55,6 @@ Meteor.methods({
         inputs: new Map(Object.entries(answer.inputs))
       };
     });
->>>>>>> master
 
     return backendAdapter.userTaskSolutionAdapter.saveCompleteTask(
       task_id,
