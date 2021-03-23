@@ -3,10 +3,9 @@ import createBackendAdapter from "./backendAdapter";
 import "../../imports/api/taskTypes";
 
 Meteor.methods({
-  "tasks.nextTaskForStation": async (packageId, stationId) => {
+  "tasks.nextTaskForStation": async (stationId) => {
     const backendAdapter = createBackendAdapter();
-    const task = await backendAdapter.taskAdapter.getNextTask(packageId, stationId);
-
+    const task = await backendAdapter.taskAdapter.getNextTask(stationId);
     if (!task) {
       return;
     }
@@ -81,11 +80,5 @@ Meteor.methods({
   "tasks.getCurrentTaskPosition": (task_id, solutionId) => {
     const backendAdapter = createBackendAdapter();
     return backendAdapter.userTaskSolutionAdapter.getCurrentTaskPosition(task_id, solutionId);
-  },
-
-  "tasks.getContent": (taskId) => {},
-
-  "tasks.getQuestions": (questId) => {},
-
-  "tasks.getAnswers": (answerId) => {}
+  }
 });

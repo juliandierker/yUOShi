@@ -16,6 +16,7 @@ Meteor.methods({
       .getStationsForPackage(packageId)
       .getWrapped()
       .toArray();
+
     for (let station of stations) {
       await station.tasks.toArray();
     }

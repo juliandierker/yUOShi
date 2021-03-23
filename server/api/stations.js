@@ -7,7 +7,6 @@ Meteor.methods({
   },
   "stations.getTasks": async (stationId) => {
     const backendAdapter = createBackendAdapter();
-
     return backendAdapter.taskAdapter.getTasksForStation(stationId).toArray();
   }
 });

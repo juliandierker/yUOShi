@@ -13,16 +13,14 @@ export const useTasksContext = () => {
   return ctx;
 };
 
-async function getContent(tasks) {
-  for (let task of tasks) {
-    if (task.content) await task.content.toArray();
+async function getContent(task) {
+  if (task.content) await task.content.toArray();
 
-    if (task.categories) await task.categories.toArray();
+  if (task.categories) await task.categories.toArray();
 
-    if (task.statements) await task.statements.toArray();
-  }
+  if (task.statements) await task.statements.toArray();
 }
-export const TasksContextProvider = ({ stations, currentStation, children }) => {
+export const TasksContextProvider = ({ currentStation, children }) => {
   const [currentTask, setCurrentTask] = useState(undefined);
   const [tasks, setTasks] = useState(undefined);
   const [currentTaskLoading, setCurrentTaskLoading] = useState(true);
@@ -33,11 +31,10 @@ export const TasksContextProvider = ({ stations, currentStation, children }) => 
     }
 
     setCurrentTaskLoading(true);
-    console.log(currentStation);
     const currentTask = await PromisifiedMeteor.call("tasks.nextTaskForStation", currentStation.id);
     setCurrentTask(currentTask);
 
-    setTasks(getContent(currentStation.tasks));
+    setTasks(getContent(currentTask));
 
     setCurrentTaskLoading(false);
   }, [currentStation]);

@@ -85,12 +85,13 @@ const RenderProgressBar = () => {
 
 const Workspace = () => {
   const { stations, currentStation } = useStationsContext();
+  const { currentPackage } = usePackagesContext();
   return (
     <React.Fragment>
       <Grid id="workspaceGrid">
         <Grid.Column style={{ maxWidth: "22%" }} width={4}>
           {stations && (
-            <TasksContextProvider stations={stations} currentStation={currentStation}>
+            <TasksContextProvider packageId={currentPackage.id} currentStation={currentStation}>
               <RenderProgressBar />
             </TasksContextProvider>
           )}
