@@ -10,27 +10,17 @@ Meteor.methods({
       return packages.concat(await course.packages.toArray());
     }, []);
   },
-  "package.getTasks": async (slug) => {
-    const user = Meteor.user();
+  "package.getStations": async (packageId) => {
     const backendAdapter = createBackendAdapter();
-    const courses = backendAdapter.courseAdapter.getCourses(user.services.studip.id);
-    if (slug) {
-      return courses
-        .getWrapped()
-        .map((course) => {
-          return course.packages
-            .map((packageItem) => {
-              if (slug === packageItem.slug) {
-                return packageItem.tasks
-                  .map((item) => {
-                    return item;
-                  })
-                  .toArray();
-              }
-            })
-            .toArray();
-        })
-        .toArray();
+    let stations = await backendAdapter.stationAdapter
+      .getStationsForPackage(packageId)
+      .getWrapped()
+      .toArray();
+
+    for (let station of stations) {
+      await station.tasks.toArray();
     }
+
+    return stations;
   }
 });
