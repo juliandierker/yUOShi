@@ -23,7 +23,7 @@
     "array-move": "^2.2.0",
     "axios": "^0.19.2",
     "fast-deep-equal": "^2.0.1",
-    "gsap": "^2.0.2",
+    "gsap": "^3.6.0",
     "hyphenated-de": "^1.2.0",
     "install": "^0.13.0",
     "julix89": "^11.2.0",
