@@ -3,7 +3,6 @@ import RenderQuest from "./RenderQuest";
 import { Button } from "semantic-ui-react";
 
 const RenderTraining = ({ task, updateTask }) => {
-  console.log(task);
   const [currentQuestId, setCurrentQuestId] = useState("");
   const [currentContentId, setCurrentContentId] = useState("");
   const [doneQuests, setDoneQuests] = useState([]);

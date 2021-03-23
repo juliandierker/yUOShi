@@ -91,7 +91,7 @@ const Workspace = () => {
       <Grid id="workspaceGrid">
         <Grid.Column style={{ maxWidth: "22%" }} width={4}>
           {stations && (
-            <TasksContextProvider packageId={currentPackage.id} currentStation={currentStation}>
+            <TasksContextProvider currentStation={currentStation}>
               <RenderProgressBar />
             </TasksContextProvider>
           )}

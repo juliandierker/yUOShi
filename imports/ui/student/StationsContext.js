@@ -28,6 +28,7 @@ export const StationsContextProvider = ({ currentPackageId, children }) => {
       station.tasks = station.tasks.buffer;
     }
     let tasks = [];
+
     if (currentStation) {
       tasks = await PromisifiedMeteor.call("stations.getTasks", currentStation.id);
     } else {
