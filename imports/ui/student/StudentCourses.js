@@ -14,12 +14,11 @@ export default class StudentCourses extends React.Component {
       courses: null
     };
   }
-  handleCourseClick(course) {
-  }
+  handleCourseClick(course) { }
   renderCourses(courses) {
     if (courses) {
       if (courses.length > 0) {
-        return courses.map(course => {
+        return courses.map((course) => {
           return <Card.Group>{this.renderCard(course)}</Card.Group>;
         });
       } else {
@@ -48,11 +47,7 @@ export default class StudentCourses extends React.Component {
                   </Button.Content>
                 </Button>
               ) : (
-                  <Button
-                    disabled
-                    onClick={() => this.handleCourseClick(course)}
-                    animated
-                  >
+                  <Button disabled onClick={() => this.handleCourseClick(course)} animated>
                     <Button.Content visible>{"Weiterspielen"}</Button.Content>
                     <Button.Content hidden>
                       <Icon name="arrow right" />
@@ -66,9 +61,7 @@ export default class StudentCourses extends React.Component {
   }
 
   render() {
-    return (
-      <React.Fragment>{this.renderCourses(this.props.courses)}</React.Fragment>
-    );
+    return <React.Fragment>{this.renderCourses(this.props.courses)}</React.Fragment>;
   }
 }
 

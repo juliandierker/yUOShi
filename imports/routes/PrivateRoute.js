@@ -10,7 +10,6 @@ const DefaultRoutes = {
   yadmin: "/yadmin"
 };
 const PrivateRoute = ({ component: Component, path, ...rest }) => {
-
   return (
     <Route
       path={path}

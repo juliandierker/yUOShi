@@ -11,6 +11,7 @@ import "./api/courses";
 import "./api/users";
 import "./api/packages";
 import "./api/tasks";
+import "./api/stations";
 
 ServiceConfiguration.configurations.upsert(
   { service: "studip" },

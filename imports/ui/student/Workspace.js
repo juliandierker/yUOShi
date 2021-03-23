@@ -1,9 +1,16 @@
+<<<<<<< HEAD
 /* eslint-disable react/prop-types */
 import React, { memo, useRef } from "react";
+=======
+import React, { memo } from "react";
+import PropTypes from "prop-types";
+>>>>>>> master
 import { Grid } from "semantic-ui-react";
 
 import { TasksContextProvider, useTasksContext } from "./TasksContext";
-import { PackagesContextProvider, usePackagesContext } from "./PackagesContext";
+import { usePackagesContext } from "./PackagesContext";
+import { useStationsContext } from "./StationsContext";
+
 import RenderQuest from "../taskRenderers/RenderQuestTask";
 import RenderDrag from "../taskRenderers/RenderDrag";
 import RenderTag from "../taskRenderers/RenderTag";
@@ -14,10 +21,10 @@ import RenderMemory from "../taskRenderers/RenderMemory";
 import RenderIntro from "../taskRenderers/RenderIntro";
 import RenderOutro from "../taskRenderers/RenderOutro";
 import ProgressBar from "../progressBar/progressBar";
-import Icon from "../IconComponent/Icon"
+import Icon from "../IconComponent/Icon";
 
-
-import "./workspace.css"
+import "./workspace.css";
+import LoggingOut from "../LoggingOut";
 
 const Workspace = ({ packageId, ...props }) => {
   const submitRef = useRef(null)
@@ -133,24 +140,33 @@ const Workspace = ({ packageId, ...props }) => {
     <React.Fragment>
       <Grid id="workspaceGrid">
         <Grid.Column style={{ maxWidth: "22%" }} width={4}>
-          <TasksContextProvider packageId={packageId}>
-            <PackagesContextProvider>
-              <RenderProgressBar {...props} />
-            </PackagesContextProvider>
-          </TasksContextProvider>
+          {stations && (
+            <TasksContextProvider currentStation={currentStation}>
+              <RenderProgressBar />
+            </TasksContextProvider>
+          )}
         </Grid.Column>
         <Grid.Column width={12}>
-          <TasksContextProvider packageId={packageId}>
-            <div className="workspace-container">
-              <RenderWorkspace {...props} />
-            </div>
-            <div className="workspace-navigation">
-              <RednerNavigation />
-            </div>
-          </TasksContextProvider>
+
+          <div className="workspace-container">
+            <TasksContextProvider stations={stations} currentStation={currentStation}>
+              <RenderWorkspace />
+            </TasksContextProvider>
+          </div>
+          <div className="workspace-navigation">
+            <RednerNavigation />
+          </div>
         </Grid.Column>
       </Grid>
     </React.Fragment>
   );
 };
 export default Workspace;
+
+RenderTask.propTypes = {
+  task: PropTypes.object,
+  updateTask: PropTypes.func
+};
+Workspace.propTypes = {
+  stationId: PropTypes.string
+};

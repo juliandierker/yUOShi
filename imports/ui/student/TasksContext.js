@@ -1,8 +1,8 @@
+import { faMeteor } from "@fortawesome/free-solid-svg-icons";
 import React, { createContext, useCallback, useContext, useEffect, useState } from "react";
 import PromisifiedMeteor from "../../api/promisified";
 
 const TasksContext = createContext(null);
-
 export const useTasksContext = () => {
   const ctx = useContext(TasksContext);
 
@@ -13,23 +13,31 @@ export const useTasksContext = () => {
   return ctx;
 };
 
-export const TasksContextProvider = ({ packageId, children }) => {
-  const [currentTask, setCurrentTask] = useState();
-  const [tasks, setTasks] = useState();
+async function getContent(task) {
+  if (task.content) await task.content.toArray();
+
+  if (task.categories) await task.categories.toArray();
+
+  if (task.statements) await task.statements.toArray();
+}
+export const TasksContextProvider = ({ currentStation, children }) => {
+  const [currentTask, setCurrentTask] = useState(undefined);
+  const [tasks, setTasks] = useState(undefined);
   const [currentTaskLoading, setCurrentTaskLoading] = useState(true);
 
   const updateTask = useCallback(async () => {
-    if (!packageId) {
+    if (!currentStation) {
       return;
     }
 
     setCurrentTaskLoading(true);
+    const currentTask = await PromisifiedMeteor.call("tasks.nextTaskForStation", currentStation.id);
+    setCurrentTask(currentTask);
 
-    const tasks = await PromisifiedMeteor.call("tasks.nextTaskForPackage", packageId);
-    setCurrentTask(tasks);
+    setTasks(getContent(currentTask));
 
     setCurrentTaskLoading(false);
-  }, [packageId]);
+  }, [currentStation]);
 
   useEffect(() => {
     updateTask();
@@ -38,7 +46,8 @@ export const TasksContextProvider = ({ packageId, children }) => {
   const ctx = {
     currentTask,
     currentTaskLoading,
-    updateTask
+    updateTask,
+    tasks
   };
 
   return <TasksContext.Provider value={ctx}>{children}</TasksContext.Provider>;

@@ -27,7 +27,7 @@ export default function ClassRoom() {
         elem.removeEventListener("click", handleClick);
       };
     },
-    [setPage, setCurrentPackage, student]
+    [setPage, setCurrentPackage]
   );
 
   useEffect(() => {

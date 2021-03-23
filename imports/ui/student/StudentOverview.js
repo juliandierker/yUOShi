@@ -1,7 +1,5 @@
-import React, { useContext, useState, useEffect, useRef } from "react";
-import { Dropdown, Icon, Menu, Segment, Button, Responsive } from "semantic-ui-react";
+import React, { useContext, useState, useEffect } from "react";
 
-import StudentCourses from "./StudentCourses";
 import StudentTopMenu from "./StudentTopMenu";
 import SchoolOverview from "./game/SchoolOverview";
 import ClassRoom from "./game/ClassRoom";
@@ -15,12 +13,14 @@ import Loading from "../Loading.js";
 import TutorialComponent from "../tutorials/TutorialComponent";
 
 import { GameContext } from "./StudentContextProvider";
+
 import { usePrevious } from "../../shared/customHooks";
-import LoggingOut from "../LogginOut.js";
+import LoggingOut from "../LoggingOut.js";
 import { PackagesContextProvider, usePackagesContext } from "./PackagesContext";
+import { StationsContextProvider } from "./StationsContext";
 
 function RenderStudentOverview() {
-  const { loading, student, tasks, page } = useContext(GameContext);
+  const { loading, student, page } = useContext(GameContext);
   const [loggingOut, setLoggingOut] = useState(false);
   const [activeTutorial, setActiveTutorial] = useState(false);
   const prevStudent = usePrevious(student);
@@ -50,7 +50,11 @@ function RenderStudentOverview() {
     } else if (page === "schoolOverview") {
       return <SchoolOverview tutorial={tutorial} />;
     } else if (page === "workspace") {
-      return <Workspace packageId={currentPackage.id} />;
+      return (
+        <StationsContextProvider currentPackageId={currentPackage.id}>
+          <Workspace />
+        </StationsContextProvider>
+      );
     } else if (page === "teacherRoom") {
       return <TeacherRoom />;
     } else if (page === "office") {
