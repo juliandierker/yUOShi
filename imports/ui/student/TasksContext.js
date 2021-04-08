@@ -32,6 +32,7 @@ export const TasksContextProvider = ({ currentStation, children }) => {
 
     setCurrentTaskLoading(true);
     const currentTask = await PromisifiedMeteor.call("tasks.nextTaskForStation", currentStation.id);
+    console.log(currentTask);
     setCurrentTask(currentTask);
 
     setTasks(getContent(currentTask));
