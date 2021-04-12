@@ -1,10 +1,6 @@
-<<<<<<< HEAD
-/* eslint-disable react/prop-types */
 import React, { memo, useRef } from "react";
-=======
-import React, { memo } from "react";
 import PropTypes from "prop-types";
->>>>>>> master
+
 import { Grid } from "semantic-ui-react";
 
 import { TasksContextProvider, useTasksContext } from "./TasksContext";
@@ -163,10 +159,6 @@ const Workspace = ({ packageId, ...props }) => {
 };
 export default Workspace;
 
-RenderTask.propTypes = {
-  task: PropTypes.object,
-  updateTask: PropTypes.func
-};
 Workspace.propTypes = {
   stationId: PropTypes.string
 };
