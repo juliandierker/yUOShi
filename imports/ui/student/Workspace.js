@@ -20,9 +20,9 @@ import ProgressBar from "../progressBar/progressBar";
 import Icon from "../IconComponent/Icon";
 
 import "./workspace.css";
-import LoggingOut from "../LoggingOut";
 
 const Workspace = ({ packageId, ...props }) => {
+
   const submitRef = useRef(null)
 
   // eslint-disable-next-line react/display-name
@@ -106,6 +106,8 @@ const Workspace = ({ packageId, ...props }) => {
   const RenderProgressBar = () => {
     const { currentTask, currentTaskLoading } = useTasksContext();
     const { currentPackage, packagesLoading, packageTasks } = usePackagesContext();
+    const { stations } = useStationsContext();
+
     if (packagesLoading || currentTaskLoading) {
       return <p>Loading Packages...</p>;
     }
@@ -114,7 +116,8 @@ const Workspace = ({ packageId, ...props }) => {
         currentPackage={currentPackage}
         packageTasks={packageTasks}
         packageLoading={packagesLoading}
-        task={currentTask}>
+        task={currentTask}
+        stations={stations}>
 
       </ProgressBar>
     );
@@ -131,6 +134,8 @@ const Workspace = ({ packageId, ...props }) => {
       <button className="navigation-button" id="navigation-button-right"><Icon name="arrow-right" size="large" /></button>
     </>)
   }
+
+  const { stations, currentStation } = useStationsContext();
 
   return (
     <React.Fragment>
@@ -150,7 +155,9 @@ const Workspace = ({ packageId, ...props }) => {
             </TasksContextProvider>
           </div>
           <div className="workspace-navigation">
-            <RednerNavigation />
+            <TasksContextProvider stations={stations} currentStation={currentStation}>
+              <RednerNavigation />
+            </TasksContextProvider>
           </div>
         </Grid.Column>
       </Grid>

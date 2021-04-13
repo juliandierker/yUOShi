@@ -74,10 +74,6 @@
   
 }
 
-.progressBar-content :first-child .progressBar-item-name {
-  margin-left: -4px;
-}
-
 .progressBar-sub-items{
   position: absolute;
   float: right;

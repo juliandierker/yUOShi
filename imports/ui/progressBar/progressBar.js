@@ -11,101 +11,27 @@ import "./progressBar.css";
  * @returns {ReactElement | null}
  */
 export default function ProgressBar(props) {
-  // temporary data !!! needs to be replaced with props data
+  const { currentPackage, stations } = props;
+
+  let maxCredits = 0;
+
   const data = {
     package: {
-      name: "Motivation",
-      subPackages: [
-        {
-          name: "Intro"
-        },
-        {
-          name: "Motivationsbegriff",
-          tasks: [
-            {
-              name: "Intrinsische und extrinsische Motivation",
-              type: "Lückentext"
-            },
-            {
-              name: "Intrinsische und extrinsische Motivation",
-              type: "Lückentext"
+      name: currentPackage.title,
+      stations: stations.map(station => {
+        return {
+          name: station.title,
+          tasks: station.tasks.map(task => {
+            maxCredits += task.credits
+            return {
+              name: task.title,
+              type: task.type
             }
-          ]
-        },
-        {
-          name: "Humanistische Theorien",
-          tasks: [
-            {
-              name: "Maslow Bedürfnisspyramide",
-              type: "Lückentext"
-            },
-            {
-              name: "Maslow Bedürfnisspyramide",
-              type: "Lückentext"
-            },
-            {
-              name: "Maslow Bedürfnisspyramide",
-              type: "Lückentext"
-            },
-            {
-              name: "Maslow Bedürfnisspyramide",
-              type: "Lückentext"
-            },
-            {
-              name: "Maslow Bedürfnisspyramide",
-              type: "Lückentext"
-            }
-          ]
-        },
-        {
-          name: "Kognitive Theorien",
-          tasks: [
-            {
-              name: "Erwartungs-X-Wert Theorie",
-              type: "Lückentext"
-            },
-            {
-              name: "Erwartungs-X-Wert Theorie",
-              type: "Lückentext"
-            },
-            {
-              name: "Erwartungs-X-Wert Theorie",
-              type: "Lückentext"
-            },
-            {
-              name: "Erwartungs-X-Wert Theorie",
-              type: "Lückentext"
-            }
-          ]
-        },
-        {
-          name: "Ziele",
-          tasks: [
-            {
-              name: "Zielsetzungstheorie",
-              type: "memory"
-            },
-            {
-              name: "Zielsetzungstheorie",
-              type: "tag"
-            },
-            {
-              name: "Zielsetzungstheorie",
-              type: "multi"
-            },
-            {
-              name: "Zielsetzungstheorie",
-              type: "cloze"
-            }
-          ]
-        },
-        {
-          name: "Quest",
-          locked: true
+          })
         }
-      ]
+      })
     }
-  };
+  }
 
   const RenderTitle = ({ title }) => {
     return (
@@ -118,16 +44,16 @@ export default function ProgressBar(props) {
   const RenderScore = () => {
     return (
       <div className="progressBar-score">
-        <p className="progressBar-score-number">50/100</p>
+        <p className="progressBar-score-number">0/{maxCredits}</p>
         <p className="progressBar-score-label">Gesammelte Punkte</p>
       </div>
     );
   };
 
-  const RenderSubPackages = () => {
+  const RenderStations = () => {
     return (
       <div className="progressBar-content">
-        {data.package.subPackages.map((data, index) => {
+        {data.package.stations.map((data, index) => {
           return <ProgressBarItem key={"progressBarItem_" + index} data={data} index={index} />;
         })}
         <RenderScore />
@@ -139,7 +65,7 @@ export default function ProgressBar(props) {
     <React.Fragment>
       <div className="progressBar-container">
         <RenderTitle title={data.package.name} />
-        <RenderSubPackages />
+        <RenderStations />
       </div>
     </React.Fragment>
   );

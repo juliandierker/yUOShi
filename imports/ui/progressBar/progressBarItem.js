@@ -35,11 +35,11 @@ export default function ProgressBarItem({ data }) {
   }
 
   let icon = <div></div>
-  icon = tasks ? <Icon name="bars" size="large" /> : icon
+  icon = tasks && tasks.length != 0 ? <Icon name="bars" size="large" /> : icon
   icon = locked ? <Icon name="lock-locked" size="large" /> : icon
   let pbClassname = "progressBar-item"
   if (hover || hoverSubArea) {
-    pbClassname = tasks ? "progressBar-item-hover-tasks" : "progressBar-item-hover"
+    pbClassname = tasks && tasks.length != 0 ? "progressBar-item-hover-tasks" : "progressBar-item-hover"
   }
 
   return <React.Fragment>
