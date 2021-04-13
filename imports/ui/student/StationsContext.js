@@ -36,7 +36,6 @@ export const StationsContextProvider = ({ currentPackageId, children }) => {
     }
 
     setStations(currentStations);
-    console.log(currentStation);
     setStationsTasks(tasks);
     setstationLoading(false);
   }, [currentPackageId, currentStation]);
