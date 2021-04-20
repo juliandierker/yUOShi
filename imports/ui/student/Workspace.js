@@ -83,37 +83,42 @@ const RenderProgressBar = () => {
   );
 };
 
+const NavigationButtons = () => {
+  const { stations, currentStation } = useStationsContext();
+  const { getPrevTask, getNextTask } = useTasksContext();
+  return (
+    <Grid.Column width={12}>
+      <div className="workspace-container">
+        <RenderWorkspace />
+      </div>
+      <div className="workspace-navigation">
+        <button className="navigation-button" id="navigation-button-left" onClick={getPrevTask}>
+          <Icon name="arrow-left" size="large" />
+        </button>
+        <button className="navigation-button" id="navigation-button-submit">
+          AUSWERTEN
+        </button>
+        <button className="navigation-button" id="navigation-button-right" onClick={getNextTask}>
+          <Icon name="arrow-right" size="large" />
+        </button>
+      </div>
+    </Grid.Column>
+  );
+};
+
 const Workspace = () => {
   const { stations, currentStation } = useStationsContext();
-  const { currentPackage } = usePackagesContext();
   return (
     <React.Fragment>
       <Grid id="workspaceGrid">
-        <Grid.Column style={{ maxWidth: "22%" }} width={4}>
-          {stations && (
-            <TasksContextProvider currentStation={currentStation}>
+        {stations && (
+          <TasksContextProvider currentStation={currentStation}>
+            <Grid.Column style={{ maxWidth: "22%" }} width={4}>
               <RenderProgressBar />
-            </TasksContextProvider>
-          )}
-        </Grid.Column>
-        <Grid.Column width={12}>
-          <div className="workspace-container">
-            <TasksContextProvider stations={stations} currentStation={currentStation}>
-              <RenderWorkspace />
-            </TasksContextProvider>
-          </div>
-          <div className="workspace-navigation">
-            <button className="navigation-button" id="navigation-button-left">
-              <Icon name="arrow-left" size="large" />
-            </button>
-            <button className="navigation-button" id="navigation-button-submit">
-              AUSWERTEN
-            </button>
-            <button className="navigation-button" id="navigation-button-right">
-              <Icon name="arrow-right" size="large" />
-            </button>
-          </div>
-        </Grid.Column>
+            </Grid.Column>
+            <NavigationButtons />
+          </TasksContextProvider>
+        )}
       </Grid>
     </React.Fragment>
   );

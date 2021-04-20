@@ -3,9 +3,29 @@ import createBackendAdapter from "./backendAdapter";
 import "../../imports/api/taskTypes";
 
 Meteor.methods({
+  "tasks.getTask": async (taskId) => {
+    const backendAdapter = createBackendAdapter();
+    const task = await backendAdapter.taskAdapter.getTask(taskId, true);
+
+    if (!task) {
+      return;
+    }
+    return task.getStatic();
+  },
+
   "tasks.nextTaskForStation": async (stationId) => {
     const backendAdapter = createBackendAdapter();
     const task = await backendAdapter.taskAdapter.getNextTask(stationId);
+
+    if (!task) {
+      return;
+    }
+    return task.getStatic();
+  },
+
+  "tasks.prevTaskForStation": async (station_id, current_task_id) => {
+    const backendAdapter = createBackendAdapter();
+    const task = await backendAdapter.taskAdapter.getPrevTask(station_id, current_task_id);
     if (!task) {
       return;
     }
