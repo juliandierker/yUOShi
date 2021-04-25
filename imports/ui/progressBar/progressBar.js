@@ -11,7 +11,7 @@ import "./progressBar.css";
  * @returns {ReactElement | null}
  */
 export default function ProgressBar(props) {
-  const { currentPackage, stations } = props;
+  const { currentPackage, stations, currentStation, currentTask } = props;
 
   let maxCredits = 0;
 
@@ -21,11 +21,13 @@ export default function ProgressBar(props) {
       stations: stations.map(station => {
         return {
           name: station.title,
+          id: station.id,
           tasks: station.tasks.map(task => {
             maxCredits += task.credits
             return {
               name: task.title,
-              type: task.type
+              type: task.type,
+              id: task.id
             }
           })
         }
@@ -51,10 +53,11 @@ export default function ProgressBar(props) {
   };
 
   const RenderStations = () => {
+
     return (
       <div className="progressBar-content">
         {data.package.stations.map((data, index) => {
-          return <ProgressBarItem key={"progressBarItem_" + index} data={data} index={index} />;
+          return <ProgressBarItem key={"progressBarItem_" + index} data={data} index={index} highlighted={data.id === currentStation.id} currentTask={currentTask} />;
         })}
         <RenderScore />
       </div>
