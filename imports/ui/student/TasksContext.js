@@ -24,8 +24,13 @@ async function getContent(task) {
 
 export const TasksContextProvider = ({ currentStation, children }) => {
   const { stationTasks } = useStationsContext();
+  const [getSolution, setSolution] = useState(null);
   const [currentTask, setCurrentTask] = useState(undefined);
   const [currentTaskLoading, setCurrentTaskLoading] = useState(true);
+
+  async function solveTask() {
+    await getSolution;
+  }
 
   const getNextTask = useCallback(async () => {
     if (!currentTask || stationTasks.length === 0) return;
@@ -58,7 +63,6 @@ export const TasksContextProvider = ({ currentStation, children }) => {
       );
       setCurrentTask(_currentTask);
     } catch (err) {
-      console.log(err);
       return;
     } finally {
       setCurrentTaskLoading(false);
@@ -85,7 +89,10 @@ export const TasksContextProvider = ({ currentStation, children }) => {
     currentTaskLoading,
     updateTask,
     getPrevTask,
-    getNextTask
+    getNextTask,
+    getSolution,
+    setSolution,
+    solveTask
   };
 
   return <TasksContext.Provider value={ctx}>{children}</TasksContext.Provider>;

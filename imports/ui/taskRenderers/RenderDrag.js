@@ -5,6 +5,7 @@ import DragDropViewNormal from "./DragDropView/DragDropViewNormal";
 import { Button } from "semantic-ui-react";
 import PromisifiedMeteor from "../../api/promisified";
 import Swal from "sweetalert2";
+import { useTasksContext } from "../student/TasksContext";
 
 /**
  * Shuffle given array using the Fisher-Yates shuffle
@@ -89,14 +90,12 @@ export const applyDrag = (items, dragResult) => {
 };
 
 const propTypes = {
-  task: PropTypes.instanceOf(StaticDrag).isRequired,
-  updateTask: PropTypes.func.isRequired
+  task: PropTypes.instanceOf(StaticDrag).isRequired
 };
 
 /**
  * @typedef RenderDragProps
  * @property {StaticDrag} task
- * @property {Function} updateTask
  */
 
 /**
@@ -109,8 +108,10 @@ function RenderDrag(props) {
   const [done, setDone] = useState(false);
   const [userSolution, setUserSolution] = useState([]);
   const [solutions, setSolutions] = useState(undefined);
+  const { getSolution, setSolution } = useTasksContext();
+
   // destructure here and not in function-params so we get type-hints
-  const { task, updateTask } = props;
+  const { task } = props;
 
   useEffect(() => {
     const statements = distributeEvenly(shuffle(task.statements), task.categories.length);
@@ -126,6 +127,10 @@ function RenderDrag(props) {
       })
     );
   }, [task]);
+
+  useEffect(() => {
+    setSolution(() => onSolve);
+  }, [done]);
 
   /** @type {Scene} scene */
   const scene = useMemo(() => {
@@ -296,20 +301,6 @@ function RenderDrag(props) {
         onCardDrop={onCardDrop}
         onColumnDrop={onColumnDrop}
       />
-      {!solutions && !done && (
-        <Button
-          style={{ marginTop: "10px", marginRight: "10px", float: "right" }}
-          onClick={onSolve}>
-          Aufgabe lösen
-        </Button>
-      )}
-      {(solutions || done) && (
-        <Button
-          style={{ marginTop: "10px", marginRight: "10px", float: "right" }}
-          onClick={updateTask}>
-          Weiter
-        </Button>
-      )}
     </>
   );
 }
