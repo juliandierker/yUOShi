@@ -51,7 +51,6 @@ export default class TutorialComponent extends React.Component {
       return true;
     } else if ("customEvent" in step) {
       var stepInfo = step["customEvent"];
-      console.log(stepInfo);
       var highlightElem = document.querySelector(stepInfo["id"]);
 
       if (!highlightElem) return false;

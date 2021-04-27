@@ -28,25 +28,25 @@ const RenderTask = memo(({ task, updateTask }) => {
   switch (task.type) {
     case "multi":
     case "survey":
-      taskRenderer = <RenderQuest task={task} updateTask={updateTask} />;
+      taskRenderer = <RenderQuest task={task} />;
       break;
     case "drag":
-      taskRenderer = <RenderDrag task={task} updateTask={updateTask} />;
+      taskRenderer = <RenderDrag task={task} />;
       break;
     case "tag":
-      taskRenderer = <RenderTag task={task} updateTask={updateTask} />;
+      taskRenderer = <RenderTag task={task} />;
       break;
     case "card":
-      taskRenderer = <RenderCard task={task} updateTask={updateTask} />;
+      taskRenderer = <RenderCard task={task} />;
       break;
     case "cloze":
-      taskRenderer = <RenderCloze task={task} updateTask={updateTask} />;
+      taskRenderer = <RenderCloze task={task} />;
       break;
     case "memory":
-      taskRenderer = <RenderMemory task={task} updateTask={updateTask} />;
+      taskRenderer = <RenderMemory task={task} />;
       break;
     case "training":
-      taskRenderer = <RenderTraining task={task} updateTask={updateTask} />;
+      taskRenderer = <RenderTraining task={task} />;
       break;
     default:
       taskRenderer = null;
@@ -83,37 +83,42 @@ const RenderProgressBar = () => {
   );
 };
 
+const NavigationButtons = () => {
+  const { stations, currentStation } = useStationsContext();
+  const { getPrevTask, getNextTask, solveTask, getSolution } = useTasksContext();
+  return (
+    <Grid.Column width={12}>
+      <div className="workspace-container">
+        <RenderWorkspace />
+      </div>
+      <div className="workspace-navigation">
+        <button className="navigation-button" id="navigation-button-left" onClick={getPrevTask}>
+          <Icon name="arrow-left" size="large" />
+        </button>
+        <button onClick={getSolution} className="navigation-button" id="navigation-button-submit">
+          AUSWERTEN
+        </button>
+        <button className="navigation-button" id="navigation-button-right" onClick={getNextTask}>
+          <Icon name="arrow-right" size="large" />
+        </button>
+      </div>
+    </Grid.Column>
+  );
+};
+
 const Workspace = () => {
   const { stations, currentStation } = useStationsContext();
-  const { currentPackage } = usePackagesContext();
   return (
     <React.Fragment>
       <Grid id="workspaceGrid">
-        <Grid.Column style={{ maxWidth: "22%" }} width={4}>
-          {stations && (
-            <TasksContextProvider currentStation={currentStation}>
+        {stations && (
+          <TasksContextProvider currentStation={currentStation}>
+            <Grid.Column style={{ maxWidth: "22%" }} width={4}>
               <RenderProgressBar />
-            </TasksContextProvider>
-          )}
-        </Grid.Column>
-        <Grid.Column width={12}>
-          <div className="workspace-container">
-            <TasksContextProvider stations={stations} currentStation={currentStation}>
-              <RenderWorkspace />
-            </TasksContextProvider>
-          </div>
-          <div className="workspace-navigation">
-            <button className="navigation-button" id="navigation-button-left">
-              <Icon name="arrow-left" size="large" />
-            </button>
-            <button className="navigation-button" id="navigation-button-submit">
-              AUSWERTEN
-            </button>
-            <button className="navigation-button" id="navigation-button-right">
-              <Icon name="arrow-right" size="large" />
-            </button>
-          </div>
-        </Grid.Column>
+            </Grid.Column>
+            <NavigationButtons />
+          </TasksContextProvider>
+        )}
       </Grid>
     </React.Fragment>
   );
