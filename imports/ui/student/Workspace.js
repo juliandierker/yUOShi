@@ -142,13 +142,13 @@ const Workspace = ({ packageId, ...props }) => {
   return (
     <React.Fragment>
       <Grid id="workspaceGrid">
-        <Grid.Column style={{ maxWidth: "22%" }} width={4}>
-          {stations && (
-            <TasksContextProvider currentStation={currentStation}>
+        {stations && (
+          <TasksContextProvider currentStation={currentStation}>
+            <Grid.Column style={{ maxWidth: "22%" }} width={4}>
               <RenderProgressBar />
-            </TasksContextProvider>
-          )}
-        </Grid.Column>
+            </Grid.Column>
+          </TasksContextProvider>
+        )}
         <Grid.Column width={12}>
 
           <div className="workspace-container">
