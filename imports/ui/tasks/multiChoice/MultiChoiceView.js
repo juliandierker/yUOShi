@@ -8,7 +8,9 @@ export default class MultiChoiceView extends Component {
     super(props);
     this.state = {
       questionIndex: 1,
-      questionCount: props.activeTask.content ? props.activeTask.content.length : 1,
+      questionCount: props.activeTask.content
+        ? props.activeTask.content.length
+        : 1,
       checkedAnswers: [],
       showSolution: false,
       childKeyIteration: 0,
@@ -21,7 +23,8 @@ export default class MultiChoiceView extends Component {
   }
 
   checkSolution() {
-    const meteorMethod = "solutionHandler.check" + this.props.activeTask.filePrefix;
+    const meteorMethod =
+      "solutionHandler.check" + this.props.activeTask.filePrefix;
 
     if (this.state.showSolution) {
       this.setState({
@@ -40,6 +43,7 @@ export default class MultiChoiceView extends Component {
       this.props.activeTask,
       this.state.questionIndex - 1,
       (err, res) => {
+
         if (res.falseCount > 0) {
           var tmp = this.state.fails > 0;
 
@@ -53,7 +57,7 @@ export default class MultiChoiceView extends Component {
             cancelButtonText: "Nochmal versuchen",
             cancelButtonColor: "#3085d6",
             showCancelButton: true
-          }).then((result) => {
+          }).then(result => {
             if (result.value) {
               this.setState({
                 showSolution: true,
@@ -61,7 +65,8 @@ export default class MultiChoiceView extends Component {
                 result: res,
                 next: true,
                 fails: this.state.fails + res.falseCount,
-                totalAnswerCount: this.state.totalAnswerCount + res.totalAnswerCount
+                totalAnswerCount:
+                  this.state.totalAnswerCount + res.totalAnswerCount
               });
               this.forceUpdate();
             } else {
@@ -86,15 +91,19 @@ export default class MultiChoiceView extends Component {
   }
 
   solutionPrepare() {
-    let meteorMethod = "solutionHandler.submit" + this.props.activeTask.filePrefix;
+    let meteorMethod =
+      "solutionHandler.submit" + this.props.activeTask.filePrefix;
     if (this.state.showSolution && this.state.final) {
       let result = this.state.result;
       let solvedPercentage = null;
       if (this.state.totalAnswerCount > 0) {
         solvedPercentage =
-          (this.state.totalAnswerCount - this.state.falseCount) / this.state.totalAnswerCount;
+          (this.state.totalAnswerCount - this.state.falseCount) /
+          this.state.totalAnswerCount;
       } else {
-        solvedPercentage = (result.totalAnswerCount - result.falseCount) / result.totalAnswerCount;
+        solvedPercentage =
+          (result.totalAnswerCount - result.falseCount) /
+          result.totalAnswerCount;
       }
       const { currentTraining } = this.props.student;
       // Solve this task
@@ -143,7 +152,7 @@ export default class MultiChoiceView extends Component {
               cancelButtonText: "Nochmal versuchen",
               cancelButtonColor: "#3085d6",
               showCancelButton: true
-            }).then((result) => {
+            }).then(result => {
               if (result.value) {
                 this.setState({
                   showSolution: true,
@@ -151,7 +160,8 @@ export default class MultiChoiceView extends Component {
                   result: res,
                   next: true,
                   fails: this.state.fails + res.falseCount,
-                  totalAnswerCount: this.state.totalAnswerCount + res.totalAnswerCount
+                  totalAnswerCount:
+                    this.state.totalAnswerCount + res.totalAnswerCount
                 });
                 this.forceUpdate();
               } else {
@@ -159,7 +169,8 @@ export default class MultiChoiceView extends Component {
                   showSolution: false,
                   fails: (this.state.fails += res.falseCount),
                   final: tmp,
-                  totalAnswerCount: (this.state.totalAnswerCount += res.totalAnswerCount),
+                  totalAnswerCount: (this.state.totalAnswerCount +=
+                    res.totalAnswerCount),
                   checkedAnswers: [],
                   childKeyIteration: this.state.childKeyIteration === 0 ? 1 : 0
                 });
@@ -170,7 +181,7 @@ export default class MultiChoiceView extends Component {
               position: "top-end",
               type: "success",
               title: "Weiter gehts zum nächsten Fall."
-            }).then((result) => {
+            }).then(result => {
               if (result.value) {
                 this.setState({
                   showSolution: true,
@@ -196,7 +207,7 @@ export default class MultiChoiceView extends Component {
               toast: true,
               text: "Deine Gründe werden im Lehrendenzimmer ausgestellt.",
               timer: 2000
-            }).then((result) => {
+            }).then(result => {
               this.props.handleNextTask();
             });
           } else if (res.falseCount == 0) {
@@ -220,7 +231,7 @@ export default class MultiChoiceView extends Component {
               cancelButtonText: "Nochmal versuchen",
               cancelButtonColor: "#3085d6",
               showCancelButton: true
-            }).then((result) => {
+            }).then(result => {
               if (result.value) {
                 this.setState({ showSolution: true, result: res, final: true });
                 this.forceUpdate();
@@ -243,7 +254,7 @@ export default class MultiChoiceView extends Component {
     const questionId = e.target.id.split("_")[1];
     const multi = e.target.id.split("_")[3] === "m";
     let checkedAnswers = this.state.checkedAnswers;
-    let checkedQuestionAnsweres = checkedAnswers.find((element) => {
+    let checkedQuestionAnsweres = checkedAnswers.find(element => {
       return element.id.toString() === questionId;
     });
     const index = checkedAnswers.indexOf(checkedQuestionAnsweres);
@@ -276,12 +287,12 @@ export default class MultiChoiceView extends Component {
   }
 
   renderAnswerSet(questionId, set, multi) {
-    let checkedAnswers = this.state.checkedAnswers.find((element) => {
+    let checkedAnswers = this.state.checkedAnswers.find(element => {
       return element.id.toString() === questionId.toString();
     });
     let correctAnswers = [];
     if (this.state.showSolution) {
-      let falseQuestion = this.state.result.falseQuestions.find((element) => {
+      let falseQuestion = this.state.result.falseQuestions.find(element => {
         return element.id.toString() === questionId.toString();
       });
       if (falseQuestion) {
@@ -334,8 +345,12 @@ export default class MultiChoiceView extends Component {
     return (
       <div
         key={"questionDiv_" + question.QuestionId}
-        style={{ width: "100%", paddingBottom: "16px" }}>
-        <Card key={"questionCard_" + question.QuestionId} style={{ width: "100%" }}>
+        style={{ width: "100%", paddingBottom: "16px" }}
+      >
+        <Card
+          key={"questionCard_" + question.QuestionId}
+          style={{ width: "100%" }}
+        >
           <Card.Content>
             <Card.Header style={{ marginBottom: "2rem", textAlign: "left" }}>
               <br />
@@ -343,7 +358,11 @@ export default class MultiChoiceView extends Component {
               {question.Question}
             </Card.Header>
             <Card.Description>
-              {this.renderAnswerSet(question.QuestionId, question.AnswerSet, question.multi)}
+              {this.renderAnswerSet(
+                question.QuestionId,
+                question.AnswerSet,
+                question.multi
+              )}
             </Card.Description>
           </Card.Content>
         </Card>
@@ -355,27 +374,25 @@ export default class MultiChoiceView extends Component {
     return (
       <React.Fragment>
         {this.renderQuestions()}
-        {
-          this.state.questionCount === 1 ||
-            this.state.questionIndex === this.state.questionCount ? (
-              <Button
-                id="solveTask"
-                floated="right"
-                onClick={() => this.solutionPrepare()}
-              >
-                Aufgabe lösen
-              </Button>
-            ) : (
-              <Button
-                id="solveTask"
-                floated="right"
-                onClick={() => this.checkSolution()}
-              >
-                Nächste Frage
-              </Button>
-            )
-        }
-      </React.Fragment >
+        {this.state.questionCount === 1 ||
+          this.state.questionIndex === this.state.questionCount ? (
+            <Button
+              id="solveTask"
+              floated="right"
+              onClick={() => this.solutionPrepare()}
+            >
+              Aufgabe lösen
+            </Button>
+          ) : (
+            <Button
+              id="solveTask"
+              floated="right"
+              onClick={() => this.checkSolution()}
+            >
+              Nächste Frage
+            </Button>
+          )}
+      </React.Fragment>
     );
   }
 }
