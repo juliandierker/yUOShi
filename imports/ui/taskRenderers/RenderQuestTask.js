@@ -37,6 +37,7 @@ const RenderQuestTask = (props) => {
   }, []);
 
   const question = useMemo(() => {
+    console.log(task);
     if (!task) {
       return;
     }
@@ -52,11 +53,11 @@ const RenderQuestTask = (props) => {
     return task.contents.length - doneQuests.length <= 1;
   }, [task, question, doneQuests]);
 
+  console.log(question);
   return (
     <>
       <RenderQuest
         task={task}
-        updateTask={updateTask}
         question={question}
         isLastQuestion={isLastQuestion}
         onGetNextQuest={onGetNextQuest}

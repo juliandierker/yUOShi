@@ -6,7 +6,7 @@ import { StaticSurvey } from "@xyng/yuoshi-backend-adapter";
 import { useTasksContext } from "../student/TasksContext";
 
 /** @type React.FC */
-const RenderQuest = ({ task, updateTask, question, isLastQuestion, onGetNextQuest }) => {
+const RenderQuest = ({ task, question, isLastQuestion, onGetNextQuest }) => {
   const { getSolution, setSolution } = useTasksContext();
   const [solutions, setSolutions] = useState(undefined);
   const [selectedQuestionAnswers, setSelectedQuestionAnswers] = useState({});
@@ -50,10 +50,12 @@ const RenderQuest = ({ task, updateTask, question, isLastQuestion, onGetNextQues
   }, [getNextQuest]);
 
   const selectedAnswers = useMemo(() => {
+    console.log(question);
     if (!question) {
       return [];
     }
-
+    console.log(selectedQuestionAnswers);
+    console.log(question.id);
     return selectedQuestionAnswers[question.id] || [];
   }, [question, selectedQuestionAnswers]);
 
@@ -61,7 +63,7 @@ const RenderQuest = ({ task, updateTask, question, isLastQuestion, onGetNextQues
     if (!question) {
       return;
     }
-
+    console.log(selectedAnswers);
     const givenAnswers = selectedAnswers.map((answer) => {
       return {
         quest_id: question.id,
@@ -77,9 +79,7 @@ const RenderQuest = ({ task, updateTask, question, isLastQuestion, onGetNextQues
         custom: customAnswer
       });
     }
-
     const result = await PromisifiedMeteor.call("tasks.checkQuest", question.id, givenAnswers);
-
     if (!result) {
       // TODO: handle error
       // the error may be caused by the user submitting more than 3 solution-attempts.
@@ -142,6 +142,7 @@ const RenderQuest = ({ task, updateTask, question, isLastQuestion, onGetNextQues
         } else {
           selected = selected.filter((id) => id !== answer_id);
         }
+        console.log("toggle");
 
         return {
           ...cur,
@@ -156,9 +157,7 @@ const RenderQuest = ({ task, updateTask, question, isLastQuestion, onGetNextQues
     if (!done || !updateTask) {
       return;
     }
-
-    await updateTask();
-  }, [updateTask, done]);
+  }, [done]);
 
   /** @type React.ChangeEventHandler<HTMLInputElement> */
   const onChangeCustomAnswer = useCallback((event) => {
@@ -199,7 +198,7 @@ const RenderQuest = ({ task, updateTask, question, isLastQuestion, onGetNextQues
                       value={answer.id}
                       checked={selectedAnswers.includes(answer.id)}
                       onChange={toggleAnswer(question.id, answer.id)}
-                      disabled={!question.multiple && selectedAnswers.length > 0}
+                      // todo disabled
                     />
                   );
                 })}
@@ -209,7 +208,7 @@ const RenderQuest = ({ task, updateTask, question, isLastQuestion, onGetNextQues
                       placeholder="Eigene Antwort:"
                       value={customAnswer}
                       onChange={onChangeCustomAnswer}
-                      disabled={!question.multiple && selectedAnswers.length > 0}
+                      // todo disabled
                     />
                   </Form>
                 )}
