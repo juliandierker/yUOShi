@@ -21,7 +21,6 @@ import LoggingOut from "../LoggingOut";
 
 // eslint-disable-next-line react/display-name
 const RenderTask = memo(({ task, updateTask }) => {
-  console.log(task);
   if (!task) {
     return null;
   }

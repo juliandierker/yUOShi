@@ -31,10 +31,9 @@ export default function RenderMemory(props) {
   const [submitted, setSubmitted] = useState(false);
 
   const done = pairs.length === task.items.length / 2;
-
   useEffect(() => {
     setSolution(() => onSubmit);
-  }, [done]);
+  }, [pairs]);
 
   useEffect(() => {
     if (!item1 || !item2) {
@@ -105,7 +104,7 @@ export default function RenderMemory(props) {
       });
       return;
     }
-
+    console.log(pairs);
     const result = await PromisifiedMeteor.call(
       "tasks.checkAnswer",
       task.id,
@@ -116,18 +115,26 @@ export default function RenderMemory(props) {
         };
       })
     );
-
     if (!result) {
       // TODO: handle error
       return;
     }
 
-    await Swal.fire({
-      position: "top-end",
-      type: "success",
-      title: "Geschafft!",
-      timer: 2000
-    });
+    if (!result.quest_solutions.find((solution) => solution.is_correct == false)) {
+      await Swal.fire({
+        position: "top-end",
+        type: "success",
+        title: "Geschafft!",
+        timer: 2000
+      });
+    } else {
+      await Swal.fire({
+        position: "top-end",
+        type: "warning",
+        title: "Bei der Lösungsabfrage ist etwas schief gelaufen.",
+        timer: 2000
+      });
+    }
 
     setSubmitted(true);
   }, [submitted, done, pairs, task]);

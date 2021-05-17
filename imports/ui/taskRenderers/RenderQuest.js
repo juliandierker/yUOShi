@@ -16,7 +16,7 @@ const RenderQuest = ({ task, question, isLastQuestion, onGetNextQuest }) => {
 
   useEffect(() => {
     setSolution(() => onSubmit);
-  }, [done]);
+  }, [selectedQuestionAnswers]);
 
   const getNextQuest = useCallback(async () => {
     if (!task) {
@@ -50,12 +50,9 @@ const RenderQuest = ({ task, question, isLastQuestion, onGetNextQuest }) => {
   }, [getNextQuest]);
 
   const selectedAnswers = useMemo(() => {
-    console.log(question);
     if (!question) {
       return [];
     }
-    console.log(selectedQuestionAnswers);
-    console.log(question.id);
     return selectedQuestionAnswers[question.id] || [];
   }, [question, selectedQuestionAnswers]);
 
@@ -63,7 +60,7 @@ const RenderQuest = ({ task, question, isLastQuestion, onGetNextQuest }) => {
     if (!question) {
       return;
     }
-    console.log(selectedAnswers);
+
     const givenAnswers = selectedAnswers.map((answer) => {
       return {
         quest_id: question.id,
@@ -79,6 +76,8 @@ const RenderQuest = ({ task, question, isLastQuestion, onGetNextQuest }) => {
         custom: customAnswer
       });
     }
+    console.log(givenAnswers);
+    console.log(selectedQuestionAnswers);
     const result = await PromisifiedMeteor.call("tasks.checkQuest", question.id, givenAnswers);
     if (!result) {
       // TODO: handle error
@@ -142,8 +141,6 @@ const RenderQuest = ({ task, question, isLastQuestion, onGetNextQuest }) => {
         } else {
           selected = selected.filter((id) => id !== answer_id);
         }
-        console.log("toggle");
-
         return {
           ...cur,
           [question_id]: selected
