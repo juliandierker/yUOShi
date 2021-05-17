@@ -56,7 +56,6 @@ const RenderQuestTask = (props) => {
     <>
       <RenderQuest
         task={task}
-        updateTask={updateTask}
         question={question}
         isLastQuestion={isLastQuestion}
         onGetNextQuest={onGetNextQuest}
