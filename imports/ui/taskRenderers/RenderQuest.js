@@ -76,8 +76,6 @@ const RenderQuest = ({ task, question, isLastQuestion, onGetNextQuest }) => {
         custom: customAnswer
       });
     }
-    console.log(givenAnswers);
-    console.log(selectedQuestionAnswers);
     const result = await PromisifiedMeteor.call("tasks.checkQuest", question.id, givenAnswers);
     if (!result) {
       // TODO: handle error
