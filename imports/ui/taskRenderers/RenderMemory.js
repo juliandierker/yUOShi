@@ -104,7 +104,6 @@ export default function RenderMemory(props) {
       });
       return;
     }
-    console.log(pairs);
     const result = await PromisifiedMeteor.call(
       "tasks.checkAnswer",
       task.id,
