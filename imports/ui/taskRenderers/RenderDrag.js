@@ -2,7 +2,6 @@ import React, { useCallback, useEffect, useMemo, useRef, useState } from "react"
 import PropTypes from "prop-types";
 import { StaticDrag } from "@xyng/yuoshi-backend-adapter";
 import DragDropViewNormal from "./DragDropView/DragDropViewNormal";
-import { Button } from "semantic-ui-react";
 import PromisifiedMeteor from "../../api/promisified";
 import Swal from "sweetalert2";
 import { useTasksContext } from "../student/TasksContext";
@@ -79,24 +78,19 @@ export const applyDrag = (items, dragResult) => {
   if (removedIndex === null && addedIndex === null) return items;
 
   if (removedIndex !== null) {
-    return [...items.slice(0, removedIndex), ...items.slice(removedIndex + 1)];
+    items = [...items.slice(0, removedIndex), ...items.slice(removedIndex + 1)];
   }
 
   if (addedIndex !== null) {
-    return [...items.slice(0, addedIndex), payload, ...items.slice(addedIndex)];
+    items = [...items.slice(0, addedIndex), payload, ...items.slice(addedIndex)];
   }
 
-  return result;
+  return items;
 };
 
 const propTypes = {
   task: PropTypes.instanceOf(StaticDrag).isRequired
 };
-
-/**
- * @typedef RenderDragProps
- * @property {StaticDrag} task
- */
 
 /**
  * Render a MultiTask
@@ -130,7 +124,7 @@ function RenderDrag(props) {
 
   useEffect(() => {
     setSolution(() => onSolve);
-  }, [done]);
+  }, []);
 
   /** @type {Scene} scene */
   const scene = useMemo(() => {
@@ -138,7 +132,7 @@ function RenderDrag(props) {
       type: "container",
       props: {
         // todo: get orientation from task
-        orientation: "vertical",
+        orientation: "horizontal",
         id: "dragdropContainer"
       },
       children: userSolution.map((category) => {
@@ -168,19 +162,6 @@ function RenderDrag(props) {
               props: {
                 className: "card",
                 id: `statement-${statement.id}`,
-                style: {
-                  backgroundColor: noAnswer
-                    ? "white"
-                    : isCorrect
-                    ? "green"
-                    : isPartiallyCorrect
-                    ? "orange"
-                    : "red",
-                  // width: "20%",
-                  marginRight: "auto",
-                  marginLeft: "auto",
-                  textAlign: "center"
-                }
               },
               data: statement.text
             };
@@ -207,12 +188,10 @@ function RenderDrag(props) {
     if (dropResult.removedIndex !== null || dropResult.addedIndex !== null) {
       setUserSolution((userSolution) => {
         const columnIndex = userSolution.findIndex((column) => column.id === columnId);
-
         if (columnIndex === -1) {
           // column can't be found - don't change stuff.
           return userSolution;
         }
-
         const column = userSolution[columnIndex];
 
         return [
@@ -234,6 +213,8 @@ function RenderDrag(props) {
   }, []);
 
   const onSolve = useCallback(async () => {
+    console.log("hjBKJHSDFHBSJN");
+
     const result = await PromisifiedMeteor.call(
       "tasks.checkDrag",
       task.id,
@@ -245,7 +226,7 @@ function RenderDrag(props) {
         };
       })
     );
-
+    console.log(result)
     if (!result) {
       // TODO: handle error
       // the error may be caused by the user submitting more than 3 solution-attempts.
@@ -304,6 +285,6 @@ function RenderDrag(props) {
     </>
   );
 }
-RenderDrag.propTypes = propTypes;
+// RenderDrag.propTypes = propTypes;
 
 export default RenderDrag;
