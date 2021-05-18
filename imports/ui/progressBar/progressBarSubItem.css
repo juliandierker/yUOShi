@@ -13,7 +13,20 @@
   opacity: 1;
 
   display: flex;
+}
 
+.progress-bar-sub-item-highlighted {
+  margin-top: 12px;
+  width: 330px;
+  height: 40px;
+
+  background: #6A96E2;
+  color: white;
+  box-shadow: 0px 2px 4px #00000029;
+  border-radius: 12px;
+  opacity: 1;
+
+  display: flex;
 }
 
 .progress-bar-sub-item-icon {
@@ -33,16 +46,35 @@
   border-radius: 44px;
 }
 
+.progress-bar-sub-item-icon-highlighted {
+  width: 30px;
+  height: 30px;
+  margin-left: 10px;
+  margin-top: 5px!important;
+  
+  text-align: center;
+  font-size: 12px/15px;
+  
+  line-height: 40px;
+  vertical-align: middle;
+  vertical-align: middle;
+
+  background-color: white;
+  border-radius: 44px;
+}
+
 .progress-bar-sub-item-text {
   width: 90%;
 
+  display: flex;
   justify-content: center;
   align-items: center;
 
+  font-family: "Lato";
   text-align: center;
-  font-size: 12px/17px;
+  font-size: 12px;
+  font-weight: bold;
   hyphens: auto;
 
-  line-height: 40px;
   vertical-align: middle;
 }

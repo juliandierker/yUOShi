@@ -38,8 +38,8 @@ export default class KeywordList extends React.Component {
           {this.props.finishedKeywords.includes(keyword) ? (
             <Icon key={"icon" + index} color="green" name="check" />
           ) : (
-            <Icon key={"icon" + index} name="help" />
-          )}
+              <Icon key={"icon" + index} name="help" />
+            )}
           {keyword}
         </div>
       );
@@ -69,8 +69,8 @@ export default class KeywordList extends React.Component {
           {this.props.finishedKeywords.includes(keyword) ? (
             <Icon key={"icon" + index} color="green" name="check" />
           ) : (
-            <Icon key={"icon" + index} name="help" />
-          )}
+              <Icon key={"icon" + index} name="help" />
+            )}
 
           <List.Content key={"content" + index}>
             <List.Header key={"header" + index}>{keyword}</List.Header>

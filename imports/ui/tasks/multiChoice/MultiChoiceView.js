@@ -358,10 +358,10 @@ export default class MultiChoiceView extends Component {
             Aufgabe lösen
           </Button>
         ) : (
-          <Button id="solveTask" floated="right" onClick={() => this.checkSolution()}>
-            Nächste Frage
-          </Button>
-        )}
+            <Button id="solveTask" floated="right" onClick={() => this.checkSolution()}>
+              Nächste Frage
+            </Button>
+          )}
       </React.Fragment>
     );
   }

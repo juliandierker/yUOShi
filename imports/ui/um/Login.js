@@ -69,7 +69,7 @@ class Login extends React.Component {
 
     try {
       this.login(email, password, null);
-    } catch (e) {}
+    } catch (e) { }
     const rawtoken = email + ":" + password;
     const token = btoa(rawtoken);
     Meteor.call("users.auth", "Basic " + token, email, password, (err, res) => {
