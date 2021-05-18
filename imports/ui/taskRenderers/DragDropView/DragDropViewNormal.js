@@ -2,6 +2,8 @@ import React, { useCallback } from "react";
 import PropTypes from "prop-types"
 import { Container, Draggable } from "react-smooth-dnd";
 
+import "./DragDropViewNormal.css"
+
 /**
  * @typedef Card
  * @property {string} id
@@ -67,22 +69,17 @@ export default function DragDropViewNormal(props) {
             >
                 {scene.children.map(column => {
                     return (
-                        <Draggable key={`dnd-column-${column.id}`}>
-                            {/*  TODO: fix vertical view without that hack*/}
+                        <Draggable key={`drag-column-${column.id}`}>
                             <div className={column.props.className}>
                                 <div className="card-column-header">{column.name}</div>
                                 <Container
                                     {...column.props}
                                     groupName="col"
-                                    // onDragStart={e => {}}
-                                    // onDragEnd={e => {}}
                                     onDrop={onCardDropListener(column.id)}
                                     getChildPayload={getChildPayload(column.id)}
                                     dragClass="card-ghost"
                                     dropClass="card-ghost-drop"
-                                    // onDragEnter={() => {}}
-                                    // onDragLeave={() => {}}
-                                    // onDropReady={() => {}}
+
                                     dropPlaceholder={{
                                         animationDuration: 150,
                                         showOnTop: true,
@@ -108,6 +105,7 @@ export default function DragDropViewNormal(props) {
         </div>
     );
 }
+
 DragDropViewNormal.propTypes = {
     scene: PropTypes.shape({
         props: PropTypes.object.isRequired,

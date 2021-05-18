@@ -1,21 +1,14 @@
 import React, { useCallback, useEffect, useMemo, useState } from "react";
 import PropTypes from "prop-types";
 
-import { StaticMulti, StaticSurvey, StaticTraining } from "@xyng/yuoshi-backend-adapter";
-import { Button, Card, Checkbox, Form, TextArea } from "semantic-ui-react";
-import PromisifiedMeteor from "../../api/promisified";
-import Swal from "sweetalert2";
+import { StaticMulti, StaticSurvey, StaticTraining } from "@xyng/yuoshi-backend-adapter"
 import RenderQuest from "./RenderQuest";
+import PromisifiedMeteor from "../../api/promisified";
 
 const propTypes = {
   task: PropTypes.oneOfType([PropTypes.instanceOf(StaticMulti), PropTypes.instanceOf(StaticSurvey)])
     .isRequired
 };
-
-/**
- * @typedef RenderQuestTaskProps
- * @property {StaticMulti|StaticSurvey} task
- */
 
 /**
  * Render a QuestTask

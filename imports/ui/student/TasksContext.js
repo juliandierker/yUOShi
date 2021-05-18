@@ -1,4 +1,3 @@
-import { faMeteor } from "@fortawesome/free-solid-svg-icons";
 import React, { createContext, useCallback, useContext, useEffect, useState } from "react";
 import PromisifiedMeteor from "../../api/promisified";
 import { useStationsContext } from "./StationsContext";

@@ -5,7 +5,7 @@ import Icon from "../IconComponent/Icon"
 
 import "./progressBarItem.css";
 
-export default function ProgressBarItem({ data }) {
+export default function ProgressBarItem({ data, highlighted, currentTask }) {
   const { tasks, locked, name } = data
   const [hover, setHover] = useState(false)
   const [hoverSubArea, setHoverSubArea] = useState(false)
@@ -28,18 +28,18 @@ export default function ProgressBarItem({ data }) {
     return <div className="dummy">
       <div className="progressBar-sub-items" onMouseEnter={handleSubAreaEnter} onMouseLeave={handleSubAreaLeave}>
         {tasks.map((data, index) => {
-          return <ProgressBarSubItem key={"progressBarSubItem_" + index} type={data.type} title={data.name} />
+          return <ProgressBarSubItem key={"progressBarSubItem_" + index} type={data.type} title={data.name} highlighted={data.id === currentTask.id} />
         })}
       </div >
     </div>
   }
 
   let icon = <div></div>
-  icon = tasks ? <Icon name="bars" size="large" /> : icon
+  icon = tasks && tasks.length != 0 ? <Icon name={highlighted ? "bars-alternate" : "bars"} size="large" /> : icon
   icon = locked ? <Icon name="lock-locked" size="large" /> : icon
-  let pbClassname = "progressBar-item"
+  let pbClassname = highlighted ? "progressBar-item-highlighted" : "progressBar-item"
   if (hover || hoverSubArea) {
-    pbClassname = tasks ? "progressBar-item-hover-tasks" : "progressBar-item-hover"
+    pbClassname = tasks && tasks.length != 0 ? "progressBar-item-hover-tasks" : "progressBar-item-hover"
   }
 
   return <React.Fragment>

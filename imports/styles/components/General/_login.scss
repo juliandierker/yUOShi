@@ -1,31 +1,33 @@
-.login__tags {
-  display:inline-block;
-  font-size:16px;
-  bottom:15px;
-  float: left;
-  margin: 50px 0 0 4px;
-}
-
-.login__tagss {
-  display: inline-block;
-  font-size:16px;
-  bottom:15px;
-  float: right;
-  margin: 50px 0 0 4px;
-}
-
 .login__credits {
   position: absolute;
   font-size:12px;
   bottom:15px;
   cursor: pointer;
-
 }
 
-.login__signupBack {
-  position: absolute;
-  font-size:12px;
-  bottom: 50px;
-  cursor: pointer;
+.boxed-view {
+  align-items: center;
+  background: $loginBackground;
+  background-size: cover;
+  display: flex;
+  justify-content: center;
+  height: 100vh;
+  width: 100vw;
+  font-size: 24px;
+}
 
+.boxed-view__box {
+  position: relative;
+  background: transparent;
+  text-align: center;
+  padding: 24px;
+  width: 340px;
+  min-height: 340px;
+}
+
+.boxed-view__form {
+  background: transparent !important;
+  display: flex;
+  flex-direction: column;
+  color: red;
 }

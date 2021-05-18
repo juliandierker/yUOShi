@@ -1,5 +1,6 @@
 import React, { memo } from "react";
 import PropTypes from "prop-types";
+
 import { Grid } from "semantic-ui-react";
 
 import { TasksContextProvider, useTasksContext } from "./TasksContext";
@@ -13,11 +14,12 @@ import RenderCard from "../taskRenderers/RenderCard";
 import RenderCloze from "../taskRenderers/RenderCloze";
 import RenderTraining from "../taskRenderers/RenderTraining";
 import RenderMemory from "../taskRenderers/RenderMemory";
+import RenderIntro from "../taskRenderers/RenderIntro";
+import RenderOutro from "../taskRenderers/RenderOutro";
 import ProgressBar from "../progressBar/progressBar";
 import Icon from "../IconComponent/Icon";
 
 import "./workspace.css";
-import LoggingOut from "../LoggingOut";
 
 // eslint-disable-next-line react/display-name
 const RenderTask = memo(({ task, updateTask }) => {
@@ -51,13 +53,39 @@ const RenderTask = memo(({ task, updateTask }) => {
     default:
       taskRenderer = null;
   }
-  return (
-    <div className="inner-workspace">
-      <div className="workspace-task-title">{task.title}</div>
+  // add title to workspace
+  if (task.type === "tag" || task.type === "text") {
+    return <div className="text-workspace">
+      <div className="workspace-text-title">{task.title}</div>
       {taskRenderer}
     </div>
-  );
+  }
+  const taskClassName = task.type === "drag" ? "workspace-drag-container" : "workspace-task-container";
+
+  return (
+    <>
+      <div className="workspace-task-header">
+        <div className="workspace-task-title-container">
+          <div className="workspace-task-title">
+            {task.title}
+          </div>
+          <div className="workspace-task-description">
+            {task.description}
+          </div>
+        </div>
+        <div className="workspace-help-icon">
+          <Icon name="bars" />
+        </div>
+      </div>
+      <div className={taskClassName}>
+        {taskRenderer}
+      </div>
+    </>)
 });
+
+
+
+// const submitRef = useRef(null)
 
 const RenderWorkspace = () => {
   const { currentTask, currentTaskLoading, updateTask } = useTasksContext();
@@ -68,20 +96,37 @@ const RenderWorkspace = () => {
 };
 const RenderProgressBar = () => {
   const { currentTask, currentTaskLoading } = useTasksContext();
-  const { stations, currentStation, stationTasks, stationLoading } = useStationsContext();
-  if (stationLoading) {
-    return <p>Loading Stations...</p>;
+  const { currentPackage, packagesLoading, packageTasks } = usePackagesContext();
+  const { stations, currentStation } = useStationsContext();
+
+  if (packagesLoading || currentTaskLoading) {
+    return <p>Loading Packages...</p>;
   }
   return (
     <ProgressBar
-      currentStation={currentStation}
-      stationTasks={stationTasks}
-      stationLoading={stationLoading}
+      currentPackage={currentPackage}
+      packageTasks={packageTasks}
+      packageLoading={packagesLoading}
       task={currentTask}
       stations={stations}
-    />
+      currentStation={currentStation}
+      currentTask={currentTask}>
+
+    </ProgressBar>
   );
 };
+// const RednerNavigation = () => {
+//   const { currentTask } = useTasksContext();
+
+//   // only show Submit Button, when the task is not a text or an auto-submitting task
+//   const showSubmit = currentTask !== undefined && currentTask.type !== "text" && currentTask.type !== "tag" && currentTask.type !== "memory" && !currentTask.title.startsWith("_INTRO_")
+
+//   return (<>
+//     <button className="navigation-button" id="navigation-button-left"><Icon name="arrow-left" size="large" /></button>
+//     {showSubmit && <button className="navigation-button" id="navigation-button-submit" ref={submitRef} >AUSWERTEN</button>}
+//     <button className="navigation-button" id="navigation-button-right"><Icon name="arrow-right" size="large" /></button>
+//   </>)
+// }
 
 const NavigationButtons = () => {
   const { stations, currentStation } = useStationsContext();
@@ -125,10 +170,6 @@ const Workspace = () => {
 };
 export default Workspace;
 
-RenderTask.propTypes = {
-  task: PropTypes.object,
-  updateTask: PropTypes.func
-};
 Workspace.propTypes = {
   stationId: PropTypes.string
 };

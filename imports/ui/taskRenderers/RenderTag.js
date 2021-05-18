@@ -1,6 +1,5 @@
-import React, { useCallback, useMemo, useState } from "react"
-import { parseContent, StaticTag } from "@xyng/yuoshi-backend-adapter";
-import PromisifiedMeteor from "../../api/promisified";
+import React, { useMemo, useState } from "react"
+import { StaticTag } from "@xyng/yuoshi-backend-adapter";
 import Icon from "../IconComponent/Icon"
 
 import "./RenderTag.css"

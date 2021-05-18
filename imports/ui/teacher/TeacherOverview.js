@@ -23,7 +23,6 @@ export default class TeacherOverview extends React.Component {
       // const token = Tokens.findOne();
 
       const res = await PromisifiedMeteor.call("courses.getTeacherCourses");
-      console.log(res);
 
       this.setState(
         {
