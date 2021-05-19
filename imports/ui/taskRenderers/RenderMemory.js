@@ -102,19 +102,24 @@ export default function RenderMemory(props) {
         array[index] = temp;
       }
       return array;
-    }
+    };
 
-    const shuffledItems = shuffle(task.items)
+    const shuffledItems = shuffle(task.items);
 
     return shuffledItems.map((item, index) => {
-      return <div className="memory-card" id={"card" + item.category_id} key={"memcard-" + index} onClick={onClick} style={{ width: cardSize, height: cardSize, lineHeight: cardSize + "px" }}>
-        <div className="front">
-          {item.text}
+      return (
+        <div
+          className="memory-card"
+          id={"card" + item.category_id}
+          key={"memcard-" + index}
+          onClick={onClick}
+          style={{ width: cardSize, height: cardSize, lineHeight: cardSize + "px" }}>
+          <div className="front">{item.text}</div>
+          <Icon className="back" name="logo" />
         </div>
-        <Icon className="back" name="logo" />
-      </div>
-    })
-  }
+      );
+    });
+  };
 
   const onSubmit = useCallback(async () => {
     if (submitted) {
@@ -126,11 +131,7 @@ export default function RenderMemory(props) {
       });
       return;
     }
-    const result = await PromisifiedMeteor.call(
-      "tasks.checkAnswer",
-      task.id,
-      []
-    );
+    const result = await PromisifiedMeteor.call("tasks.checkAnswer", task.id, []);
     if (!result) {
       // TODO: handle error
       return;
@@ -157,9 +158,11 @@ export default function RenderMemory(props) {
     }
   }, [submitted, task]);
 
-  return <div className="workspace-memory-container">
-    <div className="memory-container" style={{ width: (cardSize * columns + (12 * (columns))) }}>
-      <RenderMemoryCards></RenderMemoryCards>
+  return (
+    <div className="workspace-memory-container">
+      <div className="memory-container" style={{ width: cardSize * columns + 12 * columns }}>
+        <RenderMemoryCards></RenderMemoryCards>
+      </div>
     </div>
-  </div>
+  );
 }

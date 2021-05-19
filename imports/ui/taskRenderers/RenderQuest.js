@@ -1,13 +1,14 @@
-import React, { useCallback, useEffect, useState, useMemo } from "react"
+import React, { useCallback, useEffect, useState, useMemo } from "react";
 import PromisifiedMeteor from "../../api/promisified";
 
 import { useTasksContext } from "../student/TasksContext";
 
-import "./RenderMulti.css"
+import "./RenderMulti.css";
 
 /** @type React.FC */
 const RenderQuest = ({ task }) => {
-  const question = task.contents[0]
+  console.log(task);
+  const question = task.contents[0];
   const { getSolution, setSolution } = useTasksContext();
 
   const [userSolutionId, setUserSolutionId] = useState();
@@ -55,26 +56,22 @@ const RenderQuest = ({ task }) => {
 
   const onSubmit = useCallback(async () => {
     // get all needed parts to submit the answer
-    const contentId = question.content_id
-    const questId = question.id
-    let answersGiven = []
+    const contentId = question.content_id;
+    const questId = question.id;
+    let answersGiven = [];
 
-    let answers = document.getElementsByClassName("answer-checkbox")
+    let answers = document.getElementsByClassName("answer-checkbox");
     for (let i in answers) {
       if (answers[i].checked) {
-        const answerId = answers[i].id.replace("checkbox_", "")
+        const answerId = answers[i].id.replace("checkbox_", "");
         answersGiven.push({
           answer_id: answerId,
           content_id: contentId,
           quest_id: questId
-        })
+        });
       }
     }
-    const result = await PromisifiedMeteor.call(
-      "tasks.checkQuest",
-      question.id,
-      answersGiven
-    )
+    const result = await PromisifiedMeteor.call("tasks.checkQuest", question.id, answersGiven);
 
     const givenAnswers = selectedAnswers.map((answer) => {
       return {
@@ -98,19 +95,29 @@ const RenderQuest = ({ task }) => {
   }, [getNextQuest]);
 
   const renderAnswers = () => {
-
     return question.answers.map((answer, index) => {
-      return (<div className="answer-container" key={"answer-" + index} >
-        <input name={"checkbox_" + index} id={"checkbox_" + answer.id} type="checkbox" className="answer-checkbox" />
-        <label htmlFor={"checkbox_" + index} className="answer">{answer.content}</label>
-      </div>)
-    })
-  }
+      return (
+        <div className="answer-container" key={"answer-" + index}>
+          <input
+            name={"checkbox_" + index}
+            id={"checkbox_" + answer.id}
+            type="checkbox"
+            className="answer-checkbox"
+          />
+          <label htmlFor={"checkbox_" + index} className="answer">
+            {answer.content}
+          </label>
+        </div>
+      );
+    });
+  };
 
-  return <>
-    <div className="question-container">{question !== undefined && question.question}</div>
-    <div className="answers-container">{renderAnswers()}</div>
-  </>
-}
+  return (
+    <>
+      <div className="question-container">{question !== undefined && question.question}</div>
+      <div className="answers-container">{renderAnswers()}</div>
+    </>
+  );
+};
 
 export default RenderQuest;
