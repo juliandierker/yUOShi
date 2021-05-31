@@ -7,7 +7,6 @@ import "./RenderMulti.css";
 
 /** @type React.FC */
 const RenderQuest = ({ task }) => {
-  console.log(task);
   const question = task.contents[0];
   const { getSolution, setSolution } = useTasksContext();
 
