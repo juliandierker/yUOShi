@@ -32,7 +32,7 @@ export const StationsContextProvider = ({ currentPackageId, children }) => {
       tasks = await PromisifiedMeteor.call("stations.getTasks", currentStation.id);
     } else {
       tasks = await PromisifiedMeteor.call("stations.getTasks", currentStations[0].id);
-      setCurrentStation(currentStations[0]);
+      setCurrentStation(currentStations.reverse()[0]);
     }
 
     setStations(currentStations);
