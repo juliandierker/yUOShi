@@ -1,128 +1,148 @@
-import React, { useCallback, useEffect, useMemo, useState } from "react"
+import React, { useCallback, useEffect, useMemo, useState } from "react";
 import { StaticMemory } from "@xyng/yuoshi-backend-adapter";
 import PromisifiedMeteor from "../../api/promisified";
-import Icon from "../IconComponent/Icon"
+import Icon from "../IconComponent/Icon";
 
 import Swal from "sweetalert2";
 import { useTasksContext } from "../student/TasksContext";
 
-import "./RenderMemory.css"
+import "./RenderMemory.css";
 
-/**
- * Render a Memory-Task
- *
- * @param {RenderMemoryProps} props
- * @returns {React.ReactElement|null}
- */
 export default function RenderMemory(props) {
-  const { task, updateTask } = props
-  const { submitted, setSubmitted } = useState(false)
+  const { task, updateTask } = props;
   const { getSolution, setSolution } = useTasksContext();
+  const [pairs, setPairs] = useState([]);
+  const [items, setItems] = useState([]);
+  const [item1, setItem1] = useState();
+  const [item2, setItem2] = useState();
 
   useEffect(() => {
     setSolution(() => onSubmit);
+  }, [pairs]);
+
+  useEffect(() => {
+    setItems(shuffle(task.items));
   }, []);
 
   const { columns, cardSize } = useMemo(() => {
-
     // setting some values needed for the calculation of the rows, columns, and the memory-card size
     const width = 720; // TODO: is there a way to get that size of the current component????
     const height = 348;
-    const itemCount = task.items.length
+    const itemCount = task.items.length;
     // calculating number of rows and columns of the memory game
-    const rows = Math.floor(Math.sqrt(itemCount))
+    const rows = Math.floor(Math.sqrt(itemCount));
     const columns = Math.ceil(itemCount / rows);
 
     // calculating size of the memory cards | applied to with and height of the cards
-    const cardHeight = (height - (12 * (rows - 1))) / rows
-    const cardWidth = (width - (12 * (columns - 1))) / columns
-    const cardSize = Math.min(cardHeight, cardWidth)
-    // returning all necessary data 
+    const cardHeight = (height - 12 * (rows - 1)) / rows;
+    const cardWidth = (width - 12 * (columns - 1)) / columns;
+    const cardSize = Math.min(cardHeight, cardWidth);
+    // returning all necessary data
     return {
       columns: columns,
       cardSize: cardSize
-    }
-  }, [task])
+    };
+  }, [task]);
 
-  let currentTarget = null;
-  let locked = false // mutex lock, only allow one card pair to be selected at once
-
-  const onClick = (event) => {
-    // set correct target for validation
-    let target = event.target;
-    if (target.classList.contains("front") || target.classList.contains("back")) {
-      target = target.parentNode
-    }
-    if (target.classList.contains("picked") || locked) return
-    locked = true
-    // add className picked
-    target.classList.add("picked")
-    // check if another card has been clicked, if not only set the current card to picked
-    if (currentTarget === null) {
-      currentTarget = target;
-      locked = false
-      return
+  useEffect(() => {
+    if (!item1 || !item2) {
+      return;
     }
 
-    // if another card has been picked already, check if they dont have the same category
+    const a = task.items.find((i) => i.id === item1);
+    const b = task.items.find((i) => i.id === item2);
+
+    flipCard(item1, item2);
+    setItem1(undefined);
+    setItem2(undefined);
+
+    if (!a || !b) {
+      return;
+    }
+
+    if (a.id === b.id) {
+      return;
+    }
+
+    if (a.category_id !== b.category_id) {
+      return;
+    }
+
+    setPairs((pairs) => {
+      return [
+        ...pairs,
+        {
+          a: a.id,
+          b: b.id
+        }
+      ];
+    });
+  }, [item1, item2, task]);
+
+  function shuffle(array) {
+    let counter = array.length,
+      temp,
+      index;
+    // While there are elements in the array
+    while (counter > 0) {
+      // Pick a random index
+      index = Math.floor(Math.random() * counter);
+      // Decrease counter by 1
+      counter--;
+      // And swap the last element with it
+      temp = array[counter];
+      array[counter] = array[index];
+      array[index] = temp;
+    }
+    return array;
+  }
+  function flipCard(card1, card2) {
+    let domItem1 = document.getElementById(card1);
+    let domItem2 = document.getElementById(card2);
+
+    if (!domItem1.classList.contains("picked")) {
+      domItem1.classList.add("picked");
+    }
+
+    if (!card2) {
+      return;
+    }
+    const itemObj1 = task.items.find((i) => i.id === item1);
+    const itemObj2 = task.items.find((i) => i.id === item2);
+
     setTimeout(() => {
-      if (target.id !== currentTarget.id) {
-        // remove the picked classname from the two picked cards
-        target.classList.remove("picked")
-        currentTarget.classList.remove("picked")
-      } else {
-        // if the two picked cards are the same, increase the correctCount and set the matched className 
-        correctCount++
+      if (itemObj1.category_id !== itemObj2.category_id) {
+        domItem1?.classList.remove("picked");
+        domItem2?.classList.remove("picked");
       }
-      currentTarget = null
-      locked = false
-
-      // check if memory is finished finished
-      const itemCount = task.items.length
-      // if (correctCount >= itemCount / 2) {
-      //   onSubmit()
-      // }
-    }, 1000)
+    }, 1000);
   }
 
-  const RenderMemoryCards = () => {
-
-    // Fisher--Yates shuffle Algorithm
-    const shuffle = (array) => {
-      let counter = array.length, temp, index;
-      // While there are elements in the array
-      while (counter > 0) {
-        // Pick a random index
-        index = Math.floor(Math.random() * counter);
-        // Decrease counter by 1
-        counter--;
-        // And swap the last element with it
-        temp = array[counter];
-        array[counter] = array[index];
-        array[index] = temp;
+  const onClick = useCallback(
+    (id) => () => {
+      if (item1 === id || item2 === id) {
+        return;
       }
-      return array;
-    };
 
-    const shuffledItems = shuffle(task.items);
+      const item = task.items.find((i) => i.id === id);
 
-    return shuffledItems.map((item, index) => {
-      return (
-        <div
-          className="memory-card"
-          id={"card" + item.category_id}
-          key={"memcard-" + index}
-          onClick={onClick}
-          style={{ width: cardSize, height: cardSize, lineHeight: cardSize + "px" }}>
-          <div className="front">{item.text}</div>
-          <Icon className="back" name="logo" />
-        </div>
-      );
-    });
-  };
+      if (!item1) {
+        flipCard(item.id);
+        setItem1(item.id);
+        return;
+      }
 
+      if (!item2) {
+        flipCard(item.id);
+        setItem2(item.id);
+      }
+      // flipCard(item1, item2);
+    },
+    [task, item1, item2]
+  );
   const onSubmit = useCallback(async () => {
-    if (submitted) {
+    const solutionCount = task.items.length / 2;
+    if (solutionCount !== pairs.length) {
       await Swal.fire({
         position: "top-end",
         type: "warning",
@@ -131,7 +151,16 @@ export default function RenderMemory(props) {
       });
       return;
     }
-    const result = await PromisifiedMeteor.call("tasks.checkAnswer", task.id, []);
+    const result = await PromisifiedMeteor.call(
+      "tasks.checkAnswer",
+      task.id,
+      pairs.map((pair) => {
+        return {
+          a: task.items.find((i) => i.id === pair.a),
+          b: task.items.find((i) => i.id === pair.b)
+        };
+      })
+    );
     if (!result) {
       // TODO: handle error
       return;
@@ -152,16 +181,24 @@ export default function RenderMemory(props) {
         timer: 2000
       });
     }
-
-    if (!submitted) {
-      setSubmitted(true);
-    }
-  }, [submitted, task]);
+  }, [pairs, task]);
 
   return (
     <div className="workspace-memory-container">
       <div className="memory-container" style={{ width: cardSize * columns + 12 * columns }}>
-        <RenderMemoryCards></RenderMemoryCards>
+        {items.map((item, index) => {
+          return (
+            <div
+              className="memory-card"
+              id={item.id}
+              key={"memcard-" + index}
+              onClick={onClick(item.id)}
+              style={{ width: cardSize, height: cardSize, lineHeight: cardSize + "px" }}>
+              <div className="front">{item.text}</div>
+              <Icon className="back" name="logo" />
+            </div>
+          );
+        })}
       </div>
     </div>
   );
