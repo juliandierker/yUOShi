@@ -38,7 +38,7 @@
                         <path d="M-0.738,-25.774C-2.188,-21.458 -5.063,-8.746 -3.649,-0.21C-3.664,-6.11 -0.738,-3.104 -0.738,-3.104C-0.064,-9.464 0.918,-15.692 3.115,-20.038L-0.738,-25.774Z" style="fill:rgb(157,81,8);fill-rule:nonzero;"/>
                     </g>
                 </g>
-                <g id="_-" serif:id="?">
+                <g id="_-" serifID="?">
                     <g transform="matrix(1,0,0,1,136.41,-51.9503)">
                         <g opacity="0.8">
                             <g transform="matrix(1,0,0,1,52.8839,87.7219)">
@@ -54,7 +54,7 @@
                         </g>
                     </g>
                 </g>
-                <g id="Nase:-Mit_Löchern" serif:id="Nase: Mit_Löchern" transform="matrix(1.00596,0,0,1.00596,134.653,6.07447)">
+                <g id="Nase:-Mit_Löchern" serifID="Nase: Mit_Löchern" transform="matrix(1.00596,0,0,1.00596,134.653,6.07447)">
                     <g transform="matrix(1,0,0,1,75.0507,12.9593)">
                         <g transform="matrix(0.0612727,-0,-0,0.0612727,-81.8873,-82.2627)">
                             <use xlink:href="#_Image2" x="1322.12" y="1269.44" width="189.588px" height="77.718px" transform="matrix(0.997831,0,0,0.996386,0,0)"/>
@@ -68,7 +68,7 @@
                     </g>
                 </g>
                 <g id="Augen">
-                    <g id="Augen1" serif:id="Augen">
+                    <g id="Augen1" serifID="Augen">
                         <g transform="matrix(-0.129939,0.991522,0.991522,0.129939,228.739,-3.7893)">
                             <path d="M7.223,-5.543C7.223,-5.543 4.054,-4.413 3.876,-0.008C3.698,4.397 7.223,6.648 7.223,6.648C7.223,6.648 8.688,5.512 7.972,5.705C3.457,3.985 3.245,-3.546 7.223,-5.543" style="fill-rule:nonzero;"/>
                         </g>
@@ -134,7 +134,7 @@
                 </g>
                 <g transform="matrix(1,0,0,1,4.54747e-13,1.75731)">
                     <g id="Augenbrauen">
-                        <g id="Augenbrauen1" serif:id="Augenbrauen">
+                        <g id="Augenbrauen1" serifID="Augenbrauen">
                             <g transform="matrix(1,0,0,1,221.033,-2.24162)">
                                 <path d="M0,-4.531C0.346,-4.546 4.043,-4.054 4.043,-4.054C4.043,-4.054 12.656,-5.07 14.778,0.539C12.781,-2.073 10.639,-2.013 10.639,-2.013C7.804,-2.294 4.004,-1.021 3.079,-1.143C2.155,-1.266 -0.845,-2.66 0,-4.531" style="fill:rgb(157,81,8);fill-rule:nonzero;"/>
                             </g>
