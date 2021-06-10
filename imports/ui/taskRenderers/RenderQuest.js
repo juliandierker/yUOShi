@@ -1,8 +1,8 @@
 import React, { useCallback, useEffect, useState, useMemo } from "react";
 import PromisifiedMeteor from "../../api/promisified";
+import Swal from "sweetalert2";
 
 import { useTasksContext } from "../student/TasksContext";
-
 import "./RenderMulti.css";
 
 /** @type React.FC */
@@ -10,6 +10,7 @@ const RenderQuest = ({ task }) => {
   const question = task.contents[0];
   const { getSolution, setSolution } = useTasksContext();
 
+  const [done, setDone] = useState(false);
   const [userSolutionId, setUserSolutionId] = useState();
 
   useEffect(() => {
@@ -54,6 +55,7 @@ const RenderQuest = ({ task }) => {
   }, [question]);
 
   const onSubmit = useCallback(async () => {
+    if (done) return;
     // get all needed parts to submit the answer
     const contentId = question.content_id;
     const questId = question.id;
@@ -90,7 +92,34 @@ const RenderQuest = ({ task }) => {
     if (!result) {
       // TODO: handle error
     }
-    setDone(true);
+    if (result.is_correct) {
+      Swal.fire({
+        position: "top-end",
+        type: "success",
+        title: "Geschafft!",
+        timer: 2000
+      }).then();
+    } else {
+      const { value: showSolution } = await Swal.fire({
+        position: "top-end",
+        type: "warning",
+        title: "Nicht ganz...",
+        text:
+          "Es sind nicht alle Fragen richtig beantwortet. Willst du es nochmal versuchen, oder möchtest du dir die Lösung anschauen?",
+        confirmButtonText: "Lösung zeigen",
+        cancelButtonText: "Nochmal versuchen",
+        cancelButtonColor: "#3085d6",
+        showCancelButton: true
+      });
+      // TODO: Lösung zeigen funktioniert noch nicht
+      if (showSolution) {
+        // await Promise.all(
+        //   result.quest_solutions.map(({ id }) => {
+        //     return PromisifiedMeteor.call("tasks.getSolution", id);
+        //   })
+        // )
+      }
+    }
   }, [getNextQuest]);
 
   const renderAnswers = () => {
