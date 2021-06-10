@@ -124,7 +124,7 @@ function RenderDrag(props) {
 
   useEffect(() => {
     setSolution(() => onSolve);
-  }, []);
+  }, [userSolution, task]);
 
   /** @type {Scene} scene */
   const scene = useMemo(() => {
@@ -213,8 +213,6 @@ function RenderDrag(props) {
   }, []);
 
   const onSolve = useCallback(async () => {
-    console.log("hjBKJHSDFHBSJN");
-
     const result = await PromisifiedMeteor.call(
       "tasks.checkDrag",
       task.id,
@@ -226,7 +224,6 @@ function RenderDrag(props) {
         };
       })
     );
-    console.log(result)
     if (!result) {
       // TODO: handle error
       // the error may be caused by the user submitting more than 3 solution-attempts.
