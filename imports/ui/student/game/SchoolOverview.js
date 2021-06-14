@@ -24,8 +24,8 @@ export default function SchoolOverview() {
   });
   function initVektorElements() {
     const class_elem = document.getElementById("marker__klassenzimmer");
-    const teacher_elem = document.getElementById("marker__lehrerzimmer");
-    const office_elem = document.getElementById("marker__büro");
+    const teacher_elem = document.getElementById("marker__lehrendenzimmer");
+    const office_elem = document.getElementById("marker__buero");
     class_elem?.addEventListener("click", function() {
       setPage("classroom");
     });
