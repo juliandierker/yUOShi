@@ -55,35 +55,31 @@ const RenderTask = memo(({ task, updateTask }) => {
   }
   // add title to workspace
   if (task.type === "tag" || task.type === "text") {
-    return <div className="text-workspace">
-      <div className="workspace-text-title">{task.title}</div>
-      {taskRenderer}
-    </div>
+    return (
+      <div className="text-workspace">
+        <div className="workspace-text-title">{task.title}</div>
+        {taskRenderer}
+      </div>
+    );
   }
-  const taskClassName = task.type === "drag" ? "workspace-drag-container" : "workspace-task-container";
+  const taskClassName =
+    task.type === "drag" ? "workspace-drag-container" : "workspace-task-container";
 
   return (
     <>
       <div className="workspace-task-header">
         <div className="workspace-task-title-container">
-          <div className="workspace-task-title">
-            {task.title}
-          </div>
-          <div className="workspace-task-description">
-            {task.description}
-          </div>
+          <div className="workspace-task-title">{task.title}</div>
+          <div className="workspace-task-description">{task.description}</div>
         </div>
         <div className="workspace-help-icon">
           <Icon name="bars" />
         </div>
       </div>
-      <div className={taskClassName}>
-        {taskRenderer}
-      </div>
-    </>)
+      <div className={taskClassName}>{taskRenderer}</div>
+    </>
+  );
 });
-
-
 
 // const submitRef = useRef(null)
 
@@ -110,40 +106,46 @@ const RenderProgressBar = () => {
       task={currentTask}
       stations={stations}
       currentStation={currentStation}
-      currentTask={currentTask}>
-
-    </ProgressBar>
+      currentTask={currentTask}></ProgressBar>
   );
 };
-// const RednerNavigation = () => {
-//   const { currentTask } = useTasksContext();
-
-//   // only show Submit Button, when the task is not a text or an auto-submitting task
-//   const showSubmit = currentTask !== undefined && currentTask.type !== "text" && currentTask.type !== "tag" && currentTask.type !== "memory" && !currentTask.title.startsWith("_INTRO_")
-
-//   return (<>
-//     <button className="navigation-button" id="navigation-button-left"><Icon name="arrow-left" size="large" /></button>
-//     {showSubmit && <button className="navigation-button" id="navigation-button-submit" ref={submitRef} >AUSWERTEN</button>}
-//     <button className="navigation-button" id="navigation-button-right"><Icon name="arrow-right" size="large" /></button>
-//   </>)
-// }
 
 const NavigationButtons = () => {
-  const { stations, currentStation } = useStationsContext();
-  const { getPrevTask, getNextTask, solveTask, getSolution } = useTasksContext();
+  const { stations, currentPosition, setCurrentStation } = useStationsContext();
+  const { getPrevTask, getNextTask, getSolution } = useTasksContext();
+
+  async function navigateNext() {
+    if ((await getNextTask()) === "nextStation") {
+      if (stations.length > currentPosition) {
+        setCurrentStation(stations[currentPosition + 1]);
+      }
+    }
+  }
+
+  async function navigatePrevious() {
+    if ((await getPrevTask()) === "previousStation") {
+      if (stations[currentPosition - 1]) {
+        setCurrentStation(stations[currentPosition - 1]);
+      }
+    }
+  }
+
   return (
     <Grid.Column width={12}>
       <div className="workspace-container">
         <RenderWorkspace />
       </div>
       <div className="workspace-navigation">
-        <button className="navigation-button" id="navigation-button-left" onClick={getPrevTask}>
+        <button
+          className="navigation-button"
+          id="navigation-button-left"
+          onClick={navigatePrevious}>
           <Icon name="arrow-left" size="large" />
         </button>
         <button onClick={getSolution} className="navigation-button" id="navigation-button-submit">
           AUSWERTEN
         </button>
-        <button className="navigation-button" id="navigation-button-right" onClick={getNextTask}>
+        <button className="navigation-button" id="navigation-button-right" onClick={navigateNext}>
           <Icon name="arrow-right" size="large" />
         </button>
       </div>

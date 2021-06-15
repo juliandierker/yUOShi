@@ -35,13 +35,14 @@ export const TasksContextProvider = ({ currentStation, children }) => {
     if (!currentTask || stationTasks.length === 0) return;
     const nextTaskIdx = stationTasks.findIndex((task) => task.id === currentTask.id) + 1;
     if (nextTaskIdx === 0) return;
-    if (nextTaskIdx >= stationTasks.length) return;
+    if (nextTaskIdx >= stationTasks.length) {
+      return "nextStation";
+    }
     try {
       setCurrentTaskLoading(true);
       const nextTask = await PromisifiedMeteor.call("tasks.getTask", stationTasks[nextTaskIdx].id);
       setCurrentTask(nextTask);
     } catch (e) {
-      //TODO handle error
       return;
     } finally {
       setCurrentTaskLoading(false);
@@ -49,9 +50,8 @@ export const TasksContextProvider = ({ currentStation, children }) => {
   }, [stationTasks, currentTask]);
 
   const getPrevTask = useCallback(async () => {
-    if (!currentStation || !currentTask) {
-      return;
-    }
+    if (!currentStation || !currentTask) return;
+
     setCurrentTaskLoading(true);
 
     try {
@@ -62,7 +62,7 @@ export const TasksContextProvider = ({ currentStation, children }) => {
       );
       setCurrentTask(_currentTask);
     } catch (err) {
-      return;
+      return "previousStation";
     } finally {
       setCurrentTaskLoading(false);
     }
