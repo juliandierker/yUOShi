@@ -124,7 +124,7 @@ function RenderDrag(props) {
 
   useEffect(() => {
     setSolution(() => onSolve);
-  }, []);
+  }, [userSolution, task]);
 
   /** @type {Scene} scene */
   const scene = useMemo(() => {
