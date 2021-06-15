@@ -161,7 +161,7 @@ function RenderDrag(props) {
               id: statement.id,
               props: {
                 className: "card",
-                id: `statement-${statement.id}`,
+                id: `statement-${statement.id}`
               },
               data: statement.text
             };
