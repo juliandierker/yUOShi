@@ -80,7 +80,6 @@ export const TasksContextProvider = ({ currentStation, children }) => {
   }, [currentStation]);
 
   const jumpToTask = useCallback(async (id) => {
-    console.log(id);
     for (let station of stations) {
       let targetTask = station.tasks.find((taskItem) => taskItem.id === id);
       if (targetTask) {
