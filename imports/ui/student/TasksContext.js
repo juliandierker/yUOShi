@@ -22,7 +22,7 @@ async function getContent(task) {
 }
 
 export const TasksContextProvider = ({ currentStation, children }) => {
-  const { stationTasks } = useStationsContext();
+  const { stationTasks, stations, setCurrentStation } = useStationsContext();
   const [getSolution, setSolution] = useState(null);
   const [currentTask, setCurrentTask] = useState(undefined);
   const [currentTaskLoading, setCurrentTaskLoading] = useState(true);
@@ -79,6 +79,20 @@ export const TasksContextProvider = ({ currentStation, children }) => {
     setCurrentTaskLoading(false);
   }, [currentStation]);
 
+  const jumpToTask = useCallback(async (id) => {
+    console.log(id);
+    for (let station of stations) {
+      let targetTask = station.tasks.find((taskItem) => taskItem.id === id);
+      if (targetTask) {
+        targetTask = await PromisifiedMeteor.call("tasks.getTask", id);
+        if (station.id != currentStation.id) {
+          setCurrentStation(station);
+        }
+        setCurrentTask(targetTask);
+      }
+    }
+  });
+
   useEffect(() => {
     updateTask();
   }, [updateTask]);
@@ -91,7 +105,8 @@ export const TasksContextProvider = ({ currentStation, children }) => {
     getNextTask,
     getSolution,
     setSolution,
-    solveTask
+    solveTask,
+    jumpToTask
   };
 
   return <TasksContext.Provider value={ctx}>{children}</TasksContext.Provider>;

@@ -18,22 +18,22 @@ export default function ProgressBar(props) {
   const data = {
     package: {
       name: currentPackage.title,
-      stations: stations.map(station => {
+      stations: stations.map((station) => {
         return {
           name: station.title,
           id: station.id,
-          tasks: station.tasks.map(task => {
-            maxCredits += task.credits
+          tasks: station.tasks.map((task) => {
+            maxCredits += task.credits;
             return {
               name: task.title,
               type: task.type,
               id: task.id
-            }
+            };
           })
-        }
+        };
       })
     }
-  }
+  };
 
   const RenderTitle = ({ title }) => {
     return (
@@ -53,11 +53,18 @@ export default function ProgressBar(props) {
   };
 
   const RenderStations = () => {
-
     return (
       <div className="progressBar-content">
         {data.package.stations.map((data, index) => {
-          return <ProgressBarItem key={"progressBarItem_" + index} data={data} index={index} highlighted={data.id === currentStation.id} currentTask={currentTask} />;
+          return (
+            <ProgressBarItem
+              key={"progressBarItem_" + index}
+              data={data}
+              index={index}
+              highlighted={data.id === currentStation.id}
+              currentTask={currentTask}
+            />
+          );
         })}
         <RenderScore />
       </div>
