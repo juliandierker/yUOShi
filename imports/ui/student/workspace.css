@@ -14,7 +14,7 @@
 
 /* css for texts */
 .text-workspace {
-  border: 6px solid #F6F6F5;
+  border: 6px solid #f6f6f5;
   border-radius: 44px;
   opacity: 1;
   padding-left: 21px;
@@ -38,7 +38,7 @@
 /* css for tasks */
 .workspace-task-header {
   height: 90px;
-  background: #F6F6F5 0% 0% no-repeat padding-box;
+  background: #f6f6f5 0% 0% no-repeat padding-box;
   box-shadow: 0px 1px 2px #00000029;
   border-radius: 44px;
   display: flex;
@@ -79,39 +79,34 @@
   width: 55px;
   height: 55px;
   padding-top: 21px;
-  background: #FFFFFF 0% 0% no-repeat padding-box;
+  background: #ffffff 0% 0% no-repeat padding-box;
   box-shadow: 0px 1px 2px #00000029;
   border-radius: 44px;
 
   opacity: 1;
 }
 
-.workspace-help-icon:hover{
+.workspace-help-icon:hover {
   transform: rotate(20deg);
 }
 
-
-
-.workspace-help-icon img 
-{
-  margin-left:20px;
+.workspace-help-icon img {
+  margin-left: 20px;
 }
 
 .workspace-task-container {
   height: 400px;
-  margin-top:20px;
+  margin-top: 20px;
 
-  background: #F6F6F5 0% 0% no-repeat padding-box;
+  background: #f6f6f5 0% 0% no-repeat padding-box;
   box-shadow: 0px 1px 2px #00000029;
   border-radius: 44px;
-
 }
 
 .workspace-drag-container {
   height: 400px;
-  margin-top:20px;
+  margin-top: 20px;
 }
-
 
 /* css for navigation */
 .workspace-navigation {
@@ -123,20 +118,24 @@
   width: 241px;
   height: 31px;
 
-  background: #F6F6F5 0% 0% no-repeat padding-box;
+  background: #f6f6f5 0% 0% no-repeat padding-box;
   box-shadow: 0px 1px 2px #00000029;
-  border-color: #FFFFFF00;
+  border-color: #ffffff00;
   border-radius: 12px;
   margin-bottom: 12px;
 }
 
-.navigation-button:hover {
-  color: white;
-  background: #6A96E2 0% 0% no-repeat padding-box;
-  border-color: #6A96E2;
+.navigation-button:disabled {
+  color: grey;
 }
 
-.navigation-button img { 
+.navigation-button:hover:enabled {
+  color: white;
+  background: #6a96e2 0% 0% no-repeat padding-box;
+  border-color: #6a96e2;
+}
+
+.navigation-button img {
   vertical-align: middle;
 }
 
@@ -150,4 +149,3 @@
   font-size: 20px;
   line-height: 30px;
 }
-
