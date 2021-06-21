@@ -110,8 +110,7 @@ const RenderProgressBar = () => {
 
 const NavigationButtons = () => {
   const { stations, currentPosition, setCurrentStation } = useStationsContext();
-  const { getPrevTask, getNextTask, getSolution } = useTasksContext();
-
+  const { getPrevTask, getNextTask, getSolution, currentTask } = useTasksContext();
   async function navigateNext() {
     if ((await getNextTask()) === "nextStation") {
       if (stations.length > currentPosition) {
@@ -140,7 +139,11 @@ const NavigationButtons = () => {
           onClick={navigatePrevious}>
           <Icon name="arrow-left" size="large" />
         </button>
-        <button onClick={getSolution} className="navigation-button" id="navigation-button-submit">
+        <button
+          disabled={currentTask?.type === "tag"}
+          onClick={getSolution}
+          className="navigation-button"
+          id="navigation-button-submit">
           AUSWERTEN
         </button>
         <button className="navigation-button" id="navigation-button-right" onClick={navigateNext}>
