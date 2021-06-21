@@ -41,7 +41,7 @@ export const StationsContextProvider = ({ currentPackageId, children }) => {
     }
 
     setStations(currentStations);
-    setStationsTasks(tasks.reverse());
+    setStationsTasks(tasks);
     setstationLoading(false);
   }, [currentPackageId, currentStation]);
   // TODO : observe loads when we change stations
