@@ -20,6 +20,7 @@ import ProgressBar from "../progressBar/progressBar";
 import Icon from "../IconComponent/Icon";
 
 import "./workspace.css";
+import Loading from "../Loading";
 
 // eslint-disable-next-line react/display-name
 const RenderTask = memo(({ task, updateTask }) => {
@@ -86,18 +87,15 @@ const RenderTask = memo(({ task, updateTask }) => {
 const RenderWorkspace = () => {
   const { currentTask, currentTaskLoading, updateTask } = useTasksContext();
   if (currentTaskLoading) {
-    return <p>Loading Task...</p>;
+    return <Loading />;
   }
   return <RenderTask task={currentTask} updateTask={updateTask} />;
 };
 const RenderProgressBar = () => {
-  const { currentTask, currentTaskLoading } = useTasksContext();
+  const { currentTask } = useTasksContext();
   const { currentPackage, packagesLoading, packageTasks } = usePackagesContext();
   const { stations, currentStation } = useStationsContext();
 
-  if (packagesLoading || currentTaskLoading) {
-    return <p>Loading Packages...</p>;
-  }
   return (
     <ProgressBar
       currentPackage={currentPackage}
