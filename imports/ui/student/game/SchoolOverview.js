@@ -26,6 +26,15 @@ export default function SchoolOverview() {
     const class_elem = document.getElementById("marker__klassenzimmer");
     const teacher_elem = document.getElementById("marker__lehrendenzimmer");
     const office_elem = document.getElementById("marker__buero");
+
+    const class_elem_hover = document.getElementById("marker__klassenzimmer__hover");
+    const teacher_elem_hover = document.getElementById("marker__lehrendenzimmer__hover");
+    const office_elem_hover = document.getElementById("marker__buero__hover");
+
+    class_elem_hover.style.visibility="hidden";
+    teacher_elem_hover.style.visibility="hidden";
+    office_elem_hover.style.visibility="hidden";
+
     class_elem?.addEventListener("click", function() {
       setPage("classroom");
     });
