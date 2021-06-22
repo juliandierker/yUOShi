@@ -47,14 +47,12 @@ export default function ProgressBarItem({ data, highlighted, currentTask }) {
     );
   };
 
-  let icon = <div></div>;
-  icon =
-    tasks && tasks.length != 0 ? (
-      <Icon name={hover || highlighted ? "bars-alternate" : "bars"} size="large" />
-    ) : (
-      icon
-    );
-  icon = locked ? <Icon name="lock-locked" size="large" /> : icon;
+  const iconColor = hover || hoverSubArea || highlighted ? "white" : "black"
+
+  let icon = <div />
+  icon = tasks && tasks.length != 0 ? ( <Icon name="bars" size="large" color={iconColor}/>) : icon
+  icon = locked ? <Icon name="lock-locked" size="large" color={iconColor}/> : icon
+
   let pbClassname = highlighted ? "progressBar-item-highlighted" : "progressBar-item";
   if (hover || hoverSubArea) {
     pbClassname =
