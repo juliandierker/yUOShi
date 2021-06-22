@@ -22,7 +22,7 @@ async function getContent(task) {
 }
 
 export const TasksContextProvider = ({ currentStation, children }) => {
-  const { stationTasks } = useStationsContext();
+  const { stationTasks, stations, setCurrentStation } = useStationsContext();
   const [getSolution, setSolution] = useState(null);
   const [currentTask, setCurrentTask] = useState(undefined);
   const [currentTaskLoading, setCurrentTaskLoading] = useState(true);
@@ -35,13 +35,14 @@ export const TasksContextProvider = ({ currentStation, children }) => {
     if (!currentTask || stationTasks.length === 0) return;
     const nextTaskIdx = stationTasks.findIndex((task) => task.id === currentTask.id) + 1;
     if (nextTaskIdx === 0) return;
-    if (nextTaskIdx >= stationTasks.length) return;
+    if (nextTaskIdx >= stationTasks.length) {
+      return "nextStation";
+    }
     try {
       setCurrentTaskLoading(true);
       const nextTask = await PromisifiedMeteor.call("tasks.getTask", stationTasks[nextTaskIdx].id);
       setCurrentTask(nextTask);
     } catch (e) {
-      //TODO handle error
       return;
     } finally {
       setCurrentTaskLoading(false);
@@ -49,9 +50,8 @@ export const TasksContextProvider = ({ currentStation, children }) => {
   }, [stationTasks, currentTask]);
 
   const getPrevTask = useCallback(async () => {
-    if (!currentStation || !currentTask) {
-      return;
-    }
+    if (!currentStation || !currentTask) return;
+
     setCurrentTaskLoading(true);
 
     try {
@@ -62,7 +62,7 @@ export const TasksContextProvider = ({ currentStation, children }) => {
       );
       setCurrentTask(_currentTask);
     } catch (err) {
-      return;
+      return "previousStation";
     } finally {
       setCurrentTaskLoading(false);
     }
@@ -79,6 +79,19 @@ export const TasksContextProvider = ({ currentStation, children }) => {
     setCurrentTaskLoading(false);
   }, [currentStation]);
 
+  const jumpToTask = useCallback(async (id) => {
+    for (let station of stations) {
+      let targetTask = station.tasks.find((taskItem) => taskItem.id === id);
+      if (targetTask) {
+        targetTask = await PromisifiedMeteor.call("tasks.getTask", id);
+        if (station.id != currentStation.id) {
+          setCurrentStation(station);
+        }
+        setCurrentTask(targetTask);
+      }
+    }
+  });
+
   useEffect(() => {
     updateTask();
   }, [updateTask]);
@@ -91,7 +104,8 @@ export const TasksContextProvider = ({ currentStation, children }) => {
     getNextTask,
     getSolution,
     setSolution,
-    solveTask
+    solveTask,
+    jumpToTask
   };
 
   return <TasksContext.Provider value={ctx}>{children}</TasksContext.Provider>;
