@@ -6,7 +6,7 @@ import { Grid } from "semantic-ui-react";
 import { useTasksContext } from "../student/TasksContext";
 import { useStationsContext } from "../student/StationsContext";
 
-import "./navigationBar.css"
+import "./NavigationBar.css"
 
 export default function NavigationBar( ){
   const [hoverPrevious, setHoverPrevious] = useState(false)

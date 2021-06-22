@@ -17,7 +17,7 @@ import RenderMemory from "../taskRenderers/RenderMemory";
 import RenderIntro from "../taskRenderers/RenderIntro";
 import RenderOutro from "../taskRenderers/RenderOutro";
 
-import NavigationBar from "../navigation_bar/navigationBar";
+import NavigationBar from "../navigation_bar/NavigationBar";
 import ProgressBar from "../progressBar/progressBar";
 
 import Icon from "../IconComponent/Icon";
