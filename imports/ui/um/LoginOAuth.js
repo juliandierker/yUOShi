@@ -11,17 +11,12 @@ const LoginOAuth = () => {
       <div className="boxed-view__box">
         <Header
           as="h2"
-          style={{
-            fontFamily: "Open Sans Condensed",
-            fontWeight: "300",
-            color: "white",
-            fontSize: 72
-          }}
           textAlign="center">
-          <Image size="medium" src="/landingpage/yuoshi.png" />
+          <Image size="small" src="/landingpage/verticalLogoYuoshiblau.svg" />
         </Header>
-
-        <Button onClick={onStartOAuth} type="button">
+        <Button onClick={onStartOAuth} type="button" style={{
+            backgroundColor: "#F6F6F5v",
+          }}>
           Mit stud.IP anmelden
         </Button>
       </div>

@@ -22,17 +22,23 @@ export default function SchoolOverview() {
   useEffect(() => {
     initVektorElements();
   });
+
   function initVektorElements() {
-    const class_elem = document.getElementById("Marker_Klassenzimmer");
-    const teacher_elem = document.getElementById("Marker_Lehrerzimmer");
-    const office_elem = document.getElementById("Marker_Büro");
-    class_elem.addEventListener("click", function() {
+    const class_elem = document.getElementById("marker__klassenzimmer");
+    const teacher_elem = document.getElementById("marker__lehrendenzimmer");
+    const office_elem = document.getElementById("marker__buero");
+
+    const class_elem_hover = document.getElementById("marker__klassenzimmer__hover");
+    const teacher_elem_hover = document.getElementById("marker__lehrendenzimmer__hover");
+    const office_elem_hover = document.getElementById("marker__buero__hover");
+
+    class_elem_hover?.addEventListener("click", function() {
       setPage("classroom");
     });
-    teacher_elem.addEventListener("click", function() {
+    teacher_elem_hover?.addEventListener("click", function() {
       setPage("teacherRoom");
     });
-    office_elem.addEventListener("click", function() {
+    office_elem_hover?.addEventListener("click", function() {
       setPage("office");
     });
   }
