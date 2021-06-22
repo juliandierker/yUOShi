@@ -36,6 +36,10 @@
 #navigation-button-submit {
   width: 600px;
 
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
   margin-left: 12px;
   margin-right: 12px;
 
