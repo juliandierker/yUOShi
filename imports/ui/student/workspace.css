@@ -1,7 +1,7 @@
 /* General workpace css */
 #workspaceGrid {
   width: 1080px !important;
-  height: 800px !important;
+  height: 95vh !important;
   padding-top: 0;
   margin: auto;
 }
@@ -110,6 +110,10 @@
 
 /* css for navigation */
 .workspace-navigation {
+  position:absolute;
+  width: 780px;
+  bottom: 28px;
+
   display: flex;
   justify-content: space-between;
 }
