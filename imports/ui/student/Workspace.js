@@ -16,7 +16,10 @@ import RenderTraining from "../taskRenderers/RenderTraining";
 import RenderMemory from "../taskRenderers/RenderMemory";
 import RenderIntro from "../taskRenderers/RenderIntro";
 import RenderOutro from "../taskRenderers/RenderOutro";
+
+import NavigationBar from "../navigation_bar/navigationBar";
 import ProgressBar from "../progressBar/progressBar";
+
 import Icon from "../IconComponent/Icon";
 
 import "./workspace.css";
@@ -108,51 +111,51 @@ const RenderProgressBar = () => {
   );
 };
 
-const NavigationButtons = () => {
-  const { stations, currentPosition, setCurrentStation } = useStationsContext();
-  const { getPrevTask, getNextTask, getSolution, currentTask } = useTasksContext();
-  async function navigateNext() {
-    if ((await getNextTask()) === "nextStation") {
-      if (stations.length > currentPosition) {
-        setCurrentStation(stations[currentPosition + 1]);
-      }
-    }
-  }
+// const NavigationButtons = () => {
+  // const { stations, currentPosition, setCurrentStation } = useStationsContext();
+  // const { getPrevTask, getNextTask, getSolution, currentTask } = useTasksContext();
+  // async function navigateNext() {
+  //   if ((await getNextTask()) === "nextStation") {
+  //     if (stations.length > currentPosition) {
+  //       setCurrentStation(stations[currentPosition + 1]);
+  //     }
+  //   }
+  // }
 
-  async function navigatePrevious() {
-    if ((await getPrevTask()) === "previousStation") {
-      if (stations[currentPosition - 1]) {
-        setCurrentStation(stations[currentPosition - 1]);
-      }
-    }
-  }
+  // async function navigatePrevious() {
+  //   if ((await getPrevTask()) === "previousStation") {
+  //     if (stations[currentPosition - 1]) {
+  //       setCurrentStation(stations[currentPosition - 1]);
+  //     }
+  //   }
+  // }
 
-  return (
-    <Grid.Column width={12}>
-      <div className="workspace-container">
-        <RenderWorkspace />
-      </div>
-      <div className="workspace-navigation">
-        <button
-          className="navigation-button"
-          id="navigation-button-left"
-          onClick={navigatePrevious}>
-          <Icon name="arrow-left" size="large" />
-        </button>
-        <button
-          disabled={currentTask?.type === "tag"}
-          onClick={getSolution}
-          className="navigation-button"
-          id="navigation-button-submit">
-          AUSWERTEN
-        </button>
-        <button className="navigation-button" id="navigation-button-right" onClick={navigateNext}>
-          <Icon name="arrow-right" size="large" />
-        </button>
-      </div>
-    </Grid.Column>
-  );
-};
+  // return (
+  //   <Grid.Column width={12}>
+  //     <div className="workspace-container">
+  //       <RenderWorkspace />
+  //     </div>
+  //     <div className="workspace-navigation">
+  //       <button
+  //         className="navigation-button"
+  //         id="navigation-button-left"
+  //         onClick={navigatePrevious}>
+  //         <Icon name="arrow-left" size="large" />
+  //       </button>
+  //       <button
+  //         disabled={currentTask?.type === "tag"}
+  //         onClick={getSolution}
+  //         className="navigation-button"
+  //         id="navigation-button-submit">
+  //         AUSWERTEN
+  //       </button>
+  //       <button className="navigation-button" id="navigation-button-right" onClick={navigateNext}>
+  //         <Icon name="arrow-right" size="large" />
+  //       </button>
+  //     </div>
+  //   </Grid.Column>
+  // );
+// };
 
 const Workspace = () => {
   const { stations, currentStation } = useStationsContext();
@@ -164,7 +167,12 @@ const Workspace = () => {
             <Grid.Column style={{ maxWidth: "22%" }} width={4}>
               <RenderProgressBar />
             </Grid.Column>
-            <NavigationButtons />
+            <Grid.Column width={12}>
+              <div className="workspace-container">
+                <RenderWorkspace />
+              </div>
+              <NavigationBar />
+            </Grid.Column>
           </TasksContextProvider>
         )}
       </Grid>
