@@ -12,7 +12,6 @@ import PromisifiedMeteor from "../../../api/promisified";
 export default function ClassRoom() {
   const { setPage } = useContext(GameContext);
   const { setCurrentPackage, packages } = usePackagesContext();
-  console.log(packages);
 
   const addEvent = useCallback(
     (elem, packageItem) => {
