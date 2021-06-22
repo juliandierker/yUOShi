@@ -22,6 +22,7 @@ export default function SchoolOverview() {
   useEffect(() => {
     initVektorElements();
   });
+
   function initVektorElements() {
     const class_elem = document.getElementById("marker__klassenzimmer");
     const teacher_elem = document.getElementById("marker__lehrendenzimmer");
@@ -31,13 +32,13 @@ export default function SchoolOverview() {
     const teacher_elem_hover = document.getElementById("marker__lehrendenzimmer__hover");
     const office_elem_hover = document.getElementById("marker__buero__hover");
 
-    class_elem?.addEventListener("click", function() {
+    class_elem_hover?.addEventListener("click", function() {
       setPage("classroom");
     });
-    teacher_elem?.addEventListener("click", function() {
+    teacher_elem_hover?.addEventListener("click", function() {
       setPage("teacherRoom");
     });
-    office_elem?.addEventListener("click", function() {
+    office_elem_hover?.addEventListener("click", function() {
       setPage("office");
     });
   }

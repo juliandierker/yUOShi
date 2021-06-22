@@ -2,6 +2,7 @@ import React from "react";
 
 export function ClassroomVektor() {
   // TODO this visualisation is for limmited ammount of packages
+  // eslint-disable max-classes-per-file
 
   return (
     // prettier-ignore
@@ -3295,7 +3296,7 @@ export function ClassroomVektor() {
                 <g>
                   <g>
                     <g>
-                      <text x="58.205px" y="42.156px" style={{fontFamily: '"Lato-Bold", "Lato", sans-serif', fontWeight: 700, fontSize: '18px', fill: 'rgb(8,7,6)'}}>Aktuelles L<tspan x="147.378px 156.699px 166.001px " y="42.156px 42.156px 42.156px ">eve</tspan>l</text>
+                      <text x="58.205px" y="42.156px" style={{fontFamily: '"Lato-Bold", "Lato", sans-serif', fontWeight: 700, fontSize: '18px', fill: 'rgb(8,7,6)'}}>Motivation<tspan x="147.378px 156.699px 166.001px " y="42.156px 42.156px 42.156px "></tspan></text>
                     </g>
                   </g>
                 </g>
