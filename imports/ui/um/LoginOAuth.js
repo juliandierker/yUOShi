@@ -12,7 +12,7 @@ const LoginOAuth = () => {
         <Header
           as="h2"
           textAlign="center">
-          <Image size="large" src="/landingpage/Vertical_Logo_yuoshiblau.svg" />
+          <Image size="small" src="/landingpage/verticalLogoYuoshiblau.svg" />
         </Header>
         <Button onClick={onStartOAuth} type="button" style={{
             backgroundColor: "#F6F6F5v",

@@ -31,10 +31,6 @@ export default function SchoolOverview() {
     const teacher_elem_hover = document.getElementById("marker__lehrendenzimmer__hover");
     const office_elem_hover = document.getElementById("marker__buero__hover");
 
-    class_elem_hover.style.visibility="hidden";
-    teacher_elem_hover.style.visibility="hidden";
-    office_elem_hover.style.visibility="hidden";
-
     class_elem?.addEventListener("click", function() {
       setPage("classroom");
     });
