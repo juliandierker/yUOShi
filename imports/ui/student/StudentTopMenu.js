@@ -4,7 +4,7 @@ import { Button } from "semantic-ui-react";
 
 import { GameContext } from "./StudentContextProvider";
 
-import { Dropdown, Menu, Image } from "semantic-ui-react";
+import { Dropdown, Menu, Image, Icon } from "semantic-ui-react";
 
 export default function StudentTopMenu({ activeTutorial }) {
   const { setPage } = useContext(GameContext);
@@ -175,7 +175,7 @@ export default function StudentTopMenu({ activeTutorial }) {
             <Dropdown.Menu style={{ marginTop: "0px" }}>
               <Dropdown.Item color="white" icon="user" text="Profil" />
               <Dropdown.Item
-                icon="power off"
+                icon="power"
                 text="Ausloggen"
                 active={activeItem === "overview"}
                 onClick={() => Meteor.logout(() => { })}

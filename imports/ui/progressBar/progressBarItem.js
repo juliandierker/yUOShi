@@ -50,7 +50,7 @@ export default function ProgressBarItem({ data, highlighted, currentTask }) {
   let icon = <div></div>;
   icon =
     tasks && tasks.length != 0 ? (
-      <Icon name={highlighted ? "bars-alternate" : "bars"} size="large" />
+      <Icon name={hover || highlighted ? "bars-alternate" : "bars"} size="large" />
     ) : (
       icon
     );
