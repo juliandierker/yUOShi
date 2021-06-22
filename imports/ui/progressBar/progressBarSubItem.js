@@ -20,11 +20,12 @@ export default function ProgressBarSubItem({ title, type, highlighted, id }) {
 
   let iconName = "info";
   if (type !== "text" && type !== "tag") {
-    iconName = "checkmark-alt";
-    if (hover || highlighted) {
-      iconName = "checkmark";
-    }
+    iconName = "checkmark";
   }
+  if(hover || highlighted) {
+    iconName = iconName + "-alt"
+  }
+
   const icon = <Icon name={iconName} size="large"></Icon>;
 
   let pbClassname = "progress-bar-sub-item";
