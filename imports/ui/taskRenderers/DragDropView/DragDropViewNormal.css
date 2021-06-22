@@ -6,6 +6,11 @@
   height: 90%;
 }
 
+.card-scene {
+  overflow-x: auto;
+  overflow-y: hidden;
+}
+
 .card-column-header {
   padding-top: 15px;
   margin-left: 30px;
@@ -33,7 +38,7 @@
   height: 400px;
   width: 368px;
   padding-left: 20px;
-  margin-right: 0px;
+  margin-right: 20px;
 }
 
 .card {
