@@ -1,7 +1,7 @@
 /* General workpace css */
 #workspaceGrid {
   width: 1080px !important;
-  height: 800px !important;
+  height: 95vh !important;
   padding-top: 0;
   margin: auto;
 }
@@ -106,46 +106,4 @@
 .workspace-drag-container {
   height: 400px;
   margin-top: 20px;
-}
-
-/* css for navigation */
-.workspace-navigation {
-  display: flex;
-  justify-content: space-between;
-}
-
-.navigation-button {
-  width: 241px;
-  height: 31px;
-
-  background: #f6f6f5 0% 0% no-repeat padding-box;
-  box-shadow: 0px 1px 2px #00000029;
-  border-color: #ffffff00;
-  border-radius: 12px;
-  margin-bottom: 12px;
-}
-
-.navigation-button:disabled {
-  color: grey;
-}
-
-.navigation-button:hover:enabled {
-  color: white;
-  background: #6a96e2 0% 0% no-repeat padding-box;
-  border-color: #6a96e2;
-}
-
-.navigation-button img {
-  vertical-align: middle;
-}
-
-#navigation-button-submit {
-  width: 600px;
-
-  margin-left: 12px;
-  margin-right: 12px;
-
-  font-weight: 900;
-  font-size: 20px;
-  line-height: 30px;
 }

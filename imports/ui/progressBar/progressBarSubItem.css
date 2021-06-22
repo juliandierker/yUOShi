@@ -44,6 +44,10 @@
 
   background-color: #6a96e2;
   border-radius: 44px;
+
+  align-items: center;
+  justify-content: center;
+  display: flex;
 }
 
 .progress-bar-sub-item-icon-highlighted {
@@ -61,6 +65,10 @@
 
   background-color: white;
   border-radius: 44px;
+
+  align-items: center;
+  justify-content: center;
+  display: flex;
 }
 
 .progress-bar-sub-item-text {
