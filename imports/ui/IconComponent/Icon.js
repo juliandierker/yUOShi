@@ -20,38 +20,6 @@ export default function Icon(props) {
     })}
     style={{backgroundColor:iconColor,  WebkitMask: mask, Mask: mask}} />
   )
-
-  // return (
-  //   <div 
-  //     onClick={onClick}
-  //     className={classnames("pu icon", {
-  //       ["-" + size]: size,
-  //       ["-" + label]: !!label,
-  //       "-clickable": onClick,
-  //       rotateSetting: rotate,
-  //       [className]: className
-  //     })}
-  //     style={{backgroundColor: iconColor, mask: mask}}
-  //     alt="Icon"
-  //   />
-  // )
-
-  // return (
-  //   <img
-  //     onClick={onClick}
-  //     className={classnames("pu icon", {
-  //       ["-" + size]: size,
-  //       ["-" + label]: !!label,
-  //       "-clickable": onClick,
-  //       rotateSetting: rotate,
-  //       [className]: className
-  //     })}
-  //     src={`/assets/Icons/${name}${inactive ? "Inactive" : ""}${
-  //       inverted ? "Inverted" : ""
-  //       }.svg`}
-  //     alt={`Icon`}
-  //   />
-  // );
 }
 Icon.propTypes = {
   color: PropTypes.string,

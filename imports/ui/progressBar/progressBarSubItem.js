@@ -18,14 +18,8 @@ export default function ProgressBarSubItem({ title, type, highlighted, id }) {
     setHover(false);
   };
 
-
   const iconName = (type !== "text" && type !== "tag") ? "checkmark" : "info"
-
   const iconColor = (hover || highlighted) ? "black" : "white"
-
-  // if(hover || highlighted) {
-  //   iconName = iconName + "-alt"
-  // }
 
   const icon = <Icon name={iconName} size="large" color={iconColor} />
 
