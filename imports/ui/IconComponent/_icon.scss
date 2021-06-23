@@ -1,5 +1,8 @@
 .pu.icon {
   transition: 500ms;
+  min-height: 16px;
+  min-width: 16px;
+  height: "-webkit-fill-available";
   &.-right {
     margin-right: $sp-8;
   }
