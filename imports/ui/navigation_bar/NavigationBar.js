@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useCallback } from "react";
 import Icon from "../IconComponent/Icon"
 
 import { Grid } from "semantic-ui-react";
@@ -44,9 +44,8 @@ export default function NavigationBar( ){
     }
   }
 
-  const RenderPreviousButton = () => {
-
-    const iconName = hoverPrevious ? "arrow-left-alt" : "arrow-left";
+  const RenderPreviousButton = useCallback(() => {
+    const iconColor = hoverPrevious ? "white" : "black"
 
     return (
       <button
@@ -55,14 +54,15 @@ export default function NavigationBar( ){
           onClick={navigatePrevious}
           onMouseEnter={handleButtonPreviousEnter}
           onMouseLeave={handleButtonPreviousLeave}>
-          <Icon name={iconName} size="large" />
+          <Icon name="arrow-left" size="large" color={iconColor}/>
         </button>
     )
-  }
 
-  const RenderNextButton = () => {
+  }, [hoverPrevious])
 
-    const iconName = hoverNext ? "arrow-right-alt" : "arrow-right";
+  const RenderNextButton = useCallback(() => {
+
+    const iconColor = hoverNext ? "white" : "black"
 
     return (
       <button 
@@ -71,10 +71,10 @@ export default function NavigationBar( ){
           onClick={navigateNext}
           onMouseEnter={handleButtonNextEnter}
           onMouseLeave={handleButtonNextLeave}>
-        <Icon name={iconName} size="large" />
+        <Icon name="arrow-right" size="large" color={iconColor} />
       </button>
     )
-  }
+  }, [hoverNext])
 
   return (
       <div className="workspace-navigation">

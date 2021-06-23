@@ -1,5 +1,5 @@
 /* eslint-disable react/prop-types */
-import React, { useState } from "react";
+import React, { useState, useCallback, useMemo } from "react";
 import ProgressBarSubItem from "./progressBarSubItem";
 import Icon from "../IconComponent/Icon";
 
@@ -24,7 +24,7 @@ export default function ProgressBarItem({ data, highlighted, currentTask }) {
     setHoverSubArea(false);
   };
 
-  const RenderSubItems = () => {
+  const RenderSubItems = useCallback(() => {
     return (
       <div className="dummy">
         <div
@@ -38,23 +38,21 @@ export default function ProgressBarItem({ data, highlighted, currentTask }) {
                 type={data.type}
                 id={data.id}
                 title={data.name}
-                highlighted={data.id === currentTask.id}
+                highlighted={currentTask && data.id === currentTask.id}
               />
             );
           })}
         </div>
       </div>
     );
-  };
+  }, [currentTask?.id, tasks]);
 
-  let icon = <div></div>;
-  icon =
-    tasks && tasks.length != 0 ? (
-      <Icon name={hover || highlighted ? "bars-alternate" : "bars"} size="large" />
-    ) : (
-      icon
-    );
-  icon = locked ? <Icon name="lock-locked" size="large" /> : icon;
+  const iconColor = hover || hoverSubArea || highlighted ? "white" : "black"
+
+  let icon = <div />
+  icon = tasks && tasks.length != 0 ? ( <Icon name="bars" size="large" color={iconColor}/>) : icon
+  icon = locked ? <Icon name="lock-locked" size="large" color={iconColor}/> : icon
+
   let pbClassname = highlighted ? "progressBar-item-highlighted" : "progressBar-item";
   if (hover || hoverSubArea) {
     pbClassname =
