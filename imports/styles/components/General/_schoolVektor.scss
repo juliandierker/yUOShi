@@ -1,5 +1,7 @@
 .student__body {
   margin-top: 54px;
+  height: 100vh;
+  display: flex;
 }
 #SchoolOverview {
   margin-top: 54px;
@@ -18,6 +20,18 @@
 }
 
 #marker__zurueck {
+  display: none;
+}
+
+#marker__umfragen {
+  display: none;
+}
+
+#marker__lehrendenranking {
+  display: none;
+}
+
+#marker__bibliothek {
   display: none;
 }
 
@@ -42,4 +56,13 @@
 }
 #Marker_Büro {
   cursor: pointer;
+}
+
+
+.teacherRoomSvg {
+  width: 787px;
+  height: 586px;
+
+  display: block;
+  margin: auto;
 }
