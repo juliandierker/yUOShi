@@ -9,6 +9,8 @@ import { ClassroomVektor } from "../vektors/ClassroomVektor.js";
 import { usePackagesContext } from "../PackagesContext";
 import PromisifiedMeteor from "../../../api/promisified";
 
+import {browserHistory} from "../../../routes/Routes"
+
 export default function ClassRoom() {
   const { setPage } = useContext(GameContext);
   const { setCurrentPackage, packages } = usePackagesContext();
@@ -35,7 +37,14 @@ export default function ClassRoom() {
     }
     const marker_elem = document.getElementById("marker__aktuellesLevel__hover");
     addEvent(marker_elem, packages[0]);
+
+    const back_elem = document.getElementById("marker__zurueck__hover");
+    back_elem?.addEventListener("click", () => setPage("schoolOverview"));
+
   }, [addEvent, packages]);
+
+  
+
 
   return <ClassroomVektor />;
 }
