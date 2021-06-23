@@ -4,7 +4,7 @@ export function TeacherRoomVektor() {
   // prettier-ignore
   return (
 
-    <svg className="teacherRoomSvg" width="100%" height="100%" viewBox="0 0 846 589" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink" xmlSpace="preserve" xmlnsSerif="http://www.serif.com/" style={{fillRule: 'evenodd', clipRule: 'evenodd'}}>
+    <svg className="roomSvg" width="100%" height="100%" viewBox="0 0 846 589" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink" xmlSpace="preserve" xmlnsSerif="http://www.serif.com/" style={{fillRule: 'evenodd', clipRule: 'evenodd'}}>
     <g transform="matrix(1,0,0,1,-406.407,-154.557)">
       <g id="teacherRoom">
         <g transform="matrix(1,0,0,1,406.407,156.736)">

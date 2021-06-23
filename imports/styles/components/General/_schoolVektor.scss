@@ -3,9 +3,6 @@
   height: 100vh;
   display: flex;
 }
-#SchoolOverview {
-  margin-top: 54px;
-}
 
 #marker__zertifikate {
   display: none;
@@ -59,9 +56,15 @@
 }
 
 
-.teacherRoomSvg {
-  width: 787px;
-  height: 586px;
+.roomSvg {
+  width: 900px;
+
+  display: block;
+  margin: auto;
+}
+
+#SchoolOverview {
+  width: 1200px;
 
   display: block;
   margin: auto;

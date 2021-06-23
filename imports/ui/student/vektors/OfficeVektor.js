@@ -2,7 +2,7 @@ import React from "react";
 
 export function OfficeVektor() {
   return (
-    <svg width="100%" height="100%" viewBox="0 0 890 555" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink" xmlSpace="preserve" xmlnsSerif="http://www.serif.com/" style={{fillRule: 'evenodd', clipRule: 'evenodd', strokeMiterlimit: 10}}>
+    <svg className="roomSvg" width="100%" height="100%" viewBox="0 0 890 555" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink" xmlSpace="preserve" xmlnsSerif="http://www.serif.com/" style={{fillRule: 'evenodd', clipRule: 'evenodd', strokeMiterlimit: 10}}>
         <g transform="matrix(1,0,0,1,-363,-196.977)">
           <g id="office">
             <g transform="matrix(1,0,0,1,363,196.977)">
