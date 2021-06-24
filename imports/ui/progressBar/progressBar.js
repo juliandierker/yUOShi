@@ -11,7 +11,7 @@ import "./progressBar.css";
  * @returns {ReactElement | null}
  */
 export default function ProgressBar(props) {
-  const { currentPackage, stations, currentStation, currentTask } = props;
+  const { currentPackage, stations, currentStation, currentTask, getPoints } = props;
 
   let maxCredits = 0;
 
@@ -43,7 +43,7 @@ export default function ProgressBar(props) {
     );
   };
 
-  const RenderScore = () => {
+  const RenderScore = async () => {
     return (
       <div className="progressBar-score">
         <p className="progressBar-score-number">0/{maxCredits}</p>

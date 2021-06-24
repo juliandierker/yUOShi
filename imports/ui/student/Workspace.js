@@ -95,7 +95,7 @@ const RenderWorkspace = () => {
   return <RenderTask task={currentTask} updateTask={updateTask} />;
 };
 const RenderProgressBar = () => {
-  const { currentTask } = useTasksContext();
+  const { currentTask, getPoints } = useTasksContext();
   const { currentPackage, packagesLoading, packageTasks } = usePackagesContext();
   const { stations, currentStation } = useStationsContext();
 
@@ -107,7 +107,8 @@ const RenderProgressBar = () => {
       task={currentTask}
       stations={stations}
       currentStation={currentStation}
-      currentTask={currentTask}></ProgressBar>
+      currentTask={currentTask}
+      getPoints={getPoints}></ProgressBar>
   );
 };
 

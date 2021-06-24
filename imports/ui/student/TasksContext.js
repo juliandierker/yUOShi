@@ -26,6 +26,7 @@ export const TasksContextProvider = ({ currentStation, children }) => {
   const [getSolution, setSolution] = useState(null);
   const [currentTask, setCurrentTask] = useState(undefined);
   const [currentTaskLoading, setCurrentTaskLoading] = useState(true);
+  const [points, setPoints] = useState(0);
 
   async function solveTask() {
     await getSolution;
@@ -92,6 +93,12 @@ export const TasksContextProvider = ({ currentStation, children }) => {
     }
   });
 
+  const getPoints = useCallback(async () => {
+    // targetSolutions = await PromisifiedMeteor.call("tasks.getAllSolution");
+    // console.log(targetSolutions);
+    return true;
+  });
+
   useEffect(() => {
     updateTask();
   }, [updateTask]);
@@ -105,7 +112,8 @@ export const TasksContextProvider = ({ currentStation, children }) => {
     getSolution,
     setSolution,
     solveTask,
-    jumpToTask
+    jumpToTask,
+    getPoints
   };
 
   return <TasksContext.Provider value={ctx}>{children}</TasksContext.Provider>;
