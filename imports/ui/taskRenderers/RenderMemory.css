@@ -46,11 +46,6 @@
 
 }
 .front {
-  /* display: flex;
-  line-height: initial;
-  justify-content: center;
-  align-items: center; */
-
   transform: rotateY(-180deg);
   hyphens: auto;
   -webkit-hyphens: auto;
@@ -58,7 +53,4 @@
 
 .back {
   transform: rotateY(0deg);
-  /* display: flex;
-  justify-content: center;
-  align-items: center; */
 }
