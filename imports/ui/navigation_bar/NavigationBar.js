@@ -84,7 +84,8 @@ export default function NavigationBar( ){
           onClick={getSolution}
           className="navigation-button"
           id="navigation-button-submit">
-          AUSWERTEN
+            <span className="navigation-button-submit-text">AUSWERTEN</span>
+            <Icon name="submit" className="navigation-button-submit-icon" color="white"/>
         </button>
         <RenderNextButton />
       </div>
