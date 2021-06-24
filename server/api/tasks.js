@@ -100,5 +100,15 @@ Meteor.methods({
   "tasks.getCurrentTaskPosition": (task_id, solutionId) => {
     const backendAdapter = createBackendAdapter();
     return backendAdapter.userTaskSolutionAdapter.getCurrentTaskPosition(task_id, solutionId);
+  },
+  "tasks.getAllSolution": async () => {
+    const backendAdapter = createBackendAdapter();
+    const studipUserId = Meteor.user().services.studip.id;
+    const solutions = await backendAdapter.userTaskSolutionAdapter
+      .getAllUserSolutions(studipUserId)
+      .getWrapped()
+      .toArray();
+
+    return solutions;
   }
 });

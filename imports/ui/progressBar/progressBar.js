@@ -1,9 +1,11 @@
 /* eslint-disable react/prop-types */
-import React from "react";
+import React, { useEffect } from "react";
 
 import ProgressBarItem from "./progressBarItem";
 
 import "./progressBar.css";
+import { usePrevious } from "../../shared/customHooks";
+import Swal from "sweetalert2";
 
 /**
  * Render Progressbar
@@ -11,10 +13,20 @@ import "./progressBar.css";
  * @returns {ReactElement | null}
  */
 export default function ProgressBar(props) {
-  const { currentPackage, stations, currentStation, currentTask } = props;
-
+  const { currentPackage, stations, currentStation, currentTask, score } = props;
+  const prevScore = usePrevious(score);
   let maxCredits = 0;
 
+  useEffect(() => {
+    if (prevScore && score > prevScore) {
+      Swal.fire({
+        position: "top-end",
+        type: "success",
+        title: "Es wurden Punkte gutgeschrieben.",
+        timer: 2000
+      });
+    }
+  }, [prevScore, score]);
   const data = {
     package: {
       name: currentPackage.title,
@@ -46,7 +58,9 @@ export default function ProgressBar(props) {
   const RenderScore = () => {
     return (
       <div className="progressBar-score">
-        <p className="progressBar-score-number">0/{maxCredits}</p>
+        <p className="progressBar-score-number">
+          {score}/{maxCredits}
+        </p>
         <p className="progressBar-score-label">Gesammelte Punkte</p>
       </div>
     );

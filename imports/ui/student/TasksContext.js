@@ -21,15 +21,27 @@ async function getContent(task) {
   if (task.statements) await task.statements.toArray();
 }
 
+function calculateScore(allSolutions) {
+  return allSolutions.reduce((count, solution) => {
+    count += solution.contents.points;
+    return count;
+  }, 0);
+}
+
 export const TasksContextProvider = ({ currentStation, children }) => {
   const { stationTasks, stations, setCurrentStation } = useStationsContext();
   const [getSolution, setSolution] = useState(null);
   const [currentTask, setCurrentTask] = useState(undefined);
   const [currentTaskLoading, setCurrentTaskLoading] = useState(true);
+  const [score, setScore] = useState(0);
 
   async function solveTask() {
     await getSolution;
   }
+  const updateScore = useCallback(async () => {
+    const allSolutions = await PromisifiedMeteor.call("tasks.getAllSolution");
+    setScore(calculateScore(allSolutions));
+  }, []);
 
   const getNextTask = useCallback(async () => {
     if (!currentTask || stationTasks.length === 0) return;
@@ -73,11 +85,14 @@ export const TasksContextProvider = ({ currentStation, children }) => {
       return;
     }
     setCurrentTaskLoading(true);
-    const currentTask = await PromisifiedMeteor.call("tasks.nextTaskForStation", currentStation.id);
-    setCurrentTask(currentTask);
-
+    const _currentTask = await PromisifiedMeteor.call(
+      "tasks.nextTaskForStation",
+      currentStation.id
+    );
+    const currentTask = setCurrentTask(_currentTask);
+    updateScore();
     setCurrentTaskLoading(false);
-  }, [currentStation]);
+  }, [currentStation, updateScore]);
 
   const jumpToTask = useCallback(async (id) => {
     for (let station of stations) {
@@ -94,7 +109,8 @@ export const TasksContextProvider = ({ currentStation, children }) => {
 
   useEffect(() => {
     updateTask();
-  }, [updateTask]);
+    updateScore();
+  }, [updateScore, updateTask]);
 
   const ctx = {
     currentTask,
@@ -105,7 +121,8 @@ export const TasksContextProvider = ({ currentStation, children }) => {
     getSolution,
     setSolution,
     solveTask,
-    jumpToTask
+    jumpToTask,
+    score
   };
 
   return <TasksContext.Provider value={ctx}>{children}</TasksContext.Provider>;

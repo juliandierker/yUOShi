@@ -195,7 +195,9 @@ export default function RenderMemory(props) {
               onClick={onClick(item.id)}
               style={{ width: cardSize, height: cardSize, lineHeight: cardSize + "px" }}>
               <div className="front">{item.text}</div>
-              <Icon className="back" name="logo" />
+              <div className="back"> 
+                <Icon name="logo" size="perc80" color="#6A96E2"/>
+              </div>
             </div>
           );
         })}
