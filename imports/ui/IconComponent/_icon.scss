@@ -2,7 +2,6 @@
   transition: 500ms;
   min-height: 16px;
   min-width: 16px;
-  height: "-webkit-fill-available";
   &.-right {
     margin-right: $sp-8;
   }
@@ -23,6 +22,9 @@
   }
   &.-massive {
     width: 48px;
+  }
+  &.-huge {
+    width: 90px;
   }
   &.-clickable {
     cursor: pointer;
