@@ -1,4 +1,4 @@
-.horizontal{
+.horizontal {
   width: 790px;
 }
 
@@ -8,18 +8,18 @@
 
 .card-scene {
   overflow-x: auto;
-  overflow-y: hidden;
+  overflow-y: auto;
 }
 
 .card-column-header {
   padding-top: 15px;
   margin-left: 30px;
   margin-bottom: 6px;
-  
+
   font-weight: 900;
   font-size: 20px;
   line-height: 24px;
-  
+
   text-align: left;
   letter-spacing: 0px;
   color: #000000;
@@ -27,11 +27,11 @@
 }
 
 .smooth-dnd-draggable-wrapper {
-  width:368px;
+  width: 368px;
 }
 
 .card-container {
-  background: #F6F6F5 0% 0% no-repeat padding-box;
+  background: #f6f6f5 0% 0% no-repeat padding-box;
   box-shadow: 0px 1px 2px #00000029;
   border-radius: 44px;
   opacity: 1;
@@ -49,16 +49,16 @@
   font-size: 12px;
   line-height: 15px;
 
-  background: #6A96E2 0% 0% no-repeat padding-box !important;
+  background: #6a96e2 0% 0% no-repeat padding-box !important;
   box-shadow: 0px 2px 4px #00000029;
   border-radius: 22px;
   opacity: 1;
 
   margin-bottom: 5px;
-
 }
 
-.card p { /* <-- Cardi B's younger brother */ 
+.card p {
+  /* <-- Cardi B's younger brother */
   margin-left: 10px;
   margin-right: 10px;
   padding-top: 11px;
@@ -66,9 +66,9 @@
   font-weight: bold;
   font-size: 12px;
   line-height: 15px;
-  
+
   text-align: left;
   letter-spacing: 0px;
-  color: #FFFFFF;
+  color: #ffffff;
   opacity: 1;
 }
