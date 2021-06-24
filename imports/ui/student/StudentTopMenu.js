@@ -1,11 +1,11 @@
-import React, { useContext, useState } from "react";
+import React, { useContext } from "react";
 
 import { GameContext } from "./StudentContextProvider";
 import Icon from "../IconComponent/Icon"
 
 import "./StudentTopMenu.css"
 
-export default function StudentTopMenu({ activeTutorial }) {
+export default function StudentTopMenu() {
   const { setPage } = useContext(GameContext);
 
   function returnUser() {
