@@ -38,6 +38,7 @@ Tracker.autorun(() => {
   onAuthChange(currentUser);
 
   Meteor.startup(() => {
+    document.documentElement.lang = "de"
     ReactDOM.render(<Routes />, document.getElementById("app"));
     // setCookie("resume", "true", false);
     // if (!getCookie("resume")) {
