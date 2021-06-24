@@ -19,6 +19,8 @@ import LoggingOut from "../LoggingOut.js";
 import { PackagesContextProvider, usePackagesContext } from "./PackagesContext";
 import { StationsContextProvider } from "./StationsContext";
 
+import Achievements from "../achievements/Achievements"
+
 function RenderStudentOverview() {
   const { loading, student, page } = useContext(GameContext);
   const [loggingOut, setLoggingOut] = useState(false);
@@ -26,6 +28,8 @@ function RenderStudentOverview() {
   const prevStudent = usePrevious(student);
   let tutorial = tutorialCheck();
   const { currentPackage } = usePackagesContext();
+
+  const [toggleAchievement, setToggleAchievement] = useState(false)
 
   useEffect(() => {
     if (prevStudent && prevStudent.tutorials.length < student.tutorials.length) {
@@ -78,6 +82,13 @@ function RenderStudentOverview() {
         />
         {renderRoutes()}
         {activeTutorial && <TutorialComponent activeTutorial={activeTutorial} />}
+        <Achievements 
+        title="test title" 
+        description="test description" 
+        showAchievement={toggleAchievement}
+        finishedCallback={() => setToggleAchievement(false)}
+        />
+        <button onClick={()=>setToggleAchievement(true)} style={{position: "absolute"}}> TEST ACHIEVEMENTS</button>
       </div>
     );
   }

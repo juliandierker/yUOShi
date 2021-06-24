@@ -1,0 +1,159 @@
+$achievement-color: #77A2E9;
+
+.achievement-banner {
+    position: absolute;
+    bottom: 10px;
+    left: calc(50% - 50px);
+    width: 100px;
+    height: 80px;
+    border-radius: 50px;
+    background-color: transparent;
+    overflow: hidden;
+
+    &.animated {
+        animation: mainAnimationFrames ease-in-out 8s;
+        animation-delay: 1;
+        animation-iteration-count: 1;
+        transform-origin: 50% 50%;
+        animation-fill-mode:forwards; /*when the spec is finished*/
+    }
+
+    &-big {
+        @extend .achievement-banner;
+        width: 600px;
+        left: calc(50% - 300px);
+        background-color: $achievement-color;
+    }
+
+    .achievement-text {
+        font-size: 2em;
+        position: absolute;
+        width: (400px);
+        top: calc((100px - 50%) - 1.6em);
+        left: 105px;
+        text-align: center;
+        white-space: pre-wrap;
+        word-wrap: break-word;
+        color: #fff;
+
+        .achievement-notification {
+            position: absolute;
+            width: 100%;
+            animation: achievementTextAnimationFrames linear 2.5s;
+            animation-delay: 0.7s;
+            opacity: 0;
+            top: -10px;
+            font-size: 1.3em;
+            padding-top: 3px;
+        
+        }
+        
+        .achievement-title {
+            position: absolute;
+            width: 100%;
+            animation: achievementNameAnimationFrames linear 3.8s;
+            animation-delay: 2.8s;
+            opacity: 0;
+            
+            font-size: 1em;
+            top: 75px;
+            margin-top: 2px;
+
+            
+        }
+
+        .achievement-name {
+            position: absolute;
+            width: 100%;
+            font-size: .8em;
+            top: 75px;
+            margin-top: 40px;
+
+            animation: achievementNameAnimationFrames linear 3.5s;
+            animation-delay: 3.3s;
+            opacity: 0;
+        }
+    }
+}
+
+@keyframes achievementTextAnimationFrames {
+    0% {
+        opacity: 0;
+    }
+
+    30% {
+        opacity: 1;
+    }
+
+    65% {
+        opacity: 1;
+        top: -10px;
+    }
+    
+    100% {
+        opacity: 0;
+        top: -100px;
+    }
+}
+
+@keyframes achievementNameAnimationFrames {
+    0% {
+        opacity: 0;
+        top: 66px;
+    }
+
+    20% {
+        opacity: 1;
+        top: -25px;
+    }
+
+    90% {
+        opacity: 1;
+        top: -25px;
+        right: 0;
+    }
+
+    100% {
+        opacity: 0;
+        top: -25px;
+    }
+}
+
+@keyframes mainAnimationFrames {
+    0% {
+        background-color: transparent;
+    }
+
+    7.5% {
+        background-color: $achievement-color;
+        width: 650px;
+        height: 80px;
+        left: calc(50% - 300px - 25px);
+    }
+
+    12% {
+        background-color: $achievement-color;
+        width: 600px;
+        height: 80px;
+        left: calc(50% - 300px);
+    }
+
+    87.5% {
+        width: 600px;
+        left: calc(50% - 300px);
+    }
+
+    92% {
+        width: 650px;
+        height: 80px;
+        left: calc(50% - 300px - 25px);
+        background-color: $achievement-color;
+    }
+
+    99% {
+        width: 100px;
+        height: 80px;
+        left: calc(50% - 50px);
+        background-color: transparent;
+    }
+}
