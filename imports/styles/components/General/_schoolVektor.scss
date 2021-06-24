@@ -1,8 +1,39 @@
 .student__body {
   margin-top: 54px;
+  height: 100vh;
+  display: flex;
 }
-#SchoolOverview {
-  margin-top: 54px;
+
+#marker__zertifikate {
+  display: none;
+}
+
+#marker__notizenUndDaten {
+  display: none;
+}
+
+#marker__aktuellesLevel {
+  display: none;
+}
+
+#marker__zurueck {
+  display: none;
+}
+
+#marker__umfragen {
+  display: none;
+}
+
+#marker__lehrendenranking {
+  display: none;
+}
+
+#marker__bibliothek {
+  display: none;
+}
+
+#marker__leveluebersicht {
+  display: none;
 }
 
 #marker__aktuellesLevel__hover {
@@ -22,4 +53,19 @@
 }
 #Marker_Büro {
   cursor: pointer;
+}
+
+
+.roomSvg {
+  width: 900px;
+
+  display: block;
+  margin: auto;
+}
+
+#SchoolOverview {
+  width: 1200px;
+
+  display: block;
+  margin: auto;
 }

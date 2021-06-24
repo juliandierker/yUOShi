@@ -1,9 +1,10 @@
 /* General workpace css */
 #workspaceGrid {
-  width: 1080px !important;
-  height: 95vh !important;
+  width: 1080px;
+  height: 95vh;
   padding-top: 0;
   margin: auto;
+  margin-top: 0;
 }
 
 .workspace-container {
