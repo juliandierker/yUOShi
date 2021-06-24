@@ -2,7 +2,6 @@
   transition: 500ms;
   min-height: 16px;
   min-width: 16px;
-  height: "-webkit-fill-available";
   &.-right {
     margin-right: $sp-8;
   }
@@ -11,18 +10,40 @@
   }
   &.-tiny {
     width: 16px;
+    mask-size: 16px !important;
+    -webkit-mask-size: 16px !important;
   }
   &.-small {
     width: 24px;
+    mask-size: 24px !important;
+    -webkit-mask-size: 24px !important;
   }
   &.-medium {
     width: 32px;
+    mask-size: 32px !important;
+    -webkit-mask-size: 32px !important;
   }
   &.-big {
     width: 40px;
+    mask-size: 40px !important;
+    -webkit-mask-size: 40px !important;
   }
   &.-massive {
     width: 48px;
+    mask-size: 48px !important;
+    -webkit-mask-size: 48px !important;
+  }
+  &.-perc80 {
+    width: 80%;
+    height: inherit;
+
+    mask-size: 80% !important;
+    -webkit-mask-size: 80% !important;
+  }
+  &.-fill {
+    width: -webkit-fill-available;
+    mask-size: -webkit-fill-available !important;
+    -webkit-mask-size: -webkit-fill-available !important;
   }
   &.-clickable {
     cursor: pointer;
