@@ -10,13 +10,15 @@
   }
   &.-tiny {
     width: 16px;
-    mask-size: 16px !important;
-    -webkit-mask-size: 16px !important;
+    height: 16px;
+    // mask-size: 16px !important;
+    // -webkit-mask-size: 16px !important;
   }
   &.-small {
     width: 24px;
-    mask-size: 24px !important;
-    -webkit-mask-size: 24px !important;
+    height: 24px;
+    // mask-size: 24px !important;
+    // -webkit-mask-size: 24px !important;
   }
   &.-medium {
     width: 32px;
@@ -46,7 +48,8 @@
     -webkit-mask-size: -webkit-fill-available !important;
   }
   &.-huge {
-    width: 90px;
+    width: 110px;
+    height: 100%;
   }
   &.-clickable {
     cursor: pointer;

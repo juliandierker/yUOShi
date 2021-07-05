@@ -22,7 +22,7 @@ export default function StudentTopMenu() {
       <a onClick={() => setPage("teacherRoom")}>Lehrendenzimmer</a>
       <a onClick={() => setPage("office")}>Mein Büro</a>
       <div onClick={() => Meteor.logout(() => { })} className="logout-container">
-        <Icon name="logout" size="massive" color="white" />
+        <Icon name="logout" size="small" color="white" />
       </div>
     </div>
   )
