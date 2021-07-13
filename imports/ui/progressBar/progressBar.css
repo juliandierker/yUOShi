@@ -20,7 +20,7 @@ div {
 }
 
 .progressBar-header-name {
-  font-weight: bolder;
+  font-weight: bold;
   font-size: 22px;
   color: #fff;
 
@@ -42,7 +42,7 @@ div {
 }
 
 .progressBar-score {
-  font-weight: bolder;
+  font-weight: bold;
   
   margin: auto auto 0 auto;
   width: 140px;
