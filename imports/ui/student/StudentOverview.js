@@ -70,15 +70,18 @@ function RenderStudentOverview() {
     return <Loading loadingText={"Seite lädt..."} />;
   } else {
     return (
-      <div className="student__body">
+      <React.Fragment>
         <StudentTopMenu
           student={student}
           setLoggingOut={setLoggingOut}
           activeTutorial={activeTutorial}
         />
-        {renderRoutes()}
-        {activeTutorial && <TutorialComponent activeTutorial={activeTutorial} />}
-      </div>
+        <div className="student__body">
+          {renderRoutes()}
+          {activeTutorial && <TutorialComponent activeTutorial={activeTutorial} />}
+        </div>
+      </React.Fragment>
+
     );
   }
 }
