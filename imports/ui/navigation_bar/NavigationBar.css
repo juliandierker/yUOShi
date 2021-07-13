@@ -47,3 +47,29 @@
   font-size: 20px;
   line-height: 30px;
 }
+
+.navigation-button-submit-text {
+  position: absolute;
+  margin-top: 0px;
+  opacity: 1;
+  transition: margin-top .2s, opacity .2s;
+}
+
+
+.navigation-button:hover:enabled .navigation-button-submit-text {
+  margin-top: -20px;
+  opacity: 0;
+  transition: margin-top .2s, opacity .2s;
+}
+
+.navigation-button-submit-icon {
+  margin-bottom: -20px;
+  opacity: 0;
+  transition: margin-bottom .2s, opacity .2s;
+}
+
+.navigation-button:hover:enabled .navigation-button-submit-icon {
+  margin-bottom: 0;
+  opacity: 1;
+  transition: margin-bottom .2s, opacity .2s;
+}
