@@ -16,10 +16,11 @@ export const usePackagesContext = () => {
 };
 
 export const PackagesContextProvider = ({ children }) => {
-  const [currentPackage, setCurrentPackage] = useState(undefined);
   const [packages, setPackages] = useState(undefined);
-
+  const [currentPackage, setCurrentPackage] = useState(undefined);
+  const [learningObjectives, setLearningObjectives] = useState(undefined);
   const [packagesLoading, setPackagesLoading] = useState(true);
+
   const updatePackages = useCallback(async () => {
     setPackagesLoading(true);
 
@@ -29,16 +30,26 @@ export const PackagesContextProvider = ({ children }) => {
     setPackagesLoading(false);
   }, []);
 
+  const updateLearningObjectives = useCallback(async () => {
+    const learningObjectives = await PromisifiedMeteor.call(
+      "package.learningObjectives",
+      currentPackage.id
+    );
+    setLearningObjectives(learningObjectives);
+  }, [currentPackage]);
+
   useEffect(() => {
     updatePackages();
-  }, [updatePackages]);
+    updateLearningObjectives();
+  }, [updateLearningObjectives, updatePackages]);
 
   const ctx = {
     packages,
     packagesLoading,
     updatePackages,
     currentPackage,
-    setCurrentPackage
+    setCurrentPackage,
+    learningObjectives
   };
 
   return <PackagesContext.Provider value={ctx}>{children}</PackagesContext.Provider>;

@@ -5,8 +5,8 @@ import Icon from "../IconComponent/Icon";
 
 import "./progressBarItem.css";
 
-export default function ProgressBarItem({ data, highlighted, currentTask }) {
-  const { tasks, locked, name } = data;
+export default function ProgressBarItem({ station, highlighted, currentTask, setCurrentStation }) {
+  const { tasks, locked, name } = station;
   const [hover, setHover] = useState(false);
   const [hoverSubArea, setHoverSubArea] = useState(false);
 
@@ -31,14 +31,14 @@ export default function ProgressBarItem({ data, highlighted, currentTask }) {
           className="progressBar-sub-items"
           onMouseEnter={handleSubAreaEnter}
           onMouseLeave={handleSubAreaLeave}>
-          {tasks.map((data, index) => {
+          {tasks.map((station, index) => {
             return (
               <ProgressBarSubItem
                 key={"progressBarSubItem_" + index}
-                type={data.type}
-                id={data.id}
-                title={data.name}
-                highlighted={currentTask && data.id === currentTask.id}
+                type={station.type}
+                id={station.id}
+                title={station.name}
+                highlighted={currentTask && station.id === currentTask.id}
               />
             );
           })}
@@ -47,11 +47,11 @@ export default function ProgressBarItem({ data, highlighted, currentTask }) {
     );
   }, [currentTask?.id, tasks]);
 
-  const iconColor = hover || hoverSubArea || highlighted ? "white" : "black"
+  const iconColor = hover || hoverSubArea || highlighted ? "white" : "black";
 
-  let icon = <div />
-  icon = tasks && tasks.length != 0 ? ( <Icon name="bars" size="large" color={iconColor}/>) : icon
-  icon = locked ? <Icon name="lock-locked" size="large" color={iconColor}/> : icon
+  let icon = <div />;
+  icon = tasks && tasks.length != 0 ? <Icon name="bars" size="large" color={iconColor} /> : icon;
+  icon = locked ? <Icon name="lock-locked" size="large" color={iconColor} /> : icon;
 
   let pbClassname = highlighted ? "progressBar-item-highlighted" : "progressBar-item";
   if (hover || hoverSubArea) {
@@ -61,7 +61,11 @@ export default function ProgressBarItem({ data, highlighted, currentTask }) {
 
   return (
     <React.Fragment>
-      <div className={pbClassname} onMouseEnter={handleItemEnter} onMouseLeave={handleItemLeave}>
+      <div
+        className={pbClassname}
+        onMouseEnter={handleItemEnter}
+        onMouseLeave={handleItemLeave}
+        onClick={() => (station.tasks ? null : setCurrentStation(station))}>
         <span className="progressBar-item-name">{name}</span>
         <div className="progressBar-item-icon">{icon}</div>
       </div>

@@ -13,13 +13,13 @@ export const useTasksContext = () => {
   return ctx;
 };
 
-async function getContent(task) {
-  if (task.content) return await task.content.toArray();
+// async function getContent(task) {
+//   if (task.content) return await task.content.toArray();
 
-  if (task.categories) await task.categories.toArray();
+//   if (task.categories) await task.categories.toArray();
 
-  if (task.statements) await task.statements.toArray();
-}
+//   if (task.statements) await task.statements.toArray();
+// }
 
 function calculateScore(allSolutions) {
   return allSolutions.reduce((count, solution) => {
@@ -96,7 +96,7 @@ export const TasksContextProvider = ({ currentStation, children }) => {
 
   const jumpToTask = useCallback(async (id) => {
     for (let station of stations) {
-      let targetTask = station.tasks.find((taskItem) => taskItem.id === id);
+      let targetTask = station.tasks?.find((taskItem) => taskItem.id === id);
       if (targetTask) {
         targetTask = await PromisifiedMeteor.call("tasks.getTask", id);
         if (station.id != currentStation.id) {

@@ -15,7 +15,7 @@ export const useStationsContext = () => {
   return ctx;
 };
 
-export const StationsContextProvider = ({ currentPackageId, children }) => {
+export const StationsContextProvider = ({ learningObjectives, currentPackageId, children }) => {
   const [stations, setStations] = useState(undefined);
   const [currentStation, setCurrentStation] = useState(undefined);
   const [stationLoading, setstationLoading] = useState(true);
@@ -28,9 +28,14 @@ export const StationsContextProvider = ({ currentPackageId, children }) => {
     .indexOf(currentStation.id);
   const updateStations = useCallback(async () => {
     setstationLoading(true);
+
     let currentStations = await PromisifiedMeteor.call("package.getStations", currentPackageId);
+    currentStations = [{ title: "Intro", learningObjectives: learningObjectives }].concat(
+      currentStations
+    );
+
     for (let station of currentStations) {
-      station.tasks = station.tasks.buffer;
+      station.tasks = station.tasks?.buffer;
     }
     let tasks = [];
     if (currentStation) {

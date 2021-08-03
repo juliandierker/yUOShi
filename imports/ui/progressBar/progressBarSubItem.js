@@ -1,5 +1,5 @@
 /* eslint-disable react/prop-types */
-import React, { useState, useContext } from "react";
+import React, { useState } from "react";
 
 import Icon from "../IconComponent/Icon";
 import { useTasksContext } from "../student/TasksContext";
@@ -18,10 +18,10 @@ export default function ProgressBarSubItem({ title, type, highlighted, id }) {
     setHover(false);
   };
 
-  const iconName = (type !== "text" && type !== "tag") ? "checkmark" : "info"
-  const iconColor = (hover || highlighted) ? "black" : "white"
+  const iconName = type !== "text" && type !== "tag" ? "checkmark" : "info";
+  const iconColor = hover || highlighted ? "black" : "white";
 
-  const icon = <Icon name={iconName} size="large" color={iconColor} />
+  const icon = <Icon name={iconName} size="large" color={iconColor} />;
 
   let pbClassname = "progress-bar-sub-item";
   let pbIconClassname = "progress-bar-sub-item-icon";

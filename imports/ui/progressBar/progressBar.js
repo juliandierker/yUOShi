@@ -13,7 +13,15 @@ import Swal from "sweetalert2";
  * @returns {ReactElement | null}
  */
 export default function ProgressBar(props) {
-  const { currentPackage, stations, currentStation, currentTask, score } = props;
+  const {
+    currentPackage,
+    stations,
+    currentStation,
+    currentTask,
+    score,
+    jumpToTask,
+    setCurrentStation
+  } = props;
   const prevScore = usePrevious(score);
   let maxCredits = 0;
 
@@ -34,7 +42,7 @@ export default function ProgressBar(props) {
         return {
           name: station.title,
           id: station.id,
-          tasks: station.tasks.map((task) => {
+          tasks: station.tasks?.map((task) => {
             maxCredits += task.credits;
             return {
               name: task.title,
@@ -69,14 +77,16 @@ export default function ProgressBar(props) {
   const RenderStations = () => {
     return (
       <div className="progressBar-content">
-        {data.package.stations.map((data, index) => {
+        {data.package.stations.map((station, index) => {
           return (
             <ProgressBarItem
               key={"progressBarItem_" + index}
-              data={data}
+              station={station}
               index={index}
-              highlighted={data.id === currentStation.id}
+              highlighted={station.id === currentStation.id}
               currentTask={currentTask}
+              jumpToTask={jumpToTask}
+              setCurrentStation={setCurrentStation}
             />
           );
         })}
