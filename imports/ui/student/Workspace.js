@@ -89,16 +89,19 @@ const RenderTask = memo(({ task, updateTask }) => {
 
 const RenderWorkspace = () => {
   const { currentTask, currentTaskLoading, updateTask } = useTasksContext();
-  if (currentTaskLoading) {
+  const { currentPosition, stations } = useStationsContext();
+  if (!stations[0].learningObjectives || (currentTaskLoading && currentPosition > 0)) {
     return <Loading />;
+  } else if (currentPosition === 0) {
+    return <RenderIntro learningObjectives={stations[0].learningObjectives} />;
   }
   return <RenderTask task={currentTask} updateTask={updateTask} />;
 };
+
 const RenderProgressBar = () => {
   const { currentTask, score } = useTasksContext();
-  const { currentPackage, packagesLoading, packageTasks } = usePackagesContext();
-  const { stations, currentStation } = useStationsContext();
-  console.log(score);
+  const { currentPackage, packagesLoading, packageTasks, jumpToTask } = usePackagesContext();
+  const { stations, currentStation, setCurrentStation } = useStationsContext();
   return (
     <ProgressBar
       currentPackage={currentPackage}
@@ -109,6 +112,8 @@ const RenderProgressBar = () => {
       currentStation={currentStation}
       currentTask={currentTask}
       score={score}
+      setCurrentStation={setCurrentStation}
+      jumpToTask={jumpToTask}
     />
   );
 };

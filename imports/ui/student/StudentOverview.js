@@ -25,8 +25,7 @@ function RenderStudentOverview() {
   const [activeTutorial, setActiveTutorial] = useState(false);
   const prevStudent = usePrevious(student);
   let tutorial = tutorialCheck();
-  const { currentPackage } = usePackagesContext();
-
+  const { currentPackage, learningObjectives } = usePackagesContext();
   useEffect(() => {
     if (prevStudent && prevStudent.tutorials.length < student.tutorials.length) {
       setActiveTutorial(tutorialCheck(student, activeTutorial));
@@ -51,7 +50,9 @@ function RenderStudentOverview() {
       return <SchoolOverview tutorial={tutorial} />;
     } else if (page === "workspace") {
       return (
-        <StationsContextProvider currentPackageId={currentPackage.id}>
+        <StationsContextProvider
+          learningObjectives={learningObjectives}
+          currentPackageId={currentPackage.id}>
           <Workspace />
         </StationsContextProvider>
       );
