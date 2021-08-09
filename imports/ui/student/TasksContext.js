@@ -44,12 +44,21 @@ export const TasksContextProvider = ({ currentStation, children }) => {
   }, []);
 
   const getNextTask = useCallback(async () => {
+    if (currentStation.title === "Intro") {
+      return "nextStation";
+    }
+
     if (!currentTask || stationTasks.length === 0) return;
     const nextTaskIdx = stationTasks.findIndex((task) => task.id === currentTask.id) + 1;
-    if (nextTaskIdx === 0) return;
+
+    if (nextTaskIdx === 0) {
+      return;
+    }
+
     if (nextTaskIdx >= stationTasks.length) {
       return "nextStation";
     }
+
     try {
       setCurrentTaskLoading(true);
       const nextTask = await PromisifiedMeteor.call("tasks.getTask", stationTasks[nextTaskIdx].id);
