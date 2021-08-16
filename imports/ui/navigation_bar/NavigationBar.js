@@ -16,7 +16,10 @@ export default function NavigationBar() {
   const { getPrevTask, getNextTask, getSolution, currentTask } = useTasksContext();
   async function navigateNext() {
     if ((await getNextTask()) === "nextStation") {
+      console.log(stations);
       if (stations.length > currentPosition) {
+        console.log(stations[currentPosition + 1]);
+
         setCurrentStation(stations[currentPosition + 1]);
       }
     }
