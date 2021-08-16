@@ -37,38 +37,38 @@ const RenderDropdownInput = ({ name, answers }) => {
     return shuffle(
       answers.map((data, index) => {
         return {
-          ...data,
+          data,
           _key: `${name}-${index}`
-        }
+        };
       })
-    )
+    );
   }, [name, answers]);
 
   return (
     <select className="cloze-answers-dropdown" id={name} name={name}>
-      {options.map((option) => <option key={`${option._key}`} value={option.data}>
-        {option.data}
-      </option>)}
+      {options.map((option) => (
+        <option key={`${option._key}`} value={option.data}>
+          {option.data}
+        </option>
+      ))}
     </select>
   );
 };
 
 function RenderClozeContent({ content }) {
   const answers = useMemo(() => {
-    content.parts.map(({ id: answerString }) => {
-      if (answerString && name === "input") {
-        return answerString.split(";");
-      }
+    return content.parts
+      .map(({ id: answerString, name }) => {
+        if (answerString && name === "input") {
+          return answerString.split(";");
+        }
 
-      return []
-    }).reduce((acc, answers) => {
-      return [
-        ...acc,
-        ...answers,
-      ]
-    }, [])
-  }, [content])
-
+        return [];
+      })
+      .reduce((acc, answers) => {
+        return [...acc, ...answers];
+      }, []);
+  }, [content]);
   return content.parts.map(({ id: answerString, content: partContent, name }, index) => {
     return (
       <React.Fragment key={"cloze-content-" + index}>
@@ -114,7 +114,7 @@ export default function RenderCloze(props) {
     }
 
     setUserSolution(solutions);
-  }, [])
+  }, []);
 
   /** @type React.FormEventHandler<HTMLFormElement> */
   const onSubmit = useCallback(async () => {
@@ -163,7 +163,7 @@ export default function RenderCloze(props) {
       <form onChange={handleFormChange} id="cloze-form">
         <div className="cloze-text">
           {task.contents.map((content) => {
-            return <RenderClozeContent content={content} key={`content-${content.id}`} />
+            return <RenderClozeContent content={content} key={`content-${content.id}`} />;
           })}
         </div>
       </form>
