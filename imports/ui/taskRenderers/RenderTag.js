@@ -72,9 +72,9 @@ export default function RenderTag(props) {
             </div>
         </div>
         <div className="task-text-navigation">
-            <button className="task-text-navigation-button" onClick={() => handlePrevPage()}><Icon name="angle-left"></Icon></button>
+            <button className="task-text-navigation-button" onClick={() => handlePrevPage()}><Icon name="angle-left" color="white" /></button>
             <span className="task-text-navigation-text">Seite {currentPage + 1} von {maxPage + 1}</span>
-            <button className="task-text-navigation-button" onClick={() => handleNextPage()}><Icon name="angle-right"></Icon></button>
+            <button className="task-text-navigation-button" onClick={() => handleNextPage()}><Icon name="angle-right" color="white" /></button>
         </div>
     </>
 }
