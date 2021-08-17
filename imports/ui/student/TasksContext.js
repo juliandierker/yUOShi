@@ -44,8 +44,6 @@ export const TasksContextProvider = ({ currentStation, children }) => {
   }, []);
 
   const getNextTask = useCallback(async () => {
-    console.log("fire2");
-    console.log(currentStation);
     if (currentStation.title === "Intro") {
       return "nextStation";
     }
@@ -109,10 +107,8 @@ export const TasksContextProvider = ({ currentStation, children }) => {
   }, [currentStation, updateScore]);
 
   const jumpToTask = useCallback(async (id) => {
-    console.log(id);
     for (let station of stations) {
       let targetTask = station.tasks?.find((taskItem) => taskItem.id === id);
-      console.log(targetTask);
       if (targetTask) {
         targetTask = await PromisifiedMeteor.call("tasks.getTask", id);
         if (station.id != currentStation.id) {
