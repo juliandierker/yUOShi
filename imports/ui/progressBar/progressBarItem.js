@@ -66,6 +66,7 @@ export default function ProgressBarItem({ station, highlighted, currentTask, set
         onMouseEnter={handleItemEnter}
         onMouseLeave={handleItemLeave}
         onClick={() => (station.tasks ? null : setCurrentStation(station))}>
+        <div className="bubble bubble-green" />
         <span className="progressBar-item-name">{name}</span>
         <div className="progressBar-item-icon">{icon}</div>
       </div>

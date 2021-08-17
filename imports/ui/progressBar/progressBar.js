@@ -77,6 +77,9 @@ export default function ProgressBar(props) {
   const RenderStations = () => {
     return (
       <div className="progressBar-content">
+        <div className="progressBar-progress-border">
+          <div className="progressBar-progress" style={{width:"10%", backgroundColor: "#BBE55E"}}/>
+        </div>
         {data.package.stations.map((station, index) => {
           return (
             <ProgressBarItem

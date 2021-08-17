@@ -1,5 +1,5 @@
 .progressBar-item {
-  margin: 6px auto 0px 12px;
+  margin: 10px auto 0px 12px;
   width: 140px;
   height: 40px;
   cursor: pointer;
@@ -104,4 +104,23 @@
 
   height: auto;
   z-index: 100;
+}
+
+.bubble {
+  width: 8px; 
+  height: 7px;
+  border-radius: 12px;
+  margin-left: 5px;
+}
+
+.bubble-green {
+  background: #BBE55E 0% 0% no-repeat padding-box;
+}
+
+.bubble-yellow {
+  background: #E5D05E 0% 0% no-repeat padding-box;
+}
+
+.bubble-orange {
+  background: #E5825E 0% 0% no-repeat padding-box;
 }
