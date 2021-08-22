@@ -128,6 +128,7 @@ export default function RenderCloze(props) {
 
       solutions[id][inputId] = value;
     }
+    console.log(task);
     const result = await PromisifiedMeteor.call(
       "tasks.checkCloze",
       task.id,
