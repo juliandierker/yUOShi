@@ -72,9 +72,9 @@ export default function RenderText(props) {
             </div>
         </div>
         <div className="task-text-navigation">
-            <button className="task-text-navigation-button" onClick={() => handlePrevPage()}><Icon name="angle-left" color="white" /></button>
+            {(currentPage !== 0 && <button className="task-text-navigation-button" onClick={() => handlePrevPage()}><Icon name="angle-left" color="white" /></button>) || <div className="task-text-navigation-button-placeholder" />}
             <span className="task-text-navigation-text">Seite {currentPage + 1} von {maxPage + 1}</span>
-            <button className="task-text-navigation-button" onClick={() => handleNextPage()}><Icon name="angle-right" color="white" /></button>
+            {(currentPage !== maxPage && <button className="task-text-navigation-button" onClick={() => handleNextPage()}><Icon name="angle-right" color="white" /></button>) || <div className="task-text-navigation-button-placeholder" />}
         </div>
     </>
 }

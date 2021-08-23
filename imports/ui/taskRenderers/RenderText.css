@@ -61,3 +61,10 @@
   border-color: #FFFFFF29;
   border-radius: 44px;
 }
+
+.task-text-navigation-button-placeholder {
+  width: 52px;
+  height: 23px;
+
+  margin: auto;
+}
