@@ -62,6 +62,7 @@ const RenderTask = memo(({ task, updateTask }) => {
     return (
       <div className="text-workspace">
         <div className="workspace-text-title">{task.title}</div>
+        <div className="workspace-text-description">{task.description}</div>
         {taskRenderer}
       </div>
     );

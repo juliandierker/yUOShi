@@ -48,8 +48,10 @@
   margin: auto;
   width: 52px;
   height: 23px;
-  background: #F6F6F5 0% 0% no-repeat padding-box;
+  color: #FFFFFF;
+  background: #6A96E2 0% 0% no-repeat padding-box;
   box-shadow: 0px 1px 1px #00000029;
+  border: none;
   border-color: #FFFFFF29;
   border-radius: 44px;
 }
