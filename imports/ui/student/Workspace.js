@@ -9,7 +9,7 @@ import { useStationsContext } from "./StationsContext";
 
 import RenderQuest from "../taskRenderers/RenderQuestTask";
 import RenderDrag from "../taskRenderers/RenderDrag";
-import RenderTag from "../taskRenderers/RenderTag";
+import RenderText from "../taskRenderers/RenderText";
 import RenderCard from "../taskRenderers/RenderCard";
 import RenderCloze from "../taskRenderers/RenderCloze";
 import RenderTraining from "../taskRenderers/RenderTraining";
@@ -40,7 +40,7 @@ const RenderTask = memo(({ task, updateTask }) => {
       taskRenderer = <RenderDrag task={task} />;
       break;
     case "tag":
-      taskRenderer = <RenderTag task={task} />;
+      taskRenderer = <RenderText task={task} />;
       break;
     case "card":
       taskRenderer = <RenderCard task={task} />;

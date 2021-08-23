@@ -2,10 +2,10 @@ import React, { useMemo, useState } from "react"
 import { StaticTag } from "@xyng/yuoshi-backend-adapter";
 import Icon from "../IconComponent/Icon"
 
-import "./RenderTag.css"
+import "./RenderText.css"
 
 /**
- * @typedef RenderTagProps
+ * @typedef RenderTextProps
  * @property {StaticTag} task
  * @property {Function} updateTask
  */
@@ -13,10 +13,10 @@ import "./RenderTag.css"
 /**
  * Render a MultiTask
  *
- * @param {RenderTagProps} props
+ * @param {RenderTextProps} props
  * @returns {ReactElement|null}
  */
-export default function RenderTag(props) {
+export default function RenderText(props) {
     // destructure here and not in function-params so we get type-hints
     const { task, updateTask } = props
     const [currentPage, setCurrentPage] = useState(0)
