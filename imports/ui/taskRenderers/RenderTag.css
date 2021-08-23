@@ -30,7 +30,13 @@
   font-size: 16px;
   line-height: 19px;
 
-  white-space: pre-line
+  white-space: pre-line;
+
+  hyphens: auto;
+
+  display: flex;
+  text-align: justify;
+
 }
 
 .task-text-navigation {
