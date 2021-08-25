@@ -1,5 +1,4 @@
 import React, { useCallback, useState, useEffect, useMemo } from "react";
-import { StaticCloze } from "@xyng/yuoshi-backend-adapter";
 import PromisifiedMeteor from "../../api/promisified";
 
 import Swal from "sweetalert2";
@@ -55,11 +54,11 @@ const RenderDropdownInput = ({ name, answers }) => {
   );
 };
 
-function RenderClozeContent({ content }) {
+const RenderClozeContent = ({ content }) => {
   const answers = useMemo(() => {
-    return content.parts
-      .map(({ id: answerString, name }) => {
-        if (answerString && name === "input") {
+    return content.values
+      .map((answerString) => {
+        if (answerString) {
           return answerString.split(";");
         }
 
@@ -69,14 +68,15 @@ function RenderClozeContent({ content }) {
         return [...acc, ...answers];
       }, []);
   }, [content]);
-  return content.parts.map(({ id: answerString, content: partContent, name }, index) => {
+
+  return content.parts.map(({ id: inputId, content: partContent, name }, index) => {
     return (
       <React.Fragment key={"cloze-content-" + index}>
         <span>{partContent}</span>
         {answers.length > 0 && (
-          <RenderDropdownInput name={content.id + "-" + index} answers={answers} />
+          <RenderDropdownInput name={content.id + "-" + inputId} answers={answers} />
         )}
-        {name === "image" && answerString && <img alt={"Image " + index} />}
+        {name === "image" && inputId && <img alt={"Image " + index} />}
       </React.Fragment>
     );
   });
