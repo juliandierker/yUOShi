@@ -64,9 +64,7 @@ const RenderClozeContent = ({ content }) => {
 
         return [];
       })
-      .reduce((acc, answers) => {
-        return [...acc, ...answers];
-      }, []);
+      .flat();
   }, [content]);
 
   return content.parts.map(({ id: inputId, content: partContent, name }, index) => {
@@ -80,7 +78,7 @@ const RenderClozeContent = ({ content }) => {
       </React.Fragment>
     );
   });
-}
+};
 
 RenderClozeContent.propTypes = {
   content: PropTypes.shape({
@@ -128,7 +126,7 @@ export default function RenderCloze(props) {
 
       solutions[id][inputId] = value;
     }
-    console.log(task);
+
     const result = await PromisifiedMeteor.call(
       "tasks.checkCloze",
       task.id,
