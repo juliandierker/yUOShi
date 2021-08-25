@@ -1,10 +1,10 @@
-import React, { useCallback, useState, useEffect } from "react";
-import { StaticCloze } from "@xyng/yuoshi-backend-adapter";
+import React, { useCallback, useState, useEffect, useMemo } from "react";
 import PromisifiedMeteor from "../../api/promisified";
 
 import Swal from "sweetalert2";
 import { useTasksContext } from "../student/TasksContext";
 import "./RenderCloze.css";
+import * as PropTypes from "prop-types";
 
 // Fisher--Yates shuffle Algorithm
 const shuffle = (array) => {
@@ -28,6 +28,67 @@ const shuffle = (array) => {
 /**
  * Render a Cloze-Task
  *
+ * @param {{name: string, answers: any[]}} props
+ * @returns {React.ReactElement|null}
+ */
+const RenderDropdownInput = ({ name, answers }) => {
+  const options = useMemo(() => {
+    return shuffle(
+      answers.map((data, index) => {
+        return {
+          data,
+          _key: `${name}-${index}`
+        };
+      })
+    );
+  }, [name, answers]);
+
+  return (
+    <select className="cloze-answers-dropdown" id={name} name={name}>
+      {options.map((option) => (
+        <option key={`${option._key}`} value={option.data}>
+          {option.data}
+        </option>
+      ))}
+    </select>
+  );
+};
+
+const RenderClozeContent = ({ content }) => {
+  const answers = useMemo(() => {
+    return content.values
+      .map((answerString) => {
+        if (answerString) {
+          return answerString.split(";");
+        }
+
+        return [];
+      })
+      .flat();
+  }, [content]);
+
+  return content.parts.map(({ id: inputId, content: partContent, name }, index) => {
+    return (
+      <React.Fragment key={"cloze-content-" + index}>
+        <span>{partContent}</span>
+        {answers.length > 0 && (
+          <RenderDropdownInput name={content.id + "-" + inputId} answers={answers} />
+        )}
+        {name === "image" && inputId && <img alt={"Image " + index} />}
+      </React.Fragment>
+    );
+  });
+};
+
+RenderClozeContent.propTypes = {
+  content: PropTypes.shape({
+    parts: PropTypes.arrayOf(PropTypes.any)
+  })
+};
+
+/**
+ * Render a Cloze-Task
+ *
  * @param {RenderClozeProps} props
  * @returns {React.ReactElement|null}
  */
@@ -37,7 +98,7 @@ export default function RenderCloze(props) {
   const [userSolution, setUserSolution] = useState({});
   const [done, setDone] = useState(false);
 
-  function handleFormChange(event) {
+  const handleFormChange = useCallback((event) => {
     event.preventDefault();
     const formData = new FormData(event.currentTarget);
     const formEntries = formData.entries();
@@ -49,11 +110,9 @@ export default function RenderCloze(props) {
 
       solutions[id][inputId] = value;
     }
+
     setUserSolution(solutions);
-  }
-  useEffect(() => {
-    setSolution(() => onSubmit);
-  }, [userSolution]);
+  }, []);
 
   /** @type React.FormEventHandler<HTMLFormElement> */
   const onSubmit = useCallback(async () => {
@@ -67,6 +126,7 @@ export default function RenderCloze(props) {
 
       solutions[id][inputId] = value;
     }
+
     const result = await PromisifiedMeteor.call(
       "tasks.checkCloze",
       task.id,
@@ -93,44 +153,16 @@ export default function RenderCloze(props) {
     setDone(true);
   }, [task]);
 
-  const RenderDropdownInput = ({ name, answers }) => {
-    let options = shuffle(
-      answers.map((data, index) => {
-        return (
-          <option key={"answer-" + name + "-" + index} value={data}>
-            {data}
-          </option>
-        );
-      })
-    );
-
-    return (
-      <select className="cloze-answers-dropdown" id={name} name={name}>
-        {options}
-      </select>
-    );
-  };
+  useEffect(() => {
+    setSolution(() => onSubmit);
+  }, [setSolution, userSolution, onSubmit]);
 
   return (
     <div className="cloze-container">
       <form onChange={handleFormChange} id="cloze-form">
         <div className="cloze-text">
           {task.contents.map((content) => {
-            return content.parts.map(({ id: answerString, content: partContent, name }, index) => {
-              let answers = [];
-              if (answerString && name === "input") {
-                answers = answerString.split(";");
-              }
-              return (
-                <React.Fragment key={"cloze-content-" + index}>
-                  <span>{partContent}</span>
-                  {answers.length > 0 && (
-                    <RenderDropdownInput name={content.id + "-" + index} answers={answers} />
-                  )}
-                  {name === "image" && answerString && <img alt={"Image " + index} />}
-                </React.Fragment>
-              );
-            });
+            return <RenderClozeContent content={content} key={`content-${content.id}`} />;
           })}
         </div>
       </form>
