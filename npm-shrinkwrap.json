@@ -6776,6 +6776,11 @@
         }
       }
     },
+    "react-meteor-hooks": {
+      "version": "0.3.1",
+      "resolved": "https://registry.npmjs.org/react-meteor-hooks/-/react-meteor-hooks-0.3.1.tgz",
+      "integrity": "sha512-HRpoG3ulHpL2YexQH2uzpvLUFBAZ2MCTfxDHdQF+Fa03E7EgZyPy8khnmOIQU0wKI+DgXyueGUAC9nV5zK5nuA=="
+    },
     "react-pdf": {
       "version": "4.0.5",
       "resolved": "https://registry.npmjs.org/react-pdf/-/react-pdf-4.0.5.tgz",
