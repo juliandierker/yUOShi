@@ -20,10 +20,12 @@ export default function ProgressBar(props) {
     currentTask,
     score,
     jumpToTask,
-    setCurrentStation
+    setCurrentStation,
+    userSolutions
   } = props;
   const prevScore = usePrevious(score);
   let maxCredits = 0;
+
 
   useEffect(() => {
     if (prevScore && score > prevScore) {
@@ -81,6 +83,19 @@ export default function ProgressBar(props) {
           <div className="progressBar-progress" style={{ width: `${(score / maxCredits) * 100}%`, backgroundColor: "#BBE55E" }} />
         </div>
         {data.package.stations.map((station, index) => {
+
+          console.log(station, userSolutions);
+          // WIE KANN MAN BITTE SO DUMM SEIN UND NICHT DIE FUCKING TASKID FÜR EINE USERTASKSOLUTION MITGEBEN!!! EINFACH NUR DUMM!!!!!
+          const filteredUserSolutions = station.tasks?.map(task => {
+            const test = userSolutions.find(sol => {
+              console.log(sol.id, task.id)
+              return sol.id === task.id;
+            })
+
+            return userSolutions.filter(sol => (sol.id === task.id))
+          })
+
+          // console.log(filteredUserSolutions)
           return (
             <ProgressBarItem
               key={"progressBarItem_" + index}
@@ -90,6 +105,7 @@ export default function ProgressBar(props) {
               currentTask={currentTask}
               jumpToTask={jumpToTask}
               setCurrentStation={setCurrentStation}
+              userSolutions={userSolutions}
             />
           );
         })}

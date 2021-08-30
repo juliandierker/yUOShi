@@ -100,7 +100,7 @@ const RenderWorkspace = () => {
 };
 
 const RenderProgressBar = () => {
-  const { currentTask, score } = useTasksContext();
+  const { currentTask, score, userSolutions } = useTasksContext();
   const { currentPackage, packagesLoading, packageTasks, jumpToTask } = usePackagesContext();
   const { stations, currentStation, setCurrentStation } = useStationsContext();
   return (
@@ -115,6 +115,7 @@ const RenderProgressBar = () => {
       score={score}
       setCurrentStation={setCurrentStation}
       jumpToTask={jumpToTask}
+      userSolutions={userSolutions}
     />
   );
 };
