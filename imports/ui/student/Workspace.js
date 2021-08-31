@@ -1,29 +1,22 @@
-import React, { memo } from "react";
 import PropTypes from "prop-types";
-
+import React, { memo, useEffect } from "react";
 import { Grid } from "semantic-ui-react";
-
-import { TasksContextProvider, useTasksContext } from "./TasksContext";
-import { usePackagesContext } from "./PackagesContext";
-import { useStationsContext } from "./StationsContext";
-
-import RenderQuest from "../taskRenderers/RenderQuestTask";
-import RenderDrag from "../taskRenderers/RenderDrag";
-import RenderText from "../taskRenderers/RenderText";
-import RenderCard from "../taskRenderers/RenderCard";
-import RenderCloze from "../taskRenderers/RenderCloze";
-import RenderTraining from "../taskRenderers/RenderTraining";
-import RenderMemory from "../taskRenderers/RenderMemory";
-import RenderIntro from "../taskRenderers/RenderIntro";
-import RenderOutro from "../taskRenderers/RenderOutro";
-
+import Icon from "../IconComponent/Icon";
+import Loading from "../Loading";
 import NavigationBar from "../navigation_bar/NavigationBar";
 import ProgressBar from "../progressBar/progressBar";
-
-import Icon from "../IconComponent/Icon";
-
+import RenderCard from "../taskRenderers/RenderCard";
+import RenderCloze from "../taskRenderers/RenderCloze";
+import RenderDrag from "../taskRenderers/RenderDrag";
+import RenderIntro from "../taskRenderers/RenderIntro";
+import RenderMemory from "../taskRenderers/RenderMemory";
+import RenderQuest from "../taskRenderers/RenderQuestTask";
+import RenderText from "../taskRenderers/RenderText";
+import RenderTraining from "../taskRenderers/RenderTraining";
+import { usePackagesContext } from "./PackagesContext";
+import { useStationsContext } from "./StationsContext";
+import { TasksContextProvider, useTasksContext } from "./TasksContext";
 import "./workspace.css";
-import Loading from "../Loading";
 
 // eslint-disable-next-line react/display-name
 const RenderTask = memo(({ task, updateTask }) => {
@@ -91,6 +84,15 @@ const RenderTask = memo(({ task, updateTask }) => {
 const RenderWorkspace = () => {
   const { currentTask, currentTaskLoading, updateTask } = useTasksContext();
   const { currentPosition, stations } = useStationsContext();
+  const { currentPackage } = usePackagesContext();
+
+  useEffect(() => {
+    return () => {
+      Meteor.call("packagesCache.insert", currentPackage.id);
+    };
+  }, [currentPackage.id]);
+
+  console.log(stations, currentTask, currentPosition)
   if (!stations[0].learningObjectives || (currentTaskLoading && currentPosition > 0)) {
     return <Loading />;
   } else if (currentPosition === 0) {
@@ -120,7 +122,14 @@ const RenderProgressBar = () => {
 };
 
 const Workspace = () => {
-  const { stations, currentStation } = useStationsContext();
+  const { stations, currentStation, cachedPackageId } = useStationsContext();
+  const { currentPackage, updateCurrentPackage } = usePackagesContext();
+
+  if (!currentPackage) {
+    updateCurrentPackage(cachedPackageId);
+    // return <Loading />;
+  }
+
   return (
     <React.Fragment>
       <Grid id="workspaceGrid">

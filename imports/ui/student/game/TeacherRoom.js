@@ -1,19 +1,16 @@
-import React, { useContext, useEffect } from "react";
-import { GameContext } from "../StudentContextProvider.js";
-import { TeacherRoomVektor } from "../vektors/TeacherRoomVektor.js";
-
+import React, { useEffect } from "react";
 import Swal from "sweetalert2";
 import withReactContent from "sweetalert2-react-content";
+import { browserHistory } from "../../../routes/Routes.js";
+import { TeacherRoomVektor } from "../vektors/TeacherRoomVektor.js";
 
 const MySwal = withReactContent(Swal);
 
 export default function TeacherRoom() {
-  const { setPage } = useContext(GameContext);
-
   useEffect(() => {
     const back_elem = document.getElementById("marker__zurueck__hover");
-    back_elem?.addEventListener("click", () => setPage("schoolOverview")); 
-  }, [])
+    back_elem?.addEventListener("click", () => browserHistory.push("/student"));
+  }, []);
 
   return <TeacherRoomVektor />;
 }

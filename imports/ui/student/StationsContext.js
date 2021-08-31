@@ -1,6 +1,7 @@
 import React, { createContext, useCallback, useContext, useEffect, useState } from "react";
 import PromisifiedMeteor from "../../api/promisified";
-
+import { useTracker } from "react-meteor-hooks";
+import { PackagesCache } from "../../api/packageCache";
 const StationsContext = createContext(null);
 
 export const useStationsContext = () => {
@@ -16,20 +17,28 @@ export const useStationsContext = () => {
 };
 
 export const StationsContextProvider = ({ learningObjectives, currentPackageId, children }) => {
+  const cachedPackageId = useTracker(() => {
+    Meteor.subscribe("cachedPackagesByUser");
+    return PackagesCache.findOne({})?.packageId;
+  }, [Meteor.userId()]);
   const [stations, setStations] = useState(undefined);
   const [currentStation, setCurrentStation] = useState(undefined);
   const [stationLoading, setstationLoading] = useState(true);
   const [stationTasks, setStationsTasks] = useState([]);
 
   const currentPosition = stations
-    ?.map(function(station) {
+    ?.map(function (station) {
       return station.id;
     })
     .indexOf(currentStation.id);
   const updateStations = useCallback(async () => {
     setstationLoading(true);
 
-    let currentStations = await PromisifiedMeteor.call("package.getStations", currentPackageId);
+    let currentStations = await PromisifiedMeteor.call(
+      "package.getStations",
+      currentPackageId ?? cachedPackageId
+    );
+
     currentStations = [{ title: "Intro", learningObjectives: learningObjectives }].concat(
       currentStations
     );
@@ -55,6 +64,7 @@ export const StationsContextProvider = ({ learningObjectives, currentPackageId, 
   }, [updateStations]);
   const ctx = {
     stationLoading,
+    cachedPackageId,
     updateStations,
     stations,
     currentStation,

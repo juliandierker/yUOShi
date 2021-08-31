@@ -21,16 +21,32 @@ export const PackagesContextProvider = ({ children }) => {
   const [learningObjectives, setLearningObjectives] = useState(undefined);
   const [packagesLoading, setPackagesLoading] = useState(true);
 
+  const updateCurrentPackage = useCallback(
+    async (packageId) => {
+      if (!currentPackage) {
+        if (packageId) {
+          setCurrentPackage(packages.find((targetPackage) => targetPackage.id === packageId));
+        } else {
+          setCurrentPackage(packages[0])
+        }
+      }
+      setPackagesLoading(false);
+    },
+    [currentPackage, packages]
+  );
+
   const updatePackages = useCallback(async () => {
     setPackagesLoading(true);
 
     const packages = await PromisifiedMeteor.call("package.getAll");
-
     setPackages(packages);
     setPackagesLoading(false);
   }, []);
 
   const updateLearningObjectives = useCallback(async () => {
+    console.log(currentPackage)
+    if (!currentPackage) return;
+
     const learningObjectives = await PromisifiedMeteor.call(
       "package.learningObjectives",
       currentPackage.id
@@ -49,6 +65,7 @@ export const PackagesContextProvider = ({ children }) => {
     updatePackages,
     currentPackage,
     setCurrentPackage,
+    updateCurrentPackage,
     learningObjectives
   };
 
