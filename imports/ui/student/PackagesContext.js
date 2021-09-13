@@ -44,7 +44,6 @@ export const PackagesContextProvider = ({ children }) => {
   }, []);
 
   const updateLearningObjectives = useCallback(async () => {
-    console.log(currentPackage)
     if (!currentPackage) return;
 
     const learningObjectives = await PromisifiedMeteor.call(

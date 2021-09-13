@@ -55,6 +55,12 @@
   opacity: 1;
 
   margin-bottom: 5px;
+  &.-correct{
+    background-color: green;
+  }
+  &.-incorrect{
+    background-color: red;
+  }
 }
 
 .card p {
