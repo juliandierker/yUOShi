@@ -58,6 +58,12 @@
   opacity: 1;
 
   margin-bottom: 5px;
+  &.-correct{
+    background-color: #66ab8c !important;
+  }
+  &.-incorrect{
+    background-color: #f53240 !important;
+  }
 }
 
 .card p {

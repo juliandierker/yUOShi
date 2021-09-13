@@ -5,6 +5,7 @@ import DragDropViewNormal from "./DragDropView/DragDropViewNormal";
 import PromisifiedMeteor from "../../api/promisified";
 import Swal from "sweetalert2";
 import { useTasksContext } from "../student/TasksContext";
+import classnames from "classnames";
 
 /**
  * Shuffle given array using the Fisher-Yates shuffle
@@ -149,18 +150,24 @@ function RenderDrag(props) {
             className: "card-container"
           },
           children: category.items.map((statement, index) => {
-            const correctAnswer = correctAnswers.find((ans) => ans.id === statement.id);
 
-            const noAnswer = !solutions && !correctAnswer;
-            const isCorrect =
-              correctAnswer && correctAnswer.is_correct && correctAnswer.sort === index;
-            const isPartiallyCorrect = correctAnswer && correctAnswer.is_correct;
+            const correctAnswer = correctAnswers.find((ans) => ans.id === statement.id);
+            // const noAnswer = !solutions && !correctAnswer;
+            const isCorrectAnswer = correctAnswer && correctAnswer.is_correct
+            // maybe needed for maslow-type 
+            // const isCorrectSort = correctAnswer && correctAnswer.sort === index
+
+            const _className = classnames("card", {
+              ["-correct"]: solutions && isCorrectAnswer,
+              ["-incorrect"]: solutions && !isCorrectAnswer
+            })
 
             return {
               type: "draggable",
               id: statement.id,
               props: {
-                className: "card",
+
+                className: _className,
                 id: `statement-${statement.id}`
               },
               data: statement.text
@@ -255,7 +262,8 @@ function RenderDrag(props) {
       confirmButtonText: "Lösung zeigen",
       cancelButtonText: "Nochmal versuchen",
       cancelButtonColor: "#3085d6",
-      showCancelButton: true
+      showCancelButton: true,
+      allowOutsideClick: false
     });
 
     if (showSolution) {
