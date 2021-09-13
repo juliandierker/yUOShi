@@ -1,13 +1,9 @@
-import React, { useContext } from "react";
-
-import { GameContext } from "./StudentContextProvider";
-import Icon from "../IconComponent/Icon"
-
-import "./StudentTopMenu.css"
+import React from "react";
+import { browserHistory } from "../../routes/Routes";
+import Icon from "../IconComponent/Icon";
+import "./StudentTopMenu.css";
 
 export default function StudentTopMenu() {
-  const { setPage } = useContext(GameContext);
-
   function returnUser() {
     return Meteor.user() ? Meteor.user().username : "";
   }
@@ -17,13 +13,13 @@ export default function StudentTopMenu() {
       <div className="logo-container">
         <Icon name="horizontalLogoYuoshiblau" size="huge" color="white" />
       </div>
-      <a onClick={() => setPage("schoolOverview")}>Schulübersicht</a>
-      <a onClick={() => setPage("classroom")}>Klassenzimmer</a>
-      <a onClick={() => setPage("teacherRoom")}>Lehrendenzimmer</a>
-      <a onClick={() => setPage("office")}>Mein Büro</a>
-      <div onClick={() => Meteor.logout(() => { })} className="logout-container">
+      <a onClick={() => browserHistory.push("/student")}>Schulübersicht</a>
+      <a onClick={() => browserHistory.push("/student/classroom")}>Klassenzimmer</a>
+      <a onClick={() => browserHistory.push("/student/teacherRoom")}>Lehrendenzimmer</a>
+      <a onClick={() => browserHistory.push("/student/office")}>Mein Büro</a>
+      <div onClick={() => Meteor.logout(() => {})} className="logout-container">
         <Icon name="logout" size="small" color="white" />
       </div>
     </div>
-  )
+  );
 }

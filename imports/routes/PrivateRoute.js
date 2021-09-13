@@ -5,8 +5,8 @@ import { Roles } from "meteor/alanning:roles";
 import Loading from "../ui/Loading";
 
 const DefaultRoutes = {
-  student: "/student/studentoverview",
-  teacher: "/teacher/teacheroverview",
+  student: "/student",
+  teacher: "/student",
   yadmin: "/yadmin"
 };
 const PrivateRoute = ({ component: Component, path, ...rest }) => {
@@ -22,7 +22,7 @@ const PrivateRoute = ({ component: Component, path, ...rest }) => {
             role === "student" &&
             !(
               matchPath(location.pathname, {
-                path: "/student/studentoverview/"
+                path: "/student"
               }) ||
               matchPath(location.pathname, {
                 path: "/student/game"
@@ -45,6 +45,21 @@ const PrivateRoute = ({ component: Component, path, ...rest }) => {
             !(
               matchPath(location.pathname, {
                 path: "/teacher/TeacherOverview/"
+              }) ||
+              matchPath(location.pathname, {
+                path: "/student/workspace"
+              }) ||
+              matchPath(location.pathname, {
+                path: "/student/classroom"
+              }) ||
+              matchPath(location.pathname, {
+                path: "/student/teacherRoom"
+              }) ||
+              matchPath(location.pathname, {
+                path: "/student/office"
+              }) ||
+              matchPath(location.pathname, {
+                path: "/student"
               }) ||
               matchPath(location.pathname, {
                 path: "/teacher/:class/trackoverview"

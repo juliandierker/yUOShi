@@ -1,18 +1,14 @@
 import { Meteor } from "meteor/meteor";
 import { Roles } from "meteor/alanning:roles";
 
-/* Referenz auf Collection-Api, weil wir nicht direkt in Server schreiben dürfen */
 import { Accounts } from "meteor/accounts-base";
-
-import "../imports/api/tokens";
-
-// server-only methods (can be called in client, but the client does not get their code)
 import "./api/courses";
 import "./api/users";
 import "./api/packages";
 import "./api/tasks";
 import "./api/stations";
 import "./api/learningObjectives";
+import "../imports/api/packageCache";
 
 ServiceConfiguration.configurations.upsert(
   { service: "studip" },

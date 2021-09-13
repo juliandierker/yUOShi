@@ -1,24 +1,13 @@
-import React, { useEffect, useState, useContext, useRef } from "react";
 import PropTypes from "prop-types";
-import { GameContext } from "../StudentContextProvider";
-
-import { Tracker } from "meteor/tracker";
-import Loading from "../../Loading";
-import { Button, Card, Image } from "semantic-ui-react";
-import { Dropdown, Icon, Menu, Segment, Grid } from "semantic-ui-react";
-import { TutorialHandler } from "../../tutorials/TutorialHandler.js";
-
-import StudentTopMenu from "../StudentTopMenu";
-import SchoolVektor from "../vektors/SchoolVektor";
-import TutorialComponent from "../../tutorials/TutorialComponent.js";
+import React, { useEffect } from "react";
 import Swal from "sweetalert2";
 import withReactContent from "sweetalert2-react-content";
+import { browserHistory } from "../../../routes/Routes";
+import SchoolVektor from "../vektors/SchoolVektor";
 
 const MySwal = withReactContent(Swal);
 
-export default function SchoolOverview() {
-  const { setPage } = useContext(GameContext);
-
+export default function SchoolOverview(props) {
   useEffect(() => {
     initVektorElements();
   });
@@ -33,13 +22,13 @@ export default function SchoolOverview() {
     const office_elem_hover = document.getElementById("marker__buero__hover");
 
     class_elem_hover?.addEventListener("click", function() {
-      setPage("classroom");
+      browserHistory.push("/student/classroom");
     });
     teacher_elem_hover?.addEventListener("click", function() {
-      setPage("teacherRoom");
+      browserHistory.push("/student/teacherRoom");
     });
     office_elem_hover?.addEventListener("click", function() {
-      setPage("office");
+      browserHistory.push("/student/office");
     });
   }
 
@@ -49,6 +38,4 @@ export default function SchoolOverview() {
   return <div id="SchoolOverview">{renderSchoolFloor()}</div>;
 }
 
-SchoolOverview.propTypes = {
-  tasks: PropTypes.array
-};
+SchoolOverview.propTypes = {};

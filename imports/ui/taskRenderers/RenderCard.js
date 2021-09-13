@@ -1,7 +1,6 @@
 import React, { useCallback, useState } from "react";
 // import { StaticCard } from "@xyng/yuoshi-backend-adapter";
 import PromisifiedMeteor from "../../api/promisified";
-import FullEditor from "../tasks/texteditor/FullEditor";
 import { Button, Grid, GridColumn, GridRow } from "semantic-ui-react";
 import "./RenderCard.css";
 import Swal from "sweetalert2";
@@ -72,11 +71,12 @@ export default function RenderTag(props) {
                 <p>{topic.content}</p>
 
                 <h3>Definition:</h3>
-                <FullEditor
+                {/* TODO: we add quill */}
+                {/* <FullEditor
                   name="example"
                   onChange={onChangeTopicText(topic.id)}
                   value={topicSolution}
-                />
+                /> */}
               </GridColumn>
             );
           })}
