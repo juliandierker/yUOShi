@@ -9,6 +9,8 @@
 .card-scene {
   overflow-x: auto;
   overflow-y: auto;
+  height: 106%;
+  width: 102%;
 }
 
 .card-column-header {
