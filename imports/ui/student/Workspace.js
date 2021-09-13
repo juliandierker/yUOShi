@@ -92,7 +92,6 @@ const RenderWorkspace = () => {
     };
   }, [currentPackage.id]);
 
-  console.log(stations, currentTask, currentPosition)
   if (!stations[0].learningObjectives || (currentTaskLoading && currentPosition > 0)) {
     return <Loading />;
   } else if (currentPosition === 0) {

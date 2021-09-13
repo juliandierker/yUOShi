@@ -2,7 +2,7 @@ import React, { useCallback } from "react";
 import PropTypes from "prop-types"
 import { Container, Draggable } from "react-smooth-dnd";
 
-import "./DragDropViewNormal.css"
+import "./DragDropViewNormal.scss"
 
 /**
  * @typedef Card
