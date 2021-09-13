@@ -150,16 +150,16 @@ function RenderDrag(props) {
             className: "card-container"
           },
           children: category.items.map((statement, index) => {
-            const correctAnswer = correctAnswers.find((ans) => ans.id === statement.id);
 
-            const noAnswer = !solutions && !correctAnswer;
+            const correctAnswer = correctAnswers.find((ans) => ans.id === statement.id);
+            // const noAnswer = !solutions && !correctAnswer;
             const isCorrectAnswer = correctAnswer && correctAnswer.is_correct
             // maybe needed for maslow-type 
             // const isCorrectSort = correctAnswer && correctAnswer.sort === index
 
             const _className = classnames("card", {
-              ["-correct"]: isCorrectAnswer,
-              ["-incorrect"]: !isCorrectAnswer
+              ["-correct"]: solutions && isCorrectAnswer,
+              ["-incorrect"]: solutions && !isCorrectAnswer
             })
 
             return {
