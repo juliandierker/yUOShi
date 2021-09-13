@@ -109,13 +109,13 @@ const RenderQuest = ({ task }) => {
   const renderAnswers = () => {
     return question.answers.map((answer, index) => {
       return (
-        <div className="answer-container" key={"answer-" + index}>
+        <div className="answer-container" key={"answer-" + index} onClick={toggleAnswer(question.id, answer.id)}>
           <input
             name={"checkbox_" + index}
             id={"checkbox_" + answer.id}
             type="checkbox"
             className="answer-checkbox"
-            onChange={toggleAnswer(question.id, answer.id)}
+            checked={selectedAnswers[question.id] && selectedAnswers[question.id].includes(answer.id)}
           />
           <label htmlFor={"checkbox_" + index} className="answer">
             {answer.content}

@@ -30,7 +30,13 @@
   font-size: 16px;
   line-height: 19px;
 
-  white-space: pre-line
+  white-space: pre-line;
+
+  hyphens: auto;
+
+  display: flex;
+  text-align: justify;
+
 }
 
 .task-text-navigation {
@@ -54,4 +60,11 @@
   border: none;
   border-color: #FFFFFF29;
   border-radius: 44px;
+}
+
+.task-text-navigation-button-placeholder {
+  width: 52px;
+  height: 23px;
+
+  margin: auto;
 }

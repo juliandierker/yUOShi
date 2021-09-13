@@ -67,7 +67,6 @@ Meteor.methods({
     if (!task) {
       return;
     }
-
     // handle it this way - ejson can't handle Maps :(
     answers = answers.map((answer) => {
       return {
@@ -75,7 +74,6 @@ Meteor.methods({
         inputs: new Map(Object.entries(answer.inputs))
       };
     });
-
     return backendAdapter.userTaskSolutionAdapter.saveCompleteTask(
       task_id,
       task.createAnswer(answers)
