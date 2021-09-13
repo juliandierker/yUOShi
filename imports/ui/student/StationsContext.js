@@ -27,7 +27,7 @@ export const StationsContextProvider = ({ learningObjectives, currentPackageId, 
   const [stationTasks, setStationsTasks] = useState([]);
 
   const currentPosition = stations
-    ?.map(function(station) {
+    ?.map(function (station) {
       return station.id;
     })
     .indexOf(currentStation.id);
@@ -38,6 +38,7 @@ export const StationsContextProvider = ({ learningObjectives, currentPackageId, 
       "package.getStations",
       currentPackageId ?? cachedPackageId
     );
+
     currentStations = [{ title: "Intro", learningObjectives: learningObjectives }].concat(
       currentStations
     );

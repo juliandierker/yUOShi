@@ -23,8 +23,8 @@ export const PackagesContextProvider = ({ children }) => {
 
   const updateCurrentPackage = useCallback(
     async (packageId) => {
-      if(!currentPackage) {
-        if(packageId) {
+      if (!currentPackage) {
+        if (packageId) {
           setCurrentPackage(packages.find((targetPackage) => targetPackage.id === packageId));
         } else {
           setCurrentPackage(packages[0])
@@ -44,7 +44,9 @@ export const PackagesContextProvider = ({ children }) => {
   }, []);
 
   const updateLearningObjectives = useCallback(async () => {
+    console.log(currentPackage)
     if (!currentPackage) return;
+
     const learningObjectives = await PromisifiedMeteor.call(
       "package.learningObjectives",
       currentPackage.id
