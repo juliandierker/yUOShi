@@ -262,7 +262,8 @@ function RenderDrag(props) {
       confirmButtonText: "Lösung zeigen",
       cancelButtonText: "Nochmal versuchen",
       cancelButtonColor: "#3085d6",
-      showCancelButton: true
+      showCancelButton: true,
+      allowOutsideClick: false
     });
 
     if (showSolution) {
