@@ -31,6 +31,7 @@ export const StationsContextProvider = ({ learningObjectives, currentPackageId, 
       return station.id;
     })
     .indexOf(currentStation.id);
+
   const updateStations = useCallback(async () => {
     setstationLoading(true);
 
@@ -39,13 +40,32 @@ export const StationsContextProvider = ({ learningObjectives, currentPackageId, 
       currentPackageId ?? cachedPackageId
     );
 
-    currentStations = [{ title: "Intro", learningObjectives: learningObjectives }].concat(
+    currentStations = [{ title: "Intro", id: "generated__intro", type: "intro", learningObjectives: learningObjectives }].concat(
       currentStations
     );
+    const learningObjectiveNames = learningObjectives?.map((learningObjective) => {
+      return learningObjective.title;
+    })
+    let questStations = [];
 
     for (let station of currentStations) {
       station.tasks = station.tasks?.buffer;
     }
+
+
+    for (let stationIndex in currentStations) {
+      const station = currentStations[stationIndex]
+      if (learningObjectiveNames?.includes(station.title)) {
+        questStations.push(station)
+        currentStations.splice(stationIndex, 1)
+      }
+    }
+
+    if (questStations.length > 0) {
+      currentStations = currentStations.concat([{ title: "Quest", id: "generated__outro", type: "outro", questStations }])
+    }
+
+
     let tasks = [];
     if (currentStation) {
       tasks = await PromisifiedMeteor.call("stations.getTasks", currentStation.id);
