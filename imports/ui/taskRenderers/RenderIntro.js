@@ -24,7 +24,7 @@ function RenderIntro({ learningObjectives }) {
       <div className="person-container">
         <div className="person-overview">
           <div className="person-icon">
-            <Icon name={title} size="large" />
+            <image src={title + ".svg"} />
           </div>
           <div className="person-data">
             <div className="person-name">{title}</div>
