@@ -9,6 +9,7 @@ import RenderCard from "../taskRenderers/RenderCard";
 import RenderCloze from "../taskRenderers/RenderCloze";
 import RenderDrag from "../taskRenderers/RenderDrag";
 import RenderIntro from "../taskRenderers/RenderIntro";
+import RenderOutro from "../taskRenderers/RenderOutro";
 import RenderMemory from "../taskRenderers/RenderMemory";
 import RenderQuest from "../taskRenderers/RenderQuestTask";
 import RenderText from "../taskRenderers/RenderText";
@@ -91,6 +92,10 @@ const RenderWorkspace = () => {
       Meteor.call("packagesCache.insert", currentPackage.id);
     };
   }, [currentPackage.id]);
+
+  if (currentPosition === stations.length - 1 && stations[stations.length - 1].id === "generated__outro") {
+    return <RenderOutro stations={stations[stations.length - 1].questStations} />
+  }
 
   if (!stations[0].learningObjectives || (currentTaskLoading && currentPosition > 0)) {
     return <Loading />;

@@ -117,3 +117,11 @@
   /* margin-right: 60px; */
   margin-bottom: 30px;
 }
+
+.student-icon-i {
+  transition: transform .2s ease-in-out;
+}
+
+.student-icon-i:hover {
+  transform: rotate(-15deg);
+}
