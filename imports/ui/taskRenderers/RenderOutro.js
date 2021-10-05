@@ -1,16 +1,27 @@
-import React, { useState, useMemo } from "react"
+import React, { useState, useMemo, useEffect, useCallback } from "react"
 
-import Icon from "../IconComponent/Icon"
-
+import { useTasksContext } from "../student/TasksContext";
 import "./RenderOutro.scss"
+import { Loader } from "semantic-ui-react"
 
 function RenderOutro(props) {
   const { task, upadteTask, stations } = props
+  const { getTask } = useTasksContext();
 
   // if currentStudent === -1 --> show quest overview
-  const { currentStudentIndex, setCurrentStudentIndex } = useState(-1);
+  const [currentStudentIndex, setCurrentStudentIndex] = useState(-1);
+  const [currentStudentTask, setCurrentStudentTask] = useState(undefined);
+  const [selectedAnswers, setSelectedAnswers] = useState([])
 
-
+  useEffect(() => {
+    if (currentStudentIndex === -1) {
+      setCurrentStudentTask(undefined)
+      return
+    }
+    getTask(students[currentStudentIndex].tasks[0].id).then((task) => {
+      setCurrentStudentTask(task)
+    })
+  }, [currentStudentIndex])
 
   // TODO: muss abgeändert werden, sobald das Backend das Handeln kann
   const { students, iconSize, columns, rows } = useMemo(() => {
@@ -74,11 +85,9 @@ function RenderOutro(props) {
     return { students, iconSize, columns, rows }
   }, [task])
 
-
-
   const RenderStudentIcons = () => {
     return students.map((student, index) => {
-      return <div className="student-icon" key={"sicon-" + index} style={{ width: iconSize, height: iconSize }}>
+      return <div className="student-icon" key={"sicon-" + index} style={{ width: iconSize, height: iconSize }} onClick={() => setCurrentStudentIndex(index)}>
         <img className="student-icon-i" src={"/assets/Icons/" + student.name + ".svg"} />
         <div className="student-icon-name">{student.name}</div>
       </div>
@@ -102,12 +111,60 @@ function RenderOutro(props) {
     </div>
   }
 
-  const RenderQuest = () => {
-    if (!currentStudentIndex || currentStudentIndex === -1) {
-      return RenderQuestOverview();
-    } else {
-      return <div >{currentStudentIndex}</div>
+  const toggleAnswer = useCallback(
+    (question_id, answer_id) => () => {
+      setSelectedAnswers((cur) => {
+        let selected = cur[question_id] || []
+
+        if (!selected.includes(answer_id)) {
+          selected = [...selected, answer_id]
+        } else {
+          selected = selected.filter((id) => id !== answer_id)
+        }
+
+        return {
+          ...cur,
+          [question_id]: selected
+        }
+      })
+    },
+    []
+  )
+
+  // TODO: render Quest MC
+  const RenderMC = () => {
+    if (currentStudentTask === undefined) {
+      return (
+        <Loader style={{ display: "block" }} inverted />
+      )
     }
+    const { question, answers } = currentStudentTask.contents[0]
+    return (
+      <div className="outro-quest-container">
+        <div className="outro-quest-question">
+          {question}
+        </div>
+        <div className="outro-quest-answers">
+          {answers.map((answer, index) => {
+            return (
+              <div className="outro-quest-answer" key={"outro-quest-answer-" + answer.id} onClick={toggleAnswer(question.id, answer.id)}>
+                <input
+                  name={"checkbox_" + index}
+                  id={"checkbox_" + answer.id}
+                  type="checkbox"
+                  className="outro-quest-answer-checkbox"
+                  readOnly
+                  checked={selectedAnswers[question.id] && selectedAnswers[question.id].includes(answer.id)}
+                />
+                <label htmlFor={"checkbox_" + index} className="outro-quest-answer-label">
+                  {answer.content}
+                </label>
+              </div>
+            )
+          })}
+        </div>
+      </div>
+    )
   }
 
   return <div className="outro-container">
@@ -115,7 +172,7 @@ function RenderOutro(props) {
       <div className="outro-title">Bearbeitung der Fallbeispiele</div>
     </div>
     <div className="quest-container">
-      <RenderQuest />
+      {currentStudentIndex === -1 ? <RenderQuestOverview /> : <RenderMC />}
     </div>
   </div>
 
