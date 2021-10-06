@@ -26,6 +26,7 @@ function RenderOutro(props) {
   useEffect(() => {
     if (currentStudentIndex === -1) {
       setCurrentStudentTask(undefined)
+      setSelectedAnswers([])
       return
     }
     getTask(students[currentStudentIndex].tasks[0].id).then((task) => {
@@ -142,9 +143,7 @@ function RenderOutro(props) {
         let selected = cur[question_id] || []
 
         if (!selected.includes(answer_id)) {
-          selected = [...selected, answer_id]
-        } else {
-          selected = selected.filter((id) => id !== answer_id)
+          selected = [answer_id]
         }
 
         return {
