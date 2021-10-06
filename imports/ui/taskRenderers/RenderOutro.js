@@ -1,17 +1,25 @@
 import React, { useState, useMemo, useEffect, useCallback } from "react"
+import PromisifiedMeteor from "../../api/promisified";
+
+import { Loader } from "semantic-ui-react"
 
 import { useTasksContext } from "../student/TasksContext";
+
 import "./RenderOutro.scss"
-import { Loader } from "semantic-ui-react"
+import Swal from "sweetalert2";
 
 function RenderOutro(props) {
   const { task, upadteTask, stations } = props
-  const { getTask } = useTasksContext();
+  const { getTask, getSolution, setSolution } = useTasksContext();
 
   // if currentStudent === -1 --> show quest overview
   const [currentStudentIndex, setCurrentStudentIndex] = useState(-1);
   const [currentStudentTask, setCurrentStudentTask] = useState(undefined);
   const [selectedAnswers, setSelectedAnswers] = useState([])
+
+  useEffect(() => {
+    setSolution(() => onSubmit);
+  }, [selectedAnswers])
 
   useEffect(() => {
     if (currentStudentIndex === -1) {
@@ -23,7 +31,6 @@ function RenderOutro(props) {
     })
   }, [currentStudentIndex])
 
-  // TODO: muss abgeändert werden, sobald das Backend das Handeln kann
   const { students, iconSize, columns, rows } = useMemo(() => {
 
     // Get Name and Tasks for a student/learningObjective
@@ -34,42 +41,6 @@ function RenderOutro(props) {
         name: station.title.split(",")[0]
       }
     })
-
-
-    // generate question and answers from the content string
-    const generateMultiChoiceStructure = (studentTask => {
-      let question = ""
-      let answers = []
-
-      const mcComponents = studentTask.content.split("_")
-      for (let i in mcComponents) {
-        if (mcComponents[i] === "QUESTION") {
-          question = mcComponents[parseInt(i) + 1].replace("\n", "")
-        } else if (mcComponents[i] === "ANSWER-FALSE") {
-          answers.push({ answer: mcComponents[parseInt(i) + 1].replace("\n", ""), correct: false })
-        } else if (mcComponents[i] === "ANSWER-TRUE") {
-          answers.push({ answer: mcComponents[parseInt(i) + 1].replace("\n", ""), correct: true })
-        }
-      }
-      return { question, answers }
-    })
-
-    // modify the tasks to be in the correct format for the actual task templats
-    for (let i in students) {
-      students[i].tasks.map((studentTask) => {
-        if (studentTask.type === "TEXT") {
-          studentTask.index = 0;
-        } else if (studentTask.type === "MC") {
-          const { question, answers } = generateMultiChoiceStructure(studentTask)
-          studentTask.question = question
-          studentTask.answers = answers
-          studentTask.index = 1;
-        } else {
-          studentTask.index = 2;
-        }
-      })
-      students[i].tasks = students[i].tasks.sort((a, b) => { return a.index - b.index })
-    }
 
     const studentCount = students.length
 
@@ -84,6 +55,53 @@ function RenderOutro(props) {
 
     return { students, iconSize, columns, rows }
   }, [task])
+
+  // submit the current quest solution 
+  const onSubmit = useCallback(async () => {
+    if (currentStudentIndex === -1 && !currentStudentTask) {
+      // no quest selected
+      return
+    }
+
+    const { question, answers, content_id, id } = currentStudentTask.contents[0]
+    const givenAnswers = selectedAnswers[question.id].map((answer) => {
+      return {
+        quest_id: id,
+        content_id: content_id,
+        answer_id: answer
+      }
+    })
+
+    try {
+      const result = await PromisifiedMeteor.call("tasks.checkQuest", id, givenAnswers);
+      if (result.is_correct) {
+        await Swal.fire({
+          position: "top-end",
+          type: "success",
+          title: "Quest geschafft!",
+          timer: 2000
+        });
+      } else {
+        await Swal.fire({
+          position: "top-end",
+          type: "warning",
+          title: "Die Lösung war nicht richtig. Du kannst es noch einmal probieren.",
+          timer: 2000
+        });
+      }
+
+      console.log(result)
+    } catch (e) {
+      await Swal.fire({
+        position: "top-end",
+        type: "info",
+        title: "Die wurde schon gelöst.",
+        timer: 2000
+      });
+    }
+
+  }, [selectedAnswers])
+
 
   const RenderStudentIcons = () => {
     return students.map((student, index) => {
@@ -138,6 +156,7 @@ function RenderOutro(props) {
         <Loader style={{ display: "block" }} inverted />
       )
     }
+
     const { question, answers } = currentStudentTask.contents[0]
     return (
       <div className="outro-quest-container">
