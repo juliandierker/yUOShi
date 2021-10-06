@@ -17,10 +17,12 @@ function RenderOutro(props) {
   const [currentStudentTask, setCurrentStudentTask] = useState(undefined);
   const [selectedAnswers, setSelectedAnswers] = useState([])
 
+  // use this onSubmit function when the user presses the send Solution Button 
   useEffect(() => {
     setSolution(() => onSubmit);
   }, [selectedAnswers])
 
+  // set the current quest task when the currentStudentIndex gets updated
   useEffect(() => {
     if (currentStudentIndex === -1) {
       setCurrentStudentTask(undefined)
@@ -31,6 +33,7 @@ function RenderOutro(props) {
     })
   }, [currentStudentIndex])
 
+  // calculate Image size and column count to show the student Images in the Quest Overview
   const { students, iconSize, columns, rows } = useMemo(() => {
 
     // Get Name and Tasks for a student/learningObjective
@@ -54,7 +57,7 @@ function RenderOutro(props) {
     const iconSize = Math.min(iconHeight, iconWidth)
 
     return { students, iconSize, columns, rows }
-  }, [task])
+  }, [stations])
 
   // submit the current quest solution 
   const onSubmit = useCallback(async () => {
@@ -63,7 +66,7 @@ function RenderOutro(props) {
       return
     }
 
-    const { question, answers, content_id, id } = currentStudentTask.contents[0]
+    const { question, content_id, id } = currentStudentTask.contents[0]
     const givenAnswers = selectedAnswers[question.id].map((answer) => {
       return {
         quest_id: id,
@@ -75,13 +78,16 @@ function RenderOutro(props) {
     try {
       const result = await PromisifiedMeteor.call("tasks.checkQuest", id, givenAnswers);
       if (result.is_correct) {
+        // user submitted the correct answer
         await Swal.fire({
           position: "top-end",
           type: "success",
           title: "Quest geschafft!",
           timer: 2000
         });
+        setCurrentStudentIndex(-1);
       } else {
+        // user submitted an incorrect answer
         await Swal.fire({
           position: "top-end",
           type: "warning",
@@ -89,20 +95,19 @@ function RenderOutro(props) {
           timer: 2000
         });
       }
-
-      console.log(result)
     } catch (e) {
+      // server threw an error (it should NOT be an Exception when the task was already finished!!!!)
       await Swal.fire({
         position: "top-end",
         type: "info",
         title: "Die wurde schon gelöst.",
         timer: 2000
       });
+      setCurrentStudentIndex(-1);
     }
-
   }, [selectedAnswers])
 
-
+  // render the student icons with the calculated size
   const RenderStudentIcons = () => {
     return students.map((student, index) => {
       return <div className="student-icon" key={"sicon-" + index} style={{ width: iconSize, height: iconSize }} onClick={() => setCurrentStudentIndex(index)}>
@@ -112,6 +117,7 @@ function RenderOutro(props) {
     })
   }
 
+  // render the overall structure of the quest overview
   const RenderQuestOverview = () => {
     return <div className="quest-overview-container">
       <div className="quest-overview-text-container">
@@ -129,6 +135,7 @@ function RenderOutro(props) {
     </div>
   }
 
+  // toggle an answer, when the user clicked the checkbox (or the text)
   const toggleAnswer = useCallback(
     (question_id, answer_id) => () => {
       setSelectedAnswers((cur) => {
@@ -149,9 +156,10 @@ function RenderOutro(props) {
     []
   )
 
-  // TODO: render Quest MC
+  // render the multiple choice task of the currently selected learningObjective
   const RenderMC = () => {
     if (currentStudentTask === undefined) {
+      // wait for the current task to finish loading
       return (
         <Loader style={{ display: "block" }} inverted />
       )
@@ -186,6 +194,7 @@ function RenderOutro(props) {
     )
   }
 
+  // render the container for the outro
   return <div className="outro-container">
     <div className="outro-header">
       <div className="outro-title">Bearbeitung der Fallbeispiele</div>
