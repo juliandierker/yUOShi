@@ -1,7 +1,7 @@
 import React, { useMemo, useState } from "react";
 import Icon from "../IconComponent/Icon";
 
-import "./RenderIntro.css";
+import "./RenderIntro.scss";
 
 function RenderIntro({ learningObjectives }) {
   const [currentPersonIndex, setCurrentPersonIndex] = useState(0);
@@ -24,7 +24,7 @@ function RenderIntro({ learningObjectives }) {
       <div className="person-container">
         <div className="person-overview">
           <div className="person-icon">
-            <Icon name={title} size="large" />
+            <img src={`/assets/Icons/${title.split(",")[0]}.svg`} />
           </div>
           <div className="person-data">
             <div className="person-name">{title}</div>
