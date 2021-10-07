@@ -24,7 +24,7 @@ function RenderIntro({ learningObjectives }) {
       <div className="person-container">
         <div className="person-overview">
           <div className="person-icon">
-            <img src={"/assets/Icons/" + title.split(",")[0] + ".svg"} />
+            <img src={`/assets/Icons/${title.split(",")[0]}.svg`} />
           </div>
           <div className="person-data">
             <div className="person-name">{title}</div>
