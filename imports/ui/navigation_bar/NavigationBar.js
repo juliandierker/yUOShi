@@ -13,7 +13,7 @@ export default function NavigationBar() {
   const [hoverNext, setHoverNext] = useState(false);
 
   const { stations, currentPosition, setCurrentStation } = useStationsContext();
-  const { getPrevTask, getNextTask, getSolution, currentTask } = useTasksContext();
+  const { getPrevTask, getNextTask, solveTask, currentTask } = useTasksContext();
   async function navigateNext() {
     if ((await getNextTask()) === "nextStation") {
       if (stations.length > currentPosition) {
@@ -79,7 +79,7 @@ export default function NavigationBar() {
       <RenderPreviousButton />
       <button
         disabled={currentTask?.type === "tag"}
-        onClick={getSolution}
+        onClick={solveTask}
         className="navigation-button"
         id="navigation-button-submit">
         <span className="navigation-button-submit-text">AUSWERTEN</span>

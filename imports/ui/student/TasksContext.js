@@ -36,7 +36,8 @@ export const TasksContextProvider = ({ currentStation, children }) => {
   const [score, setScore] = useState(0);
 
   async function solveTask() {
-    await getSolution;
+    await getSolution();
+    updateScore();
   }
   const updateScore = useCallback(async () => {
     const allSolutions = await PromisifiedMeteor.call("tasks.getAllSolution");
