@@ -25,7 +25,6 @@ export const PackagesContextProvider = ({ children }) => {
     async (packageId) => {
       if (!currentPackage)
         setCurrentPackage(packages.find((targetPackage) => targetPackage.id === packageId));
-      console.log(packages.find((targetPackage) => targetPackage.id === packageId));
       setPackagesLoading(false);
     },
     [currentPackage, packages]

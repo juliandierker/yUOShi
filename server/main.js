@@ -7,6 +7,7 @@ import "./api/users";
 import "./api/packages";
 import "./api/tasks";
 import "./api/stations";
+import "./api/files";
 import "./api/learningObjectives";
 import "../imports/api/packageCache";
 

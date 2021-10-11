@@ -1,10 +1,14 @@
-import React, { useMemo, useState } from "react";
+import React, { useState, useEffect } from "react";
+import { useTasksContext } from "../student/TasksContext";
+
 import Icon from "../IconComponent/Icon";
 
 import "./RenderIntro.css";
 
 function RenderIntro({ learningObjectives }) {
   const [currentPersonIndex, setCurrentPersonIndex] = useState(0);
+  const { getImages } = useTasksContext();
+  const [images, setImages] = useState([]);
   const { title, description } = learningObjectives[currentPersonIndex];
 
   // handle button click to show the next student
@@ -12,6 +16,10 @@ function RenderIntro({ learningObjectives }) {
     if (currentPersonIndex >= learningObjectives.length - 1) return;
     setCurrentPersonIndex(currentPersonIndex + 1);
   };
+
+  useEffect(() => {
+    getImages(learningObjectives[currentPersonIndex].image);
+  }, [currentPersonIndex]);
 
   // handle button click to show the previous student
   const showPreviousStudent = () => {

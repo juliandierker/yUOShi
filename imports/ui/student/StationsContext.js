@@ -57,7 +57,6 @@ export const StationsContextProvider = ({ learningObjectives, currentPackageId, 
     setStationsTasks(tasks);
     setstationLoading(false);
   }, [currentPackageId, currentStation]);
-  // TODO : observe loads when we change stations
   useEffect(() => {
     updateStations();
   }, [updateStations]);

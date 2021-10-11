@@ -43,6 +43,12 @@ export const TasksContextProvider = ({ currentStation, children }) => {
     setScore(calculateScore(allSolutions));
   }, []);
 
+  const getImages = useCallback(async (imageId) => {
+    console.log(imageId);
+    const test = await PromisifiedMeteor.call("files.getFile", imageId);
+    console.log(test);
+  });
+
   const getNextTask = useCallback(async () => {
     if (currentStation.title === "Intro") {
       return "nextStation";
@@ -101,7 +107,6 @@ export const TasksContextProvider = ({ currentStation, children }) => {
     if (!currentTask) {
       setCurrentTask(_currentTask);
     }
-    // setCurrentTask(_currentTask);
     updateScore();
     setCurrentTaskLoading(false);
   }, [currentStation, updateScore]);
@@ -134,7 +139,8 @@ export const TasksContextProvider = ({ currentStation, children }) => {
     setSolution,
     solveTask,
     jumpToTask,
-    score
+    score,
+    getImages
   };
 
   return <TasksContext.Provider value={ctx}>{children}</TasksContext.Provider>;
