@@ -4,7 +4,7 @@ import { Meteor } from "meteor/meteor";
 
 import Icon from "../IconComponent/Icon";
 
-import "./RenderIntro.css";
+import "./RenderIntro.scss";
 
 function RenderIntro({ learningObjectives }) {
   const [currentPersonIndex, setCurrentPersonIndex] = useState(0);

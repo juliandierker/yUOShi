@@ -2,10 +2,10 @@ import React, { useMemo, useState } from "react"
 import { StaticTag } from "@xyng/yuoshi-backend-adapter";
 import Icon from "../IconComponent/Icon"
 
-import "./RenderTag.css"
+import "./RenderText.css"
 
 /**
- * @typedef RenderTagProps
+ * @typedef RenderTextProps
  * @property {StaticTag} task
  * @property {Function} updateTask
  */
@@ -13,10 +13,10 @@ import "./RenderTag.css"
 /**
  * Render a MultiTask
  *
- * @param {RenderTagProps} props
+ * @param {RenderTextProps} props
  * @returns {ReactElement|null}
  */
-export default function RenderTag(props) {
+export default function RenderText(props) {
     // destructure here and not in function-params so we get type-hints
     const { task, updateTask } = props
     const [currentPage, setCurrentPage] = useState(0)
@@ -72,9 +72,9 @@ export default function RenderTag(props) {
             </div>
         </div>
         <div className="task-text-navigation">
-            <button className="task-text-navigation-button" onClick={() => handlePrevPage()}><Icon name="angle-left" color="white" /></button>
+            {(currentPage !== 0 && <button className="task-text-navigation-button" onClick={() => handlePrevPage()}><Icon name="angle-left" color="white" /></button>) || <div className="task-text-navigation-button-placeholder" />}
             <span className="task-text-navigation-text">Seite {currentPage + 1} von {maxPage + 1}</span>
-            <button className="task-text-navigation-button" onClick={() => handleNextPage()}><Icon name="angle-right" color="white" /></button>
+            {(currentPage !== maxPage && <button className="task-text-navigation-button" onClick={() => handleNextPage()}><Icon name="angle-right" color="white" /></button>) || <div className="task-text-navigation-button-placeholder" />}
         </div>
     </>
 }

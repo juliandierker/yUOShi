@@ -9,9 +9,10 @@ import RenderCard from "../taskRenderers/RenderCard";
 import RenderCloze from "../taskRenderers/RenderCloze";
 import RenderDrag from "../taskRenderers/RenderDrag";
 import RenderIntro from "../taskRenderers/RenderIntro";
+import RenderOutro from "../taskRenderers/RenderOutro";
 import RenderMemory from "../taskRenderers/RenderMemory";
 import RenderQuest from "../taskRenderers/RenderQuestTask";
-import RenderTag from "../taskRenderers/RenderTag";
+import RenderText from "../taskRenderers/RenderText";
 import RenderTraining from "../taskRenderers/RenderTraining";
 import { usePackagesContext } from "./PackagesContext";
 import { useStationsContext } from "./StationsContext";
@@ -33,7 +34,7 @@ const RenderTask = memo(({ task, updateTask }) => {
       taskRenderer = <RenderDrag task={task} />;
       break;
     case "tag":
-      taskRenderer = <RenderTag task={task} />;
+      taskRenderer = <RenderText task={task} />;
       break;
     case "card":
       taskRenderer = <RenderCard task={task} />;
@@ -92,6 +93,10 @@ const RenderWorkspace = () => {
     };
   }, [currentPackage.id]);
 
+  if (currentPosition === stations.length - 1 && stations[stations.length - 1].id === "generated__outro") {
+    return <RenderOutro stations={stations[stations.length - 1].questStations} />
+  }
+
   if (!stations[0].learningObjectives || (currentTaskLoading && currentPosition > 0)) {
     return <Loading />;
   } else if (currentPosition === 0) {
@@ -126,7 +131,7 @@ const Workspace = () => {
 
   if (!currentPackage) {
     updateCurrentPackage(cachedPackageId);
-    return <Loading />;
+    // return <Loading />;
   }
 
   return (

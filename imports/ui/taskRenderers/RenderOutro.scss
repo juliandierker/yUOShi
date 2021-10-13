@@ -117,3 +117,49 @@
   /* margin-right: 60px; */
   margin-bottom: 30px;
 }
+
+.student-icon-i {
+  transition: transform .2s ease-in-out;
+}
+
+.student-icon-i:hover {
+  transform: rotate(-15deg);
+}
+
+.outro-quest-container {
+  padding-top: 29px;
+  margin-left: 28px;
+  margin-right: 28px;
+  margin-bottom: 15px;
+}
+
+.outro-quest-question {
+  font: normal normal bold 16px/19px Lato;
+  letter-spacing: 0px;
+  color: #FFFFFF;
+  opacity: 1;
+}
+
+.outro-quest-answers {
+  margin-top: 15px;
+}
+
+.outro-quest-answer {
+  margin-top: 30px;
+  display: flex;
+}
+
+.outro-quest-answer-checkbox {
+  width: 22px;
+  height: 22px;
+  border: 2px solid #FFFFFF;
+  opacity: 1;
+}
+
+.outro-quest-answer-label {
+  font: normal normal normal 14px/17px Lato;
+  letter-spacing: 0px;
+  color: #FFFFFF;
+
+  margin-left: 26px;
+}

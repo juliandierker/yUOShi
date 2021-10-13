@@ -9,6 +9,8 @@
 .card-scene {
   overflow-x: auto;
   overflow-y: auto;
+  height: 106%;
+  width: 102%;
 }
 
 .card-column-header {
@@ -35,7 +37,8 @@
   box-shadow: 0px 1px 2px #00000029;
   border-radius: 44px;
   opacity: 1;
-  height: 400px;
+  min-height: 400px;
+  height: auto;
   width: 368px;
   padding-left: 20px;
   margin-right: 20px;
@@ -55,6 +58,12 @@
   opacity: 1;
 
   margin-bottom: 5px;
+  &.-correct{
+    background-color: #66ab8c !important;
+  }
+  &.-incorrect{
+    background-color: #f53240 !important;
+  }
 }
 
 .card p {

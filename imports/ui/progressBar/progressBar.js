@@ -39,6 +39,13 @@ export default function ProgressBar(props) {
     package: {
       name: currentPackage.title,
       stations: stations.map((station) => {
+        if (station.id === "generated__outro") {
+          station.questStations.map((stat) => {
+            stat.tasks.map((task) => {
+              maxCredits += task.credits
+            })
+          })
+        }
         return {
           name: station.title,
           id: station.id,
