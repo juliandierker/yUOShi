@@ -1,5 +1,6 @@
-import React, { useState, useEffect } from "react";
-import { useTasksContext } from "../student/TasksContext";
+import React, { useMemo, useState, useEffect } from "react";
+import PromisifiedMeteor from "../../api/promisified";
+import { Meteor } from "meteor/meteor";
 
 import Icon from "../IconComponent/Icon";
 
@@ -7,10 +8,11 @@ import "./RenderIntro.css";
 
 function RenderIntro({ learningObjectives }) {
   const [currentPersonIndex, setCurrentPersonIndex] = useState(0);
-  const { getImages } = useTasksContext();
   const [images, setImages] = useState([]);
-  const { title, description } = learningObjectives[currentPersonIndex];
-
+  const learningObjective = useMemo(() => {
+    return learningObjectives[currentPersonIndex];
+  }, [learningObjectives, currentPersonIndex]);
+  const { title, description } = learningObjective;
   // handle button click to show the next student
   const showNextStudent = () => {
     if (currentPersonIndex >= learningObjectives.length - 1) return;
@@ -18,8 +20,14 @@ function RenderIntro({ learningObjectives }) {
   };
 
   useEffect(() => {
-    getImages(learningObjectives[currentPersonIndex].image);
-  }, [currentPersonIndex]);
+    async function loadImages() {
+      const currentImages = await PromisifiedMeteor.call("files.getFile", learningObjective.image);
+      const newImages = images;
+      newImages.push(currentImages);
+      setImages(newImages);
+    }
+    loadImages();
+  }, [learningObjective]);
 
   // handle button click to show the previous student
   const showPreviousStudent = () => {
@@ -28,11 +36,19 @@ function RenderIntro({ learningObjectives }) {
   };
   // render information of a student
   const RenderPerson = () => {
+    let fileId = "";
+    let fileName = "";
+    if (images.length) {
+      fileId = images[currentPersonIndex].id;
+      fileName = images[currentPersonIndex].name;
+    }
     return (
       <div className="person-container">
         <div className="person-overview">
           <div className="person-icon">
-            <Icon name={title} size="large" />
+            <img
+              src={`http://localhost/sendfile.php?type=0&file_id=${fileId}&;file_name=${fileName}`}
+              type="image/png"></img>
           </div>
           <div className="person-data">
             <div className="person-name">{title}</div>

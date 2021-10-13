@@ -1,8 +1,8 @@
 import { Meteor } from "meteor/meteor";
 import createBackendAdapter from "./backendAdapter";
 Meteor.methods({
-  "files.getFile": async (fileId) => {
+  "files.getFile": (fileId) => {
     const backendAdapter = createBackendAdapter();
-    backendAdapter.filesAdapter.getFileById(fileId);
+    return backendAdapter.filesAdapter.getFileById(fileId);
   }
 });

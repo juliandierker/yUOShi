@@ -15,9 +15,10 @@ Meteor.methods({
 
   "tasks.nextTaskForStation": async (stationId) => {
     const backendAdapter = createBackendAdapter();
-    const task = await backendAdapter.taskAdapter.getNextTask(stationId);
-
-    if (!task) {
+    let task;
+    try {
+      task = await backendAdapter.taskAdapter.getNextTask(stationId);
+    } catch (e) {
       return;
     }
     return task.getStatic();
