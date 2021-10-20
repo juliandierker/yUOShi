@@ -102,7 +102,6 @@ export const TasksContextProvider = ({ currentStation, children }) => {
     if (!currentTask) {
       setCurrentTask(_currentTask);
     }
-    // setCurrentTask(_currentTask);
     updateScore();
     setCurrentTaskLoading(false);
   }, [currentStation, updateScore]);

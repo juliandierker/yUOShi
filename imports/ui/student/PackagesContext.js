@@ -27,7 +27,7 @@ export const PackagesContextProvider = ({ children }) => {
         if (packageId) {
           setCurrentPackage(packages.find((targetPackage) => targetPackage.id === packageId));
         } else {
-          setCurrentPackage(packages[0])
+          setCurrentPackage(packages[0]);
         }
       }
       setPackagesLoading(false);

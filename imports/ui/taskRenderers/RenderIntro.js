@@ -1,17 +1,33 @@
-import React, { useMemo, useState } from "react";
+import React, { useMemo, useState, useEffect } from "react";
+import PromisifiedMeteor from "../../api/promisified";
+import { Meteor } from "meteor/meteor";
+
 import Icon from "../IconComponent/Icon";
 
 import "./RenderIntro.scss";
 
 function RenderIntro({ learningObjectives }) {
   const [currentPersonIndex, setCurrentPersonIndex] = useState(0);
-  const { title, description } = learningObjectives[currentPersonIndex];
-
+  const [images, setImages] = useState([]);
+  const learningObjective = useMemo(() => {
+    return learningObjectives[currentPersonIndex];
+  }, [learningObjectives, currentPersonIndex]);
+  const { title, description } = learningObjective;
   // handle button click to show the next student
   const showNextStudent = () => {
     if (currentPersonIndex >= learningObjectives.length - 1) return;
     setCurrentPersonIndex(currentPersonIndex + 1);
   };
+
+  useEffect(() => {
+    async function loadImages() {
+      const currentImages = await PromisifiedMeteor.call("files.getFile", learningObjective.image);
+      const newImages = images;
+      newImages.push(currentImages);
+      setImages(newImages);
+    }
+    loadImages();
+  }, [learningObjective]);
 
   // handle button click to show the previous student
   const showPreviousStudent = () => {
@@ -20,11 +36,19 @@ function RenderIntro({ learningObjectives }) {
   };
   // render information of a student
   const RenderPerson = () => {
+    let fileId = "";
+    let fileName = "";
+    if (images.length) {
+      fileId = images[currentPersonIndex].id;
+      fileName = images[currentPersonIndex].name;
+    }
     return (
       <div className="person-container">
         <div className="person-overview">
           <div className="person-icon">
-            <img src={`/assets/Icons/${title.split(",")[0]}.svg`} />
+            <img
+              src={`http://localhost/sendfile.php?type=0&file_id=${fileId}&;file_name=${fileName}`}
+              type="image/png"></img>
           </div>
           <div className="person-data">
             <div className="person-name">{title}</div>
