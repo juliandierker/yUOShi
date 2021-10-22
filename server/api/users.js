@@ -51,5 +51,9 @@ Meteor.methods({
       },
       { $set: { lastPackage: packageId } }
     );
+  },
+  "users.getStudipUrl": () => {
+    if (!Meteor.isServer || !Meteor.userId()) return;
+    return Meteor.settings.private.studip.url;
   }
 });
