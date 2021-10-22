@@ -1,8 +1,8 @@
-import React, { useMemo, useState } from "react"
-import { StaticTag } from "@xyng/yuoshi-backend-adapter";
-import Icon from "../IconComponent/Icon"
+import React, { useMemo, useState, useEffect, useRef } from "react";
+import Icon from "../IconComponent/Icon";
 
-import "./RenderText.css"
+import "./RenderText.scss";
+import PromisifiedMeteor from "../../api/promisified";
 
 /**
  * @typedef RenderTextProps
@@ -17,64 +17,109 @@ import "./RenderText.css"
  * @returns {ReactElement|null}
  */
 export default function RenderText(props) {
-    // destructure here and not in function-params so we get type-hints
-    const { task, updateTask } = props
-    const [currentPage, setCurrentPage] = useState(0)
-    const content = task.contents[0].content
+  // destructure here and not in function-params so we get type-hints
+  const { task } = props;
+  const [currentPage, setCurrentPage] = useState(0);
+  const [image, setImage] = useState(undefined);
 
-    const pages = useMemo(() => {
-        let pages = []
-        let totalLetterCount = 0
-        let counter = 0
-        let linebreaksOnPage = 0
+  const studipUrl = useRef();
+  Meteor.call("users.getStudipUrl", (err, res) => {
+    if (res) studipUrl.current = res;
+  });
 
-        for (let i in content) {
-            // check for new page
-            if (content[i] === "\n") {
-                linebreaksOnPage++;
-            }
-            if (counter > 650 - (40 * linebreaksOnPage) && (content[i] === " " || content[i] === "\n")) {
-                pages.push(content.substring(totalLetterCount, parseInt(counter) + parseInt(totalLetterCount)))
-                totalLetterCount = i
-                linebreaksOnPage = 0
-                counter = 0
-            }
-            counter++;
-        }
+  const content = task.contents[0].content;
 
-        pages.push(content.substring(totalLetterCount, content.length))
+  const pages = useMemo(() => {
+    let pages = [];
+    let totalLetterCount = 0;
+    let counter = 0;
+    let linebreaksOnPage = 0;
 
-        return pages
-    }, [content])
-
-    const maxPage = Math.ceil(pages.length / 2) - 1
-
-    const handlePrevPage = () => {
-        if (currentPage > 0) {
-            setCurrentPage(currentPage - 1)
-        }
+    for (let i in content) {
+      // check for new page
+      if (content[i] === "\n") {
+        linebreaksOnPage++;
+      }
+      if (counter > 650 - 40 * linebreaksOnPage && (content[i] === " " || content[i] === "\n")) {
+        pages.push(
+          content.substring(totalLetterCount, parseInt(counter) + parseInt(totalLetterCount))
+        );
+        totalLetterCount = i;
+        linebreaksOnPage = 0;
+        counter = 0;
+      }
+      counter++;
     }
 
-    const handleNextPage = () => {
-        if (currentPage < maxPage) {
-            setCurrentPage(currentPage + 1)
-        }
-    }
+    pages.push(content.substring(totalLetterCount, content.length));
 
-    return <>
-        <div className="task-text">
-            <div className="page-left">
-                <span className="text">{pages[currentPage * 2]}</span>
-            </div>
-            <div className="page-middle-line"></div>
-            <div className="page-right">
-                <span className="text">{pages[currentPage * 2 + 1]}</span>
-            </div>
+    return pages;
+  }, [content]);
+
+  const maxPage = Math.ceil(pages.length / 2) - 1;
+
+  const handlePrevPage = () => {
+    if (currentPage > 0) {
+      setCurrentPage(currentPage - 1);
+    }
+  };
+
+  const handleNextPage = () => {
+    if (currentPage < maxPage) {
+      setCurrentPage(currentPage + 1);
+    }
+  };
+
+  useEffect(() => {
+    async function loadImages() {
+      const currentImages = await PromisifiedMeteor.call("files.getFile", task.image);
+      setImage(currentImages);
+    }
+    if (task.image) {
+      loadImages();
+      pages.splice(1, 0, "textIsImage");
+    }
+  }, [task]);
+
+  function renderRightPage() {
+    console.log(pages, currentPage);
+    if (pages[currentPage * 2 + 1] === "textIsImage") {
+      console.log(image);
+      return (
+        <img
+          src={`${studipUrl.current}/sendfile.php?type=0&file_id=${image.id}&;file_name=${image.name}`}
+          type="image/png"></img>
+      );
+    }
+    return pages[currentPage * 2 + 1];
+  }
+
+  return (
+    <>
+      <div className="task-text">
+        <div className="page-left">
+          <span className="text">{pages[currentPage * 2]}</span>
         </div>
-        <div className="task-text-navigation">
-            {(currentPage !== 0 && <button className="task-text-navigation-button" onClick={() => handlePrevPage()}><Icon name="angle-left" color="white" /></button>) || <div className="task-text-navigation-button-placeholder" />}
-            <span className="task-text-navigation-text">Seite {currentPage + 1} von {maxPage + 1}</span>
-            {(currentPage !== maxPage && <button className="task-text-navigation-button" onClick={() => handleNextPage()}><Icon name="angle-right" color="white" /></button>) || <div className="task-text-navigation-button-placeholder" />}
+        <div className="page-middle-line"></div>
+        <div className="page-right">
+          <span className="text">{renderRightPage()}</span>
         </div>
+      </div>
+      <div className="task-text-navigation">
+        {(currentPage !== 0 && (
+          <button className="task-text-navigation-button" onClick={() => handlePrevPage()}>
+            <Icon name="angle-left" color="white" />
+          </button>
+        )) || <div className="task-text-navigation-button-placeholder" />}
+        <span className="task-text-navigation-text">
+          Seite {currentPage + 1} von {maxPage + 1}
+        </span>
+        {(currentPage !== maxPage && (
+          <button className="task-text-navigation-button" onClick={() => handleNextPage()}>
+            <Icon name="angle-right" color="white" />
+          </button>
+        )) || <div className="task-text-navigation-button-placeholder" />}
+      </div>
     </>
+  );
 }

@@ -37,6 +37,9 @@
   display: flex;
   text-align: justify;
 
+  > img {
+    max-width: 350px;
+  }
 }
 
 .task-text-navigation {
@@ -54,11 +57,11 @@
   margin: auto;
   width: 52px;
   height: 23px;
-  color: #FFFFFF;
-  background: #6A96E2 0% 0% no-repeat padding-box;
+  color: #ffffff;
+  background: #6a96e2 0% 0% no-repeat padding-box;
   box-shadow: 0px 1px 1px #00000029;
   border: none;
-  border-color: #FFFFFF29;
+  border-color: #ffffff29;
   border-radius: 44px;
 }
 
