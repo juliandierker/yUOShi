@@ -1,6 +1,5 @@
-import React, { useMemo, useState, useEffect } from "react";
+import React, { useMemo, useState, useEffect, useRef } from "react";
 import PromisifiedMeteor from "../../api/promisified";
-import { Meteor } from "meteor/meteor";
 
 import Icon from "../IconComponent/Icon";
 
@@ -9,6 +8,11 @@ import "./RenderIntro.scss";
 function RenderIntro({ learningObjectives }) {
   const [currentPersonIndex, setCurrentPersonIndex] = useState(0);
   const [images, setImages] = useState([]);
+
+  const studipUrl = useRef();
+  Meteor.call("users.getStudipUrl", (err, res) => {
+    if (res) studipUrl.current = res;
+  });
   const learningObjective = useMemo(() => {
     return learningObjectives[currentPersonIndex];
   }, [learningObjectives, currentPersonIndex]);
@@ -47,7 +51,7 @@ function RenderIntro({ learningObjectives }) {
         <div className="person-overview">
           <div className="person-icon">
             <img
-              src={`http://localhost/sendfile.php?type=0&file_id=${fileId}&;file_name=${fileName}`}
+              src={`${studipUrl.current}/sendfile.php?type=0&file_id=${fileId}&;file_name=${fileName}`}
               type="image/png"></img>
           </div>
           <div className="person-data">
