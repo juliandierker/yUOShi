@@ -3,7 +3,9 @@
 }
 
 .vertical {
-  height: 90%;
+  min-height: inherit;
+  margin-top: -10%;
+  padding-top: 10%;
 }
 
 .card-scene {
