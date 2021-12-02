@@ -77,7 +77,7 @@ function RenderIntro({ learningObjectives }) {
           <Icon name="angle-left" />
         </button>
         <div className="intro-navigation-label-current">
-          {"Schüler " + (currentPersonIndex + 1) + " von " + learningObjectives.length}
+          {"Schüler:in " + (currentPersonIndex + 1) + " von " + learningObjectives.length}
         </div>
         <button className="intro-navigation-button" onClick={showNextStudent}>
           <Icon name="angle-right" />
