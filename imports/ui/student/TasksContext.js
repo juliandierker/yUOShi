@@ -45,15 +45,15 @@ export const TasksContextProvider = ({ currentStation, children }) => {
   }, []);
 
   const getNextTask = useCallback(async () => {
-    if (currentStation.title === "Intro") {
+    if (currentStation.title === "Intro" || currentStation.name === "Intro") {
       return "nextStation";
     }
 
     if (!currentTask || stationTasks.length === 0) return;
     const nextTaskIdx = stationTasks.findIndex((task) => task.id === currentTask.id) + 1;
 
-    if (nextTaskIdx === 0) {
-      return;
+    if (nextTaskIdx === -1 && stationTasks.length > 0) {
+      return "nextStation";
     }
 
     if (nextTaskIdx >= stationTasks.length) {
@@ -69,7 +69,7 @@ export const TasksContextProvider = ({ currentStation, children }) => {
     } finally {
       setCurrentTaskLoading(false);
     }
-  }, [stationTasks, currentTask]);
+  }, [stationTasks, currentTask, currentStation]);
 
   const getPrevTask = useCallback(async () => {
     if (!currentStation || !currentTask) return;
@@ -121,7 +121,7 @@ export const TasksContextProvider = ({ currentStation, children }) => {
 
   const getTask = useCallback(async (id) => {
     return await PromisifiedMeteor.call("tasks.getTask", id);
-  })
+  });
 
   useEffect(() => {
     updateTask();
@@ -134,6 +134,7 @@ export const TasksContextProvider = ({ currentStation, children }) => {
     updateTask,
     getPrevTask,
     getNextTask,
+    setCurrentTask,
     getSolution,
     setSolution,
     solveTask,

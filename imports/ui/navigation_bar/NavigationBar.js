@@ -1,4 +1,4 @@
-import React, { useState, useCallback } from "react";
+import React, { useState, useCallback, useEffect } from "react";
 import Icon from "../IconComponent/Icon";
 
 import { Grid } from "semantic-ui-react";
@@ -12,8 +12,11 @@ export default function NavigationBar() {
   const [hoverPrevious, setHoverPrevious] = useState(false);
   const [hoverNext, setHoverNext] = useState(false);
 
-  const { stations, currentPosition, setCurrentStation } = useStationsContext();
-  const { getPrevTask, getNextTask, solveTask, currentTask } = useTasksContext();
+  const { stations, currentPosition, setCurrentStation, currentStation } = useStationsContext();
+  const { getPrevTask, getNextTask, solveTask, currentTask, jumpToTask } = useTasksContext();
+  const taskIsInRange = !!currentStation.tasks?.find(
+    (stationTask) => stationTask.id === currentTask?.id
+  );
   async function navigateNext() {
     if ((await getNextTask()) === "nextStation") {
       if (stations.length > currentPosition) {
@@ -21,6 +24,10 @@ export default function NavigationBar() {
       }
     }
   }
+
+  useEffect(() => {
+    jumpToTask(currentStation.tasks?.[0].id);
+  }, [taskIsInRange === false]);
 
   const handleButtonPreviousEnter = () => {
     setHoverPrevious(true);
