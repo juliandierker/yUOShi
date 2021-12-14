@@ -21,13 +21,18 @@ export const StationsContextProvider = ({ learningObjectives, currentPackageId, 
     Meteor.subscribe("cachedPackagesByUser");
     return PackagesCache.findOne({})?.packageId;
   }, [Meteor.userId()]);
+  const cachedTaskId = useTracker(() => {
+    Meteor.subscribe("cachedTaskByUser");
+    return PackagesCache.findOne({})?.taskId;
+  }, [Meteor.userId()]);
+
   const [stations, setStations] = useState(undefined);
   const [currentStation, setCurrentStation] = useState(undefined);
   const [stationLoading, setstationLoading] = useState(true);
   const [stationTasks, setStationsTasks] = useState([]);
 
   const currentPosition = stations
-    ?.map(function (station) {
+    ?.map(function(station) {
       return station.id;
     })
     .indexOf(currentStation.id);
@@ -40,31 +45,36 @@ export const StationsContextProvider = ({ learningObjectives, currentPackageId, 
       currentPackageId ?? cachedPackageId
     );
 
-    currentStations = [{ title: "Intro", id: "generated__intro", type: "intro", learningObjectives: learningObjectives }].concat(
-      currentStations
-    );
+    currentStations = [
+      {
+        title: "Intro",
+        id: "generated__intro",
+        type: "intro",
+        learningObjectives: learningObjectives
+      }
+    ].concat(currentStations);
     const learningObjectiveNames = learningObjectives?.map((learningObjective) => {
       return learningObjective.title;
-    })
+    });
     let questStations = [];
 
     for (let station of currentStations) {
       station.tasks = station.tasks?.buffer;
     }
 
-
     for (let stationIndex in currentStations) {
-      const station = currentStations[stationIndex]
+      const station = currentStations[stationIndex];
       if (learningObjectiveNames?.includes(station.title)) {
-        questStations.push(station)
-        currentStations.splice(stationIndex, 1)
+        questStations.push(station);
+        currentStations.splice(stationIndex, 1);
       }
     }
 
     if (questStations.length > 0) {
-      currentStations = currentStations.concat([{ title: "Quest", id: "generated__outro", type: "outro", questStations }])
+      currentStations = currentStations.concat([
+        { title: "Quest", id: "generated__outro", type: "outro", questStations }
+      ]);
     }
-
 
     let tasks = [];
     if (currentStation) {
@@ -84,6 +94,7 @@ export const StationsContextProvider = ({ learningObjectives, currentPackageId, 
   const ctx = {
     stationLoading,
     cachedPackageId,
+    cachedTaskId,
     updateStations,
     stations,
     currentStation,

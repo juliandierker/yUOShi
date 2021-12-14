@@ -82,19 +82,24 @@ const RenderTask = memo(({ task, updateTask }) => {
 
 // const submitRef = useRef(null)
 
-const RenderWorkspace = () => {
-  const { currentTask, currentTaskLoading, updateTask } = useTasksContext();
-  const { currentPosition, stations } = useStationsContext();
+function RenderWorkspace() {
+  const { currentTask, currentTaskLoading, updateTask, jumpToTask } = useTasksContext();
+  const { currentPosition, stations, cachedTaskId } = useStationsContext();
   const { currentPackage } = usePackagesContext();
+  useEffect(() => {
+    if (!currentTask) return;
+    Meteor.call("packagesCache.insert", currentPackage.id, currentPosition, currentTask.id);
+  }, [currentTask]);
 
   useEffect(() => {
-    return () => {
-      Meteor.call("packagesCache.insert", currentPackage.id);
-    };
-  }, [currentPackage.id]);
+    if (cachedTaskId) jumpToTask(cachedTaskId);
+  }, []);
 
-  if (currentPosition === stations.length - 1 && stations[stations.length - 1].id === "generated__outro") {
-    return <RenderOutro stations={stations[stations.length - 1].questStations} />
+  if (
+    currentPosition === stations.length - 1 &&
+    stations[stations.length - 1].id === "generated__outro"
+  ) {
+    return <RenderOutro stations={stations[stations.length - 1].questStations} />;
   }
 
   if (!stations[0].learningObjectives || (currentTaskLoading && currentPosition > 0)) {
@@ -103,12 +108,13 @@ const RenderWorkspace = () => {
     return <RenderIntro learningObjectives={stations[0].learningObjectives} />;
   }
   return <RenderTask task={currentTask} updateTask={updateTask} />;
-};
+}
 
 const RenderProgressBar = () => {
   const { currentTask, score } = useTasksContext();
   const { currentPackage, packagesLoading, packageTasks, jumpToTask } = usePackagesContext();
   const { stations, currentStation, setCurrentStation } = useStationsContext();
+
   return (
     <ProgressBar
       currentPackage={currentPackage}
