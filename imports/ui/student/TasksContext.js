@@ -13,14 +13,6 @@ export const useTasksContext = () => {
   return ctx;
 };
 
-// async function getContent(task) {
-//   if (task.content) return await task.content.toArray();
-
-//   if (task.categories) await task.categories.toArray();
-
-//   if (task.statements) await task.statements.toArray();
-// }
-
 function calculateScore(allSolutions) {
   return allSolutions.reduce((count, solution) => {
     count += solution.contents.points;

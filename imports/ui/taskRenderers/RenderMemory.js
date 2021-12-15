@@ -25,8 +25,7 @@ export default function RenderMemory(props) {
   }, []);
 
   const { columns, cardSize } = useMemo(() => {
-    // setting some values needed for the calculation of the rows, columns, and the memory-card size
-    const width = 720; // TODO: is there a way to get that size of the current component????
+    const width = 720;
     const height = 348;
     const itemCount = task.items.length;
     // calculating number of rows and columns of the memory game
@@ -43,41 +42,6 @@ export default function RenderMemory(props) {
       cardSize: cardSize
     };
   }, [task]);
-
-  useEffect(() => {
-    if (!item1 || !item2) {
-      return;
-    }
-
-    const a = task.items.find((i) => i.id === item1);
-    const b = task.items.find((i) => i.id === item2);
-
-    flipCard(item1, item2);
-    setItem1(undefined);
-    setItem2(undefined);
-
-    if (!a || !b) {
-      return;
-    }
-
-    if (a.id === b.id) {
-      return;
-    }
-
-    if (a.category_id !== b.category_id) {
-      return;
-    }
-
-    setPairs((pairs) => {
-      return [
-        ...pairs,
-        {
-          a: a.id,
-          b: b.id
-        }
-      ];
-    });
-  }, [item1, item2, task]);
 
   function shuffle(array) {
     let counter = array.length,
@@ -136,7 +100,6 @@ export default function RenderMemory(props) {
         flipCard(item.id);
         setItem2(item.id);
       }
-      // flipCard(item1, item2);
     },
     [task, item1, item2]
   );
@@ -162,7 +125,6 @@ export default function RenderMemory(props) {
       })
     );
     if (!result) {
-      // TODO: handle error
       return;
     }
 
@@ -182,6 +144,40 @@ export default function RenderMemory(props) {
       });
     }
   }, [pairs, task]);
+  useEffect(() => {
+    if (!item1 || !item2) {
+      return;
+    }
+
+    const a = task.items.find((i) => i.id === item1);
+    const b = task.items.find((i) => i.id === item2);
+
+    flipCard(item1, item2);
+    setItem1(undefined);
+    setItem2(undefined);
+
+    if (!a || !b) {
+      return;
+    }
+
+    if (a.id === b.id) {
+      return;
+    }
+
+    if (a.category_id !== b.category_id) {
+      return;
+    }
+
+    setPairs((pairs) => {
+      return [
+        ...pairs,
+        {
+          a: a.id,
+          b: b.id
+        }
+      ];
+    });
+  }, [item1, item2, task]);
 
   return (
     <div className="workspace-memory-container">
@@ -195,8 +191,8 @@ export default function RenderMemory(props) {
               onClick={onClick(item.id)}
               style={{ width: cardSize, height: cardSize, lineHeight: cardSize + "px" }}>
               <div className="front">{item.text}</div>
-              <div className="back"> 
-                <Icon name="logo" size="perc80" color="#6A96E2"/>
+              <div className="back">
+                <Icon name="logo" size="perc80" color="#6A96E2" />
               </div>
             </div>
           );

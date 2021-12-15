@@ -1,8 +1,9 @@
 import PropTypes from "prop-types";
 import React, { memo, useEffect } from "react";
 import { Grid } from "semantic-ui-react";
-import Icon from "../IconComponent/Icon";
+
 import Loading from "../Loading";
+import Icon from "../IconComponent/Icon";
 import NavigationBar from "../navigation_bar/NavigationBar";
 import ProgressBar from "../progressBar/progressBar";
 import RenderCard from "../taskRenderers/RenderCard";
@@ -18,11 +19,41 @@ import { usePackagesContext } from "./PackagesContext";
 import { useStationsContext } from "./StationsContext";
 import { TasksContextProvider, useTasksContext } from "./TasksContext";
 import "./workspace.css";
+import NoContent from "../ErrorPages/NoContent";
+
+export default function Workspace() {
+  const { stations, currentStation, cachedPackageId } = useStationsContext();
+  const { currentPackage, updateCurrentPackage } = usePackagesContext();
+
+  if (!currentPackage) {
+    updateCurrentPackage(cachedPackageId);
+  }
+
+  return (
+    <React.Fragment>
+      <Grid id="workspaceGrid">
+        {stations && (
+          <TasksContextProvider currentStation={currentStation}>
+            <Grid.Column style={{ maxWidth: "22%" }} width={4}>
+              <RenderProgressBar />
+            </Grid.Column>
+            <Grid.Column width={12}>
+              <div className="workspace-container">
+                <RenderWorkspace />
+              </div>
+              <NavigationBar />
+            </Grid.Column>
+          </TasksContextProvider>
+        )}
+      </Grid>
+    </React.Fragment>
+  );
+}
 
 // eslint-disable-next-line react/display-name
-const RenderTask = memo(({ task, updateTask }) => {
-  if (!task) {
-    return null;
+const RenderTask = memo(({ task }) => {
+  if (!task || !task.contents.length) {
+    return <NoContent />;
   }
   let taskRenderer = null;
   switch (task.type) {
@@ -131,37 +162,10 @@ const RenderProgressBar = () => {
   );
 };
 
-const Workspace = () => {
-  const { stations, currentStation, cachedPackageId } = useStationsContext();
-  const { currentPackage, updateCurrentPackage } = usePackagesContext();
-
-  if (!currentPackage) {
-    updateCurrentPackage(cachedPackageId);
-    // return <Loading />;
-  }
-
-  return (
-    <React.Fragment>
-      <Grid id="workspaceGrid">
-        {stations && (
-          <TasksContextProvider currentStation={currentStation}>
-            <Grid.Column style={{ maxWidth: "22%" }} width={4}>
-              <RenderProgressBar />
-            </Grid.Column>
-            <Grid.Column width={12}>
-              <div className="workspace-container">
-                <RenderWorkspace />
-              </div>
-              <NavigationBar />
-            </Grid.Column>
-          </TasksContextProvider>
-        )}
-      </Grid>
-    </React.Fragment>
-  );
-};
-export default Workspace;
-
 Workspace.propTypes = {
   stationId: PropTypes.string
+};
+
+RenderTask.propTypes = {
+  task: PropTypes.object
 };

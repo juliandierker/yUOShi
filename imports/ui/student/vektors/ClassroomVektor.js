@@ -1,9 +1,7 @@
 import React from "react";
 
 export function ClassroomVektor() {
-  // TODO this visualisation is for limmited ammount of packages
   // eslint-disable max-classes-per-file
-
   return (
     // prettier-ignore
     <svg className="roomSvg" width="100%" height="100%" viewBox="0 0 835 558" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink" xmlSpace="preserve" xmlnsSerif="http://www.serif.com/" style={{fillRule: 'evenodd', clipRule: 'evenodd', strokeMiterlimit: 10}}>

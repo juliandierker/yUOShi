@@ -16,7 +16,40 @@ export const useStationsContext = () => {
   return ctx;
 };
 
+function concatLearningObjectiveStation(currentStations, learningObjectives) {
+  return [
+    {
+      title: "Intro",
+      id: "generated__intro",
+      type: "intro",
+      learningObjectives: learningObjectives
+    }
+  ].concat(currentStations);
+}
+
+function concatQuestStations(currentStations, learningObjectiveNames) {
+  let questStations = [];
+  for (let stationIndex in currentStations) {
+    const station = currentStations[stationIndex];
+    if (learningObjectiveNames?.includes(station.title)) {
+      questStations.push(station);
+      currentStations.splice(stationIndex, 1);
+    }
+  }
+
+  if (questStations.length > 0) {
+    currentStations = currentStations.concat([
+      { title: "Quest", id: "generated__outro", type: "outro", questStations }
+    ]);
+  }
+}
+
 export const StationsContextProvider = ({ learningObjectives, currentPackageId, children }) => {
+  const [stations, setStations] = useState(undefined);
+  const [currentStation, setCurrentStation] = useState(undefined);
+  const [stationLoading, setStationLoading] = useState(true);
+  const [stationTasks, setStationsTasks] = useState([]);
+
   const cachedPackageId = useTracker(() => {
     Meteor.subscribe("cachedPackagesByUser");
     return PackagesCache.findOne({})?.packageId;
@@ -26,11 +59,6 @@ export const StationsContextProvider = ({ learningObjectives, currentPackageId, 
     return PackagesCache.findOne({})?.taskId;
   }, [Meteor.userId()]);
 
-  const [stations, setStations] = useState(undefined);
-  const [currentStation, setCurrentStation] = useState(undefined);
-  const [stationLoading, setstationLoading] = useState(true);
-  const [stationTasks, setStationsTasks] = useState([]);
-
   const currentPosition = stations
     ?.map(function(station) {
       return station.id;
@@ -38,43 +66,24 @@ export const StationsContextProvider = ({ learningObjectives, currentPackageId, 
     .indexOf(currentStation.id);
 
   const updateStations = useCallback(async () => {
-    setstationLoading(true);
+    setStationLoading(true);
 
     let currentStations = await PromisifiedMeteor.call(
       "package.getStations",
       currentPackageId ?? cachedPackageId
     );
 
-    currentStations = [
-      {
-        title: "Intro",
-        id: "generated__intro",
-        type: "intro",
-        learningObjectives: learningObjectives
-      }
-    ].concat(currentStations);
+    currentStations = concatLearningObjectiveStation(currentStations, learningObjectives);
     const learningObjectiveNames = learningObjectives?.map((learningObjective) => {
       return learningObjective.title;
     });
-    let questStations = [];
 
+    //await station tasks refs
     for (let station of currentStations) {
       station.tasks = station.tasks?.buffer;
     }
 
-    for (let stationIndex in currentStations) {
-      const station = currentStations[stationIndex];
-      if (learningObjectiveNames?.includes(station.title)) {
-        questStations.push(station);
-        currentStations.splice(stationIndex, 1);
-      }
-    }
-
-    if (questStations.length > 0) {
-      currentStations = currentStations.concat([
-        { title: "Quest", id: "generated__outro", type: "outro", questStations }
-      ]);
-    }
+    concatQuestStations(currentStations, learningObjectiveNames);
 
     let tasks = [];
     if (currentStation) {
@@ -86,7 +95,7 @@ export const StationsContextProvider = ({ learningObjectives, currentPackageId, 
 
     setStations(currentStations);
     setStationsTasks(tasks);
-    setstationLoading(false);
+    setStationLoading(false);
   }, [currentPackageId, currentStation]);
   useEffect(() => {
     updateStations();

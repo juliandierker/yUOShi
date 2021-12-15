@@ -1,4 +1,5 @@
 import React, { useMemo, useState, useEffect, useRef } from "react";
+import PropTypes from "prop-types";
 import Icon from "../IconComponent/Icon";
 
 import "./RenderText.scss";
@@ -16,9 +17,7 @@ import PromisifiedMeteor from "../../api/promisified";
  * @param {RenderTextProps} props
  * @returns {ReactElement|null}
  */
-export default function RenderText(props) {
-  // destructure here and not in function-params so we get type-hints
-  const { task } = props;
+export default function RenderText({ task }) {
   const [currentPage, setCurrentPage] = useState(0);
   const [image, setImage] = useState(undefined);
 
@@ -82,9 +81,7 @@ export default function RenderText(props) {
   }, [task]);
 
   function renderRightPage() {
-    console.log(pages, currentPage);
     if (pages[currentPage * 2 + 1] === "textIsImage") {
-      console.log(image);
       return (
         <img
           src={`${studipUrl.current}/sendfile.php?type=0&file_id=${image.id}&;file_name=${image.name}`}
@@ -123,3 +120,7 @@ export default function RenderText(props) {
     </>
   );
 }
+
+RenderText.propTypes = {
+  task: PropTypes.object.isRequired
+};
