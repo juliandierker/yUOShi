@@ -83,13 +83,18 @@ export default function NavigationBar() {
     );
   }, [hoverNext]);
 
-  async function solveTaskHandler() {
-    const isSolved = await PromisifiedMeteor.call("tasks.isSolved", currentTask.id, (err, res) => {
+  async function isSolved(currentTask) {
+    await PromisifiedMeteor.call("tasks.isSolved", currentTask.id, (err, res) => {
       if (res) {
-        return "solved";
+        return true;
+      } else {
+        return false;
       }
     });
-    if (isSolved) {
+  }
+
+  async function solveTaskHandler() {
+    if (isSolved(currentTask)) {
       Swal.fire({
         position: "top-end",
         type: "info",
@@ -104,7 +109,7 @@ export default function NavigationBar() {
     <div className="workspace-navigation">
       <RenderPreviousButton />
       <button
-        disabled={currentTask?.type === "tag"}
+        disabled={currentTask?.type === "tag" || isSolved(currentTask)}
         onClick={solveTaskHandler}
         className="navigation-button"
         id="navigation-button-submit">
