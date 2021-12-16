@@ -80,7 +80,7 @@ const RenderQuest = ({ task }) => {
       await Swal.fire({
         position: "top-end",
         type: "info",
-        title: "Die wurde schon gelöst.",
+        title: "Die Aufgabe wurde schon gelöst.",
         timer: 2000
       });
     }
@@ -109,13 +109,18 @@ const RenderQuest = ({ task }) => {
   const renderAnswers = () => {
     return question.answers.map((answer, index) => {
       return (
-        <div className="answer-container" key={"answer-" + index} onClick={toggleAnswer(question.id, answer.id)}>
+        <div
+          className="answer-container"
+          key={"answer-" + index}
+          onClick={toggleAnswer(question.id, answer.id)}>
           <input
             name={"checkbox_" + index}
             id={"checkbox_" + answer.id}
             type="checkbox"
             className="answer-checkbox"
-            checked={selectedAnswers[question.id] && selectedAnswers[question.id].includes(answer.id)}
+            checked={
+              selectedAnswers[question.id] && selectedAnswers[question.id].includes(answer.id)
+            }
           />
           <label htmlFor={"checkbox_" + index} className="answer">
             {answer.content}

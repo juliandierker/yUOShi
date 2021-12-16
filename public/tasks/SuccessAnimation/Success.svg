@@ -1,0 +1,42 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="197" height="197" viewBox="0 0 197 197">
+  <defs>
+    <filter id="Ellipse_290" x="0" y="0" width="197" height="197" filterUnits="userSpaceOnUse">
+      <feOffset dy="3" input="SourceAlpha"/>
+      <feGaussianBlur stdDeviation="3" result="blur"/>
+      <feFlood flood-opacity="0.161"/>
+      <feComposite operator="in" in2="blur"/>
+      <feComposite in="SourceGraphic"/>
+    </filter>
+    <clipPath id="clip-path">
+      <path id="ei" d="M30.339,78.764a29.577,29.577,0,0,0,5.641-.514A30.406,30.406,0,0,0,54.742,66.559a29.622,29.622,0,0,0,5.106-10.878,30.668,30.668,0,0,0,.733-9.343,51.8,51.8,0,0,0-.986-6.943,75.308,75.308,0,0,0-2.968-10.388,76.3,76.3,0,0,0-6.091-13.025,48.364,48.364,0,0,0-6.975-9.3A23.9,23.9,0,0,0,35.92,1.2,13.623,13.623,0,0,0,28.358.154a17.054,17.054,0,0,0-7.119,3,31.3,31.3,0,0,0-6.1,5.688,55.383,55.383,0,0,0-6.149,9.127,77.61,77.61,0,0,0-5.5,12.61A63.607,63.607,0,0,0,.085,46.32a31.056,31.056,0,0,0,.283,7.089,29.248,29.248,0,0,0,3.674,10.3,30.376,30.376,0,0,0,26.3,15.051Z" transform="translate(0 0)" fill="#e4e4e4" clip-rule="evenodd"/>
+    </clipPath>
+  </defs>
+  <g id="Punkte2" transform="translate(-1004 -290.501)">
+    <g transform="matrix(1, 0, 0, 1, 1004, 290.5)" filter="url(#Ellipse_290)">
+      <circle id="Ellipse_290-2" data-name="Ellipse 290" cx="89.5" cy="89.5" r="89.5" transform="translate(9 6)" fill="#fff"/>
+    </g>
+    <g id="Punkte" transform="translate(1046.165 337.662)">
+      <g id="Gruppe_3488" data-name="Gruppe 3488" transform="translate(-2 4.311)">
+        <g id="Animation" transform="translate(8.835 -11.472)">
+          <g id="Gruppe_3485" data-name="Gruppe 3485" transform="translate(19.529 0.701)">
+            <path id="ei-3" data-name="ei" d="M30.339,78.764a29.577,29.577,0,0,0,5.641-.514A30.406,30.406,0,0,0,54.742,66.559a29.622,29.622,0,0,0,5.106-10.878,30.668,30.668,0,0,0,.733-9.343,51.8,51.8,0,0,0-.986-6.943,75.308,75.308,0,0,0-2.968-10.388,76.3,76.3,0,0,0-6.091-13.025,48.364,48.364,0,0,0-6.975-9.3A23.9,23.9,0,0,0,35.92,1.2,13.623,13.623,0,0,0,28.358.154a17.054,17.054,0,0,0-7.119,3,31.3,31.3,0,0,0-6.1,5.688,55.383,55.383,0,0,0-6.149,9.127,77.61,77.61,0,0,0-5.5,12.61A63.607,63.607,0,0,0,.085,46.32a31.056,31.056,0,0,0,.283,7.089,29.248,29.248,0,0,0,3.674,10.3,30.376,30.376,0,0,0,26.3,15.051Z" transform="translate(0 0)" fill="#f6f6f5" fill-rule="evenodd"/>
+            <g id="Waterback" transform="translate(0 0)" clip-path="url(#clip-path)">
+              <path id="Pfad_5345" data-name="Pfad 5345" d="M60.624,5.223S52.5,12.265,41.3,11.012,26.173,1.659,15.847.211,0,5.223,0,5.223v57.4H60.624Z" transform="translate(-0.03 18.376)" fill="#77ba4c"/>
+              <path id="Pfad_5346" data-name="Pfad 5346" d="M60.859,5.012s-8.362,7.253-19.556,6S26.173,1.659,15.847.211,0,5.223,0,5.223V62.375H60.652Z" transform="translate(-60.654 18.376)" fill="#77ba4c"/>
+            </g>
+            <g id="Waterfront" transform="translate(0 0)" clip-path="url(#clip-path)">
+              <path id="Pfad_5347" data-name="Pfad 5347" d="M0,5.223s8.127,7.043,19.321,5.79S34.451,1.659,44.777.211,60.624,5.223,60.624,5.223v57.4H0Z" transform="translate(0.038 18.376)" fill="#98e26a"/>
+              <path id="Pfad_5348" data-name="Pfad 5348" d="M-1.311,4.148s9.528,8.117,20.722,6.864S34.541,1.659,44.867.211,60.714,5.223,60.714,5.223V62.375H.062Z" transform="translate(60.572 18.376)" fill="#98e26a"/>
+            </g>
+          </g>
+          <g id="Gruppe_3487" data-name="Gruppe 3487" transform="translate(0 0)">
+            <g id="Gruppe_3486" data-name="Gruppe 3486">
+              <path id="Pfad_5349" data-name="Pfad 5349" d="M0-17.118V-97.151H17.172V-85.04H11.394v55.811h5.777v12.111Z" transform="translate(0 97.151)" fill="#f6f6f5"/>
+              <path id="Pfad_5350" data-name="Pfad 5350" d="M116.887-16.981V-97.014H99.715V-84.9h5.777v55.811H99.715v12.111Z" transform="translate(-17.097 97.127)" fill="#f6f6f5"/>
+            </g>
+          </g>
+        </g>
+      </g>
+    </g>
+  </g>
+</svg>

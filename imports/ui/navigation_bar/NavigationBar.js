@@ -7,6 +7,8 @@ import { useTasksContext } from "../student/TasksContext";
 import { useStationsContext } from "../student/StationsContext";
 
 import "./NavigationBar.css";
+import PromisifiedMeteor from "../../api/promisified";
+import Swal from "sweetalert2";
 
 export default function NavigationBar() {
   const [hoverPrevious, setHoverPrevious] = useState(false);
@@ -81,12 +83,38 @@ export default function NavigationBar() {
     );
   }, [hoverNext]);
 
+  async function solveTaskHandler() {
+    const isSolved = await PromisifiedMeteor.call("tasks.isSolved", currentTask.id, (err, res) => {
+      if (res) {
+        return "solved";
+      }
+    });
+    if (isSolved) {
+      Swal.fire({
+        position: "top-end",
+        type: "info",
+        title: "Die Aufgabe wurde schon gelöst.",
+        timer: 2000
+      });
+    } else {
+      solveTask();
+      Swal.fire({
+        html: (
+          <div>
+            <h2>Super!</h2>
+            <img src="/tasks/SuccessAnimation/Success.svg" />
+            <h3> Dir wurden Punkte gutgeschrieben.</h3>
+          </div>
+        )
+      });
+    }
+  }
   return (
     <div className="workspace-navigation">
       <RenderPreviousButton />
       <button
         disabled={currentTask?.type === "tag"}
-        onClick={solveTask}
+        onClick={solveTaskHandler}
         className="navigation-button"
         id="navigation-button-submit">
         <span className="navigation-button-submit-text">AUSWERTEN</span>

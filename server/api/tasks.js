@@ -109,5 +109,19 @@ Meteor.methods({
       .toArray();
 
     return solutions;
+  },
+
+  "tasks.isSolved": async (task_id) => {
+    const backendAdapter = createBackendAdapter();
+    const studipUserId = Meteor.user().services.studip.id;
+    const solutions = await backendAdapter.userTaskSolutionAdapter
+      .getAllUserSolutions(studipUserId)
+      .getWrapped()
+      .toArray();
+
+    const isSolved = solutions.find(
+      (solution) => solution.task_id === task_id && solution.contents.points > 0
+    );
+    return !!isSolved;
   }
 });
