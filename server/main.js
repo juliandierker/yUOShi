@@ -55,13 +55,13 @@ Meteor.startup(() => {
         Meteor.call("students.insert", user._id, user.services.studip.id);
 
         break;
-      case "teacher":
-        Roles.addUsersToRoles(user._id, "teacher");
-        Meteor.call("teachers.insert", user._id, user.services.studip.id);
+      // case "teacher":
+      //   Roles.addUsersToRoles(user._id, "teacher");
+      //   Meteor.call("teachers.insert", user._id, user.services.studip.id);
 
-        break;
-      default:
-        break;
+      //   break;
+      // default:
+      //   break;
     }
   });
 

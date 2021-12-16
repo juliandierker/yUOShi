@@ -98,15 +98,6 @@ export default function NavigationBar() {
       });
     } else {
       solveTask();
-      Swal.fire({
-        html: (
-          <div>
-            <h2>Super!</h2>
-            <img src="/tasks/SuccessAnimation/Success.svg" />
-            <h3> Dir wurden Punkte gutgeschrieben.</h3>
-          </div>
-        )
-      });
     }
   }
   return (
