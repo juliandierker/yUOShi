@@ -1,5 +1,5 @@
 # yUOShi
-Gamification-Plugin for e-learning-seminars in context of psychological aspects of teaching and learning
+Gamification App for e-learning-seminars in context of psychological aspects of teaching and learning
 
 ## Getting Started
 
@@ -18,6 +18,12 @@ Gamification-Plugin for e-learning-seminars in context of psychological aspects 
 `change the filename of settings.json to my-settings.json`
 
 `npm start`
+
+### Run with Adapter
+
+`yarn`
+link all adapters
+`yarn start`
 
 ## Deployment
 TODO
