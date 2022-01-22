@@ -78,14 +78,18 @@ export default function RenderText({ task }) {
       loadImages();
       pages.splice(1, 0, "textIsImage");
     }
-  }, [task]);
+  }, [pages, task]);
 
   function renderRightPage() {
     if (pages[currentPage * 2 + 1] === "textIsImage") {
+      if (!image) return;
       return (
         <img
-          src={`${studipUrl.current}/sendfile.php?type=0&file_id=${image.id}&;file_name=${image.name}`}
-          type="image/png"></img>
+          src={`${studipUrl.current}/sendfile.php?type=0&file_id=${image.id}&;file_name=${
+            image.name
+          }`}
+          type="image/png"
+        />
       );
     }
     return pages[currentPage * 2 + 1];
@@ -97,7 +101,7 @@ export default function RenderText({ task }) {
         <div className="page-left">
           <span className="text">{pages[currentPage * 2]}</span>
         </div>
-        <div className="page-middle-line"></div>
+        <div className="page-middle-line" />
         <div className="page-right">
           <span className="text">{renderRightPage()}</span>
         </div>
