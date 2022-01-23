@@ -64,7 +64,7 @@ link all adapters
 Propper instructions here in the wiki
 
 ## Deployment
-Deployment is not a github action yet but there is a dockerfile for this. You can start and restart the production at https://vm620.rz.uos.de using your LDAP and follow the instructions in the Wiki here.
+Deployment is not a github action yet but there is a dockerfile for this. You can start and restart the production at https://vm620.rz.uos.de using your LDAP and follow the instructions in the Wiki https://github.com/juliandierker/yUOShi/wiki/Deploy.
 
 ## Rights 
 This is an opensource-projects running under the MIT-License.
