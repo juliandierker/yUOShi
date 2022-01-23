@@ -9,15 +9,15 @@ Gamification App for e-learning-seminars in context of psychological aspects of 
 
 ### Run locally
 
-`git clone git@github.com:juliandierker/yUOShi.git`
+- `git clone git@github.com:juliandierker/yUOShi.git`
 
-`cd yUOShi`
+- `cd yUOShi`
 
-`meteor npm install` or `yarn install`
+- `meteor npm install` or `yarn install`
 
-`change the filename of settings.json to my-settings.json`
+- `change the filename of settings.json to my-settings.json`
 
-Settingsfile using our Studip from https://vm621.rz.uos.de
+- Settingsfile using our Studip from https://vm621.rz.uos.de
 
 `
 {
@@ -52,8 +52,8 @@ Settingsfile using our Studip from https://vm621.rz.uos.de
 }
 `
 
-`npm start` or `yarn start` to fire the `meteor` start command using the settingsfile from above.
-You are now able to do Changes in the React-Front-End end test them.
+- `npm start` or `yarn start` to fire the `meteor` start command using the settingsfile from above.
+- You are now able to do Changes in the React-Front-End end test them.
 
 ### Run with Adapter
 
