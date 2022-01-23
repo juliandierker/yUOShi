@@ -5,7 +5,8 @@ Gamification App for e-learning-seminars in context of psychological aspects of 
 
 ### Install meteor
 
-- `curl https://install.meteor.com/ | sh` for OSX/Linux, `choco install meteor` for Windows
+- `curl https://install.meteor.com/ | sh` for OSX/Linux, `choco install meteor` for Windows `arch -x86_64 /bin/sh -c "$(curl -fsSL https://install.meteor.com/)"
+` for mac-os using m1 chip
 
 ### Run locally
 
