@@ -15,9 +15,10 @@ Meteor.methods({
 
   "tasks.nextTaskForStation": async (stationId) => {
     const backendAdapter = createBackendAdapter();
-    const task = await backendAdapter.taskAdapter.getNextTask(stationId);
-
-    if (!task) {
+    let task;
+    try {
+      task = await backendAdapter.taskAdapter.getNextTask(stationId);
+    } catch (e) {
       return;
     }
     return task.getStatic();
@@ -67,7 +68,6 @@ Meteor.methods({
     if (!task) {
       return;
     }
-
     // handle it this way - ejson can't handle Maps :(
     answers = answers.map((answer) => {
       return {
@@ -75,7 +75,6 @@ Meteor.methods({
         inputs: new Map(Object.entries(answer.inputs))
       };
     });
-
     return backendAdapter.userTaskSolutionAdapter.saveCompleteTask(
       task_id,
       task.createAnswer(answers)
@@ -110,5 +109,19 @@ Meteor.methods({
       .toArray();
 
     return solutions;
+  },
+
+  "tasks.isSolved": async (task_id) => {
+    const backendAdapter = createBackendAdapter();
+    const studipUserId = Meteor.user().services.studip.id;
+    const solutions = await backendAdapter.userTaskSolutionAdapter
+      .getAllUserSolutions(studipUserId)
+      .getWrapped()
+      .toArray();
+
+    const isSolved = solutions.find(
+      (solution) => solution.task_id === task_id && solution.contents.points > 0
+    );
+    return !!isSolved;
   }
 });

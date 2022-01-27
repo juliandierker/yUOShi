@@ -13,14 +13,6 @@ export const useTasksContext = () => {
   return ctx;
 };
 
-// async function getContent(task) {
-//   if (task.content) return await task.content.toArray();
-
-//   if (task.categories) await task.categories.toArray();
-
-//   if (task.statements) await task.statements.toArray();
-// }
-
 function calculateScore(allSolutions) {
   return allSolutions.reduce((count, solution) => {
     count += solution.contents.points;
@@ -37,7 +29,8 @@ export const TasksContextProvider = ({ currentStation, children }) => {
   const [score, setScore] = useState(0);
 
   async function solveTask() {
-    await getSolution;
+    await getSolution();
+    updateScore();
   }
   const updateScore = useCallback(async () => {
     const allSolutions = await PromisifiedMeteor.call("tasks.getAllSolution");
@@ -46,15 +39,15 @@ export const TasksContextProvider = ({ currentStation, children }) => {
   }, []);
 
   const getNextTask = useCallback(async () => {
-    if (currentStation.title === "Intro") {
+    if (currentStation.title === "Intro" || currentStation.name === "Intro") {
       return "nextStation";
     }
 
     if (!currentTask || stationTasks.length === 0) return;
     const nextTaskIdx = stationTasks.findIndex((task) => task.id === currentTask.id) + 1;
 
-    if (nextTaskIdx === 0) {
-      return;
+    if (nextTaskIdx === -1 && stationTasks.length > 0) {
+      return "nextStation";
     }
 
     if (nextTaskIdx >= stationTasks.length) {
@@ -70,7 +63,7 @@ export const TasksContextProvider = ({ currentStation, children }) => {
     } finally {
       setCurrentTaskLoading(false);
     }
-  }, [stationTasks, currentTask]);
+  }, [stationTasks, currentTask, currentStation]);
 
   const getPrevTask = useCallback(async () => {
     if (!currentStation || !currentTask) return;
@@ -103,7 +96,6 @@ export const TasksContextProvider = ({ currentStation, children }) => {
     if (!currentTask) {
       setCurrentTask(_currentTask);
     }
-    // setCurrentTask(_currentTask);
     updateScore();
     setCurrentTaskLoading(false);
   }, [currentStation, updateScore]);
@@ -121,6 +113,10 @@ export const TasksContextProvider = ({ currentStation, children }) => {
     }
   });
 
+  const getTask = useCallback(async (id) => {
+    return await PromisifiedMeteor.call("tasks.getTask", id);
+  });
+
   useEffect(() => {
     updateTask();
     updateScore();
@@ -132,12 +128,14 @@ export const TasksContextProvider = ({ currentStation, children }) => {
     updateTask,
     getPrevTask,
     getNextTask,
+    setCurrentTask,
     getSolution,
     setSolution,
     solveTask,
     jumpToTask,
     score,
-    userSolutions
+    userSolutions,
+    getTask
   };
 
   return <TasksContext.Provider value={ctx}>{children}</TasksContext.Provider>;

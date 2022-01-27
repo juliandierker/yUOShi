@@ -1,9 +1,10 @@
 import React, { useCallback, useEffect, useMemo, useState } from "react";
 import PropTypes from "prop-types";
 
-import { StaticMulti, StaticSurvey, StaticTraining } from "@xyng/yuoshi-backend-adapter"
+import { StaticMulti, StaticSurvey, StaticTraining } from "@xyng/yuoshi-backend-adapter";
 import RenderQuest from "./RenderQuest";
 import PromisifiedMeteor from "../../api/promisified";
+import NoContent from "../ErrorPages/NoContent";
 
 const propTypes = {
   task: PropTypes.oneOfType([PropTypes.instanceOf(StaticMulti), PropTypes.instanceOf(StaticSurvey)])
@@ -47,12 +48,16 @@ const RenderQuestTask = (props) => {
 
   return (
     <>
-      <RenderQuest
-        task={task}
-        question={question}
-        isLastQuestion={isLastQuestion}
-        onGetNextQuest={onGetNextQuest}
-      />
+      {task.contents.length ? (
+        <RenderQuest
+          task={task}
+          question={question}
+          isLastQuestion={isLastQuestion}
+          onGetNextQuest={onGetNextQuest}
+        />
+      ) : (
+        <NoContent />
+      )}
     </>
   );
 };

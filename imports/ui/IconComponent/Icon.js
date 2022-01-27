@@ -3,23 +3,24 @@ import PropTypes from "prop-types";
 import classnames from "classnames";
 
 export default function Icon(props) {
-  const { color, label, size, inverted, inactive, name, onClick, rotate, className } = props;
+  const { color, label, size, name, onClick, rotate, className } = props;
 
   const iconColor = color ? color : "black";
 
-  const mask = `url(/assets/Icons/${name}.svg) no-repeat center`
+  const mask = `url(/assets/Icons/${name}.svg) no-repeat center`;
 
   return (
-    <div 
-    className={classnames("pu icon", {
-      ["-" + size]: size,
-      ["-" + label]: !!label,
-      "-clickable": onClick,
-      rotateSetting: rotate,
-      [className]: className
-    })}
-    style={{backgroundColor:iconColor,  WebkitMask: mask, Mask: mask}} />
-  )
+    <div
+      className={classnames("pu icon", {
+        ["-" + size]: size,
+        ["-" + label]: !!label,
+        "-clickable": onClick,
+        rotateSetting: rotate,
+        [className]: className
+      })}
+      style={{ backgroundColor: iconColor, WebkitMask: mask, Mask: mask }}
+    />
+  );
 }
 Icon.propTypes = {
   color: PropTypes.string,

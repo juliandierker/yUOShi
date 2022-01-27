@@ -1,4 +1,4 @@
-import React, { useState, useCallback } from "react";
+import React, { useState, useCallback, useEffect } from "react";
 import Icon from "../IconComponent/Icon";
 
 import { Grid } from "semantic-ui-react";
@@ -7,13 +7,18 @@ import { useTasksContext } from "../student/TasksContext";
 import { useStationsContext } from "../student/StationsContext";
 
 import "./NavigationBar.css";
+import PromisifiedMeteor from "../../api/promisified";
+import Swal from "sweetalert2";
 
 export default function NavigationBar() {
   const [hoverPrevious, setHoverPrevious] = useState(false);
   const [hoverNext, setHoverNext] = useState(false);
 
-  const { stations, currentPosition, setCurrentStation } = useStationsContext();
-  const { getPrevTask, getNextTask, getSolution, currentTask } = useTasksContext();
+  const { stations, currentPosition, setCurrentStation, currentStation } = useStationsContext();
+  const { getPrevTask, getNextTask, solveTask, currentTask, jumpToTask } = useTasksContext();
+  const taskIsInRange = !!currentStation.tasks?.find(
+    (stationTask) => stationTask.id === currentTask?.id
+  );
   async function navigateNext() {
     if ((await getNextTask()) === "nextStation") {
       if (stations.length > currentPosition) {
@@ -21,6 +26,10 @@ export default function NavigationBar() {
       }
     }
   }
+
+  useEffect(() => {
+    jumpToTask(currentStation.tasks?.[0].id);
+  }, [taskIsInRange === false]);
 
   const handleButtonPreviousEnter = () => {
     setHoverPrevious(true);
@@ -74,12 +83,34 @@ export default function NavigationBar() {
     );
   }, [hoverNext]);
 
+  async function isSolved(currentTask) {
+    await PromisifiedMeteor.call("tasks.isSolved", currentTask.id, (err, res) => {
+      if (res) {
+        return true;
+      } else {
+        return false;
+      }
+    });
+  }
+
+  async function solveTaskHandler() {
+    if (isSolved(currentTask)) {
+      Swal.fire({
+        position: "top-end",
+        type: "info",
+        title: "Die Aufgabe wurde schon gelöst.",
+        timer: 2000
+      });
+    } else {
+      solveTask();
+    }
+  }
   return (
     <div className="workspace-navigation">
       <RenderPreviousButton />
       <button
-        disabled={currentTask?.type === "tag"}
-        onClick={getSolution}
+        disabled={currentTask?.type === "tag" || isSolved(currentTask)}
+        onClick={solveTaskHandler}
         className="navigation-button"
         id="navigation-button-submit">
         <span className="navigation-button-submit-text">AUSWERTEN</span>

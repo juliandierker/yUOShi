@@ -1,75 +1,50 @@
-import React, { useState, useMemo } from "react"
+import React, { useState, useMemo, useEffect, useCallback } from "react"
+import PromisifiedMeteor from "../../api/promisified";
 
-import Icon from "../IconComponent/Icon"
+import { Loader } from "semantic-ui-react"
 
-import "./RenderOutro.css"
+import { useTasksContext } from "../student/TasksContext";
+
+import "./RenderOutro.scss"
+import Swal from "sweetalert2";
 
 function RenderOutro(props) {
-  const { task, upadteTask } = props
+  const { task, upadteTask, stations } = props
+  const { getTask, getSolution, setSolution } = useTasksContext();
+
   // if currentStudent === -1 --> show quest overview
-  const { currentStudentIndex, setCurrentStudentIndex } = useState(-1);
+  const [currentStudentIndex, setCurrentStudentIndex] = useState(-1);
+  const [currentStudentTask, setCurrentStudentTask] = useState(undefined);
+  const [selectedAnswers, setSelectedAnswers] = useState([])
 
-  // TODO: muss abgeändert werden, sobald das Backend das Handeln kann
+  // use this onSubmit function when the user presses the send Solution Button 
+  useEffect(() => {
+    setSolution(() => onSubmit);
+  }, [selectedAnswers])
+
+  // set the current quest task when the currentStudentIndex gets updated
+  useEffect(() => {
+    if (currentStudentIndex === -1) {
+      setCurrentStudentTask(undefined)
+      setSelectedAnswers([])
+      return
+    }
+    getTask(students[currentStudentIndex].tasks[0].id).then((task) => {
+      setCurrentStudentTask(task)
+    })
+  }, [currentStudentIndex])
+
+  // calculate Image size and column count to show the student Images in the Quest Overview
   const { students, iconSize, columns, rows } = useMemo(() => {
-    // gather all required informations to form the quest
-    const data = task.topics.map((d, index) => {
-      const taskData = d.title.split("_")
-      const studentName = taskData[0]
-      const taskType = taskData[1]
 
+    // Get Name and Tasks for a student/learningObjective
+    const students = stations.map((station, index) => {
+      const tasks = station.tasks
       return {
-        studentName,
-        taskType,
-        content: d.content
+        tasks,
+        name: station.title.split(",")[0]
       }
     })
-    // sorting the studentTasks to the students
-    let students = []
-    for (let i in data) {
-      const studentIndex = students.findIndex(student => { return student.name === data[i].studentName })
-      let _task = { type: data[i].taskType, content: data[i].content }
-      if (studentIndex !== -1) {
-        students[studentIndex].tasks.push(_task)
-      } else {
-        let tasks = [_task]
-        let newStudent = { name: data[i].studentName, tasks }
-        students.push(newStudent)
-      }
-    }
-    // generate question and answers from the content string
-    const generateMultiChoiceStructure = (studentTask => {
-      let question = ""
-      let answers = []
-
-      const mcComponents = studentTask.content.split("_")
-      for (let i in mcComponents) {
-        if (mcComponents[i] === "QUESTION") {
-          question = mcComponents[parseInt(i) + 1].replace("\n", "")
-        } else if (mcComponents[i] === "ANSWER-FALSE") {
-          answers.push({ answer: mcComponents[parseInt(i) + 1].replace("\n", ""), correct: false })
-        } else if (mcComponents[i] === "ANSWER-TRUE") {
-          answers.push({ answer: mcComponents[parseInt(i) + 1].replace("\n", ""), correct: true })
-        }
-      }
-      return { question, answers }
-    })
-
-    // modify the tasks to be in the correct format for the actual task templats
-    for (let i in students) {
-      students[i].tasks.map((studentTask) => {
-        if (studentTask.type === "TEXT") {
-          studentTask.index = 0;
-        } else if (studentTask.type === "MC") {
-          const { question, answers } = generateMultiChoiceStructure(studentTask)
-          studentTask.question = question
-          studentTask.answers = answers
-          studentTask.index = 1;
-        } else {
-          studentTask.index = 2;
-        }
-      })
-      students[i].tasks = students[i].tasks.sort((a, b) => { return a.index - b.index })
-    }
 
     const studentCount = students.length
 
@@ -83,25 +58,77 @@ function RenderOutro(props) {
     const iconSize = Math.min(iconHeight, iconWidth)
 
     return { students, iconSize, columns, rows }
-  }, [task])
+  }, [stations])
 
+  // submit the current quest solution 
+  const onSubmit = useCallback(async () => {
+    if (currentStudentIndex === -1 && !currentStudentTask) {
+      // no quest selected
+      return
+    }
 
+    const { question, content_id, id } = currentStudentTask.contents[0]
+    const givenAnswers = selectedAnswers[question.id].map((answer) => {
+      return {
+        quest_id: id,
+        content_id: content_id,
+        answer_id: answer
+      }
+    })
 
+    try {
+      const result = await PromisifiedMeteor.call("tasks.checkQuest", id, givenAnswers);
+      if (result.is_correct) {
+        // user submitted the correct answer
+        await Swal.fire({
+          position: "top-end",
+          type: "success",
+          title: "Quest geschafft!",
+          timer: 2000
+        });
+        setCurrentStudentIndex(-1);
+      } else {
+        // user submitted an incorrect answer
+        await Swal.fire({
+          position: "top-end",
+          type: "warning",
+          title: "Die Lösung war nicht richtig. Du kannst es noch einmal probieren.",
+          timer: 2000
+        });
+      }
+    } catch (e) {
+      // server threw an error (it should NOT be an Exception when the task was already finished!!!!)
+      await Swal.fire({
+        position: "top-end",
+        type: "info",
+        title: "Die wurde schon gelöst.",
+        timer: 2000
+      });
+      setCurrentStudentIndex(-1);
+    }
+  }, [selectedAnswers])
+
+  // render the student icons with the calculated size
   const RenderStudentIcons = () => {
     return students.map((student, index) => {
-      return <div className="student-icon" key={"sicon-" + index} style={{ width: iconSize, height: iconSize }}>
-        <Icon className="student-icon-i" name={student.name} />
+      return <div className="student-icon" key={"sicon-" + index} style={{ width: iconSize, height: iconSize }} onClick={() => setCurrentStudentIndex(index)}>
+        <img className="student-icon-i" src={"/assets/Icons/" + student.name + ".svg"} />
         <div className="student-icon-name">{student.name}</div>
       </div>
     })
   }
 
+  // render the overall structure of the quest overview
   const RenderQuestOverview = () => {
     return <div className="quest-overview-container">
       <div className="quest-overview-text-container">
-        <div className="quest-overview-text-title">TITLE</div>
-        <div className="quest-overview-text-subtitle">SUBTITLE</div>
-        <div className="quest-overview-text">TEXT</div>
+        <div className="quest-overview-text-title">Willkommen bei den Quests</div>
+        <div className="quest-overview-text-subtitle">Levelübersicht</div>
+        <div className="quest-overview-text">Du bist gut in das Schuljahr gestartet und äußerst motiviert. Insgesamt hast du auch ein hutes Gefühl und eine nette Klasse.
+          Zu den meisten Schüler*innen kannst du ein sehr gutes Verhältnis aufbauen. <br /> Im Laufe des Schuljahrs bemerkst du aber bei einigen Schüler*innen Veränderungen im Verhalten,
+          die du selbstverständlich protokollierst. Sie wirken insgesamt unmotivierter und strengen sich weniger an als vorher. Folgende Schüler*innen fallen die dabei besonders auf.
+          <br /> Der Text ist übrigens noch Hardcoded und muss irgendwie noch dynamisch erstellt werden.
+        </div>
       </div>
       <div className="quest-overview-students-container" style={{ width: (iconSize * columns + (60 * (columns))) }}>
         <RenderStudentIcons />
@@ -109,20 +136,70 @@ function RenderOutro(props) {
     </div>
   }
 
-  const RenderQuest = () => {
-    if (!currentStudentIndex || currentStudentIndex === -1) {
-      return RenderQuestOverview();
-    } else {
-      return <div >{currentStudentIndex}</div>
+  // toggle an answer, when the user clicked the checkbox (or the text)
+  const toggleAnswer = useCallback(
+    (question_id, answer_id) => () => {
+      setSelectedAnswers((cur) => {
+        let selected = cur[question_id] || []
+
+        if (!selected.includes(answer_id)) {
+          selected = [answer_id]
+        }
+
+        return {
+          ...cur,
+          [question_id]: selected
+        }
+      })
+    },
+    []
+  )
+
+  // render the multiple choice task of the currently selected learningObjective
+  const RenderMC = () => {
+    if (currentStudentTask === undefined) {
+      // wait for the current task to finish loading
+      return (
+        <Loader style={{ display: "block" }} inverted />
+      )
     }
+
+    const { question, answers } = currentStudentTask.contents[0]
+    return (
+      <div className="outro-quest-container">
+        <div className="outro-quest-question">
+          {question}
+        </div>
+        <div className="outro-quest-answers">
+          {answers.map((answer, index) => {
+            return (
+              <div className="outro-quest-answer" key={"outro-quest-answer-" + answer.id} onClick={toggleAnswer(question.id, answer.id)}>
+                <input
+                  name={"checkbox_" + index}
+                  id={"checkbox_" + answer.id}
+                  type="checkbox"
+                  className="outro-quest-answer-checkbox"
+                  readOnly
+                  checked={selectedAnswers[question.id] && selectedAnswers[question.id].includes(answer.id)}
+                />
+                <label htmlFor={"checkbox_" + index} className="outro-quest-answer-label">
+                  {answer.content}
+                </label>
+              </div>
+            )
+          })}
+        </div>
+      </div>
+    )
   }
 
+  // render the container for the outro
   return <div className="outro-container">
     <div className="outro-header">
-      <div className="outro-title">{task.title.replace("_QUEST_", "")}</div>
+      <div className="outro-title">Bearbeitung der Fallbeispiele</div>
     </div>
     <div className="quest-container">
-      <RenderQuest />
+      {currentStudentIndex === -1 ? <RenderQuestOverview /> : <RenderMC />}
     </div>
   </div>
 

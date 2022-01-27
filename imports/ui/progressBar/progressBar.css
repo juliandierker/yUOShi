@@ -57,7 +57,7 @@ div {
 .progressBar-score-number {
   margin: 4px auto 0px auto !important;
   padding: 0px;
-  width: fit-content;
+  width: max-content;
   height:22px;
   font-size: 22px;
   letter-spacing: 0px;
@@ -68,7 +68,7 @@ div {
 .progressBar-score-label {
   margin: 2px auto 0px auto;
   padding: 0px;
-  width: fit-content;
+  width: max-content;
   height:17px;
 
   letter-spacing: 0px;

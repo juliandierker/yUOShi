@@ -4,10 +4,8 @@ import { Tracker } from "meteor/tracker";
 import React from "react";
 import Routes, { onAuthChange } from "../imports/routes/Routes";
 import "../imports/startup/simple-schema-configuration.js";
-import "../imports/ui/um/UserAdministration.js";
-import "../imports/api/taskTypes"
-
-// LOGIN FOR DEV
+import "../imports/api/taskTypes";
+import "../imports/api/packageCache";
 
 window.setCookie = function(name, value, sec) {
   if (sec) {
@@ -38,7 +36,7 @@ Tracker.autorun(() => {
   onAuthChange(currentUser);
 
   Meteor.startup(() => {
-    document.documentElement.lang = "de"
+    document.documentElement.lang = "de";
     ReactDOM.render(<Routes />, document.getElementById("app"));
     // setCookie("resume", "true", false);
     // if (!getCookie("resume")) {

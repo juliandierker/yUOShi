@@ -17,6 +17,8 @@
   border-color: #ffffff00;
   border-radius: 12px;
   margin-bottom: 12px;
+
+  border: none;
 }
 
 .navigation-button:disabled {
