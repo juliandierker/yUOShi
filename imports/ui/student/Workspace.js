@@ -52,7 +52,7 @@ export default function Workspace() {
 
 // eslint-disable-next-line react/display-name
 const RenderTask = memo(({ task }) => {
-  if (!task || !task.contents.length) {
+  if (!task) {
     return <NoContent />;
   }
   let taskRenderer = null;

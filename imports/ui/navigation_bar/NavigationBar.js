@@ -84,6 +84,9 @@ export default function NavigationBar() {
   }, [hoverNext]);
 
   async function isSolved(currentTask) {
+    if (!currentTask)
+      return false;
+
     await PromisifiedMeteor.call("tasks.isSolved", currentTask.id, (err, res) => {
       if (res) {
         return true;
@@ -105,6 +108,8 @@ export default function NavigationBar() {
       solveTask();
     }
   }
+
+  console.log(isSolved(currentTask));
   return (
     <div className="workspace-navigation">
       <RenderPreviousButton />
