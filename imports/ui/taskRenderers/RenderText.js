@@ -85,21 +85,19 @@ export default function RenderText({ task }) {
       if (!image) return;
       return (
         <img
-          src={`${studipUrl.current}/sendfile.php?type=0&file_id=${image.id}&;file_name=${
-            image.name
-          }`}
+          src={`${studipUrl.current}/sendfile.php?type=0&file_id=${image.id}&;file_name=${image.name
+            }`}
           type="image/png"
         />
       );
     }
-    return pages[currentPage * 2 + 1];
+    return pages[currentPage * 2 + 1].trim();
   }
-
   return (
     <>
       <div className="task-text">
         <div className="page-left">
-          <span className="text">{pages[currentPage * 2]}</span>
+          <span className="text">{pages[currentPage * 2].trim()}</span>
         </div>
         <div className="page-middle-line" />
         <div className="page-right">
