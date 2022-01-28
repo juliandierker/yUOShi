@@ -1,15 +1,16 @@
 /* eslint-disable react/prop-types */
-import React, { useState, useCallback, useMemo } from "react";
+import React, { useState, useCallback, useMemo, useEffect } from "react";
 import ProgressBarSubItem from "./progressBarSubItem";
 import Icon from "../IconComponent/Icon";
-
+import PromisifiedMeteor from "../../api/promisified";
 import "./progressBarItem.css";
 
 export default function ProgressBarItem({ station, highlighted, currentTask, setCurrentStation }) {
   const { tasks, locked, name } = station;
   const [hover, setHover] = useState(false);
   const [hoverSubArea, setHoverSubArea] = useState(false);
-
+  const [taskSolutions, setTaskSolutions] = useState([]);
+  const [taskSolutionsSet, setTaskSolutionsSet] = useState(false);
   const handleItemEnter = () => {
     setHover(true);
   };
@@ -59,6 +60,46 @@ export default function ProgressBarItem({ station, highlighted, currentTask, set
       tasks && tasks.length != 0 ? "progressBar-item-hover-tasks" : "progressBar-item-hover";
   }
 
+  async function getSolutions() {
+    return await PromisifiedMeteor.call("tasks.getAllSolution", (err, res) => {
+      if (err) {
+        console.log(err);
+      } else {
+        return res;
+      }
+    })
+  }
+
+  useEffect(() => {
+    if (!taskSolutionsSet) {
+      getSolutions().then(res => {
+        setTaskSolutions(res);
+        setTaskSolutionsSet(true);
+      });
+    }
+
+  }, [tasks])
+
+  const getStationSolvedStatus = () => {
+    if (!tasks) return "progressBar-item-notSolved";
+    tasks.map(task => {
+      const taskSol = taskSolutions.find(solution => {
+        return solution.task_id == task.id
+      });
+      if (taskSol !== undefined) {
+        task.solved = !!taskSol.contents.points > 0 ? true : false
+      }
+      // task.solved = taskSolutions.find(solution => solution.task_Id === task.id && solution.contents.finished !== null) ? true : false;
+
+    });
+
+    if (tasks.every(task => task.solved)) {
+      return "progressBar-item-solved";
+    }
+    if (tasks.some(task => task.solved)) return "progressBar-item-inProgress";
+    return "progressBar-item-notStarted";
+  }
+
   return (
     <React.Fragment>
       <div
@@ -66,7 +107,7 @@ export default function ProgressBarItem({ station, highlighted, currentTask, set
         onMouseEnter={handleItemEnter}
         onMouseLeave={handleItemLeave}
         onClick={() => (station.tasks ? null : setCurrentStation(station))}>
-        <div className="bubble bubble-green" />
+        <div className={"bubble " + getStationSolvedStatus()} />
         <span className="progressBar-item-name">{name}</span>
         <div className="progressBar-item-icon">{icon}</div>
       </div>

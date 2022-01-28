@@ -91,11 +91,8 @@ export default function ProgressBar(props) {
         </div>
         {data.package.stations.map((station, index) => {
 
-          console.log(station, userSolutions);
-          // WIE KANN MAN BITTE SO DUMM SEIN UND NICHT DIE FUCKING TASKID FÜR EINE USERTASKSOLUTION MITGEBEN!!! EINFACH NUR DUMM!!!!!
           const filteredUserSolutions = station.tasks?.map(task => {
             const test = userSolutions.find(sol => {
-              console.log(sol.id, task.id)
               return sol.id === task.id;
             })
 

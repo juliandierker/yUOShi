@@ -113,14 +113,14 @@
   margin-left: 5px;
 }
 
-.bubble-green {
+.progressBar-item-solved {
   background: #BBE55E 0% 0% no-repeat padding-box;
 }
 
-.bubble-yellow {
+.progressBar-item-inProgress {
   background: #E5D05E 0% 0% no-repeat padding-box;
 }
 
-.bubble-orange {
+.progressBar-item-notStarted {
   background: #E5825E 0% 0% no-repeat padding-box;
 }

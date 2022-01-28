@@ -25,8 +25,9 @@ export const TasksContextProvider = ({ currentStation, children }) => {
   const [getSolution, setSolution] = useState(null);
   const [currentTask, setCurrentTask] = useState(undefined);
   const [currentTaskLoading, setCurrentTaskLoading] = useState(true);
-  const [userSolutions, setUserSolutions] = useState([])
+  const [userSolutions, setUserSolutions] = useState([]);
   const [score, setScore] = useState(0);
+  const [isSolved, setSolved] = useState(false);
 
   async function solveTask() {
     await getSolution();
@@ -135,7 +136,8 @@ export const TasksContextProvider = ({ currentStation, children }) => {
     jumpToTask,
     score,
     userSolutions,
-    getTask
+    getTask,
+    isSolved
   };
 
   return <TasksContext.Provider value={ctx}>{children}</TasksContext.Provider>;

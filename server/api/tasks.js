@@ -122,6 +122,7 @@ Meteor.methods({
     const isSolved = solutions.find(
       (solution) => solution.task_id === task_id && solution.contents.points > 0
     );
+    if (isSolved === undefined) return false;
     return !!isSolved;
   }
 });
