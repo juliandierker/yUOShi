@@ -112,7 +112,7 @@ export default function NavigationBar() {
     <div className="workspace-navigation">
       <RenderPreviousButton />
       <button
-        disabled={currentTask?.type === "tag" || !isSolved(currentTask).then((res) => { console.log("test", !!res); return res; })}
+        disabled={currentTask?.type === "tag" || !isSolved(currentTask).then((res) => res)}
         onClick={solveTaskHandler}
         className="navigation-button"
         id="navigation-button-submit">
