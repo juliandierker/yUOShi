@@ -111,7 +111,6 @@ export default function NavigationBar() {
     });
   }
 
-  console.log(isSolved(currentTask));
   return (
     <div className="workspace-navigation">
       <RenderPreviousButton />
