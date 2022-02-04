@@ -5,7 +5,7 @@ import Icon from "../IconComponent/Icon";
 
 import "./progressBarItem.css";
 
-export default function ProgressBarItem({ station, highlighted, currentTask, setCurrentStation }) {
+export default function ProgressBarItem({ station, highlighted, currentTask, setCurrentStation, props }) {
   const { tasks, locked, name } = station;
   const [hover, setHover] = useState(false);
   const [hoverSubArea, setHoverSubArea] = useState(false);
@@ -23,6 +23,12 @@ export default function ProgressBarItem({ station, highlighted, currentTask, set
   const handleSubAreaLeave = () => {
     setHoverSubArea(false);
   };
+
+  const RenderStatus = () => {
+    return (
+      <div className="progressBar-item-status"></div>
+    );
+  }
 
   const RenderSubItems = useCallback(() => {
     return (
@@ -66,6 +72,7 @@ export default function ProgressBarItem({ station, highlighted, currentTask, set
         onMouseEnter={handleItemEnter}
         onMouseLeave={handleItemLeave}
         onClick={() => (station.tasks ? null : setCurrentStation(station))}>
+        <RenderStatus />
         <span className="progressBar-item-name">{name}</span>
         <div className="progressBar-item-icon">{icon}</div>
       </div>

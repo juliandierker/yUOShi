@@ -1,12 +1,10 @@
 /* eslint-disable react/prop-types */
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 
 import ProgressBarItem from "./progressBarItem";
+import ProgressBarSubItem from "./progressBarSubItem";
 
 import "./progressBar.css";
-import { usePrevious } from "../../shared/customHooks";
-import Swal from "sweetalert2";
-
 /**
  * Render Progressbar
  *
@@ -22,53 +20,41 @@ export default function ProgressBar(props) {
     jumpToTask,
     setCurrentStation
   } = props;
-  const prevScore = usePrevious(score);
-  let maxCredits = 0;
+  const [packageData, setPackageData] = useState({});
+  const [maxCredits, setMaxCredits] = useState(0);
 
+  // mounting effect to set the package data
   useEffect(() => {
-    if (prevScore && score > prevScore) {
-      Swal.fire({
-        position: "top-end",
-        type: "success",
-        title: "Es wurden Punkte gutgeschrieben.",
-        timer: 2000
-      });
-    }
-  }, [prevScore, score]);
-  const data = {
-    package: {
-      name: currentPackage.title,
-      stations: stations.map((station) => {
-        if (station.id === "generated__outro") {
-          station.questStations.map((stat) => {
-            stat.tasks.map((task) => {
-              maxCredits += task.credits
+    let mCred = 0;
+    const data = {
+      package: {
+        name: currentPackage.title,
+        stations: stations.map((station) => {
+          if (station.id === "generated__outro") {
+            station.questStations.map((stat) => {
+              stat.tasks.map((task) => {
+                mCred += task.credits
+              })
             })
-          })
-        }
-        return {
-          name: station.title,
-          id: station.id,
-          tasks: station.tasks?.map((task) => {
-            maxCredits += task.credits;
-            return {
-              name: task.title,
-              type: task.type,
-              id: task.id
-            };
-          })
-        };
-      })
+          }
+          return {
+            name: station.title,
+            id: station.id,
+            tasks: station.tasks?.map((task) => {
+              mCred += task.credits;
+              return {
+                name: task.title,
+                type: task.type,
+                id: task.id
+              };
+            })
+          };
+        })
+      }
     }
-  };
-
-  const RenderTitle = ({ title }) => {
-    return (
-      <div className="progressBar-header">
-        <span className="progressBar-header-name">{title}</span>
-      </div>
-    );
-  };
+    setMaxCredits(mCred)
+    setPackageData(data);
+  }, [])
 
   const RenderScore = () => {
     return (
@@ -81,32 +67,43 @@ export default function ProgressBar(props) {
     );
   };
 
+  const RenderProgress = () => {
+    const percentage = (score / maxCredits) * 100;
+    return <div className="progressBar-progress-container">
+      <div style={{ width: percentage + "%" }} className="progressBar-progress" />
+    </div>
+  }
+
+
   const RenderStations = () => {
-    return (
-      <div className="progressBar-content">
-        {data.package.stations.map((station, index) => {
-          return (
-            <ProgressBarItem
-              key={"progressBarItem_" + index}
-              station={station}
-              index={index}
-              highlighted={station.id === currentStation.id}
-              currentTask={currentTask}
-              jumpToTask={jumpToTask}
-              setCurrentStation={setCurrentStation}
-            />
-          );
-        })}
-        <RenderScore />
-      </div>
-    );
+    if (!packageData || !packageData.package) return <div></div>
+    return packageData?.package?.stations.map((station, index) => {
+      return (
+        <ProgressBarItem
+          key={"progressBarItem_" + index}
+          station={station}
+          index={index}
+          highlighted={station.id === currentStation.id}
+          currentTask={currentTask}
+          jumpToTask={jumpToTask}
+          setCurrentStation={setCurrentStation}
+        >
+        </ProgressBarItem>
+      );
+    })
   };
 
   return (
     <React.Fragment>
       <div className="progressBar-container">
-        <RenderTitle title={data.package.name} />
-        <RenderStations />
+        <div className="progressBar-header">
+          <span className="progressBar-header-name">{packageData?.package?.name}</span>
+        </div>
+        <div className="progressBar-content">
+          <RenderProgress />
+          <RenderStations />
+          <RenderScore />
+        </div>
       </div>
     </React.Fragment>
   );
