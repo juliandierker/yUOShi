@@ -25,7 +25,7 @@ export default function ProgressBarItem({ station, solved, highlighted, currentT
   };
 
   const RenderStatus = () => {
-    let color = "#E5825E";
+    let color = "#6F94CC";
     if (solved === "solved") {
       color = "#BBE55E";
     } else if (solved === "partial") {
@@ -50,6 +50,7 @@ export default function ProgressBarItem({ station, solved, highlighted, currentT
                 type={station.type}
                 id={station.id}
                 title={station.name}
+                solved={station.solved}
                 highlighted={currentTask && station.id === currentTask.id}
               />
             );
