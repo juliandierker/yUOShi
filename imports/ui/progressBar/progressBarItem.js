@@ -5,7 +5,7 @@ import Icon from "../IconComponent/Icon";
 
 import "./progressBarItem.css";
 
-export default function ProgressBarItem({ station, highlighted, currentTask, setCurrentStation, props }) {
+export default function ProgressBarItem({ station, solved, highlighted, currentTask, setCurrentStation, props }) {
   const { tasks, locked, name } = station;
   const [hover, setHover] = useState(false);
   const [hoverSubArea, setHoverSubArea] = useState(false);
@@ -25,8 +25,14 @@ export default function ProgressBarItem({ station, highlighted, currentTask, set
   };
 
   const RenderStatus = () => {
+    let color = "#E5825E";
+    if (solved === "solved") {
+      color = "#BBE55E";
+    } else if (solved === "partial") {
+      color = "#E5D05E";
+    }
     return (
-      <div className="progressBar-item-status"></div>
+      <div className="progressBar-item-status" style={{ backgroundColor: color }}></div>
     );
   }
 
