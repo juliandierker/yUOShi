@@ -42,7 +42,6 @@ export default function ProgressBar(props) {
       getSolutions().then(res => {
         setTaskSolutions(res);
         setIsTaskSolutionsSet(true);
-        // TODO: set solutions for each task
         let mCred = 0;
         const data = {
           package: {
@@ -59,7 +58,6 @@ export default function ProgressBar(props) {
                 name: station.title,
                 id: station.id,
                 tasks: station.tasks?.map((task) => {
-                  // TODO: add solved flag
                   const taskSol = res.find(solution => {
                     return solution.task_id === task.id;
                   })
@@ -68,7 +66,7 @@ export default function ProgressBar(props) {
                     name: task.title,
                     type: task.type,
                     id: task.id,
-                    solved: taskSol === undefined ? false : !!taskSol.contents.points > 0 ? true : false,
+                    solved: taskSol === undefined ? undefined : !!taskSol.contents.points > 0 ? true : false,
                   };
                 })
               };
@@ -89,9 +87,10 @@ export default function ProgressBar(props) {
       return task.solved;
     })
     if (isFullySolved) return "solved";
-    // check if any task from station.tasks is solved
+
+    // check if any task from station.tasks is solved or a task has been started
     const isPartiallySolved = station.tasks.some(task => {
-      return task.solved;
+      return task.solved !== undefined;
     })
     if (isPartiallySolved) return "partial";
     return "not-started";

@@ -43,15 +43,15 @@ export default function ProgressBarItem({ station, solved, highlighted, currentT
           className="progressBar-sub-items"
           onMouseEnter={handleSubAreaEnter}
           onMouseLeave={handleSubAreaLeave}>
-          {tasks.map((station, index) => {
+          {tasks.map((task, index) => {
             return (
               <ProgressBarSubItem
                 key={"progressBarSubItem_" + index}
-                type={station.type}
-                id={station.id}
-                title={station.name}
-                solved={station.solved}
-                highlighted={currentTask && station.id === currentTask.id}
+                type={task.type}
+                id={task.id}
+                title={task.name}
+                solved={task.solved}
+                highlighted={currentTask && task.id === currentTask.id}
               />
             );
           })}

@@ -19,7 +19,11 @@ export default function ProgressBarSubItem({ title, type, highlighted, id, solve
 
   const RenderIcon = () => {
     const iconName = type !== "text" && type !== "tag" ? "checkmark" : "info";
-    const iconBackgroundColor = solved ? "#BBE55E" : "#6F94CC";
+    // if solved === undefined, use blue icon  #6F94CC
+    // if solved === false, use orange icon    #E5D05E
+    // if solved === true, use green icon      #BBE55E
+    const iconBackgroundColor = solved === undefined ? "#6F94CC" : solved === false ? "#E5D05E" : "#BBE55E";
+
     const iconContainerBackgroundColor = hover || highlighted ? "white" : iconBackgroundColor
     const iconColor = hover || highlighted ? iconBackgroundColor : "white"
 
