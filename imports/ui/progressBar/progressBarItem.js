@@ -25,12 +25,13 @@ export default function ProgressBarItem({ station, solved, highlighted, currentT
   };
 
   const RenderStatus = () => {
-    let color = "#6F94CC";
+    let color = (hover && hoverSubArea) ? "#ffffff" : "#6F94CC";
     if (solved === "solved") {
       color = "#BBE55E";
     } else if (solved === "partial") {
       color = "#E5D05E";
     }
+
     return (
       <div className="progressBar-item-status" style={{ backgroundColor: color }}></div>
     );

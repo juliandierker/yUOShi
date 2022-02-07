@@ -93,22 +93,25 @@ export default function NavigationBar() {
   }
 
   async function solveTaskHandler() {
-    if (isSolved(currentTask)) {
-      Swal.fire({
-        position: "top-end",
-        type: "info",
-        title: "Die Aufgabe wurde schon gelöst.",
-        timer: 2000
-      });
-    } else {
-      solveTask();
-    }
+    isSolved(currentTask).then((res) => {
+      if (res) {
+        Swal.fire({
+          position: "top-end",
+          type: "info",
+          title: "Die Aufgabe wurde schon gelöst.",
+          timer: 2000
+        });
+      } else {
+        solveTask();
+      }
+    });
   }
+
   return (
     <div className="workspace-navigation">
       <RenderPreviousButton />
       <button
-        disabled={currentTask?.type === "tag" || isSolved(currentTask)}
+        disabled={currentTask?.type === "tag" || !isSolved(currentTask).then((res) => res)}
         onClick={solveTaskHandler}
         className="navigation-button"
         id="navigation-button-submit">
