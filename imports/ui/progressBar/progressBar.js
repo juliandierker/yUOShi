@@ -22,9 +22,7 @@ export default function ProgressBar(props) {
   } = props;
   const [packageData, setPackageData] = useState({});
   const [maxCredits, setMaxCredits] = useState(0);
-  const [taskSolutions, setTaskSolutions] = useState([]);
-  const [isTaskSolutionsSet, setIsTaskSolutionsSet] = useState(false);
-
+  
   async function getSolutions() {
     return await PromisifiedMeteor.call("tasks.getAllSolution", (err, res) => {
       if (err) {
@@ -38,8 +36,6 @@ export default function ProgressBar(props) {
   // effect to set the package data
   useEffect(() => {
       getSolutions().then(res => {
-        setTaskSolutions(res);
-        setIsTaskSolutionsSet(true);
         let mCred = 0;
         const data = {
           package: {
