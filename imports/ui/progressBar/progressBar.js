@@ -2,7 +2,6 @@
 import React, { useEffect, useState } from "react";
 
 import ProgressBarItem from "./progressBarItem";
-import ProgressBarSubItem from "./progressBarSubItem";
 
 import "./progressBar.css";
 import PromisifiedMeteor from "../../api/promisified";
@@ -36,9 +35,8 @@ export default function ProgressBar(props) {
     });
   }
 
-  // mounting effect to set the package data
+  // effect to set the package data
   useEffect(() => {
-    if (!isTaskSolutionsSet) {
       getSolutions().then(res => {
         setTaskSolutions(res);
         setIsTaskSolutionsSet(true);
@@ -76,9 +74,8 @@ export default function ProgressBar(props) {
         setMaxCredits(mCred)
         setPackageData(data);
       })
-    }
 
-  }, [])
+  }, [stations])
 
   const getStationSolvedStatus = (station) => {
     if (!station || !station.tasks) return "not-started";
