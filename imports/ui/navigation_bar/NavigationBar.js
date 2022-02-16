@@ -1,8 +1,6 @@
 import React, { useState, useCallback, useEffect } from "react";
 import Icon from "../IconComponent/Icon";
 
-import { Grid } from "semantic-ui-react";
-
 import { useTasksContext } from "../student/TasksContext";
 import { useStationsContext } from "../student/StationsContext";
 
@@ -84,9 +82,7 @@ export default function NavigationBar() {
   }, [hoverNext]);
 
   async function isSolved(currentTask) {
-    if (!currentTask)
-      return false;
-
+    if (!currentTask) return false;
     await PromisifiedMeteor.call("tasks.isSolved", currentTask.id, (err, res) => {
       if (res) {
         return true;

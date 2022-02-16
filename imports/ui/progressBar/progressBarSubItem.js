@@ -6,10 +6,9 @@ import { useTasksContext } from "../student/TasksContext";
 
 import "./progressBarSubItem.css";
 
-export default function ProgressBarSubItem({ title, type, highlighted, id }) {
+export default function ProgressBarSubItem({ title, type, highlighted, id, solved }) {
   const { jumpToTask } = useTasksContext();
   const [hover, setHover] = useState(false);
-
   const handleItemEnter = () => {
     setHover(true);
   };
@@ -18,17 +17,22 @@ export default function ProgressBarSubItem({ title, type, highlighted, id }) {
     setHover(false);
   };
 
-  const iconName = type !== "text" && type !== "tag" ? "checkmark" : "info";
-  const iconColor = hover || highlighted ? "black" : "white";
+  const RenderIcon = () => {
+    const iconName = type !== "text" && type !== "tag" ? "checkmark" : "info";
+    const iconBackgroundColor = solved === undefined ? "#6F94CC" : solved === false ? "#E5D05E" : "#BBE55E";
+    const iconContainerBackgroundColor = hover || highlighted ? "white" : iconBackgroundColor
+    const iconColor = hover || highlighted ? iconBackgroundColor : "white"
 
-  const icon = <Icon name={iconName} size="large" color={iconColor} />;
+    let pbIconClassname = (hover || highlighted) ? "progress-bar-sub-item-icon-highlighted" : "progress-bar-sub-item-icon";
 
-  let pbClassname = "progress-bar-sub-item";
-  let pbIconClassname = "progress-bar-sub-item-icon";
-  if (hover || highlighted) {
-    pbClassname = "progress-bar-sub-item-highlighted";
-    pbIconClassname = "progress-bar-sub-item-icon-highlighted";
+    return (
+      <div className={pbIconClassname} style={{ backgroundColor: iconContainerBackgroundColor }}>
+        <Icon name={iconName} size="large" color={iconColor} />
+      </div>
+    )
   }
+
+  let pbClassname = (hover || highlighted) ? "progress-bar-sub-item-highlighted" : "progress-bar-sub-item";
 
   return (
     <div
@@ -36,7 +40,7 @@ export default function ProgressBarSubItem({ title, type, highlighted, id }) {
       onMouseEnter={handleItemEnter}
       onMouseLeave={handleItemLeave}
       onClick={() => jumpToTask(id)}>
-      <div className={pbIconClassname}>{icon}</div>
+      <RenderIcon />
       <div
         className="progress-bar-sub-item-text"
         onMouseEnter={handleItemEnter}

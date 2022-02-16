@@ -5,7 +5,7 @@ import Icon from "../IconComponent/Icon";
 
 import "./progressBarItem.css";
 
-export default function ProgressBarItem({ station, highlighted, currentTask, setCurrentStation }) {
+export default function ProgressBarItem({ station, solved, highlighted, currentTask, setCurrentStation, props }) {
   const { tasks, locked, name } = station;
   const [hover, setHover] = useState(false);
   const [hoverSubArea, setHoverSubArea] = useState(false);
@@ -24,6 +24,19 @@ export default function ProgressBarItem({ station, highlighted, currentTask, set
     setHoverSubArea(false);
   };
 
+  const RenderStatus = () => {
+    let color = (hover && hoverSubArea) ? "#ffffff" : "#6F94CC";
+    if (solved === "solved") {
+      color = "#BBE55E";
+    } else if (solved === "partial") {
+      color = "#E5D05E";
+    }
+
+    return (
+      <div className="progressBar-item-status" style={{ backgroundColor: color }}></div>
+    );
+  }
+
   const RenderSubItems = useCallback(() => {
     return (
       <div className="dummy">
@@ -31,14 +44,15 @@ export default function ProgressBarItem({ station, highlighted, currentTask, set
           className="progressBar-sub-items"
           onMouseEnter={handleSubAreaEnter}
           onMouseLeave={handleSubAreaLeave}>
-          {tasks.map((station, index) => {
+          {tasks.map((task, index) => {
             return (
               <ProgressBarSubItem
                 key={"progressBarSubItem_" + index}
-                type={station.type}
-                id={station.id}
-                title={station.name}
-                highlighted={currentTask && station.id === currentTask.id}
+                type={task.type}
+                id={task.id}
+                title={task.name}
+                solved={task.solved}
+                highlighted={currentTask && task.id === currentTask.id}
               />
             );
           })}
@@ -66,6 +80,7 @@ export default function ProgressBarItem({ station, highlighted, currentTask, set
         onMouseEnter={handleItemEnter}
         onMouseLeave={handleItemLeave}
         onClick={() => (station.tasks ? null : setCurrentStation(station))}>
+        <RenderStatus />
         <span className="progressBar-item-name">{name}</span>
         <div className="progressBar-item-icon">{icon}</div>
       </div>
