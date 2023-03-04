@@ -31,7 +31,7 @@
     "materialize-css": "^1.0.0",
     "meteor-node-stubs": "^0.4.1",
     "moment": "^2.24.0",
-    "npm": "^6.13.4",
+    "npm": "^6.14.18",
     "prop-types": "^15.7.2",
     "react": "^16.8.4",
     "react-alice-carousel": "^1.13.11",
